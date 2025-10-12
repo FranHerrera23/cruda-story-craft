@@ -20,47 +20,49 @@ const verticals = [
 
 const WhoWeWorkWith = () => {
   return (
-    <section className="py-32 px-6 bg-background">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-4 tracking-tighter">
+    <section className="py-30 px-6 md:px-30 bg-background">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-20">
+          <h2 className="font-display text-section font-semibold mb-4 tracking-tight-2">
             We only work with 3 types of builders:
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12">
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 mb-20">
           {verticals.map((vertical, index) => (
             <div 
               key={index}
-              className="text-center space-y-4 p-8 border border-border/30 hover:border-aged-gold/30 transition-all duration-500 liquid-glow"
+              className="group space-y-6 p-10 border border-charcoal/10 hover:border-signal-red/30 transition-all duration-500 slow-reveal"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex justify-center mb-4">
-                <vertical.icon className="w-10 h-10 text-slate" strokeWidth={1.5} />
+              <div className="flex justify-center">
+                <vertical.icon 
+                  className="w-12 h-12 text-charcoal/60 group-hover:text-signal-red transition-colors duration-500" 
+                  strokeWidth={1.5} 
+                />
               </div>
-              <h3 className="text-xl font-serif tracking-tight">
+              <h3 className="font-display text-xl font-semibold text-center tracking-tight leading-tight">
                 {vertical.title}
               </h3>
-              <p className="text-muted-foreground italic">
+              <p className="text-muted-foreground italic text-center leading-relaxed">
                 {vertical.subtitle}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 text-center space-y-4">
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <div className="text-center space-y-6 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed">
             Different crafts. Same challenge:
-            <br />
-            <span className="text-foreground font-serif text-xl mt-2 block">
-              How do you make others see what you see?
-            </span>
+          </p>
+          <p className="font-display text-2xl font-semibold">
+            How do you make others see what you see?
           </p>
           
-          <p className="text-muted-foreground italic max-w-xl mx-auto pt-4">
-            They build the world.
-            <br />
-            We build the words that make it real.
-          </p>
+          <div className="pt-8 space-y-2">
+            <p className="text-muted-foreground italic">They build the world.</p>
+            <p className="text-muted-foreground italic">We build the words that make it real.</p>
+          </div>
         </div>
       </div>
     </section>

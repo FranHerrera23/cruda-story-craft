@@ -31,31 +31,31 @@ const ContactForm = () => {
   };
 
   return (
-    <section className="py-32 px-6 bg-primary text-primary-foreground">
+    <section className="py-30 px-6 md:px-30 bg-charcoal text-bone">
       <div className="max-w-3xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl mb-6 tracking-tighter">
+        <div className="mb-20">
+          <h2 className="font-display text-section font-semibold mb-10 tracking-tight-2 text-center">
             Let's Build Trust
           </h2>
           
-          <div className="space-y-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            <p>If you've read this far, you probably felt something.</p>
+          <div className="space-y-6 text-lg text-center max-w-2xl mx-auto">
+            <p className="text-bone/70">If you've read this far, you probably felt something.</p>
             
-            <p className="text-xl text-primary-foreground font-serif pt-4">
+            <p className="font-display text-2xl font-medium pt-6">
               And if you're building something worth believing in — let's make sure people see it.
             </p>
             
-            <p className="pt-4 text-primary-foreground/70 italic">
+            <p className="pt-6 text-bone/60 italic">
               We only take on a few founders at a time.
             </p>
             
-            <p className="text-primary-foreground">
+            <p className="text-bone font-medium">
               Start with a conversation.
             </p>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-primary-foreground/5 backdrop-blur-sm border border-primary-foreground/10 p-8 md:p-12">
+        <form onSubmit={handleSubmit} className="space-y-6 bg-bone/5 backdrop-blur-sm border border-bone/10 p-10 md:p-12">
           <div>
             <Input
               type="text"
@@ -64,7 +64,7 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red rounded-sm h-14 text-lg"
             />
           </div>
 
@@ -76,7 +76,7 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red rounded-sm h-14 text-lg"
             />
           </div>
 
@@ -87,7 +87,7 @@ const ContactForm = () => {
               placeholder="LinkedIn or Website"
               value={formData.website}
               onChange={handleChange}
-              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red rounded-sm h-14 text-lg"
             />
           </div>
 
@@ -99,22 +99,22 @@ const ContactForm = () => {
               onChange={handleChange}
               required
               rows={5}
-              className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/50 resize-none"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red resize-none rounded-sm text-lg"
             />
           </div>
 
-          <div className="border-t border-primary-foreground/10 pt-6 mb-6">
+          <div className="border-t border-bone/10 pt-6 mb-6">
             <button
               type="button"
               onClick={() => setShowFAQ(!showFAQ)}
-              className="text-primary-foreground/70 hover:text-primary-foreground underline decoration-aged-gold/50 hover:decoration-aged-gold transition-all duration-300 text-sm"
+              className="text-bone/60 hover:text-bone underline decoration-signal-red/50 hover:decoration-signal-red transition-all duration-300 text-sm tracking-wide"
             >
               Are you familiar with our pricing and process?
             </button>
             
             {showFAQ && (
-              <div className="mt-4 p-4 bg-primary-foreground/5 border border-primary-foreground/10 text-left slow-fade-in">
-                <p className="text-sm text-primary-foreground/80 leading-relaxed">
+              <div className="mt-6 p-6 bg-bone/5 border border-signal-red/20 slow-fade-in">
+                <p className="text-sm text-bone/70 leading-relaxed">
                   We work in 4-month phases, starting at $6,000. We do deep narrative strategy, not content production.
                 </p>
               </div>
@@ -124,7 +124,7 @@ const ContactForm = () => {
           <Button 
             type="submit"
             size="lg"
-            className="w-full bg-aged-gold text-primary-foreground hover:bg-aged-gold/90 text-lg py-6 transition-all duration-500"
+            className="w-full bg-signal-red text-charcoal hover:bg-charcoal hover:text-signal-red hover:border hover:border-signal-red text-lg py-7 font-display font-semibold tracking-wide transition-all duration-500 rounded-sm"
           >
             Start the Conversation
           </Button>

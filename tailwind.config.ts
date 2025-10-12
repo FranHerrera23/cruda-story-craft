@@ -2,12 +2,22 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1.5rem",
+        sm: "2rem",
+        lg: "5rem",
+        xl: "7.5rem",
+      },
       screens: {
         "2xl": "1400px",
       },
@@ -47,19 +57,30 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        obsidian: "hsl(var(--obsidian))",
-        ivory: "hsl(var(--ivory))",
-        clay: "hsl(var(--clay))",
-        "aged-gold": "hsl(var(--aged-gold))",
-        slate: "hsl(var(--slate))",
+        charcoal: "hsl(var(--charcoal))",
+        bone: "hsl(var(--bone))",
+        "signal-red": "hsl(var(--signal-red))",
       },
       fontFamily: {
-        serif: ['ui-serif', 'Georgia', 'Cambria', 'Times New Roman', 'Times', 'serif'],
-        sans: ['ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        grotesk: ['Space Grotesk', 'sans-serif'],
+      },
+      fontSize: {
+        'hero': ['clamp(2.5rem, 6vw, 4.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'section': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        'subsection': ['clamp(1.5rem, 3vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
       },
       letterSpacing: {
-        tighter: '-0.02em',
-        tight: '-0.01em',
+        'tight-2': '-0.02em',
+        'tight-1': '-0.01em',
+        'wide-5': '0.05em',
+      },
+      spacing: {
+        '18': '4.5rem',   /* 72px */
+        '30': '7.5rem',   /* 120px */
+        '34': '8.5rem',   /* 136px */
+        '38': '9.5rem',   /* 152px */
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -68,25 +89,47 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
+        reveal: {
+          "0%": {
+            opacity: "0",
+            transform: "translateY(20px)"
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)"
+          }
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" }
+        },
+        drift: {
+          "0%": { 
+            opacity: "0",
+            transform: "translateY(20px)" 
+          },
+          "100%": { 
+            opacity: "1",
+            transform: "translateY(0)" 
+          }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "reveal": "reveal 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards",
+        "fade-in": "fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards",
+        "drift-up": "drift 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards",
+      },
+      transitionTimingFunction: {
+        'cruda': 'cubic-bezier(0.33, 1, 0.68, 1)',
       },
     },
   },

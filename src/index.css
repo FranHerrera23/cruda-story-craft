@@ -2,149 +2,210 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* CRUDA Design System - Quiet Luxury */
-    --obsidian: 0 0% 7%;        /* #121212 - Deeper than standard black */
-    --ivory: 37 30% 96%;        /* #F7F4EF - Soft neutral, warmer than white */
-    --clay: 33 33% 78%;         /* #D8C9B4 - Earthy, calm, slightly aged */
-    --aged-gold: 40 40% 60%;    /* #B79968 - Subtle craftsmanship accent */
-    --slate: 210 10% 45%;       /* #6C7576 - Natural, grounding, intellectual */
+    /* CRUDA Punk-Luxe Color System */
+    --charcoal: 0 0% 17%;           /* #2B2B2B - Base. Foundation. Authority. */
+    --bone: 42 22% 88%;              /* #E8E3D8 - Clarity. Space. Breath. */
+    --signal-red: 347 100% 59%;      /* #FF2E63 - Tension. Accent. The punk edge. */
     
-    --background: var(--ivory);
-    --foreground: var(--obsidian);
-
-    --card: 0 0% 100%;
-    --card-foreground: var(--obsidian);
-
-    --popover: 0 0% 100%;
-    --popover-foreground: var(--obsidian);
-
-    --primary: var(--obsidian);
-    --primary-foreground: var(--ivory);
-
-    --secondary: var(--slate);
-    --secondary-foreground: var(--ivory);
-
-    --muted: var(--clay);
-    --muted-foreground: var(--slate);
-
-    --accent: var(--aged-gold);
-    --accent-foreground: var(--obsidian);
-
-    --destructive: 0 70% 45%;
-    --destructive-foreground: var(--ivory);
-
-    --border: 40 15% 85%;
-    --input: 40 15% 85%;
-    --ring: var(--obsidian);
-
-    --radius: 0.25rem;
+    /* Semantic Tokens */
+    --background: var(--bone);
+    --foreground: var(--charcoal);
+    
+    --card: var(--bone);
+    --card-foreground: var(--charcoal);
+    
+    --popover: var(--bone);
+    --popover-foreground: var(--charcoal);
+    
+    --primary: var(--charcoal);
+    --primary-foreground: var(--bone);
+    
+    --secondary: var(--bone);
+    --secondary-foreground: var(--charcoal);
+    
+    --muted: 42 15% 82%;
+    --muted-foreground: 0 0% 35%;
+    
+    --accent: var(--signal-red);
+    --accent-foreground: var(--charcoal);
+    
+    --destructive: var(--signal-red);
+    --destructive-foreground: var(--bone);
+    
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: var(--signal-red);
+    
+    --radius: 0.125rem; /* 2px - sharp, not rounded */
   }
-
-  .dark {
-    --background: 0 0% 4%;
-    --foreground: 40 20% 97%;
-
-    --card: 0 0% 8%;
-    --card-foreground: 40 20% 97%;
-
-    --popover: 0 0% 8%;
-    --popover-foreground: 40 20% 97%;
-
-    --primary: 40 20% 97%;
-    --primary-foreground: 0 0% 4%;
-
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 40 20% 97%;
-
-    --muted: 0 0% 12%;
-    --muted-foreground: 40 10% 65%;
-
-    --accent: 15 60% 50%;
-    --accent-foreground: 0 0% 4%;
-
-    --destructive: 0 70% 45%;
-    --destructive-foreground: 40 20% 97%;
-
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 40 20% 97%;
-  }
-}
-
-@layer base {
+  
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "kern" 1, "liga" 1;
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-
+  
+  /* Typography Hierarchy */
   h1, h2, h3, h4, h5, h6 {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-    font-weight: 400;
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  
+  h1 { 
+    font-size: clamp(2.5rem, 6vw, 4.5rem); 
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  
+  h2 { 
+    font-size: clamp(2rem, 4vw, 3rem);
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  
+  h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  
+  p {
+    line-height: 1.6;
+    max-width: 75ch;
+  }
+}
+
+@layer components {
+  /* Punk Minimalism Utilities */
+  .section-number {
+    @apply text-sm font-medium tracking-[0.25em] text-accent uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .editorial-underline {
+    @apply relative inline-block;
+  }
+  
+  .editorial-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--signal-red));
+    transform: scaleX(0.6);
+    transform-origin: left;
+  }
+  
+  .hand-drawn-line {
+    position: relative;
+  }
+  
+  .hand-drawn-line::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: -2%;
+    width: 104%;
+    height: 3px;
+    background: hsl(var(--signal-red));
+    clip-path: polygon(
+      0% 50%, 2% 45%, 5% 52%, 8% 48%, 12% 53%, 15% 47%, 
+      20% 51%, 25% 49%, 30% 52%, 35% 48%, 40% 50%, 45% 52%, 
+      50% 48%, 55% 51%, 60% 49%, 65% 52%, 70% 47%, 75% 50%, 
+      80% 53%, 85% 49%, 90% 51%, 95% 48%, 98% 52%, 100% 50%
+    );
+  }
+  
+  .strikethrough-red {
+    position: relative;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .strikethrough-red::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -2%;
+    width: 104%;
+    height: 2px;
+    background: hsl(var(--signal-red));
+    transform: translateY(-50%) rotate(-1deg);
+  }
+  
+  .liquid-glow {
+    transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  
+  .liquid-glow:hover {
+    box-shadow: 0 0 0 1px hsl(var(--signal-red) / 0.3);
+  }
+  
+  /* Reveal Animation */
+  .slow-reveal {
+    animation: reveal 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .slow-fade-in {
+    animation: fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+    opacity: 0;
+  }
+  
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+  
+  /* Asymmetric Grid */
+  .grid-asymmetric {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .col-7 {
+    grid-column: span 7;
+  }
+  
+  .col-5 {
+    grid-column: span 5;
+  }
+  
+  /* Typography Controls */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .tracking-tight-2 {
     letter-spacing: -0.02em;
   }
-
-  p {
-    font-family: ui-sans-serif, system-ui, sans-serif;
-    letter-spacing: -0.01em;
+  
+  .tracking-wide-5 {
+    letter-spacing: 0.05em;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .editorial-underline {
-    position: relative;
-  }
-
-  .editorial-underline::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, hsl(var(--aged-gold)), transparent);
-    opacity: 0.5;
-  }
-
-  /* Liquid hover effects - slow, elegant motion */
-  .liquid-glow {
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .liquid-glow:hover {
-    box-shadow: 0 8px 32px hsla(var(--aged-gold), 0.15);
-    transform: translateY(-2px);
-  }
-
-  .slow-reveal {
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .slow-fade-in {
-    animation: fadeIn 1.2s ease-out;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  /* Spacing System - 8px baseline */
+  .space-y-baseline {
+    & > * + * {
+      margin-top: 2rem; /* 32px */
     }
   }
 }

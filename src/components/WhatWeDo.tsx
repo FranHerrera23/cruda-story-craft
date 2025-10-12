@@ -20,7 +20,7 @@ const services = [
 
 const WhatWeDo = () => {
   return (
-    <section className="py-32 px-6 bg-bone">
+    <section className="py-32 px-6 bg-clay/20">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl mb-6 tracking-tighter">
@@ -34,10 +34,10 @@ const WhatWeDo = () => {
           {services.map((service, index) => (
             <div 
               key={index} 
-              className="space-y-4 group hover:scale-[1.02] transition-transform duration-300"
+              className="space-y-4 group hover:scale-[1.02] transition-all duration-500 slow-reveal"
             >
               <div className="w-12 h-12 flex items-center justify-center">
-                <service.icon className="w-8 h-8 text-rust" strokeWidth={1.5} />
+                <service.icon className="w-8 h-8 text-aged-gold" strokeWidth={1.5} />
               </div>
               <h3 className="text-2xl font-serif tracking-tight">
                 {service.title}
@@ -50,7 +50,7 @@ const WhatWeDo = () => {
         </div>
 
         <div className="mt-20 text-center">
-          <p className="text-xl md:text-2xl text-ink/70 italic max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-slate italic max-w-3xl mx-auto font-serif">
             "We don't turn founders into influencers. We turn them into narrative leaders."
           </p>
         </div>

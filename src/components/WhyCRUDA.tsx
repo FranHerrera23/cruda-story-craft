@@ -15,7 +15,7 @@ const beliefs = [
 
 const WhyCRUDA = () => {
   return (
-    <section className="py-32 px-6 bg-bone">
+    <section className="py-32 px-6 bg-ivory">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-6xl mb-6 tracking-tighter">
@@ -29,7 +29,7 @@ const WhyCRUDA = () => {
           {beliefs.map((belief, index) => (
             <div 
               key={index}
-              className="bg-background border border-border p-8 space-y-4 hover:border-rust/50 transition-colors duration-300"
+              className="bg-background border border-border p-8 space-y-4 hover:border-aged-gold/50 transition-all duration-500 liquid-glow"
             >
               <h3 className="text-xl font-serif tracking-tight editorial-underline pb-2">
                 {belief.title}
@@ -42,7 +42,7 @@ const WhyCRUDA = () => {
         </div>
 
         <div className="mt-16 text-center">
-          <p className="text-2xl md:text-3xl font-serif italic text-rust max-w-2xl mx-auto">
+          <p className="text-2xl md:text-3xl font-serif italic text-aged-gold max-w-2xl mx-auto">
             That's what sticks.
           </p>
         </div>

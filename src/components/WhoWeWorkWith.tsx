@@ -32,10 +32,10 @@ const WhoWeWorkWith = () => {
           {verticals.map((vertical, index) => (
             <div 
               key={index}
-              className="text-center space-y-4 p-8 border border-border/30 hover:border-rust/30 transition-colors duration-300"
+              className="text-center space-y-4 p-8 border border-border/30 hover:border-aged-gold/30 transition-all duration-500 liquid-glow"
             >
               <div className="flex justify-center mb-4">
-                <vertical.icon className="w-10 h-10 text-olive" strokeWidth={1.5} />
+                <vertical.icon className="w-10 h-10 text-slate" strokeWidth={1.5} />
               </div>
               <h3 className="text-xl font-serif tracking-tight">
                 {vertical.title}

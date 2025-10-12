@@ -100,9 +100,9 @@ const ContactForm = () => {
           <Button 
             type="submit"
             size="lg"
-            className="w-full bg-rust text-primary-foreground hover:bg-rust/90 text-lg py-6"
+            className="w-full bg-aged-gold text-primary-foreground hover:bg-aged-gold/90 text-lg py-6 transition-all duration-500"
           >
-            Start the Conversation
+            Let's Begin the First Chapter
           </Button>
         </form>
       </div>

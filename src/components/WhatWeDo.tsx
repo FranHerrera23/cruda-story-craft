@@ -18,9 +18,9 @@ const pillars = [
 
 const WhatWeDo = () => {
   return (
-    <section className="overflow-hidden">
-      {/* Top Section - Charcoal Background */}
-      <div className="bg-charcoal text-bone py-30 px-6 md:px-30">
+    <section className="overflow-hidden bg-bone">
+      {/* Top Section */}
+      <div className="text-charcoal py-30 px-6 md:px-30">
         <div className="max-w-4xl mx-auto">
           <h2 className="font-display text-5xl md:text-6xl font-bold mb-15 tracking-tight-2 leading-[1.1] slow-fade-in">
             We don't make content.
@@ -34,8 +34,8 @@ const WhatWeDo = () => {
         </div>
       </div>
 
-      {/* Bottom Section - Bone Background */}
-      <div className="bg-bone text-charcoal py-30 px-6 md:px-30">
+      {/* Bottom Section */}
+      <div className="text-charcoal py-30 px-6 md:px-30">
         <div className="max-w-4xl mx-auto">
           {/* Three Pillars */}
           <div className="space-y-20 mb-30">

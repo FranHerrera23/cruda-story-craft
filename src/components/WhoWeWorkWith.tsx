@@ -1,67 +1,80 @@
-import { Building2, Stethoscope, Trophy } from "lucide-react";
-
 const verticals = [
   {
-    icon: Building2,
-    title: "Developers & Architects",
-    subtitle: "who shape cities"
+    title: "Developers, Architects, Designers & Building Materials",
+    description: "You shape cities. You see structures where others see empty lots. You understand materials, timelines, and impact — but when it's time to explain your vision to investors or the press, the words don't land the way the work does."
   },
   {
-    icon: Stethoscope,
-    title: "Hospitality, Healthcare & Finance Leaders",
-    subtitle: "who shape care"
+    title: "Hospitality & Healthcare Leaders",
+    description: "You shape care. You've built systems that improve lives — whether it's a guest experience or patient outcomes. But translating operational excellence into a story people remember? That's a different skill."
   },
   {
-    icon: Trophy,
-    title: "Athletes & Investors",
-    subtitle: "who shape belief"
+    title: "Professional Athletes & Managers",
+    description: "You shape belief. You know what it takes to perform under pressure, build teams, and create legacy. But when the camera's on or the investor's listening, finding the words that match your track record feels impossible."
   }
 ];
 
 const WhoWeWorkWith = () => {
   return (
-    <section className="py-30 px-6 md:px-30 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-20">
-          <h2 className="font-display text-section font-semibold mb-4 tracking-tight-2">
-            We only work with 3 types of builders:
+    <section className="overflow-hidden">
+      {/* Top Section - Charcoal Background */}
+      <div className="bg-charcoal text-bone py-30 px-6 md:px-30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight-2 leading-[1.1] slow-fade-in mb-6">
+            If you've spent years building something that matters — but struggle to put it into words — you're not alone.
           </h2>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 mb-20">
-          {verticals.map((vertical, index) => (
-            <div 
-              key={index}
-              className="group space-y-6 p-10 border border-charcoal/10 hover:border-signal-red/30 transition-all duration-500 slow-reveal"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex justify-center">
-                <vertical.icon 
-                  className="w-12 h-12 text-charcoal/60 group-hover:text-signal-red transition-colors duration-500" 
-                  strokeWidth={1.5} 
-                />
-              </div>
-              <h3 className="font-display text-xl font-semibold text-center tracking-tight leading-tight">
-                {vertical.title}
-              </h3>
-              <p className="text-muted-foreground italic text-center leading-relaxed">
-                {vertical.subtitle}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        <div className="text-center space-y-6 max-w-2xl mx-auto">
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Different crafts. Same challenge:
-          </p>
-          <p className="font-display text-2xl font-semibold">
-            How do you make others see what you see?
-          </p>
           
-          <div className="pt-8 space-y-2">
-            <p className="text-muted-foreground italic">They build the world.</p>
-            <p className="text-muted-foreground italic">We build the words that make it real.</p>
+          <div className="space-y-2 slow-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="text-lg opacity-70 leading-relaxed">
+              We work with three types of founders who face the same paradox:
+            </p>
+            <p className="text-lg opacity-85 leading-relaxed italic">
+              The better you are at your craft, the harder it is to explain why it matters.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section - Bone Background */}
+      <div className="bg-bone text-charcoal py-30 px-6 md:px-30">
+        <div className="max-w-4xl mx-auto">
+          {/* Three Verticals */}
+          <div className="space-y-15 mb-25">
+            {verticals.map((vertical, index) => (
+              <div 
+                key={index}
+                className="slow-reveal"
+                style={{ animationDelay: `${0.4 + index * 0.15}s` }}
+              >
+                <div className="h-px w-12 bg-signal-red mb-4"></div>
+                <h3 className="font-display text-2xl font-semibold tracking-tight-1 mb-3">
+                  {vertical.title}
+                </h3>
+                <p className="text-lg leading-relaxed">
+                  {vertical.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Closing Statement */}
+          <div className="max-w-3xl slow-reveal" style={{ animationDelay: '0.9s' }}>
+            <div className="space-y-1 mb-6">
+              <p className="text-xl font-medium">Different industries.</p>
+              <p className="text-xl font-medium">Different expertise.</p>
+              <p className="text-xl font-medium text-signal-red">Same problem:</p>
+            </div>
+            
+            <p className="text-2xl font-semibold leading-relaxed mb-8">
+              You've mastered your craft. But communicating it clearly — to investors, press, clients, your own team — feels like starting from scratch.
+            </p>
+            
+            <p className="text-2xl font-semibold mb-6">
+              <span className="hand-drawn-line">That's where we come in.</span>
+            </p>
+            
+            <p className="text-lg leading-relaxed">
+              We don't teach you how to talk. We help you find the words that already exist in the work you've done.
+            </p>
           </div>
         </div>
       </div>

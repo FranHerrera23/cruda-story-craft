@@ -67,7 +67,7 @@ export default {
         grotesk: ['Space Grotesk', 'sans-serif'],
       },
       fontSize: {
-        'hero': ['clamp(2.5rem, 6vw, 4.5rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'hero': ['clamp(2.25rem, 5.4vw, 4.05rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
         'section': ['clamp(2rem, 4vw, 3rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
         'subsection': ['clamp(1.5rem, 3vw, 2rem)', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
       },

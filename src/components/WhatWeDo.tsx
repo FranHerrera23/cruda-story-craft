@@ -3,18 +3,18 @@ import { Brain, Pen, LineChart } from "lucide-react";
 const services = [
   {
     icon: Brain,
-    title: "Narrative Strategy",
-    description: "We shape the story before the content. Your message becomes a system, not a series of posts."
+    title: "A narrative framework",
+    description: "that works across investors, press, and clients"
   },
   {
     icon: Pen,
-    title: "Founder Psychology",
-    description: "We act like biographers. Deep interviews that uncover what you're actually building — and why it matters."
+    title: "A founder story",
+    description: "that earns trust before the first meeting"
   },
   {
     icon: LineChart,
-    title: "Communication Systems",
-    description: "Long-term positioning you can trust. We build reputation arcs, not campaigns."
+    title: "Communication infrastructure",
+    description: "that scales without losing your voice"
   }
 ];
 
@@ -28,9 +28,13 @@ const WhatWeDo = () => {
             <br />
             We build reputation systems.
           </h2>
+          
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mt-8">
+            That means:
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-16 mb-16">
           {services.map((service, index) => (
             <div 
               key={index} 
@@ -49,10 +53,20 @@ const WhatWeDo = () => {
           ))}
         </div>
 
-        <div className="mt-20 text-center">
-          <p className="text-xl md:text-2xl text-slate italic max-w-3xl mx-auto font-serif">
-            "We don't turn founders into influencers. We turn them into narrative leaders."
+        <div className="text-center space-y-6 max-w-3xl mx-auto">
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            We work with founders, CEOs, and creators who are good at what they do — but haven't figured out how to communicate it.
           </p>
+          
+          <p className="text-xl font-serif text-foreground">
+            We turn your journey into a story people believe in.
+          </p>
+          
+          <div className="pt-8 space-y-2">
+            <p className="text-muted-foreground italic">Our work is quiet.</p>
+            <p className="text-muted-foreground italic">Precise.</p>
+            <p className="text-muted-foreground italic">Lasting.</p>
+          </div>
         </div>
       </div>
     </section>

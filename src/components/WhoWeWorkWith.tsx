@@ -47,13 +47,19 @@ const WhoWeWorkWith = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center space-y-4">
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Different crafts. Same challenge:
             <br />
             <span className="text-foreground font-serif text-xl mt-2 block">
               How do you make others see what you see?
             </span>
+          </p>
+          
+          <p className="text-muted-foreground italic max-w-xl mx-auto pt-4">
+            They build the world.
+            <br />
+            We build the words that make it real.
           </p>
         </div>
       </div>

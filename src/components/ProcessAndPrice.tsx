@@ -7,33 +7,34 @@ const ProcessAndPrice = () => {
     <section className="py-32 px-6 bg-clay/20">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl mb-8 tracking-tighter font-serif">
-          A Story, Told in Chapters
+          Our First Phase
         </h2>
 
         <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-12 leading-relaxed">
-          Good stories aren't rushed. They unfold in chapters.
+          We don't offer packages.
+          <br />
+          We offer <span className="font-serif text-foreground">presence</span>.
         </p>
 
         <div className="bg-background border border-aged-gold/20 p-12 md:p-16 mb-12 liquid-glow">
           <div className="space-y-8">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              We begin with the one that matters most: 
-              <span className="block text-foreground font-serif text-2xl mt-4">
-                Who you are. And why people should care.
-              </span>
+              Our first engagement is 4 months.
+              <br />
+              We go deep. We ask hard questions. We build something true.
             </p>
 
             <div className="border-t border-border pt-8 space-y-4">
-              <p className="text-lg text-muted-foreground">
-                That's our first chapter together — a 4-month engagement focused on clarity, narrative, and positioning.
-              </p>
-              
               <p className="text-5xl md:text-6xl font-serif text-aged-gold">
-                $6,500
+                $6,000
               </p>
 
-              <p className="text-muted-foreground italic">
-                It's not content. It's your foundation.
+              <p className="text-xl text-foreground font-serif italic mt-4">
+                Good work isn't cheap. Cheap work isn't good.
+              </p>
+
+              <p className="text-muted-foreground italic mt-2">
+                This isn't content. It's your foundation.
               </p>
             </div>
 
@@ -71,15 +72,11 @@ const ProcessAndPrice = () => {
 
         <div className="space-y-6 max-w-2xl mx-auto">
           <p className="text-lg text-muted-foreground leading-relaxed">
-            If it resonates, we'll move forward. If not, you'll still walk away with a strategy that lasts.
+            If that feels like too much, we're probably not aligned.
           </p>
 
-          <p className="text-muted-foreground italic">
-            We're not a fit for everyone. Our first chapter takes 4 months. It requires honesty, time, and presence.
-          </p>
-
-          <p className="text-foreground">
-            If you're ready for that kind of partnership, we'd love to talk.
+          <p className="text-foreground font-serif text-xl">
+            If it feels like clarity — let's talk.
           </p>
         </div>
       </div>

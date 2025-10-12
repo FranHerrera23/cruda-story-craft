@@ -24,15 +24,19 @@ const FranLetter = () => {
               </p>
               
               <p>
-                I've worked across countries, stories, and time zones to help people like you cross the bridge between being good and being seen.
+                I've worked across countries, stories, and time zones to help people like you cross the bridge between <span className="text-foreground font-serif">being good</span> and <span className="text-foreground font-serif">being seen</span>.
               </p>
               
               <p>
-                CRUDA exists because most founders are solving real problems — but struggling to explain why it matters. Not because they lack the skill, but because they're too close to the work.
+                CRUDA isn't here to perform.
+                <br />
+                It's here to reveal.
               </p>
               
-              <p className="text-foreground font-serif text-xl italic pt-4">
-                "We don't build brands. We build trust."
+              <p className="text-foreground font-serif text-xl pt-6 pb-4">
+                So let me ask you:
+                <br />
+                What would change if the world finally understood what you're building?
               </p>
               
               <p>

@@ -11,6 +11,7 @@ const ContactForm = () => {
     website: "",
     message: ""
   });
+  const [showFAQ, setShowFAQ] = useState(false);
   const { toast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -38,13 +39,18 @@ const ContactForm = () => {
           </h2>
           
           <div className="space-y-4 text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            <p>We don't have a newsletter.</p>
-            <p>We don't offer discovery calls.</p>
-            <p className="text-xl text-primary-foreground">We offer presence.</p>
-            <p className="pt-4">
-              If you've read this far, maybe you felt something.
-              <br />
-              If it's time to build your story with clarity and care — reach out.
+            <p>If you've read this far, you probably felt something.</p>
+            
+            <p className="text-xl text-primary-foreground font-serif pt-4">
+              And if you're building something worth believing in — let's make sure people see it.
+            </p>
+            
+            <p className="pt-4 text-primary-foreground/70 italic">
+              We only take on a few founders at a time.
+            </p>
+            
+            <p className="text-primary-foreground">
+              Start with a conversation.
             </p>
           </div>
         </div>
@@ -97,12 +103,30 @@ const ContactForm = () => {
             />
           </div>
 
+          <div className="border-t border-primary-foreground/10 pt-6 mb-6">
+            <button
+              type="button"
+              onClick={() => setShowFAQ(!showFAQ)}
+              className="text-primary-foreground/70 hover:text-primary-foreground underline decoration-aged-gold/50 hover:decoration-aged-gold transition-all duration-300 text-sm"
+            >
+              Are you familiar with our pricing and process?
+            </button>
+            
+            {showFAQ && (
+              <div className="mt-4 p-4 bg-primary-foreground/5 border border-primary-foreground/10 text-left slow-fade-in">
+                <p className="text-sm text-primary-foreground/80 leading-relaxed">
+                  We work in 4-month phases, starting at $6,000. We do deep narrative strategy, not content production.
+                </p>
+              </div>
+            )}
+          </div>
+
           <Button 
             type="submit"
             size="lg"
             className="w-full bg-aged-gold text-primary-foreground hover:bg-aged-gold/90 text-lg py-6 transition-all duration-500"
           >
-            Let's Begin the First Chapter
+            Start the Conversation
           </Button>
         </form>
       </div>

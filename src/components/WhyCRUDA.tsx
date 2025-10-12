@@ -1,15 +1,15 @@
 const beliefs = [
   {
-    title: "We don't chase virality",
-    description: "We craft presence. What sticks isn't what's loud — it's what's clear."
+    title: "The market rewards noise",
+    description: "Viral threads. Founder cosplay. Performance over substance."
   },
   {
-    title: "Clarity is kindness",
-    description: "Vague messaging wastes everyone's time. We help you say what you mean."
+    title: "The loudest people aren't always the best builders",
+    description: "The best builders are often invisible."
   },
   {
-    title: "Trust over performance",
-    description: "Most founders are told to post more, say less, and 'be authentic.' We say: forget performance. Build clarity."
+    title: "Not content. Not performance.",
+    description: "Precision. Perception. Presence."
   }
 ];
 
@@ -17,12 +17,16 @@ const WhyCRUDA = () => {
   return (
     <section className="py-32 px-6 bg-ivory">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-20">
+        <div className="text-center mb-20 space-y-8">
           <h2 className="text-4xl md:text-6xl mb-6 tracking-tighter">
             We're not here to make you look good.
             <br />
             We're here to make you understood.
           </h2>
+          
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            CRUDA is a studio for those who build first, speak later — and are finally ready to be seen <span className="font-serif text-foreground">on their own terms</span>.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
@@ -41,11 +45,6 @@ const WhyCRUDA = () => {
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-2xl md:text-3xl font-serif italic text-aged-gold max-w-2xl mx-auto">
-            That's what sticks.
-          </p>
-        </div>
       </div>
     </section>
   );

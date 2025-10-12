@@ -3,8 +3,10 @@ import WhatWeDo from "@/components/WhatWeDo";
 import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import ProofOfWork from "@/components/ProofOfWork";
 import WhyCRUDA from "@/components/WhyCRUDA";
+import WhoThisIsntFor from "@/components/WhoThisIsntFor";
 import FranLetter from "@/components/FranLetter";
 import ProcessAndPrice from "@/components/ProcessAndPrice";
+import AlignmentCheck from "@/components/AlignmentCheck";
 import ContactForm from "@/components/ContactForm";
 
 const Index = () => {
@@ -15,8 +17,10 @@ const Index = () => {
       <WhoWeWorkWith />
       <ProofOfWork />
       <WhyCRUDA />
+      <WhoThisIsntFor />
       <FranLetter />
       <ProcessAndPrice />
+      <AlignmentCheck />
       <ContactForm />
     </main>
   );

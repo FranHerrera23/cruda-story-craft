@@ -14,20 +14,22 @@ const HeroManifesto = () => {
       
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-30 slow-fade-in">
         <h1 className="font-display text-hero font-bold mb-12 text-balance leading-[1.05] tracking-tight-2">
-          You know your work is good.
+          Your work is exceptional.
           <br />
-          So why doesn't anyone else?
+          <span className="hand-drawn-line">Your words should be too.</span>
         </h1>
         
         <div className="space-y-10 text-lg md:text-xl max-w-3xl leading-relaxed">
-          <p className="font-display text-2xl md:text-3xl leading-tight font-semibold">
-            CRUDA is a storytelling studio for founders who build in silence — and are finally ready to be seen.
+          <p className="font-display text-2xl md:text-3xl leading-tight font-semibold text-bone/90">
+            CRUDA helps founders communicate with the same precision they build — so the right people understand exactly what you've created.
           </p>
           
-          <div className="pt-8 space-y-4">
-            <p className="text-bone/80">We're <span className="font-semibold text-bone">not</span> for everyone.</p>
-            <p className="font-display text-2xl font-semibold hand-drawn-line inline-block">
-              We're for the ones who are done being underestimated.
+          <div className="pt-8 space-y-6">
+            <p className="font-display text-xl font-medium">
+              <span className="strikethrough-red">Not content. Not validation.</span>
+            </p>
+            <p className="font-display text-2xl font-semibold text-bone">
+              Clarity that commands attention.
             </p>
           </div>
         </div>

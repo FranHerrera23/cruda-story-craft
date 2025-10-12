@@ -1,77 +1,74 @@
-import { Brain, Pen, LineChart } from "lucide-react";
-
-const services = [
+const pillars = [
   {
-    icon: Brain,
     number: "01",
-    title: "A narrative framework",
-    description: "that works across investors, press, and clients"
+    title: "Your Narrative",
+    description: "A story that works everywhere: pitch decks, press interviews, client calls, LinkedIn. One clear thread."
   },
   {
-    icon: Pen,
     number: "02",
-    title: "A founder story",
-    description: "that earns trust before the first meeting"
+    title: "Your Positioning",
+    description: "The exact words that make investors, clients, and your team understand what makes you different."
   },
   {
-    icon: LineChart,
     number: "03",
-    title: "Communication infrastructure",
-    description: "that scales without losing your voice"
+    title: "Your Voice",
+    description: "Communication that sounds like you — not a marketing team. Scalable, but never generic."
   }
 ];
 
 const WhatWeDo = () => {
   return (
-    <section className="py-30 px-6 md:px-30 bg-background">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-24">
-          <h2 className="font-display text-section font-semibold mb-8 tracking-tight-2">
-            We don't sell content.
+    <section className="overflow-hidden">
+      {/* Top Section - Charcoal Background */}
+      <div className="bg-charcoal text-bone py-30 px-6 md:px-30">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="font-display text-5xl md:text-6xl font-bold mb-15 tracking-tight-2 leading-[1.1] slow-fade-in">
+            We don't make content.
             <br />
-            We build reputation systems.
+            We build the system that makes people trust you.
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-2xl">
-            That means:
+          <p className="text-lg opacity-70 leading-relaxed slow-fade-in" style={{ animationDelay: '0.2s' }}>
+            Most founders can execute brilliantly — but explaining <em>why</em> it matters? That's the hard part.
           </p>
         </div>
+      </div>
 
-        <div className="grid md:grid-cols-3 gap-16 lg:gap-20 mb-24">
-          {services.map((service, index) => (
-            <div 
-              key={index} 
-              className="space-y-6 slow-reveal"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-center gap-4">
-                <span className="section-number">{service.number}</span>
-                <div className="h-px flex-1 bg-signal-red/20"></div>
+      {/* Bottom Section - Bone Background */}
+      <div className="bg-bone text-charcoal py-30 px-6 md:px-30">
+        <div className="max-w-4xl mx-auto">
+          {/* Three Pillars */}
+          <div className="space-y-20 mb-30">
+            {pillars.map((pillar, index) => (
+              <div 
+                key={index}
+                className="slow-reveal"
+                style={{ animationDelay: `${0.4 + index * 0.15}s` }}
+              >
+                <div className="mb-4">
+                  <span className="text-signal-red text-sm font-semibold uppercase tracking-wide-5">
+                    {pillar.number}
+                  </span>
+                </div>
+                <h3 className="font-display text-2xl font-semibold mb-4 tracking-tight-1">
+                  {pillar.title}
+                </h3>
+                <p className="text-lg leading-relaxed text-charcoal/90">
+                  {pillar.description}
+                </p>
               </div>
-              
-              <h3 className="font-display text-2xl font-semibold tracking-tight">
-                {service.title}
-              </h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        <div className="max-w-3xl mx-auto space-y-8">
-          <p className="text-lg leading-relaxed text-center">
-            We work with founders, CEOs, and creators who are good at what they do — but haven't figured out how to communicate it.
-          </p>
-          
-          <p className="font-display text-2xl font-medium text-center">
-            We turn your journey into a story people believe in.
-          </p>
-          
-          <div className="pt-12 flex flex-col items-center space-y-2 text-center">
-            <p className="text-muted-foreground italic text-lg">Our work is quiet.</p>
-            <p className="text-muted-foreground italic text-lg">Precise.</p>
-            <p className="text-muted-foreground italic text-lg">Lasting.</p>
+          {/* Closing Statement */}
+          <div className="max-w-3xl space-y-6 slow-reveal" style={{ animationDelay: '0.9s' }}>
+            <p className="text-xl leading-relaxed font-medium">
+              We work with founders who are exceptional at what they do — but haven't cracked how to talk about it.
+            </p>
+            
+            <p className="text-xl leading-relaxed font-medium">
+              We turn what you've built into words people <span className="hand-drawn-line">remember</span>.
+            </p>
           </div>
         </div>
       </div>

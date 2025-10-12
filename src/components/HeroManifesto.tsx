@@ -14,30 +14,20 @@ const HeroManifesto = () => {
       
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-30 slow-fade-in">
         <h1 className="font-display text-hero font-bold mb-12 text-balance leading-[1.05] tracking-tight-2">
-          You don't need more content.
+          You know your work is good.
           <br />
-          You need more <span className="hand-drawn-line">clarity</span>.
+          So why doesn't anyone else?
         </h1>
         
-        <div className="space-y-8 text-lg md:text-xl max-w-3xl leading-relaxed">
-          <p className="text-bone/70">Here's the truth most founders don't say out loud:</p>
-          
+        <div className="space-y-10 text-lg md:text-xl max-w-3xl leading-relaxed">
           <p className="font-display text-2xl md:text-3xl leading-tight font-semibold">
-            You know your work is good.
-            <br />
-            You just don't know how to make others see it the way you do.
+            CRUDA is a storytelling studio for founders who build in silence — and are finally ready to be seen.
           </p>
           
-          <p className="text-bone/70">That's not a content problem. It's a translation problem.</p>
-          
-          <p className="pt-8 text-bone">
-            CRUDA is a storytelling studio that helps founders build trust at scale — through presence, not performance.
-          </p>
-          
-          <div className="pt-12 space-y-3">
-            <p className="text-bone/90">We're <span className="font-semibold">not</span> for everyone.</p>
-            <p className="font-display text-xl font-medium">
-              We're for the builders who are finally ready to be seen.
+          <div className="pt-8 space-y-4">
+            <p className="text-bone/80">We're <span className="font-semibold text-bone">not</span> for everyone.</p>
+            <p className="font-display text-2xl font-semibold hand-drawn-line inline-block">
+              We're for the ones who are done being underestimated.
             </p>
           </div>
         </div>

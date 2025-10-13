@@ -152,14 +152,6 @@ const WhoWeWorkWith = () => {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            <motion.p 
-              className="text-[20px] md:text-[24px] font-medium mb-8 md:mb-10"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              We help you tell that story.
-            </motion.p>
             <motion.a 
               href="#contact" 
               className="inline-block px-12 md:px-14 py-4 md:py-5 bg-signal-red text-charcoal text-[16px] font-semibold rounded-sm hover:bg-signal-red/90 transition-colors duration-300"

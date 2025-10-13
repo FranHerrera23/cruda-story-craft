@@ -2,67 +2,96 @@ const pillars = [
   {
     number: "01",
     title: "Your Narrative",
-    description: "A story that works everywhere: pitch decks, press interviews, client calls, LinkedIn. One clear thread."
+    description: "A coherent story you can use everywhere —\nnot just to explain what you do,\nbut why it matters."
   },
   {
     number: "02",
     title: "Your Positioning",
-    description: "The exact words that make investors, clients, and your team understand what makes you different."
+    description: "The exact language that makes\ninvestors, clients, and your team\nget it in seconds."
   },
   {
     number: "03",
     title: "Your Voice",
-    description: "Communication that sounds like you — not a marketing team. Scalable, but never generic."
+    description: "Communication that sounds like you,\nnot like a PR team.\nScalable, but never generic."
   }
 ];
 
 const WhatWeDo = () => {
   return (
-    <section className="bg-bone text-charcoal py-30 px-6 md:px-30">
-      <div className="max-w-4xl mx-auto">
-        {/* Headline */}
-        <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight-2 leading-[1.1] slow-fade-in mb-6">
-          We don't make content.
-          <br />
-          We build the system that makes people trust you.
-        </h2>
-        
-        {/* Subhead */}
-        <p className="text-lg opacity-70 leading-relaxed slow-fade-in mb-15" style={{ animationDelay: '0.2s' }}>
-          Most founders can execute brilliantly — but explaining <em>why</em> it matters? That's the hard part.
-        </p>
-
-        {/* Three Pillars */}
-        <div className="space-y-12 mb-20">
-          {pillars.map((pillar, index) => (
-            <div 
-              key={index}
-              className="slow-reveal"
-              style={{ animationDelay: `${0.4 + index * 0.15}s` }}
-            >
-              <div className="mb-3">
-                <span className="text-signal-red text-sm font-semibold uppercase tracking-wide-5">
-                  {pillar.number}
-                </span>
+    <section className="bg-bone text-charcoal py-[72px] px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Desktop: 2-column grid, Mobile/Tablet: stacked */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          
+          {/* Left Column: Introduction */}
+          <div className="space-y-[72px]">
+            {/* Headline */}
+            <div>
+              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight-2 leading-[1.1] slow-fade-in mb-[72px]">
+                We don't make content.
+                <br />
+                We build the system that makes people trust you.
+              </h2>
+              
+              {/* Subhead */}
+              <div className="slow-fade-in" style={{ animationDelay: '0.2s' }}>
+                <p className="text-xl md:text-2xl font-medium leading-[1.7] mb-4">
+                  Clarity across everything:
+                </p>
+                <p className="text-lg opacity-70 leading-[1.75]">
+                  pitch decks, press interviews, client calls, hiring, LinkedIn, Instagram and beyond.
+                  <br />
+                  One clear thread.
+                </p>
               </div>
-              <h3 className="font-display text-2xl font-bold tracking-tight-1 mb-3">
-                {pillar.title}
-              </h3>
-              <p className="text-lg leading-relaxed">
-                {pillar.description}
+            </div>
+
+            {/* Closing Statement - Desktop only shows here */}
+            <div className="hidden lg:block slow-reveal pt-[72px]" style={{ animationDelay: '0.9s' }}>
+              <p className="text-xl leading-[1.75] font-medium mb-6">
+                Behind every remarkable company is a story.
+              </p>
+              
+              <p className="text-xl leading-[1.75] font-medium">
+                Ours is helping you tell yours,<br />
+                with clarity, authenticity, and resonance.
               </p>
             </div>
-          ))}
+          </div>
+
+          {/* Right Column: Three Pillars */}
+          <div className="space-y-[48px] pt-0 lg:pt-[72px]">
+            {pillars.map((pillar, index) => (
+              <div 
+                key={index}
+                className="slow-reveal pb-[48px] border-b border-charcoal/10 last:border-b-0"
+                style={{ animationDelay: `${0.4 + index * 0.15}s` }}
+              >
+                <div className="mb-4">
+                  <span className="text-signal-red text-sm font-semibold uppercase tracking-wide-5">
+                    {pillar.number}
+                  </span>
+                </div>
+                <h3 className="font-display text-2xl md:text-3xl font-bold tracking-tight-1 mb-4">
+                  {pillar.title}
+                </h3>
+                <p className="text-lg leading-[1.75] whitespace-pre-line opacity-80">
+                  {pillar.description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Closing Statement */}
-        <div className="max-w-3xl slow-reveal" style={{ animationDelay: '0.9s' }}>
-          <p className="text-xl leading-relaxed font-medium mb-4">
-            We work with founders who are exceptional at what they do — but haven't cracked how to talk about it.
+        {/* Closing Statement - Mobile/Tablet version */}
+        <div className="lg:hidden mt-[72px] slow-reveal" style={{ animationDelay: '0.9s' }}>
+          <p className="text-xl leading-[1.75] font-medium mb-6">
+            Behind every remarkable company is a story.
           </p>
           
-          <p className="text-xl leading-relaxed font-medium">
-            We turn what you've built into words people <span className="hand-drawn-line">remember</span>.
+          <p className="text-xl leading-[1.75] font-medium">
+            Ours is helping you tell yours,<br />
+            with clarity, authenticity, and resonance.
           </p>
         </div>
       </div>

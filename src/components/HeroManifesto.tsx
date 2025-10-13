@@ -12,25 +12,30 @@ const HeroManifesto = () => {
         />
       </div>
       
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-30 slow-fade-in">
-        <h1 className="font-display text-hero font-bold mb-12 text-balance leading-[1.05] tracking-tight-2">
-          Your work is exceptional.
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-30">
+        <h1 className="font-display text-hero font-bold mb-8 text-balance leading-[1.05] tracking-tight-2 slow-fade-in">
+          Your work speaks volumes.
           <br />
-          <span className="hand-drawn-line">Your words should be too.</span>
+          <span className="hand-drawn-line slow-fade-in" style={{ animationDelay: '0.6s' }}>Make sure it's heard.</span>
         </h1>
         
-        <div className="space-y-10 text-lg md:text-xl max-w-3xl leading-relaxed">
-          <p className="font-display text-2xl md:text-3xl leading-tight font-semibold text-bone/90">
-            CRUDA helps founders communicate with the same precision they build — so the right people understand exactly what you've created.
+        <div className="max-w-3xl space-y-10">
+          <p className="font-display text-2xl md:text-3xl leading-tight font-semibold text-bone/90 slow-fade-in" style={{ animationDelay: '0.9s' }}>
+            CRUDA helps founders translate execution into articulation — so the people who matter understand what you've built and why it's different.
           </p>
           
-          <div className="pt-8 space-y-6">
-            <p className="font-display text-xl font-medium">
-              <span className="strikethrough-red">Not content. Not validation.</span>
-            </p>
-            <p className="font-display text-2xl font-semibold text-bone">
-              Clarity that commands attention.
-            </p>
+          <p className="font-display text-xl font-medium slow-fade-in" style={{ animationDelay: '1.2s' }}>
+            Not content. Not theater. <span className="text-signal-red font-semibold">Precision that earns attention.</span>
+          </p>
+
+          <div className="pt-5 slow-fade-in" style={{ animationDelay: '1.5s' }}>
+            <a 
+              href="#contact"
+              className="inline-flex items-center gap-3 bg-signal-red text-charcoal font-display font-semibold text-lg px-10 py-4 rounded-sm hover:bg-charcoal hover:text-signal-red transition-all duration-300 group"
+            >
+              START THE CONVERSATION
+              <span className="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+            </a>
           </div>
         </div>
       </div>

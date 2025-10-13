@@ -13,10 +13,9 @@ const HeroManifesto = () => {
       </div>
       
       <div className="relative z-10 max-w-[800px] mx-auto px-6 md:px-8 pt-[120px] pb-[120px]">
-        <h1 className="font-display text-4xl md:text-[56px] font-semibold leading-[1.15] tracking-[-0.015em] text-bone mb-12 slow-fade-in">
+        <h1 className="font-display text-4xl md:text-[48px] font-semibold leading-[1.15] tracking-[-0.015em] text-bone mb-12 slow-fade-in">
           <span className="block slow-fade-in" style={{ animationDelay: '0.3s' }}>You know your work inside out.</span>
-          <span className="block slow-fade-in" style={{ animationDelay: '0.5s' }}>But explaining it?</span>
-          <span className="block slow-fade-in" style={{ animationDelay: '0.7s' }}>That's different.</span>
+          <span className="block slow-fade-in" style={{ animationDelay: '0.5s' }}>But explaining it? That's different.</span>
         </h1>
         
         <div className="max-w-[600px]">

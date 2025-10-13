@@ -99,6 +99,19 @@ const WhoWeWorkWith = () => {
             ))}
           </div>
 
+          {/* CTA Section */}
+          <div className="text-center mt-[120px] mb-[120px]">
+            <p className="text-2xl font-medium mb-10">
+              We help you tell that story.
+            </p>
+            <a 
+              href="#contact" 
+              className="inline-block px-8 py-4 bg-signal-red text-bone font-medium rounded-sm hover:bg-signal-red/90 transition-colors duration-300"
+            >
+              Let's talk about your story
+            </a>
+          </div>
+
           {/* Closing Statement */}
           <div className="max-w-[650px] mx-auto text-center slow-reveal" style={{ animationDelay: '0.9s' }}>
             <div className="space-y-1 mb-6">

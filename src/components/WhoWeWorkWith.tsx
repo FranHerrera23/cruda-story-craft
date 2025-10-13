@@ -112,26 +112,6 @@ const WhoWeWorkWith = () => {
             </a>
           </div>
 
-          {/* Closing Statement */}
-          <div className="max-w-[650px] mx-auto text-center slow-reveal" style={{ animationDelay: '0.9s' }}>
-            <div className="space-y-1 mb-6">
-              <p className="text-xl font-medium">Different industries.</p>
-              <p className="text-xl font-medium">Different expertise.</p>
-              <p className="text-xl font-medium"><span className="text-signal-red">Same challenge:</span></p>
-            </div>
-            
-            <p className="text-2xl font-semibold leading-relaxed mb-8">
-              Making others understand what you've built — and why it matters.
-            </p>
-            
-            <p className="text-2xl font-semibold mb-6">
-              <span className="hand-drawn-line">That's where we come in.</span>
-            </p>
-            
-            <p className="text-lg leading-relaxed">
-              We don't teach you how to talk. We help you find the words that already exist in the work you've done.
-            </p>
-          </div>
         </div>
       </div>
     </section>

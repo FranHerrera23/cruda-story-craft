@@ -27,32 +27,27 @@ const WhoWeWorkWith = () => {
   return (
     <section className="overflow-hidden">
       {/* Top Section - Charcoal Background */}
-      <div className="bg-charcoal text-bone py-30 px-6 md:px-30">
+      <div className="bg-charcoal text-bone pt-[100px] pb-20 px-6 md:px-30">
         <div className="max-w-4xl mx-auto">
-          <h2 className="font-display text-4xl md:text-5xl font-bold tracking-tight-2 leading-[1.1] slow-fade-in mb-6">
-            If you've spent years building something that matters — but struggle to put it into words — you're not alone.
+          <h2 className="font-display text-[48px] font-semibold tracking-tight leading-[1.2] slow-fade-in mb-8 max-w-[750px]">
+            If explaining your work feels harder than doing it — you're not alone.
           </h2>
           
-          <div className="space-y-2 slow-fade-in" style={{ animationDelay: '0.2s' }}>
-            <p className="text-lg opacity-70 leading-relaxed">
-              We work with three types of founders who face the same paradox:
-            </p>
-            <p className="text-lg opacity-85 leading-relaxed italic">
-              The better you are at your craft, the harder it is to explain why it matters.
-            </p>
-          </div>
+          <p className="text-[20px] opacity-70 leading-[1.6] slow-fade-in max-w-[650px]" style={{ animationDelay: '0.2s' }}>
+            We work with builders who've mastered their craft but need help translating it into words that land.
+          </p>
         </div>
       </div>
 
       {/* Bottom Section - Bone Background */}
-      <div className="bg-bone text-charcoal py-30 px-6 md:px-30">
+      <div className="bg-bone text-charcoal pt-20 pb-30 px-6 md:px-30">
         <div className="max-w-4xl mx-auto">
           {/* Three Verticals */}
-          <div className="space-y-20 mb-25">
+          <div className="space-y-[100px]">
             {verticals.map((vertical, index) => (
               <div 
                 key={index}
-                className="grid md:grid-cols-[45%_55%] gap-8 items-center slow-reveal"
+                className="grid md:grid-cols-[40%_60%] gap-20 items-center slow-reveal"
                 style={{ animationDelay: `${0.4 + index * 0.15}s` }}
               >
                 {/* Image */}

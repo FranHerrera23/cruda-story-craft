@@ -4,20 +4,26 @@ import athletesImg from "@/assets/vertical-athletes.jpg";
 
 const verticals = [
   {
-    title: "Developers, Architects, Designers & Building Materials",
-    description: "You shape cities. You see structures where others see empty lots. You understand materials, timelines, and impact — but when it's time to explain your vision to investors or the press, the words don't land the way the work does.",
+    title: "Construction, Architecture, Design & Materials",
+    headline: "You build spaces that shape how people live.",
+    description: "You've spent years perfecting your craft — understanding materials, timelines, and the details that turn vision into structure. Now you're ready to show the world who's behind the work.\n\nWhether you're positioning for international expansion, attracting larger projects, or inspiring the next generation of builders — your story needs to match the caliber of what you create.",
+    closing: "We help you articulate it.",
     image: architectureImg,
     redAccent: "left"
   },
   {
     title: "Hospitality & Healthcare Leaders",
-    description: "You shape care. You've built systems that improve lives — whether it's a guest experience or patient outcomes. But translating operational excellence into a story people remember? That's a different skill.",
+    headline: "You've mastered the art of crafting experiences that improve lives.",
+    description: "Whether it's a guest who feels truly cared for or a patient who receives better outcomes — you know what excellence looks like in practice.\n\nNow it's time to turn that expertise into a story that builds brand equity, attracts the right partners, and makes people want to be part of what you're building.",
+    closing: "We help you identify and articulate it.",
     image: hospitalityImg,
     redAccent: "bottom"
   },
   {
-    title: "Professional Athletes & Managers",
-    description: "You shape belief. You know what it takes to perform under pressure, build teams, and create legacy. But when the camera's on or the investor's listening, finding the words that match your track record feels impossible.",
+    title: "Professional Athletes & Sports Executives",
+    headline: "You pursued your dream and made it real.",
+    description: "That's why people admire you. You know what it takes to perform under pressure, build teams, and create legacy.\n\nBut athletic careers are finite. Building your personal brand now helps you diversify your portfolio, attract the right opportunities, and extend your influence long after you leave the field.",
+    closing: "We help you build that foundation.",
     image: athletesImg,
     redAccent: "middle"
   }
@@ -76,11 +82,17 @@ const WhoWeWorkWith = () => {
                 {/* Text */}
                 <div>
                   <div className="h-px w-12 bg-signal-red mb-4"></div>
-                  <h3 className="font-display text-2xl font-semibold tracking-tight-1 mb-3">
+                  <h3 className="font-display text-2xl font-bold tracking-tight-1 mb-4">
                     {vertical.title}
                   </h3>
-                  <p className="text-lg leading-relaxed">
+                  <p className="text-xl font-semibold leading-relaxed mb-3">
+                    {vertical.headline}
+                  </p>
+                  <p className="text-lg leading-[1.7] opacity-80 whitespace-pre-line mb-4">
                     {vertical.description}
+                  </p>
+                  <p className="text-lg font-semibold text-signal-red">
+                    {vertical.closing}
                   </p>
                 </div>
               </div>
@@ -88,15 +100,15 @@ const WhoWeWorkWith = () => {
           </div>
 
           {/* Closing Statement */}
-          <div className="max-w-3xl slow-reveal" style={{ animationDelay: '0.9s' }}>
+          <div className="max-w-[650px] mx-auto text-center slow-reveal" style={{ animationDelay: '0.9s' }}>
             <div className="space-y-1 mb-6">
               <p className="text-xl font-medium">Different industries.</p>
               <p className="text-xl font-medium">Different expertise.</p>
-              <p className="text-xl font-medium text-signal-red">Same problem:</p>
+              <p className="text-xl font-medium"><span className="text-signal-red">Same challenge:</span></p>
             </div>
             
             <p className="text-2xl font-semibold leading-relaxed mb-8">
-              You've mastered your craft. But communicating it clearly — to investors, press, clients, your own team — feels like starting from scratch.
+              Making others understand what you've built — and why it matters.
             </p>
             
             <p className="text-2xl font-semibold mb-6">

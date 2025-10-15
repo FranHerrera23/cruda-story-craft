@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const caseStudies = [
   {
     id: 1,
+    slug: "norhart",
     clientName: "NORHART",
     projectHeadline: "From contractor to construction innovator",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=800&fit=crop",
@@ -20,6 +20,7 @@ const caseStudies = [
   },
   {
     id: 2,
+    slug: "karen-mannheim",
     clientName: "KAREN MANNHEIM",
     projectHeadline: "Architectural lighting designer to brand authority",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=800&fit=crop",
@@ -36,6 +37,7 @@ const caseStudies = [
   },
   {
     id: 3,
+    slug: "hospitality-gm",
     clientName: "LUXURY HOSPITALITY GM",
     projectHeadline: "From operations expert to thought leader",
     image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=800&fit=crop",
@@ -53,13 +55,8 @@ const caseStudies = [
 ];
 
 const SeeTheWork = () => {
-  const [activeCase, setActiveCase] = useState<number | null>(null);
-
-  const closeModal = () => setActiveCase(null);
-
   return (
-    <>
-      <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
+    <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
@@ -73,10 +70,10 @@ const SeeTheWork = () => {
           <div className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth">
             <div className="flex gap-8 md:gap-10 min-w-max md:min-w-0">
               {caseStudies.map((study) => (
-                <div 
+                <Link 
                   key={study.id}
+                  to={`/work/${study.slug}`}
                   className="group cursor-pointer w-[85vw] md:w-[420px] flex-shrink-0"
-                  onClick={() => setActiveCase(study.id)}
                 >
                   <div 
                     className="bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1"
@@ -119,127 +116,18 @@ const SeeTheWork = () => {
                         {study.description}
                       </p>
 
-                      <button className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-300" style={{ color: '#3D3835' }}>
+                      <div className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-300" style={{ color: '#3D3835' }}>
                         <span>View Case Study</span>
                         <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                      </button>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Case Study Modal */}
-      {activeCase !== null && (
-        <div 
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
-          style={{ 
-            backgroundColor: 'rgba(61, 56, 53, 0.96)',
-            backdropFilter: 'blur(8px)'
-          }}
-          onClick={closeModal}
-        >
-          <div 
-            className="relative w-full max-w-[1100px] max-h-[90vh] flex flex-col md:flex-row overflow-hidden"
-            style={{ 
-              backgroundColor: '#FDFBF7',
-              borderRadius: '16px'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full transition-colors duration-300"
-              style={{ backgroundColor: 'rgba(61, 56, 53, 0.8)', color: '#FDFBF7' }}
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            {(() => {
-              const study = caseStudies.find(s => s.id === activeCase);
-              if (!study) return null;
-
-              return (
-                <>
-                  {/* Left Side - Sticky Image */}
-                  <div className="md:w-[40%] flex-shrink-0 relative">
-                    <div className="sticky top-0 h-[300px] md:h-full overflow-hidden" style={{ borderLeft: '2px solid #F5B800' }}>
-                      <img 
-                        src={study.image}
-                        alt={study.projectHeadline}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Right Side - Scrollable Content */}
-                  <div className="md:w-[60%] overflow-y-auto p-8 md:p-16">
-                    <p className="text-sm uppercase tracking-wide mb-2" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
-                      {study.clientName}
-                    </p>
-                    <h2 className="text-[36px] font-bold mb-4" style={{ color: '#3D3835' }}>
-                      {study.projectHeadline}
-                    </h2>
-                    <p className="text-lg mb-8" style={{ color: '#F5B800' }}>
-                      Case Study
-                    </p>
-
-                    {/* Challenge */}
-                    <div className="mb-8">
-                      <h3 className="text-xl font-bold mb-3" style={{ color: '#3D3835' }}>Challenge</h3>
-                      <p className="text-base leading-[1.7]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                        {study.challenge}
-                      </p>
-                    </div>
-
-                    {/* Solution */}
-                    <div className="mb-8">
-                      <h3 className="text-xl font-bold mb-3" style={{ color: '#3D3835' }}>Solution</h3>
-                      <p className="text-base leading-[1.7]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                        {study.solution}
-                      </p>
-                    </div>
-
-                    {/* Results */}
-                    <div className="mb-8">
-                      <h3 className="text-xl font-bold mb-4" style={{ color: '#3D3835' }}>Results</h3>
-                      <div className="grid grid-cols-3 gap-6 mb-6">
-                        {study.metrics.map((metric, idx) => (
-                          <div key={idx}>
-                            <p className="text-2xl font-bold mb-1" style={{ color: '#F5B800' }}>
-                              {metric.value}
-                            </p>
-                            <p className="text-sm" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
-                              {metric.label}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                      <p className="text-base leading-[1.7]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                        {study.results}
-                      </p>
-                    </div>
-
-                    {/* Testimonial */}
-                    {study.testimonial && (
-                      <div className="border-l-4 pl-6 py-4" style={{ borderColor: '#F5B800' }}>
-                        <p className="text-lg italic leading-[1.7]" style={{ color: 'rgba(61, 56, 53, 0.9)' }}>
-                          "{study.testimonial}"
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </>
-              );
-            })()}
-          </div>
-        </div>
-      )}
-    </>
+    </section>
   );
 };
 

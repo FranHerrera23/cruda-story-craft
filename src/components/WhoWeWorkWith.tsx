@@ -103,54 +103,57 @@ const WhoWeWorkWith = () => {
             <ChevronRight className="w-6 h-6 text-signal-red" />
           </button>
 
-          {/* Carousel Container */}
+          {/* Carousel Container - Constrained max-height */}
           <div 
             ref={carouselRef}
             className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth"
-            style={{ scrollSnapType: 'x mandatory' }}
+            style={{ 
+              scrollSnapType: 'x mandatory',
+              maxHeight: '600px'
+            }}
           >
             <div className="flex gap-8 items-start">
               {verticals.map((vertical, index) => (
                 <div
                   key={vertical.id}
-                  className="vertical-card flex-shrink-0 w-[85vw] md:w-[900px] mx-auto"
+                  className="vertical-card flex-shrink-0 w-[90vw] md:w-[400px] mx-auto"
                   style={{ scrollSnapAlign: 'center' }}
                 >
-                  {/* Image Section */}
-                  <div className="relative w-full h-[50vh] md:h-[600px] min-h-[400px] md:min-h-[600px] overflow-hidden mb-1">
-                    <img
-                      src={vertical.image}
-                      alt={vertical.title}
-                      className="w-full h-full object-cover transition-all duration-500"
-                      style={{ 
-                        filter: 'grayscale(100%) contrast(1.1)',
-                        objectPosition: 'center center'
-                      }}
-                    />
-                  </div>
+                  <div className="bg-white/80 border overflow-hidden flex flex-col" style={{ 
+                    borderColor: 'rgba(61, 56, 53, 0.1)',
+                    height: '520px'
+                  }}>
+                    {/* Image Container - Fixed Height */}
+                    <div className="overflow-hidden flex-shrink-0" style={{ height: '280px' }}>
+                      <img
+                        src={vertical.image}
+                        alt={vertical.title}
+                        className="w-full h-full object-cover"
+                        style={{ 
+                          filter: 'grayscale(100%) contrast(1.1)',
+                          objectPosition: 'center'
+                        }}
+                      />
+                    </div>
 
-                  {/* Red Accent Line */}
-                  <div className="w-full h-[2px] bg-signal-red mb-10"></div>
-
-                  {/* Text Section */}
-                  <div className="px-6 md:px-12 space-y-6">
-                    <h3 className="font-display text-[28px] md:text-[36px] font-bold leading-[1.2] tracking-tight-2" style={{ color: 'hsl(21, 7%, 23%)' }}>
-                      {vertical.title}
-                    </h3>
-
-                    <p className="text-xl md:text-2xl font-medium leading-[1.4]" style={{ color: 'hsl(21, 7%, 23%)' }}>
-                      {vertical.openingLine}
-                    </p>
-
-                    {vertical.body.map((paragraph, pIndex) => (
-                      <p key={pIndex} className="text-lg md:text-xl leading-[1.7]" style={{ color: 'hsl(21, 7%, 23%, 0.85)' }}>
-                        {paragraph}
-                      </p>
-                    ))}
-
-                    <p className="text-xl md:text-2xl font-semibold pt-4 text-signal-red">
-                      {vertical.closing}
-                    </p>
+                    {/* Text Container - Fixed Height with overflow hidden */}
+                    <div className="p-8 flex flex-col justify-between flex-shrink-0" style={{ height: '240px', overflow: 'hidden' }}>
+                      <div>
+                        <h3 className="font-display font-bold mb-4" style={{ 
+                          color: '#3D3835',
+                          fontSize: '24px',
+                          lineHeight: '1.3'
+                        }}>
+                          {vertical.title}
+                        </h3>
+                        <p className="leading-[1.6]" style={{ 
+                          color: 'rgba(61, 56, 53, 0.8)',
+                          fontSize: '16px'
+                        }}>
+                          {vertical.openingLine}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               ))}

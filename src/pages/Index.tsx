@@ -6,7 +6,6 @@ import SeeTheWork from "@/components/SeeTheWork";
 import WhoThisIsntFor from "@/components/WhoThisIsntFor";
 import FranLetter from "@/components/FranLetter";
 import ProcessAndPrice from "@/components/ProcessAndPrice";
-import AlignmentCheck from "@/components/AlignmentCheck";
 import ContactForm from "@/components/ContactForm";
 
 const Index = () => {
@@ -20,7 +19,6 @@ const Index = () => {
       <WhoThisIsntFor />
       <FranLetter />
       <ProcessAndPrice />
-      <AlignmentCheck />
       <ContactForm />
     </main>
   );

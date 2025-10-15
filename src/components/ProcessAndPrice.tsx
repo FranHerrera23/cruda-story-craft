@@ -7,77 +7,88 @@ const ProcessAndPrice = () => {
     <section className="py-30 px-6 md:px-30 border-t" style={{ backgroundColor: 'hsl(48, 43%, 98%)', borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
       <div className="max-w-4xl mx-auto">
         <div className="mb-16">
-          <h2 className="font-display text-section font-semibold mb-8 tracking-tight-2 text-center" style={{ color: 'hsl(21, 7%, 23%)' }}>
-            Our First Engagement
+          <h2 className="font-display text-section font-semibold mb-6 tracking-tight-2 text-center" style={{ color: 'hsl(21, 7%, 23%)' }}>
+            How We Work Together
           </h2>
+          <p className="text-xl text-center max-w-2xl mx-auto" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+            We only take one new client per month. This isn't artificial scarcity—it's how we deliver work that actually matters.
+          </p>
         </div>
 
-        <div className="border border-signal-red/20 p-12 md:p-16 mb-12" style={{ backgroundColor: 'hsl(21, 7%, 23%, 0.03)' }}>
+        <div className="border p-12 md:p-16 mb-12" style={{ 
+          backgroundColor: '#F5F1E8',
+          borderColor: 'rgba(61, 56, 53, 0.15)'
+        }}>
           <div className="space-y-10">
             <div className="text-center space-y-6">
               <p className="font-display text-5xl md:text-6xl font-bold">
                 <span className="text-signal-red">4 months</span>
-                <span className="mx-4" style={{ color: 'hsl(21, 7%, 23%, 0.3)' }}>|</span>
+                <span className="mx-4" style={{ color: 'rgba(61, 56, 53, 0.3)' }}>|</span>
                 <span className="text-signal-red">$6,000</span>
               </p>
-            </div>
-
-            <div className="border-t pt-10 space-y-6 text-center max-w-2xl mx-auto" style={{ borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
-              <p className="text-xl md:text-2xl font-medium leading-[1.4]" style={{ color: 'hsl(21, 7%, 23%)' }}>
-                We build your narrative foundation.
-              </p>
-
-              <p className="text-lg leading-relaxed" style={{ color: 'hsl(21, 7%, 23%, 0.85)' }}>
-                The positioning, story, and systems that everything else builds on.
-              </p>
-
-              <p className="text-lg leading-relaxed pt-4" style={{ color: 'hsl(21, 7%, 23%, 0.7)' }}>
-                This is for founders who are ready to invest in clarity, not just visibility.
-              </p>
-            </div>
-
-            <div className="text-center pt-6">
-              <button
-                onClick={() => setShowDetails(!showDetails)}
-                className="text-foreground underline decoration-signal-red/50 hover:decoration-signal-red transition-all duration-300 tracking-wide"
-              >
-                {showDetails ? "Hide details" : "What's inside this first phase?"}
-              </button>
-            </div>
-
-            {showDetails && (
-              <div className="border-t border-charcoal/10 pt-8 space-y-4 max-w-md mx-auto slow-fade-in">
-                <ul className="space-y-4 text-left">
-                  <li className="flex items-start gap-3">
-                    <span className="text-signal-red font-bold text-lg mt-0.5">▪</span>
-                    <span className="leading-relaxed">Deep founder interviews to uncover your core narrative</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-signal-red font-bold text-lg mt-0.5">▪</span>
-                    <span className="leading-relaxed">Narrative strategy and story architecture</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-signal-red font-bold text-lg mt-0.5">▪</span>
-                    <span className="leading-relaxed">Positioning framework that lasts beyond campaigns</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-signal-red font-bold text-lg mt-0.5">▪</span>
-                    <span className="leading-relaxed">Visibility roadmap tailored to your voice</span>
-                  </li>
-                </ul>
+              
+              <div className="border-t pt-8 max-w-md mx-auto" style={{ borderColor: 'rgba(61, 56, 53, 0.15)' }}>
+                <p className="text-xl font-semibold text-center mb-4" style={{ color: '#3D3835' }}>
+                  70% at contract signing | 30% in month two
+                </p>
+                <p className="text-center" style={{ 
+                  fontSize: '14px',
+                  color: 'rgba(61, 56, 53, 0.7)'
+                }}>
+                  This structure lets us fully commit to your story without splitting focus.
+                </p>
               </div>
-            )}
+            </div>
+
+            <div className="border-t pt-10 space-y-6 max-w-2xl mx-auto" style={{ borderColor: 'rgba(61, 56, 53, 0.1)' }}>
+              <h3 className="font-display text-2xl font-semibold text-center" style={{ color: '#3D3835' }}>
+                Timeline
+              </h3>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <span className="text-signal-red font-bold">▪</span>
+                  <span style={{ color: 'rgba(61, 56, 53, 0.9)' }}>
+                    <strong>Month 1:</strong> Discovery + Strategy
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-signal-red font-bold">▪</span>
+                  <span style={{ color: 'rgba(61, 56, 53, 0.9)' }}>
+                    <strong>Month 2:</strong> Creation + Refinement
+                  </span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-signal-red font-bold">▪</span>
+                  <span style={{ color: 'rgba(61, 56, 53, 0.9)' }}>
+                    <strong>Month 3:</strong> Delivery + Launch Support
+                  </span>
+                </li>
+              </ul>
+              <p className="text-center italic pt-4" style={{ color: 'rgba(61, 56, 53, 0.8)' }}>
+                "Most clients see results within 90 days. Some see them in 30."
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="text-center mt-12">
+        {/* Availability CTA */}
+        <div className="text-center p-12 rounded-lg" style={{ backgroundColor: '#F5F1E8' }}>
+          <h3 className="font-display text-3xl font-bold mb-4" style={{ color: '#3D3835' }}>
+            November is Open
+          </h3>
+          <p className="text-lg mb-6" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+            If you're looking to start in November, we should talk now. December is already committed.
+          </p>
           <a 
             href="#contact"
             className="inline-flex items-center justify-center bg-signal-red font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:border-signal-red hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
-            style={{ color: 'hsl(21, 7%, 23%)' }}
+            style={{ color: '#FDFBF7' }}
           >
-            Let's talk about your story →
+            Start a Conversation
           </a>
+          <p className="mt-6 text-sm" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
+            Can't make November? Reach out anyway—we'll hold your spot for December.
+          </p>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@ import OpeningSection from "@/components/OpeningSection";
 import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import ProofOfWork from "@/components/ProofOfWork";
 import SeeTheWork from "@/components/SeeTheWork";
+import PricingSection from "@/components/PricingSection";
 import WhoThisIsntFor from "@/components/WhoThisIsntFor";
 import EmotionalHook from "@/components/EmotionalHook";
 import FAQSection from "@/components/FAQSection";
@@ -16,6 +17,7 @@ const Index = () => {
       <WhoWeWorkWith />
       <ProofOfWork />
       <SeeTheWork />
+      <PricingSection />
       <WhoThisIsntFor />
       <EmotionalHook />
       <FAQSection />

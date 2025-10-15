@@ -12,7 +12,7 @@ const clients = [
       "Karen Mannheim has spent 15 years mastering the intersection of light, space, and human experience. Based between Lima and Miami, she's become the go-to designer for architects and developers who understand that lighting isn't decoration—it's the difference between a space that works and one that transforms.",
       "Her projects span luxury residential developments in Peru, high-end retail spaces across Latin America, and boutique hospitality projects in the United States. But Karen's real expertise isn't just technical specification—it's understanding how light shapes emotion, behavior, and perceived value.",
       "She started her career working with international architecture firms, learning that most lighting design happens as an afterthought. Spaces were beautiful on paper but fell flat in reality because the lighting didn't support the architecture's intent. Karen built her practice around changing that—becoming a strategic partner from concept through completion.",
-      "Her approach combines rigorous technical knowledge with an artist's eye. She can talk lumens and color temperature with engineers, then translate that into emotional impact for clients. That duality—technical precision meets sensory intuition—is why architects trust her with their most ambitious projects.",
+      "Her approach combines rigorous technical knowledge with an artist's eye. She can talk lumens and color temperature with engineers, then translate that into emotional impact for clients. That duality—technical precision meets sensory intuition—is why architects trust her with her most ambitious projects.",
       "But as her reputation grew, Karen faced the same challenge many technical experts encounter: her work spoke for itself in person, but translating that expertise into positioning was harder. Potential clients saw \"lighting designer\" and thought decorative consultant, not strategic partner. International projects required a narrative that conveyed authority beyond regional boundaries.",
       "CRUDA worked with Karen to build a positioning system that reflects the strategic value she brings. Not \"lighting designer,\" but \"architectural storyteller who uses light as the primary medium.\" Not project descriptions, but case studies showing how her work increased property values, enhanced brand perception, and created memorable experiences."
     ],
@@ -40,6 +40,40 @@ const clients = [
     achievements: [
       "Built $200M construction company",
       "Led $100M residential development"
+    ]
+  },
+  {
+    slug: "luxury-hospitality-gm",
+    name: "Luxury Hospitality GM",
+    title: "GM, Luxury Hospitality & Healthcare",
+    location: "UAE",
+    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop",
+    fullTitle: "General Manager | Luxury Hospitality & Healthcare",
+    bio: [
+      "Two decades building world-class guest experiences at Four Seasons properties across the Middle East. Now applying those principles to transform patient care in healthcare facilities."
+    ],
+    whatBuilding: "Bridging luxury hospitality standards with healthcare operations to elevate patient experience.",
+    achievements: [
+      "Led operations for 5-star properties in Dubai and Abu Dhabi",
+      "Transitioned to healthcare leadership roles",
+      "Speaking at conferences on service excellence"
+    ]
+  },
+  {
+    slug: "fashion-retail-ceo",
+    name: "Fashion Retail CEO",
+    title: "Retail & E-commerce Founder",
+    location: "Dubai",
+    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
+    fullTitle: "Founder & CEO | Fashion Retail & E-commerce",
+    bio: [
+      "Built a fashion retail empire spanning physical stores and e-commerce platforms across the Middle East. Pioneering the integration of traditional retail with digital commerce in emerging markets."
+    ],
+    whatBuilding: "Expanding omnichannel retail experiences that blend physical and digital commerce.",
+    achievements: [
+      "Launched 15+ retail locations across UAE",
+      "Built e-commerce platform serving 3 countries",
+      "Featured in retail innovation conferences"
     ]
   }
 ];
@@ -77,18 +111,22 @@ const ProofOfWork = () => {
           
           {/* Card Carousel */}
           <div className="relative">
-            <div className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth">
-              <div className="flex gap-6 md:gap-8 items-start min-w-max md:min-w-0">
+            <div 
+              id="client-carousel"
+              className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth snap-x snap-mandatory"
+            >
+              <div className="flex gap-6 md:gap-8 items-start">
                 {clients.map((client, index) => (
                   <Link
                     key={index}
                     to={`/clients/${client.slug}`}
-                    className="flex-shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer"
+                    className="flex-shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer snap-start"
                     style={{
                       width: '380px',
+                      minWidth: '380px',
                       aspectRatio: '3/4',
                       backgroundColor: '#FDFBF7',
-                      borderRadius: '12px',
+                      borderRadius: '16px',
                       boxShadow: '0 4px 16px rgba(61,56,53,0.12)'
                     }}
                   >
@@ -97,11 +135,13 @@ const ProofOfWork = () => {
                       <img
                         src={client.photo}
                         alt={client.name}
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                        className="w-full h-full object-cover transition-all duration-300"
                         style={{ 
-                          filter: 'grayscale(20%)',
+                          filter: 'grayscale(15%)',
                           objectPosition: 'center'
                         }}
+                        onMouseEnter={(e) => e.currentTarget.style.filter = 'grayscale(0%)'}
+                        onMouseLeave={(e) => e.currentTarget.style.filter = 'grayscale(15%)'}
                       />
                     </div>
 
@@ -136,6 +176,32 @@ const ProofOfWork = () => {
                 ))}
               </div>
             </div>
+            
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => {
+                const carousel = document.getElementById('client-carousel');
+                if (carousel) carousel.scrollBy({ left: -400, behavior: 'smooth' });
+              }}
+              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
+              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5B800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+            >
+              ←
+            </button>
+            <button
+              onClick={() => {
+                const carousel = document.getElementById('client-carousel');
+                if (carousel) carousel.scrollBy({ left: 400, behavior: 'smooth' });
+              }}
+              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
+              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5B800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+            >
+              →
+            </button>
           </div>
         </div>
       </section>

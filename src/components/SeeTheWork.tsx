@@ -3,54 +3,71 @@ import { Link } from "react-router-dom";
 const caseStudies = [
   {
     id: 1,
-    slug: "norhart",
-    clientName: "NORHART",
-    projectHeadline: "From contractor to construction innovator",
+    slug: "construction-expansion",
+    clientName: "CONSTRUCTION CEO",
+    projectHeadline: "International Expansion",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=800&fit=crop",
     metrics: [
-      { label: "LinkedIn Reach", value: "250K+" },
-      { label: "Partnership Inquiries", value: "50+" },
-      { label: "Timeline", value: "30 days" }
+      { label: "Continents", value: "3" },
+      { label: "Timeline", value: "18 months" },
+      { label: "Projects", value: "$50M+" }
     ],
-    description: "Positioned Mike Kaeding's residential construction model as a blueprint for the future of American building.",
-    challenge: "Norhart had revolutionary construction methods but struggled to communicate their innovation beyond technical circles.",
-    solution: "We developed a narrative framework positioning their vertical integration model as the future of affordable housing in America.",
-    results: "Generated 250K+ impressions across LinkedIn, resulting in 50+ strategic partnership inquiries and invitations to speak at industry conferences.",
-    testimonial: "CRUDA helped us articulate what we've been building for years. The story they created opened doors we didn't know existed."
+    description: "Positioned regional builder as climate tech authority, securing partnerships across three continents.",
+    challenge: "Regional construction company struggling to compete internationally.",
+    solution: "Developed positioning as sustainable construction innovator with proven track record.",
+    results: "Secured international partnerships across 3 continents, $50M+ in new projects.",
+    testimonial: "CRUDA helped us think bigger than our market."
   },
   {
     id: 2,
     slug: "karen-mannheim",
     clientName: "KAREN MANNHEIM",
-    projectHeadline: "Architectural lighting designer to brand authority",
+    projectHeadline: "Strategic Positioning",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=800&fit=crop",
     metrics: [
-      { label: "Press Features", value: "3" },
-      { label: "High-End Clients", value: "12+" },
-      { label: "Revenue Growth", value: "40%" }
+      { label: "Locations", value: "12" },
+      { label: "Value", value: "$50M+" },
+      { label: "Featured in", value: "AD" }
     ],
-    description: "Elevated Karen's positioning from service provider to strategic design partner for luxury real estate.",
+    description: "From lighting designer to architectural storyteller. Strategic narrative that attracts developers who understand value.",
     challenge: "Despite working with Porsche, Maserati, and Four Seasons, Karen's brand didn't reflect the caliber of her client roster.",
     solution: "We repositioned her from 'lighting designer' to strategic collaborator for architects and developers building iconic spaces.",
-    results: "Featured in Architectural Digest, secured 12 new high-end residential and retail projects, 40% revenue increase YoY.",
+    results: "Featured in Architectural Digest, secured 12 new high-end residential and retail projects, $50M+ project value.",
     testimonial: "The positioning CRUDA created helped me attract the projects I actually want to work on."
   },
   {
     id: 3,
-    slug: "hospitality-gm",
-    clientName: "LUXURY HOSPITALITY GM",
-    projectHeadline: "From operations expert to thought leader",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=800&fit=crop",
+    slug: "athlete-brand",
+    clientName: "PROFESSIONAL ATHLETE",
+    projectHeadline: "Personal Brand Launch",
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=600&h=800&fit=crop",
     metrics: [
-      { label: "Speaking Invitations", value: "8" },
+      { label: "Followers", value: "14K" },
       { label: "Board Positions", value: "2" },
-      { label: "LinkedIn Growth", value: "300%" }
+      { label: "Speaking", value: "8+" }
     ],
-    description: "Transformed healthcare executive's story into thought leadership platform.",
-    challenge: "Transitioning from Four Seasons to healthcare required repositioning decades of hospitality expertise.",
-    solution: "We crafted a narrative showing how luxury service principles elevate patient care and operational excellence.",
-    results: "Invited to speak at 8 industry conferences, joined 2 advisory boards, 300% increase in LinkedIn following.",
-    testimonial: "CRUDA showed me how my hospitality background was actually my biggest differentiator in healthcare."
+    description: "Built personal brand architecture that extends influence beyond the field into entrepreneurship and leadership.",
+    challenge: "Professional athlete wanting to build influence beyond sports.",
+    solution: "Created personal brand framework positioning athletic discipline as business leadership principle.",
+    results: "14K followers, 2 board positions, 8+ speaking engagements.",
+    testimonial: "My athletic career opened doors. CRUDA helped me build what's behind them."
+  },
+  {
+    id: 4,
+    slug: "real-estate-premium",
+    clientName: "REAL ESTATE DEVELOPER",
+    projectHeadline: "Premium Positioning",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=800&fit=crop",
+    metrics: [
+      { label: "Pricing", value: "Premium" },
+      { label: "Clients", value: "International" },
+      { label: "Features", value: "Media" }
+    ],
+    description: "Elevated from regional developer to international authority in sustainable luxury construction.",
+    challenge: "Regional developer wanting to command premium pricing and attract international clients.",
+    solution: "Repositioned as sustainable luxury specialist with proven premium project delivery.",
+    results: "Premium pricing achieved, international client base established, multiple media features.",
+    testimonial: "CRUDA showed us how to charge what we're worth."
   }
 ];
 
@@ -67,13 +84,17 @@ const SeeTheWork = () => {
           </div>
 
           {/* Horizontal Carousel */}
-          <div className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth">
-            <div className="flex gap-8 md:gap-10 min-w-max md:min-w-0">
-              {caseStudies.map((study) => (
+          <div className="relative">
+            <div 
+              id="work-carousel"
+              className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth snap-x snap-mandatory"
+            >
+              <div className="flex gap-8 md:gap-10">
+                {caseStudies.map((study) => (
                 <Link 
                   key={study.id}
                   to={`/work/${study.slug}`}
-                  className="group cursor-pointer w-[85vw] md:w-[420px] flex-shrink-0"
+                  className="group cursor-pointer w-[85vw] md:w-[420px] flex-shrink-0 snap-start"
                 >
                   <div 
                     className="bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1"
@@ -124,7 +145,34 @@ const SeeTheWork = () => {
                   </div>
                 </Link>
               ))}
+              </div>
             </div>
+            
+            {/* Navigation Arrows */}
+            <button
+              onClick={() => {
+                const carousel = document.getElementById('work-carousel');
+                if (carousel) carousel.scrollBy({ left: -440, behavior: 'smooth' });
+              }}
+              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
+              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5B800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+            >
+              ←
+            </button>
+            <button
+              onClick={() => {
+                const carousel = document.getElementById('work-carousel');
+                if (carousel) carousel.scrollBy({ left: 440, behavior: 'smooth' });
+              }}
+              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
+              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5B800'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+            >
+              →
+            </button>
           </div>
         </div>
     </section>

@@ -4,36 +4,60 @@ import { useEffect } from "react";
 
 const caseStudies = [
   {
-    slug: "norhart",
-    clientName: "NORHART",
-    projectHeadline: "From contractor to construction innovator",
+    slug: "mike-kaeding",
+    clientName: "MIKE KAEDING",
+    projectHeadline: "Turning buildings into brands: a $200M CEO finds his voice.",
+    subheadline: "How we helped Norhart's founder craft a public story as bold as the company he's building.",
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&h=800&fit=crop",
+    industry: "Construction / Real Estate Development",
     metrics: [
-      { label: "LinkedIn Reach", value: "250K+" },
-      { label: "Partnership Inquiries", value: "50+" },
-      { label: "Timeline", value: "30 days" }
+      { label: "Posts Created", value: "40+" },
+      { label: "Narrative Impact", value: "High" },
+      { label: "Brand Elevation", value: "Industry-Wide" }
     ],
-    description: "Positioned Mike Kaeding's residential construction model as a blueprint for the future of American building.",
-    challenge: "Norhart had revolutionary construction methods but struggled to communicate their innovation beyond technical circles.",
-    solution: "We developed a narrative framework positioning their vertical integration model as the future of affordable housing in America.",
-    results: "Generated 250K+ impressions across LinkedIn, resulting in 50+ strategic partnership inquiries and invitations to speak at industry conferences.",
-    testimonial: "CRUDA helped us articulate what we've been building for years. The story they created opened doors we didn't know existed."
+    description: "Mike Kaeding is not your typical construction CEO. He's building Norhart to solve America's housing crisis — by cutting construction costs in half.\n\nBut his story wasn't landing. We didn't need to \"create content.\" We needed to translate scale into trust — and turn a quiet builder into a resonant founder.",
+    whatWeDid: [
+      "Led a 1:1 founder deep-dive to extract voice, vision, and story",
+      "Crafted a bold, human Founder Bio & LinkedIn Narrative",
+      "Built a content system that turned weekly calls into thought leadership",
+      "Helped frame Norhart's work as industry disruption, not just execution",
+      "Positioned Mike as a strategic voice in housing, not just an operator"
+    ],
+    impact: [
+      "Built a high-frequency storytelling habit across 40+ posts",
+      "Content used in investor decks, press interviews, and recruitment",
+      "Strengthened company-wide alignment around purpose and leadership",
+      "Elevated brand perception among industry peers and local government",
+      "Built a narrative engine that scales with Norhart's growth"
+    ]
   },
   {
     slug: "karen-mannheim",
     clientName: "KAREN MANNHEIM",
-    projectHeadline: "Architectural lighting designer to brand authority",
+    projectHeadline: "Lighting up the invisible: building narrative clarity for a leading designer",
+    subheadline: "How we helped Karen Mannheim own her story — and become a visible force across Lima, Miami, and Madrid.",
     image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=800&fit=crop",
+    industry: "Architectural Lighting Design / Luxury Residential",
     metrics: [
-      { label: "Press Features", value: "3" },
-      { label: "High-End Clients", value: "12+" },
-      { label: "Revenue Growth", value: "40%" }
+      { label: "Organic Impressions", value: "1M+" },
+      { label: "Press Features", value: "AD Peru" },
+      { label: "New Markets", value: "Madrid" }
     ],
-    description: "Elevated Karen's positioning from service provider to strategic design partner for luxury real estate.",
-    challenge: "Despite working with Porsche, Maserati, and Four Seasons, Karen's brand didn't reflect the caliber of her client roster.",
-    solution: "We repositioned her from 'lighting designer' to strategic collaborator for architects and developers building iconic spaces.",
-    results: "Featured in Architectural Digest, secured 12 new high-end residential and retail projects, 40% revenue increase YoY.",
-    testimonial: "The positioning CRUDA created helped me attract the projects I actually want to work on."
+    description: "Karen Mannheim had already built an impressive portfolio: Porsche showrooms, Four Seasons penthouses, villas in Fisher Island, and collaborations with world-class architects. But her story? It was still living in the shadows.\n\nShe wasn't building a personal brand. She was building trust — and we needed to make that visible.",
+    whatWeDid: [
+      "Developed her foundational narrative and tone of voice",
+      "Built a consistent content system across Instagram & LinkedIn",
+      "Created case-study formats to educate architects and developers",
+      "Positioned Karen as a creative peer, not a service provider",
+      "Crafted a clear bridge between lighting, design, and emotion"
+    ],
+    impact: [
+      "+1,000,000 organic impressions on Instagram in 12 months",
+      "Featured in Architectural Digest Peru",
+      "Became a go-to reference for top developers in Peru and Spain",
+      "Opened the door to new international collaborations — including Madrid's top residential developer",
+      "Took control of her own narrative, on her own terms"
+    ]
   },
   {
     slug: "hospitality-gm",
@@ -104,9 +128,14 @@ const CaseStudyDetail = () => {
           <p className="text-sm uppercase tracking-wide mb-3" style={{ color: 'rgba(253, 251, 247, 0.8)' }}>
             {study.clientName}
           </p>
-          <h1 className="text-[36px] md:text-[52px] font-bold leading-[1.1] max-w-[800px]" style={{ color: '#FDFBF7' }}>
+          <h1 className="text-[36px] md:text-[52px] font-bold leading-[1.1] max-w-[800px] mb-4" style={{ color: '#FDFBF7' }}>
             {study.projectHeadline}
           </h1>
+          {study.subheadline && (
+            <p className="text-[20px] leading-[1.5] max-w-[700px]" style={{ color: 'rgba(253, 251, 247, 0.9)' }}>
+              {study.subheadline}
+            </p>
+          )}
         </div>
       </div>
 
@@ -114,38 +143,44 @@ const CaseStudyDetail = () => {
       <div className="max-w-[900px] mx-auto px-6 md:px-20 py-16 md:py-24">
         {/* Project Context */}
         <div className="mb-16">
-          <h2 className="text-[28px] font-bold mb-6" style={{ color: '#3D3835' }}>
+          <h2 className="text-[28px] font-bold mb-2" style={{ color: '#3D3835' }}>
             Project Context
           </h2>
-          <p className="text-[18px] leading-[1.75] mb-4" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            {study.description}
-          </p>
-        </div>
-
-        {/* Challenge */}
-        <div className="mb-16">
-          <h2 className="text-[28px] font-bold mb-6" style={{ color: '#3D3835' }}>
-            Challenge
-          </h2>
-          <p className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            {study.challenge}
-          </p>
+          {study.industry && (
+            <p className="text-[15px] mb-6" style={{ color: '#F5B800' }}>
+              Industry: {study.industry}
+            </p>
+          )}
+          {study.description.split('\n\n').map((paragraph, idx) => (
+            <p key={idx} className="text-[18px] leading-[1.75] mb-4" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+              {paragraph}
+            </p>
+          ))}
         </div>
 
         {/* What We Did */}
-        <div className="mb-16">
-          <h2 className="text-[28px] font-bold mb-6" style={{ color: '#3D3835' }}>
-            What We Did
-          </h2>
-          <p className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            {study.solution}
-          </p>
-        </div>
+        {study.whatWeDid && (
+          <div className="mb-16">
+            <h2 className="text-[28px] font-bold mb-6" style={{ color: '#3D3835' }}>
+              What We Did
+            </h2>
+            <ul className="space-y-3">
+              {study.whatWeDid.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="text-[20px] mt-1" style={{ color: '#F5B800' }}>•</span>
+                  <span className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* Impact & Results */}
         <div className="mb-16">
           <h2 className="text-[28px] font-bold mb-8" style={{ color: '#3D3835' }}>
-            Impact & Results
+            Impact
           </h2>
           
           {/* Metrics Grid */}
@@ -165,29 +200,28 @@ const CaseStudyDetail = () => {
             ))}
           </div>
 
-          <p className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            {study.results}
-          </p>
+          {study.impact && (
+            <ul className="space-y-3">
+              {study.impact.map((item, idx) => (
+                <li key={idx} className="flex items-start gap-3">
+                  <span className="text-[20px] mt-1" style={{ color: '#F5B800' }}>•</span>
+                  <span className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                    {item}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
-
-        {/* Testimonial */}
-        {study.testimonial && (
-          <div className="p-10 mb-16" style={{ 
-            backgroundColor: '#F5F1E8',
-            borderLeft: '6px solid #F5B800',
-            borderRadius: '8px'
-          }}>
-            <p className="text-[20px] leading-[1.75] italic" style={{ color: 'rgba(61, 56, 53, 0.9)' }}>
-              "{study.testimonial}"
-            </p>
-          </div>
-        )}
 
         {/* CTA */}
         <div className="text-center py-12 border-t-2" style={{ borderColor: 'rgba(61, 56, 53, 0.1)' }}>
-          <h3 className="text-[32px] font-bold mb-6" style={{ color: '#3D3835' }}>
-            Let's build your story next
+          <h3 className="text-[32px] font-bold mb-4" style={{ color: '#3D3835' }}>
+            Want your brand to show up the way your work deserves?
           </h3>
+          <p className="text-[18px] mb-8" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
+            Let's build your narrative.
+          </p>
           <Link 
             to="/#contact"
             onClick={() => {
@@ -203,7 +237,7 @@ const CaseStudyDetail = () => {
               borderRadius: '8px'
             }}
           >
-            Start a Conversation
+            Book a Call
             <span>→</span>
           </Link>
         </div>

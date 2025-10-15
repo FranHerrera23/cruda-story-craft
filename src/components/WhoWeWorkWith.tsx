@@ -80,7 +80,7 @@ const WhoWeWorkWith = () => {
                 >
                   {/* Image */}
                   <motion.div 
-                    className="relative overflow-hidden w-full h-[300px] md:h-[400px] lg:h-[500px]"
+                    className="relative overflow-hidden w-full h-[40vh] md:h-[50vh] lg:h-[60vh] min-h-[300px] md:min-h-[400px] lg:min-h-[500px] max-h-[800px]"
                     initial={{ opacity: 0, scale: 1.05 }}
                     animate={verticalInView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}

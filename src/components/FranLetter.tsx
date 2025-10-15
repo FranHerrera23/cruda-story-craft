@@ -2,7 +2,7 @@ import franPortrait from "@/assets/fran-portrait.jpg";
 
 const FranLetter = () => {
   return (
-    <section className="py-30 px-6 md:px-30 bg-background">
+    <section className="py-30 px-6 md:px-30" style={{ backgroundColor: 'hsl(42, 29%, 93%)' }}>
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           <div className="order-2 lg:order-1">
@@ -43,8 +43,8 @@ const FranLetter = () => {
                 </p>
               </div>
               
-              <p className="text-muted-foreground">
-                If you've been quietly building something meaningful — and you're ready to share it with the world — maybe CRUDA is for you.
+              <p className="text-lg" style={{ color: 'hsl(21, 7%, 23%, 0.85)' }}>
+                If you've been quietly building something meaningful — and you're ready to articulate it with the same precision you execute — let's talk.
               </p>
             </div>
           </div>

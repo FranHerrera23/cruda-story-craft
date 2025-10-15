@@ -4,39 +4,35 @@ const ProcessAndPrice = () => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <section className="py-30 px-6 md:px-30 bg-background border-t border-charcoal/10">
+    <section className="py-30 px-6 md:px-30 border-t" style={{ backgroundColor: 'hsl(48, 43%, 98%)', borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
       <div className="max-w-4xl mx-auto">
         <div className="mb-16">
-          <h2 className="font-display text-section font-semibold mb-8 tracking-tight-2 text-center">
-            Our First Phase
+          <h2 className="font-display text-section font-semibold mb-8 tracking-tight-2 text-center" style={{ color: 'hsl(21, 7%, 23%)' }}>
+            Our First Engagement
           </h2>
-
-          <p className="text-xl md:text-2xl text-center max-w-2xl mx-auto leading-relaxed">
-            We don't offer packages.
-            <br />
-            We offer <span className="font-display font-semibold">presence</span>.
-          </p>
         </div>
 
-        <div className="bg-charcoal/5 border border-signal-red/20 p-12 md:p-16 mb-12">
+        <div className="border border-signal-red/20 p-12 md:p-16 mb-12" style={{ backgroundColor: 'hsl(21, 7%, 23%, 0.03)' }}>
           <div className="space-y-10">
-            <p className="text-lg leading-relaxed text-center max-w-xl mx-auto">
-              Our first engagement is 4 months.
-              <br />
-              We go deep. We ask hard questions. We build something true.
-            </p>
+            <div className="text-center space-y-6">
+              <p className="font-display text-5xl md:text-6xl font-bold">
+                <span className="text-signal-red">4 months</span>
+                <span className="mx-4" style={{ color: 'hsl(21, 7%, 23%, 0.3)' }}>|</span>
+                <span className="text-signal-red">$6,000</span>
+              </p>
+            </div>
 
-            <div className="border-t border-charcoal/10 pt-10 space-y-6 text-center">
-              <p className="font-display text-6xl md:text-7xl font-bold text-signal-red">
-                $6,000
+            <div className="border-t pt-10 space-y-6 text-center max-w-2xl mx-auto" style={{ borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
+              <p className="text-xl md:text-2xl font-medium leading-[1.4]" style={{ color: 'hsl(21, 7%, 23%)' }}>
+                We build your narrative foundation.
               </p>
 
-              <p className="font-display text-2xl font-medium italic">
-                Good work isn't cheap. Cheap work isn't good.
+              <p className="text-lg leading-relaxed" style={{ color: 'hsl(21, 7%, 23%, 0.85)' }}>
+                The positioning, story, and systems that everything else builds on.
               </p>
 
-              <p className="text-muted-foreground italic">
-                This isn't content. It's your foundation.
+              <p className="text-lg leading-relaxed pt-4" style={{ color: 'hsl(21, 7%, 23%, 0.7)' }}>
+                This is for founders who are ready to invest in clarity, not just visibility.
               </p>
             </div>
 
@@ -74,14 +70,14 @@ const ProcessAndPrice = () => {
           </div>
         </div>
 
-        <div className="space-y-6 text-center max-w-2xl mx-auto">
-          <p className="text-lg leading-relaxed">
-            If that feels like too much, we're probably not aligned.
-          </p>
-
-          <p className="font-display text-2xl font-medium">
-            If it feels like clarity — let's talk.
-          </p>
+        <div className="text-center mt-12">
+          <a 
+            href="#contact"
+            className="inline-flex items-center justify-center bg-signal-red font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:border-signal-red hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
+            style={{ color: 'hsl(21, 7%, 23%)' }}
+          >
+            Let's talk about your story →
+          </a>
         </div>
       </div>
     </section>

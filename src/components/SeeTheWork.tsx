@@ -18,9 +18,9 @@ const proofItems = [
 
 const SeeTheWork = () => {
   return (
-    <section className="py-20 md:py-30 px-6 md:px-20 bg-bone">
+    <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: 'hsl(42, 29%, 93%)' }}>
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-[28px] md:text-[32px] font-bold text-center text-charcoal leading-[1.2] mb-12 md:mb-16">
+        <h2 className="text-[28px] md:text-[32px] font-bold text-center leading-[1.2] mb-12 md:mb-16" style={{ color: 'hsl(21, 7%, 23%)' }}>
           See the work
         </h2>
         
@@ -30,7 +30,7 @@ const SeeTheWork = () => {
               key={index}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-5 border-2 border-charcoal/10 transition-all duration-300 hover:border-signal-red/30 hover:shadow-lg">
+              <div className="relative overflow-hidden mb-5 border-2 transition-all duration-300 hover:border-signal-red/30 hover:shadow-lg" style={{ borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
                 <img 
                   src={item.image} 
                   alt={item.caption}
@@ -48,7 +48,7 @@ const SeeTheWork = () => {
                 )}
               </div>
               
-              <p className="text-[16px] md:text-[17px] text-charcoal/80 leading-[1.5] text-center">
+              <p className="text-[16px] md:text-[17px] leading-[1.5] text-center" style={{ color: 'hsl(21, 7%, 23%, 0.8)' }}>
                 {item.caption}
               </p>
             </div>

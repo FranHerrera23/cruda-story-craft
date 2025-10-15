@@ -26,7 +26,8 @@ const WhatWeDo = () => {
   return (
     <section 
       ref={sectionRef}
-      className="bg-bone text-charcoal pt-[120px] pb-[120px] px-6 md:px-20"
+      className="pt-[120px] pb-[120px] px-6 md:px-20"
+      style={{ backgroundColor: 'hsl(42, 29%, 93%)', color: 'hsl(21, 7%, 23%)' }}
     >
       <div className="max-w-[1200px] mx-auto">
         {/* Main Headline - Centered */}

@@ -3,7 +3,6 @@ import WhatWeDo from "@/components/WhatWeDo";
 import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import ProofOfWork from "@/components/ProofOfWork";
 import SeeTheWork from "@/components/SeeTheWork";
-import WhyCRUDA from "@/components/WhyCRUDA";
 import WhoThisIsntFor from "@/components/WhoThisIsntFor";
 import FranLetter from "@/components/FranLetter";
 import ProcessAndPrice from "@/components/ProcessAndPrice";
@@ -18,7 +17,6 @@ const Index = () => {
       <WhoWeWorkWith />
       <ProofOfWork />
       <SeeTheWork />
-      <WhyCRUDA />
       <WhoThisIsntFor />
       <FranLetter />
       <ProcessAndPrice />

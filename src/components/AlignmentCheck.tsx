@@ -1,6 +1,6 @@
 const AlignmentCheck = () => {
   return (
-    <section className="py-30 px-6 md:px-30 bg-background border-y border-charcoal/10">
+    <section className="py-30 px-6 md:px-30 border-y" style={{ backgroundColor: 'hsl(36, 25%, 86%)', borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
       <div className="max-w-3xl mx-auto">
         <h2 className="font-display text-subsection font-semibold mb-12 tracking-tight text-center">
           Before you reach out — a quick alignment check:

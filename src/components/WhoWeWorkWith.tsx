@@ -1,168 +1,177 @@
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import architectureImg from "@/assets/vertical-architecture.jpg";
-import hospitalityImg from "@/assets/vertical-hospitality.jpg";
-import athletesImg from "@/assets/vertical-athletes.jpg";
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import verticalArchitecture from "@/assets/vertical-architecture.jpg";
+import verticalHospitality from "@/assets/vertical-hospitality.jpg";
+import verticalAthletes from "@/assets/vertical-athletes.jpg";
 
 const verticals = [
   {
+    id: "construction",
     title: "Construction, Architecture, Design & Materials",
-    headline: "You build spaces that shape how people live.",
-    description: "You've spent years perfecting your craft — understanding materials, timelines, and the details that turn vision into structure. Now you're ready to show the world who's behind the work.\n\nWhether you're positioning for international expansion, attracting larger projects, or inspiring the next generation of builders — your story needs to match the caliber of what you create.",
-    closing: "We help you articulate it.",
-    image: architectureImg,
-    redAccent: "left",
-    imageFilter: "grayscale(100%) contrast(1.2) brightness(1.05)"
+    image: verticalArchitecture,
+    openingLine: "You build spaces that shape how people live.",
+    body: [
+      "You've spent years perfecting your craft — understanding materials, timelines, and the details that turn vision into structure. Now you're ready to show the world who's behind the work.",
+      "Whether you're positioning for international expansion, attracting larger projects, or inspiring the next generation of builders — your story needs to match the caliber of what you create."
+    ],
+    closing: "We help you articulate it."
   },
   {
+    id: "hospitality",
     title: "Hospitality & Healthcare Leaders",
-    headline: "You've mastered the art of crafting experiences that improve lives.",
-    description: "Whether it's a guest who feels truly cared for or a patient who receives better outcomes — you know what excellence looks like in practice.\n\nNow it's time to turn that expertise into a story that builds brand equity, attracts the right partners, and makes people want to be part of what you're building.",
-    closing: "We help you identify and articulate it.",
-    image: hospitalityImg,
-    redAccent: "bottom",
-    imageFilter: "grayscale(100%) contrast(1.3) brightness(0.95)"
+    image: verticalHospitality,
+    openingLine: "You've mastered the art of crafting experiences that improve lives.",
+    body: [
+      "Whether it's a guest who feels truly cared for or a patient who receives better outcomes — you know what excellence looks like in practice.",
+      "Now it's time to turn that expertise into a story that builds brand equity, attracts the right partners, and makes people want to be part of what you're building."
+    ],
+    closing: "We help you identify and articulate it."
   },
   {
+    id: "athletes",
     title: "Professional Athletes & Sports Executives",
-    headline: "You pursued your dream and made it real.",
-    description: "That's why people admire you. You know what it takes to perform under pressure, build teams, and create legacy.\n\nBut athletic careers are finite. Building your personal brand now helps you diversify your portfolio, attract the right opportunities, and extend your influence long after you leave the field.",
-    closing: "We help you build that foundation.",
-    image: athletesImg,
-    redAccent: "middle",
-    imageFilter: "grayscale(100%) contrast(1.15) brightness(1.0)"
+    image: verticalAthletes,
+    openingLine: "You pursued your dream and made it real.",
+    body: [
+      "That's why people admire you. You know what it takes to perform under pressure, build teams, and create legacy.",
+      "But athletic careers are finite. Building your personal brand now helps you diversify your portfolio, attract the right opportunities, and extend your influence long after you leave the field."
+    ],
+    closing: "We help you build that foundation."
   }
 ];
 
 const WhoWeWorkWith = () => {
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const [activeIndex, setActiveIndex] = useState(0);
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollToCard = (index: number) => {
+    if (carouselRef.current) {
+      const cards = carouselRef.current.querySelectorAll('.vertical-card');
+      if (cards[index]) {
+        cards[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        setActiveIndex(index);
+      }
+    }
+  };
+
+  const handlePrev = () => {
+    if (activeIndex > 0) {
+      scrollToCard(activeIndex - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (activeIndex < verticals.length - 1) {
+      scrollToCard(activeIndex + 1);
+    }
+  };
 
   return (
-    <section ref={sectionRef} className="overflow-hidden">
-      {/* Top Section - Charcoal Background */}
-      <div className="bg-charcoal text-bone pt-[100px] md:pt-[100px] pb-20 px-8 md:px-20">
-        <div className="max-w-[900px] mx-auto">
-          <motion.h2 
-            className="font-display text-[36px] md:text-[48px] font-semibold tracking-tight leading-[1.2] mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-          >
+    <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: 'hsl(36, 25%, 86%)' }}>
+      <div className="max-w-[1200px] mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-[32px] md:text-[42px] font-display font-semibold leading-[1.2] tracking-tight-2 mb-8 max-w-[750px] mx-auto" style={{ color: 'hsl(21, 7%, 23%)' }}>
             If explaining your work feels harder than doing it — you're not alone.
-          </motion.h2>
+          </h2>
           
-          <motion.p 
-            className="text-[18px] md:text-[20px] opacity-70 leading-[1.6]"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 0.7 } : {}}
-            transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-          >
+          <p className="text-lg md:text-xl leading-[1.6] max-w-[650px] mx-auto" style={{ color: 'hsl(21, 7%, 23%, 0.85)' }}>
             We work with builders who've mastered their craft but need help translating it into words that land.
-          </motion.p>
+          </p>
         </div>
-      </div>
 
-      {/* Bottom Section - Bone Background */}
-      <div className="bg-bone text-charcoal pt-20 md:pt-20 pb-[120px] px-8 md:px-20">
-        <div className="max-w-[900px] mx-auto">
-          {/* Three Verticals */}
-          <div className="space-y-[80px] md:space-y-[100px]">
-            {verticals.map((vertical, index) => {
-              const verticalRef = useRef(null);
-              const verticalInView = useInView(verticalRef, { once: true, amount: 0.3 });
-              
-              return (
-                <div 
-                  key={index}
-                  ref={verticalRef}
-                  className="space-y-10 md:space-y-10"
+        {/* Horizontal Carousel */}
+        <div className="relative">
+          {/* Desktop Arrow Navigation */}
+          <button
+            onClick={handlePrev}
+            disabled={activeIndex === 0}
+            className="hidden md:flex absolute left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110"
+            style={{ backgroundColor: 'rgba(61, 56, 53, 0.8)' }}
+            aria-label="Previous slide"
+          >
+            <ChevronLeft className="w-6 h-6 text-signal-red" />
+          </button>
+
+          <button
+            onClick={handleNext}
+            disabled={activeIndex === verticals.length - 1}
+            className="hidden md:flex absolute right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 disabled:opacity-30 disabled:cursor-not-allowed hover:scale-110"
+            style={{ backgroundColor: 'rgba(61, 56, 53, 0.8)' }}
+            aria-label="Next slide"
+          >
+            <ChevronRight className="w-6 h-6 text-signal-red" />
+          </button>
+
+          {/* Carousel Container */}
+          <div 
+            ref={carouselRef}
+            className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
+            <div className="flex gap-8 items-start">
+              {verticals.map((vertical, index) => (
+                <div
+                  key={vertical.id}
+                  className="vertical-card flex-shrink-0 w-[85vw] md:w-[900px] mx-auto"
+                  style={{ scrollSnapAlign: 'center' }}
                 >
-                  {/* Image */}
-                  <motion.div 
-                    className="relative overflow-hidden w-full h-[40vh] md:h-[50vh] lg:h-[60vh] min-h-[300px] md:min-h-[400px] lg:min-h-[500px] max-h-[800px]"
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={verticalInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ duration: 0.8, ease: [0.33, 1, 0.68, 1] }}
-                  >
-                    <img 
-                      src={vertical.image} 
+                  {/* Image Section */}
+                  <div className="relative w-full h-[50vh] md:h-[600px] min-h-[400px] md:min-h-[600px] overflow-hidden mb-1">
+                    <img
+                      src={vertical.image}
                       alt={vertical.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-all duration-500"
                       style={{ 
-                        filter: vertical.imageFilter,
-                        imageRendering: 'crisp-edges'
+                        filter: 'grayscale(100%) contrast(1.1)',
+                        objectPosition: 'center center'
                       }}
                     />
-                    {/* Red accent borders */}
-                    {vertical.redAccent === "left" && (
-                      <motion.div 
-                        className="absolute left-0 top-0 bottom-0 w-[2px] bg-signal-red"
-                        initial={{ height: 0 }}
-                        animate={verticalInView ? { height: "100%" } : {}}
-                        transition={{ duration: 0.4, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
-                      />
-                    )}
-                    {vertical.redAccent === "bottom" && (
-                      <motion.div 
-                        className="absolute left-0 right-0 bottom-0 h-[2px] bg-signal-red"
-                        initial={{ width: 0 }}
-                        animate={verticalInView ? { width: "100%" } : {}}
-                        transition={{ duration: 0.4, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
-                      />
-                    )}
-                    {vertical.redAccent === "middle" && (
-                      <motion.div 
-                        className="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-signal-red"
-                        initial={{ width: 0 }}
-                        animate={verticalInView ? { width: "100%" } : {}}
-                        transition={{ duration: 0.4, delay: 0.4, ease: [0.65, 0, 0.35, 1] }}
-                      />
-                    )}
-                  </motion.div>
+                  </div>
 
-                  {/* Text */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={verticalInView ? { opacity: 1, y: 0 } : {}}
-                    transition={{ duration: 0.6, delay: 0.3, ease: [0.4, 0, 0.2, 1] }}
-                  >
-                    <h3 className="font-display text-[20px] md:text-[24px] font-bold tracking-tight leading-[1.2] mb-3 md:mb-4">
+                  {/* Red Accent Line */}
+                  <div className="w-full h-[2px] bg-signal-red mb-10"></div>
+
+                  {/* Text Section */}
+                  <div className="px-6 md:px-12 space-y-6">
+                    <h3 className="font-display text-[28px] md:text-[36px] font-bold leading-[1.2] tracking-tight-2" style={{ color: 'hsl(21, 7%, 23%)' }}>
                       {vertical.title}
                     </h3>
-                    <p className="text-[18px] md:text-[20px] font-semibold leading-relaxed mb-3">
-                      {vertical.headline}
+
+                    <p className="text-xl md:text-2xl font-medium leading-[1.4]" style={{ color: 'hsl(21, 7%, 23%)' }}>
+                      {vertical.openingLine}
                     </p>
-                    <p className="text-[16px] md:text-[18px] leading-[1.7] opacity-80 whitespace-pre-line mb-4">
-                      {vertical.description}
-                    </p>
-                    <p className="text-[16px] md:text-[18px] font-medium md:font-semibold text-signal-red">
+
+                    {vertical.body.map((paragraph, pIndex) => (
+                      <p key={pIndex} className="text-lg md:text-xl leading-[1.7]" style={{ color: 'hsl(21, 7%, 23%, 0.85)' }}>
+                        {paragraph}
+                      </p>
+                    ))}
+
+                    <p className="text-xl md:text-2xl font-semibold pt-4 text-signal-red">
                       {vertical.closing}
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </div>
 
-          {/* CTA Section */}
-          <motion.div 
-            className="text-center mt-[80px] md:mt-[120px]"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            <motion.a 
-              href="#contact" 
-              className="inline-block px-12 md:px-14 py-4 md:py-5 bg-signal-red text-charcoal text-[16px] font-semibold rounded-sm hover:bg-signal-red/90 transition-colors duration-300"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              Let's talk about your story
-            </motion.a>
-          </motion.div>
-
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-3 mt-8">
+            {verticals.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => scrollToCard(index)}
+                className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+                style={{ 
+                  backgroundColor: activeIndex === index ? 'hsl(347, 100%, 59%)' : 'rgba(61, 56, 53, 0.3)',
+                  transform: activeIndex === index ? 'scale(1.2)' : 'scale(1)'
+                }}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

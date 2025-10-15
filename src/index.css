@@ -4,29 +4,38 @@
 
 @layer base {
   :root {
-    /* CRUDA Punk-Luxe Color System */
-    --charcoal: 0 0% 17%;           /* #2B2B2B - Base. Foundation. Authority. */
-    --bone: 42 22% 88%;              /* #E8E3D8 - Clarity. Space. Breath. */
-    --signal-red: 347 100% 59%;      /* #FF2E63 - Tension. Accent. The punk edge. */
+    /* CRUDA Warm Neutrals - Rick Rubin Inspired */
+    --warm-cream: 42 29% 93%;        /* #F5F1E8 - Main background, warmer, more open */
+    --soft-clay: 36 25% 86%;         /* #E8DED1 - Alternate background, richer, earthier */
+    --natural-linen: 48 43% 98%;     /* #FDFBF7 - Lightest, almost white but warmer */
+    --warm-charcoal: 21 7% 23%;      /* #3D3835 - Brown-gray, warmer than black */
+    --body-text: 21 7% 23%;          /* rgba(61, 56, 53, 0.85) equivalent */
+    --light-text: 21 7% 23%;         /* rgba(61, 56, 53, 0.6) equivalent */
+    --signal-red: 347 100% 59%;      /* #FF2E63 - Keep current red */
+    --terracotta-red: 0 77% 60%;     /* #E84545 - More earthy alternative */
+    
+    /* Legacy support */
+    --charcoal: var(--warm-charcoal);
+    --bone: var(--warm-cream);
     
     /* Semantic Tokens */
-    --background: var(--bone);
-    --foreground: var(--charcoal);
+    --background: var(--warm-cream);
+    --foreground: var(--warm-charcoal);
     
-    --card: var(--bone);
-    --card-foreground: var(--charcoal);
+    --card: var(--warm-cream);
+    --card-foreground: var(--warm-charcoal);
     
-    --popover: var(--bone);
-    --popover-foreground: var(--charcoal);
+    --popover: var(--warm-cream);
+    --popover-foreground: var(--warm-charcoal);
     
-    --primary: var(--charcoal);
-    --primary-foreground: var(--bone);
+    --primary: var(--warm-charcoal);
+    --primary-foreground: var(--natural-linen);
     
-    --secondary: var(--bone);
-    --secondary-foreground: var(--charcoal);
+    --secondary: var(--soft-clay);
+    --secondary-foreground: var(--warm-charcoal);
     
-    --muted: 42 15% 82%;
-    --muted-foreground: 0 0% 35%;
+    --muted: var(--soft-clay);
+    --muted-foreground: 21 7% 23% / 0.6;
     
     --accent: var(--signal-red);
     --accent-foreground: var(--charcoal);

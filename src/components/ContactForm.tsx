@@ -31,7 +31,7 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-30 px-6 md:px-30 bg-charcoal text-bone">
+    <section id="contact" className="py-30 px-6 md:px-30" style={{ backgroundColor: 'hsl(21, 7%, 23%)', color: 'hsl(48, 43%, 98%)' }}>
       <div className="max-w-3xl mx-auto">
         <div className="mb-20">
           <h2 className="font-display text-section font-semibold mb-10 tracking-tight-2 text-center">

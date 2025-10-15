@@ -1,6 +1,6 @@
 const WhoThisIsntFor = () => {
   return (
-    <section className="py-30 px-6 md:px-30 bg-background border-y border-charcoal/10">
+    <section className="py-30 px-6 md:px-30 border-y" style={{ backgroundColor: 'hsl(42, 29%, 93%)', borderColor: 'hsl(21, 7%, 23%, 0.1)' }}>
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24">
           <div className="space-y-8">

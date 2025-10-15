@@ -53,7 +53,7 @@ const ProofOfWork = () => {
   return (
     <>
       {/* Part 1: Foundation */}
-      <section className="py-20 md:py-30 px-6 md:px-30 bg-charcoal text-bone">
+      <section className="py-20 md:py-30 px-6 md:px-30" style={{ backgroundColor: 'hsl(42, 29%, 93%)', color: 'hsl(21, 7%, 23%)' }}>
         <div className="max-w-[800px] mx-auto text-center">
           <h2 className="text-[36px] md:text-[48px] font-semibold leading-[1.2] tracking-[-0.01em] mb-7 md:mb-8">
             We've spent 8 years learning how builders think, build, and communicate.
@@ -70,7 +70,7 @@ const ProofOfWork = () => {
       </section>
 
       {/* Part 2: Large Card Carousel */}
-      <section className="py-20 md:py-30 px-6 md:px-20 bg-bone">
+      <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: 'hsl(48, 43%, 98%)' }}>
         <div className="max-w-7xl mx-auto">
           <h2 className="text-[28px] md:text-[32px] font-bold text-center text-charcoal leading-[1.2] mb-12 md:mb-16">
             Who we're building with

@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     question: "How much does it cost?",
-    answer: "Investment starts at $6,000. 70% at signing, 30% in month two. We take one client per month."
+    answer: "Investment starts at $85,000. 70% at signing, 30% in month two. We take one client per month."
   },
   {
     question: "When can we start?",
@@ -80,7 +80,7 @@ const FAQSection = () => {
             Start a Conversation
           </a>
           <p className="mt-6 text-sm" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
-            Or email us at hello@cruda.co
+            Or email us at hello@cruda.studio
           </p>
         </div>
       </div>

@@ -13,7 +13,7 @@ const HeroManifesto = () => {
             </h1>
             
             <p className="text-lg md:text-xl font-normal leading-[1.65] mb-10 slow-fade-in" style={{ animationDelay: '0.3s', color: '#FDFBF7' }}>
-              You've built something real. But technical mastery alone doesn't close deals. We translate what you do into words that position you for bigger opportunities.
+              We build the positioning system that makes people trust you before you walk in the room.
             </p>
 
             <a 

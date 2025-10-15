@@ -4,11 +4,11 @@ import { ChevronDown } from "lucide-react";
 const faqs = [
   {
     question: "Who do you work with?",
-    answer: "Founders in construction, hospitality, and professional sports doing $5M+ annual revenue. You've proven your craft. We help you explain it."
+    answer: "We build with people who build things. Founders, operators, and leaders with skin in the game."
   },
   {
     question: "What does the process look like?",
-    answer: "Three months. Discovery + Strategy (Month 1). Creation + Refinement (Month 2). Delivery + Launch (Month 3). Most see results in 90 days."
+    answer: "It depends where you're at. Some come to us with a reputation to shape. Others with a story to reframe. Either way, we start by listening."
   },
   {
     question: "How much does it cost?",
@@ -69,7 +69,7 @@ const FAQSection = () => {
         {/* Final CTA */}
         <div className="text-center">
           <a
-            href="#contact"
+            href="/book-call"
             className="inline-flex items-center justify-center font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
             style={{ 
               backgroundColor: '#FF2E63',
@@ -77,11 +77,8 @@ const FAQSection = () => {
               color: '#FDFBF7'
             }}
           >
-            Start a Conversation
+            I want to tell my story
           </a>
-          <p className="mt-6 text-sm" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
-            Or email us at hello@cruda.studio
-          </p>
         </div>
       </div>
     </section>

@@ -7,19 +7,19 @@ const verticals = [
     id: "construction",
     title: "Construction, Architecture, Design & Materials",
     image: verticalArchitecture,
-    description: "You shape how people live and work. You understand structural integrity, material performance, and the economics of large-scale projects. We help you communicate that expertise to developers, architects, and decision-makers who control budgets that matter."
+    description: "You shape how people live. We help you explain why that matters to people who control real budgets."
   },
   {
     id: "hospitality",
     title: "Hospitality & Healthcare Leaders",
     image: verticalHospitality,
-    description: "You've mastered the art of creating experiences that improve lives — whether through exceptional service, healing environments, or operational excellence. We help you articulate the strategy and craft behind what you've built, positioning you for larger opportunities and strategic partnerships."
+    description: "You create experiences that improve lives. We articulate the strategy behind what you've built."
   },
   {
     id: "athletes",
     title: "Professional Athletes & Sports Executives",
     image: verticalAthletes,
-    description: "You pursued your dream and made it real. People admire your discipline, performance under pressure, and ability to build teams. We help you translate that into a personal brand that creates opportunities long after you leave the field — from endorsements to board positions to entrepreneurship."
+    description: "Your career proves you can perform under pressure. We help you build the brand that outlasts the jersey."
   }
 ];
 

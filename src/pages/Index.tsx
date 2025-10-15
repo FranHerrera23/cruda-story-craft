@@ -4,7 +4,8 @@ import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import ProofOfWork from "@/components/ProofOfWork";
 import SeeTheWork from "@/components/SeeTheWork";
 import WhoThisIsntFor from "@/components/WhoThisIsntFor";
-import ProcessAndPrice from "@/components/ProcessAndPrice";
+import EmotionalHook from "@/components/EmotionalHook";
+import FAQSection from "@/components/FAQSection";
 import ContactForm from "@/components/ContactForm";
 
 const Index = () => {
@@ -16,7 +17,8 @@ const Index = () => {
       <ProofOfWork />
       <SeeTheWork />
       <WhoThisIsntFor />
-      <ProcessAndPrice />
+      <EmotionalHook />
+      <FAQSection />
       <ContactForm />
     </main>
   );

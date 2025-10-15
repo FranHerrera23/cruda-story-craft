@@ -31,150 +31,107 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-30 px-6 md:px-30" style={{ backgroundColor: 'hsl(21, 7%, 23%)', color: 'hsl(48, 43%, 98%)' }}>
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-20">
-          <h2 className="font-display text-section font-semibold mb-10 tracking-tight-2 text-center">
-            Let's Build Trust
-          </h2>
-          
-          <div className="space-y-6 text-lg text-center max-w-2xl mx-auto">
-            <p className="text-bone/70">If you've read this far, you probably felt something.</p>
-            
-            <p className="font-display text-2xl font-medium pt-6">
-              And if you're building something worth believing in — let's make sure people see it.
-            </p>
-            
-            <p className="pt-6 text-bone/60 italic">
-              We only take on a few founders at a time.
-            </p>
-            
-            <p className="text-bone font-medium">
-              Start with a conversation.
-            </p>
-          </div>
-        </div>
+    <section id="contact" className="py-24 px-6 md:px-16" style={{ backgroundColor: 'hsl(21, 7%, 23%)', color: 'hsl(48, 43%, 98%)' }}>
+      <div className="max-w-2xl mx-auto">
 
-        <form onSubmit={handleSubmit} className="space-y-6 bg-bone/5 backdrop-blur-sm border border-bone/10 p-10 md:p-12">
-          <div>
-            <Input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-14 text-lg transition-all duration-300"
-              style={{ 
-                outlineColor: '#F5B800',
-                borderColor: 'rgba(253, 251, 247, 0.2)'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#F5B800';
-                e.target.style.boxShadow = '0 0 0 1px #F5B800';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
+        <form onSubmit={handleSubmit} className="space-y-5 bg-bone/5 backdrop-blur-sm border border-bone/10 p-8 md:p-10">
+          <Input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-12 transition-all duration-300"
+            style={{ 
+              outlineColor: '#F5B800',
+              borderColor: 'rgba(253, 251, 247, 0.2)'
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = '#F5B800';
+              e.target.style.boxShadow = '0 0 0 1px #F5B800';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+              e.target.style.boxShadow = 'none';
+            }}
+          />
 
-          <div>
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-14 text-lg transition-all duration-300"
-              style={{ 
-                outlineColor: '#F5B800',
-                borderColor: 'rgba(253, 251, 247, 0.2)'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#F5B800';
-                e.target.style.boxShadow = '0 0 0 1px #F5B800';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
+          <Input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-12 transition-all duration-300"
+            style={{ 
+              outlineColor: '#F5B800',
+              borderColor: 'rgba(253, 251, 247, 0.2)'
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = '#F5B800';
+              e.target.style.boxShadow = '0 0 0 1px #F5B800';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+              e.target.style.boxShadow = 'none';
+            }}
+          />
 
-          <div>
-            <Input
-              type="text"
-              name="website"
-              placeholder="LinkedIn or Website"
-              value={formData.website}
-              onChange={handleChange}
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-14 text-lg transition-all duration-300"
-              style={{ 
-                outlineColor: '#F5B800',
-                borderColor: 'rgba(253, 251, 247, 0.2)'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#F5B800';
-                e.target.style.boxShadow = '0 0 0 1px #F5B800';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
+          <Input
+            type="text"
+            name="website"
+            placeholder="LinkedIn or Website"
+            value={formData.website}
+            onChange={handleChange}
+            className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-12 transition-all duration-300"
+            style={{ 
+              outlineColor: '#F5B800',
+              borderColor: 'rgba(253, 251, 247, 0.2)'
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = '#F5B800';
+              e.target.style.boxShadow = '0 0 0 1px #F5B800';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+              e.target.style.boxShadow = 'none';
+            }}
+          />
 
-          <div>
-            <Textarea
-              name="message"
-              placeholder="What are you building right now?"
-              value={formData.message}
-              onChange={handleChange}
-              required
-              rows={5}
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 resize-none rounded-sm text-lg transition-all duration-300"
-              style={{ 
-                outlineColor: '#F5B800',
-                borderColor: 'rgba(253, 251, 247, 0.2)'
-              }}
-              onFocus={(e) => {
-                e.target.style.borderColor = '#F5B800';
-                e.target.style.boxShadow = '0 0 0 1px #F5B800';
-              }}
-              onBlur={(e) => {
-                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
-                e.target.style.boxShadow = 'none';
-              }}
-            />
-          </div>
-
-          <div className="border-t border-bone/10 pt-6 mb-6">
-            <button
-              type="button"
-              onClick={() => setShowFAQ(!showFAQ)}
-              className="text-bone/60 hover:text-bone underline decoration-signal-red/50 hover:decoration-signal-red transition-all duration-300 text-sm tracking-wide"
-            >
-              Are you familiar with our pricing and process?
-            </button>
-            
-            {showFAQ && (
-              <div className="mt-6 p-6 bg-bone/5 border border-signal-red/20 slow-fade-in">
-                <p className="text-sm text-bone/70 leading-relaxed">
-                  We work in 4-month phases, starting at $6,000. We do deep narrative strategy, not content production.
-                </p>
-              </div>
-            )}
-          </div>
+          <Textarea
+            name="message"
+            placeholder="What are you building?"
+            value={formData.message}
+            onChange={handleChange}
+            required
+            rows={4}
+            className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 resize-none rounded-sm transition-all duration-300"
+            style={{ 
+              outlineColor: '#F5B800',
+              borderColor: 'rgba(253, 251, 247, 0.2)'
+            }}
+            onFocus={(e) => {
+              e.target.style.borderColor = '#F5B800';
+              e.target.style.boxShadow = '0 0 0 1px #F5B800';
+            }}
+            onBlur={(e) => {
+              e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+              e.target.style.boxShadow = 'none';
+            }}
+          />
 
           <Button 
             type="submit"
             size="lg"
-            className="w-full bg-signal-red text-charcoal hover:bg-charcoal hover:text-signal-red hover:border hover:border-signal-red text-lg py-7 font-display font-semibold tracking-wide transition-all duration-500 rounded-sm"
+            className="w-full text-lg py-6 font-display font-semibold tracking-wide transition-all duration-300 rounded-sm"
+            style={{
+              backgroundColor: '#FF2E63',
+              color: '#FDFBF7'
+            }}
           >
-            Start the Conversation
+            Start a Conversation
           </Button>
         </form>
       </div>

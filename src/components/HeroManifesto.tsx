@@ -9,16 +9,24 @@ const HeroManifesto = () => {
         <div className="flex items-center px-10 md:px-16 py-20" style={{ backgroundColor: '#3D3835' }}>
           <div className="max-w-[600px]">
             <h1 className="font-display text-4xl md:text-[56px] font-bold leading-[1.1] tracking-[-0.02em] mb-8 slow-fade-in" style={{ color: '#FDFBF7' }}>
-              Great work doesn't explain itself.
+              Great work doesn't<br />explain itself.
             </h1>
             
-            <p className="text-lg md:text-xl font-normal leading-[1.65] mb-8 slow-fade-in" style={{ animationDelay: '0.3s', color: '#FDFBF7' }}>
-              You've built something real. Years of decisions, refinement, and execution that most people will never see. But in a market that rewards clarity, technical mastery alone isn't enough.
+            <p className="text-lg md:text-xl font-normal leading-[1.65] mb-10 slow-fade-in" style={{ animationDelay: '0.3s', color: '#FDFBF7' }}>
+              You've built something real. But technical mastery alone doesn't close deals. We translate what you do into words that position you for bigger opportunities.
             </p>
 
-            <p className="text-lg md:text-xl font-normal leading-[1.65] slow-fade-in" style={{ animationDelay: '0.6s', color: '#FDFBF7' }}>
-              We work with builders who've proven their craft — in construction, hospitality, and professional sports — and need a storytelling system that matches the quality of their work. Not content. Not marketing fluff. A strategic narrative that positions you for the clients, projects, and opportunities you actually want.
-            </p>
+            <a 
+              href="#contact"
+              className="inline-flex items-center justify-center font-display font-medium text-base px-10 py-4 rounded transition-all duration-300 slow-fade-in"
+              style={{ 
+                animationDelay: '0.6s',
+                backgroundColor: '#FF2E63',
+                color: '#FDFBF7'
+              }}
+            >
+              Start a Conversation
+            </a>
           </div>
         </div>
 

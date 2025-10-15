@@ -12,6 +12,7 @@
     --body-text: 21 7% 23%;          /* rgba(61, 56, 53, 0.85) equivalent */
     --light-text: 21 7% 23%;         /* rgba(61, 56, 53, 0.6) equivalent */
     --signal-red: 347 100% 59%;      /* #FF2E63 - Keep current red */
+    --golden-yellow: 44 95% 49%;     /* #F5B800 - NEW Rick Rubin warmth accent */
     --terracotta-red: 0 77% 60%;     /* #E84545 - More earthy alternative */
     
     /* Legacy support */

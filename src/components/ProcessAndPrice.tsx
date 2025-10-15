@@ -72,12 +72,15 @@ const ProcessAndPrice = () => {
         </div>
 
         {/* Availability CTA */}
-        <div className="text-center p-12 rounded-lg" style={{ backgroundColor: '#F5F1E8' }}>
+        <div className="text-center p-12 rounded-lg border-2" style={{ backgroundColor: '#F5F1E8', borderColor: '#F5B800' }}>
+          <div className="inline-block px-5 py-2 rounded-full mb-4" style={{ backgroundColor: '#F5B800', color: '#3D3835' }}>
+            <span className="font-bold text-sm uppercase tracking-wide">DECEMBER</span>
+          </div>
           <h3 className="font-display text-3xl font-bold mb-4" style={{ color: '#3D3835' }}>
-            November is Open
+            December is Open
           </h3>
           <p className="text-lg mb-6" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            If you're looking to start in November, we should talk now. December is already committed.
+            If you're looking to start in December, we should talk now. January is already committed.
           </p>
           <a 
             href="#contact"
@@ -87,7 +90,7 @@ const ProcessAndPrice = () => {
             Start a Conversation
           </a>
           <p className="mt-6 text-sm" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
-            Can't make November? Reach out anyway—we'll hold your spot for December.
+            Can't make December? Reach out anyway — we'll hold your spot for January.
           </p>
         </div>
       </div>

@@ -52,15 +52,15 @@ const ProofOfWork = () => {
 
   return (
     <>
-      {/* Part 1: Foundation */}
-      <section className="py-20 md:py-30 px-6 md:px-30" style={{ backgroundColor: 'hsl(42, 29%, 93%)', color: 'hsl(21, 7%, 23%)' }}>
-        <div className="max-w-[800px] mx-auto text-center">
-          <h2 className="text-[36px] md:text-[48px] font-semibold leading-[1.2] tracking-[-0.01em] mb-7 md:mb-8">
-            We've spent 8 years learning how builders think, build, and communicate.
+      {/* Part 1: Background/Credibility Section */}
+      <section className="py-20 md:py-30 px-6 md:px-30" style={{ backgroundColor: '#F5F1E8' }}>
+        <div className="max-w-[900px] mx-auto text-center">
+          <h2 className="text-[36px] md:text-[48px] font-semibold leading-[1.2] tracking-[-0.01em] mb-8" style={{ color: '#3D3835' }}>
+            We've spent nearly a decade learning how builders think, build, and communicate.
           </h2>
           
-          <p className="text-[18px] md:text-[20px] leading-[1.6] text-bone/75 max-w-[700px] mx-auto mb-5 md:mb-6">
-            Across construction, architecture, design, and manufacturing — from Latin America to the Middle East — we've helped leaders position for international expansion, secure larger projects, and articulate what makes their work exceptional.
+          <p className="text-[18px] md:text-[20px] leading-[1.65] max-w-[750px] mx-auto mb-6" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+            Across construction, architecture, design, and manufacturing — from Latin America to the USA and the Middle East — we've helped leaders position for international expansion, secure larger projects, and articulate what makes their work exceptional.
           </p>
           
           <p className="text-[18px] md:text-[20px] font-semibold text-signal-red">
@@ -70,11 +70,15 @@ const ProofOfWork = () => {
       </section>
 
       {/* Part 2: Large Card Carousel */}
-      <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: 'hsl(48, 43%, 98%)' }}>
+      <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-[28px] md:text-[32px] font-bold text-center text-charcoal leading-[1.2] mb-12 md:mb-16">
-            Who we're building with
-          </h2>
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
+              Who We're Building With
+            </h2>
+            {/* Yellow underline accent */}
+            <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#F5B800' }} />
+          </div>
           
           {/* Card Carousel */}
           <div className="relative">

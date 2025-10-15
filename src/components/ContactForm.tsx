@@ -64,7 +64,19 @@ const ContactForm = () => {
               value={formData.name}
               onChange={handleChange}
               required
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red rounded-sm h-14 text-lg"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-14 text-lg transition-all duration-300"
+              style={{ 
+                outlineColor: '#F5B800',
+                borderColor: 'rgba(253, 251, 247, 0.2)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = '#F5B800';
+                e.target.style.boxShadow = '0 0 0 1px #F5B800';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+                e.target.style.boxShadow = 'none';
+              }}
             />
           </div>
 
@@ -76,7 +88,19 @@ const ContactForm = () => {
               value={formData.email}
               onChange={handleChange}
               required
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red rounded-sm h-14 text-lg"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-14 text-lg transition-all duration-300"
+              style={{ 
+                outlineColor: '#F5B800',
+                borderColor: 'rgba(253, 251, 247, 0.2)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = '#F5B800';
+                e.target.style.boxShadow = '0 0 0 1px #F5B800';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+                e.target.style.boxShadow = 'none';
+              }}
             />
           </div>
 
@@ -87,7 +111,19 @@ const ContactForm = () => {
               placeholder="LinkedIn or Website"
               value={formData.website}
               onChange={handleChange}
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red rounded-sm h-14 text-lg"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 rounded-sm h-14 text-lg transition-all duration-300"
+              style={{ 
+                outlineColor: '#F5B800',
+                borderColor: 'rgba(253, 251, 247, 0.2)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = '#F5B800';
+                e.target.style.boxShadow = '0 0 0 1px #F5B800';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+                e.target.style.boxShadow = 'none';
+              }}
             />
           </div>
 
@@ -99,7 +135,19 @@ const ContactForm = () => {
               onChange={handleChange}
               required
               rows={5}
-              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 focus:border-signal-red focus:ring-signal-red resize-none rounded-sm text-lg"
+              className="bg-bone/10 border-bone/20 text-bone placeholder:text-bone/40 resize-none rounded-sm text-lg transition-all duration-300"
+              style={{ 
+                outlineColor: '#F5B800',
+                borderColor: 'rgba(253, 251, 247, 0.2)'
+              }}
+              onFocus={(e) => {
+                e.target.style.borderColor = '#F5B800';
+                e.target.style.boxShadow = '0 0 0 1px #F5B800';
+              }}
+              onBlur={(e) => {
+                e.target.style.borderColor = 'rgba(253, 251, 247, 0.2)';
+                e.target.style.boxShadow = 'none';
+              }}
             />
           </div>
 

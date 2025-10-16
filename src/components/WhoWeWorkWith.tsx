@@ -1,4 +1,4 @@
-import verticalArchitecture from "@/assets/vertical-architecture.jpg";
+import verticalArchitecture from "@/assets/karen-project-construction.jpg";
 import verticalHospitality from "@/assets/vertical-hospitality.jpg";
 import verticalAthletes from "@/assets/vertical-athletes.jpg";
 

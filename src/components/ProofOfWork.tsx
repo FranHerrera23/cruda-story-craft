@@ -1,4 +1,10 @@
 import { Link } from "react-router-dom";
+import karenPhoto from "@/assets/karen-mannheim.jpg";
+import mikePhoto from "@/assets/mike-kaeding.webp";
+import juanPhoto from "@/assets/juan-pablo-romero.jpeg";
+import hospitalityPhoto from "@/assets/hospitality-manager.jpg";
+import retailPhoto from "@/assets/retail-ceo.jpg";
+import marlyPhoto from "@/assets/marly-hurtado.jpeg";
 
 const clients = [
   {
@@ -6,7 +12,7 @@ const clients = [
     name: "Karen Mannheim",
     title: "Architectural Lighting Designer",
     location: "High-End Residential & Retail | Peru & USA",
-    photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&h=800&fit=crop",
+    photo: karenPhoto,
     fullTitle: "Architectural Lighting Designer | High-End Residential & Retail",
     bio: [
       "Karen Mannheim has spent 15 years mastering the intersection of light, space, and human experience. Based between Lima and Miami, she's become the go-to designer for architects and developers who understand that lighting isn't decoration—it's the difference between a space that works and one that transforms.",
@@ -31,7 +37,7 @@ const clients = [
     name: "Mike Kaeding",
     title: "CEO of Norhart Inc.",
     location: "Residential Construction | Minneapolis, USA",
-    photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=800&fit=crop",
+    photo: mikePhoto,
     fullTitle: "CEO of Norhart Inc. | Residential Construction",
     bio: [
       "Founder of a $200M construction company redefining how America builds. Led the development of a $100M residential complex in Forest Lake with an in-house model that's changing industry cost structures."
@@ -43,11 +49,28 @@ const clients = [
     ]
   },
   {
-    slug: "luxury-hospitality-gm",
-    name: "Luxury Hospitality GM",
-    title: "GM, Luxury Hospitality & Healthcare",
+    slug: "juan-pablo-romero",
+    name: "Juan Pablo Romero",
+    title: "Luxury Hospitality GM",
     location: "UAE",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop",
+    photo: juanPhoto,
+    fullTitle: "General Manager | Luxury Hospitality",
+    bio: [
+      "Two decades building world-class guest experiences at luxury properties across the Middle East. Now applying those principles to transform hospitality operations."
+    ],
+    whatBuilding: "Elevating luxury hospitality standards and guest experience design.",
+    achievements: [
+      "Led operations for 5-star properties in Dubai and Abu Dhabi",
+      "Pioneered service excellence programs",
+      "Speaking at conferences on hospitality innovation"
+    ]
+  },
+  {
+    slug: "luxury-hospitality-gm-2",
+    name: "Luxury Hospitality General Manager",
+    title: "General Manager",
+    location: "Dubai",
+    photo: hospitalityPhoto,
     fullTitle: "General Manager | Luxury Hospitality & Healthcare",
     bio: [
       "Two decades building world-class guest experiences at Four Seasons properties across the Middle East. Now applying those principles to transform patient care in healthcare facilities."
@@ -60,11 +83,11 @@ const clients = [
     ]
   },
   {
-    slug: "fashion-retail-ceo",
-    name: "Fashion Retail CEO",
-    title: "Retail & E-commerce Founder",
+    slug: "retail-ceo-founder",
+    name: "Retail CEO & Founder",
+    title: "CEO & Founder",
     location: "Dubai",
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=800&fit=crop",
+    photo: retailPhoto,
     fullTitle: "Founder & CEO | Fashion Retail & E-commerce",
     bio: [
       "Built a fashion retail empire spanning physical stores and e-commerce platforms across the Middle East. Pioneering the integration of traditional retail with digital commerce in emerging markets."
@@ -74,6 +97,23 @@ const clients = [
       "Launched 15+ retail locations across UAE",
       "Built e-commerce platform serving 3 countries",
       "Featured in retail innovation conferences"
+    ]
+  },
+  {
+    slug: "marly-hurtado",
+    name: "Marly Hurtado",
+    title: "Professional Athlete",
+    location: "USA",
+    photo: marlyPhoto,
+    fullTitle: "Professional Athlete",
+    bio: [
+      "Professional athlete building a brand that extends beyond the field. Focused on creating lasting impact through sports and community engagement."
+    ],
+    whatBuilding: "Developing a personal brand and community programs that outlast athletic career.",
+    achievements: [
+      "Competed at professional level",
+      "Building community engagement programs",
+      "Developing athlete brand strategy"
     ]
   }
 ];

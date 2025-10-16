@@ -1,5 +1,5 @@
 import { ArrowDown } from "lucide-react";
-import franPortrait from "@/assets/fran-portrait.jpg";
+import karenPortrait from "@/assets/karen-mannheim.jpg";
 
 const HeroManifesto = () => {
   return (
@@ -34,7 +34,7 @@ const HeroManifesto = () => {
         <div 
           className="h-[50vh] md:h-auto bg-cover bg-center"
           style={{ 
-            backgroundImage: `url(${franPortrait})`,
+            backgroundImage: `url(${karenPortrait})`,
             filter: 'grayscale(100%) contrast(1.15)'
           }}
         />

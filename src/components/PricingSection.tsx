@@ -60,55 +60,6 @@ const PricingSection = () => {
           </div>
         </div>
 
-        {/* Four-Month Timeline */}
-        <div className="mb-12 md:mb-16">
-          <h3 className="text-[28px] md:text-[32px] font-bold text-center mb-10" style={{ color: '#3D3835' }}>
-            Four-Month Foundational Phase
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
-                Month 1
-              </p>
-              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
-                Discovery + Foundation
-              </h4>
-            </div>
-            
-            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
-                Month 2
-              </p>
-              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
-                Strategic Positioning
-              </h4>
-            </div>
-            
-            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
-                Month 3
-              </p>
-              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
-                Narrative Build
-              </h4>
-            </div>
-            
-            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
-                Month 4
-              </p>
-              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
-                Delivery + Activation
-              </h4>
-            </div>
-          </div>
-          
-          <p className="text-[16px] text-center mt-8" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
-            This foundational phase sets up everything. Many clients continue into ongoing work after seeing the impact.
-          </p>
-        </div>
-
         {/* Availability */}
         <div className="text-center">
           <div className="inline-block px-6 py-2 rounded-full mb-6" style={{ backgroundColor: '#F5B800' }}>

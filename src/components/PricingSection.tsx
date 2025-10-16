@@ -14,39 +14,102 @@ const PricingSection = () => {
           We only take one new client per month. This isn't artificial scarcity — it's how we deliver work that actually matters.
         </p>
 
-        {/* Section 1: Payment Structure */}
-        <div className="mb-10 md:mb-12">
-          <div className="p-8 md:p-10 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-            <h3 className="text-[24px] md:text-[28px] font-bold mb-4" style={{ color: '#3D3835' }}>
-              70% at contract signing | 30% in month two
+        {/* Investment & Payment */}
+        <div className="mb-12 md:mb-16">
+          <div className="text-center mb-8">
+            <p className="text-[14px] uppercase tracking-wide mb-3" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
+              FOUNDATIONAL PHASE
+            </p>
+            <h3 className="text-[36px] md:text-[48px] font-bold mb-2" style={{ color: '#3D3835' }}>
+              $1,625/month
             </h3>
-            <p className="text-[18px] leading-[1.6]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-              This structure lets us fully commit to your story without splitting focus.
+            <p className="text-[20px] mb-6" style={{ color: '#3D3835' }}>
+              4-month commitment — $6,500 total
+            </p>
+          </div>
+
+          <div className="p-8 md:p-10 rounded-lg mb-8" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
+            <h4 className="text-[22px] font-bold mb-4" style={{ color: '#3D3835' }}>
+              What's Included:
+            </h4>
+            <ul className="space-y-3 mb-6">
+              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                Month 1: Discovery, research, and narrative building
+              </li>
+              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                Months 2-4: 90 days of execution and activation
+              </li>
+              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                LinkedIn & Instagram content takeover
+              </li>
+              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                PR & communications strategy
+              </li>
+              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                Written content review (decks, brochures, company materials)
+              </li>
+            </ul>
+            <p className="text-[16px] leading-[1.6]" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
+              Detailed deliverables and scope discussed during our initial conversation. Most founders continue into ongoing positioning work after the foundation is built.
             </p>
           </div>
         </div>
 
-        {/* Section 2: Timeline */}
-        <div className="mb-10 md:mb-12">
-          <div className="p-8 md:p-10 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-            <div className="space-y-4 mb-4">
-              <p className="text-[18px] font-semibold" style={{ color: '#3D3835' }}>
-                Month 1: Discovery + Strategy
+        {/* Four-Month Timeline */}
+        <div className="mb-12 md:mb-16">
+          <h3 className="text-[28px] md:text-[32px] font-bold text-center mb-10" style={{ color: '#3D3835' }}>
+            Four-Month Foundational Phase
+          </h3>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
+              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
+                Month 1
               </p>
-              <p className="text-[18px] font-semibold" style={{ color: '#3D3835' }}>
-                Month 2: Creation + Refinement
-              </p>
-              <p className="text-[18px] font-semibold" style={{ color: '#3D3835' }}>
-                Month 3: Delivery + Launch Support
-              </p>
+              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
+                Discovery + Foundation
+              </h4>
             </div>
-            <p className="text-[18px] leading-[1.6] mt-6" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-              Most clients see results within 90 days. Some see them in 30.
-            </p>
+            
+            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
+              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
+                Month 2
+              </p>
+              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
+                Strategic Positioning
+              </h4>
+            </div>
+            
+            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
+              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
+                Month 3
+              </p>
+              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
+                Narrative Build
+              </h4>
+            </div>
+            
+            <div className="p-6 rounded-lg" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
+              <p className="text-[14px] uppercase tracking-wide mb-2" style={{ color: '#F5B800', fontWeight: '600' }}>
+                Month 4
+              </p>
+              <h4 className="text-[20px] font-bold" style={{ color: '#3D3835' }}>
+                Delivery + Activation
+              </h4>
+            </div>
           </div>
+          
+          <p className="text-[16px] text-center mt-8" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
+            This foundational phase sets up everything. Many clients continue into ongoing work after seeing the impact.
+          </p>
         </div>
 
-        {/* Section 3: Availability */}
+        {/* Availability */}
         <div className="text-center">
           <div className="inline-block px-6 py-2 rounded-full mb-6" style={{ backgroundColor: '#F5B800' }}>
             <span className="text-[14px] font-bold uppercase tracking-wide" style={{ color: '#3D3835' }}>
@@ -55,11 +118,11 @@ const PricingSection = () => {
           </div>
           
           <h3 className="text-[28px] md:text-[32px] font-bold mb-4" style={{ color: '#3D3835' }}>
-            December is Open
+            December Waitlist Open
           </h3>
           
           <p className="text-[18px] mb-8 max-w-[600px] mx-auto" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            If you're looking to start in December, we should talk now. January is already committed.
+            December has one spot available. If you want it, reach out now. We'll add you to the waitlist and confirm your place.
           </p>
           
           <Link
@@ -71,7 +134,7 @@ const PricingSection = () => {
           </Link>
           
           <p className="text-[16px] mt-6" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
-            Can't make December? Reach out anyway — we'll hold your spot for January.
+            Can't start in December? We'll hold your spot for early 2026.
           </p>
         </div>
       </div>

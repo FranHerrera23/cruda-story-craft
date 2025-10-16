@@ -1,19 +1,30 @@
 const OpeningSection = () => {
   return (
-    <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
-      <div className="max-w-[1100px] mx-auto">
-        {/* Main Headline - Centered */}
-        <h2 className="font-display text-[36px] md:text-[48px] font-bold leading-[1.15] tracking-tight-2 text-center mb-12" style={{ color: '#3D3835' }}>
-          We don't make content. We build a communication system that makes people trust you.
+    <section className="py-20 md:py-[100px] px-8 md:px-[60px]" style={{ backgroundColor: '#FDFBF7' }}>
+      <div className="max-w-[800px] mx-auto">
+        {/* Headline - Left aligned */}
+        <h2 className="text-[24px] font-bold mb-8 text-left" style={{ color: '#3D3835' }}>
+          The work speaks. When it doesn't, we do.
         </h2>
 
-        {/* Yellow underline accent */}
-        <div className="h-[2px] w-[80px] mx-auto mb-16" style={{ backgroundColor: '#F5B800' }} />
-
-        {/* Subline */}
-        <p className="text-xl md:text-2xl text-center leading-[1.65] max-w-[800px] mx-auto" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-          Content gets ignored. Positioning creates gravity.
-        </p>
+        {/* Body paragraphs - Left aligned, essay style */}
+        <div className="space-y-6 text-left">
+          <p className="text-[18px] leading-[1.7]" style={{ color: '#3D3835' }}>
+            CRUDA was built on a simple belief: great work shouldn't need to beg for attention.
+          </p>
+          
+          <p className="text-[18px] leading-[1.7]" style={{ color: '#3D3835' }}>
+            We borrowed from punk—strip the bullshit. From Rick Rubin—find the essence. From a decade in the field—understand what builders actually need.
+          </p>
+          
+          <p className="text-[18px] leading-[1.7]" style={{ color: '#3D3835' }}>
+            Most agencies sell noise. We build stories that create gravity and human connection. The difference isn't semantic. It's everything.
+          </p>
+          
+          <p className="text-[18px] leading-[1.7]" style={{ color: '#3D3835' }}>
+            If you've mastered your craft but can't explain why it matters, that's not your weakness. That's our job.
+          </p>
+        </div>
       </div>
     </section>
   );

@@ -7,12 +7,24 @@ const faqs = [
     answer: "We build with people who build things. Founders, operators, and leaders with skin in the game."
   },
   {
+    question: "What if I'm not in construction, hospitality, or sports—can we still work together?",
+    answer: "We think our best value shows up in these niches. But if you're building something exceptional and struggling to articulate it, we should talk."
+  },
+  {
     question: "What does the process look like?",
     answer: "It depends where you're at. Some come to us with a reputation to shape. Others with a story to reframe. Either way, we start by listening."
   },
   {
-    question: "How much does it cost?",
-    answer: "Investment starts at $85,000. 70% at signing, 30% in month two. We take one client per month."
+    question: "What's the investment?",
+    answer: "$1,625/month for a 4-month commitment ($6,500 total). This is the foundational phase where we build your strategic narrative and execute across key channels. Most clients continue into ongoing positioning work after seeing the impact."
+  },
+  {
+    question: "What are your credentials?",
+    answer: "Fran leads CRUDA. Over 8 years, he's built narratives for TikTok, Mondelez, Saudi artists, construction CEOs, athletes, and fintech founders across Buenos Aires, Dubai, and Moscow. Different industries, same problem: people who've mastered their craft but struggle when the work has to speak without them in the room.\n\nAfter enough of those conversations, the pattern became obvious. CRUDA exists because the best positioning comes from understanding builders, not from templates that sound good in strategy decks."
+  },
+  {
+    question: "Why \"CRUDA\"?",
+    answer: "Cruda means \"raw\" in Spanish. It's what your story is before it's been shaped—unfiltered, unpolished, but full of potential. Most founders come to us with the raw material: years of expertise, hard-won insights, work that speaks for itself in person but doesn't translate. We take that raw story and shape it into something that creates gravity. The name reminds us that the best narratives don't start polished. They start real."
   },
   {
     question: "When can we start?",
@@ -27,7 +39,7 @@ const FAQSection = () => {
     <section className="py-20 md:py-24 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
       <div className="max-w-[1000px] mx-auto">
         <h2 className="text-[32px] md:text-[38px] font-display font-semibold text-center mb-12" style={{ color: '#3D3835' }}>
-          Before You Reach Out
+          Common questions, clear answers
         </h2>
 
         <div className="space-y-4 mb-16">

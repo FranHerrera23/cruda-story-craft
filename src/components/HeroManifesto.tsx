@@ -1,11 +1,11 @@
-import franPortrait from "@/assets/fran-portrait-new.png";
+import franPortrait from "@/assets/fran-portrait-hero.jpg";
 
 const HeroManifesto = () => {
   return (
     <section className="relative overflow-hidden min-h-screen" style={{ backgroundColor: '#F5F1E8' }}>
       <div className="grid md:grid-cols-[60%_40%] min-h-screen">
         {/* Left Column - Content */}
-        <div className="flex flex-col justify-center px-10 md:px-20 py-16 md:py-20">
+        <div className="flex flex-col justify-center px-10 md:px-20 py-16 md:py-20 order-2 md:order-1">
           <div className="max-w-[600px]">
             {/* Small intro line */}
             <p 
@@ -70,22 +70,29 @@ const HeroManifesto = () => {
 
         {/* Right Column - Image */}
         <div 
-          className="relative flex items-center justify-center p-12 md:p-16 min-h-[60vh] md:min-h-screen"
-          style={{ backgroundColor: '#3D3835' }}
+          className="relative flex items-center justify-center p-12 md:p-16 min-h-[60vh] md:min-h-screen order-1 md:order-2"
+          style={{ 
+            background: 'linear-gradient(135deg, #F0EDE6 0%, #EAEAEA 50%, #DCDCDC 100%)'
+          }}
         >
-          <img
-            src={franPortrait}
-            alt="Fran Herrera, founder of CRUDA"
-            className="w-full h-auto max-w-[420px]"
-            style={{
-              aspectRatio: '4/5',
-              objectFit: 'cover',
-              filter: 'grayscale(20%) contrast(1.1)',
-              opacity: 0,
-              transform: 'scale(1.05)',
-              animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards, scaleDown 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
-            }}
-          />
+          <div className="relative">
+            <img
+              src={franPortrait}
+              alt="Fran Herrera, founder of CRUDA"
+              className="w-full h-auto max-w-[320px] md:max-w-[380px]"
+              style={{
+                aspectRatio: '1/1',
+                objectFit: 'cover',
+                borderRadius: '24px',
+                filter: 'saturate(1.1) brightness(1.05) contrast(1.05)',
+                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.12), 0 2px 8px rgba(61, 56, 53, 0.08)',
+                border: '3px solid #F0EDE6',
+                opacity: 0,
+                transform: 'scale(1.05)',
+                animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards, scaleDown 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
+              }}
+            />
+          </div>
         </div>
       </div>
     </section>

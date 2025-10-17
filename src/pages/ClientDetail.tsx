@@ -405,7 +405,7 @@ const ClientDetail = () => {
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDFBF7' }}>
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4" style={{ color: '#3D3835' }}>Client Not Found</h1>
-          <Link to="/" className="inline-flex items-center gap-2 text-lg" style={{ color: '#F5B800' }}>
+          <Link to="/" className="inline-flex items-center gap-2 text-lg" style={{ color: '#FF2E63' }}>
             <ArrowLeft className="w-5 h-5" />
             Back to Home
           </Link>
@@ -501,8 +501,8 @@ const ClientDetail = () => {
           <div className="grid md:grid-cols-[60%_40%] gap-12">
             {/* Left: Challenge Content */}
             <div className="space-y-6">
-              <div className="inline-block px-4 py-2 mb-4" style={{ backgroundColor: 'rgba(245, 184, 0, 0.15)' }}>
-                <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#F5B800' }}>
+              <div className="inline-block px-4 py-2 mb-4" style={{ backgroundColor: 'rgba(255, 46, 99, 0.15)' }}>
+                <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#FF2E63' }}>
                   The Challenge
                 </p>
               </div>
@@ -538,7 +538,7 @@ const ClientDetail = () => {
                 borderRadius: '12px'
               }}
             >
-              <div className="text-8xl" style={{ color: 'rgba(245, 184, 0, 0.2)' }}>!</div>
+              <div className="text-8xl" style={{ color: 'rgba(255, 46, 99, 0.2)' }}>!</div>
             </div>
           </div>
         </div>
@@ -560,13 +560,13 @@ const ClientDetail = () => {
                 className="p-6 md:p-8"
                 style={{ 
                   backgroundColor: '#FDFBF7',
-                  borderLeft: '3px solid #F5B800',
+                  borderLeft: '3px solid #FF2E63',
                   borderRadius: '8px',
                   opacity: 0,
                   animation: `fadeIn 0.6s ease-out ${0.2 + index * 0.15}s forwards`
                 }}
               >
-                <div className="text-5xl font-bold mb-4" style={{ color: '#F5B800' }}>
+                <div className="text-5xl font-bold mb-4" style={{ color: '#FF2E63' }}>
                   {index + 1}
                 </div>
                 <p className="text-base leading-relaxed" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
@@ -581,8 +581,8 @@ const ClientDetail = () => {
       {/* 5. CRUDA's Strategy */}
       <section className="py-16 md:py-20 px-6 md:px-20">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-block px-4 py-2 mb-8" style={{ backgroundColor: 'rgba(245, 184, 0, 0.15)' }}>
-            <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#F5B800' }}>
+          <div className="inline-block px-4 py-2 mb-8" style={{ backgroundColor: 'rgba(255, 46, 99, 0.15)' }}>
+            <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: '#FF2E63' }}>
               Our Approach
             </p>
           </div>
@@ -826,7 +826,7 @@ const ClientDetail = () => {
                   animation: `fadeIn 0.6s ease-out ${0.2 + index * 0.1}s forwards`
                 }}
               >
-                <span style={{ color: '#F5B800', fontSize: '24px', marginTop: '2px' }}>✓</span>
+                <span style={{ color: '#FF2E63', fontSize: '24px', marginTop: '2px' }}>✓</span>
                 <p className="text-base leading-relaxed" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
                   {result}
                 </p>
@@ -844,7 +844,7 @@ const ClientDetail = () => {
               className="p-10 md:p-12"
               style={{ 
                 backgroundColor: '#FDFBF7',
-                borderLeft: '4px solid #F5B800',
+                borderLeft: '4px solid #FF2E63',
                 borderRadius: '8px'
               }}
             >
@@ -880,7 +880,7 @@ const ClientDetail = () => {
               borderRadius: '8px'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#F5B800';
+              e.currentTarget.style.backgroundColor = '#FF2E63';
               e.currentTarget.style.color = '#3D3835';
             }}
             onMouseLeave={(e) => {

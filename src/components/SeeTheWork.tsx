@@ -79,8 +79,8 @@ const SeeTheWork = () => {
             <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
               See the Work
             </h2>
-            {/* Yellow underline accent */}
-            <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#F5B800' }} />
+            {/* Red underline accent */}
+            <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#FF2E63' }} />
           </div>
 
           {/* Horizontal Carousel */}
@@ -141,7 +141,7 @@ const SeeTheWork = () => {
                       <div className="space-y-2 mb-4">
                         {study.metrics.slice(0, 2).map((metric, idx) => (
                           <p key={idx} className="text-sm">
-                            <span style={{ color: '#F5B800', fontWeight: '600' }}>{metric.value}</span>
+                            <span style={{ color: '#FF2E63', fontWeight: '600' }}>{metric.value}</span>
                             <span style={{ color: 'rgba(61, 56, 53, 0.7)' }}> {metric.label}</span>
                           </p>
                         ))}
@@ -170,7 +170,7 @@ const SeeTheWork = () => {
               }}
               className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
               style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5B800'}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
             >
               ←
@@ -182,7 +182,7 @@ const SeeTheWork = () => {
               }}
               className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
               style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F5B800'}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
             >
               →

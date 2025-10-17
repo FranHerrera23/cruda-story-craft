@@ -47,7 +47,7 @@ const HeroManifesto = () => {
                 animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.5s forwards'
               }}
             >
-              But <span style={{ color: '#F5B800', fontWeight: 700 }}>mastery doesn't translate</span> itself. The gap between what you've built and what people understand—that's where we work.
+              But <span style={{ color: '#FF2E63', fontWeight: 700 }}>mastery doesn't translate</span> itself. The gap between what you've built and what people understand—that's where we work.
             </p>
 
             {/* CTA */}

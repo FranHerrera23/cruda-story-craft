@@ -5,7 +5,7 @@ import CredibilitySection from "@/components/CredibilitySection";
 import ProofOfWork from "@/components/ProofOfWork";
 import SeeTheWork from "@/components/SeeTheWork";
 import PricingSection from "@/components/PricingSection";
-import WhoThisIsntFor from "@/components/WhoThisIsntFor";
+import WhereWeAddValue from "@/components/WhereWeAddValue";
 import EmotionalHook from "@/components/EmotionalHook";
 import FAQSection from "@/components/FAQSection";
 import ContactForm from "@/components/ContactForm";
@@ -20,7 +20,7 @@ const Index = () => {
       <ProofOfWork />
       <SeeTheWork />
       <PricingSection />
-      <WhoThisIsntFor />
+      <WhereWeAddValue />
       <EmotionalHook />
       <FAQSection />
       <ContactForm />

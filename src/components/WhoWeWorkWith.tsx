@@ -9,7 +9,7 @@ const verticals = [
     image: verticalArchitecture,
     description: (
       <>
-        You shape spaces that outlive you. Every decision—material, dimension, light—defines how people live for decades. That responsibility deserves a narrative that matches the <span style={{ color: '#F5B800', fontWeight: 600 }}>permanence of the work</span>.
+        You shape spaces that outlive you. Every decision—material, dimension, light—defines how people live for decades. That responsibility deserves a narrative that matches the <span style={{ color: '#FF2E63', fontWeight: 600 }}>permanence of the work</span>.
       </>
     )
   },
@@ -19,7 +19,7 @@ const verticals = [
     image: verticalHospitality,
     description: (
       <>
-        You've mastered the art of holding space for people during <span style={{ color: '#F5B800', fontWeight: 600 }}>vulnerable moments</span>. Whether it's rest, healing, or celebration, your work shapes how people feel when they're most present. That deserves more than operational metrics.
+        You've mastered the art of holding space for people during <span style={{ color: '#FF2E63', fontWeight: 600 }}>vulnerable moments</span>. Whether it's rest, healing, or celebration, your work shapes how people feel when they're most present. That deserves more than operational metrics.
       </>
     )
   },
@@ -29,7 +29,7 @@ const verticals = [
     image: verticalAthletes,
     description: (
       <>
-        Your career is public. Your discipline, visible. But the story behind the performance—the thousand decisions, the sacrifices, the evolution—that's what <span style={{ color: '#F5B800', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
+        Your career is public. Your discipline, visible. But the story behind the performance—the thousand decisions, the sacrifices, the evolution—that's what <span style={{ color: '#FF2E63', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
       </>
     )
   }
@@ -44,11 +44,11 @@ const WhoWeWorkWith = () => {
           <h2 className="text-[32px] md:text-[36px] font-display font-semibold leading-[1.2] tracking-tight-2 mb-4 max-w-[750px] mx-auto" style={{ color: '#3D3835' }}>
             Who We Work With
           </h2>
-          {/* Yellow underline accent with animation */}
+          {/* Red underline accent with animation */}
           <div 
             className="h-[3px] w-[60px] mx-auto"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               animation: 'scaleInX 0.4s cubic-bezier(0.33, 1, 0.68, 1) 0.3s forwards',
               transformOrigin: 'center',
               transform: 'scaleX(0)'
@@ -99,7 +99,7 @@ const WhoWeWorkWith = () => {
                   color: '#3D3835',
                   fontSize: '22px',
                   lineHeight: '1.3',
-                  textDecorationColor: '#F5B800'
+                  textDecorationColor: '#FF2E63'
                 }}>
                   {vertical.title}
                 </h3>

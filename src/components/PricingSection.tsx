@@ -26,7 +26,7 @@ const PricingSection = () => {
             animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.3s forwards'
           }}
         >
-          We work with <span style={{ color: '#F5B800', fontWeight: 600 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed. It requires <span style={{ color: '#F5B800', fontWeight: 600 }}>presence, not productivity</span>. <span style={{ color: '#F5B800', fontWeight: 600 }}>Focus, not volume</span>.
+          We work with <span style={{ color: '#FF2E63', fontWeight: 600 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed. It requires <span style={{ color: '#FF2E63', fontWeight: 600 }}>presence, not productivity</span>. <span style={{ color: '#FF2E63', fontWeight: 600 }}>Focus, not volume</span>.
         </p>
 
         {/* Investment & Payment */}
@@ -71,7 +71,7 @@ const PricingSection = () => {
                     animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.6 + (0.2 * index)}s forwards`
                   }}
                 >
-                  <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                  <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
                   {item}
                 </li>
               ))}
@@ -87,7 +87,7 @@ const PricingSection = () => {
           <div 
             className="inline-block px-6 py-2 rounded-full mb-6"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               animation: 'gentlePulse 2s ease-in-out infinite'
             }}
           >

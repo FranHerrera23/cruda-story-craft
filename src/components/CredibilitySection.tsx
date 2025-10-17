@@ -85,7 +85,7 @@ const CredibilitySection = () => {
           <div 
             className="w-2 h-2 rounded-full transition-opacity duration-300"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '200ms'
             }}
@@ -93,7 +93,7 @@ const CredibilitySection = () => {
           <div 
             className="w-2 h-2 rounded-full transition-opacity duration-300"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '400ms'
             }}
@@ -101,7 +101,7 @@ const CredibilitySection = () => {
           <div 
             className="w-2 h-2 rounded-full transition-opacity duration-300"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '600ms'
             }}
@@ -119,7 +119,7 @@ const CredibilitySection = () => {
           <h2 
             className="text-[42px] md:text-[64px] font-bold leading-[1.2] mb-8 transition-all duration-[800ms]"
             style={{ 
-              color: '#F5B800',
+              color: '#FF2E63',
               opacity: moment2Visible ? 1 : 0,
               transform: moment2Visible ? 'scale(1)' : 'scale(0.95)',
               willChange: 'transform'
@@ -147,7 +147,7 @@ const CredibilitySection = () => {
           <div 
             className="w-2 h-2 rounded-full transition-opacity duration-300"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               opacity: moment2Visible ? 1 : 0,
               transitionDelay: '200ms'
             }}
@@ -155,7 +155,7 @@ const CredibilitySection = () => {
           <div 
             className="w-2 h-2 rounded-full transition-opacity duration-300"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               opacity: moment2Visible ? 1 : 0,
               transitionDelay: '400ms'
             }}
@@ -163,7 +163,7 @@ const CredibilitySection = () => {
           <div 
             className="w-2 h-2 rounded-full transition-opacity duration-300"
             style={{ 
-              backgroundColor: '#F5B800',
+              backgroundColor: '#FF2E63',
               opacity: moment2Visible ? 1 : 0,
               transitionDelay: '600ms'
             }}
@@ -187,7 +187,7 @@ const CredibilitySection = () => {
               willChange: 'transform'
             }}
           >
-            That's where we learned <span style={{ color: '#F5B800', fontWeight: 600 }}>the pattern</span>: it's not about scale or awards. It's about the <span style={{ color: '#F5B800', fontWeight: 600 }}>story beneath the execution</span>.
+            That's where we learned <span style={{ color: '#FF2E63', fontWeight: 600 }}>the pattern</span>: it's not about scale or awards. It's about the <span style={{ color: '#FF2E63', fontWeight: 600 }}>story beneath the execution</span>.
           </p>
           
           <div 
@@ -200,7 +200,7 @@ const CredibilitySection = () => {
             <div 
               className="h-[2px] w-full mb-4 transition-all duration-500"
               style={{ 
-                backgroundColor: '#F5B800',
+                backgroundColor: '#FF2E63',
                 transform: moment3Visible ? 'scaleX(1)' : 'scaleX(0)',
                 transformOrigin: 'center'
               }}

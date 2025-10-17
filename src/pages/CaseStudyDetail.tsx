@@ -91,7 +91,7 @@ const CaseStudyDetail = () => {
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDFBF7' }}>
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4" style={{ color: '#3D3835' }}>Case Study Not Found</h1>
-          <Link to="/" className="inline-flex items-center gap-2 text-lg" style={{ color: '#F5B800' }}>
+          <Link to="/" className="inline-flex items-center gap-2 text-lg" style={{ color: '#FF2E63' }}>
             <ArrowLeft className="w-5 h-5" />
             Back to Home
           </Link>
@@ -147,7 +147,7 @@ const CaseStudyDetail = () => {
             Project Context
           </h2>
           {study.industry && (
-            <p className="text-[15px] mb-6" style={{ color: '#F5B800' }}>
+            <p className="text-[15px] mb-6" style={{ color: '#FF2E63' }}>
               Industry: {study.industry}
             </p>
           )}
@@ -167,7 +167,7 @@ const CaseStudyDetail = () => {
             <ul className="space-y-3">
               {study.whatWeDid.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="text-[20px] mt-1" style={{ color: '#F5B800' }}>•</span>
+                  <span className="text-[20px] mt-1" style={{ color: '#FF2E63' }}>•</span>
                   <span className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
                     {item}
                   </span>
@@ -190,7 +190,7 @@ const CaseStudyDetail = () => {
           }}>
             {study.metrics.map((metric, idx) => (
               <div key={idx} className="text-center">
-                <p className="text-[42px] font-bold mb-2" style={{ color: '#F5B800' }}>
+                <p className="text-[42px] font-bold mb-2" style={{ color: '#FF2E63' }}>
                   {metric.value}
                 </p>
                 <p className="text-[15px]" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
@@ -204,7 +204,7 @@ const CaseStudyDetail = () => {
             <ul className="space-y-3">
               {study.impact.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-3">
-                  <span className="text-[20px] mt-1" style={{ color: '#F5B800' }}>•</span>
+                  <span className="text-[20px] mt-1" style={{ color: '#FF2E63' }}>•</span>
                   <span className="text-[18px] leading-[1.75]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
                     {item}
                   </span>

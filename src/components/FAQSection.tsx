@@ -60,7 +60,7 @@ const FAQSection = () => {
                   className={`flex-shrink-0 transition-transform duration-300 ${
                     openIndex === index ? 'rotate-180' : ''
                   }`}
-                  style={{ color: '#F5B800' }}
+                  style={{ color: '#FF2E63' }}
                   size={24}
                 />
               </button>

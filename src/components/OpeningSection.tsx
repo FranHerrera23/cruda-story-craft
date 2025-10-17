@@ -7,7 +7,7 @@ const OpeningSection = () => {
           className="text-[32px] md:text-[42px] font-bold leading-[1.3] mb-[60px]"
           style={{ color: '#FDFBF7' }}
         >
-          The work that's worth believing in.
+          The work that's <span style={{ color: '#F5B800' }}>worth believing in</span>.
         </h2>
 
         {/* Paragraph 1 - Trust thesis */}

@@ -8,7 +8,7 @@ const faqs = [
   },
   {
     question: "What if I'm not in construction, hospitality, or sports—can we still work together?",
-    answer: "We think our best value shows up in these niches. But if you're building something exceptional and struggling to articulate it, we should talk."
+    answer: "We've spent years learning how builders in these industries think—the language they use, the challenges they face, the gap between their expertise and how they're understood. That depth is where our value lives.\n\nBut patterns transcend industries. If you've built something that matters and can't explain why, that's the same challenge. We should talk."
   },
   {
     question: "What does the process look like?",
@@ -20,11 +20,11 @@ const faqs = [
   },
   {
     question: "What are your credentials?",
-    answer: "Fran leads CRUDA. Over 8 years, he's built narratives for TikTok, Mondelez, Saudi artists, construction CEOs, athletes, and fintech founders across Buenos Aires, Dubai, and Moscow. Different industries, same problem: people who've mastered their craft but struggle when the work has to speak without them in the room.\n\nAfter enough of those conversations, the pattern became obvious. CRUDA exists because the best positioning comes from understanding builders, not from templates that sound good in strategy decks."
+    answer: "Fran leads CRUDA.\n\nEight years working with everyone from TikTok and Mondelez to construction CEOs, Saudi artists, athletes, and fintech founders. Buenos Aires, Dubai, Moscow. Different work, different cultures, same conversation: 'I know what I've built is strong. I just can't explain why it matters.'\n\nAfter enough of those conversations, the pattern becomes impossible to ignore. CRUDA exists because positioning doesn't come from templates or frameworks—it comes from understanding how builders actually think, what they struggle to articulate, and finding the story that's already there."
   },
   {
     question: "Why \"CRUDA\"?",
-    answer: "Cruda means \"raw\" in Spanish. It's what your story is before it's been shaped—unfiltered, unpolished, but full of potential. Most founders come to us with the raw material: years of expertise, hard-won insights, work that speaks for itself in person but doesn't translate. We take that raw story and shape it into something that creates gravity. The name reminds us that the best narratives don't start polished. They start real."
+    answer: "Cruda means 'raw' in Spanish. It's what your story is before it's been shaped—unfiltered, unpolished, full of potential.\n\nMost founders come to us with raw material: years of expertise, hard-won insights, work that speaks for itself in person but disappears everywhere else. We don't create stories from nothing. We find the one that's already there and shape it into something people feel.\n\nThe name reminds us that the best narratives don't start polished. They start real."
   },
   {
     question: "When can we start?",

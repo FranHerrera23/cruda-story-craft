@@ -11,7 +11,7 @@ const PricingSection = () => {
         
         {/* Opening Statement */}
         <p className="text-[20px] md:text-[24px] text-center mb-12 md:mb-16 max-w-[900px] mx-auto" style={{ color: '#3D3835' }}>
-          We only take <span style={{ color: '#F5B800', fontWeight: 600 }}>one new client per month</span>. This isn't artificial scarcity—it's <span style={{ color: '#F5B800', fontWeight: 600 }}>presence, not productivity</span>. It's <span style={{ color: '#F5B800', fontWeight: 600 }}>focus, not volume</span>. It's how we deliver work that actually matters.
+          We work with <span style={{ color: '#F5B800', fontWeight: 600 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed. It requires <span style={{ color: '#F5B800', fontWeight: 600 }}>presence, not productivity</span>. <span style={{ color: '#F5B800', fontWeight: 600 }}>Focus, not volume</span>.
         </p>
 
         {/* Investment & Payment */}
@@ -79,7 +79,7 @@ const PricingSection = () => {
           </h3>
           
           <p className="text-[18px] mb-8 max-w-[600px] mx-auto" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-            December has one spot available. If you want it, reach out now. We'll add you to the waitlist and confirm your place.
+            <strong>December has one spot open.</strong> If you've read this far and it resonates, that's worth a conversation. Reach out. We'll talk, and if it feels right, we'll move forward together.
           </p>
           
           <Link

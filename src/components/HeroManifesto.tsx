@@ -25,7 +25,7 @@ const HeroManifesto = () => {
                 animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.8s forwards'
               }}
             >
-              When <span style={{ color: '#F5B800', fontWeight: 600 }}>mastery doesn't translate</span> into recognition, <span style={{ fontSize: '22px', fontWeight: 600 }}>that's where we work</span>.
+              You've spent years mastering your craft. But mastery doesn't translate itself. The gap between what you've built and what people understand—that's where we work.
             </p>
 
             <a 

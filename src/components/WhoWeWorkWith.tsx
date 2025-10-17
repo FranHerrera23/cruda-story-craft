@@ -9,7 +9,7 @@ const verticals = [
     image: verticalArchitecture,
     description: (
       <>
-        You shape how people live. We help you explain why that matters—to investors who control capital, clients who demand excellence, and people who recognize the <span style={{ color: '#F5B800', fontWeight: 600 }}>permanence of the work</span>.
+        You shape spaces that outlive you. Every decision—material, dimension, light—defines how people live for decades. That responsibility deserves a narrative that matches the <span style={{ color: '#F5B800', fontWeight: 600 }}>permanence of the work</span>.
       </>
     )
   },
@@ -19,7 +19,7 @@ const verticals = [
     image: verticalHospitality,
     description: (
       <>
-        You create experiences that improve lives. We articulate the strategy behind what you've built, because people trust leaders who understand the <span style={{ color: '#F5B800', fontWeight: 600 }}>vulnerable moments</span> your work holds.
+        You've mastered the art of holding space for people during <span style={{ color: '#F5B800', fontWeight: 600 }}>vulnerable moments</span>. Whether it's rest, healing, or celebration, your work shapes how people feel when they're most present. That deserves more than operational metrics.
       </>
     )
   },
@@ -29,7 +29,7 @@ const verticals = [
     image: verticalAthletes,
     description: (
       <>
-        Your career proves you can perform under pressure. We help you build the narrative that <span style={{ color: '#F5B800', fontWeight: 600 }}>creates legacy</span>—not just wins.
+        Your career is public. Your discipline, visible. But the story behind the performance—the thousand decisions, the sacrifices, the evolution—that's what <span style={{ color: '#F5B800', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
       </>
     )
   }

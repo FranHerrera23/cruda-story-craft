@@ -69,7 +69,7 @@ const CredibilitySection = () => {
               transitionDelay: '200ms'
             }}
           >
-            Eight years inside corporations, agencies, media companies. We managed campaigns reaching millions. Organized events for thousands. Produced content with 30+ creators.
+            Eight years inside corporations, agencies, media companies. Managing campaigns that reached millions. Organizing events for thousands. Producing content with 30+ creators.
           </p>
 
           {/* Small intro line */}
@@ -81,12 +81,12 @@ const CredibilitySection = () => {
               transitionDelay: '400ms'
             }}
           >
-            Where we've been inside:
+            Companies we've worked with:
           </p>
 
           {/* Brand names - MASSIVE Display */}
           <h3 
-            className="text-[42px] md:text-[64px] font-bold leading-[1.2] mb-8 transition-all duration-[800ms]"
+            className="text-[42px] md:text-[64px] font-bold leading-[1.2] mb-12 transition-all duration-[800ms]"
             style={{ 
               color: '#FF2E63',
               opacity: moment1Visible ? 1 : 0,
@@ -95,10 +95,10 @@ const CredibilitySection = () => {
               transitionDelay: '600ms'
             }}
           >
-            TikTok. Mondelez. DirecTV. Natura. Purina. Ab InBev.
+            TikTok. Mondelez. Nestlé. DeliveryHero. DirecTV. Natura. Ab InBev. United Nations.
           </h3>
           
-          {/* Supporting text */}
+          {/* Supporting text - Immigrant story */}
           <p 
             className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
             style={{ 
@@ -107,7 +107,7 @@ const CredibilitySection = () => {
               transitionDelay: '1000ms'
             }}
           >
-            We saw how the machine works. And where it breaks.
+            We're immigrants ourselves. We've built across 10+ nationalities and languages. The gap between what you've built and what people understand? We've lived it. That's why we can close it.
           </p>
         </div>
       </section>

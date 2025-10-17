@@ -121,24 +121,7 @@ const clients = [
 const ProofOfWork = () => {
   return (
     <>
-      {/* Part 1: Background/Credibility Section */}
-      <section className="py-20 md:py-30 px-6 md:px-30" style={{ backgroundColor: '#E8DED1' }}>
-        <div className="max-w-[800px] mx-auto text-center">
-          <h2 className="text-[36px] md:text-[42px] font-semibold leading-[1.2] tracking-[-0.01em] mb-8" style={{ color: '#3D3835' }}>
-            Nearly a decade learning how builders think.
-          </h2>
-          
-          <p className="text-[18px] md:text-[20px] leading-[1.65] max-w-[700px] mx-auto mb-6" style={{ color: '#3D3835' }}>
-            Construction to hospitality to sports. Latin America to Middle East. We've helped founders position for expansion, secure larger projects, and articulate what makes their work exceptional.
-          </p>
-          
-          <p className="text-[18px] md:text-[20px] font-semibold" style={{ color: '#3D3835' }}>
-            CRUDA brings that into focus.
-          </p>
-        </div>
-      </section>
-
-      {/* Part 2: Large Card Carousel */}
+      {/* Large Card Carousel */}
       <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">

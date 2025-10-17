@@ -58,7 +58,7 @@ const WhoWeWorkWith = () => {
 
         {/* Static 3-Column Grid (No Carousel) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {verticals.map((vertical) => (
+          {verticals.map((vertical, index) => (
             <div
               key={vertical.id}
               className="bg-white border overflow-hidden group transition-all duration-[0.4s] hover:-translate-y-2"
@@ -66,7 +66,9 @@ const WhoWeWorkWith = () => {
                 borderColor: 'rgba(61, 56, 53, 0.08)',
                 borderRadius: '12px',
                 boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
-                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                opacity: 0,
+                animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 * index}s forwards`
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.12)';
@@ -80,10 +82,12 @@ const WhoWeWorkWith = () => {
                 <img
                   src={vertical.image}
                   alt={vertical.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-102"
                   style={{ 
                     filter: 'grayscale(15%)',
-                    objectPosition: 'center'
+                    objectPosition: 'center',
+                    transform: 'scale(1.04)',
+                    animation: `scaleDown 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 * index}s forwards`
                   }}
                   loading="lazy"
                 />
@@ -94,7 +98,8 @@ const WhoWeWorkWith = () => {
                 <h3 className="font-display font-bold mb-4 group-hover:underline transition-all duration-300" style={{ 
                   color: '#3D3835',
                   fontSize: '22px',
-                  lineHeight: '1.3'
+                  lineHeight: '1.3',
+                  textDecorationColor: '#F5B800'
                 }}>
                   {vertical.title}
                 </h3>

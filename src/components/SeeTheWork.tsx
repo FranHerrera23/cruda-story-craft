@@ -90,17 +90,31 @@ const SeeTheWork = () => {
               className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth snap-x snap-mandatory"
             >
               <div className="flex gap-8 md:gap-10">
-                {caseStudies.map((study) => (
+                {caseStudies.map((study, index) => (
                 <Link 
                   key={study.id}
                   to={`/work/${study.slug}`}
                   className="group cursor-pointer w-[85vw] md:w-[420px] flex-shrink-0 snap-start"
+                  style={{
+                    opacity: 0,
+                    transform: 'translateX(40px)',
+                    animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s forwards`
+                  }}
                 >
                   <div 
-                    className="bg-white overflow-hidden transition-all duration-300 hover:-translate-y-1"
+                    className="bg-white overflow-hidden"
                     style={{ 
                       borderRadius: '12px',
-                      boxShadow: '0 2px 16px rgba(61,56,53,0.08)'
+                      boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
+                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'scale(1.02)';
+                      e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.15)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'scale(1)';
+                      e.currentTarget.style.boxShadow = '0 2px 16px rgba(61,56,53,0.08)';
                     }}
                   >
                     {/* Image - 60% of card */}
@@ -137,9 +151,9 @@ const SeeTheWork = () => {
                         {study.description}
                       </p>
 
-                      <div className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-300" style={{ color: '#3D3835' }}>
+                      <div className="inline-flex items-center gap-2 text-sm font-semibold" style={{ color: '#3D3835' }}>
                         <span>View Case Study</span>
-                        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        <span className="opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">→</span>
                       </div>
                     </div>
                   </div>

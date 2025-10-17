@@ -143,14 +143,26 @@ const ProofOfWork = () => {
                   <Link
                     key={index}
                     to={`/clients/${client.slug}`}
-                    className="flex-shrink-0 overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer snap-start"
+                    className="flex-shrink-0 overflow-hidden cursor-pointer snap-start group"
                     style={{
                       width: '380px',
                       minWidth: '380px',
                       aspectRatio: '3/4',
                       backgroundColor: '#FDFBF7',
                       borderRadius: '16px',
-                      boxShadow: '0 4px 16px rgba(61,56,53,0.12)'
+                      boxShadow: '0 4px 16px rgba(61,56,53,0.12)',
+                      opacity: 0,
+                      transform: 'translateX(40px)',
+                      animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s forwards`,
+                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-10px)';
+                      e.currentTarget.style.boxShadow = '0 12px 32px rgba(245, 184, 0, 0.2)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 4px 16px rgba(61,56,53,0.12)';
                     }}
                   >
                     {/* Image - 70% height */}

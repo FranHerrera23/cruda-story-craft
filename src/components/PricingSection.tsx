@@ -5,17 +5,39 @@ const PricingSection = () => {
     <section className="py-20 md:py-30 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
       <div className="max-w-[1100px] mx-auto">
         {/* Headline */}
-        <h2 className="text-[32px] md:text-[36px] font-bold text-center mb-6" style={{ color: '#3D3835' }}>
+        <h2 
+          className="text-[32px] md:text-[36px] font-bold text-center mb-6" 
+          style={{ 
+            color: '#3D3835',
+            opacity: 0,
+            transform: 'translateY(20px)',
+            animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
+          }}
+        >
           How We Work Together
         </h2>
         
         {/* Opening Statement */}
-        <p className="text-[20px] md:text-[24px] text-center mb-12 md:mb-16 max-w-[900px] mx-auto" style={{ color: '#3D3835' }}>
+        <p 
+          className="text-[20px] md:text-[24px] text-center mb-12 md:mb-16 max-w-[900px] mx-auto" 
+          style={{ 
+            color: '#3D3835',
+            opacity: 0,
+            animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.3s forwards'
+          }}
+        >
           We work with <span style={{ color: '#F5B800', fontWeight: 600 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed. It requires <span style={{ color: '#F5B800', fontWeight: 600 }}>presence, not productivity</span>. <span style={{ color: '#F5B800', fontWeight: 600 }}>Focus, not volume</span>.
         </p>
 
         {/* Investment & Payment */}
-        <div className="mb-12 md:mb-16">
+        <div 
+          className="mb-12 md:mb-16"
+          style={{
+            opacity: 0,
+            transform: 'translateY(20px)',
+            animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.4s forwards'
+          }}
+        >
           <div className="text-center mb-8">
             <p className="text-[14px] uppercase tracking-wide mb-3" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
               FOUNDATIONAL PHASE
@@ -33,26 +55,26 @@ const PricingSection = () => {
               What's Included:
             </h4>
             <ul className="space-y-3 mb-6">
-              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
-                Month 1: Discovery, research, and narrative building
-              </li>
-              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
-                Months 2-4: 90 days of execution and activation
-              </li>
-              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
-                LinkedIn & Instagram content takeover
-              </li>
-              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
-                PR & communications strategy
-              </li>
-              <li className="text-[18px] flex items-start" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
-                <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
-                Written content review (decks, brochures, company materials)
-              </li>
+              {[
+                'Month 1: Discovery, research, and narrative building',
+                'Months 2-4: 90 days of execution and activation',
+                'LinkedIn & Instagram content takeover',
+                'PR & communications strategy',
+                'Written content review (decks, brochures, company materials)'
+              ].map((item, index) => (
+                <li 
+                  key={index}
+                  className="text-[18px] flex items-start" 
+                  style={{ 
+                    color: 'rgba(61, 56, 53, 0.85)',
+                    opacity: 0,
+                    animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.6 + (0.2 * index)}s forwards`
+                  }}
+                >
+                  <span style={{ color: '#F5B800', marginRight: '12px' }}>→</span>
+                  {item}
+                </li>
+              ))}
             </ul>
             <p className="text-[16px] leading-[1.6]" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
               Detailed deliverables and scope discussed during our initial conversation. Most founders continue into ongoing positioning work after the foundation is built.

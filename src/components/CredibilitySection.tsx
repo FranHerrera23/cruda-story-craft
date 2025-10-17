@@ -2,17 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 
 const CredibilitySection = () => {
   const [moment1Visible, setMoment1Visible] = useState(false);
-  const [moment2Visible, setMoment2Visible] = useState(false);
 
   const moment1Ref = useRef<HTMLDivElement>(null);
-  const moment2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
       setMoment1Visible(true);
-      setMoment2Visible(true);
       return;
     }
 
@@ -26,14 +23,10 @@ const CredibilitySection = () => {
         if (entry.target === moment1Ref.current && entry.isIntersecting) {
           setMoment1Visible(true);
         }
-        if (entry.target === moment2Ref.current && entry.isIntersecting) {
-          setMoment2Visible(true);
-        }
       });
     }, options);
 
     if (moment1Ref.current) observer.observe(moment1Ref.current);
-    if (moment2Ref.current) observer.observe(moment2Ref.current);
 
     return () => observer.disconnect();
   }, []);
@@ -112,79 +105,6 @@ const CredibilitySection = () => {
         </div>
       </section>
 
-      {/* TRANSITION: Red Dots Separator */}
-      <section style={{ backgroundColor: '#3D3835' }}>
-        <div className="flex flex-col items-center gap-4 py-[60px]">
-          <div 
-            className="w-2 h-2 rounded-full transition-opacity duration-300"
-            style={{ 
-              backgroundColor: '#FF2E63',
-              opacity: moment1Visible ? 1 : 0,
-              transitionDelay: '200ms'
-            }}
-          />
-          <div 
-            className="w-2 h-2 rounded-full transition-opacity duration-300"
-            style={{ 
-              backgroundColor: '#FF2E63',
-              opacity: moment1Visible ? 1 : 0,
-              transitionDelay: '400ms'
-            }}
-          />
-          <div 
-            className="w-2 h-2 rounded-full transition-opacity duration-300"
-            style={{ 
-              backgroundColor: '#FF2E63',
-              opacity: moment1Visible ? 1 : 0,
-              transitionDelay: '600ms'
-            }}
-          />
-        </div>
-      </section>
-
-      {/* MOMENT 2: THE INSIGHT (LIGHT SECTION) */}
-      <section 
-        ref={moment2Ref}
-        className="py-[100px] md:py-[100px] px-10 md:px-[60px]" 
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div className="max-w-[700px] mx-auto text-center">
-          <p 
-            className="text-[19px] md:text-[22px] leading-[1.8] mb-6 transition-all duration-[600ms]"
-            style={{ 
-              color: '#3D3835',
-              opacity: moment2Visible ? 1 : 0,
-              transform: moment2Visible ? 'translateY(0)' : 'translateY(20px)',
-              willChange: 'transform'
-            }}
-          >
-            That's where we learned <span style={{ color: '#FF2E63', fontWeight: 600 }}>the pattern</span>: it's not about scale or awards. It's about the <span style={{ color: '#FF2E63', fontWeight: 600 }}>story beneath the execution</span>.
-          </p>
-          
-          <div 
-            className="inline-block transition-opacity duration-[600ms]"
-            style={{
-              opacity: moment2Visible ? 1 : 0,
-              transitionDelay: '400ms'
-            }}
-          >
-            <div 
-              className="h-[2px] w-full mb-4 transition-all duration-500"
-              style={{ 
-                backgroundColor: '#FF2E63',
-                transform: moment2Visible ? 'scaleX(1)' : 'scaleX(0)',
-                transformOrigin: 'center'
-              }}
-            />
-            <p 
-              className="text-[19px] md:text-[21px] font-semibold"
-              style={{ color: '#3D3835' }}
-            >
-              The thing that creates belief when you're not in the room.
-            </p>
-          </div>
-        </div>
-      </section>
     </>
   );
 };

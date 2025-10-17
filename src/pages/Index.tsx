@@ -1,7 +1,6 @@
 import HeroManifesto from "@/components/HeroManifesto";
 import OpeningSection from "@/components/OpeningSection";
 import WhoWeWorkWith from "@/components/WhoWeWorkWith";
-import CredibilitySection from "@/components/CredibilitySection";
 import ProofOfWork from "@/components/ProofOfWork";
 import SeeTheWork from "@/components/SeeTheWork";
 import PricingSection from "@/components/PricingSection";
@@ -16,7 +15,6 @@ const Index = () => {
       <HeroManifesto />
       <OpeningSection />
       <WhoWeWorkWith />
-      <CredibilitySection />
       <ProofOfWork />
       <SeeTheWork />
       <PricingSection />

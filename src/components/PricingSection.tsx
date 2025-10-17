@@ -11,7 +11,7 @@ const PricingSection = () => {
         
         {/* Opening Statement */}
         <p className="text-[20px] md:text-[24px] text-center mb-12 md:mb-16 max-w-[900px] mx-auto" style={{ color: '#3D3835' }}>
-          We only take one new client per month. This isn't artificial scarcity — it's how we deliver work that actually matters.
+          We only take <span style={{ color: '#F5B800', fontWeight: 600 }}>one new client per month</span>. This isn't artificial scarcity—it's <span style={{ color: '#F5B800', fontWeight: 600 }}>presence, not productivity</span>. It's <span style={{ color: '#F5B800', fontWeight: 600 }}>focus, not volume</span>. It's how we deliver work that actually matters.
         </p>
 
         {/* Investment & Payment */}
@@ -62,7 +62,13 @@ const PricingSection = () => {
 
         {/* Availability */}
         <div className="text-center">
-          <div className="inline-block px-6 py-2 rounded-full mb-6" style={{ backgroundColor: '#F5B800' }}>
+          <div 
+            className="inline-block px-6 py-2 rounded-full mb-6"
+            style={{ 
+              backgroundColor: '#F5B800',
+              animation: 'gentlePulse 2s ease-in-out infinite'
+            }}
+          >
             <span className="text-[14px] font-bold uppercase tracking-wide" style={{ color: '#3D3835' }}>
               DECEMBER
             </span>
@@ -80,6 +86,12 @@ const PricingSection = () => {
             to="/book-call"
             className="inline-block px-10 py-4 rounded font-semibold text-[16px] transition-all duration-300 hover:scale-105"
             style={{ backgroundColor: '#FF2E63', color: '#FDFBF7' }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(245, 184, 0, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.boxShadow = 'none';
+            }}
           >
             Start a Conversation
           </Link>

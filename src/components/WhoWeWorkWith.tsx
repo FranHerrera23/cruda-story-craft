@@ -7,19 +7,31 @@ const verticals = [
     id: "construction",
     title: "Construction, Architecture, Design & Materials",
     image: verticalArchitecture,
-    description: "You shape how people live. We help you explain why that matters to people who control real budgets."
+    description: (
+      <>
+        You shape how people live. We help you explain why that matters—to investors who control capital, clients who demand excellence, and people who recognize the <span style={{ color: '#F5B800', fontWeight: 600 }}>permanence of the work</span>.
+      </>
+    )
   },
   {
     id: "hospitality",
     title: "Hospitality & Healthcare Leaders",
     image: verticalHospitality,
-    description: "You create experiences that improve lives. We articulate the strategy behind what you've built."
+    description: (
+      <>
+        You create experiences that improve lives. We articulate the strategy behind what you've built, because people trust leaders who understand the <span style={{ color: '#F5B800', fontWeight: 600 }}>vulnerable moments</span> your work holds.
+      </>
+    )
   },
   {
     id: "athletes",
     title: "Professional Athletes & Sports Executives",
     image: verticalAthletes,
-    description: "Your career proves you can perform under pressure. We help you build the brand that outlasts the jersey."
+    description: (
+      <>
+        Your career proves you can perform under pressure. We help you build the narrative that <span style={{ color: '#F5B800', fontWeight: 600 }}>creates legacy</span>—not just wins.
+      </>
+    )
   }
 ];
 
@@ -29,11 +41,19 @@ const WhoWeWorkWith = () => {
       <div className="max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-[32px] md:text-[42px] font-display font-semibold leading-[1.2] tracking-tight-2 mb-2 max-w-[750px] mx-auto" style={{ color: '#3D3835' }}>
+          <h2 className="text-[32px] md:text-[36px] font-display font-semibold leading-[1.2] tracking-tight-2 mb-4 max-w-[750px] mx-auto" style={{ color: '#3D3835' }}>
             Who We Work With
           </h2>
-          {/* Yellow underline accent */}
-          <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#F5B800' }} />
+          {/* Yellow underline accent with animation */}
+          <div 
+            className="h-[3px] w-[60px] mx-auto"
+            style={{ 
+              backgroundColor: '#F5B800',
+              animation: 'scaleInX 0.4s cubic-bezier(0.33, 1, 0.68, 1) 0.3s forwards',
+              transformOrigin: 'center',
+              transform: 'scaleX(0)'
+            }} 
+          />
         </div>
 
         {/* Static 3-Column Grid (No Carousel) */}
@@ -41,11 +61,18 @@ const WhoWeWorkWith = () => {
           {verticals.map((vertical) => (
             <div
               key={vertical.id}
-              className="bg-white border overflow-hidden transition-all duration-300 hover:shadow-lg"
+              className="bg-white border overflow-hidden group transition-all duration-[0.4s] hover:-translate-y-2"
               style={{ 
                 borderColor: 'rgba(61, 56, 53, 0.08)',
                 borderRadius: '12px',
-                boxShadow: '0 2px 16px rgba(61,56,53,0.08)'
+                boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.12)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 2px 16px rgba(61,56,53,0.08)';
               }}
             >
               {/* Image Container */}
@@ -63,17 +90,17 @@ const WhoWeWorkWith = () => {
               </div>
 
               {/* Text Container */}
-              <div className="p-8">
-                <h3 className="font-display font-bold mb-4" style={{ 
+              <div className="p-10">
+                <h3 className="font-display font-bold mb-4 group-hover:underline transition-all duration-300" style={{ 
                   color: '#3D3835',
                   fontSize: '22px',
                   lineHeight: '1.3'
                 }}>
                   {vertical.title}
                 </h3>
-                <p className="leading-[1.6]" style={{ 
+                <p className="leading-[1.7]" style={{ 
                   color: 'rgba(61, 56, 53, 0.85)',
-                  fontSize: '15px'
+                  fontSize: '17px'
                 }}>
                   {vertical.description}
                 </p>

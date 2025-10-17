@@ -1,4 +1,4 @@
-import franPortrait from "@/assets/fran-portrait-hero.jpg";
+import franPortrait from "@/assets/fran-portrait-hero.png";
 
 const HeroManifesto = () => {
   return (

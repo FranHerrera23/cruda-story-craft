@@ -67,7 +67,7 @@ const KarenMannheimCaseStudy = () => {
       <title>Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai</title>
       
       {/* Hero Section */}
-      <section className="relative h-[70vh] flex flex-col items-center justify-center px-5 md:px-10 lg:px-[60px]">
+      <section className="relative h-[60vh] md:h-[70vh] flex flex-col items-center justify-center px-5 md:px-10 lg:px-[60px]">
         <div className="absolute inset-0 z-0">
           <img 
             src={karenPortrait} 
@@ -102,22 +102,22 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Story Section: Opening */}
-      <section className="bg-[#F5F1E8] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            Karen Mannheim had spent three decades perfecting how light shapes emotion in luxury spaces. By 2021, TRAZZO was one of Peru's most respected lighting companies—architects and developers who worked with her understood immediately. The portfolio was exceptional: Porsche, Maserati, residences where every room breathed differently depending on the hour, the mood, the moment.
+            Three decades perfecting how light shapes emotion in luxury spaces. TRAZZO was Peru's most respected—Porsche, Maserati, residences where every room breathed differently depending on the hour.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            But her expertise stopped at Peru's border. More accurately, it stopped at the edge of her immediate network.
+            But her expertise stopped at Peru's border. More accurately, at the edge of her network.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            The work was undeniable in person. Walking through a space she'd lit, you felt it—the way light made a wine cellar intimate, a lobby commanding, a bedroom restful without being flat. But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. Not because the work wasn't there. Because the story wasn't.
+            The work was undeniable in person. But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. A thousand followers. No LinkedIn presence. No way to create belief remotely.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            She had no audience online. A thousand followers, no LinkedIn presence, no way to create belief when she wasn't standing in front of you explaining what she saw. The gap wasn't quality. It was translation.
+            The gap wasn't quality. It was translation.
           </p>
         </div>
       </section>
@@ -132,7 +132,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Story Section: The Pattern */}
-      <section className="bg-[#E8DED1] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
           <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[32px]">
             The pattern
@@ -157,21 +157,23 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Image Pair: Before/After Energy */}
-      <section className="bg-[#E8DED1] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[4%]">
             <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)]">
               <img 
                 src={karenPortrait} 
-                alt="Before digital presence - limited reach within Peru"
+                alt="Karen Mannheim professional portrait - before digital presence transformation"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)] mt-8 md:mt-0">
               <img 
                 src={karenProject} 
-                alt="After digital presence - international recognition and projects"
+                alt="Karen Mannheim dramatic portrait - after digital presence transformation"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -182,7 +184,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Story Section: How We Did This */}
-      <section className="bg-[#F5F1E8] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[800px] mx-auto">
           <div className="bg-[rgba(255,46,99,0.05)] border-l-[3px] border-[#FF2E63] py-[40px] px-[32px] md:px-[48px] rounded-[8px]">
             <h3 className="text-[16px] uppercase tracking-[0.12em] text-[#3D3835]/60 mb-[24px]">
@@ -209,7 +211,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Story Section: The Translation */}
-      <section className="bg-[#F5F1E8] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
           <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[32px]">
             The translation
@@ -238,21 +240,23 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Image Pair: Technical vs Emotional */}
-      <section className="bg-[#F5F1E8] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[4%]">
             <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)]">
               <img 
                 src={karenPortrait} 
-                alt="Technical framing - before positioning"
+                alt="Technical framing of Karen Mannheim's lighting expertise"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
             <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)] mt-8 md:mt-0">
               <img 
                 src={karenProject} 
-                alt="Emotional framing - after positioning"
+                alt="Emotional framing showing impact of Karen's work"
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
             </div>
           </div>
@@ -272,7 +276,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Story Section: What Travels Now */}
-      <section className="bg-[#F5F1E8] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
           <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[32px]">
             What travels now
@@ -346,17 +350,17 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Story Section: The Insight */}
-      <section className="bg-[#F5F1E8] py-[120px] md:py-[120px] px-5 md:px-[60px]">
+      <section className="bg-[#F5F1E8] py-[100px] md:py-[120px] px-5 md:px-[60px]">
         <div className="max-w-[600px] mx-auto">
           <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold italic mb-[40px]">
             The insight
           </h2>
           
-          <p className="text-[20px] md:text-[24px] leading-[1.8]">
+          <p className="text-[20px] md:text-[24px] leading-[1.8] mb-[40px]">
             Translation isn't about simplifying what you do. It's about understanding that mastery speaks one language, and belief speaks another. Karen's craft never changed. But now it travels—across borders, across contexts, across the gap between walking through a space she's lit and trusting her before you've ever met.
           </p>
           
-          <p className="text-[20px] md:text-[24px] leading-[1.8] mt-[40px]">
+          <p className="text-[20px] md:text-[24px] leading-[1.8]">
             The work was always exceptional. Now people outside her immediate circle can see it.
           </p>
         </div>

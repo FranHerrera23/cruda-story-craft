@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import karenPortrait from "@/assets/karen-mannheim.jpg";
 import karenProject from "@/assets/karen-project-construction.jpg";
 
 const KarenMannheimCaseStudy = () => {
   const [activeProject, setActiveProject] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -62,11 +63,69 @@ const KarenMannheimCaseStudy = () => {
   };
 
   return (
-    <main className="bg-[#F5F1E8] text-[#3D3835] min-h-screen">
+    <>
       {/* SEO Meta Tags */}
       <title>Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai</title>
       
-      {/* Hero Section */}
+      {/* Navigation Bar - Fixed/Sticky */}
+      <nav className="fixed top-0 left-0 right-0 z-[1000] bg-[rgba(245,241,232,0.95)] backdrop-blur-[10px] border-b border-[rgba(61,56,53,0.1)] h-[80px]">
+        <div className="max-w-[1400px] mx-auto px-5 md:px-[60px] h-full flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="text-[24px] font-bold text-[#3D3835]">
+            CRUDA
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-[32px]">
+            <Link 
+              to="/" 
+              className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
+            >
+              Home
+            </Link>
+            <Link 
+              to="/book-call" 
+              className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
+            >
+              Work with us
+            </Link>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden text-[#3D3835]"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-[80px] left-0 right-0 bg-[#F5F1E8] border-b border-[rgba(61,56,53,0.1)] py-6">
+            <div className="flex flex-col items-center gap-6">
+              <Link 
+                to="/" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
+              >
+                Home
+              </Link>
+              <Link 
+                to="/book-call" 
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
+              >
+                Work with us
+              </Link>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      <main className="bg-[#F5F1E8] text-[#3D3835] min-h-screen pt-[80px]">
+        {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[70vh] flex flex-col items-center justify-center px-5 md:px-10 lg:px-[60px]">
         <div className="absolute inset-0 z-0">
           <img 
@@ -98,6 +157,98 @@ const KarenMannheimCaseStudy = () => {
           <p className="text-[12px] uppercase tracking-[0.2em] text-[#3D3835]/70">
             Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai
           </p>
+        </div>
+      </section>
+
+      {/* METRICS SECTION - What travels now */}
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold text-center mb-[60px] text-[#3D3835]">
+            What travels now
+          </h2>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-[40px] md:gap-[48px] mb-[60px]">
+            {/* Stat 1 */}
+            <div className="text-center">
+              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+                16,000
+              </div>
+              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+                from 1,000
+              </div>
+              <div className="text-[16px] text-[#3D3835]">
+                Instagram followers
+              </div>
+            </div>
+
+            {/* Stat 2 */}
+            <div className="text-center">
+              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+                900,000
+              </div>
+              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+                from 5,000
+              </div>
+              <div className="text-[16px] text-[#3D3835]">
+                annual Instagram impressions
+              </div>
+            </div>
+
+            {/* Stat 3 */}
+            <div className="text-center">
+              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+                4,000+
+              </div>
+              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+                from 100
+              </div>
+              <div className="text-[16px] text-[#3D3835]">
+                LinkedIn followers
+              </div>
+            </div>
+
+            {/* Stat 4 */}
+            <div className="text-center">
+              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+                500,000
+              </div>
+              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+                from 100
+              </div>
+              <div className="text-[16px] text-[#3D3835]">
+                annual LinkedIn impressions
+              </div>
+            </div>
+
+            {/* Stat 5 */}
+            <div className="text-center">
+              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+                280+
+              </div>
+              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+                content pieces annually
+              </div>
+              <div className="text-[16px] text-[#3D3835]">
+                140 Instagram, 140 LinkedIn
+              </div>
+            </div>
+          </div>
+
+          {/* Supporting Text */}
+          <div className="max-w-[900px] mx-auto text-center space-y-6">
+            <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
+              Architectural Digest. Semana Económica. Speaking invitations.
+            </p>
+            
+            <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
+              Saadiyat Music Festival—Jennifer Lopez, Christina Aguilera—lighting for clients who'd never met her. Partnerships in Indonesia, Spain, Hawaii. 10 high-end Miami bids won. Inbound inquiries from markets where she had mastery but not visibility.
+            </p>
+            
+            <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
+              She walks into rooms now where people already know her work. The recognition finally matches the expertise.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -143,15 +294,15 @@ const KarenMannheimCaseStudy = () => {
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            What we saw: Karen wasn't selling lighting. She was selling how spaces make people feel. But "lighting designer" sounded like someone who picks fixtures, not someone who architects emotion. The technical precision was there—the thermal dynamics, the layering, the way to light an art collection versus a reading nook. But the framing made her sound like a vendor, not a design partner.
+            What we saw: Karen wasn't selling lighting. She was selling how spaces make people feel. But "lighting designer" sounded like someone who picks fixtures, not someone who architects emotion.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            The challenge wasn't just going from Lima to Miami. It was translating what lighting means when you understand it—that it's not an afterthought, not decoration, not buying pretty lamps and scattering recessed lights. It's the thing that makes or breaks how you live in a space.
+            The technical precision was there—thermal dynamics, layering, lighting an art collection versus a reading nook. But the framing made her sound like a vendor, not a design partner.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            Latin culture gave us an entry point. In Latin homes, gathering matters. The home is shelter, yes, but also warmth. That's not just sentiment—it's how you approach light. We built relevance by showing Karen as a Peruvian woman with German roots building a construction business in Miami, working across nationalities, understanding that light speaks different languages depending on whether you're in a Coral Gables residence or a Dubai hotel lobby.
+            The challenge wasn't just Lima to Miami. It was translating what lighting means when you understand it—not afterthought, not decoration, not buying pretty lamps. It's what makes or breaks how you live in a space.
           </p>
         </div>
       </section>
@@ -192,15 +343,15 @@ const KarenMannheimCaseStudy = () => {
             </h3>
             
             <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-              Karen committed fully from day one. Weekly hour-long interviews where we unpacked not just her projects, but how she thinks about light, space, emotion. She treated this as seriously as her client work—blocking time, preparing, showing up.
+              Karen committed fully from day one. Weekly hour-long interviews unpacking not just projects, but how she thinks about light, space, emotion. She treated this like client work—blocking time, preparing, showing up.
             </p>
             
             <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-              We didn't just interview and disappear. Every piece of content went through review. She'd mark up what felt right, what felt off. That feedback loop taught us how she wanted to be understood—not how we thought she should be positioned.
+              Every piece went through review. She'd mark what felt right, what felt off. That feedback loop taught us how she wanted to be understood.
             </p>
             
             <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-              Over three years now. Consistent weekly interviews. Content created, refined, published. The work wasn't fast. It was thorough.
+              Three years now. Consistent weekly interviews. Content created, refined, published.
             </p>
             
             <p className="text-[17px] md:text-[20px] leading-[1.9]">
@@ -223,19 +374,19 @@ const KarenMannheimCaseStudy = () => {
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            First, we needed to translate her offline brand equity in Peru into digital presence. You can't expand to Miami when nobody outside your immediate circle knows your work exists. We built her story before we built her reach.
+            First challenge: You can't expand to Miami when nobody outside your circle knows your work exists. We built her story before we built her reach.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            The narrative shifted from product supplier to something closer to the truth: light as warmth, as power, as the source of life in a space. We showed her passion for design beyond lighting—visiting cities, discussing Foster and Koolhaas and Zaha Hadid, understanding architecture as cultural practice. We educated from a human perspective first: how lighting affects you as a person in restaurants, hotels, offices, homes. Then the B2B work—how architectural lighting design creates the atmosphere that determines whether a $13 million Four Seasons penthouse feels like a showpiece or a home.
+            The narrative shifted from product supplier to something closer to truth: light as warmth, as power, as source of life in a space. We showed her passion for design beyond lighting—Foster, Koolhaas, Zaha Hadid, architecture as cultural practice.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            We made her relatable and specific at once. A mom, an entrepreneur, a lighting designer fluent in luxury lifestyle and design. Someone who understands what an avid reader needs versus an art collector versus a bon vivant with a wine cellar.
+            We educated from a human lens first: how lighting affects you in restaurants, hotels, homes. Then the B2B work—how architectural lighting determines whether a $13 million Four Seasons penthouse feels like showpiece or home.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            The content wasn't promotional. It was contemplative. Her first experience as a speaker. The story behind TRAZZO and its founding team. How to expand a B2B company from Peru to Miami as a Latin American entrepreneur. Lessons on heritage, influences, leadership. The breakdown of real projects with the thinking that shaped them.
+            Latin culture gave us the entry point. In Latin homes, gathering matters. We built relevance showing Karen as a Peruvian woman with German roots, building across nationalities, understanding light speaks different languages.
           </p>
         </div>
       </section>
@@ -358,7 +509,11 @@ const KarenMannheimCaseStudy = () => {
           </h2>
           
           <p className="text-[20px] md:text-[24px] leading-[1.8] mb-[40px]">
-            Translation isn't about simplifying what you do. It's about understanding that mastery speaks one language, and belief speaks another. Karen's craft never changed. But now it travels—across borders, across contexts, across the gap between walking through a space she's lit and trusting her before you've ever met.
+            Translation isn't about simplifying what you do. It's about understanding that mastery speaks one language, belief speaks another.
+          </p>
+          
+          <p className="text-[20px] md:text-[24px] leading-[1.8] mb-[40px]">
+            Karen's craft never changed. But now it travels—across borders, across contexts, across the gap between walking through a space she's lit and trusting her before you've ever met.
           </p>
           
           <p className="text-[20px] md:text-[24px] leading-[1.8]">
@@ -378,7 +533,8 @@ const KarenMannheimCaseStudy = () => {
           </Link>
         </div>
       </section>
-    </main>
+      </main>
+    </>
   );
 };
 

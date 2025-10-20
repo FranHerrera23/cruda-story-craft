@@ -47,7 +47,7 @@ const KarenMannheimCaseStudy = () => {
   return (
     <>
       {/* SEO Meta Tags */}
-      <title>Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai</title>
+      <title>Karen Mannheim | TRAZZO Lighting | High-End Architectural Lighting | Lima | Miami | Madrid</title>
       
       {/* Navigation Bar - Fixed/Sticky */}
       <nav className="fixed top-0 left-0 right-0 z-[1000] bg-[rgba(245,241,232,0.95)] backdrop-blur-[10px] border-b border-[rgba(61,56,53,0.1)] h-[80px]">
@@ -117,10 +117,10 @@ const KarenMannheimCaseStudy = () => {
           <div className="relative z-10 max-w-[900px] mx-auto">
             <div className="flex flex-wrap gap-3 justify-center mb-6">
               <span className="inline-block px-4 py-2 bg-[rgba(255,46,99,0.15)] text-[#FDFBF7] text-[12px] uppercase tracking-[0.15em] rounded-full">
-                ARCHITECTURAL LIGHTING
+                HIGH-END ARCHITECTURAL LIGHTING
               </span>
               <span className="inline-block px-4 py-2 bg-[rgba(255,46,99,0.15)] text-[#FDFBF7] text-[12px] uppercase tracking-[0.15em] rounded-full">
-                LIMA · MIAMI · DUBAI
+                LIMA · MIAMI · MADRID
               </span>
             </div>
             

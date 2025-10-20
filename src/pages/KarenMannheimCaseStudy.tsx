@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { ChevronDown, Menu, X } from "lucide-react";
-import karenPortrait from "@/assets/karen-mannheim.jpg";
-import karenProject from "@/assets/karen-project-construction.jpg";
+import { useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
 const KarenMannheimCaseStudy = () => {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -12,456 +11,612 @@ const KarenMannheimCaseStudy = () => {
   }, []);
 
   const projects = [
-    {
-      name: "Karen at speaking event",
-      context: "Speaking at architectural lighting conference, Austin",
-      image: karenPortrait
-    },
-    {
-      name: "Architectural Digest feature",
-      context: "Featured in Architectural Digest",
-      image: karenProject
-    },
-    {
-      name: "PEZET project",
-      context: "PEZET Residences, Lima—RAMSA Architects",
-      image: karenProject
-    },
-    {
-      name: "Four Seasons penthouse",
-      context: "$13M Four Seasons penthouse lighting design",
-      image: karenProject
-    },
-    {
-      name: "Osaka Nikkei",
-      context: "Osaka Nikkei, Miami",
-      image: karenProject
-    },
-    {
-      name: "Saadiyat Music Festival",
-      context: "Saadiyat Music Festival, Abu Dhabi",
-      image: karenProject
-    }
+    { name: "PEZET", location: "Lima, Peru" },
+    { name: "Saadiyat Music Festival", location: "Abu Dhabi, UAE" },
+    { name: "Osaka Nikkei", location: "Miami, FL" },
+    { name: "Fisher Island", location: "Miami, FL" },
+    { name: "Porsche Design Tower", location: "Miami, FL" },
+    { name: "Key Biscayne", location: "Miami, FL" },
+    { name: "Four Seasons Penthouse", location: "Miami, FL" }
   ];
 
   return (
-    <>
-      {/* SEO Meta Tags */}
-      <title>Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai</title>
-      
-      {/* Navigation Bar - Fixed/Sticky */}
-      <nav className="fixed top-0 left-0 right-0 z-[1000] bg-[rgba(245,241,232,0.95)] backdrop-blur-[10px] border-b border-[rgba(61,56,53,0.1)] h-[80px]">
-        <div className="max-w-[1400px] mx-auto px-5 md:px-[60px] h-full flex items-center justify-between">
-          <Link to="/" className="text-[24px] font-bold text-[#3D3835]">
+    <div style={{ backgroundColor: '#F5F1E8', minHeight: '100vh' }}>
+      {/* Navigation */}
+      <nav style={{ 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        backgroundColor: 'rgba(253, 251, 247, 0.95)',
+        backdropFilter: 'blur(10px)',
+        borderBottom: '1px solid rgba(61, 56, 53, 0.1)',
+        zIndex: 1000,
+        padding: '20px 60px'
+      }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1400px', margin: '0 auto' }}>
+          <div 
+            onClick={() => navigate('/')} 
+            style={{ 
+              fontSize: '24px', 
+              fontWeight: 600, 
+              color: '#3D3835',
+              cursor: 'pointer',
+              letterSpacing: '-0.5px'
+            }}
+          >
             CRUDA
-          </Link>
-
-          <div className="hidden md:flex items-center gap-[32px]">
-            <Link 
-              to="/" 
-              className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
-            >
-              Home
-            </Link>
-            <Link 
-              to="/book-call" 
-              className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
-            >
-              Work with us
-            </Link>
+          </div>
+          
+          {/* Desktop Navigation */}
+          <div style={{ display: 'flex', gap: '40px', alignItems: 'center' }} className="hidden md:flex">
+            <a onClick={() => navigate('/')} style={{ color: '#3D3835', fontSize: '16px', cursor: 'pointer', transition: 'color 0.2s' }}>Work</a>
+            <a onClick={() => navigate('/')} style={{ color: '#3D3835', fontSize: '16px', cursor: 'pointer', transition: 'color 0.2s' }}>About</a>
+            <a onClick={() => navigate('/book-call')} style={{ 
+              backgroundColor: '#FF2E63', 
+              color: '#FDFBF7', 
+              padding: '12px 24px', 
+              borderRadius: '6px',
+              fontSize: '16px',
+              fontWeight: 500,
+              cursor: 'pointer',
+              transition: 'all 0.2s',
+              border: 'none'
+            }}>
+              Start a Conversation
+            </a>
           </div>
 
-          <button
+          {/* Mobile Menu Button */}
+          <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-[#3D3835]"
-            aria-label="Toggle menu"
+            className="md:hidden"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#3D3835' }}
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-[80px] left-0 right-0 bg-[#F5F1E8] border-b border-[rgba(61,56,53,0.1)] py-6">
-            <div className="flex flex-col items-center gap-6">
-              <Link 
-                to="/" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
-              >
-                Home
-              </Link>
-              <Link 
-                to="/book-call" 
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-[16px] text-[#3D3835] hover:underline hover:decoration-[#FF2E63] underline-offset-4 transition-all"
-              >
-                Work with us
-              </Link>
+          <div className="md:hidden" style={{ 
+            position: 'absolute', 
+            top: '100%', 
+            left: 0, 
+            right: 0, 
+            backgroundColor: '#FDFBF7',
+            borderBottom: '1px solid rgba(61, 56, 53, 0.1)',
+            padding: '20px 40px'
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <a onClick={() => navigate('/')} style={{ color: '#3D3835', fontSize: '16px', cursor: 'pointer' }}>Work</a>
+              <a onClick={() => navigate('/')} style={{ color: '#3D3835', fontSize: '16px', cursor: 'pointer' }}>About</a>
+              <a onClick={() => navigate('/book-call')} style={{ 
+                backgroundColor: '#FF2E63', 
+                color: '#FDFBF7', 
+                padding: '12px 24px', 
+                borderRadius: '6px',
+                fontSize: '16px',
+                fontWeight: 500,
+                cursor: 'pointer',
+                textAlign: 'center',
+                display: 'block'
+              }}>
+                Start a Conversation
+              </a>
             </div>
           </div>
         )}
       </nav>
 
-      <main className="bg-[#F5F1E8] text-[#3D3835] min-h-screen pt-[80px]">
-        {/* 1. HERO SECTION */}
-        <section className="relative h-[60vh] md:h-[70vh] flex flex-col items-center justify-center px-5 md:px-10 lg:px-[60px]">
-          <div className="absolute inset-0 z-0">
-            <img 
-              src={karenPortrait} 
-              alt="Karen Mannheim, founder of TRAZZO Lighting, luxury architectural lighting designer"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-[#3D3835]/30" />
+      {/* SECTION 1: HERO */}
+      <section style={{ 
+        height: '70vh',
+        position: 'relative',
+        overflow: 'hidden',
+        marginTop: '80px'
+      }}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: 'url(/src/assets/karen-mannheim.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(61, 56, 53, 0.3)'
+          }} />
+        </div>
+        <div style={{
+          position: 'relative',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          textAlign: 'center',
+          padding: '0 40px'
+        }}>
+          <div style={{ 
+            fontSize: '16px', 
+            letterSpacing: '2px', 
+            textTransform: 'uppercase',
+            color: '#FDFBF7',
+            marginBottom: '30px',
+            fontWeight: 400
+          }}>
+            LUXURY LIGHTING DESIGN | LIMA → MIAMI → DUBAI
           </div>
+          <h1 style={{ 
+            fontSize: 'clamp(36px, 5vw, 60px)', 
+            color: '#FDFBF7',
+            fontWeight: 400,
+            lineHeight: 1.2,
+            maxWidth: '900px'
+          }}>
+            When mastery doesn't travel
+          </h1>
+        </div>
+        <div style={{
+          position: 'absolute',
+          bottom: '40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          color: '#FDFBF7',
+          fontSize: '14px',
+          letterSpacing: '1px'
+        }}>
+          ↓
+        </div>
+      </section>
 
-          <div className="relative z-10 max-w-[900px] mx-auto">
-            <div className="flex flex-wrap gap-3 justify-center mb-6">
-              <span className="inline-block px-4 py-2 bg-[rgba(255,46,99,0.15)] text-[#FDFBF7] text-[12px] uppercase tracking-[0.15em] rounded-full">
-                ARCHITECTURAL LIGHTING
-              </span>
-              <span className="inline-block px-4 py-2 bg-[rgba(255,46,99,0.15)] text-[#FDFBF7] text-[12px] uppercase tracking-[0.15em] rounded-full">
-                LIMA · MIAMI · DUBAI
-              </span>
-            </div>
-            
-            <h1 className="text-[40px] md:text-[72px] leading-[1.1] font-bold text-[#FDFBF7] text-center">
-              Karen Mannheim
-            </h1>
-            
-            <p className="text-[20px] md:text-[24px] text-[#FDFBF7]/90 text-center mt-4">
-              Founder, TRAZZO Lighting
-            </p>
+      {/* SECTION 2: CONTEXT BAR */}
+      <section style={{ 
+        backgroundColor: '#F5F1E8',
+        padding: '60px 40px',
+        textAlign: 'center'
+      }}>
+        <div style={{ 
+          maxWidth: '900px', 
+          margin: '0 auto',
+          color: 'rgba(61, 56, 53, 0.85)',
+          fontSize: '16px',
+          letterSpacing: '0.5px'
+        }}>
+          Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai
+        </div>
+      </section>
+
+      {/* SECTION 3: STORY SECTION - OPENING */}
+      <section style={{ 
+        backgroundColor: '#FDFBF7',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            Karen Mannheim had spent three decades perfecting how light shapes emotion in luxury spaces. By 2021, TRAZZO was one of Peru's most respected lighting companies—architects and developers who worked with her understood immediately. The portfolio was exceptional: Porsche, Maserati, residences where every room breathed differently depending on the hour, the mood, the moment.
           </div>
-
-          <div className="absolute bottom-10 z-10 animate-bounce">
-            <ChevronDown className="w-6 h-6 text-[#FF2E63]" />
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            But her expertise stopped at Peru's border. More accurately, it stopped at the edge of her immediate network.
           </div>
-        </section>
-
-        {/* 2. INTRO PARAGRAPH */}
-        <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[750px] mx-auto">
-            <Link to="/" className="text-[14px] mb-8 inline-block text-[#3D3835] hover:underline">
-              ← Back to Home
-            </Link>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] text-[#3D3835]/85">
-              Karen Mannheim is founder of TRAZZO Lighting, Peru's most respected architectural lighting design firm. Over three decades, she's perfected how light shapes emotion in luxury spaces—working with Porsche, Maserati, and developers across Latin America, the Middle East, and the United States.
-            </p>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            The work was undeniable in person. Walking through a space she'd lit, you felt it—the way light made a wine cellar intimate, a lobby commanding, a bedroom restful without being flat. But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. Not because the work wasn't there. Because the story wasn't.
           </div>
-        </section>
-
-        {/* 3. THE CHALLENGE */}
-        <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[750px] mx-auto">
-            <div className="inline-block px-4 py-2 bg-[rgba(255,46,99,0.1)] text-[#FF2E63] text-[12px] uppercase tracking-[0.15em] rounded-full mb-8">
-              THE CHALLENGE
-            </div>
-            
-            <h2 className="text-[36px] md:text-[48px] leading-[1.2] font-normal mb-[40px]">
-              Karen's expertise stopped at Peru's border—but no one outside Lima knew about it.
-            </h2>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              Three decades perfecting architectural lighting for luxury spaces. TRAZZO was Peru's most respected—Porsche, Maserati, residences where every room breathed differently.
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. A thousand followers. No LinkedIn presence. No way to create belief remotely.
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8]">
-              The gap wasn't quality. <span className="font-semibold text-[#FF2E63]">It was translation.</span>
-            </p>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)'
+          }}>
+            She had no audience online. A thousand followers, no LinkedIn presence, no way to create belief when she wasn't standing in front of you explaining what she saw. The gap wasn't quality. It was translation.
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 4. WHAT TRAVELS NOW (WITH METRICS) */}
-        <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[1000px] mx-auto">
-            <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal text-center mb-[60px]">
-              What Travels Now
-            </h2>
-            
-            {/* Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px] max-w-[900px] mx-auto mb-[80px]">
-              {/* Metric 1 */}
-              <div className="text-center">
-                <div className="text-[72px] md:text-[96px] font-bold text-[#FF2E63] leading-none mb-3" style={{ letterSpacing: '-2px' }}>
-                  16,000
-                </div>
-                <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
-                  from 1,000
-                </div>
-                <div className="text-[18px] text-[#3D3835]/85">
-                  Instagram followers
-                </div>
-              </div>
+      {/* SECTION 4: VISUAL DIVIDER */}
+      <section style={{ 
+        backgroundColor: '#F5F1E8',
+        padding: '60px 40px',
+        textAlign: 'center'
+      }}>
+        <div style={{ 
+          fontSize: '20px',
+          letterSpacing: '8px',
+          color: 'rgba(61, 56, 53, 0.3)'
+        }}>
+          • •
+        </div>
+      </section>
 
-              {/* Metric 2 */}
-              <div className="text-center">
-                <div className="text-[72px] md:text-[96px] font-bold text-[#FF2E63] leading-none mb-3" style={{ letterSpacing: '-2px' }}>
-                  900,000
-                </div>
-                <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
-                  from 5,000
-                </div>
-                <div className="text-[18px] text-[#3D3835]/85">
-                  annual Instagram impressions
-                </div>
-              </div>
-
-              {/* Metric 3 */}
-              <div className="text-center">
-                <div className="text-[72px] md:text-[96px] font-bold text-[#FF2E63] leading-none mb-3" style={{ letterSpacing: '-2px' }}>
-                  4,000+
-                </div>
-                <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
-                  from 100
-                </div>
-                <div className="text-[18px] text-[#3D3835]/85">
-                  LinkedIn followers
-                </div>
-              </div>
-
-              {/* Metric 4 */}
-              <div className="text-center">
-                <div className="text-[72px] md:text-[96px] font-bold text-[#FF2E63] leading-none mb-3" style={{ letterSpacing: '-2px' }}>
-                  500,000
-                </div>
-                <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
-                  from 100
-                </div>
-                <div className="text-[18px] text-[#3D3835]/85">
-                  annual LinkedIn impressions
-                </div>
-              </div>
-
-              {/* Metric 5 */}
-              <div className="text-center md:col-span-2">
-                <div className="text-[72px] md:text-[96px] font-bold text-[#FF2E63] leading-none mb-3" style={{ letterSpacing: '-2px' }}>
-                  280+
-                </div>
-                <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
-                  content pieces annually
-                </div>
-                <div className="text-[18px] text-[#3D3835]/85">
-                  140 Instagram, 140 LinkedIn
-                </div>
-              </div>
-            </div>
-
-            {/* Outcomes paragraph */}
-            <div className="max-w-[750px] mx-auto">
-              <p className="text-[19px] md:text-[20px] leading-[1.8] text-center">
-                Architectural Digest. Semana Económica. Speaking invitations.
-                <br /><br />
-                <span className="font-semibold text-[#FF2E63]">Saadiyat Music Festival—Jennifer Lopez, Christina Aguilera</span>—lighting for clients who'd never met her. Partnerships in <span className="font-semibold text-[#FF2E63]">Indonesia, Spain, Hawaii</span>. <span className="font-semibold text-[#FF2E63]">10 high-end Miami bids won</span>. Inbound inquiries from markets where she had mastery but not visibility.
-                <br /><br />
-                She walks into rooms now where people already know her work. <span className="font-semibold text-[#FF2E63]">The recognition finally matches the expertise.</span>
-              </p>
-            </div>
+      {/* SECTION 5: STORY SECTION - THE PATTERN */}
+      <section style={{ 
+        backgroundColor: '#FDFBF7',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontSize: 'clamp(32px, 4vw, 44px)', 
+            fontWeight: 400,
+            color: '#3D3835',
+            marginBottom: '60px',
+            lineHeight: 1.3
+          }}>
+            The pattern
+          </h2>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            We recognized this immediately. Not because we're lighting experts—we're not. But because we've lived the gap between mastery and articulation. Expertise that's undeniable face-to-face, invisible remotely.
           </div>
-        </section>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            What we saw: Karen wasn't selling lighting. She was selling how spaces make people feel. But "lighting designer" sounded like someone who picks fixtures, not someone who architects emotion. The technical precision was there—the thermal dynamics, the layering, the way to light an art collection versus a reading nook. But the framing made her sound like a vendor, not a design partner.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            The challenge wasn't just going from Lima to Miami. It was translating what lighting means when you understand it—that it's not an afterthought, not decoration, not buying pretty lamps and scattering recessed lights. It's the thing that makes or breaks how you live in a space.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)'
+          }}>
+            Latin culture gave us an entry point. In Latin homes, gathering matters. The home is shelter, yes, but also warmth. That's not just sentiment—it's how you approach light. We built relevance by showing Karen as a Peruvian woman with German roots building a construction business in Miami, working across nationalities, understanding that light speaks different languages depending on whether you're in a Coral Gables residence or a Dubai hotel lobby.
+          </div>
+        </div>
+      </section>
 
-        {/* 5. STRATEGIC GOALS */}
-        <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[1000px] mx-auto">
-            <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal text-center mb-[60px]">
-              STRATEGIC GOALS
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Goal 1 */}
-              <div className="bg-[#FDFBF7] p-8 rounded-lg">
-                <div className="text-[48px] font-bold text-[#FF2E63] mb-4">1</div>
-                <p className="text-[18px] leading-[1.7]">
-                  Build Karen's digital presence from zero to establish TRAZZO beyond Peru
+      {/* SECTION 6: IMAGE PAIR - BEFORE/AFTER */}
+      <section style={{ 
+        backgroundColor: '#E8DED1',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto', textAlign: 'center' }}>
+          <h3 style={{ 
+            fontSize: 'clamp(24px, 3vw, 32px)', 
+            fontWeight: 400,
+            color: '#3D3835',
+            marginBottom: '60px',
+            lineHeight: 1.4
+          }}>
+            From 1,000 followers and no story to 20,000 and belief that travels
+          </h3>
+        </div>
+      </section>
+
+      {/* SECTION 7: HOW WE DID THIS */}
+      <section style={{ 
+        backgroundColor: '#FDFBF7',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontSize: '16px', 
+            fontWeight: 400,
+            color: '#3D3835',
+            marginBottom: '60px',
+            lineHeight: 1.3,
+            textTransform: 'uppercase',
+            letterSpacing: '2px'
+          }}>
+            HOW WE DID THIS
+          </h2>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            Karen committed fully from day one. Weekly hour-long interviews where we unpacked not just her projects, but how she thinks about light, space, emotion. She treated this as seriously as her client work—blocking time, preparing, showing up.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            We didn't just interview and disappear. Every piece of content went through review. She'd mark up what felt right, what felt off. That feedback loop taught us how she wanted to be understood—not how we thought she should be positioned.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            Over three years now. Consistent weekly interviews. Content created, refined, published. The work wasn't fast. It was thorough.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)'
+          }}>
+            This only works when the builder shows up. Karen did.
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: STORY SECTION - THE TRANSLATION */}
+      <section style={{ 
+        backgroundColor: '#F5F1E8',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontSize: 'clamp(32px, 4vw, 44px)', 
+            fontWeight: 400,
+            color: '#3D3835',
+            marginBottom: '60px',
+            lineHeight: 1.3
+          }}>
+            The translation
+          </h2>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            We didn't change what Karen built. We changed how it was understood.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            First, we needed to translate her offline brand equity in Peru into digital presence. You can't expand to Miami when nobody outside your immediate circle knows your work exists. We built her story before we built her reach.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            The narrative shifted from product supplier to something closer to the truth: light as warmth, as power, as the source of life in a space. We showed her passion for design beyond lighting—visiting cities, discussing Foster and Koolhaas and Zaha Hadid, understanding architecture as cultural practice. We educated from a human perspective first: how lighting affects you as a person in restaurants, hotels, offices, homes. Then the B2B work—how architectural lighting design creates the atmosphere that determines whether a $13 million Four Seasons penthouse feels like a showpiece or a home.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            We made her relatable and specific at once. A mom, an entrepreneur, a lighting designer fluent in luxury lifestyle and design. Someone who understands what an avid reader needs versus an art collector versus a bon vivant with a wine cellar.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)'
+          }}>
+            The content wasn't promotional. It was contemplative. Her first experience as a speaker. The story behind TRAZZO and its founding team. How to expand a B2B company from Peru to Miami as a Latin American entrepreneur. Lessons on heritage, influences, leadership. The breakdown of real projects with the thinking that shaped them.
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 9: IMAGE PAIR - TECHNICAL VS EMOTIONAL */}
+      <section style={{ 
+        backgroundColor: '#E8DED1',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto', textAlign: 'center' }}>
+          <h3 style={{ 
+            fontSize: 'clamp(24px, 3vw, 32px)', 
+            fontWeight: 400,
+            color: '#3D3835',
+            lineHeight: 1.4
+          }}>
+            We didn't change what she built. We changed how it was understood.
+          </h3>
+        </div>
+      </section>
+
+      {/* SECTION 10: VISUAL DIVIDER */}
+      <section style={{ 
+        backgroundColor: '#FDFBF7',
+        padding: '60px 40px',
+        textAlign: 'center'
+      }}>
+        <div style={{ 
+          fontSize: '20px',
+          letterSpacing: '8px',
+          color: 'rgba(61, 56, 53, 0.3)'
+        }}>
+          • • •
+        </div>
+      </section>
+
+      {/* SECTION 11: STORY SECTION - WHAT TRAVELS NOW */}
+      <section style={{ 
+        backgroundColor: '#FDFBF7',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontSize: 'clamp(32px, 4vw, 44px)', 
+            fontWeight: 400,
+            color: '#3D3835',
+            marginBottom: '60px',
+            lineHeight: 1.3
+          }}>
+            What travels now
+          </h2>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            Over three years: <span style={{ color: '#FF2E63', fontWeight: 600 }}>20,000 followers</span> across Instagram and LinkedIn where there had been silence. Architectural Digest, Semana Económica, speaking invitations. But more important—the belief that travels when Karen isn't in the room.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            A UAE business partner we connected her with helped close the Saadiyat Music Festival project—Jennifer Lopez, Christina Aguilera, lighting a festival for clients who'd never met her. Strategic partnerships in Indonesia, Spain, Hawaii. Miami developers who found her online or knew her but weren't sold until the narrative existed. <span style={{ color: '#FF2E63', fontWeight: 600 }}>Ten high-end project bids won in Miami</span>. Inbound inquiries not just from the US, but even within Peru—markets where she'd always had mastery but not visibility.
+          </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)'
+          }}>
+            Cold outreach that isn't cold anymore because people arrive educated. Recruiting made easier because reach creates context. Most importantly: she walks into rooms now where people already know her work. The recognition finally matches the expertise.
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 12: PROJECT CAROUSEL */}
+      <section style={{ 
+        backgroundColor: '#3D3835',
+        padding: 'clamp(80px, 10vw, 100px) 0',
+        maxHeight: '800px'
+      }}>
+        <div style={{ 
+          maxWidth: '1400px', 
+          margin: '0 auto',
+          padding: '0 clamp(40px, 5vw, 60px)'
+        }}>
+          <div style={{ 
+            overflowX: 'auto',
+            display: 'flex',
+            gap: '30px',
+            paddingBottom: '20px',
+            scrollbarWidth: 'thin',
+            scrollbarColor: 'rgba(253, 251, 247, 0.3) transparent'
+          }}>
+            {projects.map((project, index) => (
+              <div 
+                key={index}
+                style={{
+                  minWidth: '350px',
+                  backgroundColor: 'rgba(253, 251, 247, 0.05)',
+                  borderRadius: '8px',
+                  padding: '40px 30px',
+                  border: '1px solid rgba(253, 251, 247, 0.1)'
+                }}
+              >
+                <h3 style={{ 
+                  fontSize: '24px',
+                  color: '#FDFBF7',
+                  marginBottom: '10px',
+                  fontWeight: 500
+                }}>
+                  {project.name}
+                </h3>
+                <p style={{ 
+                  fontSize: '16px',
+                  color: 'rgba(253, 251, 247, 0.7)',
+                  fontStyle: 'italic'
+                }}>
+                  {project.location}
                 </p>
               </div>
-
-              {/* Goal 2 */}
-              <div className="bg-[#FDFBF7] p-8 rounded-lg">
-                <div className="text-[48px] font-bold text-[#FF2E63] mb-4">2</div>
-                <p className="text-[18px] leading-[1.7]">
-                  Position her as architectural lighting designer, not product vendor
-                </p>
-              </div>
-
-              {/* Goal 3 */}
-              <div className="bg-[#FDFBF7] p-8 rounded-lg">
-                <div className="text-[48px] font-bold text-[#FF2E63] mb-4">3</div>
-                <p className="text-[18px] leading-[1.7]">
-                  Create content system that translates technical expertise into emotional storytelling
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 6. OUR APPROACH */}
-        <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[750px] mx-auto">
-            <div className="inline-block px-4 py-2 bg-[rgba(255,46,99,0.1)] text-[#FF2E63] text-[12px] uppercase tracking-[0.15em] rounded-full mb-8">
-              OUR APPROACH
-            </div>
-            
-            <h2 className="text-[36px] md:text-[48px] leading-[1.2] font-normal mb-[40px]">
-              We didn't change what Karen built. We changed how it was understood.
-            </h2>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              First challenge: You can't expand to Miami when nobody outside your circle knows your work exists. <span className="font-semibold text-[#FF2E63]">We built her story before we built her reach.</span>
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              The narrative shifted from product supplier to something closer to truth: light as warmth, as power, as source of life in a space. We showed her passion for design beyond lighting—<span className="font-semibold text-[#FF2E63]">Foster, Koolhaas, Zaha Hadid</span>, architecture as cultural practice.
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8]">
-              We educated from a human lens first: how lighting affects you in restaurants, hotels, homes. Then the B2B work—how architectural lighting determines whether a $13 million Four Seasons penthouse feels like showpiece or home.
-            </p>
+      {/* SECTION 13: STORY SECTION - THE INSIGHT */}
+      <section style={{ 
+        backgroundColor: '#F5F1E8',
+        padding: 'clamp(80px, 10vw, 100px) clamp(40px, 5vw, 60px)'
+      }}>
+        <div style={{ maxWidth: '750px', margin: '0 auto' }}>
+          <h2 style={{ 
+            fontSize: 'clamp(32px, 4vw, 44px)', 
+            fontWeight: 400,
+            color: '#3D3835',
+            marginBottom: '60px',
+            lineHeight: 1.3
+          }}>
+            The insight
+          </h2>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)',
+            marginBottom: '40px'
+          }}>
+            Translation isn't about simplifying what you do. It's about understanding that mastery speaks one language, and belief speaks another. Karen's craft never changed. But now it travels—across borders, across contexts, across the gap between walking through a space she's lit and trusting her before you've ever met.
           </div>
-        </section>
-
-        {/* 7. CONTENT SYSTEM */}
-        <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[1000px] mx-auto">
-            <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal text-center mb-[24px]">
-              Content System
-            </h2>
-            
-            <p className="text-[20px] leading-[1.8] text-center mb-[60px]">
-              Karen's content is built on three editorial pillars:
-            </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Pillar 1 */}
-              <div className="bg-[#FDFBF7] p-8 rounded-lg">
-                <h3 className="text-[22px] font-semibold mb-4">Technical Mastery</h3>
-                <p className="text-[17px] leading-[1.7] text-[#3D3835]/85">
-                  How light behaves in luxury spaces—thermal dynamics, layering, material interaction
-                </p>
-              </div>
-
-              {/* Pillar 2 */}
-              <div className="bg-[#FDFBF7] p-8 rounded-lg">
-                <h3 className="text-[22px] font-semibold mb-4">Cultural Translation</h3>
-                <p className="text-[17px] leading-[1.7] text-[#3D3835]/85">
-                  Building a Latin American company in Miami—heritage, identity, and cross-border business
-                </p>
-              </div>
-
-              {/* Pillar 3 */}
-              <div className="bg-[#FDFBF7] p-8 rounded-lg">
-                <h3 className="text-[22px] font-semibold mb-4">Industry Innovation</h3>
-                <p className="text-[17px] leading-[1.7] text-[#3D3835]/85">
-                  Challenging the "lighting as afterthought" mindset in architecture and design
-                </p>
-              </div>
-            </div>
+          <div style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)', 
+            lineHeight: '1.9',
+            color: 'rgba(61, 56, 53, 0.85)'
+          }}>
+            The work was always exceptional. Now people outside her immediate circle can see it.
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* 8. CONTENT SHOWCASE / FEATURED WORK */}
-        <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[1200px] mx-auto">
-            <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal text-center mb-[60px]">
-              Featured work and press
-            </h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <div key={index} className="bg-[#FDFBF7] rounded-lg overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.name}
-                    className="w-full h-[250px] object-cover"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-[20px] font-semibold mb-2">{project.name}</h3>
-                    <p className="text-[16px] text-[#3D3835]/70">{project.context}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 9. HOW WE DID THIS */}
-        <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-          <div className="max-w-[750px] mx-auto">
-            <h3 className="text-[20px] md:text-[22px] uppercase tracking-[0.1em] mb-[40px] text-[#3D3835]/70">
-              HOW WE DID THIS
-            </h3>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              Karen committed fully from day one. Weekly hour-long interviews unpacking not just projects, but how she thinks about light, space, emotion. She treated this like client work—blocking time, preparing, showing up.
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              Every piece went through review. She'd mark what felt right, what felt off. That feedback loop taught us how she wanted to be understood.
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
-              Three years now. Consistent weekly interviews. Content created, refined, published.
-            </p>
-            
-            <p className="text-[19px] md:text-[20px] leading-[1.8] italic">
-              This only works when the builder shows up. Karen did.
-            </p>
-          </div>
-        </section>
-
-        {/* 10. PULL QUOTE / TESTIMONIAL */}
-        <section className="bg-[#F5F1E8] py-[100px] md:py-[120px] px-5 md:px-[60px]">
-          <div className="max-w-[800px] mx-auto text-center">
-            <blockquote className="text-[24px] md:text-[28px] leading-[1.6] italic mb-8 text-[#3D3835]">
-              "CRUDA helped us translate three decades of expertise into a story that works everywhere—from Lima to Miami to Dubai. The work was always exceptional. Now people outside our immediate circle can see it."
-            </blockquote>
-            <p className="text-[16px] uppercase tracking-[1px] font-semibold text-[#3D3835]/70">
-              — KAREN MANNHEIM, FOUNDER OF TRAZZO LIGHTING
-            </p>
-          </div>
-        </section>
-
-        {/* 11. THE INSIGHT */}
-        <section className="bg-[#E8DED1] py-[100px] md:py-[120px] px-5 md:px-[60px]">
-          <div className="max-w-[800px] mx-auto text-center">
-            <h3 className="text-[20px] md:text-[22px] uppercase tracking-[0.1em] mb-[40px] text-[#3D3835]/70">
-              THE INSIGHT
-            </h3>
-            
-            <p className="text-[22px] md:text-[24px] leading-[1.8] mb-[40px] text-[#3D3835]">
-              Translation isn't about simplifying what you do. It's about understanding that <span className="font-semibold text-[#FF2E63]">mastery speaks one language, belief speaks another</span>.
-            </p>
-            
-            <p className="text-[22px] md:text-[24px] leading-[1.8] mb-[40px] text-[#3D3835]">
-              Karen's craft never changed. But now it travels—across borders, across contexts, across the gap between walking through a space she's lit and trusting her before you've ever met.
-            </p>
-            
-            <p className="text-[22px] md:text-[24px] leading-[1.8] text-[#3D3835]">
-              The work was always exceptional. Now people outside her immediate circle can see it.
-            </p>
-          </div>
-        </section>
-
-        {/* 12. CTA SECTION */}
-        <section className="bg-[#F5F1E8] py-[100px] md:py-[120px] px-5 md:px-[60px]">
-          <div className="max-w-[750px] mx-auto text-center">
-            <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal mb-[48px] text-[#3D3835]">
-              Want to build belief like Karen?
-            </h2>
-            <Link 
-              to="/book-call"
-              className="inline-block px-12 py-5 text-[18px] font-semibold text-[#FDFBF7] bg-[#3D3835] hover:bg-[#FF2E63] transition-all duration-300 rounded-lg"
-            >
-              Start Your Story →
-            </Link>
-          </div>
-        </section>
-      </main>
-    </>
+      {/* SECTION 14: CTA SECTION */}
+      <section style={{ 
+        backgroundColor: '#FDFBF7',
+        padding: 'clamp(100px, 12vw, 120px) clamp(40px, 5vw, 60px)',
+        textAlign: 'center'
+      }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <button
+            onClick={() => navigate('/book-call')}
+            style={{
+              backgroundColor: '#FF2E63',
+              color: '#FDFBF7',
+              padding: '20px 50px',
+              fontSize: '20px',
+              fontWeight: 500,
+              border: 'none',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              boxShadow: '0 4px 20px rgba(255, 46, 99, 0.2)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 6px 30px rgba(255, 46, 99, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(255, 46, 99, 0.2)';
+            }}
+          >
+            Start a conversation →
+          </button>
+        </div>
+      </section>
+    </div>
   );
 };
 

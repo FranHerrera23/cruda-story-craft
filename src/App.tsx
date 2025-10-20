@@ -8,6 +8,7 @@ import ClientDetail from "./pages/ClientDetail";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import BookCall from "./pages/BookCall";
 import KarenMannheimCaseStudy from "./pages/KarenMannheimCaseStudy";
+import MikeKaedingCaseStudy from "./pages/MikeKaedingCaseStudy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,7 +21,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/clients/karen-mannheim" element={<KarenMannheimCaseStudy />} />
+          <Route path="/clients/karen-mannheim" element={<MikeKaedingCaseStudy />} />
+          <Route path="/clients/mike-kaeding" element={<MikeKaedingCaseStudy />} />
           <Route path="/clients/:clientSlug" element={<ClientDetail />} />
           <Route path="/work/:projectSlug" element={<CaseStudyDetail />} />
           <Route path="/book-call" element={<BookCall />} />

@@ -160,76 +160,76 @@ const KarenMannheimCaseStudy = () => {
         </div>
       </section>
 
-      {/* METRICS SECTION - What travels now */}
+      {/* METRICS SECTION - By the numbers */}
       <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[1200px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold text-center mb-[60px] text-[#3D3835]">
-            What travels now
+          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold text-center mb-[80px] text-[#3D3835]">
+            By the numbers
           </h2>
 
-          {/* Stats Grid - Larger numbers, no backgrounds, better spacing */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[56px] md:gap-[60px] my-[100px] px-5 md:px-10">
+          {/* Stats Grid - 2 columns layout with better spacing */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-[80px] gap-x-[80px] my-[100px] max-w-[900px] mx-auto">
             {/* Stat 1 */}
-            <div className="text-center flex flex-col justify-center min-h-[200px]">
-              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
+            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
+              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
                 16,000
               </div>
               <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 1,000
               </div>
-              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
+              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
                 Instagram followers
               </div>
             </div>
 
             {/* Stat 2 */}
-            <div className="text-center flex flex-col justify-center min-h-[200px]">
-              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
+            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
+              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
                 900,000
               </div>
               <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 5,000
               </div>
-              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
+              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
                 annual Instagram impressions
               </div>
             </div>
 
             {/* Stat 3 */}
-            <div className="text-center flex flex-col justify-center min-h-[200px]">
-              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
+            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
+              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
                 4,000+
               </div>
               <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 100
               </div>
-              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
+              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
                 LinkedIn followers
               </div>
             </div>
 
             {/* Stat 4 */}
-            <div className="text-center flex flex-col justify-center min-h-[200px]">
-              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
+            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
+              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
                 500,000
               </div>
               <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 100
               </div>
-              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
+              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
                 annual LinkedIn impressions
               </div>
             </div>
 
-            {/* Stat 5 */}
-            <div className="text-center flex flex-col justify-center min-h-[200px] md:col-span-2 lg:col-span-1">
-              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
+            {/* Stat 5 - Centered in its own row */}
+            <div className="text-center flex flex-col justify-center items-center min-h-[200px] md:col-span-2">
+              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
                 280+
               </div>
               <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 content pieces annually
               </div>
-              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
+              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
                 140 Instagram, 140 LinkedIn
               </div>
             </div>

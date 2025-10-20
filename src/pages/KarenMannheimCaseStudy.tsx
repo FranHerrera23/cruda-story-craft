@@ -167,108 +167,108 @@ const KarenMannheimCaseStudy = () => {
             What travels now
           </h2>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-[40px] md:gap-[48px] mb-[60px]">
+          {/* Stats Grid - Larger numbers, no backgrounds, better spacing */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[56px] md:gap-[60px] my-[100px] px-5 md:px-10">
             {/* Stat 1 */}
-            <div className="text-center">
-              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+            <div className="text-center flex flex-col justify-center min-h-[200px]">
+              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
                 16,000
               </div>
-              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 1,000
               </div>
-              <div className="text-[16px] text-[#3D3835]">
+              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
                 Instagram followers
               </div>
             </div>
 
             {/* Stat 2 */}
-            <div className="text-center">
-              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+            <div className="text-center flex flex-col justify-center min-h-[200px]">
+              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
                 900,000
               </div>
-              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 5,000
               </div>
-              <div className="text-[16px] text-[#3D3835]">
+              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
                 annual Instagram impressions
               </div>
             </div>
 
             {/* Stat 3 */}
-            <div className="text-center">
-              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+            <div className="text-center flex flex-col justify-center min-h-[200px]">
+              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
                 4,000+
               </div>
-              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 100
               </div>
-              <div className="text-[16px] text-[#3D3835]">
+              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
                 LinkedIn followers
               </div>
             </div>
 
             {/* Stat 4 */}
-            <div className="text-center">
-              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+            <div className="text-center flex flex-col justify-center min-h-[200px]">
+              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
                 500,000
               </div>
-              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 from 100
               </div>
-              <div className="text-[16px] text-[#3D3835]">
+              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
                 annual LinkedIn impressions
               </div>
             </div>
 
             {/* Stat 5 */}
-            <div className="text-center">
-              <div className="text-[48px] md:text-[56px] font-bold text-[#FF2E63] mb-2">
+            <div className="text-center flex flex-col justify-center min-h-[200px] md:col-span-2 lg:col-span-1">
+              <div className="text-[96px] font-bold leading-none mb-4 tracking-[-2px] text-[#FF2E63]">
                 280+
               </div>
-              <div className="text-[14px] text-[#3D3835]/60 mb-3">
+              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
                 content pieces annually
               </div>
-              <div className="text-[16px] text-[#3D3835]">
+              <div className="text-[18px] leading-[1.5] text-[#3D3835]/85">
                 140 Instagram, 140 LinkedIn
               </div>
             </div>
           </div>
 
-          {/* Supporting Text */}
-          <div className="max-w-[900px] mx-auto text-center space-y-6">
+          {/* Supporting Text with Red Highlights */}
+          <div className="max-w-[750px] mx-auto text-center space-y-6">
             <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
               Architectural Digest. Semana Económica. Speaking invitations.
             </p>
             
             <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
-              Saadiyat Music Festival—Jennifer Lopez, Christina Aguilera—lighting for clients who'd never met her. Partnerships in Indonesia, Spain, Hawaii. 10 high-end Miami bids won. Inbound inquiries from markets where she had mastery but not visibility.
+              <span className="font-semibold text-[#FF2E63]">Saadiyat Music Festival—Jennifer Lopez, Christina Aguilera</span>—lighting for clients who'd never met her. Partnerships in <span className="font-semibold text-[#FF2E63]">Indonesia, Spain, Hawaii</span>. <span className="font-semibold text-[#FF2E63]">10 high-end Miami bids won</span>. Inbound inquiries from markets where she had mastery but not visibility.
             </p>
             
             <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
-              She walks into rooms now where people already know her work. The recognition finally matches the expertise.
+              She walks into rooms now where people already know her work. <span className="font-semibold text-[#FF2E63]">The recognition finally matches the expertise.</span>
             </p>
           </div>
         </div>
       </section>
 
-      {/* Story Section: Opening */}
+      {/* Story Section: The Gap (with Red Highlights) */}
       <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            Three decades perfecting how light shapes emotion in luxury spaces. TRAZZO was Peru's most respected—Porsche, Maserati, residences where every room breathed differently depending on the hour.
+            Three decades perfecting how light shapes emotion in luxury spaces. TRAZZO was Peru's most respected—<span className="font-semibold text-[#FF2E63]">Porsche, Maserati</span>, residences where every room breathed differently depending on the hour.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            But her expertise stopped at Peru's border. More accurately, at the edge of her network.
+            But her expertise <span className="font-semibold text-[#FF2E63]">stopped at Peru's border</span>. More accurately, at the edge of her network.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            The work was undeniable in person. But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. A thousand followers. No LinkedIn presence. No way to create belief remotely.
+            The work was undeniable in person. But she couldn't get into rooms with <span className="font-semibold text-[#FF2E63]">Miami developers or Middle Eastern hospitality groups</span>. A thousand followers. No LinkedIn presence. <span className="font-semibold text-[#FF2E63]">No way to create belief remotely.</span>
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            The gap wasn't quality. It was translation.
+            The gap wasn't quality. <span className="font-semibold text-[#FF2E63]">It was translation.</span>
           </p>
         </div>
       </section>

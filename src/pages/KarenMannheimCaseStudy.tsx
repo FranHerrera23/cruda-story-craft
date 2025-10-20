@@ -151,164 +151,28 @@ const KarenMannheimCaseStudy = () => {
         </div>
       </section>
 
-      {/* Context Bar */}
-      <section className="bg-[#F5F1E8] py-[60px] px-5 md:px-10">
-        <div className="max-w-[1200px] mx-auto text-center">
-          <p className="text-[12px] uppercase tracking-[0.2em] text-[#3D3835]/70">
-            Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai
-          </p>
-        </div>
-      </section>
-
-      {/* METRICS SECTION - By the numbers */}
-      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-        <div className="max-w-[1200px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold text-center mb-[80px] text-[#3D3835]">
-            By the numbers
-          </h2>
-
-          {/* Stats Grid - 2 columns layout with better spacing */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-[80px] gap-x-[80px] my-[100px] max-w-[900px] mx-auto">
-            {/* Stat 1 */}
-            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
-              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
-                16,000
-              </div>
-              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
-                from 1,000
-              </div>
-              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
-                Instagram followers
-              </div>
-            </div>
-
-            {/* Stat 2 */}
-            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
-              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
-                900,000
-              </div>
-              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
-                from 5,000
-              </div>
-              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
-                annual Instagram impressions
-              </div>
-            </div>
-
-            {/* Stat 3 */}
-            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
-              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
-                4,000+
-              </div>
-              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
-                from 100
-              </div>
-              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
-                LinkedIn followers
-              </div>
-            </div>
-
-            {/* Stat 4 */}
-            <div className="text-center flex flex-col justify-center items-center min-h-[200px]">
-              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
-                500,000
-              </div>
-              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
-                from 100
-              </div>
-              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
-                annual LinkedIn impressions
-              </div>
-            </div>
-
-            {/* Stat 5 - Centered in its own row */}
-            <div className="text-center flex flex-col justify-center items-center min-h-[200px] md:col-span-2">
-              <div className="text-[80px] md:text-[96px] font-bold leading-none mb-4 tracking-tight text-accent">
-                280+
-              </div>
-              <div className="text-[16px] mb-3 italic text-[#3D3835]/60">
-                content pieces annually
-              </div>
-              <div className="text-[18px] leading-relaxed text-[#3D3835]/85">
-                140 Instagram, 140 LinkedIn
-              </div>
-            </div>
-          </div>
-
-          {/* Supporting Text with Red Highlights */}
-          <div className="max-w-[750px] mx-auto text-center space-y-6">
-            <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
-              Architectural Digest. Semana Económica. Speaking invitations.
-            </p>
-            
-            <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
-              <span className="font-semibold text-[#FF2E63]">Saadiyat Music Festival—Jennifer Lopez, Christina Aguilera</span>—lighting for clients who'd never met her. Partnerships in <span className="font-semibold text-[#FF2E63]">Indonesia, Spain, Hawaii</span>. <span className="font-semibold text-[#FF2E63]">10 high-end Miami bids won</span>. Inbound inquiries from markets where she had mastery but not visibility.
-            </p>
-            
-            <p className="text-[17px] md:text-[20px] leading-[1.9] text-[#3D3835]">
-              She walks into rooms now where people already know her work. <span className="font-semibold text-[#FF2E63]">The recognition finally matches the expertise.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Story Section: The Gap (with Red Highlights) */}
       <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
             Three decades perfecting how light shapes emotion in luxury spaces. TRAZZO was Peru's most respected—<span className="font-semibold text-[#FF2E63]">Porsche, Maserati</span>, residences where every room breathed differently depending on the hour.
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
             But her expertise <span className="font-semibold text-[#FF2E63]">stopped at Peru's border</span>. More accurately, at the edge of her network.
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
             The work was undeniable in person. But she couldn't get into rooms with <span className="font-semibold text-[#FF2E63]">Miami developers or Middle Eastern hospitality groups</span>. A thousand followers. No LinkedIn presence. <span className="font-semibold text-[#FF2E63]">No way to create belief remotely.</span>
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9]">
+          <p className="text-[19px] md:text-[20px] leading-[1.8]">
             The gap wasn't quality. <span className="font-semibold text-[#FF2E63]">It was translation.</span>
           </p>
         </div>
       </section>
 
-      {/* Visual Divider */}
-      <section className="bg-[#F5F1E8] py-[60px] px-5">
-        <div className="flex flex-col items-center gap-[12px]">
-          <div className="w-[8px] h-[8px] rounded-full bg-[#FF2E63]" />
-          <div className="w-[8px] h-[8px] rounded-full bg-[#FF2E63]" />
-          <div className="w-[8px] h-[8px] rounded-full bg-[#FF2E63]" />
-        </div>
-      </section>
-
-      {/* Story Section: The Pattern */}
-      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-        <div className="max-w-[750px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[32px]">
-            The pattern
-          </h2>
-          
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            We recognized this immediately. Not because we're lighting experts—we're not. But because we've lived the gap between mastery and articulation. Expertise that's undeniable face-to-face, invisible remotely.
-          </p>
-          
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            What we saw: Karen wasn't selling lighting. She was selling how spaces make people feel. But "lighting designer" sounded like someone who picks fixtures, not someone who architects emotion.
-          </p>
-          
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            The technical precision was there—thermal dynamics, layering, lighting an art collection versus a reading nook. But the framing made her sound like a vendor, not a design partner.
-          </p>
-          
-          <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            The challenge wasn't just Lima to Miami. It was translating what lighting means when you understand it—not afterthought, not decoration, not buying pretty lamps. It's what makes or breaks how you live in a space.
-          </p>
-        </div>
-      </section>
-
-      {/* Image Pair: Before/After Energy */}
-      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
+      {/* 2. IMAGE PAIR (EMOTIONAL CONTRAST) */}
+      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[4%]">
             <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)]">
@@ -329,12 +193,35 @@ const KarenMannheimCaseStudy = () => {
             </div>
           </div>
           <p className="text-center text-[16px] italic text-[#3D3835]/70 mt-[16px]">
-            From 1,000 followers and no story to 20,000 and belief that travels
+            From local recognition to international reach
           </p>
         </div>
       </section>
 
-      {/* Story Section: How We Did This */}
+      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
+        <div className="max-w-[750px] mx-auto">
+          <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal mb-[32px]">
+            The pattern
+          </h2>
+          
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            We recognized this immediately. Not because we're lighting experts—we're not. But because <span className="font-semibold text-[#FF2E63]">we've lived the gap</span> between mastery and articulation. Expertise that's undeniable face-to-face, invisible remotely.
+          </p>
+          
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            What we saw: Karen wasn't selling lighting. She was selling how spaces make people feel. But "lighting designer" sounded like someone who picks fixtures, not someone who <span className="font-semibold text-[#FF2E63]">architects emotion</span>.
+          </p>
+          
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            The technical precision was there—thermal dynamics, layering, lighting an art collection versus a reading nook. But the framing made her sound like a vendor, not a design partner.
+          </p>
+          
+          <p className="text-[19px] md:text-[20px] leading-[1.8]">
+            The challenge wasn't just Lima to Miami. It was translating what lighting means when you understand it—not afterthought, not decoration, not buying pretty lamps. <span className="font-semibold text-[#FF2E63]">It's what makes or breaks how you live in a space.</span>
+          </p>
+        </div>
+      </section>
+
       <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[800px] mx-auto">
           <div className="bg-[rgba(255,46,99,0.05)] border-l-[3px] border-[#FF2E63] py-[40px] px-[32px] md:px-[48px] rounded-[8px]">
@@ -342,187 +229,148 @@ const KarenMannheimCaseStudy = () => {
               HOW WE DID THIS
             </h3>
             
-            <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
+            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
               Karen committed fully from day one. Weekly hour-long interviews unpacking not just projects, but how she thinks about light, space, emotion. She treated this like client work—blocking time, preparing, showing up.
             </p>
             
-            <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
+            <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
               Every piece went through review. She'd mark what felt right, what felt off. That feedback loop taught us how she wanted to be understood.
             </p>
             
-            <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-              Three years now. Consistent weekly interviews. Content created, refined, published.
-            </p>
-            
-            <p className="text-[17px] md:text-[20px] leading-[1.9]">
-              This only works when the builder shows up. Karen did.
+            <p className="text-[19px] md:text-[20px] leading-[1.8]">
+              <span className="font-semibold text-[#FF2E63]">Three years now.</span> Consistent weekly interviews. Content created, refined, published.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Story Section: The Translation */}
-      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[32px]">
+          <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal mb-[32px]">
             The translation
           </h2>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            We didn't change what Karen built.<br />
-            We changed how it was understood.
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            We didn't change what Karen built. We changed how it was understood.
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            First challenge: You can't expand to Miami when nobody outside your circle knows your work exists. We built her story before we built her reach.
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            First challenge: You can't expand to Miami when nobody outside your circle knows your work exists. <span className="font-semibold text-[#FF2E63]">We built her story before we built her reach.</span>
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            The narrative shifted from product supplier to something closer to truth: light as warmth, as power, as source of life in a space. We showed her passion for design beyond lighting—Foster, Koolhaas, Zaha Hadid, architecture as cultural practice.
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            The narrative shifted from product supplier to something closer to truth: light as warmth, as power, as source of life in a space. We showed her passion for design beyond lighting—Foster, Koolhaas, Zaha Hadid, <span className="font-semibold text-[#FF2E63]">architecture as cultural practice</span>.
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
             We educated from a human lens first: how lighting affects you in restaurants, hotels, homes. Then the B2B work—how architectural lighting determines whether a $13 million Four Seasons penthouse feels like showpiece or home.
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            Latin culture gave us the entry point. In Latin homes, gathering matters. We built relevance showing Karen as a Peruvian woman with German roots, building across nationalities, understanding light speaks different languages.
+          <p className="text-[19px] md:text-[20px] leading-[1.8]">
+            Latin culture gave us the entry point. In Latin homes, gathering matters. We built relevance showing Karen as a Peruvian woman with German roots, building across nationalities, understanding <span className="font-semibold text-[#FF2E63]">light speaks different languages</span>.
           </p>
         </div>
       </section>
 
-      {/* Image Pair: Technical vs Emotional */}
-      <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
-        <div className="max-w-[1200px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[4%]">
-            <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)]">
-              <img 
-                src={karenPortrait} 
-                alt="Technical framing of Karen Mannheim's lighting expertise"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-            <div className="aspect-[4/5] overflow-hidden rounded-[8px] shadow-[0_4px_20px_rgba(61,56,53,0.1)] mt-8 md:mt-0">
-              <img 
-                src={karenProject} 
-                alt="Emotional framing showing impact of Karen's work"
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <p className="text-center text-[16px] italic text-[#3D3835]/70 mt-[16px]">
-            We didn't change what she built. We changed how it was understood.
-          </p>
-        </div>
-      </section>
-
-      {/* Visual Divider */}
-      <section className="bg-[#F5F1E8] py-[60px] px-5">
-        <div className="flex flex-col items-center gap-[12px]">
-          <div className="w-[8px] h-[8px] rounded-full bg-[#FF2E63]" />
-          <div className="w-[8px] h-[8px] rounded-full bg-[#FF2E63]" />
-          <div className="w-[8px] h-[8px] rounded-full bg-[#FF2E63]" />
-        </div>
-      </section>
-
-      {/* Story Section: What Travels Now */}
       <section className="bg-[#F5F1E8] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[32px]">
+          <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal mb-[40px]">
             What travels now
           </h2>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            Over three years: <span className="font-bold text-[#FF2E63]">20,000 followers</span> across Instagram and LinkedIn where there had been silence. <span className="font-bold text-[#FF2E63]">Architectural Digest, Semana Económica</span>, speaking invitations. But more important—the belief that travels when Karen isn't in the room.
+          {/* Opening context */}
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            Over three years: Architectural Digest. Semana Económica. Speaking invitations.
           </p>
           
-          <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            A UAE business partner we connected her with helped close the <span className="font-bold text-[#FF2E63]">Saadiyat Music Festival project</span>—Jennifer Lopez, Christina Aguilera, lighting a festival for clients who'd never met her. Strategic partnerships in <span className="font-bold text-[#FF2E63]">Indonesia, Spain, Hawaii</span>. Miami developers who found her online or knew her but weren't sold until the narrative existed. <span className="font-bold text-[#FF2E63]">Ten high-end project bids won in Miami</span>. Inbound inquiries not just from the US, but even within Peru—markets where she'd always had mastery but not visibility.
-          </p>
-          
-          <p className="text-[17px] md:text-[20px] leading-[1.9]">
-            Cold outreach that isn't cold anymore because people arrive educated. Recruiting made easier because reach creates context. Most importantly: she walks into rooms now where people already know her work. The recognition finally matches the expertise.
-          </p>
-        </div>
-      </section>
-
-      {/* Project Carousel Section */}
-      <section className="bg-[#3D3835] py-[80px] md:py-[100px] px-5 md:px-[60px] max-h-[800px]">
-        <div className="max-w-[1400px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[60px] text-center text-[#FDFBF7]">
-            The work that now travels
-          </h2>
-          
-          <div 
-            ref={carouselRef}
-            className="flex gap-[30px] overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            {projects.map((project, index) => (
-              <div 
-                key={index}
-                className="flex-shrink-0 w-[400px] snap-start group cursor-pointer"
-                onClick={() => setActiveProject(index)}
-              >
-                <div className="aspect-video overflow-hidden rounded-[8px] mb-4 transition-transform duration-300 group-hover:scale-[1.02]">
-                  <img 
-                    src={project.image}
-                    alt={`${project.name} - ${project.context}`}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-                <h3 className="text-[20px] font-bold mb-2 text-[#FDFBF7] group-hover:text-[#FF2E63] transition-colors">
-                  {project.name}
-                </h3>
-                <p className="text-[15px] text-[#999999]">
-                  {project.context}
-                </p>
+          {/* Integrated metrics - tastefully emphasized */}
+          <div className="space-y-[40px] my-[60px]">
+            <div className="text-center">
+              <div className="text-[64px] md:text-[72px] font-bold text-[#FF2E63] leading-none mb-2">
+                16,000
               </div>
-            ))}
+              <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
+                from 1,000
+              </div>
+              <div className="text-[18px] text-[#3D3835]">
+                Instagram followers
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-[64px] md:text-[72px] font-bold text-[#FF2E63] leading-none mb-2">
+                900,000
+              </div>
+              <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
+                from 5,000
+              </div>
+              <div className="text-[18px] text-[#3D3835]">
+                annual Instagram impressions
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-[64px] md:text-[72px] font-bold text-[#FF2E63] leading-none mb-2">
+                4,000+
+              </div>
+              <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
+                from 100
+              </div>
+              <div className="text-[18px] text-[#3D3835]">
+                LinkedIn followers
+              </div>
+            </div>
+
+            <div className="text-center">
+              <div className="text-[64px] md:text-[72px] font-bold text-[#FF2E63] leading-none mb-2">
+                500,000
+              </div>
+              <div className="text-[16px] italic text-[#3D3835]/60 mb-2">
+                from 100
+              </div>
+              <div className="text-[18px] text-[#3D3835]">
+                annual LinkedIn impressions
+              </div>
+            </div>
           </div>
 
-          {/* Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => scrollToProject(index)}
-                className="w-2 h-2 rounded-full transition-all duration-300"
-                style={{
-                  backgroundColor: activeProject === index ? '#FF2E63' : 'rgba(253, 251, 247, 0.3)'
-                }}
-                aria-label={`Go to project ${index + 1}`}
-              />
-            ))}
-          </div>
+          {/* Outcomes paragraph */}
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mb-[40px]">
+            A UAE partner we connected her with helped close the <span className="font-semibold text-[#FF2E63]">Saadiyat Music Festival project—Jennifer Lopez, Christina Aguilera</span>—lighting a festival for clients who'd never met her. Strategic partnerships in <span className="font-semibold text-[#FF2E63]">Indonesia, Spain, Hawaii</span>. Miami developers who found her online. <span className="font-semibold text-[#FF2E63]">Ten high-end project bids won in Miami</span>. Inbound inquiries from Peru—markets where she'd always had mastery but not visibility.
+          </p>
+          
+          {/* Closing paragraph */}
+          <p className="text-[19px] md:text-[20px] leading-[1.8]">
+            Cold outreach that isn't cold anymore. Recruiting easier because reach creates context. She walks into rooms now where people already know her work.
+          </p>
+          
+          <p className="text-[19px] md:text-[20px] leading-[1.8] mt-[40px]">
+            <span className="font-semibold text-[#FF2E63]">The recognition finally matches the expertise.</span>
+          </p>
         </div>
       </section>
 
-      {/* Story Section: The Insight */}
-      <section className="bg-[#F5F1E8] py-[100px] md:py-[120px] px-5 md:px-[60px]">
+      <section className="bg-[#E8DED1] py-[100px] md:py-[120px] px-5 md:px-[60px]">
         <div className="max-w-[600px] mx-auto">
-          <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold italic mb-[40px]">
+          <h2 className="text-[40px] md:text-[44px] leading-[1.2] font-normal italic mb-[40px]">
             The insight
           </h2>
           
-          <p className="text-[20px] md:text-[24px] leading-[1.8] mb-[40px]">
-            Translation isn't about simplifying what you do. It's about understanding that mastery speaks one language, belief speaks another.
+          <p className="text-[22px] md:text-[24px] leading-[1.8] mb-[40px]">
+            Translation isn't about simplifying what you do. It's about understanding that <span className="font-semibold text-[#FF2E63]">mastery speaks one language, belief speaks another</span>.
           </p>
           
-          <p className="text-[20px] md:text-[24px] leading-[1.8] mb-[40px]">
+          <p className="text-[22px] md:text-[24px] leading-[1.8] mb-[40px]">
             Karen's craft never changed. But now it travels—across borders, across contexts, across the gap between walking through a space she's lit and trusting her before you've ever met.
           </p>
           
-          <p className="text-[20px] md:text-[24px] leading-[1.8]">
+          <p className="text-[22px] md:text-[24px] leading-[1.8]">
             The work was always exceptional. Now people outside her immediate circle can see it.
           </p>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* 8. CTA SECTION */}
       <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto text-center">
           <Link 

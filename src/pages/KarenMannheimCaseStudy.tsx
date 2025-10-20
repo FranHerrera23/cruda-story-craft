@@ -218,7 +218,8 @@ const KarenMannheimCaseStudy = () => {
           </h2>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
-            We didn't change what Karen built. We changed how it was understood.
+            We didn't change what Karen built.<br />
+            We changed how it was understood.
           </p>
           
           <p className="text-[17px] md:text-[20px] leading-[1.9] mb-[40px]">
@@ -297,7 +298,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* Project Carousel Section */}
-      <section className="bg-[#3D3835] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#3D3835] py-[80px] md:py-[100px] px-5 md:px-[60px] max-h-[800px]">
         <div className="max-w-[1400px] mx-auto">
           <h2 className="text-[32px] md:text-[44px] leading-[1.2] font-bold mb-[60px] text-center text-[#FDFBF7]">
             The work that now travels
@@ -367,7 +368,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#E8DED1] py-[100px] md:py-[100px] px-5 md:px-[60px]">
+      <section className="bg-[#E8DED1] py-[80px] md:py-[100px] px-5 md:px-[60px]">
         <div className="max-w-[750px] mx-auto text-center">
           <Link 
             to="/book-call"

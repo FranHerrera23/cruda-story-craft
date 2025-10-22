@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import karenPhoto from "@/assets/karen-mannheim-casestudy.jpg";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const KarenMannheimCaseStudy = () => {
     role: "Founder of TRAZZO Lighting",
     subtitle: "High-End Architectural Lighting",
     location: "Lima, Miami, Madrid",
-    photo: "/src/assets/karen-mannheim-casestudy.jpg",
+    photo: karenPhoto,
     hasVideo: true,
     isConfidential: false,
     

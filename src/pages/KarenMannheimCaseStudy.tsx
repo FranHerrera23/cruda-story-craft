@@ -54,11 +54,18 @@ const KarenMannheimCaseStudy = () => {
       poster: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&h=1067&fit=crop"
     },
     {
-      slug: "residential-lighting",
-      name: "Residential Lighting Design",
+      slug: "bauhaus-villa",
+      name: "High-end BauHaus Villa",
       location: "Multiple Locations",
-      teaser: "How we position Karen's residential projects as case studies in emotion through illumination.",
+      teaser: "Contemporary minimalism meets lighting precision in high-end residential architecture.",
       poster: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "trazzo-expansion",
+      name: "Trazzo International Expansion & more",
+      location: "Global",
+      teaser: "Behind the scenes of building an international lighting design firm from Lima to the world.",
+      poster: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=1067&fit=crop"
     }
   ];
 

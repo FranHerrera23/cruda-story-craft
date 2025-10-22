@@ -10,6 +10,9 @@ import BookCall from "./pages/BookCall";
 import KarenMannheimCaseStudy from "./pages/KarenMannheimCaseStudy";
 import MikeKaedingCaseStudy from "./pages/MikeKaedingCaseStudy";
 import NotFound from "./pages/NotFound";
+import KarenPezetProject from "./pages/projects/KarenPezetProject";
+import KarenFourSeasonsProject from "./pages/projects/KarenFourSeasonsProject";
+import KarenSaadiyatProject from "./pages/projects/KarenSaadiyatProject";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +29,10 @@ const App = () => (
           <Route path="/clients/:clientSlug" element={<ClientDetail />} />
           <Route path="/work/:projectSlug" element={<CaseStudyDetail />} />
           <Route path="/book-call" element={<BookCall />} />
+          {/* Karen Mannheim Project Pages */}
+          <Route path="/projects/karen-mannheim/pezet" element={<KarenPezetProject />} />
+          <Route path="/projects/karen-mannheim/four-seasons-penthouse" element={<KarenFourSeasonsProject />} />
+          <Route path="/projects/karen-mannheim/saadiyat-music-festival" element={<KarenSaadiyatProject />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

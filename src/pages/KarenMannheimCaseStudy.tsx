@@ -10,13 +10,56 @@ const KarenMannheimCaseStudy = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const videos = [
-    { title: "How light shapes emotion", thumbnail: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&h=450&fit=crop" },
-    { title: "Why every room breathes differently", thumbnail: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&h=450&fit=crop" },
-    { title: "Building trust when you're not in the room", thumbnail: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&h=450&fit=crop" },
-    { title: "The technical precision behind luxury lighting", thumbnail: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&h=450&fit=crop" },
-    { title: "From Lima to Miami: cultural translation", thumbnail: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=800&h=450&fit=crop" },
-    { title: "Challenging industry assumptions", thumbnail: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=800&h=450&fit=crop" }
+  const projects = [
+    {
+      slug: "pezet",
+      name: "PEZET",
+      location: "Lima, Peru",
+      teaser: "Lima's most exclusive residential tower. We showed how lighting transforms a building into an experience.",
+      poster: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "four-seasons-penthouse",
+      name: "Four Seasons Penthouse",
+      location: "Miami, Florida",
+      teaser: "A penthouse where light adapts to every moment—from sunrise to entertaining guests after dark.",
+      poster: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "saadiyat-music-festival",
+      name: "Saadiyat Nights",
+      location: "Abu Dhabi, UAE",
+      teaser: "Global music festival with Andrea Bocelli, Sting, and Jennifer Lopez—a client who'd never met her.",
+      poster: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "osaka-nikkei",
+      name: "Osaka Nikkei",
+      location: "Miami, Florida",
+      teaser: "Where Japanese precision meets Peruvian warmth through light that guides every course.",
+      poster: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "porsche-design-tower",
+      name: "Porsche Design Tower",
+      location: "Miami, Florida",
+      teaser: "Automotive excellence translated into residential architecture through meticulous lighting design.",
+      poster: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "fisher-island",
+      name: "Fisher Island Residence",
+      location: "Miami, Florida",
+      teaser: "Private island living where every space breathes differently depending on the hour.",
+      poster: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&h=1067&fit=crop"
+    },
+    {
+      slug: "residential-lighting",
+      name: "Residential Lighting Design",
+      location: "Multiple Locations",
+      teaser: "How we position Karen's residential projects as case studies in emotion through illumination.",
+      poster: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=1067&fit=crop"
+    }
   ];
 
   return (
@@ -350,79 +393,141 @@ const KarenMannheimCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 9: VIDEO GRID */}
+      {/* SECTION 9: PROJECT STORYTELLING */}
       <section 
-        className="py-20 md:py-24 px-10 md:px-20"
+        id="projects"
+        className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto">
           <h2 
-            className="mb-16 text-center"
+            className="mb-6 text-center"
             style={{ 
-              fontSize: 'clamp(24px, 3vw, 32px)',
+              fontSize: 'clamp(32px, 4vw, 44px)',
               color: '#3D3835',
               fontWeight: 700
             }}
           >
-            Watch how we translated their story into content
+            The work that now travels
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {videos.map((video, index) => (
-              <div 
-                key={index}
-                className="relative group cursor-pointer"
+          <p 
+            className="mb-20 text-center mx-auto"
+            style={{
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.8,
+              color: '#3D3835',
+              opacity: 0.85,
+              maxWidth: '800px'
+            }}
+          >
+            Each project shows how we translated Karen's technical mastery into stories that create belief remotely—from Lima to Miami to Dubai.
+          </p>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {projects.map((project) => (
+              <Link
+                key={project.slug}
+                to={`/projects/karen-mannheim/${project.slug}`}
+                className="group flex flex-col transition-all duration-300 hover:-translate-y-2"
                 style={{
+                  backgroundColor: '#FFFFFF',
                   borderRadius: '12px',
                   overflow: 'hidden',
-                  boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
-                  aspectRatio: '16/9'
+                  boxShadow: '0 4px 20px rgba(61, 56, 53, 0.08)',
+                  cursor: 'pointer'
                 }}
               >
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
+                {/* Vertical video cover */}
                 <div 
-                  className="absolute inset-0 flex items-center justify-center"
-                  style={{ backgroundColor: 'rgba(0, 0, 0, 0.3)' }}
+                  className="relative overflow-hidden"
+                  style={{
+                    height: '400px',
+                    backgroundColor: '#E8DED1'
+                  }}
                 >
+                  <img
+                    src={project.poster}
+                    alt={project.name}
+                    className="w-full h-full object-cover"
+                    style={{ aspectRatio: '9/16' }}
+                  />
+                  
+                  {/* Play button overlay (static) */}
                   <div 
-                    className="w-16 h-16 rounded-full flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
                   >
                     <div 
-                      style={{ 
-                        width: 0, 
-                        height: 0, 
-                        borderLeft: '12px solid #3D3835',
-                        borderTop: '8px solid transparent',
-                        borderBottom: '8px solid transparent',
-                        marginLeft: '4px'
-                      }}
-                    />
+                      className="w-16 h-16 rounded-full flex items-center justify-center animate-pulse"
+                      style={{ backgroundColor: 'rgba(255, 255, 255, 0.9)' }}
+                    >
+                      <div 
+                        style={{ 
+                          width: 0, 
+                          height: 0, 
+                          borderLeft: '14px solid #3D3835',
+                          borderTop: '9px solid transparent',
+                          borderBottom: '9px solid transparent',
+                          marginLeft: '4px'
+                        }}
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* View Project overlay (hover) */}
+                  <div 
+                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ backgroundColor: 'rgba(61, 56, 53, 0.85)' }}
+                  >
+                    <span style={{ fontSize: '18px', color: '#FDFBF7', fontWeight: 600 }}>
+                      View Project →
+                    </span>
                   </div>
                 </div>
-                <div 
-                  className="absolute bottom-0 left-0 right-0 p-5"
-                  style={{ backgroundColor: 'rgba(61, 56, 53, 0.8)' }}
-                >
-                  <p style={{ 
-                    fontSize: 'clamp(16px, 1.8vw, 18px)',
-                    color: '#FDFBF7',
-                    fontWeight: 700
-                  }}>
-                    {video.title}
+                
+                {/* Project info */}
+                <div style={{ padding: '24px' }}>
+                  <h3 
+                    style={{ 
+                      fontSize: '22px',
+                      fontWeight: 700,
+                      color: '#3D3835',
+                      marginBottom: '8px'
+                    }}
+                  >
+                    {project.name}
+                  </h3>
+                  
+                  <p 
+                    style={{ 
+                      fontSize: '14px',
+                      color: '#3D3835',
+                      opacity: 0.6,
+                      marginBottom: '16px'
+                    }}
+                  >
+                    {project.location}
+                  </p>
+                  
+                  <p 
+                    style={{ 
+                      fontSize: '16px',
+                      lineHeight: 1.7,
+                      color: '#3D3835',
+                      opacity: 0.85
+                    }}
+                  >
+                    {project.teaser}
                   </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* SECTION 10: VISUAL DIVIDER */}
+      <div id="metrics"></div>
       <section 
         className="py-16 flex justify-center items-center gap-3"
         style={{ backgroundColor: '#F5F1E8' }}

@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import pezetHero from "@/assets/pezet-hero.jpg";
 
 const KarenPezetProject = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const KarenPezetProject = () => {
         className="relative flex items-end"
         style={{
           height: '60vh',
-          backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=2000&h=1200&fit=crop)',
+          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(${pezetHero})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

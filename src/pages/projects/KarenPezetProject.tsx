@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
-import pezetHero from "@/assets/pezet-hero.jpg";
+import pezetHero from "@/assets/pezet-interior.jpg";
 
 const KarenPezetProject = () => {
   const navigate = useNavigate();

@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
 import heroImage from "@/assets/karen-hero-new.jpg";
+import pezetPoster from "@/assets/pezet-hero.jpg";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ const KarenMannheimCaseStudy = () => {
       name: "PEZET",
       location: "Lima, Peru",
       teaser: "Lima's most exclusive residential tower. We showed how lighting transforms a building into an experience.",
-      poster: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&h=1067&fit=crop"
+      poster: pezetPoster
     },
     {
       slug: "four-seasons-penthouse",

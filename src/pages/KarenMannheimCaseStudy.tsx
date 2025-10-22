@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
-import heroImage from "@/assets/hero-karen-mannheim.jpg";
+import heroImage from "@/assets/karen-hero-new.jpg";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();

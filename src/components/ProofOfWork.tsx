@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import karenPhoto from "@/assets/karen-mannheim.jpg";
+import karenPhoto from "@/assets/karen-mannheim-new.jpg";
 import mikePhoto from "@/assets/mike-kaeding.webp";
 import juanPhoto from "@/assets/juan-pablo-romero.jpeg";
 import hospitalityPhoto from "@/assets/hospitality-manager.jpg";

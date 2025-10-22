@@ -9,7 +9,7 @@ const clients = [
     role: "Architectural Lighting Designer",
     subtitle: "High-End Residences & Retail",
     location: "Miami • Lima",
-    photo: "/src/assets/karen-mannheim.jpg",
+    photo: "/src/assets/karen-mannheim-new.jpg",
     hasVideo: true,
     isConfidential: false,
     

@@ -15,7 +15,7 @@ const KarenMannheimCaseStudy = () => {
     role: "Founder of TRAZZO Lighting",
     subtitle: "High-End Architectural Lighting",
     location: "Lima, Miami, Madrid",
-    photo: "/src/assets/karen-mannheim.jpg",
+    photo: "/src/assets/karen-mannheim-new.jpg",
     hasVideo: true,
     isConfidential: false,
     

@@ -16,57 +16,50 @@ const KarenMannheimCaseStudy = () => {
       slug: "pezet",
       name: "PEZET",
       location: "Lima, Peru",
-      teaser: "Lima's most exclusive residential tower. We showed how lighting transforms a building into an experience.",
+      teaser: "Three towers by Robert A.M. Stern Architects. Proof of what Karen could do at the highest level—became the story we told Miami developers.",
       poster: pezetPoster
     },
     {
       slug: "four-seasons-penthouse",
       name: "Four Seasons Penthouse",
-      location: "Miami, Florida",
-      teaser: "A penthouse where light adapts to every moment—from sunrise to entertaining guests after dark.",
+      location: "Lima, Peru",
+      teaser: "A $13M residence where every room breathes differently. How lighting creates intimacy in a wine cellar, command in a lobby.",
       poster: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=1067&fit=crop"
     },
     {
       slug: "saadiyat-music-festival",
-      name: "Saadiyat Nights",
+      name: "Saadiyat Music Festival",
       location: "Abu Dhabi, UAE",
-      teaser: "Global music festival with Andrea Bocelli, Sting, and Jennifer Lopez—a client who'd never met her.",
+      teaser: "Jennifer Lopez, Christina Aguilera. The UAE partnership that happened because of content, not cold outreach.",
       poster: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=1067&fit=crop"
     },
     {
       slug: "osaka-nikkei",
       name: "Osaka Nikkei",
       location: "Miami, Florida",
-      teaser: "Where Japanese precision meets Peruvian warmth through light that guides every course.",
+      teaser: "Miami's celebrated Peruvian-Japanese restaurant. One of the first high-end projects after establishing Florida presence.",
       poster: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=1067&fit=crop"
     },
     {
       slug: "porsche-design-tower",
       name: "Porsche Design Tower",
       location: "Miami, Florida",
-      teaser: "Automotive excellence translated into residential architecture through meticulous lighting design.",
+      teaser: "Luxury automotive residences. Lighting that matches precision engineering—technical mastery meeting emotional design.",
       poster: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&h=1067&fit=crop"
     },
     {
       slug: "fisher-island",
       name: "Fisher Island Residence",
       location: "Miami, Florida",
-      teaser: "Private island living where every space breathes differently depending on the hour.",
+      teaser: "Waterfront home where lighting responds to Miami's weather. Interior light designed for natural elements.",
       poster: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&h=1067&fit=crop"
     },
     {
-      slug: "bauhaus-villa",
-      name: "High-end BauHaus Villa",
-      location: "Multiple Locations",
-      teaser: "Contemporary minimalism meets lighting precision in high-end residential architecture.",
+      slug: "residential-process",
+      name: "Residential Lighting Process",
+      location: "Multi-location",
+      teaser: "How Karen approaches luxury residential. The thinking behind three decades of making spaces feel right.",
       poster: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=1067&fit=crop"
-    },
-    {
-      slug: "trazzo-expansion",
-      name: "Trazzo International Expansion & more",
-      location: "Global",
-      teaser: "Behind the scenes of building an international lighting design firm from Lima to the world.",
-      poster: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=1067&fit=crop"
     }
   ];
 
@@ -106,7 +99,7 @@ const KarenMannheimCaseStudy = () => {
               fontWeight: 500
             }}
           >
-            Luxury Lighting Design | Lima → Miami → Dubai
+            HIGH-END ARCHITECTURAL LIGHTING | LIMA, MIAMI, MADRID
           </p>
           <h1 
             className="font-bold"
@@ -137,7 +130,7 @@ const KarenMannheimCaseStudy = () => {
           textTransform: 'uppercase',
           fontWeight: 500
         }}>
-          Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Dubai
+          Karen Mannheim | TRAZZO Lighting | Architectural Lighting Design | Lima | Miami | Madrid
         </p>
       </section>
 
@@ -152,7 +145,7 @@ const KarenMannheimCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Karen Mannheim had spent three decades perfecting how light shapes emotion in luxury spaces. By 2021, TRAZZO was one of Peru's most respected lighting companies—architects and developers who worked with her understood immediately. The portfolio was exceptional: Porsche, Maserati, residences where every room breathed differently depending on the hour, the mood, the moment.
+            Karen Mannheim spent thirty years building TRAZZO in Peru. Lima's most respected lighting firm. Porsche showrooms, Maserati dealerships, Four Seasons penthouses. Over a thousand projects across Peru.
           </p>
           
           <p style={{ 
@@ -160,7 +153,7 @@ const KarenMannheimCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            But her expertise stopped at Peru's border. More accurately, it stopped at the edge of her immediate network.
+            Her work was exceptional. Walk through a space she lit and you felt it. A wine cellar that felt intimate. A lobby that felt commanding. Bedrooms that helped you sleep.
           </p>
           
           <p style={{ 
@@ -168,7 +161,7 @@ const KarenMannheimCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            The work was undeniable in person. Walking through a space she'd lit, you felt it—the way light made a wine cellar intimate, a lobby commanding, a bedroom restful without being flat. But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. Not because the work wasn't there. Because the story wasn't.
+            But in 2021, Karen wanted to expand to the US. She was ready for Miami. Ready for international projects. The expertise was there. The portfolio was there.
           </p>
           
           <p style={{ 
@@ -176,7 +169,15 @@ const KarenMannheimCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            She had no audience online. A thousand followers, no LinkedIn presence, no way to create belief when she wasn't standing in front of you explaining what she saw. The gap wasn't quality. It was translation.
+            What wasn't there: anyone outside Peru who knew her name.
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)',
+            lineHeight: 1.9,
+            color: '#3D3835'
+          }}>
+            A thousand Instagram followers. No LinkedIn. No way to create belief with developers in Miami who'd never walked through her spaces. When Karen wasn't in the room, no one understood what thirty years of expertise looked like.
           </p>
         </div>
       </section>
@@ -225,7 +226,7 @@ const KarenMannheimCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            Karen's expertise stopped at Peru's border—but no one outside Lima knew about it.
+            Thirty years of work in Peru. Zero presence in Miami.
           </h2>
           
           <div className="space-y-6">
@@ -234,7 +235,7 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Three decades perfecting architectural lighting for luxury spaces. TRAZZO was Peru's most respected—Porsche, Maserati, residences where every room breathed differently.
+              Karen was opening TRAZZO's Miami office. But Miami developers didn't know her. Middle Eastern hospitality groups hadn't heard of her. She had no speaking opportunities. No partnerships outside Peru.
             </p>
             
             <p style={{ 
@@ -242,7 +243,7 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              But she couldn't get into rooms with Miami developers or Middle Eastern hospitality groups. A thousand followers. No LinkedIn presence. No way to create belief remotely.
+              Her reputation was local. Her ambition was international.
             </p>
             
             <p style={{ 
@@ -250,7 +251,23 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              The gap wasn't quality. It was translation.
+              The work spoke for itself—if you could see it. But you can't walk Miami developers through a Lima penthouse. You can't explain three decades of lighting expertise in an email.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Karen needed to build belief remotely. Not with renderings or sales decks. With a story that showed what she understood about light, materials, and how spaces make people feel.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              We started working together the month she committed to US expansion.
             </p>
           </div>
         </div>
@@ -282,7 +299,7 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.8,
               color: '#3D3835'
             }}>
-              Karen had mastery. What she didn't have was a way to create belief remotely.
+              Build Karen's presence in Florida from zero. Not a rebrand. Not a website refresh. A way to show Miami developers and international partners what thirty years in Peru had taught her.
             </p>
             
             <p style={{ 
@@ -290,16 +307,15 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.8,
               color: '#3D3835'
             }}>
-              We needed to translate three decades of expertise into something that could travel—from Lima to Miami to Dubai, from her immediate circle to rooms she'd never been in. Not by simplifying what she did, but by understanding that technical precision speaks one language, and human connection speaks another.
+              We needed to translate her local credibility into a story that worked in markets where no one knew TRAZZO existed.
             </p>
             
             <p style={{ 
               fontSize: 'clamp(18px, 2.2vw, 22px)',
               lineHeight: 1.8,
-              color: '#3D3835',
-              fontWeight: 600
+              color: '#3D3835'
             }}>
-              The work: build her story before we built her reach.
+              The goal: partnerships, speaking opportunities, high-end residential projects in Miami. Eventually, international work—Dubai, Spain, beyond.
             </p>
           </div>
         </div>
@@ -340,7 +356,7 @@ const KarenMannheimCaseStudy = () => {
               fontStyle: 'italic'
             }}
           >
-            We didn't change what Karen built. We changed how it was understood.
+            We didn't tell Karen's story. We helped her find her voice.
           </h2>
           
           <p 
@@ -351,7 +367,18 @@ const KarenMannheimCaseStudy = () => {
               color: '#3D3835'
             }}
           >
-            Through structured founder interviews and strategic positioning, we transformed TRAZZO from a regional supplier to an international design authority. We developed a content system that turns technical mastery into emotional storytelling that travels across borders and cultures.
+            Weekly interviews starting in 2021. Not about past projects. About how Karen thinks. How she approaches lighting. Why she visits sites at different times of day. What luxury lighting actually requires.
+          </p>
+          
+          <p 
+            className="text-center"
+            style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.8,
+              color: '#3D3835'
+            }}
+          >
+            Every piece of content went through her. She marked up what felt wrong. What felt right. That feedback taught us how she wanted TRAZZO understood in new markets.
           </p>
         </div>
       </section>
@@ -379,7 +406,7 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              We didn't build a content system. We built a way for Karen to think out loud.
+              We built her story around three things:
             </p>
             
             <p style={{ 
@@ -387,7 +414,7 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Her expertise lived in three spaces: the technical (how light actually works in luxury spaces—thermal dynamics, layering, material interaction), the cultural (what it means to build a Latin American company in Miami, to understand light speaks different languages), and the insurgent (challenging the 'lighting as afterthought' mindset that architecture accepts without question).
+              <strong>Technical depth.</strong> How light behaves on different materials. Thermal dynamics. Layering. Why lighting a restaurant is different from lighting a residence.
             </p>
             
             <p style={{ 
@@ -395,7 +422,31 @@ const KarenMannheimCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              The content wasn't promotional. It was contemplative. Her first experience as a speaker. The story behind TRAZZO and its founding team. How to expand a B2B company from Peru to Miami as a Latin American entrepreneur. The breakdown of real projects with the thinking that shaped them.
+              <strong>Cross-cultural fluency.</strong> A Peruvian woman with German roots building a business in Miami. Understanding that light "speaks" differently across cultures.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              <strong>Challenging assumptions.</strong> Why architects treat lighting as an afterthought. Why that's wrong. What changes when you design spaces with light as architecture.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              The content wasn't promotional. It was Karen thinking out loud about thirty years of craft.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              This built her presence in Florida. Then opened doors in the UAE.
             </p>
           </div>
         </div>
@@ -429,7 +480,7 @@ const KarenMannheimCaseStudy = () => {
               maxWidth: '800px'
             }}
           >
-            Each project shows how we translated Karen's technical mastery into stories that create belief remotely—from Lima to Miami to Dubai.
+            Each project shows how we turned thirty years of Peru expertise into stories that opened doors in Miami, the UAE, and beyond.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -570,7 +621,7 @@ const KarenMannheimCaseStudy = () => {
               color: '#3D3835'
             }}
           >
-            Over three years: the belief that travels when Karen isn't in the room.
+            Three years later: belief that travels when Karen isn't in the room.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
@@ -589,7 +640,7 @@ const KarenMannheimCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>+20,000 followers and 500,000 annual impressions</strong> where there had been silence
+                <strong style={{ color: '#FF2E63' }}>20,000 followers</strong> where there had been silence
               </p>
             </div>
             
@@ -608,7 +659,7 @@ const KarenMannheimCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Architectural Digest, Modern Luxury Magazine, COSAS Magazine, Semana Económica</strong>—recognition that travels
+                <strong style={{ color: '#FF2E63' }}>Florida presence</strong> built from zero—ten high-end Miami bids won
               </p>
             </div>
             
@@ -627,7 +678,7 @@ const KarenMannheimCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Saadiyat Nights</strong>—a music festival hosting global stars like Andrea Bocelli, Sting, Jennifer Lopez, Christina Aguilera, a client who'd never met her
+                <strong style={{ color: '#FF2E63' }}>UAE partnership</strong> that started with content—Saadiyat Music Festival, Jennifer Lopez, Christina Aguilera
               </p>
             </div>
             
@@ -646,7 +697,7 @@ const KarenMannheimCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Indonesia, Spain, Hawaii</strong>—partnerships across borders
+                <strong style={{ color: '#FF2E63' }}>International expansion</strong> across three continents—Indonesia, Spain, Hawaii
               </p>
             </div>
             
@@ -665,7 +716,7 @@ const KarenMannheimCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>+10 high-end Miami bids won</strong>—from cold outreach that isn't cold anymore
+                <strong style={{ color: '#FF2E63' }}>Press</strong> that validates beyond Peru—Architectural Digest, Semana Económica
               </p>
             </div>
             
@@ -684,7 +735,7 @@ const KarenMannheimCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Speaking invitations</strong>—industry conferences, and schools, not just local press
+                <strong style={{ color: '#FF2E63' }}>Speaking invitations</strong> at architecture conferences—not just local, across the Americas
               </p>
             </div>
           </div>
@@ -697,7 +748,18 @@ const KarenMannheimCaseStudy = () => {
               color: '#3D3835'
             }}
           >
-            She walks into rooms now where people already know her work. The recognition finally matches the expertise.
+            She walks into rooms now where people already know her work, and her story. Miami developers. UAE & European partners.
+          </p>
+          
+          <p 
+            className="text-center max-w-[700px] mx-auto mt-6"
+            style={{ 
+              fontSize: 'clamp(18px, 2.2vw, 22px)',
+              lineHeight: 1.7,
+              color: '#3D3835'
+            }}
+          >
+            The thirty years of expertise finally has a story that travels.
           </p>
         </div>
       </section>
@@ -725,7 +787,7 @@ const KarenMannheimCaseStudy = () => {
               fontStyle: 'italic'
             }}
           >
-            "CRUDA helped us translate three decades of expertise into a story that works everywhere—from Lima to Miami to Dubai. The work was always exceptional. Now people outside our immediate circle can see it."
+            "CRUDA helped us translate three decades of expertise into a story that works everywhere—from Lima to Miami to Dubai. The work was always exceptional. Now people outside Peru can see it."
           </p>
           <p style={{ 
             fontSize: '14px',

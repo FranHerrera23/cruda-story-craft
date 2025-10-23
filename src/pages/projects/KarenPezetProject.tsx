@@ -71,7 +71,7 @@ const KarenPezetProject = () => {
               opacity: 0.8
             }}
           >
-            Lima, Peru · 2023
+            Lima, Peru · 2020-2023
           </p>
         </div>
       </section>
@@ -87,7 +87,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Three towers face Lima Golf Club in San Isidro. Pezet 1, Pezet 2, Pezet 3.
+            Three towers facing Lima Golf Club in San Isidro. Robert A.M. Stern Architects—the same firm that designed 15 Central Park West, Harvard Law School, the George W. Bush Presidential Center.
           </p>
           
           <p style={{ 
@@ -95,7 +95,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            The architecture: Robert A.M. Stern Architects. The same firm behind 15 Central Park West—the building that redefined luxury residential in Manhattan. The same firm that designed Harvard Law School, the George W. Bush Presidential Center, the Comcast Center in Philadelphia. Buildings that don't chase trends. Buildings that understand permanence.
+            This project happened in Peru, before TRAZZO expanded to Miami. But it became proof of what Karen could do at the highest level.
           </p>
           
           <p style={{ 
@@ -103,7 +103,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            RAMSA brought that sensibility to Lima. Not copying New York. Translating it—reinterpreting early 20th-century sophistication for how Lima lives today.
+            RAMSA doesn't follow trends. They design buildings that last decades. Karen designed the lighting. Her job: make sure what works during the day still works at night. That stone, glass, and bronze feel right after dark.
           </p>
           
           <p style={{ 
@@ -111,15 +111,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Karen was brought in to design the lighting. Not to decorate RAMSA's architecture. To complete it. To make sure that what works during the day still works at night. That the materials—stone, glass, bronze—still breathe after dark. That the buildings create presence on Lima's skyline without shouting.
-          </p>
-          
-          <p style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            This is what thirty years looks like when it partners with firms that think in decades, not development cycles.
+            When we started working with Karen in 2021, she was ready to expand to the US. Pezet became part of the story we told Miami developers: here's what thirty years in Peru looks like when you partner with world-class architecture firms.
           </p>
         </div>
       </section>
@@ -198,10 +190,71 @@ const KarenPezetProject = () => {
         </div>
       </section>
 
-      {/* HOW WE COMMUNICATED IT */}
+      {/* THE CHALLENGE */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#E8DED1' }}
+      >
+        <div className="max-w-[750px] mx-auto">
+          <div 
+            className="inline-block mb-10"
+            style={{ 
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
+            }}
+          >
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              The Challenge
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Karen had the project. She had the portfolio. What she didn't have: a way to show Miami developers what working with RAMSA meant.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Developers in Florida didn't know TRAZZO. They hadn't walked through Pezet. They couldn't see how Karen thinks about lighting at that level.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              We needed to translate this project—and thirty years of others—into content that would build credibility in a market where she had zero presence.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Not portfolio documentation. A story that showed what RAMSA expects from partners. What lighting at that caliber requires.
+            </p>
+          </div>
+        </div>
+      </section>
+      
+      {/* HOW WE TOLD THIS STORY */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[800px] mx-auto">
           <p 
@@ -223,7 +276,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              We built the narrative around what it means to partner with firms like RAMSA.
+              We framed Pezet around partnership. What does it take to work with Robert A.M. Stern Architects?
             </p>
             
             <p style={{ 
@@ -231,7 +284,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Not "TRAZZO lit the Pezet towers." That's project documentation. We framed it as: What does Robert A.M. Stern Architects expect from a lighting partner? What does it take to work on buildings that sit next to their Harvard, Yale, and 15 Central Park West projects?
+              The content showed Karen's process. Visiting sites at different times of day. Understanding materials. Designing for decades, not just opening day.
             </p>
             
             <p style={{ 
@@ -239,7 +292,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              The content showed Karen's process—not as promotion, but as observation. How she visits sites at different times of day to understand how Lima's coastal light behaves. How she designs for materials that will age over decades. How lighting at this caliber isn't about fixtures—it's about understanding architecture as cultural practice, as urban presence, as something that needs to feel right long after opening day.
+              Not "TRAZZO did great work in Peru." Instead: Here's what world-class architecture requires. Here's what Karen brings to projects at RAMSA's level.
             </p>
             
             <p style={{ 
@@ -247,7 +300,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              We didn't say "TRAZZO works with world-class firms." We showed what that looks like. The rigor. The precision. The thinking in decades, not development cycles.
+              This positioned her for Miami. For developers who recognize names like 15 Central Park West. Who understand that buildings at that level need partners who think about permanence.
             </p>
             
             <p style={{ 
@@ -255,7 +308,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              This positioned Karen for conversations with high-rise residential developers across Latin America and beyond—developers who understood that buildings at this level require partners who think about permanence, not just project timelines. The kind of developers who know what 15 Central Park West means. Who understand why RAMSA's name matters.
+              The Pezet content helped open doors in Florida. Then the UAE. Then beyond.
             </p>
           </div>
         </div>
@@ -264,7 +317,7 @@ const KarenPezetProject = () => {
       {/* LINKEDIN POST EXAMPLES */}
       <section 
         className="py-16 md:py-24 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
+        style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto">
           <h3 
@@ -278,19 +331,6 @@ const KarenPezetProject = () => {
             Content examples from this project
           </h3>
           
-          <p 
-            className="text-center mx-auto mb-16"
-            style={{
-              fontSize: '16px',
-              fontStyle: 'italic',
-              color: '#3D3835',
-              opacity: 0.7,
-              maxWidth: '700px',
-              lineHeight: 1.7
-            }}
-          >
-            Posts that educated the market about lighting as architecture, using RAMSA partnership as proof of caliber without saying it.
-          </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {linkedinPosts.map((post, index) => (
@@ -319,27 +359,13 @@ const KarenPezetProject = () => {
               </div>
             ))}
           </div>
-          
-          <p 
-            className="text-center mx-auto mt-16"
-            style={{
-              fontSize: '16px',
-              fontStyle: 'italic',
-              color: '#3D3835',
-              opacity: 0.7,
-              maxWidth: '800px',
-              lineHeight: 1.7
-            }}
-          >
-            Each post was designed to educate developers and architects about what RAMSA-level projects require—not by saying "hire us," but by showing how Karen thinks about buildings that need to work for decades, not just development cycles.
-          </p>
         </div>
       </section>
 
       {/* BACK TO KAREN'S STORY */}
       <section 
         className="py-20 px-10 md:px-20 text-center"
-        style={{ backgroundColor: '#E8DED1' }}
+        style={{ backgroundColor: '#F5F1E8' }}
       >
         <Link
           to="/clients/karen-mannheim#metrics"

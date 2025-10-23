@@ -10,6 +10,10 @@ import pezet05 from "@/assets/pezet-05-context-skyline.jpg";
 import pezet06 from "@/assets/pezet-06-exterior-courtyard.jpg";
 import pezet07 from "@/assets/pezet-07-exterior-front.jpg";
 import pezet08 from "@/assets/pezet-08-lobby-interior.jpg";
+import linkedinPost01 from "@/assets/pezet-linkedin-01.png";
+import linkedinPost02 from "@/assets/pezet-linkedin-02.png";
+import linkedinPost03 from "@/assets/pezet-linkedin-03.png";
+import linkedinPost04 from "@/assets/pezet-linkedin-04.png";
 
 const KarenPezetProject = () => {
   const navigate = useNavigate();
@@ -30,9 +34,10 @@ const KarenPezetProject = () => {
   ];
 
   const linkedinPosts = [
-    { image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=800&fit=crop', title: 'How light creates presence at night' },
-    { image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=800&fit=crop', title: 'PEZET: Architecture as urban sculpture' },
-    { image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=600&h=800&fit=crop', title: 'Why residential towers need to breathe' }
+    { image: linkedinPost01, url: '#', title: 'Working alongside RAMSA and Grupo ACM' },
+    { image: linkedinPost02, url: '#', title: 'Lighting design at PEZET' },
+    { image: linkedinPost03, url: '#', title: 'Designing for RAMSA' },
+    { image: linkedinPost04, url: '#', title: 'PEZET 3 project reveal' }
   ];
 
   return (
@@ -441,7 +446,7 @@ const KarenPezetProject = () => {
           </div>
 
           {/* LinkedIn Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1200px] mx-auto">
             {linkedinPosts.map((post, index) => (
               <div
                 key={index}
@@ -464,7 +469,7 @@ const KarenPezetProject = () => {
                   }}
                 />
                 <a
-                  href="#"
+                  href={post.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block text-center transition-colors duration-300 hover:underline"

@@ -2,6 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import pezetHero from "@/assets/pezet-interior.jpg";
+import pezet01 from "@/assets/pezet-01-entrance.png";
+import pezet02 from "@/assets/pezet-02-entrance.png";
+import pezet03 from "@/assets/pezet-03-entrance.jpg";
+import pezet04 from "@/assets/pezet-04-pool-interior.jpg";
+import pezet05 from "@/assets/pezet-05-context-skyline.jpg";
+import pezet06 from "@/assets/pezet-06-exterior-courtyard.jpg";
+import pezet07 from "@/assets/pezet-07-exterior-front.jpg";
+import pezet08 from "@/assets/pezet-08-lobby-interior.jpg";
 
 const KarenPezetProject = () => {
   const navigate = useNavigate();
@@ -11,13 +19,14 @@ const KarenPezetProject = () => {
   }, []);
 
   const galleryItems = [
-    { type: 'image', src: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&h=900&fit=crop', caption: 'PEZET tower at dusk' },
-    { type: 'image', src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=1420&fit=crop', caption: 'Vertical illumination detail' },
-    { type: 'image', src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&h=1420&fit=crop', caption: 'Interior lighting layering' },
-    { type: 'image', src: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1600&h=900&fit=crop', caption: 'Pacific ocean view at night' },
-    { type: 'image', src: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=900&h=900&fit=crop', caption: 'Lobby lighting atmosphere' },
-    { type: 'image', src: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=900&h=900&fit=crop', caption: 'Evening glow effect' },
-    { type: 'image', src: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=900&h=900&fit=crop', caption: 'Architectural detail' }
+    { type: 'image', src: pezet05, caption: 'PEZET building in Lima skyline context with Lima Golf Club' },
+    { type: 'image', src: pezet01, caption: 'PEZET 1 entrance facade detail' },
+    { type: 'image', src: pezet02, caption: 'PEZET 2 entrance facade detail' },
+    { type: 'image', src: pezet07, caption: 'Front exterior view with pool and gardens' },
+    { type: 'image', src: pezet04, caption: 'Interior pool with dramatic lighting design' },
+    { type: 'image', src: pezet06, caption: 'Exterior courtyard with European-inspired landscaping' },
+    { type: 'image', src: pezet08, caption: 'Lobby interior showing RAMSA architecture and lighting' },
+    { type: 'image', src: pezet03, caption: 'PEZET 3 entrance' }
   ];
 
   const linkedinPosts = [
@@ -122,71 +131,83 @@ const KarenPezetProject = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto space-y-8">
-          {/* Full width horizontal */}
+          {/* Full width context skyline */}
           <img
             src={galleryItems[0].src}
             alt={galleryItems[0].caption}
             className="w-full"
+            loading="lazy"
             style={{
               borderRadius: '12px',
               boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
             }}
           />
           
-          {/* Two verticals side by side */}
+          {/* Two entrance facades side by side */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <img
               src={galleryItems[1].src}
               alt={galleryItems[1].caption}
-              className="w-full"
+              className="w-full h-full object-cover"
+              loading="lazy"
               style={{
                 borderRadius: '12px',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
-                aspectRatio: '9/16',
-                objectFit: 'cover'
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
               }}
             />
             <img
               src={galleryItems[2].src}
               alt={galleryItems[2].caption}
-              className="w-full"
+              className="w-full h-full object-cover"
+              loading="lazy"
               style={{
                 borderRadius: '12px',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
-                aspectRatio: '9/16',
-                objectFit: 'cover'
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
               }}
             />
           </div>
           
-          {/* Full width horizontal */}
+          {/* Full width exterior with pool */}
           <img
             src={galleryItems[3].src}
             alt={galleryItems[3].caption}
             className="w-full"
+            loading="lazy"
             style={{
               borderRadius: '12px',
               boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
             }}
           />
           
-          {/* Three squares */}
+          {/* Three interior/detail shots */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {galleryItems.slice(4, 7).map((item, index) => (
               <img
                 key={index}
                 src={item.src}
                 alt={item.caption}
-                className="w-full"
+                className="w-full h-full object-cover"
+                loading="lazy"
                 style={{
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
-                  aspectRatio: '1/1',
-                  objectFit: 'cover'
+                  aspectRatio: '4/5'
                 }}
               />
             ))}
           </div>
+
+          {/* Final entrance facade */}
+          <img
+            src={galleryItems[7].src}
+            alt={galleryItems[7].caption}
+            className="w-full"
+            loading="lazy"
+            style={{
+              borderRadius: '12px',
+              boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
+            }}
+          />
         </div>
       </section>
 

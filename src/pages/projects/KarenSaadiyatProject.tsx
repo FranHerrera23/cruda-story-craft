@@ -10,19 +10,28 @@ const KarenSaadiyatProject = () => {
   }, []);
 
   const galleryItems = [
-    { src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&h=900&fit=crop', caption: 'Saadiyat Nights festival' },
-    { src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&h=1420&fit=crop', caption: 'Stage lighting design' },
-    { src: 'https://images.unsplash.com/photo-1501612780327-45045538702b?w=800&h=1420&fit=crop', caption: 'Atmospheric lighting' },
-    { src: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&h=900&fit=crop', caption: 'Concert atmosphere' },
-    { src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=900&h=900&fit=crop', caption: 'Venue lighting' },
-    { src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=900&h=900&fit=crop', caption: 'Crowd ambiance' },
-    { src: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900&h=900&fit=crop', caption: 'Evening setup' }
+    { src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&h=900&fit=crop', caption: 'Wide festival shot at night' },
+    { src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&h=1420&fit=crop', caption: 'Walkway lighting' },
+    { src: 'https://images.unsplash.com/photo-1501612780327-45045538702b?w=800&h=1420&fit=crop', caption: 'Hospitality areas' },
+    { src: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&h=900&fit=crop', caption: 'Access points' },
+    { src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=900&h=900&fit=crop', caption: 'Detail shots' },
+    { src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=900&h=900&fit=crop', caption: 'Crowd experience' },
+    { src: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900&h=900&fit=crop', caption: 'Day to night transition' }
+  ];
+
+  const videos = [
+    { title: 'Video 1', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 2', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 3', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 4', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 5', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 6', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' }
   ];
 
   const linkedinPosts = [
-    { image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=800&fit=crop', title: 'From Lima to Abu Dhabi: When work travels' },
-    { image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=800&fit=crop', title: 'Lighting global performances' },
-    { image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=800&fit=crop', title: 'How content creates belief remotely' }
+    { image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=800&fit=crop', title: 'Post 1', url: '#' },
+    { image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=800&fit=crop', title: 'Post 2', url: '#' },
+    { image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=800&fit=crop', title: 'Post 3', url: '#' }
   ];
 
   return (
@@ -47,7 +56,7 @@ const KarenSaadiyatProject = () => {
       >
         <div className="px-10 md:px-20 pb-12">
           <h1 className="font-bold mb-2" style={{ fontSize: 'clamp(38px, 5vw, 52px)', color: '#FDFBF7', lineHeight: 1.2 }}>
-            Saadiyat Nights
+            SAADIYAT MUSIC FESTIVAL
           </h1>
           <p style={{ fontSize: '18px', color: '#FDFBF7', opacity: 0.8 }}>
             Abu Dhabi, UAE · 2023
@@ -59,77 +68,215 @@ const KarenSaadiyatProject = () => {
       <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
         <div className="max-w-[800px] mx-auto space-y-10">
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            A music festival hosting global stars like Andrea Bocelli, Sting, Jennifer Lopez, and Christina Aguilera. Karen had never met the client in person. They found her through content.
+            Saadiyat Nights. Abu Dhabi's most ambitious cultural initiative since 2023. Mariah Carey, Sting, Andrea Bocelli, John Legend, Ricky Martin, Hans Zimmer, Jennifer Lopez, Lewis Capaldi, Leningrad. Thousands of people. Premium hospitality. Global reach.
           </p>
           
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            This was the moment the strategy became undeniable. A high-profile international project—not from referrals, not from pitching, but from recognition that traveled. The client understood her approach to lighting before the first call. The content had already created belief.
+            Karen's work here wasn't the stage. That was handled.
           </p>
           
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            We documented the process: designing for outdoor performances, managing light across multiple stages, creating atmosphere that complements global talent without overpowering it. This project showed developers and event organizers worldwide that Karen's expertise scales—from intimate residences to large-scale international productions.
+            This was everything else—the walkways, the hospitality areas, the access points. The infrastructure that makes thousands of people feel like they're part of something exceptional, not just attending a concert.
+          </p>
+          
+          <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+            A UAE partner had been following Karen's work. They reached out. By the time they met, they already understood what she brought to projects. This was Karen's first work in the Middle East.
           </p>
         </div>
       </section>
 
-      {/* GALLERY */}
-      <section className="pb-20 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
-        <div className="max-w-[1200px] mx-auto space-y-8">
-          <img src={galleryItems[0].src} alt={galleryItems[0].caption} className="w-full" style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)' }} />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {galleryItems.slice(1, 3).map((item, i) => (
-              <img key={i} src={item.src} alt={item.caption} className="w-full" style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)', aspectRatio: '9/16', objectFit: 'cover' }} />
-            ))}
-          </div>
-          
-          <img src={galleryItems[3].src} alt={galleryItems[3].caption} className="w-full" style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)' }} />
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {galleryItems.slice(4).map((item, i) => (
-              <img key={i} src={item.src} alt={item.caption} className="w-full" style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)', aspectRatio: '1/1', objectFit: 'cover' }} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* HOW WE COMMUNICATED */}
+      {/* THE CHALLENGE */}
       <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#E8DED1' }}>
+        <div className="max-w-[750px] mx-auto">
+          <div 
+            className="inline-block mb-10"
+            style={{ 
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
+            }}
+          >
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              THE CHALLENGE
+            </p>
+          </div>
+          
+          <div className="space-y-6">
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              Karen had lit luxury residences, showrooms, hospitality spaces across Peru and the US. But a festival at this scale, in the Middle East, with this level of logistical complexity—that was new territory.
+            </p>
+            
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              This wasn't a residential project where you control every detail. This was field execution. Tight timelines. Coordination with engineers and constructors she'd never worked with before. Thousands of people moving through spaces that needed to feel seamless.
+            </p>
+            
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              The lighting couldn't compete with the stage. It couldn't distract. It had to guide, enhance, create atmosphere without announcing itself. Functional precision with emotional intelligence.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* IMAGE/VIDEO GALLERY */}
+      <section className="pb-20 px-10 md:px-20" style={{ backgroundColor: '#E8DED1' }}>
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {galleryItems.map((item, index) => (
+              <img
+                key={index}
+                src={item.src}
+                alt={item.caption}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                style={{
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
+                  aspectRatio: index < 3 ? '16/9' : '1/1'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW WE TOLD THIS STORY */}
+      <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
         <div className="max-w-[800px] mx-auto">
           <p className="mb-6" style={{ fontSize: '12px', color: '#FF2E63', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
-            How we told this story
+            HOW WE TOLD THIS STORY
           </p>
           
           <div className="space-y-10">
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              This was proof that the strategy worked. We didn't need to say "content leads to opportunities." The story told itself: client in Abu Dhabi, never met Karen, hired her based on what they saw online.
+              We told Saadiyat as a story about complexity. Not stage lighting—that wasn't Karen's work. The infrastructure around it. How you move thousands of people through premium hospitality spaces where every detail matters, but nothing should feel forced.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              We shared the project as a case study in how mastery travels when it's communicated clearly. Behind-the-scenes of the design process, the challenges of outdoor lighting for world-class performances, Karen's approach to creating atmosphere that elevates talent without competing with it.
+              The content showed field execution, not showroom perfection. Coordinating across time zones. Managing logistics with teams who'd never worked with TRAZZO. Lighting that guides without announcing itself.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              The content attracted similar clients—event producers, luxury venues, international developers who understood that lighting at this level is choreography, not just installation. Karen's reach expanded beyond residential and hospitality into entertainment and cultural spaces.
+              We positioned this as Karen's first work in the Middle East. A festival at scale she'd never navigated before. Proof that expertise translates across contexts—from Lima penthouses to Abu Dhabi festivals—when you understand light as experience, not installation.
+            </p>
+            
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              This opened conversations with hospitality groups and developers who work at this level of scale and complexity. Spain, Hawaii, beyond. Projects that require operational depth, not just design sensibility.
             </p>
           </div>
         </div>
       </section>
 
-      {/* LINKEDIN POSTS */}
-      <section className="py-16 md:py-24 px-10 md:px-20" style={{ backgroundColor: '#E8DED1' }}>
-        <div className="max-w-[1000px] mx-auto">
-          <h3 className="mb-16 text-center" style={{ fontSize: 'clamp(24px, 3vw, 28px)', color: '#3D3835', fontWeight: 700 }}>
-            Content examples from this project
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {linkedinPosts.map((post, i) => (
-              <div key={i} style={{ backgroundColor: '#FFFFFF', border: '1px solid #D5CBC1', borderRadius: '8px', boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)', overflow: 'hidden' }}>
-                <img src={post.image} alt={post.title} className="w-full" style={{ aspectRatio: '4/5', objectFit: 'cover' }} />
-                <div style={{ padding: '16px' }}>
-                  <p style={{ fontSize: '15px', color: '#3D3835', fontWeight: 600, lineHeight: 1.5 }}>{post.title}</p>
+      {/* THE WORK IN ACTION */}
+      <section className="py-20 md:py-24 px-10 md:px-20" style={{ backgroundColor: '#E8DED1' }}>
+        <div className="max-w-[1400px] mx-auto">
+          {/* Section Title */}
+          <h2 className="text-center mb-12 md:mb-16" style={{ fontSize: 'clamp(24px, 3vw, 28px)', color: '#3D3835', fontWeight: 700 }}>
+            The work in action
+          </h2>
+
+          {/* Video Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 md:mb-20">
+            {videos.map((video, index) => (
+              <div
+                key={index}
+                className="transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: '#FDFBF7',
+                  borderRadius: '12px',
+                  boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)',
+                  overflow: 'hidden'
+                }}
+              >
+                {/* YouTube Embed */}
+                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                  <iframe
+                    src={video.url}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 'none'
+                    }}
+                  />
                 </div>
+                
+                {/* Video Info */}
+                <div style={{ padding: '20px 24px', backgroundColor: '#FDFBF7' }}>
+                  <h3 style={{ 
+                    fontSize: '18px',
+                    fontWeight: 700,
+                    color: '#3D3835',
+                    marginBottom: '8px'
+                  }}>
+                    {video.title}
+                  </h3>
+                  <p style={{
+                    fontSize: '15px',
+                    lineHeight: 1.6,
+                    color: '#3D3835',
+                    opacity: 0.8,
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>
+                    {video.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Visual Divider - 3 Red Dots */}
+          <div className="flex justify-center items-center gap-3 my-16 md:my-20">
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
+          </div>
+
+          {/* LinkedIn Posts Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+            {linkedinPosts.map((post, index) => (
+              <div
+                key={index}
+                className="transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  padding: '16px',
+                  border: '1px solid #D5CDC1',
+                  borderRadius: '8px',
+                  boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)'
+                }}
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full mb-4"
+                  loading="lazy"
+                  style={{ borderRadius: '4px' }}
+                />
+                <a
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block text-center transition-colors duration-300 hover:underline"
+                  style={{ fontSize: '14px', color: '#3D3835' }}
+                  onMouseEnter={(e) => e.currentTarget.style.color = '#FF2E63'}
+                  onMouseLeave={(e) => e.currentTarget.style.color = '#3D3835'}
+                >
+                  View on LinkedIn →
+                </a>
               </div>
             ))}
           </div>
@@ -137,7 +284,7 @@ const KarenSaadiyatProject = () => {
       </section>
 
       {/* BACK LINK */}
-      <section className="py-20 px-10 md:px-20 text-center" style={{ backgroundColor: '#E8DED1' }}>
+      <section className="py-20 px-10 md:px-20 text-center" style={{ backgroundColor: '#F5F1E8' }}>
         <Link to="/clients/karen-mannheim#metrics" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '18px', color: '#3D3835', fontWeight: 600 }}>
           <ArrowLeft className="w-5 h-5 group-hover:text-[#FF2E63]" />
           <span className="group-hover:text-[#FF2E63]">Back to Karen's Story</span>

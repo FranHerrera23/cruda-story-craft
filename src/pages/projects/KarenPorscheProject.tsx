@@ -119,29 +119,55 @@ const KarenPorscheProject = () => {
         </div>
       </section>
 
-      {/* PROJECT IMAGES GRID */}
+      {/* MASONRY GALLERY */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#FDFBF7' }}
+        className="px-10 md:px-20 pb-20 md:pb-32"
+        style={{ backgroundColor: '#E8DED1' }}
       >
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-          <img 
-            src={porscheShowroom}
-            alt="Porsche showroom interior with vehicles"
-            className="w-full h-auto"
-            style={{ aspectRatio: '16/10', objectFit: 'cover' }}
-          />
+        <div className="max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <img 
+              src={porscheShowroom}
+              alt="Porsche showroom interior with luxury vehicles on display"
+              className="w-full h-auto"
+              style={{ 
+                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
+                objectFit: 'cover'
+              }}
+            />
+            <img 
+              src={porscheLounge}
+              alt="Porsche lounge area with sophisticated lighting design"
+              className="w-full h-auto"
+              style={{ 
+                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
+                objectFit: 'cover'
+              }}
+            />
+            <img 
+              src={porscheRibbonCutting}
+              alt="Porsche flagship opening ceremony with executives and team"
+              className="w-full h-auto md:col-span-2 lg:col-span-1"
+              style={{ 
+                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
+                objectFit: 'cover'
+              }}
+            />
+            <img 
+              src={porscheExteriorNight}
+              alt="Porsche flagship exterior illuminated at night"
+              className="w-full h-auto md:col-span-2"
+              style={{ 
+                borderRadius: '12px',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)',
+                objectFit: 'cover'
+              }}
+            />
+          </div>
         </div>
-      </section>
-
-      {/* FULL WIDTH IMAGE */}
-      <section style={{ backgroundColor: '#FDFBF7' }}>
-        <img 
-          src={porscheRibbonCutting}
-          alt="Porsche flagship opening ceremony"
-          className="w-full h-auto"
-          style={{ maxHeight: '70vh', objectFit: 'cover' }}
-        />
       </section>
 
       {/* THE CHALLENGE */}
@@ -380,14 +406,14 @@ const KarenPorscheProject = () => {
         </div>
       </section>
 
-      {/* THE WORK THAT TRAVELS */}
+      {/* THE WORK IN ACTION */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#E8DED1' }}
       >
-        <div className="max-w-[800px] mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <p 
-            className="mb-10"
+            className="mb-16"
             style={{
               fontSize: '12px',
               color: '#FF2E63',
@@ -396,26 +422,52 @@ const KarenPorscheProject = () => {
               fontWeight: 700
             }}
           >
-            The work that travels
+            The work in action
           </p>
           
-          <div 
-            className="relative w-full"
-            style={{
-              paddingBottom: '56.25%',
-              backgroundColor: '#000',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}
-          >
-            <iframe
-              src="https://www.youtube.com/embed/5KMVlfPMt3U"
-              title="Porsche Flagship - The Work That Travels"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="absolute top-0 left-0 w-full h-full"
-              style={{ border: 'none' }}
-            />
+          {/* VIDEO GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+            <div 
+              className="transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+              style={{
+                backgroundColor: '#FDFBF7',
+                borderRadius: '12px',
+                boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)',
+                overflow: 'hidden'
+              }}
+            >
+              <div 
+                className="relative w-full"
+                style={{ paddingBottom: '56.25%' }}
+              >
+                <iframe
+                  src="https://www.youtube.com/embed/5KMVlfPMt3U"
+                  title="Porsche Flagship - The Work That Travels"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="absolute top-0 left-0 w-full h-full"
+                  style={{ border: 'none' }}
+                />
+              </div>
+              <div style={{ padding: '20px 24px' }}>
+                <h3 style={{ 
+                  fontSize: '18px',
+                  fontWeight: 700,
+                  color: '#3D3835',
+                  marginBottom: '8px'
+                }}>
+                  The Work That Travels
+                </h3>
+                <p style={{ 
+                  fontSize: '15px',
+                  lineHeight: 1.6,
+                  color: '#3D3835',
+                  opacity: 0.8
+                }}>
+                  How TRAZZO's Porsche project positioned them for high-end retail and luxury brands
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

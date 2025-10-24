@@ -43,10 +43,10 @@ const KarenMannheimCaseStudy = () => {
       poster: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=1067&fit=crop"
     },
     {
-      slug: "porsche-design-tower",
-      name: "Porsche Design Tower",
-      location: "Miami, Florida",
-      teaser: "Luxury automotive residences. Lighting that matches precision engineering—technical mastery meeting emotional design.",
+      slug: "porsche-flagship",
+      name: "PORSCHE FLAGSHIP",
+      location: "Lima, Perú",
+      teaser: "Porsche Flagship Peru. Design approved by Porsche Germany. A project at that level doesn't happen without proven capability.",
       poster: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&h=1067&fit=crop"
     },
     {

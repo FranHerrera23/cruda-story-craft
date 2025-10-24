@@ -14,6 +14,7 @@ import KarenPezetProject from "./pages/projects/KarenPezetProject";
 import KarenFourSeasonsProject from "./pages/projects/KarenFourSeasonsProject";
 import KarenSaadiyatProject from "./pages/projects/KarenSaadiyatProject";
 import KarenTrazzoExpansionProject from "./pages/projects/KarenTrazzoExpansionProject";
+import KarenPorscheProject from "./pages/projects/KarenPorscheProject";
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/projects/karen-mannheim/pezet" element={<KarenPezetProject />} />
           <Route path="/projects/karen-mannheim/four-seasons-penthouse" element={<KarenFourSeasonsProject />} />
           <Route path="/projects/karen-mannheim/saadiyat-music-festival" element={<KarenSaadiyatProject />} />
+          <Route path="/projects/karen-mannheim/porsche-flagship" element={<KarenPorscheProject />} />
           <Route path="/projects/karen-mannheim/trazzo-expansion" element={<KarenTrazzoExpansionProject />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

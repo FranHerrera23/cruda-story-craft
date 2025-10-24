@@ -217,7 +217,6 @@ const KarenFourSeasonsProject = () => {
           <div className="max-w-[540px] mx-auto mb-20">
             <blockquote 
               className="instagram-media" 
-              data-instgrm-captioned 
               data-instgrm-permalink="https://www.instagram.com/reel/DKfa6ZgzlqC/?utm_source=ig_embed&utm_campaign=loading" 
               data-instgrm-version="14" 
               style={{ 
@@ -248,7 +247,7 @@ const KarenFourSeasonsProject = () => {
                   </div>
                   <div style={{ padding: '19% 0' }}></div>
                   <div style={{ display: 'block', height: '50px', margin: '0 auto 12px', width: '50px' }}>
-                    <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg">
+                    <svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlnsXlink="https://www.w3.org/1999/xlink">
                       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                         <g transform="translate(-511.000000, -20.000000)" fill="#000000">
                           <g>

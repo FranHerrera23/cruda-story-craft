@@ -101,7 +101,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Three towers facing Lima Golf Club in San Isidro. Robert A.M. Stern Architects—the same firm that designed 15 Central Park West, Harvard Law School, the George W. Bush Presidential Center.
+            Three residential buildings facing Lima Golf Club in San Isidro. Pezet 1 (2018), Pezet 2 (2022), Pezet 3 (2025).
           </p>
           
           <p style={{ 
@@ -109,7 +109,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            This project happened in Peru, before TRAZZO expanded to Miami. But it became proof of what Karen could do at the highest level.
+            Robert A.M. Stern Architects—the same firm that designed 15 Central Park West, Four Seasons New York, Harvard Law School, the George W. Bush Presidential Center.
           </p>
           
           <p style={{ 
@@ -117,7 +117,7 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            RAMSA doesn't follow trends. They design buildings that last decades. Karen designed the lighting. Her job: make sure what works during the day still works at night. That stone, glass, and bronze feel right after dark.
+            These projects happened in Peru, before TRAZZO expanded to Miami in 2020. But they became proof of what Karen could do at the highest level.
           </p>
           
           <p style={{ 
@@ -125,7 +125,15 @@ const KarenPezetProject = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            When we started working with Karen in 2021, she was ready to expand to the US. Pezet became part of the story we told Miami developers: here's what thirty years in Peru looks like when you partner with world-class architecture firms.
+            RAMSA doesn't follow trends. They design buildings that last decades. Karen designed the lighting for all three Pezet buildings over seven years. Her job: make sure what works during the day still works at night. That stone, glass, and bronze feel right after dark.
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)',
+            lineHeight: 1.9,
+            color: '#3D3835'
+          }}>
+            When we started working with Karen in 2021, she was scaling to the US. Pezet became part of the story we told Miami developers: here's what thirty years in Peru looks like when you partner with world-class architecture firms.
           </p>
         </div>
       </section>
@@ -247,7 +255,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Karen had the project. She had the portfolio. What she didn't have: a way to show Miami developers what working with RAMSA meant.
+              Karen had the projects. She had the portfolio. What she didn't have: a way to show Miami developers what working with RAMSA meant.
             </p>
             
             <p style={{ 
@@ -255,7 +263,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Developers in Florida didn't know TRAZZO. They hadn't walked through Pezet. They couldn't see how Karen thinks about lighting at that level.
+              Developers in Florida didn't know TRAZZO. They hadn't walked through Pezet 1, 2, or 3. They couldn't see how Karen thinks about lighting at that level.
             </p>
             
             <p style={{ 
@@ -263,7 +271,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              We needed to translate this project—and thirty years of others—into content that would build credibility in a market where she had zero presence.
+              We needed to translate these projects—and thirty years of others—into content that would build credibility in a market where she had zero presence.
             </p>
             
             <p style={{ 
@@ -302,7 +310,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              We framed Pezet around partnership. What does it take to work with Robert A.M. Stern Architects?
+              We framed Pezet around partnership. What does it take to work with Robert A.M. Stern Architects three times over seven years?
             </p>
             
             <p style={{ 
@@ -310,7 +318,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              The content showed Karen's process. Visiting sites at different times of day. Understanding materials. Designing for decades, not just opening day.
+              <strong>The content strategy:</strong> We showed Karen's process. Visiting sites at different times of day. Understanding how stone, glass, and bronze behave after dark. Designing for decades, not just opening day. Not "TRAZZO did great work in Peru." Instead: Here's what world-class architecture requires. Here's what Karen brings to projects at RAMSA's level.
             </p>
             
             <p style={{ 
@@ -318,7 +326,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Not "TRAZZO did great work in Peru." Instead: Here's what world-class architecture requires. Here's what Karen brings to projects at RAMSA's level.
+              <strong>Pitch decks:</strong> First slide after intro. "TRAZZO: Lighting partner to Robert A.M. Stern Architects." Developers who know 15 Central Park West, Four Seasons New York, Harvard Law School understand immediately what that means.
             </p>
             
             <p style={{ 
@@ -326,7 +334,7 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              This positioned her for Miami. For developers who recognize names like 15 Central Park West. Who understand that buildings at that level need partners who think about permanence.
+              <strong>Conference presentations:</strong> The RAMSA partnership establishes authority before Karen says a word. Not "here's my thirty years of experience." Here's who trusts my work. RAMSA came back three times.
             </p>
             
             <p style={{ 
@@ -334,7 +342,71 @@ const KarenPezetProject = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              The Pezet content helped open doors in Florida. Then the UAE. Then beyond.
+              <strong>Educational content:</strong> Posts that explained what RAMSA-level projects require. "What does Robert A.M. Stern Architects expect from lighting partners?" "How buildings like 15 Central Park West think about permanence, not trends." Show the standard, not the ego.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              <strong>Partner conversations:</strong> With developers, architects, design studios—the RAMSA name is shared language. They know Four Seasons New York. They know 15 CPW. They know the Bush Center. They know what it takes to work at that level. Saying "RAMSA partnership" does the translation work instantly.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              <strong>Repetition as strategy:</strong> We didn't mention RAMSA once. We mentioned it everywhere. Every pitch. Every post. Every presentation. Every conversation. Every email signature.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Brand equity doesn't transfer through a single mention. It transfers through pattern recognition. When people see "RAMSA partnership" five times across different contexts—pitch deck, then LinkedIn post, then conference bio, then partner introduction—it stops being a credential. It becomes how they remember Karen.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Not "the lighting designer from Peru." "RAMSA's lighting partner."
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              This positioned Karen for Miami. For developers who recognize names like 15 Central Park West. Who understand that buildings at that level need partners who think about permanence. The Pezet content helped open doors in Florida. Then the UAE. Then beyond.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              <strong>What this does for revenue:</strong> Developers who recognize RAMSA operate at a certain quality and budget level.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              The RAMSA association doesn't just open doors, it opens the right doors. The ones where Karen's expertise makes economic sense. Where her pricing isn't questioned because the benchmark is already set.
+            </p>
+            
+            <p style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.9,
+              color: '#3D3835'
+            }}>
+              Repetition creates velocity. Less time explaining credibility. More time closing projects that match the level she's built for.
             </p>
           </div>
         </div>

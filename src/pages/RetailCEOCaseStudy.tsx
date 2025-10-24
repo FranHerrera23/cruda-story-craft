@@ -57,7 +57,7 @@ const RetailCEOCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            Case study in progress
+            We'd tell you more, but discretion is part of the deal
           </h1>
         </div>
         <div className="absolute bottom-8">
@@ -65,8 +65,23 @@ const RetailCEOCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 2: CONTEXT BAR */}
+      {/* IMAGE CAPTION */}
       <section 
+        className="py-4 px-6 md:px-20 text-center"
+        style={{ backgroundColor: '#F5F1E8' }}
+      >
+        <p style={{ 
+          fontSize: '14px',
+          color: '#3D3835',
+          fontStyle: 'italic',
+          opacity: 0.7
+        }}>
+          Not the CEO. Excellent executive presence regardless.
+        </p>
+      </section>
+
+      {/* SECTION 2: CONTEXT BAR */}
+      <section
         className="py-16 px-6 md:px-20 text-center"
         style={{ backgroundColor: '#F5F1E8' }}
       >
@@ -77,7 +92,7 @@ const RetailCEOCaseStudy = () => {
           textTransform: 'uppercase',
           fontWeight: 500
         }}>
-          Confidential Client | CEO & Founder | Luxury Retail | Dubai
+          [Name Redacted] | Retail CEO & Founder | Dubai | Dog Provided by CRUDA
         </p>
       </section>
 
@@ -92,7 +107,7 @@ const RetailCEOCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            This case study is currently being developed. The client's work operates at a level where discretion matters as much as execution.
+            Building a luxury retail brand in one of the world's most competitive markets. CEO and founder. Dubai-based. The kind of operator who knows that brand positioning isn't marketing—it's survival.
           </p>
           
           <p style={{ 
@@ -100,7 +115,7 @@ const RetailCEOCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Three years of strategic work. Brand positioning, content strategy, market expansion. The results speak, but the details require approval before we share them publicly.
+            We worked together on a three-month consulting and advisory contract. Strategic positioning, market narrative, founder story development. The work was specific, focused, effective.
           </p>
           
           <p style={{ 
@@ -108,7 +123,7 @@ const RetailCEOCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            More soon.
+            The details require approval before we share them publicly. But the partnership showed what happens when a founder knows what they've built and just needs the story to match the execution.
           </p>
         </div>
       </section>
@@ -179,7 +194,7 @@ const RetailCEOCaseStudy = () => {
               fontStyle: 'italic'
             }}
           >
-            Some stories take time to tell properly. This is one of them.
+            Three months. Focused work. Results that speak, but require discretion to share properly.
           </p>
         </div>
       </section>

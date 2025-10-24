@@ -46,7 +46,7 @@ const HospitalityGMCaseStudy = () => {
               fontWeight: 500
             }}
           >
-            LUXURY HOSPITALITY | ABU DHABI
+            LUXURY HOSPITALITY | UAE
           </p>
           <h1 
             className="font-bold"
@@ -57,7 +57,7 @@ const HospitalityGMCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            Case study in progress
+            We'd tell you more, but they signed an NDA
           </h1>
         </div>
         <div className="absolute bottom-8">
@@ -65,8 +65,23 @@ const HospitalityGMCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 2: CONTEXT BAR */}
+      {/* IMAGE CAPTION */}
       <section 
+        className="py-4 px-6 md:px-20 text-center"
+        style={{ backgroundColor: '#F5F1E8' }}
+      >
+        <p style={{ 
+          fontSize: '14px',
+          color: '#3D3835',
+          fontStyle: 'italic',
+          opacity: 0.7
+        }}>
+          Not the GM. Just as qualified to wear glasses.
+        </p>
+      </section>
+
+      {/* SECTION 2: CONTEXT BAR */}
+      <section
         className="py-16 px-6 md:px-20 text-center"
         style={{ backgroundColor: '#F5F1E8' }}
       >
@@ -77,7 +92,7 @@ const HospitalityGMCaseStudy = () => {
           textTransform: 'uppercase',
           fontWeight: 500
         }}>
-          Confidential Client | General Manager | Luxury Hospitality | Abu Dhabi
+          [Name Redacted] | Luxury Hospitality GM | UAE | Dog Not Affiliated
         </p>
       </section>
 
@@ -92,7 +107,7 @@ const HospitalityGMCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            This case study is currently being developed. The client's work operates at a level where discretion matters as much as execution.
+            Twenty years building luxury hospitality experiences across three continents. Kempinski in India. Four Seasons across the US and Canada. JW Marriott. Taj Hotels. Grand Hyatt. The kind of career where every property had to feel distinct, but the standard never changed.
           </p>
           
           <p style={{ 
@@ -100,7 +115,7 @@ const HospitalityGMCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Three years of strategic work. Brand positioning, content strategy, market expansion. The results speak, but the details require approval before we share them publicly.
+            Now based in the UAE, leading at C-level in healthcare. Different industry, same challenge: how do you translate decades of hospitality excellence into a sector that doesn't speak that language?
           </p>
           
           <p style={{ 
@@ -108,7 +123,15 @@ const HospitalityGMCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            More soon.
+            We've been working together for over three months. Brand positioning, strategic narrative, translating hospitality leadership into healthcare credibility. The work is ongoing. The story is still being written.
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)',
+            lineHeight: 1.9,
+            color: '#3D3835'
+          }}>
+            More details require client approval before we share them publicly.
           </p>
         </div>
       </section>
@@ -179,7 +202,7 @@ const HospitalityGMCaseStudy = () => {
               fontStyle: 'italic'
             }}
           >
-            Some stories take time to tell properly. This is one of them.
+            Some careers don't fit on LinkedIn. Some transitions require more than updating a title. This is work that takes time to tell properly.
           </p>
         </div>
       </section>

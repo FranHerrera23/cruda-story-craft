@@ -48,7 +48,7 @@ const JuanPabloRomeroCaseStudy = () => {
               fontWeight: 500
             }}
           >
-            REAL ESTATE DEVELOPMENT & ARCHITECTURE | LIMA • MIAMI
+            HIGH-END WOOD FLOORING | US REGIONAL SALES
           </p>
           <h1 
             className="font-bold"
@@ -79,7 +79,7 @@ const JuanPabloRomeroCaseStudy = () => {
           textTransform: 'uppercase',
           fontWeight: 500
         }}>
-          Juan Pablo Romero | Real Estate Developer & Architect | Lima | Miami
+          Juan Pablo Romero | US Regional Sales Manager, UNIK Parquet | High-End Wood Flooring
         </p>
       </section>
 
@@ -94,7 +94,7 @@ const JuanPabloRomeroCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Juan Pablo Romero built some of Lima's most recognized residential and commercial projects. His work blends architectural vision with development execution.
+            Juan Pablo Romero leads US regional sales for UNIK Parquet, a high-end wood flooring brand serving luxury residential and commercial projects across the country.
           </p>
           
           <p style={{ 
@@ -102,7 +102,7 @@ const JuanPabloRomeroCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            But for years, his story wasn't reaching the right audience. Completed projects. No narrative. His personal brand was invisible.
+            But for years, his story wasn't reaching the right audience. Industry expertise. No narrative. His personal brand was invisible in a market where relationships drive everything.
           </p>
           
           <p style={{ 
@@ -110,7 +110,7 @@ const JuanPabloRomeroCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            We helped Juan Pablo articulate his unique perspective as both architect and developer. We created a system that turns construction progress into compelling storytelling.
+            We helped Juan Pablo articulate his unique perspective on luxury flooring, architectural specifications, and how material choices create lasting value in high-end spaces.
           </p>
         </div>
       </section>
@@ -159,7 +159,7 @@ const JuanPabloRomeroCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            Millions in real estate value. Zero personal brand.
+            Deep industry expertise. Zero visibility.
           </h2>
           
           <div className="space-y-6">
@@ -168,7 +168,7 @@ const JuanPabloRomeroCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Juan Pablo had built millions in real estate value, but his personal brand was invisible. There was no content strategy, no consistent voice, and no way to translate his work into long-term influence.
+              Juan Pablo had deep expertise in luxury flooring specifications and architectural applications, but his personal brand was invisible. There was no content strategy, no consistent voice, and no way to translate his knowledge into long-term influence.
             </p>
             
             <p style={{ 
@@ -176,7 +176,7 @@ const JuanPabloRomeroCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              The work spoke for itself—if you could see it. But you can't walk international investors through a completed Lima project. You can't explain architectural philosophy in an email.
+              The expertise was real—if you could see it. But you can't walk architects through material selection in a LinkedIn message. You can't explain why certain wood species matter in an email.
             </p>
           </div>
         </div>
@@ -244,7 +244,7 @@ const JuanPabloRomeroCaseStudy = () => {
               lineHeight: 1.8,
               color: '#3D3835'
             }}>
-              Through weekly interviews and content architecture, we helped Juan Pablo articulate his unique perspective as both architect and developer. We created a system that turns construction progress into compelling storytelling.
+              Through weekly interviews and content architecture, we helped Juan Pablo articulate his unique perspective on luxury flooring and architectural specifications. We created a system that turns product knowledge into compelling industry leadership.
             </p>
           </div>
         </div>
@@ -281,7 +281,7 @@ const JuanPabloRomeroCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              <strong>Design Philosophy.</strong> How architecture meets development. Why certain design choices create lasting value.
+              <strong>Material Philosophy.</strong> Why wood species selection matters. How flooring choices create lasting value in luxury spaces.
             </p>
             
             <p style={{ 
@@ -289,7 +289,7 @@ const JuanPabloRomeroCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              <strong>Project Stories.</strong> Behind the scenes from concept to completion. The decisions that shaped each development.
+              <strong>Project Stories.</strong> Behind the scenes from specification to installation. The decisions that shaped each high-end project.
             </p>
             
             <p style={{ 
@@ -297,7 +297,7 @@ const JuanPabloRomeroCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              <strong>Market Insights.</strong> Real estate trends and investment opportunities across Latin America.
+              <strong>Market Insights.</strong> Luxury flooring trends and architectural specifications across the US market.
             </p>
           </div>
         </div>
@@ -396,7 +396,7 @@ const JuanPabloRomeroCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>International inbound</strong> — Consistent inquiries from Miami-based developers
+                <strong style={{ color: '#FF2E63' }}>Architect inbound</strong> — Consistent inquiries from high-end residential and commercial architects
               </p>
             </div>
             
@@ -434,7 +434,7 @@ const JuanPabloRomeroCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Partnership opportunities</strong> — Secured with Miami-based developers
+                <strong style={{ color: '#FF2E63' }}>Industry positioning</strong> — Recognized thought leader in luxury flooring specifications
               </p>
             </div>
           </div>

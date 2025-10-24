@@ -43,18 +43,18 @@ const clients = [
   {
     slug: "juan-pablo-romero",
     name: "Juan Pablo Romero",
-    title: "Real Estate Developer & Architect",
-    location: "Lima • Miami",
+    title: "US Regional Sales Manager",
+    location: "UNIK Parquet | High-End Wood Flooring",
     photo: juanPhoto,
-    fullTitle: "Real Estate Developer & Architect",
+    fullTitle: "US Regional Sales Manager, UNIK Parquet",
     bio: [
-      "Built some of Lima's most recognized residential and commercial projects. Blends architectural vision with development execution."
+      "Leads US regional sales for UNIK Parquet, serving luxury residential and commercial projects. Deep expertise in high-end wood flooring specifications and architectural applications."
     ],
-    whatBuilding: "Building luxury residential and commercial developments across Latin America.",
+    whatBuilding: "Building industry leadership in luxury wood flooring across the US market.",
     achievements: [
-      "Developed millions in real estate value",
-      "Featured in architecture publications",
-      "Secured international partnerships"
+      "350% LinkedIn growth in 5 months",
+      "Featured in industry publications",
+      "Recognized thought leader in luxury flooring"
     ]
   },
   {

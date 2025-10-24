@@ -7,6 +7,7 @@ import fourSeasonsWineCellar from "@/assets/four-seasons-wine-cellar.jpg";
 import fourSeasonsDining from "@/assets/four-seasons-dining.jpg";
 import fourSeasonsLiving from "@/assets/four-seasons-living.jpg";
 import fourSeasonsLounge from "@/assets/four-seasons-lounge.jpg";
+import fourSeasonsLinkedIn01 from "@/assets/four-seasons-linkedin-01.png";
 
 const KarenFourSeasonsProject = () => {
   const navigate = useNavigate();
@@ -191,6 +192,63 @@ const KarenFourSeasonsProject = () => {
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
               We turned one project into a repeating signal: TRAZZO operates at the level of globally recognized luxury brands.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* THE WORK IN ACTION */}
+      <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#E8DED1' }}>
+        <div className="max-w-[1200px] mx-auto">
+          <h2 className="text-center mb-16" style={{ fontSize: 'clamp(24px, 3vw, 28px)', color: '#3D3835', fontWeight: 600 }}>
+            The work in action
+          </h2>
+
+          {/* VIDEO EMBEDS PLACEHOLDER */}
+          <div className="max-w-[1000px] mx-auto mb-20">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Video placeholders - waiting for video URLs */}
+              <div className="bg-[#FDFBF7] rounded-xl p-6 shadow-sm">
+                <div className="aspect-video bg-[#E8DED1] rounded-lg flex items-center justify-center mb-4">
+                  <p style={{ color: '#3D3835', opacity: 0.5 }}>Video 1 pending</p>
+                </div>
+                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#3D3835' }}>Video title here</h3>
+                <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#3D3835', opacity: 0.8, marginTop: '8px' }}>Description here</p>
+              </div>
+              <div className="bg-[#FDFBF7] rounded-xl p-6 shadow-sm">
+                <div className="aspect-video bg-[#E8DED1] rounded-lg flex items-center justify-center mb-4">
+                  <p style={{ color: '#3D3835', opacity: 0.5 }}>Video 2 pending</p>
+                </div>
+                <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#3D3835' }}>Video title here</h3>
+                <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#3D3835', opacity: 0.8, marginTop: '8px' }}>Description here</p>
+              </div>
+            </div>
+          </div>
+
+          {/* VISUAL DIVIDER */}
+          <div className="flex items-center justify-center gap-3 my-20">
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }}></div>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }}></div>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }}></div>
+          </div>
+
+          {/* LINKEDIN POSTS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <a
+              href="https://www.linkedin.com/posts/karen-mannheim_lightingdesign-arquitectura-emprendimiento-activity-7302742140755869696-N277"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white p-4 border border-[#D5CDC1] rounded-lg transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            >
+              <img
+                src={fourSeasonsLinkedIn01}
+                alt="Karen Mannheim LinkedIn post about Four Seasons Penthouse"
+                className="w-full rounded mb-4"
+                loading="lazy"
+              />
+              <p className="text-center transition-colors duration-300 hover:text-[#FF2E63] hover:underline" style={{ fontSize: '14px', color: '#3D3835' }}>
+                View on LinkedIn →
+              </p>
+            </a>
           </div>
         </div>
       </section>

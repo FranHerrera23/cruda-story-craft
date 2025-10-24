@@ -23,12 +23,12 @@ const KarenSaadiyatProject = () => {
   ];
 
   const videos = [
-    { title: 'Saadiyat Nights Festival Highlights', description: 'Behind the scenes of Abu Dhabi\'s premier music festival', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 2', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 3', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 4', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 5', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 6', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' }
+    { title: 'Saadiyat Nights Festival Highlights', description: 'Behind the scenes of Abu Dhabi\'s premier music festival', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0', type: 'youtube' },
+    { title: 'Saadiyat Nights Media Coverage', description: 'Official festival media highlights', url: 'https://www.youtube.com/embed/xUugbX5s8Os?controls=1&modestbranding=1&rel=0', type: 'youtube' },
+    { title: 'Karen Mannheim at Saadiyat', description: 'Behind the scenes with Karen at the festival', url: 'https://www.instagram.com/reel/DGTq9xQux1M/embed/', type: 'instagram' },
+    { title: 'Video 4', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0', type: 'youtube' },
+    { title: 'Video 5', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0', type: 'youtube' },
+    { title: 'Video 6', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0', type: 'youtube' }
   ];
 
   const linkedinPosts = [
@@ -195,8 +195,8 @@ const KarenSaadiyatProject = () => {
                   overflow: 'hidden'
                 }}
               >
-                {/* YouTube Embed */}
-                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                {/* Video Embed */}
+                <div style={{ position: 'relative', paddingBottom: video.type === 'instagram' ? '177.78%' : '56.25%', height: 0 }}>
                   <iframe
                     src={video.url}
                     title={video.title}

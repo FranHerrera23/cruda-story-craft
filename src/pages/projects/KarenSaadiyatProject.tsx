@@ -6,6 +6,7 @@ import saadiyatKarenSpeaking from "@/assets/saadiyat-karen-speaking.jpg";
 import saadiyatPreFunction from "@/assets/saadiyat-pre-function.jpg";
 import saadiyatVenueNight from "@/assets/saadiyat-venue-night.jpg";
 import saadiyatLinkedin01 from "@/assets/saadiyat-linkedin-01.png";
+import saadiyatLinkedin02 from "@/assets/saadiyat-linkedin-02.png";
 
 const KarenSaadiyatProject = () => {
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ const KarenSaadiyatProject = () => {
   ];
 
   const linkedinPosts = [
-    { image: saadiyatLinkedin01, title: 'Saadiyat Nights Festival Post', url: '#' }
+    { image: saadiyatLinkedin01, title: 'Saadiyat Nights Festival Post', url: '#' },
+    { image: saadiyatLinkedin02, title: 'Mariah Carey Performance Announcement', url: 'https://www.linkedin.com/posts/karen-mannheim_iluminaciaejn-festival-mariahcarey-activity-7143601012061192192-Vj17?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk' }
   ];
 
   return (
@@ -246,7 +248,7 @@ const KarenSaadiyatProject = () => {
           </div>
 
           {/* LinkedIn Posts Grid */}
-          <div className="grid grid-cols-1 gap-8 max-w-[600px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-[1000px] mx-auto">
             {linkedinPosts.map((post, index) => (
               <div
                 key={index}

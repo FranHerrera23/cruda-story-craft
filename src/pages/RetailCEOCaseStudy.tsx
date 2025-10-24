@@ -76,7 +76,7 @@ const RetailCEOCaseStudy = () => {
           fontStyle: 'italic',
           opacity: 0.7
         }}>
-          Not the CEO. Excellent executive presence regardless.
+          Not the CEO. But definitely wears a cape to work.
         </p>
       </section>
 
@@ -92,7 +92,7 @@ const RetailCEOCaseStudy = () => {
           textTransform: 'uppercase',
           fontWeight: 500
         }}>
-          [Name Redacted] | Retail CEO & Founder | Dubai | Dog Provided by CRUDA
+          [Name Redacted] | Retail CEO & Founder | Dubai | Mini-Batman Not Actual CEO
         </p>
       </section>
 
@@ -123,7 +123,15 @@ const RetailCEOCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            The details require approval before we share them publicly. But the partnership showed what happens when a founder knows what they've built and just needs the story to match the execution.
+            Here's the situation: we're developing case studies that show industry context, strategic challenges, our methodology, and measurable outcomes. What we're not showing: any details specific enough to get us sued into oblivion by very well-funded legal teams.
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)',
+            lineHeight: 1.9,
+            color: '#3D3835'
+          }}>
+            The work happened. The results speak. The NDAs are airtight. So until we get written permission from someone who isn't a mini-Batman, this page stays exactly as sophisticated as it needs to be: professional enough to take seriously, honest enough to admit we can't tell you everything, and self-aware enough to know a toy superhero makes better placeholder content than stock photos of handshakes.
           </p>
         </div>
       </section>
@@ -175,26 +183,30 @@ const RetailCEOCaseStudy = () => {
       {/* SECTION 13: THE INSIGHT */}
       <section 
         className="py-32 md:py-40 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
+        style={{ backgroundColor: '#F5F1E8' }}
       >
-        <div 
-          className="max-w-[900px] mx-auto p-12 md:p-14 text-center"
-          style={{ 
-            backgroundColor: '#FDFBF7',
-            borderLeft: '4px solid #FF2E63',
-            borderRadius: '8px',
-            boxShadow: '0 4px 20px rgba(61, 56, 53, 0.08)'
-          }}
-        >
+        <div className="max-w-[600px] mx-auto">
           <p 
             style={{ 
-              fontSize: 'clamp(22px, 2.6vw, 26px)',
-              lineHeight: 1.7,
+              fontSize: '24px',
+              lineHeight: 1.8,
               color: '#3D3835',
-              fontStyle: 'italic'
+              textAlign: 'center'
             }}
           >
-            Three months. Focused work. Results that speak, but require discretion to share properly.
+            Three months. Focused work. Results that speak but can't be spoken about without violating contracts we'd prefer not to violate.
+          </p>
+          
+          <p 
+            style={{ 
+              fontSize: '24px',
+              lineHeight: 1.8,
+              color: '#3D3835',
+              textAlign: 'center',
+              marginTop: '32px'
+            }}
+          >
+            Also: mini-Batman has impeccable taste and zero legal liability.
           </p>
         </div>
       </section>

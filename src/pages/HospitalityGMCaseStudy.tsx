@@ -123,7 +123,7 @@ const HospitalityGMCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            We've been working together for over three months. Brand positioning, strategic narrative, translating hospitality leadership into healthcare credibility. The work is ongoing. The story is still being written.
+            We've been working together for over three months. Brand positioning, strategic narrative, translating hospitality leadership into healthcare credibility. The work is ongoing. The results are real.
           </p>
           
           <p style={{ 
@@ -131,7 +131,15 @@ const HospitalityGMCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            More details require client approval before we share them publicly.
+            Here's what we can tell you: we're crafting case studies that show the industry context, the positioning challenges, our strategic process, and the outcomes. What we can't tell you: anything specific enough to violate confidentiality agreements that could bankrupt us faster than you can say "breach of contract."
+          </p>
+          
+          <p style={{ 
+            fontSize: 'clamp(17px, 2vw, 20px)',
+            lineHeight: 1.9,
+            color: '#3D3835'
+          }}>
+            Legal approved the dog. Legal did not approve the details. So for now, enjoy this distinguished placeholder and trust that the actual work is significantly more impressive than our ability to photograph it.
           </p>
         </div>
       </section>
@@ -183,26 +191,30 @@ const HospitalityGMCaseStudy = () => {
       {/* SECTION 13: THE INSIGHT */}
       <section 
         className="py-32 md:py-40 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
+        style={{ backgroundColor: '#F5F1E8' }}
       >
-        <div 
-          className="max-w-[900px] mx-auto p-12 md:p-14 text-center"
-          style={{ 
-            backgroundColor: '#FDFBF7',
-            borderLeft: '4px solid #FF2E63',
-            borderRadius: '8px',
-            boxShadow: '0 4px 20px rgba(61, 56, 53, 0.08)'
-          }}
-        >
+        <div className="max-w-[600px] mx-auto">
           <p 
             style={{ 
-              fontSize: 'clamp(22px, 2.6vw, 26px)',
-              lineHeight: 1.7,
+              fontSize: '24px',
+              lineHeight: 1.8,
               color: '#3D3835',
-              fontStyle: 'italic'
+              textAlign: 'center'
             }}
           >
-            Some careers don't fit on LinkedIn. Some transitions require more than updating a title. This is work that takes time to tell properly.
+            Some careers don't fit on LinkedIn. Some transitions require more than updating a title. And some case studies require a dog in glasses while lawyers review what we're allowed to say.
+          </p>
+          
+          <p 
+            style={{ 
+              fontSize: '24px',
+              lineHeight: 1.8,
+              color: '#3D3835',
+              textAlign: 'center',
+              marginTop: '32px'
+            }}
+          >
+            This is work that takes time—and legal approval—to tell properly.
           </p>
         </div>
       </section>

@@ -59,9 +59,9 @@ const clients = [
   },
   {
     slug: "hospitality-gm-abudhabi",
-    name: "Confidential Client",
-    title: "General Manager",
-    location: "Abu Dhabi",
+    name: "We'd Love to Tell You, But We Also Enjoy Not Being Sued",
+    title: "Luxury Hospitality GM",
+    location: "UAE",
     photo: hospitalityPhoto,
     fullTitle: "General Manager | Luxury Hospitality",
     bio: [
@@ -75,9 +75,9 @@ const clients = [
   },
   {
     slug: "retail-ceo-dubai",
-    name: "Confidential Client",
-    title: "CEO & Founder",
-    location: "Dubai",
+    name: "Redacted (Our Lawyers Insisted)",
+    title: "Retail CEO & Founder",
+    location: "UAE | Represented by Mini-Batman for Legal Reasons",
     photo: retailPhoto,
     fullTitle: "Founder & CEO | Luxury Retail",
     bio: [

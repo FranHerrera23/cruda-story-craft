@@ -15,22 +15,14 @@ const clients = [
     photo: karenPhoto,
     fullTitle: "Architectural Lighting Designer | High-End Residential & Retail",
     bio: [
-      "Karen Mannheim has spent 15 years mastering the intersection of light, space, and human experience. Based between Lima and Miami, she's become the go-to designer for architects and developers who understand that lighting isn't decoration—it's the difference between a space that works and one that transforms.",
-      "Her projects span luxury residential developments in Peru, high-end retail spaces across Latin America, and boutique hospitality projects in the United States. But Karen's real expertise isn't just technical specification—it's understanding how light shapes emotion, behavior, and perceived value.",
-      "She started her career working with international architecture firms, learning that most lighting design happens as an afterthought. Spaces were beautiful on paper but fell flat in reality because the lighting didn't support the architecture's intent. Karen built her practice around changing that—becoming a strategic partner from concept through completion.",
-      "Her approach combines rigorous technical knowledge with an artist's eye. She can talk lumens and color temperature with engineers, then translate that into emotional impact for clients. That duality—technical precision meets sensory intuition—is why architects trust her with her most ambitious projects.",
-      "But as her reputation grew, Karen faced the same challenge many technical experts encounter: her work spoke for itself in person, but translating that expertise into positioning was harder. Potential clients saw \"lighting designer\" and thought decorative consultant, not strategic partner. International projects required a narrative that conveyed authority beyond regional boundaries.",
-      "CRUDA worked with Karen to build a positioning system that reflects the strategic value she brings. Not \"lighting designer,\" but \"architectural storyteller who uses light as the primary medium.\" Not project descriptions, but case studies showing how her work increased property values, enhanced brand perception, and created memorable experiences."
+      "Karen Mannheim has spent 15 years mastering the intersection of light, space, and human experience. Based between Lima and Miami, she's become the go-to designer for architects and developers who understand that lighting isn't decoration—it's the difference between a space that works and one that transforms."
     ],
-    whatBuilding: "Karen is expanding her practice into hospitality and healthcare—spaces where lighting directly impacts human wellbeing and business performance. She's also developing a framework to help architects integrate lighting strategy earlier in the design process, preventing costly retrofits.",
+    whatBuilding: "Karen is expanding her practice into hospitality and healthcare—spaces where lighting directly impacts human wellbeing and business performance.",
     achievements: [
       "Led lighting design for $50M+ residential development in Lima, Peru",
       "Created signature lighting experience for luxury retail brand across 12 locations",
-      "Featured in Architectural Digest for innovative use of natural light integration",
-      "Developed proprietary lighting assessment framework used by architecture firms",
-      "Speaking at major design conferences on the business impact of strategic lighting"
-    ],
-    quote: "CRUDA helped me stop explaining what I do and start showing why it matters. My work hasn't changed—but the clients I'm attracting have. I'm now in conversations with developers and architects who understand that lighting is strategic, not cosmetic."
+      "Featured in Architectural Digest for innovative use of natural light integration"
+    ]
   },
   {
     slug: "mike-kaeding",
@@ -51,69 +43,50 @@ const clients = [
   {
     slug: "juan-pablo-romero",
     name: "Juan Pablo Romero",
-    title: "Luxury Hospitality GM",
-    location: "UAE",
+    title: "Real Estate Developer & Architect",
+    location: "Lima • Miami",
     photo: juanPhoto,
+    fullTitle: "Real Estate Developer & Architect",
+    bio: [
+      "Built some of Lima's most recognized residential and commercial projects. Blends architectural vision with development execution."
+    ],
+    whatBuilding: "Building luxury residential and commercial developments across Latin America.",
+    achievements: [
+      "Developed millions in real estate value",
+      "Featured in architecture publications",
+      "Secured international partnerships"
+    ]
+  },
+  {
+    slug: "hospitality-gm-abudhabi",
+    name: "Confidential Client",
+    title: "General Manager",
+    location: "Abu Dhabi",
+    photo: hospitalityPhoto,
     fullTitle: "General Manager | Luxury Hospitality",
     bio: [
-      "Two decades building world-class guest experiences at luxury properties across the Middle East. Now applying those principles to transform hospitality operations."
+      "Leading world-class guest experiences at luxury properties in the Middle East. Work operates at a level where discretion matters as much as execution."
     ],
-    whatBuilding: "Elevating luxury hospitality standards and guest experience design.",
+    whatBuilding: "Elevating luxury hospitality standards across the UAE.",
     achievements: [
-      "Led operations for 5-star properties in Dubai and Abu Dhabi",
-      "Pioneered service excellence programs",
-      "Speaking at conferences on hospitality innovation"
+      "Led operations for prestigious properties",
+      "Case study in progress"
     ]
   },
   {
-    slug: "luxury-hospitality-gm-2",
-    name: "Luxury Hospitality General Manager",
-    title: "General Manager",
-    location: "Dubai",
-    photo: hospitalityPhoto,
-    fullTitle: "General Manager | Luxury Hospitality & Healthcare",
-    bio: [
-      "Two decades building world-class guest experiences at Four Seasons properties across the Middle East. Now applying those principles to transform patient care in healthcare facilities."
-    ],
-    whatBuilding: "Bridging luxury hospitality standards with healthcare operations to elevate patient experience.",
-    achievements: [
-      "Led operations for 5-star properties in Dubai and Abu Dhabi",
-      "Transitioned to healthcare leadership roles",
-      "Speaking at conferences on service excellence"
-    ]
-  },
-  {
-    slug: "retail-ceo-founder",
-    name: "Retail CEO & Founder",
+    slug: "retail-ceo-dubai",
+    name: "Confidential Client",
     title: "CEO & Founder",
     location: "Dubai",
     photo: retailPhoto,
-    fullTitle: "Founder & CEO | Fashion Retail & E-commerce",
+    fullTitle: "Founder & CEO | Luxury Retail",
     bio: [
-      "Built a fashion retail empire spanning physical stores and e-commerce platforms across the Middle East. Pioneering the integration of traditional retail with digital commerce in emerging markets."
+      "Built a retail empire across the Middle East. Work operates at a level where discretion matters as much as execution."
     ],
-    whatBuilding: "Expanding omnichannel retail experiences that blend physical and digital commerce.",
+    whatBuilding: "Expanding luxury retail experiences across emerging markets.",
     achievements: [
-      "Launched 15+ retail locations across UAE",
-      "Built e-commerce platform serving 3 countries",
-      "Featured in retail innovation conferences"
-    ]
-  },
-  {
-    slug: "marly-hurtado",
-    name: "Marly Hurtado",
-    title: "Professional Athlete",
-    location: "USA",
-    photo: marlyPhoto,
-    fullTitle: "Professional Athlete",
-    bio: [
-      "Professional athlete building a brand that extends beyond the field. Focused on creating lasting impact through sports and community engagement."
-    ],
-    whatBuilding: "Developing a personal brand and community programs that outlast athletic career.",
-    achievements: [
-      "Competed at professional level",
-      "Building community engagement programs",
-      "Developing athlete brand strategy"
+      "Built multi-location retail presence",
+      "Case study in progress"
     ]
   }
 ];

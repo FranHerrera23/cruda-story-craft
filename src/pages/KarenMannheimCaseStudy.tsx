@@ -22,13 +22,6 @@ const KarenMannheimCaseStudy = () => {
       poster: pezetPoster
     },
     {
-      slug: "four-seasons-penthouse",
-      name: "Four Seasons Penthouse",
-      location: "Miami, Florida",
-      teaser: "Four Seasons Residences, floor 66. A $13.5M home where lighting meets the standard the brand built globally—spaces that feel right at every hour, not just opening day.",
-      poster: fourSeasonsHero
-    },
-    {
       slug: "saadiyat-music-festival",
       name: "Saadiyat Music Festival",
       location: "Abu Dhabi, UAE",
@@ -36,11 +29,11 @@ const KarenMannheimCaseStudy = () => {
       poster: saadiyatHeroNew
     },
     {
-      slug: "osaka-nikkei",
-      name: "Osaka Nikkei",
+      slug: "four-seasons-penthouse",
+      name: "Four Seasons Penthouse",
       location: "Miami, Florida",
-      teaser: "Miami's celebrated Peruvian-Japanese restaurant. One of the first high-end projects after establishing Florida presence.",
-      poster: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=1067&fit=crop"
+      teaser: "Four Seasons Residences, floor 66. A $13.5M home where lighting meets the standard the brand built globally—spaces that feel right at every hour, not just opening day.",
+      poster: fourSeasonsHero
     },
     {
       slug: "porsche-flagship",
@@ -48,20 +41,6 @@ const KarenMannheimCaseStudy = () => {
       location: "Lima, Perú",
       teaser: "Porsche Flagship Peru. Design approved by Porsche Germany. A project at that level doesn't happen without proven capability.",
       poster: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&h=1067&fit=crop"
-    },
-    {
-      slug: "fisher-island",
-      name: "Fisher Island Residence",
-      location: "Miami, Florida",
-      teaser: "Waterfront home where lighting responds to Miami's weather. Interior light designed for natural elements.",
-      poster: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=600&h=1067&fit=crop"
-    },
-    {
-      slug: "residential-process",
-      name: "Residential Lighting Process",
-      location: "Multi-location",
-      teaser: "How Karen approaches luxury residential. The thinking behind three decades of making spaces feel right.",
-      poster: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=600&h=1067&fit=crop"
     }
   ];
 

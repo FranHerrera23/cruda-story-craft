@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import heroImage from "@/assets/karen-hero-new.jpg";
 import pezetPoster from "@/assets/pezet-hero.jpg";
 import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
+import saadiyatHeroNew from "@/assets/saadiyat-hero-new.jpg";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const KarenMannheimCaseStudy = () => {
       name: "Saadiyat Music Festival",
       location: "Abu Dhabi, UAE",
       teaser: "Jennifer Lopez, Christina Aguilera. The UAE partnership that happened because of content, not cold outreach.",
-      poster: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=1067&fit=crop"
+      poster: saadiyatHeroNew
     },
     {
       slug: "osaka-nikkei",

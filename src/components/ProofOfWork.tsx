@@ -125,8 +125,8 @@ const ProofOfWork = () => {
       <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
-              Who We're Building With
+            <h2 className="text-[28px] md:text-[44px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
+              Who trusts us with their story and reputation
             </h2>
             {/* Red underline accent */}
             <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#FF2E63' }} />

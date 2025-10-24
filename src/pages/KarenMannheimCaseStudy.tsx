@@ -584,6 +584,32 @@ const KarenMannheimCaseStudy = () => {
               </Link>
             ))}
           </div>
+
+          {/* MORE COMING SOON SECTION */}
+          <div 
+            className="text-center mx-auto py-20"
+            style={{
+              maxWidth: '800px',
+              backgroundColor: '#F5F1E8'
+            }}
+          >
+            <h3 style={{ 
+              fontSize: '20px',
+              color: '#3D3835',
+              marginBottom: '16px',
+              fontWeight: 600
+            }}>
+              More stories coming soon
+            </h3>
+            
+            <p style={{ 
+              fontSize: '17px',
+              lineHeight: 1.8,
+              color: 'rgba(61, 56, 53, 0.85)'
+            }}>
+              We're crafting case studies from over 200 projects built with Karen—each one showing how mastery translates across markets. More stories publish as they're ready.
+            </p>
+          </div>
         </div>
       </section>
 

@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
-import heroImage from "@/assets/mike-kaeding.webp";
+import heroImage from "@/assets/juan-pablo-romero.jpeg";
 
-const MikeKaedingCaseStudy = () => {
+const JuanPabloRomeroCaseStudy = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const MikeKaedingCaseStudy = () => {
               fontWeight: 500
             }}
           >
-            RESIDENTIAL CONSTRUCTION | MINNEAPOLIS
+            REAL ESTATE DEVELOPMENT & ARCHITECTURE | LIMA • MIAMI
           </p>
           <h1 
             className="font-bold"
@@ -59,7 +59,7 @@ const MikeKaedingCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            When innovation doesn't travel
+            When vision meets execution
           </h1>
         </div>
         <div className="absolute bottom-8">
@@ -79,7 +79,7 @@ const MikeKaedingCaseStudy = () => {
           textTransform: 'uppercase',
           fontWeight: 500
         }}>
-          Mike Kaeding | CEO of Norhart Inc. | Residential Construction | Minneapolis
+          Juan Pablo Romero | Real Estate Developer & Architect | Lima | Miami
         </p>
       </section>
 
@@ -94,7 +94,7 @@ const MikeKaedingCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            Mike Kaeding built a $200M construction company that's redefining how America builds. Norhart Inc. developed a $100M residential complex in Forest Lake with an in-house model that's changing industry cost structures.
+            Juan Pablo Romero built some of Lima's most recognized residential and commercial projects. His work blends architectural vision with development execution.
           </p>
           
           <p style={{ 
@@ -102,7 +102,7 @@ const MikeKaedingCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            His work was revolutionary. Walk through a Norhart development and you saw it. Faster timelines. Lower costs. Better quality. A completely integrated model that challenged conventional construction wisdom.
+            But for years, his story wasn't reaching the right audience. Completed projects. No narrative. His personal brand was invisible.
           </p>
           
           <p style={{ 
@@ -110,23 +110,7 @@ const MikeKaedingCaseStudy = () => {
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
-            But despite building a $200M company, Norhart's story was trapped in local press. The business model was proven. The scale was there.
-          </p>
-          
-          <p style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            What wasn't there: anyone outside Minneapolis who understood what Mike had built.
-          </p>
-          
-          <p style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            No national positioning. No thought leadership framework. No system to turn operational excellence into industry authority. When Mike wasn't in the room, no one understood what his business model meant for construction.
+            We helped Juan Pablo articulate his unique perspective as both architect and developer. We created a system that turns construction progress into compelling storytelling.
           </p>
         </div>
       </section>
@@ -141,7 +125,7 @@ const MikeKaedingCaseStudy = () => {
         <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
       </section>
 
-      {/* SECTION 5: THE CHALLENGE */}
+      {/* SECTION 5: THE PATTERN */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
@@ -175,7 +159,7 @@ const MikeKaedingCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            A revolutionary business model. Zero national presence.
+            Millions in real estate value. Zero personal brand.
           </h2>
           
           <div className="space-y-6">
@@ -184,7 +168,7 @@ const MikeKaedingCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              Mike had proven his model in Minneapolis. But national developers didn't know him. Construction conferences hadn't heard of Norhart. He had no speaking opportunities. No partnerships beyond Minnesota.
+              Juan Pablo had built millions in real estate value, but his personal brand was invisible. There was no content strategy, no consistent voice, and no way to translate his work into long-term influence.
             </p>
             
             <p style={{ 
@@ -192,136 +176,81 @@ const MikeKaedingCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              His reputation was local. His ambition was national.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              The work spoke for itself—if you could see it. But you can't walk developers through Forest Lake remotely. You can't explain integrated construction in a cold email.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              Mike needed to build belief at scale. Not with sales decks or pitch materials. With a story that showed what he understood about construction, efficiency, and what the industry could become.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              We started working together to transform Mike from regional builder to construction industry disruptor.
+              The work spoke for itself—if you could see it. But you can't walk international investors through a completed Lima project. You can't explain architectural philosophy in an email.
             </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: STRATEGIC GOALS */}
+      {/* SECTION 6: IMAGE PAIR */}
+      <section 
+        className="py-16 px-10 md:px-20"
+        style={{ backgroundColor: '#E8DED1' }}
+      >
+        <div className="max-w-[1000px] mx-auto grid md:grid-cols-2 gap-8">
+          <div>
+            <img 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
+              alt="Lima architectural project"
+              style={{ 
+                width: '100%',
+                borderRadius: '8px',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
+              }}
+            />
+          </div>
+          <div>
+            <img 
+              src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&h=600&fit=crop"
+              alt="Architectural process"
+              style={{ 
+                width: '100%',
+                borderRadius: '8px',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
+              }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: HOW WE DID THIS */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#E8DED1' }}
       >
-        <div className="max-w-[850px] mx-auto text-center">
-          <p 
-            className="mb-16"
-            style={{ 
-              fontSize: '16px',
-              color: '#3D3835',
-              opacity: 0.6,
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 500
-            }}
-          >
-            What We Needed to Solve
-          </p>
-          
-          <div className="space-y-10">
-            <p style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
-              Position Norhart as a national construction innovator. Not a regional success story. A model for how America should build residential properties.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
-              We needed to build Mike's personal brand as a thought leader and create content infrastructure that scales with company growth.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
-              The goal: speaking engagements at major industry conferences, inbound from developers across multiple states, national media coverage.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 7: OUR APPROACH HEADER */}
-      <section 
-        className="py-20 md:py-24 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
-      >
         <div className="max-w-[900px] mx-auto">
           <div 
-            className="inline-block mb-10"
+            className="p-10 md:p-12"
             style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
+              backgroundColor: 'rgba(255, 46, 99, 0.05)',
+              borderLeft: '4px solid #FF2E63',
+              borderRadius: '8px'
             }}
           >
+            <h2 
+              className="mb-6"
+              style={{ 
+                fontSize: 'clamp(28px, 3.5vw, 36px)',
+                lineHeight: 1.3,
+                color: '#3D3835',
+                fontWeight: 700
+              }}
+            >
+              How we did this
+            </h2>
+            
             <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              Our Approach
-            </p>
-          </div>
-          
-          <h2 
-            className="mb-10 text-center italic"
-            style={{ 
-              fontSize: 'clamp(36px, 4.5vw, 48px)',
-              lineHeight: 1.3,
-              color: '#3D3835',
-              fontWeight: 700,
-              fontStyle: 'italic'
-            }}
-          >
-            We didn't tell Mike's story. We helped him find his voice.
-          </h2>
-          
-          <p 
-            className="text-center"
-            style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.8,
               color: '#3D3835'
-            }}
-          >
-            Through structured founder interviews and strategic positioning, we transformed Mike from regional builder to construction industry disruptor. We developed a content system that turns operational insights into national conversation.
-          </p>
+            }}>
+              Through weekly interviews and content architecture, we helped Juan Pablo articulate his unique perspective as both architect and developer. We created a system that turns construction progress into compelling storytelling.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 8: CONTENT APPROACH */}
+      {/* SECTION 8: THE TRANSLATION */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
@@ -352,7 +281,7 @@ const MikeKaedingCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              <strong>Construction Innovation.</strong> How Norhart is reimagining residential building. Why the traditional model doesn't work anymore.
+              <strong>Design Philosophy.</strong> How architecture meets development. Why certain design choices create lasting value.
             </p>
             
             <p style={{ 
@@ -360,7 +289,7 @@ const MikeKaedingCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              <strong>Business Model Breakdown.</strong> The economics of vertical integration. What changes when you own the entire process.
+              <strong>Project Stories.</strong> Behind the scenes from concept to completion. The decisions that shaped each development.
             </p>
             
             <p style={{ 
@@ -368,23 +297,7 @@ const MikeKaedingCaseStudy = () => {
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
-              <strong>Industry Leadership.</strong> Challenging conventional construction wisdom. What the future of American residential building looks like.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              The content wasn't promotional. It was Mike thinking out loud about building better, faster, and more affordably.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              This built his presence nationally. Then opened doors across the construction industry.
+              <strong>Market Insights.</strong> Real estate trends and investment opportunities across Latin America.
             </p>
           </div>
         </div>
@@ -399,7 +312,7 @@ const MikeKaedingCaseStudy = () => {
           <div>
             <img 
               src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop"
-              alt="Norhart construction site"
+              alt="Construction progress"
               style={{ 
                 width: '100%',
                 borderRadius: '8px',
@@ -409,8 +322,8 @@ const MikeKaedingCaseStudy = () => {
           </div>
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
-              alt="Norhart development"
+              src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop"
+              alt="Completed development"
               style={{ 
                 width: '100%',
                 borderRadius: '8px',
@@ -448,17 +361,6 @@ const MikeKaedingCaseStudy = () => {
             What travels now
           </h2>
           
-          <p 
-            className="mb-16 text-center"
-            style={{ 
-              fontSize: 'clamp(20px, 2.4vw, 24px)',
-              lineHeight: 1.6,
-              color: '#3D3835'
-            }}
-          >
-            Two years later: a construction model that travels beyond Minneapolis.
-          </p>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
             <div 
               className="flex items-start gap-4 p-7"
@@ -475,7 +377,7 @@ const MikeKaedingCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>National media coverage</strong> in construction industry publications
+                <strong style={{ color: '#FF2E63' }}>Featured in publications</strong> — Local and international architecture media
               </p>
             </div>
             
@@ -494,7 +396,7 @@ const MikeKaedingCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Speaking engagements</strong> at major industry conferences
+                <strong style={{ color: '#FF2E63' }}>International inbound</strong> — Consistent inquiries from Miami-based developers
               </p>
             </div>
             
@@ -513,7 +415,7 @@ const MikeKaedingCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>Inbound from developers</strong> across multiple states
+                <strong style={{ color: '#FF2E63' }}>350% LinkedIn growth</strong> — Built in 5 months through strategic content
               </p>
             </div>
             
@@ -532,51 +434,10 @@ const MikeKaedingCaseStudy = () => {
                 lineHeight: 1.7,
                 color: '#3D3835'
               }}>
-                <strong style={{ color: '#FF2E63' }}>300% LinkedIn growth</strong> in 6 months
-              </p>
-            </div>
-            
-            <div 
-              className="flex items-start gap-4 p-7"
-              style={{
-                backgroundColor: '#FDFBF7',
-                border: '1px solid #E8DED1',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(61, 56, 53, 0.06)'
-              }}
-            >
-              <span style={{ color: '#FF2E63', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-              <p style={{ 
-                fontSize: 'clamp(15px, 1.7vw, 17px)',
-                lineHeight: 1.7,
-                color: '#3D3835'
-              }}>
-                <strong style={{ color: '#FF2E63' }}>Featured</strong> in industry podcasts and documentaries
+                <strong style={{ color: '#FF2E63' }}>Partnership opportunities</strong> — Secured with Miami-based developers
               </p>
             </div>
           </div>
-          
-          <p 
-            className="text-center max-w-[700px] mx-auto"
-            style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.7,
-              color: '#3D3835'
-            }}
-          >
-            Mike walks into rooms now where people already know Norhart's model. National developers. Industry conferences. Media outlets.
-          </p>
-          
-          <p 
-            className="text-center max-w-[700px] mx-auto mt-6"
-            style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.7,
-              color: '#3D3835'
-            }}
-          >
-            The business model finally has a story that travels beyond Minneapolis.
-          </p>
         </div>
       </section>
 
@@ -598,7 +459,7 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 13: TESTIMONIAL QUOTE */}
+      {/* SECTION 13: THE INSIGHT */}
       <section 
         className="py-32 md:py-40 px-10 md:px-20"
         style={{ backgroundColor: '#E8DED1' }}
@@ -621,7 +482,7 @@ const MikeKaedingCaseStudy = () => {
               fontStyle: 'italic'
             }}
           >
-            "CRUDA helped us articulate what makes Norhart different. Now we're not just building apartments—we're leading a conversation about the future of construction."
+            "CRUDA helped me go from being known for my projects to being known for my thinking. That shift changed everything."
           </p>
           <p style={{ 
             fontSize: '14px',
@@ -630,7 +491,7 @@ const MikeKaedingCaseStudy = () => {
             textTransform: 'uppercase',
             fontWeight: 700
           }}>
-            — Mike Kaeding
+            — Juan Pablo Romero
           </p>
         </div>
       </section>
@@ -649,7 +510,7 @@ const MikeKaedingCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            Want to build trust like Mike?
+            Ready to build your story?
           </h2>
           <Link 
             to="/book-call"
@@ -669,7 +530,7 @@ const MikeKaedingCaseStudy = () => {
               e.currentTarget.style.backgroundColor = '#3D3835';
             }}
           >
-            Start Your Story →
+            Start a conversation →
           </Link>
         </div>
       </section>
@@ -677,4 +538,4 @@ const MikeKaedingCaseStudy = () => {
   );
 };
 
-export default MikeKaedingCaseStudy;
+export default JuanPabloRomeroCaseStudy;

@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import saadiyatHospitalityArea from "@/assets/saadiyat-hospitality-area.jpg";
+import saadiyatKarenSpeaking from "@/assets/saadiyat-karen-speaking.jpg";
+import saadiyatPreFunction from "@/assets/saadiyat-pre-function.jpg";
+import saadiyatVenueNight from "@/assets/saadiyat-venue-night.jpg";
 
 const KarenSaadiyatProject = () => {
   const navigate = useNavigate();
@@ -10,22 +14,19 @@ const KarenSaadiyatProject = () => {
   }, []);
 
   const galleryItems = [
-    { src: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&h=900&fit=crop', caption: 'Wide festival shot at night' },
-    { src: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&h=1420&fit=crop', caption: 'Walkway lighting' },
-    { src: 'https://images.unsplash.com/photo-1501612780327-45045538702b?w=800&h=1420&fit=crop', caption: 'Hospitality areas' },
-    { src: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1600&h=900&fit=crop', caption: 'Access points' },
-    { src: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=900&h=900&fit=crop', caption: 'Detail shots' },
-    { src: 'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=900&h=900&fit=crop', caption: 'Crowd experience' },
-    { src: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=900&h=900&fit=crop', caption: 'Day to night transition' }
+    { src: saadiyatHospitalityArea, caption: 'Premium hospitality area with crowd at night' },
+    { src: saadiyatKarenSpeaking, caption: 'Karen presenting at the venue' },
+    { src: saadiyatPreFunction, caption: 'Pre-function area lighting design' },
+    { src: saadiyatVenueNight, caption: 'Festival venue at night' }
   ];
 
   const videos = [
-    { title: 'Video 1', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 2', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 3', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 4', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 5', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' },
-    { title: 'Video 6', description: 'Description coming soon', url: 'https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0' }
+    { title: 'Saadiyat Nights Festival Highlights', description: 'Behind the scenes of Abu Dhabi\'s premier music festival', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 2', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 3', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 4', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 5', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' },
+    { title: 'Video 6', description: 'Description coming soon', url: 'https://www.youtube.com/embed/p-xBGkWSHmw?controls=1&modestbranding=1&rel=0' }
   ];
 
   const linkedinPosts = [
@@ -49,7 +50,7 @@ const KarenSaadiyatProject = () => {
         className="relative flex items-end"
         style={{
           height: '60vh',
-          backgroundImage: 'linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=2000&h=1200&fit=crop)',
+          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(${saadiyatHospitalityArea})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

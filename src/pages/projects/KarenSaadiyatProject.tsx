@@ -32,7 +32,7 @@ const KarenSaadiyatProject = () => {
   ];
 
   const linkedinPosts = [
-    { image: saadiyatLinkedin01, title: 'Saadiyat Nights Festival Post', url: '#' },
+    { image: saadiyatLinkedin01, title: 'Saadiyat Nights Festival - Karen Interview', url: 'https://www.linkedin.com/posts/karen-mannheim_saadiyatnights-abudhabi-louvreabudhabiy-activity-7260282051994554368-QHmD?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk' },
     { image: saadiyatLinkedin02, title: 'Mariah Carey Performance Announcement', url: 'https://www.linkedin.com/posts/karen-mannheim_iluminaciaejn-festival-mariahcarey-activity-7143601012061192192-Vj17?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk' }
   ];
 

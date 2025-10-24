@@ -3,6 +3,7 @@ import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
 import heroImage from "@/assets/karen-hero-new.jpg";
 import pezetPoster from "@/assets/pezet-hero.jpg";
+import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
@@ -22,9 +23,9 @@ const KarenMannheimCaseStudy = () => {
     {
       slug: "four-seasons-penthouse",
       name: "Four Seasons Penthouse",
-      location: "Lima, Peru",
-      teaser: "A $13M residence where every room breathes differently. How lighting creates intimacy in a wine cellar, command in a lobby.",
-      poster: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=600&h=1067&fit=crop"
+      location: "Miami, Florida",
+      teaser: "Four Seasons Residences, floor 66. A $13.5M home where lighting meets the standard the brand built globally—spaces that feel right at every hour, not just opening day.",
+      poster: fourSeasonsHero
     },
     {
       slug: "saadiyat-music-festival",

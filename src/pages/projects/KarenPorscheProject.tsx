@@ -131,12 +131,6 @@ const KarenPorscheProject = () => {
             className="w-full h-auto"
             style={{ aspectRatio: '16/10', objectFit: 'cover' }}
           />
-          <img 
-            src={porscheLounge}
-            alt="Porsche lounge area with warm lighting"
-            className="w-full h-auto"
-            style={{ aspectRatio: '16/10', objectFit: 'cover' }}
-          />
         </div>
       </section>
 
@@ -382,6 +376,46 @@ const KarenPorscheProject = () => {
             }}>
               The project opened doors Karen couldn't have opened with portfolio documentation alone. Because the story wasn't technical—it was aspirational. And aspiration is what Porsche has always sold.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* THE WORK THAT TRAVELS */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#E8DED1' }}
+      >
+        <div className="max-w-[800px] mx-auto">
+          <p 
+            className="mb-10"
+            style={{
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}
+          >
+            The work that travels
+          </p>
+          
+          <div 
+            className="relative w-full"
+            style={{
+              paddingBottom: '56.25%',
+              backgroundColor: '#000',
+              borderRadius: '8px',
+              overflow: 'hidden'
+            }}
+          >
+            <iframe
+              src="https://www.youtube.com/embed/5KMVlfPMt3U"
+              title="Porsche Flagship - The Work That Travels"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute top-0 left-0 w-full h-full"
+              style={{ border: 'none' }}
+            />
           </div>
         </div>
       </section>

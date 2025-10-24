@@ -5,6 +5,7 @@ import saadiyatHospitalityArea from "@/assets/saadiyat-hospitality-area.jpg";
 import saadiyatKarenSpeaking from "@/assets/saadiyat-karen-speaking.jpg";
 import saadiyatPreFunction from "@/assets/saadiyat-pre-function.jpg";
 import saadiyatVenueNight from "@/assets/saadiyat-venue-night.jpg";
+import saadiyatLinkedin01 from "@/assets/saadiyat-linkedin-01.png";
 
 const KarenSaadiyatProject = () => {
   const navigate = useNavigate();
@@ -30,9 +31,7 @@ const KarenSaadiyatProject = () => {
   ];
 
   const linkedinPosts = [
-    { image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=800&fit=crop', title: 'Post 1', url: '#' },
-    { image: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&h=800&fit=crop', title: 'Post 2', url: '#' },
-    { image: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=600&h=800&fit=crop', title: 'Post 3', url: '#' }
+    { image: saadiyatLinkedin01, title: 'Saadiyat Nights Festival Post', url: '#' }
   ];
 
   return (
@@ -247,7 +246,7 @@ const KarenSaadiyatProject = () => {
           </div>
 
           {/* LinkedIn Posts Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 gap-8 max-w-[600px] mx-auto">
             {linkedinPosts.map((post, index) => (
               <div
                 key={index}

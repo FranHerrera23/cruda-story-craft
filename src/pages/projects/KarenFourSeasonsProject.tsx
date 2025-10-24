@@ -63,7 +63,7 @@ const KarenFourSeasonsProject = () => {
             FOUR SEASONS PENTHOUSE
           </h1>
           <p style={{ fontSize: '18px', color: '#FDFBF7', opacity: 0.8 }}>
-            Brickell, Miami · 2024
+            Miami, Florida · $13.5M
           </p>
         </div>
       </section>
@@ -75,19 +75,19 @@ const KarenFourSeasonsProject = () => {
       >
         <div className="max-w-[800px] mx-auto space-y-10">
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            Four Seasons Residences. Floor 66. Brickell, Miami.
+            Four Seasons Residences. Floor 66. Brickell, Miami. $13.5 million.
           </p>
           
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            Four Seasons doesn't just mean luxury hotels. Their residential towers are among the most prestigious addresses in the world. New York, London, Dubai, Miami. Buildings where every detail is scrutinized. Where the brand's reputation depends on perfection that residents live with every day.
+            Karen had the project. A penthouse in one of the world's most prestigious residential brands. Interior design by Adriana Hoyos Design Studio. Architecture by Mobius Architecture Group. Lighting that met Four Seasons standards.
           </p>
           
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            This penthouse: two units merged into one 4,470-square-foot residence. $13.5 million. The only one of its kind in the building. Interior design by Adriana Hoyos Design Studio. Architecture by Mobius Architecture Group.
+            What Karen didn't have: a way to turn this into belief that travels.
           </p>
 
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-            Karen's work: lighting that meets Four Seasons standards. Where nothing announces itself, but everything feels right. A wine cellar that feels intimate. Living spaces that feel commanding without being cold. Bedrooms that help you rest, not just look impressive.
+            We turned one project into a repeating proof point. Every pitch deck. Every email to developers. Every speaking opportunity. Every post. The Four Seasons project became shorthand for "TRAZZO works at the highest residential level globally." Not because we documented it. Because we made it impossible to ignore.
           </p>
         </div>
       </section>
@@ -116,19 +116,19 @@ const KarenFourSeasonsProject = () => {
           
           <div className="space-y-6">
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              Four Seasons residences aren't hotels. They're homes. But they carry the same expectations the brand built globally—precision, consistency, details that don't fail.
+              Karen had worked on luxury residential for three decades. But "luxury residential in Peru" doesn't open doors in Miami the way "Four Seasons Residences" does.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              Karen had worked on luxury residential across Peru and Miami. But Four Seasons represented a different level of scrutiny. Architecture and interiors already exceptional. Her lighting needed to match that standard—elevate spaces without competing with them.
+              Four Seasons isn't just a client. It's a credential. A brand that means something to developers in New York, London, Dubai. When you say "we lit a Four Seasons Residence," you're speaking a language international developers understand immediately.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              This wasn't about showcasing technology or fixtures. It was about creating spaces that feel right at every hour. Morning light in the kitchen. Evening atmosphere in the living room. A bedroom that helps you sleep in a building where floor 66 means floor-to-ceiling glass and Miami's constant light.
+              Our challenge: turn this project into a communication asset that works everywhere. Not just beautiful photos for a portfolio. Content that positions TRAZZO at Four Seasons level—in every email, every pitch, every post, every conference.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              The Four Seasons name means something. The lighting had to hold up to that.
+              Make the Four Seasons name do the credibility work so Karen doesn't have to explain her thirty years every time.
             </p>
           </div>
         </div>
@@ -165,19 +165,31 @@ const KarenFourSeasonsProject = () => {
           
           <div className="space-y-10">
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              We framed this around the Four Seasons name. Not "TRAZZO lit a penthouse." But: what it means to work in a Four Seasons Residence. What that brand expects. Why lighting in a Four Seasons building isn't the same as lighting any other luxury residential.
+              We built the Four Seasons project into every touchpoint.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              The content showed Karen's approach to spaces where the brand's global reputation is at stake. Where design teams like Adriana Hoyos Design Studio and Mobius Architecture are already bringing world-class work—and lighting needs to match that level without competing.
+              <strong>Pitch decks:</strong> Lead with it. "TRAZZO's work includes Four Seasons Residences Miami." One line. Instant credibility with developers who recognize the brand.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              We positioned this as proof of expertise at the highest residential standard. Four Seasons residences in New York, London, Dubai, Miami—these aren't just addresses. They're benchmarks. Working at that level means understanding that lighting isn't about what you install. It's about how residents feel in spaces they live in every day.
+              <strong>Email signatures:</strong> Not hidden in a portfolio. In the signature. Every email carries the Four Seasons credential.
             </p>
             
             <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
-              This opened conversations with developers and design teams who work with brands at this caliber. Who understand that when Four Seasons is on the building, every partner needs to deliver at that standard.
+              <strong>Speaking opportunities:</strong> When Karen presents at conferences, the Four Seasons project is proof of residential expertise at global luxury brand level. Not "here's what we did." Here's the standard we work at.
+            </p>
+
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              <strong>Social content:</strong> We created posts that educate about what Four Seasons-level residential requires. Not promotional. Educational. "What it takes to light a Four Seasons Residence." "Why lighting in branded residences isn't the same as unbranded luxury."
+            </p>
+
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              <strong>Partner conversations:</strong> When talking to design studios or developers, the Four Seasons name does the translation work. It's a shared language. They know what Four Seasons expects. They know TRAZZO met that standard.
+            </p>
+
+            <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
+              We turned one project into a repeating signal: TRAZZO operates at the level of globally recognized luxury brands.
             </p>
           </div>
         </div>

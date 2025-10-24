@@ -5,6 +5,7 @@ import porscheExteriorNight from "@/assets/porsche-exterior-night.jpg";
 import porscheRibbonCutting from "@/assets/porsche-ribbon-cutting.jpg";
 import porscheLounge from "@/assets/porsche-lounge.jpg";
 import porscheShowroom from "@/assets/porsche-showroom.jpg";
+import porscheInstagramPost from "@/assets/porsche-instagram-post.png";
 
 const KarenPorscheProject = () => {
   const navigate = useNavigate();
@@ -467,6 +468,65 @@ const KarenPorscheProject = () => {
                   How TRAZZO's Porsche project positioned them for high-end retail and luxury brands
                 </p>
               </div>
+            </div>
+          </div>
+
+          {/* VISUAL DIVIDER */}
+          <div 
+            className="flex justify-center items-center gap-3 my-20"
+            style={{ color: '#FF2E63' }}
+          >
+            <span style={{ 
+              width: '8px', 
+              height: '8px', 
+              borderRadius: '50%', 
+              backgroundColor: '#FF2E63' 
+            }} />
+            <span style={{ 
+              fontSize: '20px',
+              fontWeight: 300 
+            }}>•</span>
+            <span style={{ 
+              width: '8px', 
+              height: '8px', 
+              borderRadius: '50%', 
+              backgroundColor: '#FF2E63' 
+            }} />
+          </div>
+
+          {/* SOCIAL MEDIA POSTS */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-[1200px] mx-auto">
+            <div 
+              className="transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+              style={{
+                backgroundColor: '#FFFFFF',
+                padding: '16px',
+                border: '1px solid #D5CDC1',
+                borderRadius: '8px',
+                boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)'
+              }}
+            >
+              <img 
+                src={porscheInstagramPost}
+                alt="Instagram post showing Karen Mannheim at Porsche flagship"
+                style={{
+                  width: '100%',
+                  borderRadius: '4px',
+                  marginBottom: '16px'
+                }}
+              />
+              <a
+                href="https://www.instagram.com/p/your-post-id/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-center transition-colors duration-300 hover:text-[#FF2E63] hover:underline"
+                style={{
+                  fontSize: '14px',
+                  color: '#3D3835'
+                }}
+              >
+                View on Instagram →
+              </a>
             </div>
           </div>
         </div>

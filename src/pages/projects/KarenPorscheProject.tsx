@@ -1,6 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
+import porscheExteriorNight from "@/assets/porsche-exterior-night.jpg";
+import porscheRibbonCutting from "@/assets/porsche-ribbon-cutting.jpg";
+import porscheLounge from "@/assets/porsche-lounge.jpg";
+import porscheShowroom from "@/assets/porsche-showroom.jpg";
 
 const KarenPorscheProject = () => {
   const navigate = useNavigate();
@@ -31,7 +35,7 @@ const KarenPorscheProject = () => {
         className="relative flex items-end"
         style={{
           height: '60vh',
-          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=1200&h=800&fit=crop)`,
+          backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url(${porscheExteriorNight})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
@@ -113,6 +117,37 @@ const KarenPorscheProject = () => {
             This became a three-stage narrative. Announcement. Progress. Completion. Each one building the association: TRAZZO + Porsche. Not just another project. A credential that travels.
           </p>
         </div>
+      </section>
+
+      {/* PROJECT IMAGES GRID */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#FDFBF7' }}
+      >
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+          <img 
+            src={porscheShowroom}
+            alt="Porsche showroom interior with vehicles"
+            className="w-full h-auto"
+            style={{ aspectRatio: '16/10', objectFit: 'cover' }}
+          />
+          <img 
+            src={porscheLounge}
+            alt="Porsche lounge area with warm lighting"
+            className="w-full h-auto"
+            style={{ aspectRatio: '16/10', objectFit: 'cover' }}
+          />
+        </div>
+      </section>
+
+      {/* FULL WIDTH IMAGE */}
+      <section style={{ backgroundColor: '#FDFBF7' }}>
+        <img 
+          src={porscheRibbonCutting}
+          alt="Porsche flagship opening ceremony"
+          className="w-full h-auto"
+          style={{ maxHeight: '70vh', objectFit: 'cover' }}
+        />
       </section>
 
       {/* THE CHALLENGE */}

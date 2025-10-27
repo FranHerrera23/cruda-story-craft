@@ -62,7 +62,18 @@ const CredibilitySection = () => {
               transitionDelay: '200ms'
             }}
           >
-            Eight years inside corporations, agencies, media companies. Managing campaigns that reached millions. Organizing events for thousands. Producing content with 30+ creators.
+            Fran spent over a decade at companies including TikTok and Mondelez before founding CRUDA. That experience—translating across cultures, markets, and languages—became the methodology.
+          </p>
+          
+          <p 
+            className="text-[19px] md:text-[20px] leading-[1.8] mb-10 transition-opacity duration-[600ms]"
+            style={{ 
+              color: '#FDFBF7',
+              opacity: moment1Visible ? 1 : 0,
+              transitionDelay: '300ms'
+            }}
+          >
+            We've worked with builders in luxury lighting, real estate, hospitality, and retail. Different industries, same gap: mastery that doesn't travel.
           </p>
 
           {/* Small intro line */}
@@ -71,10 +82,10 @@ const CredibilitySection = () => {
             style={{ 
               color: '#FDFBF7',
               opacity: moment1Visible ? 0.7 : 0,
-              transitionDelay: '400ms'
+              transitionDelay: '500ms'
             }}
           >
-            Companies we've worked with:
+            Fran's past corporate work:
           </p>
 
           {/* Brand names - MASSIVE Display */}

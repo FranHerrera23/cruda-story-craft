@@ -50,7 +50,7 @@ const CredibilitySection = () => {
               willChange: 'transform'
             }}
           >
-            We've been inside the matrix.
+            We've been inside the machine.
           </h2>
           
           {/* Context */}
@@ -103,25 +103,14 @@ const CredibilitySection = () => {
           </p>
           
           <p 
-            className="text-[19px] md:text-[22px] leading-[1.8] mb-8 transition-opacity duration-[600ms]"
+            className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
             style={{ 
               color: '#FDFBF7',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '1100ms'
             }}
           >
-            We understand what moves people.
-          </p>
-          
-          <p 
-            className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
-            style={{ 
-              color: '#FDFBF7',
-              opacity: moment1Visible ? 1 : 0,
-              transitionDelay: '1200ms'
-            }}
-          >
-            That's why we can help you communicate, connect, and craft narratives that travel.
+            We understand cultural nuances and people. That's why we can help you communicate, connect, and craft narratives that travel.
           </p>
         </div>
       </section>

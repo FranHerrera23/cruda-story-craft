@@ -1,101 +1,120 @@
-import franPortrait from "@/assets/fran-portrait-hero.png";
+import franCallImage from "@/assets/call-hero-image.png";
 import { Link } from "react-router-dom";
 
 const HeroManifesto = () => {
   return (
-    <section className="relative overflow-hidden min-h-screen" style={{ backgroundColor: '#F5F1E8' }}>
-      <div className="grid md:grid-cols-[60%_40%] min-h-screen">
-        {/* Left Column - Content */}
-        <div className="flex flex-col justify-center px-10 md:px-20 py-16 md:py-20 order-2 md:order-1">
-          <div className="max-w-[600px]">
-            {/* Small intro line */}
-            <p 
-              className="uppercase tracking-[2px] mb-8"
+    <section 
+      className="py-[100px] px-[60px] min-h-screen flex items-center"
+      style={{ backgroundColor: '#F5F1E8' }}
+    >
+      <div className="max-w-[1400px] mx-auto w-full">
+        <div className="grid md:grid-cols-2 gap-[100px] items-center">
+          {/* Left Side - Copy */}
+          <div className="md:pr-[40px]">
+            <div 
+              className="uppercase tracking-[2px] mb-[40px]"
               style={{ 
-                fontSize: '14px',
-                color: '#3D3835',
-                opacity: 0,
-                animation: 'fadeIn 0.3s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
+                fontSize: '11px',
+                color: 'rgba(61, 56, 53, 0.5)'
               }}
             >
-              Fran Herrera, founder of CRUDA
-            </p>
-
-            {/* Headline */}
+              FRAN HERRERA, FOUNDER OF CRUDA
+            </div>
+            
             <h1 
-              className="font-display font-bold mb-8"
+              className="font-bold mb-[32px]"
               style={{ 
-                fontSize: 'clamp(38px, 5vw, 54px)',
-                lineHeight: '1.1',
-                color: '#3D3835',
-                opacity: 0,
-                transform: 'translateY(20px)',
-                animation: 'fadeIn 0.3s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
+                fontSize: '48px',
+                lineHeight: '1.2',
+                color: '#3D3835'
               }}
             >
-              You've spent years mastering your craft.
+              We're a narrative studio for founders and executives.
             </h1>
-
-            {/* Body */}
+            
             <p 
-              className="mb-12"
+              className="mb-[48px]"
               style={{ 
-                fontSize: 'clamp(19px, 2.2vw, 22px)',
-                lineHeight: '1.6',
-                color: '#3D3835',
-                opacity: 0,
-                maxWidth: '520px',
-                animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.5s forwards'
+                fontSize: '20px',
+                lineHeight: '1.8',
+                color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
-              But <span style={{ color: '#FF2E63', fontWeight: 700 }}>mastery doesn't translate</span> itself. The gap between what you've built and what people understand—that's where we work.
+              We help you see <span style={{ color: '#FF2E63' }}>what's already there</span>. The gap between what you've built and what people understand—that's where we work.
             </p>
-
-            {/* CTA */}
+            
             <Link 
               to="/book-call"
-              className="inline-flex items-center justify-center font-display font-medium px-10 py-4 rounded transition-all duration-300 hover:scale-105"
+              className="inline-block font-semibold transition-all duration-300 hover:-translate-y-[2px]"
               style={{ 
-                backgroundColor: '#FF2E63',
-                color: '#FDFBF7',
-                fontSize: '16px',
-                opacity: 0,
-                transform: 'translateY(10px)',
-                animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.6s forwards'
+                background: '#FF2E63',
+                color: '#FFFFFF',
+                fontSize: '18px',
+                padding: '18px 48px',
+                borderRadius: '8px',
+                textDecoration: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#E61E53';
+                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#FF2E63';
+                e.currentTarget.style.boxShadow = 'none';
               }}
             >
               Start a Conversation
             </Link>
           </div>
-        </div>
-
-        {/* Right Column - Image */}
-        <div 
-          className="relative flex items-center justify-center p-12 md:p-16 min-h-[60vh] md:min-h-screen order-1 md:order-2"
-          style={{ 
-            background: 'linear-gradient(135deg, #F0EDE6 0%, #EAEAEA 50%, #DCDCDC 100%)'
-          }}
-        >
-          <div className="relative">
+          
+          {/* Right Side - Photo */}
+          <div className="relative order-first md:order-last">
             <img
-              src={franPortrait}
-              alt="Fran Herrera, founder of CRUDA"
-              className="w-full h-auto max-w-[320px] md:max-w-[380px]"
+              src={franCallImage}
+              alt="Fran Herrera on strategy call with Mike Kaeding"
+              className="w-full h-auto block"
               style={{
-                aspectRatio: '1/1',
-                objectFit: 'cover',
-                borderRadius: '24px',
-                filter: 'saturate(1.1) brightness(1.05) contrast(1.05)',
-                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.12), 0 2px 8px rgba(61, 56, 53, 0.08)',
-                border: '3px solid #F0EDE6',
-                opacity: 0,
-                transform: 'scale(1.05)',
-                animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards, scaleDown 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
+                borderRadius: '16px',
+                boxShadow: '0 12px 48px rgba(61, 56, 53, 0.2)'
               }}
             />
           </div>
         </div>
       </div>
+      
+      {/* Mobile Styles */}
+      <style>{`
+        @media (max-width: 1024px) {
+          section {
+            padding: 80px 40px !important;
+          }
+          
+          h1 {
+            font-size: 36px !important;
+            text-align: center;
+          }
+          
+          p {
+            font-size: 18px !important;
+            text-align: center;
+          }
+          
+          .uppercase {
+            text-align: center;
+          }
+          
+          a {
+            display: block !important;
+            text-align: center;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          h1 {
+            font-size: 32px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

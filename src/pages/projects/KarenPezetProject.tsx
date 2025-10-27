@@ -34,10 +34,10 @@ const KarenPezetProject = () => {
   ];
 
   const linkedinPosts = [
-    { image: linkedinPost01, url: '#', title: 'Working alongside RAMSA and Grupo ACM' },
-    { image: linkedinPost02, url: '#', title: 'Lighting design at PEZET' },
-    { image: linkedinPost03, url: '#', title: 'Designing for RAMSA' },
-    { image: linkedinPost04, url: '#', title: 'PEZET 3 project reveal' }
+    { image: linkedinPost01, url: 'https://www.linkedin.com/posts/karen-mannheim_ramsa-robertstern-eurodisney-activity-7141170916553547776-B4xp?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk', title: 'Working alongside RAMSA and Grupo ACM' },
+    { image: linkedinPost02, url: 'https://www.linkedin.com/posts/karen-mannheim_en-demasiados-proyectos-la-iluminaci%C3%B3n-sigue-activity-7367225955846729729-jvUQ?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk', title: 'Lighting design at PEZET' },
+    { image: linkedinPost03, url: 'https://www.linkedin.com/posts/karen-mannheim_ramsa-activity-7363957075065872385-WS6x?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk', title: 'Designing for RAMSA' },
+    { image: linkedinPost04, url: 'https://www.linkedin.com/posts/karen-mannheim_lightingdesign-pezet3-ramsa-activity-7330283319571460096-04bu?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAAphD7cB052SAtGH6SLA5tUOc-c8LYjc1bk', title: 'PEZET 3 project reveal' }
   ];
 
   return (

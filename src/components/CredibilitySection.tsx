@@ -62,7 +62,7 @@ const CredibilitySection = () => {
               transitionDelay: '200ms'
             }}
           >
-            Over a decade translating across companies, cultures, and languages before founding CRUDA. That gap—between what you know and what people understand—we've lived it.
+            Over a decade translating across companies, cultures, and languages before founding CRUDA. Latin America. United States. Middle East. Europe. Buenos Aires, to Miami, Los Angeles, Dubai & Madrid.
           </p>
           
           <p 
@@ -73,7 +73,7 @@ const CredibilitySection = () => {
               transitionDelay: '300ms'
             }}
           >
-            Latin America. United States. Middle East. Europe. Hong Kong. The experience became the methodology. Pattern recognition travels.
+            That gap—between what you know and what people understand—we've lived it.
           </p>
 
           {/* Brand names - MASSIVE Display */}
@@ -103,14 +103,25 @@ const CredibilitySection = () => {
           </p>
           
           <p 
-            className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
+            className="text-[19px] md:text-[22px] leading-[1.8] mb-8 transition-opacity duration-[600ms]"
             style={{ 
               color: '#FDFBF7',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '1100ms'
             }}
           >
-            We understand cultural nuances and people. That's why we can help you communicate, connect, and craft narratives that travel.
+            We understand what moves people.
+          </p>
+          
+          <p 
+            className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
+            style={{ 
+              color: '#FDFBF7',
+              opacity: moment1Visible ? 1 : 0,
+              transitionDelay: '1200ms'
+            }}
+          >
+            That's why we can help you communicate, connect, and craft narratives that travel.
           </p>
         </div>
       </section>

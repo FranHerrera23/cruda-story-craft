@@ -34,7 +34,7 @@ const ContactForm = () => {
           
           <div className="flex items-center justify-center gap-6 mt-6">
             <a 
-              href="https://linkedin.com" 
+              href="https://www.linkedin.com/company/thecrudaspace/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:opacity-70 transition-opacity"
@@ -45,7 +45,7 @@ const ContactForm = () => {
               </svg>
             </a>
             <a 
-              href="https://instagram.com" 
+              href="https://www.instagram.com/thecruda/"
               target="_blank" 
               rel="noopener noreferrer"
               className="hover:opacity-70 transition-opacity"

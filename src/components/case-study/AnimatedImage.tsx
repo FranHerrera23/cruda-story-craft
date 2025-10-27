@@ -10,7 +10,7 @@ interface AnimatedImageProps {
 }
 
 export const AnimatedImage = ({ src, alt, className = '', style = {}, position = 'single' }: AnimatedImageProps) => {
-  const { elementRef, isVisible } = useScrollAnimation();
+  const { elementRef, isVisible } = useScrollAnimation<HTMLDivElement>();
   
   const animClass = position === 'left' ? 'animate-image-left' 
                   : position === 'right' ? 'animate-image-right' 

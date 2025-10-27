@@ -8,7 +8,7 @@ interface AnimatedHeaderProps {
 }
 
 export const AnimatedHeader = ({ children, className = '', style = {} }: AnimatedHeaderProps) => {
-  const { elementRef, isVisible } = useScrollAnimation();
+  const { elementRef, isVisible } = useScrollAnimation<HTMLHeadingElement>();
   
   return (
     <h2 

@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
+import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
+import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
+import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/karen-hero-new.jpg";
 import pezetPoster from "@/assets/pezet-hero.jpg";
 import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
@@ -121,57 +124,50 @@ const KarenMannheimCaseStudy = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[750px] mx-auto space-y-10">
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Karen Mannheim spent thirty years building TRAZZO in Peru. Lima's most respected lighting firm. Porsche showrooms, Maserati dealerships, Four Seasons penthouses. Over a thousand projects across Peru.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Her work was exceptional. Walk through a space she lit and you felt it. A wine cellar that felt intimate. A lobby that felt commanding. Bedrooms that helped you sleep.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             But in 2021, Karen wanted to expand to the US. She was ready for Miami. Ready for international projects. The expertise was there. The portfolio was there.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             What wasn't there: anyone outside Peru who knew her name.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             A thousand Instagram followers. No LinkedIn. No way to create belief with developers in Miami who'd never walked through her spaces. When Karen wasn't in the room, no one understood what thirty years of expertise looked like.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
       {/* SECTION 4: VISUAL DIVIDER */}
-      <section 
-        className="py-16 flex justify-center items-center gap-3"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      </section>
+      <AnimatedDivider bgColor="#F5F1E8" />
 
       {/* SECTION 5: THE CHALLENGE */}
       <section 
@@ -198,7 +194,7 @@ const KarenMannheimCaseStudy = () => {
             </p>
           </div>
           
-          <h2 
+          <AnimatedHeader
             className="mb-8"
             style={{ 
               fontSize: 'clamp(32px, 4vw, 44px)',
@@ -208,48 +204,48 @@ const KarenMannheimCaseStudy = () => {
             }}
           >
             Thirty years of work in Peru. Zero presence in Miami.
-          </h2>
+          </AnimatedHeader>
           
           <div className="space-y-6">
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               Karen was opening TRAZZO's Miami office. But Miami developers didn't know her. Middle Eastern hospitality groups hadn't heard of her. She had no speaking opportunities. No partnerships outside Peru.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               Her reputation was local. Her ambition was international.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               The work spoke for itself—if you could see it. But you can't walk Miami developers through a Lima penthouse. You can't explain three decades of lighting expertise in an email.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               Karen needed to build belief remotely. Not with renderings or sales decks. With a story that showed what she understood about light, materials, and how spaces make people feel.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               We started working together the month she committed to US expansion.
-            </p>
+            </AnimatedParagraph>
           </div>
         </div>
       </section>

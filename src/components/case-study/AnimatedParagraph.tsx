@@ -9,7 +9,7 @@ interface AnimatedParagraphProps {
 }
 
 export const AnimatedParagraph = ({ children, className = '', style = {}, stagger = false }: AnimatedParagraphProps) => {
-  const { elementRef, isVisible } = useScrollAnimation();
+  const { elementRef, isVisible } = useScrollAnimation<HTMLParagraphElement>();
   
   const animClass = stagger ? 'stagger-paragraph' : 'animate-paragraph';
   

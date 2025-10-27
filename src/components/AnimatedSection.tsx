@@ -11,7 +11,7 @@ export const AnimatedSection = ({
   className = '', 
   animationType = 'paragraph' 
 }: AnimatedSectionProps) => {
-  const { elementRef, isVisible } = useScrollAnimation();
+  const { elementRef, isVisible } = useScrollAnimation<HTMLDivElement>();
 
   const animationClass = `animate-on-scroll animate-${animationType} ${isVisible ? 'visible' : ''}`;
 
@@ -23,10 +23,11 @@ export const AnimatedSection = ({
 };
 
 export const RedDotDivider = () => {
-  const { elementRef, isVisible } = useScrollAnimation();
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
+      // @ts-ignore - section ref is compatible
       ref={elementRef}
       className={`py-16 flex justify-center items-center gap-3 animate-on-scroll animate-dots ${isVisible ? 'visible' : ''}`}
       style={{ backgroundColor: '#F5F1E8' }}

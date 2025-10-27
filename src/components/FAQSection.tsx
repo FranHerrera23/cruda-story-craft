@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "What are your credentials?",
-    answer: "Fran leads CRUDA.\n\nEight years working with everyone from TikTok and Mondelez to construction CEOs, Saudi artists, athletes, and fintech founders. Buenos Aires, Dubai, Moscow. Different work, different cultures, same conversation: 'I know what I've built is strong. I just can't explain why it matters.'\n\nAfter enough of those conversations, the pattern becomes impossible to ignore. CRUDA exists because positioning doesn't come from templates or frameworks—it comes from understanding how builders actually think, what they struggle to articulate, and finding the story that's already there."
+    answer: "Our team at CRUDA has spent over a decade working with everyone from TikTok and Mondelez (Oreo) to construction CEOs, Saudi artists, and fintech founders. Buenos Aires, Dubai, Moscow. Different work, different cultures, same conversation: 'I know what I've built is strong. I just can't explain why it matters.'\n\nAfter enough of those conversations, the pattern becomes impossible to ignore. CRUDA exists because positioning doesn't come from templates or frameworks—it comes from understanding how people actually think, what they struggle to articulate, and finding the story that's already there."
   },
   {
     question: "Why \"CRUDA\"?",

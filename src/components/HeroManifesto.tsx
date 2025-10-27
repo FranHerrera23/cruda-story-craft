@@ -17,7 +17,7 @@ const HeroManifesto = () => {
                 animation: 'fadeIn 0.3s cubic-bezier(0.33, 1, 0.68, 1) 0s forwards'
               }}
             >
-              Fran Herrera - CRUDA
+              Fran Herrera, founder of CRUDA
             </p>
 
             {/* Headline */}

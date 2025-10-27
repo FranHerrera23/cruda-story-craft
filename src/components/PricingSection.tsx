@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const PricingSection = () => {
   return (
-    <section className="py-20 md:py-30 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
+    <section className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8', marginTop: '120px', marginBottom: '120px' }}>
       <div className="max-w-[1100px] mx-auto">
         {/* Headline */}
         <h2 
@@ -19,14 +19,27 @@ const PricingSection = () => {
         
         {/* Opening Statement */}
         <p 
-          className="text-[20px] md:text-[24px] text-center mb-12 md:mb-16 max-w-[900px] mx-auto" 
+          className="text-[20px] md:text-[24px] text-center mb-16 md:mb-20 max-w-[900px] mx-auto" 
           style={{ 
             color: '#3D3835',
+            lineHeight: '1.8',
             opacity: 0,
             animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.3s forwards'
           }}
         >
-          We work with <span style={{ color: '#FF2E63', fontWeight: 600 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed. It requires <span style={{ color: '#FF2E63', fontWeight: 600 }}>presence, not productivity</span>. <span style={{ color: '#FF2E63', fontWeight: 600 }}>Focus, not volume</span>.
+          We work with <span style={{ color: '#FF2E63', fontWeight: 600 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed.
+        </p>
+
+        <p 
+          className="text-[20px] md:text-[24px] text-center mb-16 md:mb-20 max-w-[900px] mx-auto" 
+          style={{ 
+            color: '#3D3835',
+            lineHeight: '1.8',
+            opacity: 0,
+            animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.5s forwards'
+          }}
+        >
+          It requires <span style={{ color: '#FF2E63', fontWeight: 600 }}>presence, not productivity</span>. <span style={{ color: '#FF2E63', fontWeight: 600 }}>Focus, not volume</span>.
         </p>
 
         {/* Investment & Payment */}
@@ -38,20 +51,20 @@ const PricingSection = () => {
             animation: 'fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.4s forwards'
           }}
         >
-          <div className="text-center mb-8">
-            <p className="text-[14px] uppercase tracking-wide mb-3" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
+          <div className="text-center mb-12">
+            <p className="text-[14px] uppercase tracking-wide mb-4" style={{ color: 'rgba(61, 56, 53, 0.6)', lineHeight: '1.8' }}>
               FOUNDATIONAL PHASE
             </p>
-            <h3 className="text-[36px] md:text-[48px] font-bold mb-2" style={{ color: '#3D3835' }}>
-              $1,800/month
+            <h3 className="text-[32px] md:text-[36px] font-bold mb-3" style={{ color: '#3D3835', display: 'block', lineHeight: '1.8' }}>
+              $1,800 monthly
             </h3>
-            <p className="text-[20px] mb-6" style={{ color: '#3D3835', opacity: 0.85 }}>
-              4-month commitment — $7,200 total
+            <p className="text-[20px] mb-8" style={{ color: 'rgba(61, 56, 53, 0.85)', display: 'block', lineHeight: '1.8' }}>
+              $7,200 total (4-month minimum commitment)
             </p>
           </div>
 
-          <div className="p-10 md:p-[60px] rounded-lg mb-8" style={{ backgroundColor: 'rgba(255, 46, 99, 0.03)', border: '2px solid #E8DED1', borderLeft: '3px solid #FF2E63' }}>
-            <h4 className="text-[22px] font-bold mb-6" style={{ color: '#3D3835' }}>
+          <div className="p-10 md:p-[80px] rounded-lg mb-8 shadow-sm" style={{ backgroundColor: 'rgba(255, 46, 99, 0.03)', borderLeft: '4px solid #FF2E63' }}>
+            <h4 className="text-[22px] font-bold mb-6" style={{ color: '#3D3835', lineHeight: '1.8' }}>
               What's Included:
             </h4>
             <ul className="space-y-5 mb-10">
@@ -68,6 +81,7 @@ const PricingSection = () => {
                   style={{ 
                     color: 'rgba(61, 56, 53, 0.85)',
                     lineHeight: '1.8',
+                    marginBottom: '16px',
                     opacity: 0,
                     animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.6 + (0.2 * index)}s forwards`
                   }}
@@ -77,7 +91,7 @@ const PricingSection = () => {
                 </li>
               ))}
             </ul>
-            <p className="text-[16px] leading-[1.8]" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
+            <p className="text-[16px]" style={{ color: 'rgba(61, 56, 53, 0.7)', lineHeight: '1.8', marginTop: '40px' }}>
               Detailed deliverables and scope discussed during our initial conversation. Most founders continue into ongoing positioning work after the foundation is built.
             </p>
           </div>

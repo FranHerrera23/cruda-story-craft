@@ -253,4 +253,153 @@
       margin-top: 2rem; /* 32px */
     }
   }
+
+  /* Scroll Animation Classes */
+  .animate-on-scroll {
+    opacity: 0;
+    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+  }
+
+  /* Header Animation - Slide up */
+  .animate-header {
+    transform: translateY(20px);
+  }
+
+  .animate-header.visible {
+    transform: translateY(0);
+  }
+
+  /* Paragraph Animation - Fade only */
+  .animate-paragraph {
+    opacity: 0;
+    transition: opacity 600ms ease-out;
+  }
+
+  .animate-paragraph.visible {
+    opacity: 1;
+  }
+
+  /* Image Animation - Fade + Scale */
+  .animate-image {
+    opacity: 0;
+    transform: scale(0.98);
+    transition: opacity 1000ms ease-out,
+                transform 1000ms ease-out;
+  }
+
+  .animate-image.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Image Pair - Staggered Left/Right */
+  .animate-image-left {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .animate-image-left.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-image-right {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 200ms;
+  }
+
+  .animate-image-right.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Box Animation */
+  .animate-box {
+    opacity: 0;
+    transform: scale(0.99);
+    transition: opacity 900ms ease-out,
+                transform 900ms ease-out;
+  }
+
+  .animate-box.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Carousel Section */
+  .animate-carousel {
+    opacity: 0;
+    transition: opacity 800ms ease-out;
+  }
+
+  .animate-carousel.visible {
+    opacity: 1;
+  }
+
+  /* Red Dots Animation */
+  .animate-dots .dot {
+    opacity: 0;
+    transition: opacity 400ms ease-out;
+  }
+
+  .animate-dots.visible .dot:nth-child(1) {
+    opacity: 1;
+    transition-delay: 0ms;
+  }
+
+  .animate-dots.visible .dot:nth-child(2) {
+    opacity: 1;
+    transition-delay: 200ms;
+  }
+
+  .animate-dots.visible .dot:nth-child(3) {
+    opacity: 1;
+    transition-delay: 400ms;
+  }
+
+  /* Paragraph Stagger */
+  .stagger-paragraph {
+    opacity: 0;
+    transition: opacity 600ms ease-out;
+  }
+
+  .stagger-paragraph.visible {
+    opacity: 1;
+  }
+
+  .stagger-paragraph:nth-child(1) { transition-delay: 0ms; }
+  .stagger-paragraph:nth-child(2) { transition-delay: 100ms; }
+  .stagger-paragraph:nth-child(3) { transition-delay: 200ms; }
+  .stagger-paragraph:nth-child(4) { transition-delay: 300ms; }
+  .stagger-paragraph:nth-child(5) { transition-delay: 400ms; }
+  .stagger-paragraph:nth-child(6) { transition-delay: 500ms; }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .animate-header,
+    .animate-paragraph,
+    .animate-image,
+    .animate-image-left,
+    .animate-image-right,
+    .animate-box,
+    .animate-carousel,
+    .animate-dots .dot,
+    .stagger-paragraph {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      transition-delay: 0ms !important;
+    }
+  }
 }

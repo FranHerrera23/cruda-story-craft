@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import FAQSection from "@/components/FAQSection";
+import callHeroImage from "@/assets/call-hero-image.png";
 
 const BookCall = () => {
   useEffect(() => {
@@ -30,8 +31,24 @@ const BookCall = () => {
         </Link>
       </div>
 
+      {/* Hero Image Section */}
+      <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+        <img 
+          src={callHeroImage} 
+          alt="Video call conversation example"
+          className="w-full h-full object-cover"
+        />
+        {/* Gradient overlay at bottom */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-32"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, #F5F1E8)'
+          }}
+        />
+      </div>
+
       {/* Split Screen Container */}
-      <div className="grid md:grid-cols-2 min-h-screen">
+      <div className="grid md:grid-cols-2 min-h-screen" style={{ marginTop: '-2rem' }}>
         {/* Left Side - Copy Section */}
         <div 
           className="flex flex-col justify-center px-10 md:px-16 py-32 md:py-20"

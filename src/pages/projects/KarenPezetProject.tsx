@@ -434,63 +434,167 @@ const KarenPezetProject = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 md:mb-20">
             {[
               { title: 'Common Areas at PEZET 2', description: 'Designed by RAMSA Architects, built by Grupo ACM, lighting by TRAZZO.' },
-              { title: 'Video 2', description: 'Description coming soon' },
-              { title: 'Video 3', description: 'Description coming soon' },
-              { title: 'Video 4', description: 'Description coming soon' },
-              { title: 'Video 5', description: 'Description coming soon' },
-              { title: 'Video 6', description: 'Description coming soon' }
+              { title: 'Coming Soon', description: 'More video content coming soon' },
+              { title: 'Coming Soon', description: 'More video content coming soon' },
+              { title: 'Coming Soon', description: 'More video content coming soon' },
+              { title: 'Coming Soon', description: 'More video content coming soon' },
+              { title: 'Coming Soon', description: 'More video content coming soon' }
             ].map((video, index) => (
-              <div
-                key={index}
-                className="transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-                style={{
-                  backgroundColor: '#FDFBF7',
-                  borderRadius: '12px',
-                  boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)',
-                  overflow: 'hidden'
-                }}
-              >
-                {/* YouTube Embed */}
-                <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
-                  <iframe
-                    src="https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0"
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
+              <div key={index}>
+                {index === 0 ? (
+                  // Real video card
+                  <div
+                    className="transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
                     style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      border: 'none'
+                      backgroundColor: '#FDFBF7',
+                      borderRadius: '12px',
+                      boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)',
+                      overflow: 'hidden'
                     }}
-                  />
-                </div>
-                
-                {/* Video Info */}
-                <div style={{ padding: '20px 24px', backgroundColor: '#FDFBF7' }}>
-                  <h3 style={{ 
-                    fontSize: '18px',
-                    fontWeight: 700,
-                    color: '#3D3835',
-                    marginBottom: '8px'
-                  }}>
-                    {video.title}
-                  </h3>
-                  <p style={{
-                    fontSize: '15px',
-                    lineHeight: 1.6,
-                    color: '#3D3835',
-                    opacity: 0.8,
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}>
-                    {video.description}
-                  </p>
-                </div>
+                  >
+                    {/* YouTube Embed */}
+                    <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+                      <iframe
+                        src="https://www.youtube.com/embed/oGu5hi3J1IQ?controls=1&modestbranding=1&rel=0"
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                        style={{
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
+                          border: 'none'
+                        }}
+                      />
+                    </div>
+                    
+                    {/* Video Info */}
+                    <div style={{ padding: '20px 24px', backgroundColor: '#FDFBF7' }}>
+                      <h3 style={{ 
+                        fontSize: '18px',
+                        fontWeight: 700,
+                        color: '#3D3835',
+                        marginBottom: '8px'
+                      }}>
+                        {video.title}
+                      </h3>
+                      <p style={{
+                        fontSize: '15px',
+                        lineHeight: 1.6,
+                        color: '#3D3835',
+                        opacity: 0.8,
+                        display: '-webkit-box',
+                        WebkitLineClamp: 2,
+                        WebkitBoxOrient: 'vertical',
+                        overflow: 'hidden'
+                      }}>
+                        {video.description}
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  // Placeholder card
+                  <div
+                    style={{
+                      backgroundColor: '#F5F1E8',
+                      borderRadius: '12px',
+                      boxShadow: '0 2px 12px rgba(61, 56, 53, 0.08)',
+                      overflow: 'hidden',
+                      cursor: 'default'
+                    }}
+                  >
+                    {/* 16:9 Aspect Ratio Container */}
+                    <div style={{ 
+                      position: 'relative', 
+                      paddingBottom: '56.25%', 
+                      height: 0,
+                      backgroundColor: '#F5F1E8',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center'
+                    }}>
+                      <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '16px'
+                      }}>
+                        {/* Play Icon */}
+                        <svg 
+                          width="64" 
+                          height="64" 
+                          viewBox="0 0 64 64" 
+                          fill="none"
+                          style={{ opacity: 0.3 }}
+                        >
+                          <circle cx="32" cy="32" r="32" fill="#3D3835" opacity="0.1" />
+                          <path 
+                            d="M26 20L44 32L26 44V20Z" 
+                            fill="#3D3835"
+                          />
+                        </svg>
+                        
+                        {/* Dots */}
+                        <div style={{
+                          display: 'flex',
+                          gap: '8px',
+                          alignItems: 'center'
+                        }}>
+                          <div style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            backgroundColor: '#3D3835',
+                            opacity: 0.3
+                          }} />
+                          <div style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            backgroundColor: '#3D3835',
+                            opacity: 0.3
+                          }} />
+                          <div style={{
+                            width: '6px',
+                            height: '6px',
+                            borderRadius: '50%',
+                            backgroundColor: '#3D3835',
+                            opacity: 0.3
+                          }} />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Placeholder Info */}
+                    <div style={{ padding: '20px 24px', backgroundColor: '#F5F1E8' }}>
+                      <h3 style={{ 
+                        fontSize: '18px',
+                        fontWeight: 700,
+                        color: '#3D3835',
+                        marginBottom: '8px',
+                        opacity: 0.5
+                      }}>
+                        {video.title}
+                      </h3>
+                      <p style={{
+                        fontSize: '15px',
+                        lineHeight: 1.6,
+                        color: '#3D3835',
+                        opacity: 0.4
+                      }}>
+                        {video.description}
+                      </p>
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>

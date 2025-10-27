@@ -122,7 +122,7 @@ const BookCall = () => {
       </div>
 
       {/* FAQ Section */}
-      <FAQSection />
+      <FAQSection showCTA={false} />
     </div>
   );
 };

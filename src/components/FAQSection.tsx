@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const faqs = [
   {
@@ -32,7 +33,7 @@ const faqs = [
   }
 ];
 
-const FAQSection = () => {
+const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -79,19 +80,21 @@ const FAQSection = () => {
         </div>
 
         {/* Final CTA */}
-        <div className="text-center">
-          <a
-            href="/book-call"
-            className="inline-flex items-center justify-center font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
-            style={{ 
-              backgroundColor: '#FF2E63',
-              borderColor: '#FF2E63',
-              color: '#FDFBF7'
-            }}
-          >
-            I want to tell my story
-          </a>
-        </div>
+        {showCTA && (
+          <div className="text-center">
+            <Link
+              to="/book-call"
+              className="inline-flex items-center justify-center font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
+              style={{ 
+                backgroundColor: '#FF2E63',
+                borderColor: '#FF2E63',
+                color: '#FDFBF7'
+              }}
+            >
+              I want to tell my story
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

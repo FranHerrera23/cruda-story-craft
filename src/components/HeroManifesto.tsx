@@ -1,4 +1,5 @@
 import franPortrait from "@/assets/fran-portrait-hero.png";
+import { Link } from "react-router-dom";
 
 const HeroManifesto = () => {
   return (
@@ -51,8 +52,8 @@ const HeroManifesto = () => {
             </p>
 
             {/* CTA */}
-            <a 
-              href="#contact"
+            <Link 
+              to="/book-call"
               className="inline-flex items-center justify-center font-display font-medium px-10 py-4 rounded transition-all duration-300 hover:scale-105"
               style={{ 
                 backgroundColor: '#FF2E63',
@@ -64,7 +65,7 @@ const HeroManifesto = () => {
               }}
             >
               Start a Conversation
-            </a>
+            </Link>
           </div>
         </div>
 

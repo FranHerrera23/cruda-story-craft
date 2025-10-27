@@ -65,7 +65,7 @@ const BookCall = () => {
         >
           <div 
             className="calendly-inline-widget" 
-            data-url="https://calendly.com/your-calendly-link"
+            data-url="https://calendly.com/cruda-intro/30min"
             style={{ minWidth: '320px', height: '700px' }}
           />
         </div>

@@ -130,8 +130,8 @@ const ProofOfWork = () => {
                       transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateY(-10px)';
-                      e.currentTarget.style.boxShadow = '0 12px 32px rgba(245, 184, 0, 0.2)';
+                      e.currentTarget.style.transform = 'translateY(-4px)';
+                      e.currentTarget.style.boxShadow = '0 6px 24px rgba(61, 56, 53, 0.15)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
@@ -143,10 +143,11 @@ const ProofOfWork = () => {
                       <img
                         src={client.photo}
                         alt={client.name}
-                        className="w-full h-full object-cover transition-all duration-300"
+                        className="w-full h-full object-cover"
                         style={{ 
                           filter: 'grayscale(15%)',
-                          objectPosition: 'center'
+                          objectPosition: 'center',
+                          transition: 'filter 300ms cubic-bezier(0.4, 0, 0.2, 1)'
                         }}
                         onMouseEnter={(e) => e.currentTarget.style.filter = 'grayscale(0%)'}
                         onMouseLeave={(e) => e.currentTarget.style.filter = 'grayscale(15%)'}

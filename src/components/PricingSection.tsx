@@ -43,18 +43,18 @@ const PricingSection = () => {
               FOUNDATIONAL PHASE
             </p>
             <h3 className="text-[36px] md:text-[48px] font-bold mb-2" style={{ color: '#3D3835' }}>
-              $1,625/month
+              $1,800/month
             </h3>
-            <p className="text-[20px] mb-6" style={{ color: '#3D3835' }}>
-              4-month commitment — $6,500 total
+            <p className="text-[20px] mb-6" style={{ color: '#3D3835', opacity: 0.85 }}>
+              4-month commitment — $7,200 total
             </p>
           </div>
 
-          <div className="p-8 md:p-10 rounded-lg mb-8" style={{ backgroundColor: '#FDFBF7', border: '2px solid #E8DED1' }}>
-            <h4 className="text-[22px] font-bold mb-4" style={{ color: '#3D3835' }}>
+          <div className="p-10 md:p-[60px] rounded-lg mb-8" style={{ backgroundColor: 'rgba(255, 46, 99, 0.03)', border: '2px solid #E8DED1', borderLeft: '3px solid #FF2E63' }}>
+            <h4 className="text-[22px] font-bold mb-6" style={{ color: '#3D3835' }}>
               What's Included:
             </h4>
-            <ul className="space-y-3 mb-6">
+            <ul className="space-y-5 mb-10">
               {[
                 'Month 1: Discovery, research, and narrative building',
                 'Months 2-4: 90 days of execution and activation',
@@ -67,6 +67,7 @@ const PricingSection = () => {
                   className="text-[18px] flex items-start" 
                   style={{ 
                     color: 'rgba(61, 56, 53, 0.85)',
+                    lineHeight: '1.8',
                     opacity: 0,
                     animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.6 + (0.2 * index)}s forwards`
                   }}
@@ -76,7 +77,7 @@ const PricingSection = () => {
                 </li>
               ))}
             </ul>
-            <p className="text-[16px] leading-[1.6]" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
+            <p className="text-[16px] leading-[1.8]" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
               Detailed deliverables and scope discussed during our initial conversation. Most founders continue into ongoing positioning work after the foundation is built.
             </p>
           </div>

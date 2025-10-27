@@ -453,32 +453,46 @@ const KarenMannheimCaseStudy = () => {
           {/* LinkedIn Screenshots */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
             <div 
-              className="animate-on-scroll"
+              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
               style={{
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+                background: '#FFFFFF',
+                borderRadius: '12px',
+                padding: '20px',
+                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
+                border: '1px solid rgba(61, 56, 53, 0.08)'
               }}
             >
               <img
                 src={linkedinPosts}
                 alt="LinkedIn post content"
                 className="w-full h-auto"
+                style={{
+                  borderRadius: '8px',
+                  border: '1px solid rgba(61, 56, 53, 0.05)',
+                  display: 'block'
+                }}
                 loading="lazy"
               />
             </div>
             <div 
-              className="animate-on-scroll"
+              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
               style={{
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+                background: '#FFFFFF',
+                borderRadius: '12px',
+                padding: '20px',
+                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
+                border: '1px solid rgba(61, 56, 53, 0.08)'
               }}
             >
               <img
                 src={linkedinAnalytics}
                 alt="LinkedIn analytics dashboard showing 335K impressions, 68K reach"
                 className="w-full h-auto"
+                style={{
+                  borderRadius: '8px',
+                  border: '1px solid rgba(61, 56, 53, 0.05)',
+                  display: 'block'
+                }}
                 loading="lazy"
               />
             </div>
@@ -509,32 +523,46 @@ const KarenMannheimCaseStudy = () => {
           {/* Instagram Screenshots */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div 
-              className="animate-on-scroll"
+              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
               style={{
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+                background: '#FFFFFF',
+                borderRadius: '12px',
+                padding: '20px',
+                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
+                border: '1px solid rgba(61, 56, 53, 0.08)'
               }}
             >
               <img
                 src={instagramPosts}
                 alt="Instagram post content"
                 className="w-full h-auto"
+                style={{
+                  borderRadius: '8px',
+                  border: '1px solid rgba(61, 56, 53, 0.05)',
+                  display: 'block'
+                }}
                 loading="lazy"
               />
             </div>
             <div 
-              className="animate-on-scroll"
+              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
               style={{
-                borderRadius: '8px',
-                overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+                background: '#FFFFFF',
+                borderRadius: '12px',
+                padding: '20px',
+                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
+                border: '1px solid rgba(61, 56, 53, 0.08)'
               }}
             >
               <img
                 src={instagramAnalytics}
                 alt="Instagram analytics dashboard"
                 className="w-full h-auto"
+                style={{
+                  borderRadius: '8px',
+                  border: '1px solid rgba(61, 56, 53, 0.05)',
+                  display: 'block'
+                }}
                 loading="lazy"
               />
             </div>

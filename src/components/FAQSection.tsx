@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     question: "When can we start?",
-    answer: "December is open. January is committed. If you want December, reach out now."
+    answer: "Start a conversation with our team, and if it feels right, we'll move forward together."
   }
 ];
 

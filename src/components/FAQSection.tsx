@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "What's the investment?",
-    answer: "$1,625/month for a 4-month commitment ($6,500 total). This is the foundational phase where we build your strategic narrative and execute across key channels. Most clients continue into ongoing positioning work after seeing the impact."
+    answer: "$1,800/month for a 4-month commitment ($7,200 total). This is the foundational phase where we build your strategic narrative and execute across key channels. Most clients continue into ongoing positioning work after seeing the impact."
   },
   {
     question: "What are your credentials?",

@@ -148,42 +148,6 @@ const WhereWeAddValue = () => {
           </div>
         </div>
 
-        {/* Bottom Qualifier Box */}
-        <div 
-          className="mx-auto px-10 py-8 rounded-lg"
-          style={{
-            maxWidth: '800px',
-            backgroundColor: '#E8DED1',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.7s, transform 0.6s cubic-bezier(0.33, 1, 0.68, 1) 0.7s'
-          }}
-        >
-          <p 
-            className="text-center"
-            style={{
-              fontSize: 'clamp(16px, 1.8vw, 20px)',
-              lineHeight: '1.9',
-              color: '#3D3835',
-              maxWidth: '750px',
-              margin: '0 auto'
-            }}
-          >
-            We don't work with everyone. Not because of revenue thresholds or arbitrary qualifications. Because the work we do—translating mastery into belief—only works when there's mastery to translate.
-          </p>
-          <p 
-            className="text-center mt-10"
-            style={{
-              fontSize: 'clamp(16px, 1.8vw, 20px)',
-              lineHeight: '1.9',
-              color: '#3D3835',
-              maxWidth: '750px',
-              margin: '40px auto 0'
-            }}
-          >
-            If you're still building the foundation, we're not the right partner yet. If the foundation is solid but the world can't see it, that's where we start.
-          </p>
-        </div>
       </div>
     </section>
   );

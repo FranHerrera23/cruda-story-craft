@@ -18,9 +18,13 @@ const Index = () => {
       <WhoWeWorkWith />
       <CredibilitySection />
       <ProofOfWork />
-      <SeeTheWork />
+      <div style={{ marginBottom: '120px' }}>
+        <SeeTheWork />
+      </div>
       <PricingSection />
-      <WhereWeAddValue />
+      <div style={{ marginTop: '120px' }}>
+        <WhereWeAddValue />
+      </div>
       <EmotionalHook />
       <FAQSection />
       <ContactForm />

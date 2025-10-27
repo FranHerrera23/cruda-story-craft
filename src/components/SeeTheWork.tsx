@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import pezetHero from "@/assets/pezet-hero.jpg";
 import porscheShowroom from "@/assets/porsche-showroom.jpg";
+import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeCBSNews from "@/assets/mike-cbs-news.png";
 
 const workItems = [
   {
     id: 1,
     type: "project",
-    slug: "/clients/karen-mannheim/pezet",
+    slug: "/projects/karen-mannheim/pezet",
     clientName: "KAREN MANNHEIM",
     title: "PEZET",
     subtitle: "Lima, Peru | Robert A.M. Stern Architects Partnership",
@@ -17,7 +18,7 @@ const workItems = [
   {
     id: 2,
     type: "project",
-    slug: "/clients/karen-mannheim/porsche",
+    slug: "/projects/karen-mannheim/porsche-flagship",
     clientName: "KAREN MANNHEIM",
     title: "Porsche Flagship Peru",
     subtitle: "Lighting 75 Years of Aspiration",
@@ -26,6 +27,16 @@ const workItems = [
   },
   {
     id: 3,
+    type: "project",
+    slug: "/projects/karen-mannheim/saadiyat-music-festival",
+    clientName: "KAREN MANNHEIM",
+    title: "Saadiyat Music Festival",
+    subtitle: "Abu Dhabi · 2024",
+    image: saadiyatHero,
+    description: "Jennifer Lopez, Christina Aguilera. Lighting a festival for clients who'd never met her."
+  },
+  {
+    id: 4,
     type: "video",
     clientName: "MIKE KAEDING",
     title: "The Norhart Story",
@@ -34,7 +45,7 @@ const workItems = [
     description: "How Norhart is revolutionizing apartment construction and affordability."
   },
   {
-    id: 4,
+    id: 5,
     type: "video",
     clientName: "MIKE KAEDING",
     title: "Interview to Batman's Exec Producer",
@@ -43,7 +54,7 @@ const workItems = [
     description: "Mike interviewing people like Michael Uslan, creator and producer of Batman, who made a billion-dollar impact in the world."
   },
   {
-    id: 5,
+    id: 6,
     type: "media",
     clientName: "MIKE KAEDING",
     title: "Featured on CBS News",

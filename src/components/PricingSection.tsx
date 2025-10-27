@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const PricingSection = () => {
   return (
-    <section className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8', marginTop: '120px', marginBottom: '120px' }}>
+    <section className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
       <div className="max-w-[1100px] mx-auto">
         {/* Headline */}
         <h2 
@@ -58,12 +58,12 @@ const PricingSection = () => {
             <h3 className="text-[32px] md:text-[36px] font-bold mb-3" style={{ color: '#3D3835', display: 'block', lineHeight: '1.8' }}>
               $1,800 monthly
             </h3>
-            <p className="text-[20px] mb-8" style={{ color: 'rgba(61, 56, 53, 0.85)', display: 'block', lineHeight: '1.8' }}>
+            <p className="text-[20px] mb-8" style={{ color: '#3D3835', display: 'block', lineHeight: '1.8', fontWeight: 500 }}>
               $7,200 total (4-month minimum commitment)
             </p>
           </div>
 
-          <div className="p-10 md:p-[80px] rounded-lg mb-8 shadow-sm" style={{ backgroundColor: 'rgba(255, 46, 99, 0.03)', borderLeft: '4px solid #FF2E63' }}>
+          <div className="p-10 md:p-[80px] mb-8">
             <h4 className="text-[22px] font-bold mb-6" style={{ color: '#3D3835', lineHeight: '1.8' }}>
               What's Included:
             </h4>

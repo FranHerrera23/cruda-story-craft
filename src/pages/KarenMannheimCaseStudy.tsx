@@ -8,6 +8,10 @@ import heroImage from "@/assets/karen-hero-new.jpg";
 import pezetPoster from "@/assets/pezet-hero.jpg";
 import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
 import saadiyatHeroNew from "@/assets/saadiyat-hero-new.jpg";
+import linkedinAnalytics from "@/assets/karen-linkedin-analytics.png";
+import linkedinPosts from "@/assets/karen-linkedin-posts.png";
+import instagramAnalytics from "@/assets/karen-instagram-analytics.png";
+import instagramPosts from "@/assets/karen-instagram-posts.png";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
@@ -429,7 +433,116 @@ const KarenMannheimCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 9: PROJECT STORYTELLING */}
+      {/* SECTION 9: PROOF SECTION - What This Looks Like */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#F5F1E8' }}
+      >
+        <div className="max-w-[1100px] mx-auto">
+          <AnimatedHeader
+            className="mb-20"
+            style={{ 
+              fontSize: '28px',
+              fontWeight: 400,
+              color: '#3D3835'
+            }}
+          >
+            What this looks like.
+          </AnimatedHeader>
+          
+          {/* LinkedIn Screenshots */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+            <div 
+              className="animate-on-scroll"
+              style={{
+                borderRadius: '8px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+              }}
+            >
+              <img
+                src={linkedinPosts}
+                alt="LinkedIn post content"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+            <div 
+              className="animate-on-scroll"
+              style={{
+                borderRadius: '8px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+              }}
+            >
+              <img
+                src={linkedinAnalytics}
+                alt="LinkedIn analytics dashboard showing 335K impressions, 68K reach"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          
+          {/* Visual Divider - Red Dots */}
+          <div className="flex justify-center items-center gap-3 my-20 animate-on-scroll">
+            <div style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: '#FF2E63'
+            }} />
+            <div style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: '#FF2E63'
+            }} />
+            <div style={{
+              width: '8px',
+              height: '8px',
+              borderRadius: '50%',
+              backgroundColor: '#FF2E63'
+            }} />
+          </div>
+          
+          {/* Instagram Screenshots */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div 
+              className="animate-on-scroll"
+              style={{
+                borderRadius: '8px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+              }}
+            >
+              <img
+                src={instagramPosts}
+                alt="Instagram post content"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+            <div 
+              className="animate-on-scroll"
+              style={{
+                borderRadius: '8px',
+                overflow: 'hidden',
+                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.12)'
+              }}
+            >
+              <img
+                src={instagramAnalytics}
+                alt="Instagram analytics dashboard"
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10: PROJECT STORYTELLING */}
       <section 
         id="projects"
         className="py-24 md:py-32 px-10 md:px-20"

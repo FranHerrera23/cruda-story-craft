@@ -50,7 +50,7 @@ const CredibilitySection = () => {
               willChange: 'transform'
             }}
           >
-            We've been inside the machine.
+            We've been inside the matrix.
           </h2>
           
           {/* Context */}
@@ -62,7 +62,7 @@ const CredibilitySection = () => {
               transitionDelay: '200ms'
             }}
           >
-            Fran spent over a decade at companies including TikTok and Mondelez before founding CRUDA. That experience—translating across cultures, markets, and languages—became the methodology.
+            Over a decade translating across companies, cultures, and languages before founding CRUDA. That gap—between what you know and what people understand—we've lived it.
           </p>
           
           <p 
@@ -73,19 +73,7 @@ const CredibilitySection = () => {
               transitionDelay: '300ms'
             }}
           >
-            We've worked with builders in luxury lighting, real estate, hospitality, and retail. Different industries, same gap: mastery that doesn't travel.
-          </p>
-
-          {/* Small intro line */}
-          <p 
-            className="text-[14px] uppercase tracking-[2px] mb-6 transition-opacity duration-[400ms]"
-            style={{ 
-              color: '#FDFBF7',
-              opacity: moment1Visible ? 0.7 : 0,
-              transitionDelay: '500ms'
-            }}
-          >
-            Fran's past corporate work:
+            Latin America. United States. Middle East. Europe. Hong Kong. The experience became the methodology. Pattern recognition travels.
           </p>
 
           {/* Brand names - MASSIVE Display */}
@@ -104,14 +92,25 @@ const CredibilitySection = () => {
           
           {/* Supporting text - Immigrant story */}
           <p 
-            className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
+            className="text-[19px] md:text-[22px] leading-[1.8] mb-8 transition-opacity duration-[600ms]"
             style={{ 
               color: '#FDFBF7',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '1000ms'
             }}
           >
-            We're immigrants ourselves. We've built across 10+ nationalities and languages. The gap between what you've built and what people understand? We've lived it. That's why we can close it.
+            We're immigrants. We've built across 10+ nationalities and languages.
+          </p>
+          
+          <p 
+            className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
+            style={{ 
+              color: '#FDFBF7',
+              opacity: moment1Visible ? 1 : 0,
+              transitionDelay: '1100ms'
+            }}
+          >
+            We understand cultural nuances and people. That's why we can help you communicate, connect, and craft narratives that travel.
           </p>
         </div>
       </section>

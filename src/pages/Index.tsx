@@ -8,7 +8,6 @@ import PricingSection from "@/components/PricingSection";
 import WhereWeAddValue from "@/components/WhereWeAddValue";
 import EmotionalHook from "@/components/EmotionalHook";
 import FAQSection from "@/components/FAQSection";
-import ContactForm from "@/components/ContactForm";
 
 const Index = () => {
   return (
@@ -27,7 +26,6 @@ const Index = () => {
       </div>
       <EmotionalHook />
       <FAQSection />
-      <ContactForm />
     </main>
   );
 };

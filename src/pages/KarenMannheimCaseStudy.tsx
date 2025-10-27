@@ -16,10 +16,6 @@ import instagramPosts from "@/assets/karen-instagram-posts.png";
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const projects = [
     {
       slug: "pezet",

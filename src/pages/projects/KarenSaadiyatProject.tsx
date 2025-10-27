@@ -11,10 +11,6 @@ import saadiyatLinkedin02 from "@/assets/saadiyat-linkedin-02.png";
 const KarenSaadiyatProject = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const galleryItems = [
     { src: saadiyatHospitalityArea, caption: 'Premium hospitality area with crowd at night' },
     { src: saadiyatKarenSpeaking, caption: 'Karen presenting at the venue' },

@@ -2,6 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
+/**
+ * Smooth Navigation & Scroll Behavior
+ * Ensures calm, contemplative page transitions
+ */
+
+/* Global smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+/* Prevent sudden layout shifts */
+body {
+  opacity: 1;
+  transition: opacity 600ms ease-out;
+}
+
+/* Ensure sections account for fixed nav when scrolling */
+section {
+  scroll-margin-top: 100px;
+}
+
+/* Smooth transitions for links */
+a {
+  transition: color 300ms ease, background 300ms ease, opacity 300ms ease;
+}
+
+/* Ensure images don't cause layout shifts */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 @layer base {
   :root {
     /* CRUDA Warm Neutrals - Rick Rubin Inspired */

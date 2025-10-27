@@ -6,10 +6,6 @@ import heroImage from "@/assets/hospitality-manager.jpg";
 const HospitalityGMCaseStudy = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div style={{ backgroundColor: '#FDFBF7' }}>
       {/* Back Navigation */}

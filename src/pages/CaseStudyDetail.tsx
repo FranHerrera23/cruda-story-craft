@@ -82,10 +82,6 @@ const CaseStudyDetail = () => {
   const navigate = useNavigate();
   const study = caseStudies.find(c => c.slug === projectSlug);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   if (!study) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDFBF7' }}>

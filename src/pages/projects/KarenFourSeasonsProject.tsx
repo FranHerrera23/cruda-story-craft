@@ -13,10 +13,6 @@ import fourSeasonsInstagramPost from "@/assets/four-seasons-instagram-post.png";
 const KarenFourSeasonsProject = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const galleryItems = [
     { src: fourSeasonsExterior, caption: 'Four Seasons Residences exterior - floor 66' },
     { src: fourSeasonsBathroom, caption: 'Master bathroom lighting design' },

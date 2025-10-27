@@ -18,10 +18,6 @@ import linkedinPost04 from "@/assets/pezet-linkedin-04.png";
 const KarenPezetProject = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const galleryItems = [
     { type: 'image', src: pezet05, caption: 'PEZET building in Lima skyline context with Lima Golf Club' },
     { type: 'image', src: pezet01, caption: 'PEZET 1 entrance facade detail' },

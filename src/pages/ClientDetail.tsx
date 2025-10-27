@@ -396,10 +396,6 @@ const ClientDetail = () => {
   const navigate = useNavigate();
   const client = clients.find(c => c.slug === clientSlug);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   if (!client) {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#FDFBF7' }}>

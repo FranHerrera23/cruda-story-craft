@@ -6,10 +6,6 @@ import heroImage from "@/assets/mike-kaeding.webp";
 const MikeKaedingCaseStudy = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const projects: any[] = [];
 
   return (

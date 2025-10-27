@@ -1,7 +1,39 @@
+import { useEffect, useRef, useState } from 'react';
+
 const WhatWeDoSection = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      return;
+    }
+
+    const options = {
+      rootMargin: '-20%',
+      threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === sectionRef.current && entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      });
+    }, options);
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section 
-      className="py-[120px] px-[60px]"
+      ref={sectionRef}
+      className="py-[140px] px-[60px]"
       style={{ backgroundColor: '#E8DED1' }}
     >
       <div className="max-w-[1200px] mx-auto">
@@ -12,15 +44,15 @@ const WhatWeDoSection = () => {
             color: 'rgba(61, 56, 53, 0.5)'
           }}
         >
-          WHAT WE DO
+          OUR ZONE OF GENIUS
         </div>
         
         <div className="max-w-[800px] mx-auto mb-[100px]">
           <p 
-            className="mb-[32px]"
+            className="mb-[40px]"
             style={{ 
               fontSize: '24px',
-              lineHeight: '1.8',
+              lineHeight: '1.9',
               color: '#3D3835'
             }}
           >
@@ -30,7 +62,7 @@ const WhatWeDoSection = () => {
           <p 
             style={{ 
               fontSize: '24px',
-              lineHeight: '1.8',
+              lineHeight: '1.9',
               color: '#3D3835'
             }}
           >
@@ -38,12 +70,20 @@ const WhatWeDoSection = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-[60px]">
-          <div>
+        <div className="grid md:grid-cols-3 gap-[48px]">
+          <div 
+            className="bg-white/40 p-[48px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/60 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(61,56,53,0.12)]"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+              transitionDelay: '0ms',
+              willChange: 'transform'
+            }}
+          >
             <h3 
-              className="font-semibold mb-[20px]"
+              className="font-semibold mb-[28px]"
               style={{ 
-                fontSize: '20px',
+                fontSize: '22px',
                 lineHeight: '1.4',
                 color: '#3D3835'
               }}
@@ -53,7 +93,7 @@ const WhatWeDoSection = () => {
             <p 
               style={{ 
                 fontSize: '17px',
-                lineHeight: '1.8',
+                lineHeight: '1.9',
                 color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
@@ -61,11 +101,19 @@ const WhatWeDoSection = () => {
             </p>
           </div>
           
-          <div>
+          <div 
+            className="bg-white/40 p-[48px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/60 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(61,56,53,0.12)]"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+              transitionDelay: '200ms',
+              willChange: 'transform'
+            }}
+          >
             <h3 
-              className="font-semibold mb-[20px]"
+              className="font-semibold mb-[28px]"
               style={{ 
-                fontSize: '20px',
+                fontSize: '22px',
                 lineHeight: '1.4',
                 color: '#3D3835'
               }}
@@ -75,7 +123,7 @@ const WhatWeDoSection = () => {
             <p 
               style={{ 
                 fontSize: '17px',
-                lineHeight: '1.8',
+                lineHeight: '1.9',
                 color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
@@ -83,11 +131,19 @@ const WhatWeDoSection = () => {
             </p>
           </div>
           
-          <div>
+          <div 
+            className="bg-white/40 p-[48px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/60 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(61,56,53,0.12)]"
+            style={{
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+              transitionDelay: '400ms',
+              willChange: 'transform'
+            }}
+          >
             <h3 
-              className="font-semibold mb-[20px]"
+              className="font-semibold mb-[28px]"
               style={{ 
-                fontSize: '20px',
+                fontSize: '22px',
                 lineHeight: '1.4',
                 color: '#3D3835'
               }}
@@ -97,7 +153,7 @@ const WhatWeDoSection = () => {
             <p 
               style={{ 
                 fontSize: '17px',
-                lineHeight: '1.8',
+                lineHeight: '1.9',
                 color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
@@ -109,10 +165,10 @@ const WhatWeDoSection = () => {
       
       {/* Mobile Styles */}
       <style>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .grid {
-            grid-template-columns: 1fr !important;
-            gap: 60px !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 40px !important;
           }
         }
         
@@ -121,12 +177,32 @@ const WhatWeDoSection = () => {
             padding: 100px 40px !important;
           }
           
+          .grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          
           .max-w-\\[800px\\] p {
             font-size: 20px !important;
+            line-height: 1.8 !important;
+          }
+          
+          .bg-white\\/40 {
+            padding: 40px 32px !important;
           }
           
           h3 {
-            font-size: 18px !important;
+            font-size: 20px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          section {
+            padding: 80px 24px !important;
+          }
+          
+          .bg-white\\/40 {
+            padding: 32px 24px !important;
           }
         }
       `}</style>

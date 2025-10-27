@@ -6,10 +6,6 @@ import heroImage from "@/assets/juan-pablo-romero.jpeg";
 const JuanPabloRomeroCaseStudy = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const projects: any[] = [];
 
   return (

@@ -5,10 +5,6 @@ import { useEffect } from "react";
 const KarenTrazzoExpansionProject = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const galleryItems = [
     { src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop', caption: 'TRAZZO team and workspace' },
     { src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&h=1420&fit=crop', caption: 'International project meeting' },

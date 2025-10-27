@@ -10,10 +10,6 @@ import porscheInstagramPost from "@/assets/porsche-instagram-post.png";
 const KarenPorscheProject = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <div style={{ backgroundColor: '#FDFBF7' }}>
       {/* BREADCRUMB & BACK LINK */}

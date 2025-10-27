@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import pezetHero from "@/assets/pezet-hero.jpg";
-import porscheShowroom from "@/assets/porsche-showroom.jpg";
+import porscheGridCover from "@/assets/porsche-grid-cover.jpg";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeCBSNews from "@/assets/mike-cbs-news.png";
 
@@ -22,7 +22,7 @@ const workItems = [
     clientName: "KAREN MANNHEIM",
     title: "Porsche Flagship Peru",
     subtitle: "Lighting 75 Years of Aspiration",
-    image: porscheShowroom,
+    image: porscheGridCover,
     description: "Flagship automotive showroom lighting design and brand storytelling."
   },
   {

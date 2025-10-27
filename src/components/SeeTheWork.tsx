@@ -37,10 +37,10 @@ const workItems = [
     id: 4,
     type: "video",
     clientName: "MIKE KAEDING",
-    title: "Building the Future",
-    subtitle: "Real Estate Development | Vertical Integration",
+    title: "Interview to Batman's Exec Producer",
+    subtitle: "Zero to Unicorn Podcast by Mike",
     videoUrl: "https://www.youtube.com/embed/SWNppX4R1KY",
-    description: "Deep dive into vertical construction methodology and business strategy."
+    description: "Mike interviewing people like Michael Uslan, creator and producer of Batman, who made a billion-dollar impact in the world."
   },
   {
     id: 5,

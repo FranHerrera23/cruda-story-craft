@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
+import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
+import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
+import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/mike-kaeding.webp";
 
 const MikeKaedingCaseStudy = () => {
@@ -85,57 +88,50 @@ const MikeKaedingCaseStudy = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[750px] mx-auto space-y-10">
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Mike Kaeding built a $200M construction company that's redefining how America builds. Norhart Inc. developed a $100M residential complex in Forest Lake with an in-house model that's changing industry cost structures.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             His work was revolutionary. Walk through a Norhart development and you saw it. Faster timelines. Lower costs. Better quality. A completely integrated model that challenged conventional construction wisdom.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             But despite building a $200M company, Norhart's story was trapped in local press. The business model was proven. The scale was there.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             What wasn't there: anyone outside Minneapolis who understood what Mike had built.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             No national positioning. No thought leadership framework. No system to turn operational excellence into industry authority. When Mike wasn't in the room, no one understood what his business model meant for construction.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
       {/* SECTION 4: VISUAL DIVIDER */}
-      <section 
-        className="py-16 flex justify-center items-center gap-3"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      </section>
+      <AnimatedDivider bgColor="#F5F1E8" />
 
       {/* SECTION 5: THE CHALLENGE */}
       <section 
@@ -162,7 +158,7 @@ const MikeKaedingCaseStudy = () => {
             </p>
           </div>
           
-          <h2 
+          <AnimatedHeader
             className="mb-8"
             style={{ 
               fontSize: 'clamp(32px, 4vw, 44px)',
@@ -172,48 +168,48 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             A revolutionary business model. Zero national presence.
-          </h2>
+          </AnimatedHeader>
           
           <div className="space-y-6">
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               Mike had proven his model in Minneapolis. But national developers didn't know him. Construction conferences hadn't heard of Norhart. He had no speaking opportunities. No partnerships beyond Minnesota.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               His reputation was local. His ambition was national.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               The work spoke for itself—if you could see it. But you can't walk developers through Forest Lake remotely. You can't explain integrated construction in a cold email.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               Mike needed to build belief at scale. Not with sales decks or pitch materials. With a story that showed what he understood about construction, efficiency, and what the industry could become.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               We started working together to transform Mike from regional builder to construction industry disruptor.
-            </p>
+            </AnimatedParagraph>
           </div>
         </div>
       </section>

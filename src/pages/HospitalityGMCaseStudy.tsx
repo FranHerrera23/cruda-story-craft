@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
+import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
+import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
+import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/hospitality-manager.jpg";
 
 const HospitalityGMCaseStudy = () => {
@@ -98,57 +101,50 @@ const HospitalityGMCaseStudy = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[750px] mx-auto space-y-10">
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Twenty years building luxury hospitality experiences across three continents. Kempinski in India. Four Seasons across the US and Canada. JW Marriott. Taj Hotels. Grand Hyatt. The kind of career where every property had to feel distinct, but the standard never changed.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Now based in the UAE, leading at C-level in healthcare. Different industry, same challenge: how do you translate decades of hospitality excellence into a sector that doesn't speak that language?
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             We've been working together for over three months. Brand positioning, strategic narrative, translating hospitality leadership into healthcare credibility. The work is ongoing. The results are real.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Here's what we can tell you: we're crafting case studies that show the industry context, the positioning challenges, our strategic process, and the outcomes. What we can't tell you: anything specific enough to violate confidentiality agreements that could bankrupt us faster than you can say "breach of contract."
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Legal approved the dog. Legal did not approve the details. So for now, enjoy this distinguished placeholder and trust that the actual work is significantly more impressive than our ability to photograph it.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
       {/* SECTION 4: VISUAL DIVIDER */}
-      <section 
-        className="py-16 flex justify-center items-center gap-3"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      </section>
+      <AnimatedDivider bgColor="#F5F1E8" />
 
       {/* SECTION 5-11: MINIMAL PLACEHOLDER */}
       <section 

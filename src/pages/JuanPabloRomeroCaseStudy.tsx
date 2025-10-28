@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
+import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
+import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
+import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/juan-pablo-romero.jpeg";
 
 const JuanPabloRomeroCaseStudy = () => {
@@ -85,41 +88,34 @@ const JuanPabloRomeroCaseStudy = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[750px] mx-auto space-y-10">
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Juan Pablo Romero leads US regional sales for UNIK Parquet, a high-end wood flooring brand serving luxury residential and commercial projects across the country.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             But for years, his story wasn't reaching the right audience. Industry expertise. No narrative. His personal brand was invisible in a market where relationships drive everything.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             We helped Juan Pablo articulate his unique perspective on luxury flooring, architectural specifications, and how material choices create lasting value in high-end spaces.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
       {/* SECTION 4: VISUAL DIVIDER */}
-      <section 
-        className="py-16 flex justify-center items-center gap-3"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      </section>
+      <AnimatedDivider bgColor="#F5F1E8" />
 
       {/* SECTION 5: THE PATTERN */}
       <section 
@@ -146,7 +142,7 @@ const JuanPabloRomeroCaseStudy = () => {
             </p>
           </div>
           
-          <h2 
+          <AnimatedHeader
             className="mb-8"
             style={{ 
               fontSize: 'clamp(32px, 4vw, 44px)',
@@ -156,24 +152,24 @@ const JuanPabloRomeroCaseStudy = () => {
             }}
           >
             Deep industry expertise. Zero visibility.
-          </h2>
+          </AnimatedHeader>
           
           <div className="space-y-6">
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               Juan Pablo had deep expertise in luxury flooring specifications and architectural applications, but his personal brand was invisible. There was no content strategy, no consistent voice, and no way to translate his knowledge into long-term influence.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
+            <AnimatedParagraph style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.9,
               color: '#3D3835'
             }}>
               The expertise was real—if you could see it. But you can't walk architects through material selection in a LinkedIn message. You can't explain why certain wood species matter in an email.
-            </p>
+            </AnimatedParagraph>
           </div>
         </div>
       </section>

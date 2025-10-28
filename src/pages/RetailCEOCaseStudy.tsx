@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown } from "lucide-react";
 import { useEffect } from "react";
+import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
+import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
+import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/retail-ceo.jpg";
 
 const RetailCEOCaseStudy = () => {
@@ -98,49 +101,42 @@ const RetailCEOCaseStudy = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[750px] mx-auto space-y-10">
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Building a luxury retail brand in one of the world's most competitive markets. CEO and founder. Dubai-based. The kind of operator who knows that brand positioning isn't marketing—it's survival.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             We worked together on a three-month consulting and advisory contract. Strategic positioning, market narrative, founder story development. The work was specific, focused, effective.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             Here's the situation: we're developing case studies that show industry context, strategic challenges, our methodology, and measurable outcomes. What we're not showing: any details specific enough to get us sued into oblivion by very well-funded legal teams.
-          </p>
+          </AnimatedParagraph>
           
-          <p style={{ 
+          <AnimatedParagraph style={{ 
             fontSize: 'clamp(17px, 2vw, 20px)',
             lineHeight: 1.9,
             color: '#3D3835'
           }}>
             The work happened. The results speak. The NDAs are airtight. So until we get written permission from someone who isn't a mini-Batman, this page stays exactly as sophisticated as it needs to be: professional enough to take seriously, honest enough to admit we can't tell you everything, and self-aware enough to know a toy superhero makes better placeholder content than stock photos of handshakes.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
       {/* SECTION 4: VISUAL DIVIDER */}
-      <section 
-        className="py-16 flex justify-center items-center gap-3"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      </section>
+      <AnimatedDivider bgColor="#F5F1E8" />
 
       {/* SECTION 5-11: MINIMAL PLACEHOLDER */}
       <section 

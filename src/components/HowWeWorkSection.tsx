@@ -33,10 +33,66 @@ const HowWeWorkSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-[120px] px-[60px]"
+      className="py-[140px] px-[60px]"
       style={{ backgroundColor: '#F5F1E8' }}
     >
-      <div className="max-w-[1200px] mx-auto">
+      <div className="max-w-[1300px] mx-auto">
+        {/* Section Label */}
+        <div 
+          className="text-center mb-[60px] uppercase"
+          style={{ 
+            fontSize: '11px',
+            letterSpacing: '3px',
+            color: 'rgba(61, 56, 53, 0.4)',
+            fontWeight: 500
+          }}
+        >
+          HOW WE WORK
+        </div>
+        
+        {/* Section Intro */}
+        <div className="max-w-[700px] mx-auto text-center">
+          <p 
+            style={{ 
+              fontSize: '24px',
+              fontWeight: 400,
+              lineHeight: '1.6',
+              color: 'rgba(61, 56, 53, 0.75)',
+              fontStyle: 'italic',
+              margin: 0
+            }}
+          >
+            Not a process. Not a system. Just how we see things.
+          </p>
+        </div>
+        
+        {/* Red Dots Divider */}
+        <div 
+          className="text-center my-[80px] mb-[100px]"
+          style={{
+            fontSize: '20px',
+            color: '#FF2E63',
+            letterSpacing: '12px'
+          }}
+        >
+          <span 
+            className="inline-block"
+          >
+            •
+          </span>
+          <span 
+            className="inline-block"
+          >
+            •
+          </span>
+          <span 
+            className="inline-block"
+          >
+            •
+          </span>
+        </div>
+        
+        {/* Principles Grid */}
         <div className="grid md:grid-cols-3 gap-[60px]">
           <div 
             className="transition-all duration-[600ms]"
@@ -57,9 +113,9 @@ const HowWeWorkSection = () => {
               01
             </div>
             <h3 
-              className="font-semibold mb-[20px]"
+              className="font-semibold mb-[24px]"
               style={{ 
-                fontSize: '24px',
+                fontSize: '26px',
                 lineHeight: '1.3',
                 color: '#3D3835'
               }}
@@ -69,7 +125,7 @@ const HowWeWorkSection = () => {
             <p 
               style={{ 
                 fontSize: '17px',
-                lineHeight: '1.8',
+                lineHeight: '1.9',
                 color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
@@ -82,7 +138,7 @@ const HowWeWorkSection = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-              transitionDelay: '200ms',
+              transitionDelay: '300ms',
               willChange: 'transform'
             }}
           >
@@ -96,9 +152,9 @@ const HowWeWorkSection = () => {
               02
             </div>
             <h3 
-              className="font-semibold mb-[20px]"
+              className="font-semibold mb-[24px]"
               style={{ 
-                fontSize: '24px',
+                fontSize: '26px',
                 lineHeight: '1.3',
                 color: '#3D3835'
               }}
@@ -108,7 +164,7 @@ const HowWeWorkSection = () => {
             <p 
               style={{ 
                 fontSize: '17px',
-                lineHeight: '1.8',
+                lineHeight: '1.9',
                 color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
@@ -121,7 +177,7 @@ const HowWeWorkSection = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-              transitionDelay: '400ms',
+              transitionDelay: '600ms',
               willChange: 'transform'
             }}
           >
@@ -135,9 +191,9 @@ const HowWeWorkSection = () => {
               03
             </div>
             <h3 
-              className="font-semibold mb-[20px]"
+              className="font-semibold mb-[24px]"
               style={{ 
-                fontSize: '24px',
+                fontSize: '26px',
                 lineHeight: '1.3',
                 color: '#3D3835'
               }}
@@ -147,7 +203,7 @@ const HowWeWorkSection = () => {
             <p 
               style={{ 
                 fontSize: '17px',
-                lineHeight: '1.8',
+                lineHeight: '1.9',
                 color: 'rgba(61, 56, 53, 0.85)'
               }}
             >
@@ -172,7 +228,7 @@ const HowWeWorkSection = () => {
           }
           
           h3 {
-            font-size: 22px !important;
+            font-size: 24px !important;
           }
         }
       `}</style>

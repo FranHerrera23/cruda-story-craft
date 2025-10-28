@@ -8,6 +8,7 @@ import heroImage from "@/assets/karen-hero-new.jpg";
 import pezetPoster from "@/assets/pezet-hero.jpg";
 import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
 import saadiyatHeroNew from "@/assets/saadiyat-hero-new.jpg";
+import porscheCover from "@/assets/porsche-cover-new.jpg";
 import linkedinAnalytics from "@/assets/karen-linkedin-analytics.png";
 import linkedinPosts from "@/assets/karen-linkedin-posts.png";
 import instagramAnalytics from "@/assets/karen-instagram-analytics.png";
@@ -43,7 +44,7 @@ const KarenMannheimCaseStudy = () => {
       name: "PORSCHE FLAGSHIP",
       location: "Lima, Perú",
       teaser: "Porsche Flagship Peru. Design approved by Porsche Germany. A project at that level doesn't happen without proven capability.",
-      poster: "https://images.unsplash.com/photo-1449034446853-66c86144b0ad?w=600&h=1067&fit=crop"
+      poster: porscheCover
     }
   ];
 

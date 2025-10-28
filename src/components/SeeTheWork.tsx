@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import pezetHero from "@/assets/pezet-hero.jpg";
-import porscheGridCover from "@/assets/porsche-grid-cover.jpg";
+import porscheGridCover from "@/assets/porsche-cover-new.jpg";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeCBSNews from "@/assets/mike-cbs-news.png";
 
@@ -23,7 +23,7 @@ const workItems = [
     title: "Porsche Flagship Peru",
     subtitle: "Lighting 75 Years of Aspiration",
     image: porscheGridCover,
-    description: "Flagship automotive showroom lighting design and brand storytelling."
+    description: "Storytelling & positioning for luxury retail lighting design."
   },
   {
     id: 3,

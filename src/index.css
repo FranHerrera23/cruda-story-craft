@@ -127,23 +127,34 @@ img {
 @layer components {
   /* Scroll Animation Styles - Contemplative, smooth animations */
   
+  /* Z-index scale for consistent layering */
+  :root {
+    --z-background: -1;
+    --z-base: 1;
+    --z-card: 10;
+    --z-card-hover: 20;
+    --z-nav: 100;
+    --z-modal-backdrop: 1000;
+    --z-modal: 1001;
+  }
+  
   /* Base animation class */
   .animate-on-scroll {
     opacity: 0;
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-on-scroll.visible {
     opacity: 1;
   }
 
-  /* Headers - slide up from below + fade in */
+  /* Headers - slide up from below + fade in - gentler */
   .animate-header {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-header.visible {
@@ -154,32 +165,32 @@ img {
   /* Paragraphs - simple fade in */
   .animate-paragraph {
     opacity: 0;
-    transition: opacity 600ms ease-out;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-paragraph.visible {
     opacity: 1;
   }
 
-  /* Images - fade in + subtle scale */
+  /* Images - fade in with subtle movement (no scale) */
   .animate-image {
     opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 1000ms ease-out,
-                transform 1000ms ease-out;
+    transform: translateY(16px);
+    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-image.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 
   /* Image pairs - left then right with delay */
   .animate-image-left {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-image-left.visible {
@@ -189,10 +200,10 @@ img {
 
   .animate-image-right {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: 200ms;
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 150ms;
   }
 
   .animate-image-right.visible {
@@ -200,23 +211,23 @@ img {
     transform: translateY(0);
   }
 
-  /* Red box section - fade + scale */
+  /* Red box section - subtle fade only (no scale) */
   .animate-box {
     opacity: 0;
-    transform: scale(0.99);
-    transition: opacity 900ms ease-out,
-                transform 900ms ease-out;
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-box.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 
-  /* Dividers with dots - sequential animation */
+  /* Dividers with dots - sequential animation - slower */
   .animate-dots .dot {
     opacity: 0;
-    transition: opacity 400ms ease-out;
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-dots.visible .dot:nth-child(1) {
@@ -226,18 +237,18 @@ img {
 
   .animate-dots.visible .dot:nth-child(2) {
     opacity: 1;
-    transition-delay: 200ms;
+    transition-delay: 150ms;
   }
 
   .animate-dots.visible .dot:nth-child(3) {
     opacity: 1;
-    transition-delay: 400ms;
+    transition-delay: 300ms;
   }
 
-  /* Carousel/dark section - fade in */
+  /* Carousel/dark section - gentle fade in */
   .animate-carousel {
     opacity: 0;
-    transition: opacity 800ms ease-out;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-carousel.visible {
@@ -265,28 +276,133 @@ img {
     }
   }
 
+  /* Route transition wrapper for smooth page changes */
+  .route-transition-wrapper {
+    animation: fadeInContent 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @keyframes fadeInContent {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   /* Smooth section transitions */
   section {
-    transition: all 300ms ease-out;
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
 html {
   scroll-behavior: smooth;
 }
 
-/* Page fade-in transition */
+/* Page fade-in transition - gentle */
 body {
-  animation: pageFadeIn 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pageFadeIn 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes pageFadeIn {
-  from {
-    opacity: 0;
+  @keyframes pageFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
   }
-  to {
-    opacity: 1;
+  
+  /* Universal Card Hover Management - Prevents overlap issues */
+  .card-hover,
+  .pillar-card,
+  .work-card,
+  .press-card,
+  .client-card {
+    position: relative;
+    z-index: var(--z-card);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                z-index 0ms 0ms;
   }
-}
+
+  /* Desktop hover effects */
+  @media (hover: hover) and (pointer: fine) {
+    .card-hover:hover,
+    .pillar-card:hover,
+    .work-card:hover,
+    .press-card:hover,
+    .client-card:hover {
+      transform: translateY(-8px);
+      z-index: var(--z-card-hover);
+      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  z-index 0ms 0ms;
+    }
+    
+    /* Return z-index after hover ends */
+    .card-hover,
+    .pillar-card,
+    .work-card,
+    .press-card,
+    .client-card {
+      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1), 
+                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  z-index 0ms 300ms;
+    }
+  }
+
+  /* Touch devices - subtle press feedback */
+  @media (hover: none) and (pointer: coarse) {
+    .card-hover:active,
+    .pillar-card:active,
+    .work-card:active,
+    .press-card:active,
+    .client-card:active {
+      transform: scale(0.98);
+      transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+  
+  /* Button and Link Transitions - Consistent across site */
+  button, a {
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* CTA Button Style */
+  .cta-button {
+    transform: scale(1);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .cta-button:hover {
+      transform: scale(1.02);
+    }
+  }
+  
+  /* Text Link with Underline Animation */
+  .text-link {
+    position: relative;
+    transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .text-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .text-link:hover::after {
+    width: 100%;
+  }
   
   /* Punk Minimalism Utilities */
   .section-number {
@@ -464,7 +580,7 @@ body {
 
   /* Header Animation - Slide up */
   .animate-header {
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
 
   .animate-header.visible {
@@ -474,32 +590,32 @@ body {
   /* Paragraph Animation - Fade only */
   .animate-paragraph {
     opacity: 0;
-    transition: opacity 600ms ease-out;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-paragraph.visible {
     opacity: 1;
   }
 
-  /* Image Animation - Fade + Scale */
+  /* Image Animation - Fade + subtle movement */
   .animate-image {
     opacity: 0;
-    transform: scale(0.98);
-    transition: opacity 1000ms ease-out,
-                transform 1000ms ease-out;
+    transform: translateY(16px);
+    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-image.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 
-  /* Image Pair - Staggered Left/Right */
+  /* Image Pair - Staggered Left/Right - gentler */
   .animate-image-left {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-image-left.visible {
@@ -509,10 +625,10 @@ body {
 
   .animate-image-right {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: 200ms;
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    transition-delay: 150ms;
   }
 
   .animate-image-right.visible {
@@ -520,33 +636,33 @@ body {
     transform: translateY(0);
   }
 
-  /* Box Animation */
+  /* Box Animation - no scale, just fade and move */
   .animate-box {
     opacity: 0;
-    transform: scale(0.99);
-    transition: opacity 900ms ease-out,
-                transform 900ms ease-out;
+    transform: translateY(16px);
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-box.visible {
     opacity: 1;
-    transform: scale(1);
+    transform: translateY(0);
   }
 
   /* Carousel Section */
   .animate-carousel {
     opacity: 0;
-    transition: opacity 800ms ease-out;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-carousel.visible {
     opacity: 1;
   }
 
-  /* Red Dots Animation */
+  /* Red Dots Animation - slower */
   .animate-dots .dot {
     opacity: 0;
-    transition: opacity 400ms ease-out;
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .animate-dots.visible .dot:nth-child(1) {
@@ -556,18 +672,18 @@ body {
 
   .animate-dots.visible .dot:nth-child(2) {
     opacity: 1;
-    transition-delay: 200ms;
+    transition-delay: 150ms;
   }
 
   .animate-dots.visible .dot:nth-child(3) {
     opacity: 1;
-    transition-delay: 400ms;
+    transition-delay: 300ms;
   }
 
-  /* Paragraph Stagger */
+  /* Paragraph Stagger - slower timing */
   .stagger-paragraph {
     opacity: 0;
-    transition: opacity 600ms ease-out;
+    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .stagger-paragraph.visible {
@@ -575,11 +691,11 @@ body {
   }
 
   .stagger-paragraph:nth-child(1) { transition-delay: 0ms; }
-  .stagger-paragraph:nth-child(2) { transition-delay: 100ms; }
-  .stagger-paragraph:nth-child(3) { transition-delay: 200ms; }
-  .stagger-paragraph:nth-child(4) { transition-delay: 300ms; }
-  .stagger-paragraph:nth-child(5) { transition-delay: 400ms; }
-  .stagger-paragraph:nth-child(6) { transition-delay: 500ms; }
+  .stagger-paragraph:nth-child(2) { transition-delay: 150ms; }
+  .stagger-paragraph:nth-child(3) { transition-delay: 300ms; }
+  .stagger-paragraph:nth-child(4) { transition-delay: 450ms; }
+  .stagger-paragraph:nth-child(5) { transition-delay: 600ms; }
+  .stagger-paragraph:nth-child(6) { transition-delay: 750ms; }
 
   /* Respect reduced motion preferences */
   @media (prefers-reduced-motion: reduce) {
@@ -721,13 +837,32 @@ body {
     padding: 40px 32px;
     border-radius: 12px;
     border: 1px solid rgba(61, 56, 53, 0.08);
-    transition: all 400ms ease;
+    position: relative;
+    z-index: var(--z-card);
+    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                z-index 0ms 0ms;
   }
 
-  .pillar-card:hover {
-    background: rgba(255, 255, 255, 0.6);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 32px rgba(61, 56, 53, 0.12);
+  @media (hover: hover) and (pointer: fine) {
+    .pillar-card:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: translateY(-8px);
+      box-shadow: 0 8px 32px rgba(61, 56, 53, 0.12);
+      z-index: var(--z-card-hover);
+      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  z-index 0ms 0ms;
+    }
+    
+    .pillar-card {
+      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  background 300ms cubic-bezier(0.4, 0, 0.2, 1),
+                  z-index 0ms 300ms;
+    }
   }
 
   .pillar-number {

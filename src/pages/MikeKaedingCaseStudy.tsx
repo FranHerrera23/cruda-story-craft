@@ -41,7 +41,7 @@ const PressCarousel = () => {
         '(min-width: 1200px)': { align: 'start' }
       }
     },
-    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })]
   );
 
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -100,19 +100,18 @@ const PressCarousel = () => {
               className="flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-27px)] min-w-0"
             >
               <div
-                className="transition-all duration-300 h-full flex flex-col"
+                className="press-card transition-all duration-300 h-full flex flex-col"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 2px 16px rgba(61, 56, 53, 0.06)'
+                  boxShadow: '0 2px 16px rgba(61, 56, 53, 0.06)',
+                  position: 'relative'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(61, 56, 53, 0.12)';
+                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(61, 56, 53, 0.12)';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
                   e.currentTarget.style.boxShadow = '0 2px 16px rgba(61, 56, 53, 0.06)';
                 }}
               >

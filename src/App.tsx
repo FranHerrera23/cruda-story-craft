@@ -31,25 +31,27 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <Navigation />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/clients/karen-mannheim" element={<KarenMannheimCaseStudy />} />
-          <Route path="/clients/mike-kaeding" element={<MikeKaedingCaseStudy />} />
-          <Route path="/clients/juan-pablo-romero" element={<JuanPabloRomeroCaseStudy />} />
-          <Route path="/clients/hospitality-gm-abudhabi" element={<HospitalityGMCaseStudy />} />
-          <Route path="/clients/retail-ceo-dubai" element={<RetailCEOCaseStudy />} />
-          <Route path="/clients/:clientSlug" element={<ClientDetail />} />
-          <Route path="/work/:projectSlug" element={<CaseStudyDetail />} />
-          <Route path="/book-call" element={<BookCall />} />
-          {/* Karen Mannheim Project Pages */}
-          <Route path="/projects/karen-mannheim/pezet" element={<KarenPezetProject />} />
-          <Route path="/projects/karen-mannheim/four-seasons-penthouse" element={<KarenFourSeasonsProject />} />
-          <Route path="/projects/karen-mannheim/saadiyat-music-festival" element={<KarenSaadiyatProject />} />
-          <Route path="/projects/karen-mannheim/porsche-flagship" element={<KarenPorscheProject />} />
-          <Route path="/projects/karen-mannheim/trazzo-expansion" element={<KarenTrazzoExpansionProject />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div className="route-transition-wrapper">
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/clients/karen-mannheim" element={<KarenMannheimCaseStudy />} />
+            <Route path="/clients/mike-kaeding" element={<MikeKaedingCaseStudy />} />
+            <Route path="/clients/juan-pablo-romero" element={<JuanPabloRomeroCaseStudy />} />
+            <Route path="/clients/hospitality-gm-abudhabi" element={<HospitalityGMCaseStudy />} />
+            <Route path="/clients/retail-ceo-dubai" element={<RetailCEOCaseStudy />} />
+            <Route path="/clients/:clientSlug" element={<ClientDetail />} />
+            <Route path="/work/:projectSlug" element={<CaseStudyDetail />} />
+            <Route path="/book-call" element={<BookCall />} />
+            {/* Karen Mannheim Project Pages */}
+            <Route path="/projects/karen-mannheim/pezet" element={<KarenPezetProject />} />
+            <Route path="/projects/karen-mannheim/four-seasons-penthouse" element={<KarenFourSeasonsProject />} />
+            <Route path="/projects/karen-mannheim/saadiyat-music-festival" element={<KarenSaadiyatProject />} />
+            <Route path="/projects/karen-mannheim/porsche-flagship" element={<KarenPorscheProject />} />
+            <Route path="/projects/karen-mannheim/trazzo-expansion" element={<KarenTrazzoExpansionProject />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

@@ -61,14 +61,13 @@ const WhoWeWorkWith = () => {
           {verticals.map((vertical, index) => (
             <div
               key={vertical.id}
-              className="bg-white border overflow-hidden group transition-all duration-[0.4s] hover:-translate-y-2"
+              className="bg-white border overflow-hidden group client-card transition-all duration-300"
               style={{ 
                 borderColor: 'rgba(61, 56, 53, 0.08)',
                 borderRadius: '12px',
                 boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
-                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                 opacity: 0,
-                animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 * index}s forwards`
+                animation: `fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s forwards`
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.12)';
@@ -86,8 +85,8 @@ const WhoWeWorkWith = () => {
                   style={{ 
                     filter: 'grayscale(15%)',
                     objectPosition: 'center',
-                    transform: 'scale(1.04)',
-                    animation: `scaleDown 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.2 * index}s forwards`
+                    transform: 'scale(1.02)',
+                    animation: `scaleDown 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s forwards`
                   }}
                   loading="lazy"
                 />

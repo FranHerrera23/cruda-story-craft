@@ -287,7 +287,7 @@ const MikeKaedingCaseStudy = () => {
             </p>
           </div>
           
-          <h2 
+          <AnimatedHeader 
             className="mb-10 text-center italic"
             style={{ 
               fontSize: 'clamp(36px, 4.5vw, 48px)',
@@ -298,9 +298,9 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             We didn't tell Mike's story. We helped him find his voice.
-          </h2>
+          </AnimatedHeader>
           
-          <p 
+          <AnimatedParagraph 
             className="text-center"
             style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
@@ -309,127 +309,124 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             Through structured founder interviews and strategic positioning, we transformed Mike from regional builder to construction industry disruptor. We developed a content system that turns operational insights into national conversation.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
-      {/* SECTION 8: CONTENT APPROACH */}
+      {/* SECTION 8: THE TRANSLATION */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#F5F1E8' }}
+        style={{ backgroundColor: '#E8DED1' }}
       >
-        <div className="max-w-[800px] mx-auto">
-          <h2 
-            className="mb-16 text-center"
+        <div className="max-w-[1200px] mx-auto">
+          
+          {/* Section Number */}
+          <div 
+            className="inline-block mb-10"
             style={{ 
-              fontSize: 'clamp(32px, 4vw, 44px)',
-              color: '#3D3835',
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
+            }}
+          >
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
               fontWeight: 700
+            }}>
+              02
+            </p>
+          </div>
+          
+          <AnimatedHeader
+            className="mb-8"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#3D3835',
+              fontWeight: 600,
+              lineHeight: 1.2
             }}
           >
             The translation
-          </h2>
+          </AnimatedHeader>
           
-          <div className="space-y-10">
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              We built his story around three things:
-            </p>
+          <AnimatedParagraph 
+            className="mb-20"
+            style={{ 
+              fontSize: 'clamp(20px, 2.5vw, 24px)',
+              lineHeight: 1.6,
+              color: 'rgba(61, 56, 53, 0.85)',
+              maxWidth: '700px'
+            }}
+          >
+            We built his story around three things:
+          </AnimatedParagraph>
+          
+          {/* 3-Column Pillars Grid */}
+          <div className="pillars-grid mb-20">
             
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              <strong>Construction Innovation.</strong> How Norhart is reimagining residential building. Why the traditional model doesn't work anymore.
-            </p>
+            {/* Pillar 1: Construction Innovation */}
+            <div className="pillar-card">
+              <div className="pillar-number">01</div>
+              <h3 className="pillar-heading">Construction Innovation</h3>
+              <p className="pillar-description">
+                How Norhart is reimagining residential building. Why the traditional model doesn't work anymore. What changes when you control the entire process.
+              </p>
+            </div>
             
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              <strong>Business Model Breakdown.</strong> The economics of vertical integration. What changes when you own the entire process.
-            </p>
+            {/* Pillar 2: Business Model Breakdown */}
+            <div className="pillar-card">
+              <div className="pillar-number">02</div>
+              <h3 className="pillar-heading">Business Model Breakdown</h3>
+              <p className="pillar-description">
+                The economics of vertical integration. What changes when you own the entire process. Why this creates better outcomes.
+              </p>
+            </div>
             
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              <strong>Industry Leadership.</strong> Challenging conventional construction wisdom. What the future of American residential building looks like.
-            </p>
+            {/* Pillar 3: Industry Leadership */}
+            <div className="pillar-card">
+              <div className="pillar-number">03</div>
+              <h3 className="pillar-heading">Industry Leadership</h3>
+              <p className="pillar-description">
+                Challenging conventional construction wisdom. What the future of American residential building looks like. Why the industry needs to change.
+              </p>
+            </div>
             
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
+          </div>
+          
+          {/* Closing Statement */}
+          <div className="max-w-[700px] mx-auto text-center space-y-6">
+            <AnimatedParagraph style={{ 
+              fontSize: 'clamp(19px, 2.2vw, 22px)',
+              lineHeight: 1.7,
+              color: 'rgba(61, 56, 53, 0.85)'
             }}>
               The content wasn't promotional. It was Mike thinking out loud about building better, faster, and more affordably.
-            </p>
+            </AnimatedParagraph>
             
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
+            <AnimatedParagraph style={{ 
+              fontSize: 'clamp(19px, 2.2vw, 22px)',
+              lineHeight: 1.7,
+              color: 'rgba(61, 56, 53, 0.85)'
             }}>
               This built his presence nationally. Then opened doors across the construction industry.
-            </p>
+            </AnimatedParagraph>
           </div>
         </div>
       </section>
 
-      {/* SECTION 9: IMAGE PAIR - TECHNICAL VS EMOTIONAL */}
-      <section 
-        className="py-16 px-10 md:px-20"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div className="max-w-[1000px] mx-auto grid md:grid-cols-2 gap-8">
-          <div>
-            <img 
-              src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop"
-              alt="Norhart construction site"
-              style={{ 
-                width: '100%',
-                borderRadius: '8px',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
-              }}
-            />
-          </div>
-          <div>
-            <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop"
-              alt="Norhart development"
-              style={{ 
-                width: '100%',
-                borderRadius: '8px',
-                boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)'
-              }}
-            />
-          </div>
-        </div>
-      </section>
+      {/* SECTION 9: VISUAL DIVIDER */}
+      <AnimatedDivider bgColor="#E8DED1" />
 
-      {/* SECTION 10: VISUAL DIVIDER */}
-      <section 
-        className="py-16 flex justify-center items-center gap-3"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-        <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      </section>
-
-      {/* SECTION 11: WHAT TRAVELS NOW */}
+      {/* SECTION 10: WHAT TRAVELS NOW */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1000px] mx-auto">
-          <h2 
+          <AnimatedHeader
             className="mb-10 text-center"
             style={{ 
               fontSize: 'clamp(32px, 4vw, 44px)',
@@ -438,9 +435,9 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             What travels now
-          </h2>
+          </AnimatedHeader>
           
-          <p 
+          <AnimatedParagraph 
             className="mb-16 text-center"
             style={{ 
               fontSize: 'clamp(20px, 2.4vw, 24px)',
@@ -449,7 +446,7 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             Two years later: a construction model that travels beyond Minneapolis.
-          </p>
+          </AnimatedParagraph>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
             <div 
@@ -548,7 +545,7 @@ const MikeKaedingCaseStudy = () => {
             </div>
           </div>
           
-          <p 
+          <AnimatedParagraph 
             className="text-center max-w-[700px] mx-auto"
             style={{ 
               fontSize: 'clamp(18px, 2.2vw, 22px)',
@@ -557,9 +554,9 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             Mike walks into rooms now where people already know Norhart's model. National developers. Industry conferences. Media outlets.
-          </p>
+          </AnimatedParagraph>
           
-          <p 
+          <AnimatedParagraph 
             className="text-center max-w-[700px] mx-auto mt-6"
             style={{ 
               fontSize: 'clamp(18px, 2.2vw, 22px)',
@@ -568,17 +565,17 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             The business model finally has a story that travels beyond Minneapolis.
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
-      {/* SECTION 12: PROJECT CAROUSEL (DARK SECTION) - EMPTY */}
+      {/* SECTION 11: PROJECT CAROUSEL (DARK SECTION) - EMPTY */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#3D3835' }}
       >
         <div className="max-w-[1200px] mx-auto text-center">
-          <p 
+          <AnimatedParagraph
             style={{ 
               fontSize: 'clamp(17px, 2vw, 20px)',
               lineHeight: 1.8,
@@ -586,11 +583,11 @@ const MikeKaedingCaseStudy = () => {
             }}
           >
             Project case studies coming soon
-          </p>
+          </AnimatedParagraph>
         </div>
       </section>
 
-      {/* SECTION 13: TESTIMONIAL QUOTE */}
+      {/* SECTION 12: TESTIMONIAL QUOTE */}
       <section 
         className="py-32 md:py-40 px-10 md:px-20"
         style={{ backgroundColor: '#E8DED1' }}
@@ -627,7 +624,7 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 14: CTA */}
+      {/* SECTION 13: CTA */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20 text-center"
         style={{ backgroundColor: '#E8DED1' }}

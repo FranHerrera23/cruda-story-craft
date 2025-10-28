@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import pezetHero from "@/assets/pezet-hero.jpg";
-import porscheGridCover from "@/assets/porsche-cover-new.jpg";
+import porscheGridCover from "@/assets/porsche-cover-new.png";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeCBSNews from "@/assets/mike-cbs-news.png";
 

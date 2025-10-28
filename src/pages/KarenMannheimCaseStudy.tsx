@@ -8,7 +8,7 @@ import heroImage from "@/assets/karen-hero-new.jpg";
 import pezetPoster from "@/assets/pezet-hero.jpg";
 import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
 import saadiyatHeroNew from "@/assets/saadiyat-hero-new.jpg";
-import porscheCover from "@/assets/porsche-cover-new.jpg";
+import porscheCover from "@/assets/porsche-cover-new.png";
 import linkedinAnalytics from "@/assets/karen-linkedin-analytics.png";
 import linkedinPosts from "@/assets/karen-linkedin-posts.png";
 import instagramAnalytics from "@/assets/karen-instagram-analytics.png";

@@ -11,8 +11,8 @@ import saadiyatHeroNew from "@/assets/saadiyat-hero-new.jpg";
 import porscheCover from "@/assets/porsche-cover-new.png";
 import linkedinAnalytics from "@/assets/karen-linkedin-analytics.png";
 import linkedinPosts from "@/assets/karen-linkedin-posts.png";
-import instagramAnalytics from "@/assets/karen-instagram-analytics.png";
-import instagramPosts from "@/assets/karen-instagram-posts.png";
+import instagramAnalytics from "@/assets/karen-instagram-analytics-new.jpeg";
+import instagramPosts from "@/assets/karen-instagram-posts-new.jpeg";
 
 const KarenMannheimCaseStudy = () => {
   const navigate = useNavigate();
@@ -699,7 +699,7 @@ const KarenMannheimCaseStudy = () => {
                     marginBottom: '8px',
                     display: 'inline-block'
                   }}>
-                    400%
+                    500K
                   </div>
                   <div style={{
                     fontSize: '14px',
@@ -708,7 +708,7 @@ const KarenMannheimCaseStudy = () => {
                     textTransform: 'uppercase',
                     letterSpacing: '1px'
                   }}>
-                    Engagement
+                    Views in 90 days
                   </div>
                 </div>
                 <div className="flex-1 min-w-[140px]">
@@ -723,7 +723,7 @@ const KarenMannheimCaseStudy = () => {
                     marginBottom: '8px',
                     display: 'inline-block'
                   }}>
-                    8K
+                    16K
                   </div>
                   <div style={{
                     fontSize: '14px',
@@ -732,7 +732,7 @@ const KarenMannheimCaseStudy = () => {
                     textTransform: 'uppercase',
                     letterSpacing: '1px'
                   }}>
-                    Reach
+                    People reached organically
                   </div>
                 </div>
                 <div className="flex-1 min-w-[140px]">
@@ -747,7 +747,7 @@ const KarenMannheimCaseStudy = () => {
                     marginBottom: '8px',
                     display: 'inline-block'
                   }}>
-                    4mo
+                    153
                   </div>
                   <div style={{
                     fontSize: '14px',
@@ -756,7 +756,7 @@ const KarenMannheimCaseStudy = () => {
                     textTransform: 'uppercase',
                     letterSpacing: '1px'
                   }}>
-                    Timeline
+                    Pieces of content shared
                   </div>
                 </div>
               </div>

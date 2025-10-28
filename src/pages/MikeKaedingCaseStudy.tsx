@@ -647,7 +647,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork5} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/posts/mikekaeding_oakdale-realestate-residentialconstruction-activity-7107036479498973184-rYuu?utm_source=share&utm_medium=member_desktop&rcm=ACoAABtt_60BmHm9_OshYxw31f7U3MAGs5ZcXPc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"

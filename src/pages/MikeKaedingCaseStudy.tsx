@@ -459,7 +459,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork1} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/posts/mikekaeding_im-part-of-an-organization-with-over-34000-activity-7254885302115188737-NmoZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAABtt_60BmHm9_OshYxw31f7U3MAGs5ZcXPc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"
@@ -506,7 +506,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork2} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/feed/update/urn:li:activity:7140732854015041536?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7140732854015041536%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"

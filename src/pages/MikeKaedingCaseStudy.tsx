@@ -1,13 +1,41 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ChevronDown } from "lucide-react";
-import { useEffect } from "react";
+import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
 import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
 import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/mike-kaeding.webp";
+import mikeCarousel1 from "@/assets/mike-carousel-1.png";
+import mikeCarousel2 from "@/assets/mike-carousel-2.png";
+import mikeCarousel3 from "@/assets/mike-carousel-3.png";
+import mikeCarousel4 from "@/assets/mike-carousel-4.png";
+import mikeCarousel5 from "@/assets/mike-carousel-5.png";
+import mikeCarousel6 from "@/assets/mike-carousel-6.png";
+import mikeCarousel7 from "@/assets/mike-carousel-7.png";
+import mikeCarousel8 from "@/assets/mike-carousel-8.png";
 
 const MikeKaedingCaseStudy = () => {
   const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const carouselSlides = [
+    { image: mikeCarousel1, caption: "The inheritance — Mike took over Norhart after his father's unexpected passing. Leadership wasn't a choice—it was a calling." },
+    { image: mikeCarousel2, caption: "Building at scale — 1,000+ units delivered. $230M in assets. The largest residential project in Minneapolis history." },
+    { image: mikeCarousel3, caption: "Systems thinking — Why construction costs too much. How modular building changes the equation." },
+    { image: mikeCarousel4, caption: "Weekly discipline — 85+ posts. 20 months. No gaps. Every piece built to connect, not impress." },
+    { image: mikeCarousel5, caption: "The human side — Conversations with his daughters. Lessons from his wife. Leadership learned at home." },
+    { image: mikeCarousel6, caption: "Industry voice — Speaking on housing policy, construction efficiency, and what builders should be doing differently." },
+    { image: mikeCarousel7, caption: "Behind the scenes — Workforce training. Onshoring. The operational systems that back up the mission." },
+    { image: mikeCarousel8, caption: "One voice, many channels — Content that travels from LinkedIn to keynotes, investor decks, and policy submissions." }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+  };
 
   const projects: any[] = [];
 
@@ -275,8 +303,8 @@ const MikeKaedingCaseStudy = () => {
             Visual story
           </AnimatedHeader>
 
-          {/* Carousel Placeholder - Images to be added */}
-          <div className="space-y-6">
+          {/* Carousel */}
+          <div className="relative">
             <div 
               className="w-full rounded-lg overflow-hidden"
               style={{
@@ -284,21 +312,78 @@ const MikeKaedingCaseStudy = () => {
                 backgroundColor: 'rgba(61, 56, 53, 0.1)'
               }}
             >
-              <div className="w-full h-full flex items-center justify-center">
-                <p style={{ fontSize: '14px', color: 'rgba(61, 56, 53, 0.5)' }}>
-                  Image carousel will be displayed here
+              <img 
+                src={carouselSlides[currentSlide].image}
+                alt={carouselSlides[currentSlide].caption}
+                className="w-full h-full object-cover"
+              />
+              
+              {/* Caption overlay */}
+              <div 
+                className="absolute bottom-0 left-0 right-0 p-8"
+                style={{
+                  background: 'linear-gradient(to top, rgba(61, 56, 53, 0.9), transparent)'
+                }}
+              >
+                <p style={{ 
+                  fontSize: '16px', 
+                  color: '#FDFBF7', 
+                  lineHeight: 1.6 
+                }}>
+                  {carouselSlides[currentSlide].caption}
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center text-sm" style={{ color: 'rgba(61, 56, 53, 0.65)' }}>
-              <div>• The inheritance</div>
-              <div>• Building at scale</div>
-              <div>• Systems thinking</div>
-              <div>• Weekly discipline</div>
-              <div>• The human side</div>
-              <div>• Industry voice</div>
-              <div>• Behind the scenes</div>
-              <div>• Multi-channel content</div>
+
+            {/* Navigation arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all"
+              style={{
+                backgroundColor: 'rgba(253, 251, 247, 0.9)',
+                color: '#3D3835'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#FDFBF7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(253, 251, 247, 0.9)';
+              }}
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all"
+              style={{
+                backgroundColor: 'rgba(253, 251, 247, 0.9)',
+                color: '#3D3835'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#FDFBF7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'rgba(253, 251, 247, 0.9)';
+              }}
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Dots navigation */}
+            <div className="flex justify-center gap-2 mt-6">
+              {carouselSlides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className="rounded-full transition-all"
+                  style={{
+                    width: '12px',
+                    height: '12px',
+                    backgroundColor: currentSlide === index ? '#3D3835' : 'rgba(61, 56, 53, 0.3)'
+                  }}
+                />
+              ))}
             </div>
           </div>
         </div>

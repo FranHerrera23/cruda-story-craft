@@ -238,10 +238,76 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 9: VISUAL DIVIDER */}
+      {/* SECTION 9: VISUAL STORY - IMAGE CAROUSEL */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#E8DED1' }}
+      >
+        <div className="max-w-[1200px] mx-auto">
+          <div 
+            className="inline-block mb-10"
+            style={{ 
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
+            }}
+          >
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              02.5
+            </p>
+          </div>
+          
+          <AnimatedHeader
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#3D3835',
+              fontWeight: 600,
+              lineHeight: 1.2
+            }}
+          >
+            Visual story
+          </AnimatedHeader>
+
+          {/* Carousel Placeholder - Images to be added */}
+          <div className="space-y-6">
+            <div 
+              className="w-full rounded-lg overflow-hidden"
+              style={{
+                aspectRatio: '16/9',
+                backgroundColor: 'rgba(61, 56, 53, 0.1)'
+              }}
+            >
+              <div className="w-full h-full flex items-center justify-center">
+                <p style={{ fontSize: '14px', color: 'rgba(61, 56, 53, 0.5)' }}>
+                  Image carousel will be displayed here
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-center text-sm" style={{ color: 'rgba(61, 56, 53, 0.65)' }}>
+              <div>• The inheritance</div>
+              <div>• Building at scale</div>
+              <div>• Systems thinking</div>
+              <div>• Weekly discipline</div>
+              <div>• The human side</div>
+              <div>• Industry voice</div>
+              <div>• Behind the scenes</div>
+              <div>• Multi-channel content</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 10: VISUAL DIVIDER */}
       <AnimatedDivider bgColor="#E8DED1" />
 
-      {/* SECTION 10: THE WORK THAT TRAVELS */}
+      {/* SECTION 11: THE WORK THAT TRAVELS */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
@@ -397,7 +463,7 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 11: WHAT THIS LOOKS LIKE */}
+      {/* SECTION 12: WHAT THIS LOOKS LIKE */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
@@ -487,7 +553,7 @@ const MikeKaedingCaseStudy = () => {
       </section>
 
 
-      {/* SECTION 12: THE IMPACT */}
+      {/* SECTION 13: THE IMPACT */}
       <section 
         className="py-32 md:py-40 px-10 md:px-20"
         style={{ backgroundColor: '#3D3835' }}
@@ -583,7 +649,7 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 13: CTA */}
+      {/* SECTION 14: CTA */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20 text-center"
         style={{ backgroundColor: '#F5F1E8' }}

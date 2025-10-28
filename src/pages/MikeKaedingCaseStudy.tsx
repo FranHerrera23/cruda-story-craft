@@ -47,18 +47,18 @@ const MikeKaedingCaseStudy = () => {
               fontWeight: 500
             }}
           >
-            RESIDENTIAL CONSTRUCTION | MINNEAPOLIS
+            CEO, NORHART • MINNEAPOLIS • 20+ YEARS IN CONSTRUCTION
           </p>
           <h1 
             className="font-bold"
             style={{ 
-              fontSize: 'clamp(36px, 5vw, 60px)',
+              fontSize: 'clamp(36px, 5vw, 72px)',
               color: '#FDFBF7',
-              lineHeight: 1.2,
+              lineHeight: 1.1,
               fontWeight: 700
             }}
           >
-            When innovation doesn't travel
+            Mike Kaeding
           </h1>
         </div>
         <div className="absolute bottom-8">
@@ -72,13 +72,12 @@ const MikeKaedingCaseStudy = () => {
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <p style={{ 
-          fontSize: '12px',
+          fontSize: '18px',
           color: '#3D3835',
-          letterSpacing: '1px',
-          textTransform: 'uppercase',
-          fontWeight: 500
+          lineHeight: 1.8,
+          fontWeight: 400
         }}>
-          Mike Kaeding | CEO of Norhart Inc. | Residential Construction | Minneapolis
+          CEO, Norhart • Minneapolis • 20+ years in construction
         </p>
       </section>
 
@@ -87,231 +86,58 @@ const MikeKaedingCaseStudy = () => {
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
-        <div className="max-w-[750px] mx-auto space-y-10">
-          <AnimatedParagraph style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            Mike Kaeding built a $200M construction company that's redefining how America builds. Norhart Inc. developed a $100M residential complex in Forest Lake with an in-house model that's changing industry cost structures.
-          </AnimatedParagraph>
-          
-          <AnimatedParagraph style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            His work was revolutionary. Walk through a Norhart development and you saw it. Faster timelines. Lower costs. Better quality. A completely integrated model that challenged conventional construction wisdom.
-          </AnimatedParagraph>
-          
-          <AnimatedParagraph style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            But despite building a $200M company, Norhart's story was trapped in local press. The business model was proven. The scale was there.
-          </AnimatedParagraph>
-          
-          <AnimatedParagraph style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            What wasn't there: anyone outside Minneapolis who understood what Mike had built.
-          </AnimatedParagraph>
-          
-          <AnimatedParagraph style={{ 
-            fontSize: 'clamp(17px, 2vw, 20px)',
-            lineHeight: 1.9,
-            color: '#3D3835'
-          }}>
-            No national positioning. No thought leadership framework. No system to turn operational excellence into industry authority. When Mike wasn't in the room, no one understood what his business model meant for construction.
-          </AnimatedParagraph>
+        <div className="max-w-[900px] mx-auto">
+          <div 
+            className="mb-12 pl-8"
+            style={{ 
+              borderLeft: '4px solid #FF2E63'
+            }}
+          >
+            <p 
+              className="italic"
+              style={{ 
+                fontSize: 'clamp(32px, 4vw, 40px)',
+                lineHeight: 1.4,
+                color: '#3D3835',
+                fontWeight: 500,
+                fontStyle: 'italic'
+              }}
+            >
+              "I inherited a company I never asked to run. My father died. I became CEO overnight. But having a story to tell? That came later."
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <AnimatedParagraph style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.8,
+              color: '#3D3835'
+            }}>
+              Mike Kaeding runs Norhart, a residential construction company in Minnesota. He didn't choose to lead it—his father's unexpected death put him there. What he did next matters more: he turned a family business into the kind of company that builds the largest residential project in Minneapolis history. A $100 million building. Over 1,000 units delivered. $230M in assets.
+            </AnimatedParagraph>
+            
+            <AnimatedParagraph style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.8,
+              color: '#3D3835'
+            }}>
+              But none of that showed up online. Mike is a software engineer by training, a builder by conviction. He had a mission—cut construction costs in half to solve America's housing crisis—but no system to make that mission travel. His posts were technical. Intermittent. Impersonal. The work was loud. The story was quiet.
+            </AnimatedParagraph>
+            
+            <AnimatedParagraph style={{ 
+              fontSize: 'clamp(17px, 2vw, 20px)',
+              lineHeight: 1.8,
+              color: '#3D3835'
+            }}>
+              The risk wasn't failure. It was invisibility. Being the best-kept secret in an industry that desperately needs what he's building.
+            </AnimatedParagraph>
+          </div>
         </div>
       </section>
 
       {/* SECTION 4: VISUAL DIVIDER */}
       <AnimatedDivider bgColor="#F5F1E8" />
 
-      {/* SECTION 5: THE CHALLENGE */}
-      <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#F5F1E8' }}
-      >
-        <div className="max-w-[900px] mx-auto">
-          <div 
-            className="inline-block mb-10"
-            style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}
-          >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              The Challenge
-            </p>
-          </div>
-          
-          <AnimatedHeader
-            className="mb-8"
-            style={{ 
-              fontSize: 'clamp(32px, 4vw, 44px)',
-              lineHeight: 1.2,
-              color: '#3D3835',
-              fontWeight: 700
-            }}
-          >
-            A revolutionary business model. Zero national presence.
-          </AnimatedHeader>
-          
-          <div className="space-y-6">
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              Mike had proven his model in Minneapolis. But national developers didn't know him. Construction conferences hadn't heard of Norhart. He had no speaking opportunities. No partnerships beyond Minnesota.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              His reputation was local. His ambition was national.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              The work spoke for itself—if you could see it. But you can't walk developers through Forest Lake remotely. You can't explain integrated construction in a cold email.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              Mike needed to build belief at scale. Not with sales decks or pitch materials. With a story that showed what he understood about construction, efficiency, and what the industry could become.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              We started working together to transform Mike from regional builder to construction industry disruptor.
-            </AnimatedParagraph>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 6: STRATEGIC GOALS */}
-      <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
-      >
-        <div className="max-w-[850px] mx-auto text-center">
-          <p 
-            className="mb-16"
-            style={{ 
-              fontSize: '16px',
-              color: '#3D3835',
-              opacity: 0.6,
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 500
-            }}
-          >
-            What We Needed to Solve
-          </p>
-          
-          <div className="space-y-10">
-            <p style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
-              Position Norhart as a national construction innovator. Not a regional success story. A model for how America should build residential properties.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
-              We needed to build Mike's personal brand as a thought leader and create content infrastructure that scales with company growth.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
-              The goal: speaking engagements at major industry conferences, inbound from developers across multiple states, national media coverage.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 7: OUR APPROACH HEADER */}
-      <section 
-        className="py-20 md:py-24 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
-      >
-        <div className="max-w-[900px] mx-auto">
-          <div 
-            className="inline-block mb-10"
-            style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}
-          >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              Our Approach
-            </p>
-          </div>
-          
-          <AnimatedHeader 
-            className="mb-10 text-center italic"
-            style={{ 
-              fontSize: 'clamp(36px, 4.5vw, 48px)',
-              lineHeight: 1.3,
-              color: '#3D3835',
-              fontWeight: 700,
-              fontStyle: 'italic'
-            }}
-          >
-            We didn't tell Mike's story. We helped him find his voice.
-          </AnimatedHeader>
-          
-          <AnimatedParagraph 
-            className="text-center"
-            style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}
-          >
-            Through structured founder interviews and strategic positioning, we transformed Mike from regional builder to construction industry disruptor. We developed a content system that turns operational insights into national conversation.
-          </AnimatedParagraph>
-        </div>
-      </section>
 
       {/* SECTION 8: THE TRANSLATION */}
       <section 
@@ -356,41 +182,44 @@ const MikeKaedingCaseStudy = () => {
             className="mb-20"
             style={{ 
               fontSize: 'clamp(20px, 2.5vw, 24px)',
-              lineHeight: 1.6,
+              lineHeight: 1.8,
               color: 'rgba(61, 56, 53, 0.85)',
               maxWidth: '700px'
             }}
           >
-            We built his story around three things:
+            We built Mike's story around three things: the personal arc that got him here, the operational clarity that sets him apart, and the industry challenge he's solving.
           </AnimatedParagraph>
           
           {/* 3-Column Pillars Grid */}
           <div className="pillars-grid mb-20">
             
-            {/* Pillar 1: Construction Innovation */}
+            {/* Pillar 1: From Son to CEO */}
             <div className="pillar-card">
               <div className="pillar-number">01</div>
-              <h3 className="pillar-heading">Construction Innovation</h3>
+              <h3 className="pillar-heading">From Son to CEO</h3>
+              <h4 style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px', color: '#3D3835' }}>The inheritance</h4>
               <p className="pillar-description">
-                How Norhart is reimagining residential building. Why the traditional model doesn't work anymore. What changes when you control the entire process.
+                Mike didn't choose leadership. It chose him. His father's death forced a decision: walk away or step up. We told that story—not as tragedy, but as transformation. From fear to vision. From obligation to legacy.
               </p>
             </div>
             
-            {/* Pillar 2: Business Model Breakdown */}
+            {/* Pillar 2: Builder with systems thinking */}
             <div className="pillar-card">
               <div className="pillar-number">02</div>
-              <h3 className="pillar-heading">Business Model Breakdown</h3>
+              <h3 className="pillar-heading">Builder with systems thinking</h3>
+              <h4 style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px', color: '#3D3835' }}>Efficiency as philosophy</h4>
               <p className="pillar-description">
-                The economics of vertical integration. What changes when you own the entire process. Why this creates better outcomes.
+                Most construction CEOs talk about growth. Mike talks about waste. Why residential construction is broken. How regulation inflates costs. Why modular matters. He's an engineer who thinks like an operator—and we made sure every piece of content reflected that clarity.
               </p>
             </div>
             
-            {/* Pillar 3: Industry Leadership */}
+            {/* Pillar 3: The mission behind the work */}
             <div className="pillar-card">
               <div className="pillar-number">03</div>
-              <h3 className="pillar-heading">Industry Leadership</h3>
+              <h3 className="pillar-heading">The mission behind the work</h3>
+              <h4 style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px', color: '#3D3835' }}>Housing crisis, real solutions</h4>
               <p className="pillar-description">
-                Challenging conventional construction wisdom. What the future of American residential building looks like. Why the industry needs to change.
+                Norhart isn't building apartments. They're building a case for why construction needs to cost less. We positioned Mike not as a developer, but as someone challenging an entire industry to do better. Onshoring. Automation. Policy. The stuff that actually moves the needle.
               </p>
             </div>
             
@@ -403,15 +232,7 @@ const MikeKaedingCaseStudy = () => {
               lineHeight: 1.7,
               color: 'rgba(61, 56, 53, 0.85)'
             }}>
-              The content wasn't promotional. It was Mike thinking out loud about building better, faster, and more affordably.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(19px, 2.2vw, 22px)',
-              lineHeight: 1.7,
-              color: 'rgba(61, 56, 53, 0.85)'
-            }}>
-              This built his presence nationally. Then opened doors across the construction industry.
+              This gave Mike something most CEOs don't have: a narrative system. Not just posts—but a repeatable way to turn leadership into content that builds trust and travels beyond LinkedIn.
             </AnimatedParagraph>
           </div>
         </div>
@@ -420,214 +241,352 @@ const MikeKaedingCaseStudy = () => {
       {/* SECTION 9: VISUAL DIVIDER */}
       <AnimatedDivider bgColor="#E8DED1" />
 
-      {/* SECTION 10: WHAT TRAVELS NOW */}
+      {/* SECTION 10: THE WORK THAT TRAVELS */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
-        <div className="max-w-[1000px] mx-auto">
-          <AnimatedHeader
-            className="mb-10 text-center"
+        <div className="max-w-[1200px] mx-auto">
+          <div 
+            className="inline-block mb-10"
             style={{ 
-              fontSize: 'clamp(32px, 4vw, 44px)',
-              color: '#3D3835',
-              fontWeight: 700
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
             }}
           >
-            What travels now
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              03
+            </p>
+          </div>
+          
+          <AnimatedHeader
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#3D3835',
+              fontWeight: 600,
+              lineHeight: 1.2
+            }}
+          >
+            The work that travels
           </AnimatedHeader>
           
-          <AnimatedParagraph 
-            className="mb-16 text-center"
-            style={{ 
-              fontSize: 'clamp(20px, 2.4vw, 24px)',
-              lineHeight: 1.6,
-              color: '#3D3835'
-            }}
-          >
-            Two years later: a construction model that travels beyond Minneapolis.
-          </AnimatedParagraph>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-16">
-            <div 
-              className="flex items-start gap-4 p-7"
-              style={{
-                backgroundColor: '#FDFBF7',
-                border: '1px solid #E8DED1',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(61, 56, 53, 0.06)'
-              }}
-            >
-              <span style={{ color: '#FF2E63', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-              <p style={{ 
-                fontSize: 'clamp(15px, 1.7vw, 17px)',
-                lineHeight: 1.7,
-                color: '#3D3835'
-              }}>
-                <strong style={{ color: '#FF2E63' }}>National media coverage</strong> in construction industry publications
+          {/* 6 Work Items Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
+            {/* Item 1 */}
+            <div>
+              <div 
+                className="mb-4"
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/3',
+                  backgroundColor: '#E8DED1',
+                  borderRadius: '8px'
+                }}
+              />
+              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
+                Personal leadership essays
+              </h4>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
+                Weekly posts on what it means to lead a company you inherited. Conversations with his daughters. Lessons from his wife. The human stuff that makes the operational stuff land.
               </p>
             </div>
-            
-            <div 
-              className="flex items-start gap-4 p-7"
-              style={{
-                backgroundColor: '#FDFBF7',
-                border: '1px solid #E8DED1',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(61, 56, 53, 0.06)'
-              }}
-            >
-              <span style={{ color: '#FF2E63', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-              <p style={{ 
-                fontSize: 'clamp(15px, 1.7vw, 17px)',
-                lineHeight: 1.7,
-                color: '#3D3835'
-              }}>
-                <strong style={{ color: '#FF2E63' }}>Speaking engagements</strong> at major industry conferences
+
+            {/* Item 2 */}
+            <div>
+              <div 
+                className="mb-4"
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/3',
+                  backgroundColor: '#E8DED1',
+                  borderRadius: '8px'
+                }}
+              />
+              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
+                Industry commentary
+              </h4>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
+                Hot takes on construction inefficiency, labor shortages, tariffs on steel, Highway 12 decisions. Mike became the voice on what's broken—and what's possible.
               </p>
             </div>
-            
-            <div 
-              className="flex items-start gap-4 p-7"
-              style={{
-                backgroundColor: '#FDFBF7',
-                border: '1px solid #E8DED1',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(61, 56, 53, 0.06)'
-              }}
-            >
-              <span style={{ color: '#FF2E63', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-              <p style={{ 
-                fontSize: 'clamp(15px, 1.7vw, 17px)',
-                lineHeight: 1.7,
-                color: '#3D3835'
-              }}>
-                <strong style={{ color: '#FF2E63' }}>Inbound from developers</strong> across multiple states
+
+            {/* Item 3 */}
+            <div>
+              <div 
+                className="mb-4"
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/3',
+                  backgroundColor: '#E8DED1',
+                  borderRadius: '8px'
+                }}
+              />
+              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
+                Operational transparency
+              </h4>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
+                Behind-the-scenes looks at how Norhart actually builds. Modular construction. Workforce training. The systems that back up the mission.
               </p>
             </div>
-            
-            <div 
-              className="flex items-start gap-4 p-7"
-              style={{
-                backgroundColor: '#FDFBF7',
-                border: '1px solid #E8DED1',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(61, 56, 53, 0.06)'
-              }}
-            >
-              <span style={{ color: '#FF2E63', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-              <p style={{ 
-                fontSize: 'clamp(15px, 1.7vw, 17px)',
-                lineHeight: 1.7,
-                color: '#3D3835'
-              }}>
-                <strong style={{ color: '#FF2E63' }}>300% LinkedIn growth</strong> in 6 months
+
+            {/* Item 4 */}
+            <div>
+              <div 
+                className="mb-4"
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/3',
+                  backgroundColor: '#E8DED1',
+                  borderRadius: '8px'
+                }}
+              />
+              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
+                Policy and trends
+              </h4>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
+                Public housing policy. Inflation. Regulation. The macro forces shaping residential development—and what builders should be doing about it.
               </p>
             </div>
-            
-            <div 
-              className="flex items-start gap-4 p-7"
-              style={{
-                backgroundColor: '#FDFBF7',
-                border: '1px solid #E8DED1',
-                borderRadius: '8px',
-                boxShadow: '0 2px 8px rgba(61, 56, 53, 0.06)'
-              }}
-            >
-              <span style={{ color: '#FF2E63', fontSize: '20px', fontWeight: 'bold' }}>✓</span>
-              <p style={{ 
-                fontSize: 'clamp(15px, 1.7vw, 17px)',
-                lineHeight: 1.7,
-                color: '#3D3835'
-              }}>
-                <strong style={{ color: '#FF2E63' }}>Featured</strong> in industry podcasts and documentaries
+
+            {/* Item 5 */}
+            <div>
+              <div 
+                className="mb-4"
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/3',
+                  backgroundColor: '#E8DED1',
+                  borderRadius: '8px'
+                }}
+              />
+              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
+                Video content
+              </h4>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
+                Thought leadership videos explaining construction innovation, housing crisis solutions, and leadership philosophy.
+              </p>
+            </div>
+
+            {/* Item 6 */}
+            <div>
+              <div 
+                className="mb-4"
+                style={{
+                  width: '100%',
+                  aspectRatio: '4/3',
+                  backgroundColor: '#E8DED1',
+                  borderRadius: '8px'
+                }}
+              />
+              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
+                Keynotes and interviews
+              </h4>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
+                Content repurposed from LinkedIn into speaking engagements, internal communications, and investor presentations.
               </p>
             </div>
           </div>
-          
-          <AnimatedParagraph 
-            className="text-center max-w-[700px] mx-auto"
-            style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.7,
-              color: '#3D3835'
-            }}
-          >
-            Mike walks into rooms now where people already know Norhart's model. National developers. Industry conferences. Media outlets.
-          </AnimatedParagraph>
-          
-          <AnimatedParagraph 
-            className="text-center max-w-[700px] mx-auto mt-6"
-            style={{ 
-              fontSize: 'clamp(18px, 2.2vw, 22px)',
-              lineHeight: 1.7,
-              color: '#3D3835'
-            }}
-          >
-            The business model finally has a story that travels beyond Minneapolis.
-          </AnimatedParagraph>
         </div>
       </section>
 
-      {/* SECTION 11: PROJECT CAROUSEL (DARK SECTION) - EMPTY */}
+      {/* SECTION 11: WHAT THIS LOOKS LIKE */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#3D3835' }}
+        style={{ backgroundColor: '#F5F1E8' }}
       >
-        <div className="max-w-[1200px] mx-auto text-center">
-          <AnimatedParagraph
+        <div className="max-w-[1200px] mx-auto">
+          <div 
+            className="inline-block mb-10"
             style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.8,
-              color: 'rgba(253, 251, 247, 0.7)'
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
             }}
           >
-            Project case studies coming soon
-          </AnimatedParagraph>
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              04
+            </p>
+          </div>
+          
+          <AnimatedHeader
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#3D3835',
+              fontWeight: 600,
+              lineHeight: 1.2
+            }}
+          >
+            What this looks like
+          </AnimatedHeader>
+
+          {/* Two Metric Cards */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {/* LinkedIn Metrics Card */}
+            <div 
+              className="p-12"
+              style={{
+                backgroundColor: '#4A90E2',
+                borderRadius: '16px',
+                boxShadow: '0 4px 24px rgba(61, 56, 53, 0.08)'
+              }}
+            >
+              <h3 style={{ fontSize: '22px', fontWeight: 600, marginBottom: '16px', color: '#FFFFFF', lineHeight: 1.3 }}>
+                Consistent voice, consistent presence
+              </h3>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#FFFFFF' }}>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• 85+ posts published</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• 20+ months without missing a week</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• Average 300 words per post</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• Zero generic content</li>
+              </ul>
+            </div>
+
+            {/* Content Impact Card */}
+            <div 
+              className="p-12"
+              style={{
+                backgroundColor: '#E8DED1',
+                borderRadius: '16px',
+                boxShadow: '0 4px 24px rgba(61, 56, 53, 0.08)'
+              }}
+            >
+              <h3 style={{ fontSize: '22px', fontWeight: 600, marginBottom: '16px', color: '#3D3835', lineHeight: 1.3 }}>
+                Material reused across channels
+              </h3>
+              <p style={{ fontSize: '17px', lineHeight: 1.7, color: 'rgba(61, 56, 53, 0.85)', marginBottom: '16px' }}>
+                Content that started on LinkedIn ended up in:
+              </p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: 'rgba(61, 56, 53, 0.85)' }}>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Keynote presentations</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Internal newsletters</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Investor decks</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Media interviews</li>
+                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Policy submissions</li>
+              </ul>
+              <p style={{ fontSize: '17px', lineHeight: 1.7, color: 'rgba(61, 56, 53, 0.85)', marginTop: '16px', fontWeight: 600 }}>
+                One system. Multiple outputs.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* SECTION 12: TESTIMONIAL QUOTE */}
+
+      {/* SECTION 12: THE IMPACT */}
       <section 
         className="py-32 md:py-40 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
+        style={{ backgroundColor: '#3D3835' }}
       >
-        <div 
-          className="max-w-[900px] mx-auto p-12 md:p-14"
-          style={{ 
-            backgroundColor: '#FDFBF7',
-            borderLeft: '4px solid #FF2E63',
-            borderRadius: '8px',
-            boxShadow: '0 4px 20px rgba(61, 56, 53, 0.08)'
-          }}
-        >
-          <p 
-            className="mb-6 italic"
+        <div className="max-w-[1200px] mx-auto">
+          <div 
+            className="inline-block mb-10"
             style={{ 
-              fontSize: 'clamp(22px, 2.6vw, 26px)',
-              lineHeight: 1.7,
-              color: '#3D3835',
-              fontStyle: 'italic'
+              backgroundColor: 'rgba(255, 46, 99, 0.2)',
+              padding: '8px 16px',
+              borderRadius: '4px'
             }}
           >
-            "CRUDA helped us articulate what makes Norhart different. Now we're not just building apartments—we're leading a conversation about the future of construction."
-          </p>
-          <p style={{ 
-            fontSize: '14px',
-            color: '#3D3835',
-            letterSpacing: '2px',
-            textTransform: 'uppercase',
-            fontWeight: 700
-          }}>
-            — Mike Kaeding
-          </p>
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              05
+            </p>
+          </div>
+          
+          <AnimatedHeader
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#FDFBF7',
+              fontWeight: 600,
+              lineHeight: 1.2
+            }}
+          >
+            The impact
+          </AnimatedHeader>
+
+          {/* Testimonial Quote */}
+          <div 
+            className="mb-20 p-12 md:p-14"
+            style={{ 
+              backgroundColor: 'rgba(253, 251, 247, 0.05)',
+              borderLeft: '4px solid #FF2E63',
+              borderRadius: '8px'
+            }}
+          >
+            <p 
+              className="mb-4"
+              style={{ 
+                fontSize: 'clamp(28px, 3.5vw, 36px)',
+                lineHeight: 1.4,
+                color: '#FDFBF7',
+                fontWeight: 500
+              }}
+            >
+              "CRUDA gave me something I didn't know I was missing—a system to turn what I do every day into a story that actually travels. I don't sound like every other CEO anymore. I sound like me."
+            </p>
+            <p style={{ 
+              fontSize: '18px',
+              color: 'rgba(253, 251, 247, 0.7)',
+              fontWeight: 400
+            }}>
+              — Mike Kaeding
+            </p>
+          </div>
+
+          {/* Key Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+            <div>
+              <p style={{ fontSize: 'clamp(48px, 6vw, 56px)', fontWeight: 700, color: '#FDFBF7', lineHeight: 1.1, marginBottom: '8px' }}>
+                85+
+              </p>
+              <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(253, 251, 247, 0.7)' }}>
+                Posts published (20+ months)
+              </p>
+            </div>
+            <div>
+              <p style={{ fontSize: 'clamp(48px, 6vw, 56px)', fontWeight: 700, color: '#FDFBF7', lineHeight: 1.1, marginBottom: '8px' }}>
+                20
+              </p>
+              <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(253, 251, 247, 0.7)' }}>
+                Months of weekly publishing
+              </p>
+            </div>
+            <div>
+              <p style={{ fontSize: 'clamp(48px, 6vw, 56px)', fontWeight: 700, color: '#FDFBF7', lineHeight: 1.1, marginBottom: '8px' }}>
+                1
+              </p>
+              <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(253, 251, 247, 0.7)' }}>
+                Voice that cuts through
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* SECTION 13: CTA */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20 text-center"
-        style={{ backgroundColor: '#E8DED1' }}
+        style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-3xl mx-auto">
           <h2 
@@ -638,28 +597,52 @@ const MikeKaedingCaseStudy = () => {
               fontWeight: 700
             }}
           >
-            Want to build trust like Mike?
+            Ready to tell your story?
           </h2>
-          <Link 
-            to="/book-call"
-            className="inline-block px-10 py-5 text-lg font-semibold transition-all duration-300"
-            style={{ 
-              backgroundColor: '#3D3835',
-              color: '#FDFBF7',
-              borderRadius: '8px',
-              boxShadow: '0 4px 16px rgba(61, 56, 53, 0.2)',
-              fontSize: '18px',
-              fontWeight: 600
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#2A2725';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#3D3835';
-            }}
-          >
-            Start Your Story →
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              to="/book-call"
+              className="inline-block px-10 py-5 text-lg font-semibold transition-all duration-300"
+              style={{ 
+                backgroundColor: '#3D3835',
+                color: '#FDFBF7',
+                borderRadius: '8px',
+                boxShadow: '0 4px 16px rgba(61, 56, 53, 0.2)',
+                fontSize: '18px',
+                fontWeight: 600
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#2A2725';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#3D3835';
+              }}
+            >
+              Work with us
+            </Link>
+            <Link 
+              to="/clients/karen-mannheim"
+              className="inline-block px-10 py-5 text-lg font-semibold transition-all duration-300"
+              style={{ 
+                backgroundColor: 'transparent',
+                color: '#3D3835',
+                borderRadius: '8px',
+                border: '2px solid #3D3835',
+                fontSize: '18px',
+                fontWeight: 600
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#3D3835';
+                e.currentTarget.style.color = '#FDFBF7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.color = '#3D3835';
+              }}
+            >
+              Next case study → Karen Mannheim
+            </Link>
+          </div>
         </div>
       </section>
     </div>

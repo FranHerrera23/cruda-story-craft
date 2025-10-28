@@ -429,120 +429,313 @@ const MikeKaedingCaseStudy = () => {
             The work that travels
           </AnimatedHeader>
           
-          {/* 6 Work Items Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-16">
-            {/* Item 1 */}
-            <div>
+          {/* LinkedIn Posts Grid - 3x2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
+            {/* Post 1 */}
+            <div className="flex flex-col items-center">
               <div 
-                className="mb-4"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  width: '100%',
-                  aspectRatio: '4/3',
+                  aspectRatio: '9/16',
                   backgroundColor: '#E8DED1',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
                 }}
-              />
-              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
-                Personal leadership essays
-              </h4>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
-                Weekly posts on what it means to lead a company you inherited. Conversations with his daughters. Lessons from his wife. The human stuff that makes the operational stuff land.
-              </p>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                {/* Placeholder for LinkedIn post screenshot */}
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
+                  LinkedIn Post 1
+                </div>
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
             </div>
 
-            {/* Item 2 */}
-            <div>
+            {/* Post 2 */}
+            <div className="flex flex-col items-center">
               <div 
-                className="mb-4"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  width: '100%',
-                  aspectRatio: '4/3',
+                  aspectRatio: '9/16',
                   backgroundColor: '#E8DED1',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
                 }}
-              />
-              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
-                Industry commentary
-              </h4>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
-                Hot takes on construction inefficiency, labor shortages, tariffs on steel, Highway 12 decisions. Mike became the voice on what's broken—and what's possible.
-              </p>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
+                  LinkedIn Post 2
+                </div>
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
             </div>
 
-            {/* Item 3 */}
-            <div>
+            {/* Post 3 */}
+            <div className="flex flex-col items-center">
               <div 
-                className="mb-4"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  width: '100%',
-                  aspectRatio: '4/3',
+                  aspectRatio: '9/16',
                   backgroundColor: '#E8DED1',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
                 }}
-              />
-              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
-                Operational transparency
-              </h4>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
-                Behind-the-scenes looks at how Norhart actually builds. Modular construction. Workforce training. The systems that back up the mission.
-              </p>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
+                  LinkedIn Post 3
+                </div>
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
             </div>
 
-            {/* Item 4 */}
-            <div>
+            {/* Post 4 */}
+            <div className="flex flex-col items-center">
               <div 
-                className="mb-4"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  width: '100%',
-                  aspectRatio: '4/3',
+                  aspectRatio: '9/16',
                   backgroundColor: '#E8DED1',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
                 }}
-              />
-              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
-                Policy and trends
-              </h4>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
-                Public housing policy. Inflation. Regulation. The macro forces shaping residential development—and what builders should be doing about it.
-              </p>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
+                  LinkedIn Post 4
+                </div>
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
             </div>
 
-            {/* Item 5 */}
-            <div>
+            {/* Post 5 */}
+            <div className="flex flex-col items-center">
               <div 
-                className="mb-4"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  width: '100%',
-                  aspectRatio: '4/3',
+                  aspectRatio: '9/16',
                   backgroundColor: '#E8DED1',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
                 }}
-              />
-              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
-                Video content
-              </h4>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
-                Thought leadership videos explaining construction innovation, housing crisis solutions, and leadership philosophy.
-              </p>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
+                  LinkedIn Post 5
+                </div>
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
             </div>
 
-            {/* Item 6 */}
-            <div>
+            {/* Post 6 */}
+            <div className="flex flex-col items-center">
               <div 
-                className="mb-4"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  width: '100%',
-                  aspectRatio: '4/3',
+                  aspectRatio: '9/16',
                   backgroundColor: '#E8DED1',
-                  borderRadius: '8px'
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
                 }}
-              />
-              <h4 style={{ fontSize: '20px', fontWeight: 600, marginBottom: '8px', color: '#3D3835' }}>
-                Keynotes and interviews
-              </h4>
-              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(61, 56, 53, 0.85)' }}>
-                Content repurposed from LinkedIn into speaking engagements, internal communications, and investor presentations.
-              </p>
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
+                  LinkedIn Post 6
+                </div>
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
             </div>
           </div>
         </div>

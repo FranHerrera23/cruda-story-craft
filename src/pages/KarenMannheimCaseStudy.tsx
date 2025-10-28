@@ -435,134 +435,302 @@ const KarenMannheimCaseStudy = () => {
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
-        <div className="max-w-[1100px] mx-auto">
+        <div className="max-w-[1400px] mx-auto">
           <AnimatedHeader
             className="mb-20"
             style={{ 
-              fontSize: '28px',
-              fontWeight: 400,
-              color: '#3D3835'
+              fontSize: '48px',
+              fontWeight: 600,
+              color: '#3D3835',
+              lineHeight: 1.2,
+              textAlign: 'left'
             }}
           >
             What this looks like.
           </AnimatedHeader>
           
-          {/* LinkedIn Screenshots */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">
+          {/* Dual Platform Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[60px]">
+            
+            {/* LinkedIn Card */}
             <div 
-              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
+              className="animate-on-scroll transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(61,56,53,0.12)]"
               style={{
-                background: '#FFFFFF',
-                borderRadius: '12px',
-                padding: '20px',
-                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
-                border: '1px solid rgba(61, 56, 53, 0.08)'
+                background: 'rgba(255, 255, 255, 0.6)',
+                padding: '48px',
+                borderRadius: '16px',
+                border: '1px solid rgba(61, 56, 53, 0.08)',
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             >
-              <img
-                src={linkedinPosts}
-                alt="LinkedIn post content"
-                className="w-full h-auto"
-                style={{
-                  borderRadius: '8px',
-                  border: '1px solid rgba(61, 56, 53, 0.05)',
-                  display: 'block'
-                }}
-                loading="lazy"
-              />
+              {/* Platform Header */}
+              <div 
+                className="flex items-center gap-4 mb-8 pb-6"
+                style={{ borderBottom: '1px solid rgba(61, 56, 53, 0.1)' }}
+              >
+                <div 
+                  className="flex items-center justify-center flex-shrink-0"
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    background: '#0A66C2',
+                    color: 'white'
+                  }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                  </svg>
+                </div>
+                <h3 style={{ 
+                  fontSize: '20px',
+                  fontWeight: 600,
+                  color: '#3D3835',
+                  margin: 0
+                }}>
+                  LinkedIn
+                </h3>
+              </div>
+              
+              {/* Metrics Row */}
+              <div className="flex gap-8 mb-8 flex-wrap">
+                <div className="flex-1 min-w-[140px]">
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    color: '#0A66C2',
+                    lineHeight: 1,
+                    marginBottom: '8px'
+                  }}>
+                    300%
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Growth
+                  </div>
+                </div>
+                <div className="flex-1 min-w-[140px]">
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    color: '#0A66C2',
+                    lineHeight: 1,
+                    marginBottom: '8px'
+                  }}>
+                    12K
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Followers
+                  </div>
+                </div>
+                <div className="flex-1 min-w-[140px]">
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    color: '#0A66C2',
+                    lineHeight: 1,
+                    marginBottom: '8px'
+                  }}>
+                    6mo
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Timeline
+                  </div>
+                </div>
+              </div>
+              
+              {/* Screenshots */}
+              <div className="space-y-4">
+                <img
+                  src={linkedinPosts}
+                  alt="LinkedIn post content examples"
+                  className="w-full h-auto transition-all duration-[400ms] hover:scale-[1.02]"
+                  style={{
+                    borderRadius: '12px',
+                    border: '1px solid rgba(61, 56, 53, 0.1)',
+                    boxShadow: '0 8px 32px rgba(61, 56, 53, 0.08)',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
+                <img
+                  src={linkedinAnalytics}
+                  alt="LinkedIn analytics dashboard showing 335K impressions"
+                  className="w-full h-auto transition-all duration-[400ms] hover:scale-[1.02]"
+                  style={{
+                    borderRadius: '12px',
+                    border: '1px solid rgba(61, 56, 53, 0.1)',
+                    boxShadow: '0 8px 32px rgba(61, 56, 53, 0.08)',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
+              </div>
             </div>
+            
+            {/* Instagram Card */}
             <div 
-              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
+              className="animate-on-scroll transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(61,56,53,0.12)]"
               style={{
-                background: '#FFFFFF',
-                borderRadius: '12px',
-                padding: '20px',
-                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
-                border: '1px solid rgba(61, 56, 53, 0.08)'
+                background: 'rgba(255, 255, 255, 0.6)',
+                padding: '48px',
+                borderRadius: '16px',
+                border: '1px solid rgba(61, 56, 53, 0.08)',
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+                transitionDelay: '200ms'
               }}
             >
-              <img
-                src={linkedinAnalytics}
-                alt="LinkedIn analytics dashboard showing 335K impressions, 68K reach"
-                className="w-full h-auto"
-                style={{
-                  borderRadius: '8px',
-                  border: '1px solid rgba(61, 56, 53, 0.05)',
-                  display: 'block'
-                }}
-                loading="lazy"
-              />
+              {/* Platform Header */}
+              <div 
+                className="flex items-center gap-4 mb-8 pb-6"
+                style={{ borderBottom: '1px solid rgba(61, 56, 53, 0.1)' }}
+              >
+                <div 
+                  className="flex items-center justify-center flex-shrink-0"
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '12px',
+                    background: 'linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45)',
+                    color: 'white'
+                  }}
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                  </svg>
+                </div>
+                <h3 style={{ 
+                  fontSize: '20px',
+                  fontWeight: 600,
+                  color: '#3D3835',
+                  margin: 0
+                }}>
+                  Instagram
+                </h3>
+              </div>
+              
+              {/* Metrics Row */}
+              <div className="flex gap-8 mb-8 flex-wrap">
+                <div className="flex-1 min-w-[140px]">
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    background: 'linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    lineHeight: 1,
+                    marginBottom: '8px',
+                    display: 'inline-block'
+                  }}>
+                    400%
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Engagement
+                  </div>
+                </div>
+                <div className="flex-1 min-w-[140px]">
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    background: 'linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    lineHeight: 1,
+                    marginBottom: '8px',
+                    display: 'inline-block'
+                  }}>
+                    8K
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Reach
+                  </div>
+                </div>
+                <div className="flex-1 min-w-[140px]">
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    background: 'linear-gradient(135deg, #833AB4, #FD1D1D, #FCAF45)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    lineHeight: 1,
+                    marginBottom: '8px',
+                    display: 'inline-block'
+                  }}>
+                    4mo
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Timeline
+                  </div>
+                </div>
+              </div>
+              
+              {/* Screenshots */}
+              <div className="space-y-4">
+                <img
+                  src={instagramPosts}
+                  alt="Instagram post content examples"
+                  className="w-full h-auto transition-all duration-[400ms] hover:scale-[1.02]"
+                  style={{
+                    borderRadius: '12px',
+                    border: '1px solid rgba(61, 56, 53, 0.1)',
+                    boxShadow: '0 8px 32px rgba(61, 56, 53, 0.08)',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
+                <img
+                  src={instagramAnalytics}
+                  alt="Instagram analytics dashboard showing engagement metrics"
+                  className="w-full h-auto transition-all duration-[400ms] hover:scale-[1.02]"
+                  style={{
+                    borderRadius: '12px',
+                    border: '1px solid rgba(61, 56, 53, 0.1)',
+                    boxShadow: '0 8px 32px rgba(61, 56, 53, 0.08)',
+                    display: 'block'
+                  }}
+                  loading="lazy"
+                />
+              </div>
             </div>
-          </div>
-          
-          {/* Visual Divider - Red Dots */}
-          <div className="flex justify-center items-center gap-3 my-20 animate-on-scroll">
-            <div style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: '#FF2E63'
-            }} />
-            <div style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: '#FF2E63'
-            }} />
-            <div style={{
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: '#FF2E63'
-            }} />
-          </div>
-          
-          {/* Instagram Screenshots */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div 
-              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
-              style={{
-                background: '#FFFFFF',
-                borderRadius: '12px',
-                padding: '20px',
-                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
-                border: '1px solid rgba(61, 56, 53, 0.08)'
-              }}
-            >
-              <img
-                src={instagramPosts}
-                alt="Instagram post content"
-                className="w-full h-auto"
-                style={{
-                  borderRadius: '8px',
-                  border: '1px solid rgba(61, 56, 53, 0.05)',
-                  display: 'block'
-                }}
-                loading="lazy"
-              />
-            </div>
-            <div 
-              className="animate-on-scroll transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(61,56,53,0.18)]"
-              style={{
-                background: '#FFFFFF',
-                borderRadius: '12px',
-                padding: '20px',
-                boxShadow: '0 8px 32px rgba(61, 56, 53, 0.15)',
-                border: '1px solid rgba(61, 56, 53, 0.08)'
-              }}
-            >
-              <img
-                src={instagramAnalytics}
-                alt="Instagram analytics dashboard"
-                className="w-full h-auto"
-                style={{
-                  borderRadius: '8px',
-                  border: '1px solid rgba(61, 56, 53, 0.05)',
-                  display: 'block'
-                }}
-                loading="lazy"
-              />
-            </div>
+            
           </div>
         </div>
       </section>

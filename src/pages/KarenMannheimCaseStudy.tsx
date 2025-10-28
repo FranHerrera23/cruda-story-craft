@@ -493,7 +493,7 @@ const KarenMannheimCaseStudy = () => {
             
             {/* LinkedIn Card */}
             <div 
-              className="animate-on-scroll transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(61,56,53,0.12)]"
+              className="transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(61,56,53,0.12)]"
               style={{
                 background: 'rgba(255, 255, 255, 0.6)',
                 padding: '48px',
@@ -626,7 +626,7 @@ const KarenMannheimCaseStudy = () => {
             
             {/* Instagram Card */}
             <div 
-              className="animate-on-scroll transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(61,56,53,0.12)]"
+              className="transition-all duration-[400ms] hover:-translate-y-1 hover:shadow-[0_12px_48px_rgba(61,56,53,0.12)]"
               style={{
                 background: 'rgba(255, 255, 255, 0.6)',
                 padding: '48px',

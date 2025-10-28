@@ -72,31 +72,31 @@ const PressCarousel = () => {
       logo: pressLogo1,
       headline: "How Norhart is cutting construction costs in half",
       excerpt: "Mike Kaeding's innovative approach to modular construction is reshaping residential development.",
-      link: "#"
+      link: "https://www.cbsnews.com/minnesota/news/twin-cities-apartments-price-gap/"
     },
     {
       logo: pressLogo2,
       headline: "The CEO who inherited a company and transformed an industry",
       excerpt: "From unexpected leadership to building Minneapolis's largest residential project.",
-      link: "#"
+      link: "https://www.cbsnews.com/minnesota/news/with-rent-prices-surging-did-you-know-you-can-negotiate-a-lower-monthly-cost/"
     },
     {
       logo: pressLogo3,
       headline: "Solving America's housing crisis through efficiency",
       excerpt: "Why one Minnesota builder believes the answer isn't more units—it's smarter construction.",
-      link: "#"
+      link: "https://www.cbsnews.com/minnesota/news/minneapolis-rent-home-ownership-cost-gap/"
     },
     {
       logo: pressLogo4,
       headline: "The builder using systems thinking to fix construction",
       excerpt: "A software engineer's approach to an industry stuck in its ways.",
-      link: "#"
+      link: "https://finance-commerce.com/2024/07/share-of-lexington-lofts-apartment-complex-sells-for-44-6m/"
     },
     {
       logo: pressLogo5,
       headline: "Norhart's $100M project sets new standard",
       excerpt: "The largest residential building in Minneapolis history and what it means for the market.",
-      link: "#"
+      link: "https://abc7.com/post/renters-hidden-fees-saving-money-rental-lease/13523041/"
     }
   ];
 

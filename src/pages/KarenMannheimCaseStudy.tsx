@@ -416,7 +416,7 @@ const KarenMannheimCaseStudy = () => {
           <div className="pillars-grid mb-20">
             
             {/* Pillar 1: Technical Depth */}
-            <div className="pillar-card animate-on-scroll">
+            <div className="pillar-card">
               <div className="pillar-number">01</div>
               <h3 className="pillar-heading">Technical depth</h3>
               <p className="pillar-description">
@@ -426,7 +426,7 @@ const KarenMannheimCaseStudy = () => {
             </div>
             
             {/* Pillar 2: Cross-Cultural Fluency */}
-            <div className="pillar-card animate-on-scroll">
+            <div className="pillar-card">
               <div className="pillar-number">02</div>
               <h3 className="pillar-heading">Cross-cultural fluency</h3>
               <p className="pillar-description">
@@ -436,7 +436,7 @@ const KarenMannheimCaseStudy = () => {
             </div>
             
             {/* Pillar 3: Challenging Assumptions */}
-            <div className="pillar-card animate-on-scroll">
+            <div className="pillar-card">
               <div className="pillar-number">03</div>
               <h3 className="pillar-heading">Challenging assumptions</h3>
               <p className="pillar-description">

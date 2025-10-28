@@ -24,11 +24,11 @@ import mikeWork6 from "@/assets/mike-work-6.png";
 import mikeWork7 from "@/assets/mike-work-7.png";
 import mikeWork8 from "@/assets/mike-work-8.png";
 import mikeWork9 from "@/assets/mike-work-9.png";
-import pressLogo1 from "@/assets/press-logo-1.png";
-import pressLogo2 from "@/assets/press-logo-2.png";
-import pressLogo3 from "@/assets/press-logo-3.png";
-import pressLogo4 from "@/assets/press-logo-4.png";
-import pressLogo5 from "@/assets/press-logo-5.png";
+import mikePress1 from "@/assets/mike-press-1.png";
+import mikePress2 from "@/assets/mike-press-2.png";
+import mikePress3 from "@/assets/mike-press-3.png";
+import mikePress4 from "@/assets/mike-press-4.png";
+import mikePress5 from "@/assets/mike-press-5.png";
 
 const PressCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
@@ -69,33 +69,23 @@ const PressCarousel = () => {
 
   const pressCards = [
     {
-      logo: pressLogo1,
-      headline: "How Norhart is cutting construction costs in half",
-      excerpt: "Mike Kaeding's innovative approach to modular construction is reshaping residential development.",
+      image: mikePress1,
       link: "https://www.cbsnews.com/minnesota/news/twin-cities-apartments-price-gap/"
     },
     {
-      logo: pressLogo2,
-      headline: "The CEO who inherited a company and transformed an industry",
-      excerpt: "From unexpected leadership to building Minneapolis's largest residential project.",
+      image: mikePress2,
       link: "https://www.cbsnews.com/minnesota/news/with-rent-prices-surging-did-you-know-you-can-negotiate-a-lower-monthly-cost/"
     },
     {
-      logo: pressLogo3,
-      headline: "Solving America's housing crisis through efficiency",
-      excerpt: "Why one Minnesota builder believes the answer isn't more units—it's smarter construction.",
+      image: mikePress3,
       link: "https://www.cbsnews.com/minnesota/news/minneapolis-rent-home-ownership-cost-gap/"
     },
     {
-      logo: pressLogo4,
-      headline: "The builder using systems thinking to fix construction",
-      excerpt: "A software engineer's approach to an industry stuck in its ways.",
+      image: mikePress4,
       link: "https://finance-commerce.com/2024/07/share-of-lexington-lofts-apartment-complex-sells-for-44-6m/"
     },
     {
-      logo: pressLogo5,
-      headline: "Norhart's $100M project sets new standard",
-      excerpt: "The largest residential building in Minneapolis history and what it means for the market.",
+      image: mikePress5,
       link: "https://abc7.com/post/renters-hidden-fees-saving-money-rental-lease/13523041/"
     }
   ];
@@ -114,9 +104,8 @@ const PressCarousel = () => {
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '16px',
-                  padding: '40px',
-                  boxShadow: '0 2px 16px rgba(61, 56, 53, 0.06)',
-                  minHeight: '320px'
+                  overflow: 'hidden',
+                  boxShadow: '0 2px 16px rgba(61, 56, 53, 0.06)'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-4px)';
@@ -127,76 +116,39 @@ const PressCarousel = () => {
                   e.currentTarget.style.boxShadow = '0 2px 16px rgba(61, 56, 53, 0.06)';
                 }}
               >
-                {/* Publication Logo */}
-                <div className="mb-8 flex items-center justify-center" style={{ height: '60px' }}>
-                  <img
-                    src={card.logo}
-                    alt="Publication logo"
-                    style={{
-                      height: '100%',
-                      width: 'auto',
-                      objectFit: 'contain',
-                      filter: 'grayscale(100%)',
-                      opacity: 0.7
-                    }}
-                  />
-                </div>
-
-                {/* Headline */}
-                <h3
-                  className="mb-3"
+                {/* Press Screenshot */}
+                <img
+                  src={card.image}
+                  alt="Press article"
+                  className="w-full h-auto"
                   style={{
-                    fontSize: '22px',
-                    fontWeight: 600,
-                    lineHeight: 1.3,
-                    color: '#3D3835',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
+                    display: 'block'
                   }}
-                >
-                  {card.headline}
-                </h3>
-
-                {/* Excerpt */}
-                <p
-                  className="mb-6 flex-grow"
-                  style={{
-                    fontSize: '16px',
-                    fontWeight: 400,
-                    lineHeight: 1.6,
-                    color: 'rgba(61, 56, 53, 0.7)',
-                    display: '-webkit-box',
-                    WebkitLineClamp: 3,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}
-                >
-                  {card.excerpt}
-                </p>
+                />
 
                 {/* CTA Link */}
-                <a
-                  href={card.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block transition-all duration-300"
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 500,
-                    color: '#FF2E63',
-                    textDecoration: 'none'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.textDecoration = 'underline';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.textDecoration = 'none';
-                  }}
-                >
-                  Read article →
-                </a>
+                <div className="p-6">
+                  <a
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block transition-all duration-300"
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      color: '#FF2E63',
+                      textDecoration: 'none'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.textDecoration = 'underline';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.textDecoration = 'none';
+                    }}
+                  >
+                    Read article →
+                  </a>
+                </div>
               </div>
             </div>
           ))}

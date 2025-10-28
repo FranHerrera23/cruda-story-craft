@@ -1,6 +1,6 @@
 import HeroManifesto from "@/components/HeroManifesto";
 import WhatWeDoSection from "@/components/WhatWeDoSection";
-import HowWeWorkSection from "@/components/HowWeWorkSection";
+// import HowWeWorkSection from "@/components/HowWeWorkSection"; // SAVED FOR LATER: "The Way of CRUDA" - Add to future "Process" or "About" page
 import WhoWeWorkWith from "@/components/WhoWeWorkWith";
 import CredibilitySection from "@/components/CredibilitySection";
 import PricingSection from "@/components/PricingSection";
@@ -13,7 +13,8 @@ const Index = () => {
     <main className="overflow-x-hidden">
       <HeroManifesto />
       <WhatWeDoSection />
-      <HowWeWorkSection />
+      {/* SAVED FOR LATER: "The Way of CRUDA" section - add to future "Process" or "About" page */}
+      {/* <HowWeWorkSection /> */}
       <WhoWeWorkWith />
       <CredibilitySection />
       <PricingSection />

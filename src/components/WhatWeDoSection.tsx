@@ -33,7 +33,7 @@ const WhatWeDoSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-[140px] px-[60px]"
+      className="py-[100px] px-[60px]"
       style={{ backgroundColor: '#E8DED1' }}
     >
       <div className="max-w-[1300px] mx-auto">

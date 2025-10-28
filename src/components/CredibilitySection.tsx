@@ -36,7 +36,7 @@ const CredibilitySection = () => {
       {/* MOMENT 1: THE EVIDENCE (DARK SECTION) */}
       <section 
         ref={moment1Ref}
-        className="py-[140px] md:py-[140px] px-10 md:px-20" 
+        className="py-[100px] md:py-[100px] px-10 md:px-20" 
         style={{ backgroundColor: '#3D3835' }}
       >
         <div className="max-w-[900px] mx-auto text-center">

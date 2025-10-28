@@ -9,7 +9,7 @@ const verticals = [
     image: verticalArchitecture,
     description: (
       <>
-        You shape spaces that outlive you. Every decision—material, dimension, light—defines how people live for decades. That responsibility deserves a narrative that matches the <span style={{ color: '#FF2E63', fontWeight: 600 }}>permanence of the work</span>.
+        You shape spaces that outlive you. Every material, dimension, light—decades of impact. That responsibility deserves a narrative that matches.
       </>
     )
   },
@@ -19,7 +19,7 @@ const verticals = [
     image: verticalHospitality,
     description: (
       <>
-        You've mastered the art of holding space for people during <span style={{ color: '#FF2E63', fontWeight: 600 }}>vulnerable moments</span>. Whether it's rest, healing, or celebration, your work shapes how people feel when they're most present. That deserves more than operational metrics.
+        You hold space for people during <span style={{ color: '#FF2E63', fontWeight: 600 }}>vulnerable moments</span>—rest, healing, celebration. Your work shapes how people feel when most present. That deserves more than metrics.
       </>
     )
   },
@@ -29,7 +29,7 @@ const verticals = [
     image: verticalAthletes,
     description: (
       <>
-        Your career is public. Your discipline, visible. But the story behind the performance—the thousand decisions, the sacrifices, the evolution—that's what <span style={{ color: '#FF2E63', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
+        Your career is public. Your discipline, visible. But the story behind the performance—the decisions, sacrifices, evolution—that <span style={{ color: '#FF2E63', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
       </>
     )
   }

@@ -694,7 +694,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork6} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/feed/update/urn:li:activity:7122034472371318784?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7122034472371318784%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"
@@ -741,7 +741,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork7} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/feed/update/urn:li:activity:7128031329488670721?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7128031329488670721%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"
@@ -788,7 +788,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork8} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/feed/update/urn:li:activity:7095028555071311872?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7095028555071311872%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"

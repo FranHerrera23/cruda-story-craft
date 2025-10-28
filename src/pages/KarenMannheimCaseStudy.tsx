@@ -361,68 +361,107 @@ const KarenMannheimCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 8: CONTENT APPROACH */}
+      {/* SECTION 8: THE TRANSLATION (DROGA5-INSPIRED 3-COLUMN DESIGN) */}
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#F5F1E8' }}
+        style={{ backgroundColor: '#E8DED1' }}
       >
-        <div className="max-w-[800px] mx-auto">
-          <h2 
-            className="mb-16 text-center"
+        <div className="max-w-[1200px] mx-auto">
+          
+          {/* Section Number */}
+          <div 
+            className="inline-block mb-10"
             style={{ 
-              fontSize: 'clamp(32px, 4vw, 44px)',
-              color: '#3D3835',
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
+            }}
+          >
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
               fontWeight: 700
+            }}>
+              02
+            </p>
+          </div>
+          
+          <h2 
+            className="mb-8"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#3D3835',
+              fontWeight: 600,
+              lineHeight: 1.2
             }}
           >
             The translation
           </h2>
           
-          <div className="space-y-10">
+          <p 
+            className="mb-20"
+            style={{ 
+              fontSize: 'clamp(20px, 2.5vw, 24px)',
+              lineHeight: 1.6,
+              color: 'rgba(61, 56, 53, 0.85)',
+              maxWidth: '700px'
+            }}
+          >
+            We built her story around three things:
+          </p>
+          
+          {/* 3-Column Pillars Grid */}
+          <div className="pillars-grid mb-20">
+            
+            {/* Pillar 1: Technical Depth */}
+            <div className="pillar-card animate-on-scroll">
+              <div className="pillar-number">01</div>
+              <h3 className="pillar-heading">Technical depth</h3>
+              <p className="pillar-description">
+                How light behaves on different materials. Thermal dynamics. Layering. 
+                Why lighting a restaurant is different from lighting a residence.
+              </p>
+            </div>
+            
+            {/* Pillar 2: Cross-Cultural Fluency */}
+            <div className="pillar-card animate-on-scroll">
+              <div className="pillar-number">02</div>
+              <h3 className="pillar-heading">Cross-cultural fluency</h3>
+              <p className="pillar-description">
+                A Peruvian woman with German roots building a business in Miami. 
+                Understanding that light "speaks" differently across cultures.
+              </p>
+            </div>
+            
+            {/* Pillar 3: Challenging Assumptions */}
+            <div className="pillar-card animate-on-scroll">
+              <div className="pillar-number">03</div>
+              <h3 className="pillar-heading">Challenging assumptions</h3>
+              <p className="pillar-description">
+                Why architects treat lighting as an afterthought. Why that's wrong. 
+                What changes when you design spaces with light as architecture.
+              </p>
+            </div>
+            
+          </div>
+          
+          {/* Closing Statement */}
+          <div className="max-w-[700px] mx-auto text-center space-y-6">
             <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
+              fontSize: 'clamp(19px, 2.2vw, 22px)',
+              lineHeight: 1.7,
+              color: 'rgba(61, 56, 53, 0.85)'
             }}>
-              We built her story around three things:
+              The content wasn't promotional. It was Karen thinking out loud about 
+              thirty years of craft.
             </p>
             
             <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              <strong>Technical depth.</strong> How light behaves on different materials. Thermal dynamics. Layering. Why lighting a restaurant is different from lighting a residence.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              <strong>Cross-cultural fluency.</strong> A Peruvian woman with German roots building a business in Miami. Understanding that light "speaks" differently across cultures.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              <strong>Challenging assumptions.</strong> Why architects treat lighting as an afterthought. Why that's wrong. What changes when you design spaces with light as architecture.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
-            }}>
-              The content wasn't promotional. It was Karen thinking out loud about thirty years of craft.
-            </p>
-            
-            <p style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.9,
-              color: '#3D3835'
+              fontSize: 'clamp(19px, 2.2vw, 22px)',
+              lineHeight: 1.7,
+              color: 'rgba(61, 56, 53, 0.85)'
             }}>
               This built her presence in Florida. Then opened doors in the UAE.
             </p>

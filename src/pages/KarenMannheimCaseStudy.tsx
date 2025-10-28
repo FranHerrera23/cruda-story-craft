@@ -532,8 +532,8 @@ const KarenMannheimCaseStudy = () => {
               </div>
               
               {/* Metrics Row */}
-              <div className="flex gap-8 mb-8 flex-wrap">
-                <div className="flex-1 min-w-[140px]">
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div>
                   <div style={{
                     fontSize: '36px',
                     fontWeight: 700,
@@ -541,7 +541,7 @@ const KarenMannheimCaseStudy = () => {
                     lineHeight: 1,
                     marginBottom: '8px'
                   }}>
-                    300%
+                    +300%
                   </div>
                   <div style={{
                     fontSize: '14px',
@@ -553,7 +553,7 @@ const KarenMannheimCaseStudy = () => {
                     Growth
                   </div>
                 </div>
-                <div className="flex-1 min-w-[140px]">
+                <div>
                   <div style={{
                     fontSize: '36px',
                     fontWeight: 700,
@@ -561,7 +561,7 @@ const KarenMannheimCaseStudy = () => {
                     lineHeight: 1,
                     marginBottom: '8px'
                   }}>
-                    12K
+                    +4K
                   </div>
                   <div style={{
                     fontSize: '14px',
@@ -573,7 +573,7 @@ const KarenMannheimCaseStudy = () => {
                     Followers
                   </div>
                 </div>
-                <div className="flex-1 min-w-[140px]">
+                <div>
                   <div style={{
                     fontSize: '36px',
                     fontWeight: 700,
@@ -581,7 +581,7 @@ const KarenMannheimCaseStudy = () => {
                     lineHeight: 1,
                     marginBottom: '8px'
                   }}>
-                    6mo
+                    +335K
                   </div>
                   <div style={{
                     fontSize: '14px',
@@ -590,7 +590,27 @@ const KarenMannheimCaseStudy = () => {
                     textTransform: 'uppercase',
                     letterSpacing: '1px'
                   }}>
-                    Timeline
+                    Annual Impressions
+                  </div>
+                </div>
+                <div>
+                  <div style={{
+                    fontSize: '36px',
+                    fontWeight: 700,
+                    color: '#0A66C2',
+                    lineHeight: 1,
+                    marginBottom: '8px'
+                  }}>
+                    +68K
+                  </div>
+                  <div style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: 'rgba(61, 56, 53, 0.65)',
+                    textTransform: 'uppercase',
+                    letterSpacing: '1px'
+                  }}>
+                    Organic Reach / Year
                   </div>
                 </div>
               </div>

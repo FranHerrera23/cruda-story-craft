@@ -553,7 +553,7 @@ const MikeKaedingCaseStudy = () => {
                 <img src={mikeWork3} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
-                href="#"
+                href="https://www.linkedin.com/posts/mikekaeding_propertymanagement-breakingbarriers-womeninconstruction-activity-7135704576980094976-LyNU?utm_source=share&utm_medium=member_desktop&rcm=ACoAABtt_60BmHm9_OshYxw31f7U3MAGs5ZcXPc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 transition-all duration-300"

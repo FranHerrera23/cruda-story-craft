@@ -1,9 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
 import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
 import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import heroImage from "@/assets/mike-kaeding.webp";
 import mikeCarousel1 from "@/assets/mike-carousel-1.png";
 import mikeCarousel2 from "@/assets/mike-carousel-2.png";
@@ -22,6 +24,207 @@ import mikeWork6 from "@/assets/mike-work-6.png";
 import mikeWork7 from "@/assets/mike-work-7.png";
 import mikeWork8 from "@/assets/mike-work-8.png";
 import mikeWork9 from "@/assets/mike-work-9.png";
+import pressLogo1 from "@/assets/press-logo-1.png";
+import pressLogo2 from "@/assets/press-logo-2.png";
+import pressLogo3 from "@/assets/press-logo-3.png";
+import pressLogo4 from "@/assets/press-logo-4.png";
+import pressLogo5 from "@/assets/press-logo-5.png";
+
+const PressCarousel = () => {
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { 
+      loop: true,
+      align: 'start',
+      slidesToScroll: 1,
+      breakpoints: {
+        '(min-width: 768px)': { align: 'start' },
+        '(min-width: 1200px)': { align: 'start' }
+      }
+    },
+    [Autoplay({ delay: 4000, stopOnInteraction: true })]
+  );
+
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+
+  const scrollTo = useCallback(
+    (index: number) => emblaApi && emblaApi.scrollTo(index),
+    [emblaApi]
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSelectedIndex(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    setScrollSnaps(emblaApi.scrollSnapList());
+    emblaApi.on('select', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+    };
+  }, [emblaApi, onSelect]);
+
+  const pressCards = [
+    {
+      logo: pressLogo1,
+      headline: "How Norhart is cutting construction costs in half",
+      excerpt: "Mike Kaeding's innovative approach to modular construction is reshaping residential development.",
+      link: "#"
+    },
+    {
+      logo: pressLogo2,
+      headline: "The CEO who inherited a company and transformed an industry",
+      excerpt: "From unexpected leadership to building Minneapolis's largest residential project.",
+      link: "#"
+    },
+    {
+      logo: pressLogo3,
+      headline: "Solving America's housing crisis through efficiency",
+      excerpt: "Why one Minnesota builder believes the answer isn't more units—it's smarter construction.",
+      link: "#"
+    },
+    {
+      logo: pressLogo4,
+      headline: "The builder using systems thinking to fix construction",
+      excerpt: "A software engineer's approach to an industry stuck in its ways.",
+      link: "#"
+    },
+    {
+      logo: pressLogo5,
+      headline: "Norhart's $100M project sets new standard",
+      excerpt: "The largest residential building in Minneapolis history and what it means for the market.",
+      link: "#"
+    }
+  ];
+
+  return (
+    <div className="relative">
+      <div className="overflow-hidden" ref={emblaRef}>
+        <div className="flex gap-6 md:gap-8 lg:gap-10">
+          {pressCards.map((card, index) => (
+            <div
+              key={index}
+              className="flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-27px)] min-w-0"
+            >
+              <div
+                className="transition-all duration-300 h-full flex flex-col"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  padding: '40px',
+                  boxShadow: '0 2px 16px rgba(61, 56, 53, 0.06)',
+                  minHeight: '320px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(61, 56, 53, 0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 16px rgba(61, 56, 53, 0.06)';
+                }}
+              >
+                {/* Publication Logo */}
+                <div className="mb-8 flex items-center justify-center" style={{ height: '60px' }}>
+                  <img
+                    src={card.logo}
+                    alt="Publication logo"
+                    style={{
+                      height: '100%',
+                      width: 'auto',
+                      objectFit: 'contain',
+                      filter: 'grayscale(100%)',
+                      opacity: 0.7
+                    }}
+                  />
+                </div>
+
+                {/* Headline */}
+                <h3
+                  className="mb-3"
+                  style={{
+                    fontSize: '22px',
+                    fontWeight: 600,
+                    lineHeight: 1.3,
+                    color: '#3D3835',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
+                  {card.headline}
+                </h3>
+
+                {/* Excerpt */}
+                <p
+                  className="mb-6 flex-grow"
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: 400,
+                    lineHeight: 1.6,
+                    color: 'rgba(61, 56, 53, 0.7)',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
+                  {card.excerpt}
+                </p>
+
+                {/* CTA Link */}
+                <a
+                  href={card.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block transition-all duration-300"
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: '#FF2E63',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.textDecoration = 'underline';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.textDecoration = 'none';
+                  }}
+                >
+                  Read article →
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots Navigation */}
+      <div className="flex justify-center gap-3 mt-12">
+        {scrollSnaps.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => scrollTo(index)}
+            className="rounded-full transition-all duration-300"
+            style={{
+              width: '8px',
+              height: '8px',
+              backgroundColor: selectedIndex === index ? '#3D3835' : 'rgba(61, 56, 53, 0.3)',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer'
+            }}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const MikeKaedingCaseStudy = () => {
   const navigate = useNavigate();
@@ -863,6 +1066,48 @@ const MikeKaedingCaseStudy = () => {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* SECTION 03.5: PRESS CAROUSEL */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#E8DED1' }}
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <div 
+            className="inline-block mb-10"
+            style={{ 
+              backgroundColor: 'rgba(255, 46, 99, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px'
+            }}
+          >
+            <p style={{ 
+              fontSize: '12px',
+              color: '#FF2E63',
+              letterSpacing: '2px',
+              textTransform: 'uppercase',
+              fontWeight: 700
+            }}>
+              03.5
+            </p>
+          </div>
+          
+          <AnimatedHeader
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(42px, 5vw, 56px)',
+              color: '#3D3835',
+              fontWeight: 600,
+              lineHeight: 1.2
+            }}
+          >
+            Press
+          </AnimatedHeader>
+
+          {/* Press Carousel using Embla */}
+          <PressCarousel />
         </div>
       </section>
 

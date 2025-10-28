@@ -13,6 +13,15 @@ import mikeCarousel5 from "@/assets/mike-carousel-5.png";
 import mikeCarousel6 from "@/assets/mike-carousel-6.png";
 import mikeCarousel7 from "@/assets/mike-carousel-7.png";
 import mikeCarousel8 from "@/assets/mike-carousel-8.png";
+import mikeWork1 from "@/assets/mike-work-1.png";
+import mikeWork2 from "@/assets/mike-work-2.png";
+import mikeWork3 from "@/assets/mike-work-3.png";
+import mikeWork4 from "@/assets/mike-work-4.png";
+import mikeWork5 from "@/assets/mike-work-5.png";
+import mikeWork6 from "@/assets/mike-work-6.png";
+import mikeWork7 from "@/assets/mike-work-7.png";
+import mikeWork8 from "@/assets/mike-work-8.png";
+import mikeWork9 from "@/assets/mike-work-9.png";
 
 const MikeKaedingCaseStudy = () => {
   const navigate = useNavigate();
@@ -429,15 +438,13 @@ const MikeKaedingCaseStudy = () => {
             The work that travels
           </AnimatedHeader>
           
-          {/* LinkedIn Posts Grid - 3x2 */}
+          {/* LinkedIn Posts Grid - 3x3 */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
             {/* Post 1 */}
             <div className="flex flex-col items-center">
               <div 
                 className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  aspectRatio: '9/16',
-                  backgroundColor: '#E8DED1',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
@@ -449,10 +456,7 @@ const MikeKaedingCaseStudy = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
                 }}
               >
-                {/* Placeholder for LinkedIn post screenshot */}
-                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
-                  LinkedIn Post 1
-                </div>
+                <img src={mikeWork1} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
                 href="#"
@@ -488,8 +492,6 @@ const MikeKaedingCaseStudy = () => {
               <div 
                 className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  aspectRatio: '9/16',
-                  backgroundColor: '#E8DED1',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
@@ -501,9 +503,7 @@ const MikeKaedingCaseStudy = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
-                  LinkedIn Post 2
-                </div>
+                <img src={mikeWork2} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
                 href="#"
@@ -539,8 +539,6 @@ const MikeKaedingCaseStudy = () => {
               <div 
                 className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  aspectRatio: '9/16',
-                  backgroundColor: '#E8DED1',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
@@ -552,9 +550,7 @@ const MikeKaedingCaseStudy = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
-                  LinkedIn Post 3
-                </div>
+                <img src={mikeWork3} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
                 href="#"
@@ -590,8 +586,6 @@ const MikeKaedingCaseStudy = () => {
               <div 
                 className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  aspectRatio: '9/16',
-                  backgroundColor: '#E8DED1',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
@@ -603,9 +597,7 @@ const MikeKaedingCaseStudy = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
-                  LinkedIn Post 4
-                </div>
+                <img src={mikeWork4} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
                 href="#"
@@ -641,8 +633,6 @@ const MikeKaedingCaseStudy = () => {
               <div 
                 className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  aspectRatio: '9/16',
-                  backgroundColor: '#E8DED1',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
@@ -654,9 +644,7 @@ const MikeKaedingCaseStudy = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
-                  LinkedIn Post 5
-                </div>
+                <img src={mikeWork5} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
                 href="#"
@@ -692,8 +680,6 @@ const MikeKaedingCaseStudy = () => {
               <div 
                 className="w-full transition-all duration-300 hover:scale-[1.02]"
                 style={{
-                  aspectRatio: '9/16',
-                  backgroundColor: '#E8DED1',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
@@ -705,9 +691,148 @@ const MikeKaedingCaseStudy = () => {
                   e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
                 }}
               >
-                <div className="w-full h-full flex items-center justify-center" style={{ color: 'rgba(61, 56, 53, 0.4)', fontSize: '14px' }}>
-                  LinkedIn Post 6
-                </div>
+                <img src={mikeWork6} alt="LinkedIn Post" className="w-full h-auto" />
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
+            </div>
+
+            {/* Post 7 */}
+            <div className="flex flex-col items-center">
+              <div 
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <img src={mikeWork7} alt="LinkedIn Post" className="w-full h-auto" />
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
+            </div>
+
+            {/* Post 8 */}
+            <div className="flex flex-col items-center">
+              <div 
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <img src={mikeWork8} alt="LinkedIn Post" className="w-full h-auto" />
+              </div>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#FF2E63',
+                  backgroundColor: 'transparent',
+                  border: '1px solid #FF2E63',
+                  padding: '12px 24px',
+                  borderRadius: '24px',
+                  textDecoration: 'none',
+                  display: 'inline-block'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FFFFFF';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = 'transparent';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+              >
+                Read on LinkedIn
+              </a>
+            </div>
+
+            {/* Post 9 */}
+            <div className="flex flex-col items-center">
+              <div 
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
+                }}
+              >
+                <img src={mikeWork9} alt="LinkedIn Post" className="w-full h-auto" />
               </div>
               <a
                 href="#"

@@ -56,7 +56,40 @@ const WhatWeDoSection = () => {
               color: '#3D3835'
             }}
           >
-            You've spent years building something. The work is real. The expertise is there. But when you try to explain it to people who've never met you, something gets lost.
+            You know what you do. You can talk about it. Hell, you've been talking about it for decades.
+          </p>
+          
+          <p 
+            className="mb-[40px]"
+            style={{ 
+              fontSize: '24px',
+              lineHeight: '1.9',
+              color: '#3D3835'
+            }}
+          >
+            The problem isn't that you can't explain your work. It's that the explanation changes every time. Different stories for different people. Different angles for different contexts.
+          </p>
+          
+          <p 
+            className="mb-[40px]"
+            style={{ 
+              fontSize: '24px',
+              lineHeight: '1.9',
+              color: '#3D3835'
+            }}
+          >
+            Some land. Some don't. Nothing compounds.
+          </p>
+          
+          <p 
+            className="mb-[40px]"
+            style={{ 
+              fontSize: '24px',
+              lineHeight: '1.9',
+              color: '#3D3835'
+            }}
+          >
+            We take everything you know: all the years, all the patterns, all the client & partners conversations—and turn it into something consistent.
           </p>
           
           <p 
@@ -66,7 +99,7 @@ const WhatWeDoSection = () => {
               color: '#3D3835'
             }}
           >
-            We help you find the words. Not by inventing a story, but by uncovering what's already there—the thing clients feel but can't articulate. The pattern that makes your work yours.
+            A narrative that builds trust whether you say it once or someone else repeats it in a room you'll never be in.
           </p>
         </div>
         

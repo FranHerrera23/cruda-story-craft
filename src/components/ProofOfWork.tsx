@@ -47,6 +47,7 @@ const clients = [
     location: "UNIK Parquet | High-End Wood Flooring",
     photo: juanPhoto,
     fullTitle: "US Regional Sales Manager, UNIK Parquet",
+    comingSoon: true,
     bio: [
       "Leads US regional sales for UNIK Parquet, serving luxury residential and commercial projects. Deep expertise in high-end wood flooring specifications and architectural applications."
     ],
@@ -127,7 +128,8 @@ const ProofOfWork = () => {
                       opacity: 0,
                       transform: 'translateX(40px)',
                       animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s forwards`,
-                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
+                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease',
+                      position: 'relative'
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-4px)';
@@ -181,6 +183,49 @@ const ProofOfWork = () => {
                         {client.location}
                       </p>
                     </div>
+
+                    {/* Coming Soon Overlay */}
+                    {client.comingSoon && (
+                      <div 
+                        className="absolute inset-0 flex items-center justify-center"
+                        style={{
+                          backgroundColor: 'rgba(61, 56, 53, 0.92)',
+                          backdropFilter: 'blur(4px)',
+                          borderRadius: '16px',
+                          zIndex: 20
+                        }}
+                      >
+                        <div className="text-center px-6">
+                          <div 
+                            className="inline-block mb-3 px-5 py-2"
+                            style={{
+                              backgroundColor: 'rgba(255, 46, 99, 0.15)',
+                              border: '1px solid rgba(255, 46, 99, 0.3)',
+                              borderRadius: '8px'
+                            }}
+                          >
+                            <p style={{
+                              fontSize: '13px',
+                              color: '#FF2E63',
+                              letterSpacing: '2px',
+                              textTransform: 'uppercase',
+                              fontWeight: 700
+                            }}>
+                              Coming Soon
+                            </p>
+                          </div>
+                          <p style={{
+                            fontSize: '16px',
+                            color: 'rgba(253, 251, 247, 0.85)',
+                            lineHeight: '1.6',
+                            maxWidth: '280px',
+                            margin: '0 auto'
+                          }}>
+                            Full case study in progress
+                          </p>
+                        </div>
+                      </div>
+                    )}
                   </Link>
                 ))}
               </div>

@@ -12,22 +12,31 @@ const WhatWeDoSection = () => {
       return;
     }
 
+    // Fallback timeout to ensure cards show up even if observer doesn't fire
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
     const options = {
-      rootMargin: '-20%',
-      threshold: 0.2
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.target === sectionRef.current && entry.isIntersecting) {
           setIsVisible(true);
+          clearTimeout(fallbackTimer);
         }
       });
     }, options);
 
     if (sectionRef.current) observer.observe(sectionRef.current);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return (

@@ -7,7 +7,8 @@ const People = () => {
     <main className="people-page">
       <OpeningStatement />
       <TheFounder />
-      <TheCollaborators />
+      {/* HIDDEN UNTIL CONTENT READY */}
+      {/* <TheCollaborators /> */}
       <ThePhilosophy />
       <ClosingStatement />
     </main>
@@ -156,7 +157,8 @@ const TheFounder = () => {
   );
 };
 
-// SECTION 3: The Collaborators
+// SECTION 3: The Collaborators - HIDDEN UNTIL CONTENT READY
+/* 
 const TheCollaborators = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
@@ -184,7 +186,6 @@ const TheCollaborators = () => {
           </p>
         </div>
         
-        {/* Future team grid placeholder */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
           {[1, 2, 3].map((i) => (
             <div 
@@ -198,6 +199,7 @@ const TheCollaborators = () => {
     </section>
   );
 };
+*/
 
 // SECTION 4: The Philosophy
 const ThePhilosophy = () => {

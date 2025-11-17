@@ -4,6 +4,7 @@ import './Navigation.css';
 
 export const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const isHomepage = location.pathname === '/';
 
@@ -16,11 +17,9 @@ export const Navigation = () => {
 
     // On homepage, show after scrolling past hero
     const handleScroll = () => {
-      if (window.pageYOffset > 100) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      const scrolled = window.pageYOffset > 100;
+      setIsVisible(scrolled);
+      setIsScrolled(scrolled);
     };
 
     handleScroll(); // Check initial scroll position
@@ -30,7 +29,7 @@ export const Navigation = () => {
 
   return (
     <nav 
-      className={`main-navigation ${isVisible ? 'visible' : 'hidden'}`}
+      className={`main-navigation ${isVisible ? 'visible' : 'hidden'} ${isScrolled ? 'scrolled' : ''}`}
     >
       <div className="nav-container">
         <Link to="/" className="nav-logo">
@@ -44,10 +43,22 @@ export const Navigation = () => {
             Home
           </Link>
           <Link 
+            to="/work" 
+            className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
+          >
+            Work
+          </Link>
+          <Link 
             to="/people" 
             className={`nav-menu-item ${location.pathname === '/people' ? 'active' : ''}`}
           >
             People
+          </Link>
+          <Link 
+            to="/book-call" 
+            className={`nav-menu-item ${location.pathname === '/book-call' ? 'active' : ''}`}
+          >
+            Contact
           </Link>
         </div>
       </div>

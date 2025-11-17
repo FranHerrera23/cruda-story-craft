@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Navigation } from "@/components/Navigation";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
+import Work from "./pages/Work";
 import People from "./pages/People";
 import ClientDetail from "./pages/ClientDetail";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
@@ -35,6 +36,7 @@ const App = () => (
         <div className="route-transition-wrapper">
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/work" element={<Work />} />
             <Route path="/people" element={<People />} />
             <Route path="/clients/karen-mannheim" element={<KarenMannheimCaseStudy />} />
             <Route path="/clients/mike-kaeding" element={<MikeKaedingCaseStudy />} />

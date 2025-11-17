@@ -42,12 +42,13 @@ export const Navigation = () => {
           >
             Home
           </Link>
-          <Link 
+          {/* HIDDEN UNTIL CONTENT READY */}
+          {/* <Link 
             to="/work" 
             className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
           >
             Work
-          </Link>
+          </Link> */}
           <Link 
             to="/people" 
             className={`nav-menu-item ${location.pathname === '/people' ? 'active' : ''}`}

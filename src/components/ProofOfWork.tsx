@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import karenPhoto from "@/assets/karen-mannheim-new.jpg";
 import mikePhoto from "@/assets/mike-kaeding.webp";
 import juanPhoto from "@/assets/juan-pablo-romero.jpeg";
@@ -93,10 +94,12 @@ const clients = [
 ];
 
 const ProofOfWork = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
     <>
       {/* Large Card Carousel */}
-      <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-[28px] md:text-[44px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
@@ -125,10 +128,9 @@ const ProofOfWork = () => {
                       backgroundColor: '#FDFBF7',
                       borderRadius: '16px',
                       boxShadow: '0 4px 16px rgba(61,56,53,0.12)',
-                      opacity: 0,
-                      transform: 'translateX(40px)',
-                      animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s forwards`,
-                      transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease',
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible ? 'translateX(0)' : 'translateX(40px)',
+                      transition: `all 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s`,
                       position: 'relative'
                     }}
                     onMouseEnter={(e) => {

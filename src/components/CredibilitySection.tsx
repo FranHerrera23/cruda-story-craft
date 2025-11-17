@@ -13,22 +13,31 @@ const CredibilitySection = () => {
       return;
     }
 
+    // Fallback timeout to ensure content shows up
+    const fallbackTimer = setTimeout(() => {
+      setMoment1Visible(true);
+    }, 1000);
+
     const options = {
-      rootMargin: '-20%',
-      threshold: 0.2
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.15
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.target === moment1Ref.current && entry.isIntersecting) {
           setMoment1Visible(true);
+          clearTimeout(fallbackTimer);
         }
       });
     }, options);
 
     if (moment1Ref.current) observer.observe(moment1Ref.current);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return (

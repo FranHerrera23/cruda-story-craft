@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pezetHero from "@/assets/pezet-hero.jpg";
 import porscheGridCover from "@/assets/porsche-cover-new.png";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
@@ -66,8 +67,10 @@ const workItems = [
 ];
 
 const SeeTheWork = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
+    <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
@@ -91,7 +94,10 @@ const SeeTheWork = () => {
                       style={{ 
                         borderRadius: '12px',
                         boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
-                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease'
+                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, opacity 0.6s ease',
+                        opacity: isVisible ? 1 : 0,
+                        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                        transitionDelay: `${index * 100}ms`
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'scale(1.02)';

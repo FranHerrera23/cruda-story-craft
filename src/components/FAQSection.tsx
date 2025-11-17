@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const faqs = [
   {
@@ -35,11 +36,19 @@ const faqs = [
 
 const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section className="py-20 md:py-24 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
+    <section ref={elementRef} className="py-20 md:py-24 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
       <div className="max-w-[1000px] mx-auto">
-        <h2 className="text-[32px] md:text-[38px] font-display font-semibold text-center mb-12" style={{ color: '#3D3835' }}>
+        <h2 
+          className="text-[32px] md:text-[38px] font-display font-semibold text-center mb-12 transition-all duration-700" 
+          style={{ 
+            color: '#3D3835',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
+          }}
+        >
           Common questions, clear answers
         </h2>
 
@@ -47,8 +56,13 @@ const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
           {faqs.map((faq, index) => (
             <div
               key={index}
-              className="border-b transition-all"
-              style={{ borderColor: 'rgba(61, 56, 53, 0.15)' }}
+              className="border-b transition-all duration-500"
+              style={{ 
+                borderColor: 'rgba(61, 56, 53, 0.15)',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${index * 100}ms`
+              }}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}

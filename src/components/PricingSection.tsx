@@ -1,11 +1,21 @@
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const PricingSection = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
+    <section ref={elementRef} className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Section Header */}
-        <h2 className="text-[44px] md:text-[44px] font-bold text-center mb-20" style={{ color: '#3D3835' }}>
+        <h2 
+          className="text-[44px] md:text-[44px] font-bold text-center mb-20 transition-all duration-700" 
+          style={{ 
+            color: '#3D3835',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
+          }}
+        >
           How We Work Together
         </h2>
         
@@ -33,12 +43,15 @@ const PricingSection = () => {
 
         {/* Pricing Card - White on Cream */}
         <div 
-          className="max-w-[700px] mx-auto mb-24 p-10 md:p-20"
+          className="max-w-[700px] mx-auto mb-24 p-10 md:p-20 transition-all duration-700"
           style={{
             backgroundColor: '#FFFFFF',
             borderRadius: '16px',
             boxShadow: '0 4px 24px rgba(61, 56, 53, 0.12)',
-            border: '1px solid rgba(61, 56, 53, 0.08)'
+            border: '1px solid rgba(61, 56, 53, 0.08)',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'scale(1)' : 'scale(0.95)',
+            transitionDelay: '200ms'
           }}
         >
           {/* Label */}

@@ -23,6 +23,7 @@ export const Navigation = () => {
       }
     };
 
+    handleScroll(); // Check initial scroll position
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isHomepage]);
@@ -35,9 +36,20 @@ export const Navigation = () => {
         <Link to="/" className="nav-logo">
           CRUDA
         </Link>
-        <Link to="/book-call" className="nav-cta">
-          Start a conversation
-        </Link>
+        <div className="nav-menu">
+          <Link 
+            to="/" 
+            className={`nav-menu-item ${location.pathname === '/' ? 'active' : ''}`}
+          >
+            Home
+          </Link>
+          <Link 
+            to="/people" 
+            className={`nav-menu-item ${location.pathname === '/people' ? 'active' : ''}`}
+          >
+            People
+          </Link>
+        </div>
       </div>
     </nav>
   );

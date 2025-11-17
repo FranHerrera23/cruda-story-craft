@@ -1,6 +1,7 @@
 import verticalArchitecture from "@/assets/karen-project-construction.jpg";
 import verticalHospitality from "@/assets/vertical-hospitality.jpg";
 import verticalAthletes from "@/assets/vertical-athletes.jpg";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const verticals = [
   {
@@ -36,8 +37,10 @@ const verticals = [
 ];
 
 const WhoWeWorkWith = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+
   return (
-    <section className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
+    <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -66,8 +69,9 @@ const WhoWeWorkWith = () => {
                 borderColor: 'rgba(61, 56, 53, 0.08)',
                 borderRadius: '12px',
                 boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
-                opacity: 0,
-                animation: `fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s forwards`
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition: `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s`
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.12)';
@@ -85,8 +89,8 @@ const WhoWeWorkWith = () => {
                   style={{ 
                     filter: 'grayscale(15%)',
                     objectPosition: 'center',
-                    transform: 'scale(1.02)',
-                    animation: `scaleDown 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s forwards`
+                    transform: isVisible ? 'scale(1)' : 'scale(1.05)',
+                    transition: `transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s, filter 300ms cubic-bezier(0.4, 0, 0.2, 1)`
                   }}
                   loading="lazy"
                 />

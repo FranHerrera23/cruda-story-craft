@@ -15,6 +15,7 @@ const clients = [
     location: "High-End Residential & Retail | Peru & USA",
     photo: karenPhoto,
     fullTitle: "Architectural Lighting Designer | High-End Residential & Retail",
+    testimonial: "Fran helped us articulate what made our work different in a way our clients finally understood. The clarity was immediate.",
     bio: [
       "Karen Mannheim has spent 15 years mastering the intersection of light, space, and human experience. Based between Lima and Miami, she's become the go-to designer for architects and developers who understand that lighting isn't decoration—it's the difference between a space that works and one that transforms."
     ],
@@ -32,6 +33,7 @@ const clients = [
     location: "Residential Construction | Minneapolis, USA",
     photo: mikePhoto,
     fullTitle: "CEO of Norhart Inc. | Residential Construction",
+    testimonial: "Working with CRUDA transformed how we communicate our mission. The narrative system we built together works whether I'm on stage, on a podcast, or in a pitch meeting.",
     bio: [
       "Founder of a $200M construction company redefining how America builds. Led the development of a $100M residential complex in Forest Lake with an in-house model that's changing industry cost structures."
     ],
@@ -120,11 +122,10 @@ const ProofOfWork = () => {
                   <Link
                     key={index}
                     to={`/clients/${client.slug}`}
-                    className="flex-shrink-0 overflow-hidden cursor-pointer snap-start group"
+                    className="flex-shrink-0 overflow-hidden cursor-pointer snap-start group flex flex-col"
                     style={{
                       width: '380px',
                       minWidth: '380px',
-                      aspectRatio: '3/4',
                       backgroundColor: '#FDFBF7',
                       borderRadius: '16px',
                       boxShadow: '0 4px 16px rgba(61,56,53,0.12)',
@@ -142,8 +143,8 @@ const ProofOfWork = () => {
                       e.currentTarget.style.boxShadow = '0 4px 16px rgba(61,56,53,0.12)';
                     }}
                   >
-                    {/* Image - 70% height */}
-                    <div className="relative overflow-hidden" style={{ height: '70%' }}>
+                    {/* Image - Fixed height */}
+                    <div className="relative overflow-hidden" style={{ height: '320px' }}>
                       <img
                         src={client.photo}
                         alt={client.name}
@@ -158,10 +159,10 @@ const ProofOfWork = () => {
                       />
                     </div>
 
-                    {/* Text Overlay - 30% height */}
-                    <div className="flex flex-col justify-center px-6" style={{ 
-                      height: '30%',
-                      backgroundColor: '#FDFBF7'
+                    {/* Text Content - Flexible height */}
+                    <div className="flex flex-col justify-start px-6 py-5" style={{ 
+                      backgroundColor: '#FDFBF7',
+                      flexGrow: 1
                     }}>
                       <h3 className="font-semibold mb-1" style={{ 
                         fontSize: '22px',
@@ -184,6 +185,20 @@ const ProofOfWork = () => {
                       }}>
                         {client.location}
                       </p>
+                      {client.testimonial && (
+                        <p 
+                          className="mt-4"
+                          style={{ 
+                            fontSize: '14px',
+                            fontWeight: 400,
+                            fontStyle: 'italic',
+                            color: 'rgba(61, 56, 53, 0.65)',
+                            lineHeight: '1.6'
+                          }}
+                        >
+                          "{client.testimonial}"
+                        </p>
+                      )}
                     </div>
 
                     {/* Coming Soon Overlay */}

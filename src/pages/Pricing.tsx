@@ -159,12 +159,12 @@ const Pricing = () => {
 
           {/* Comparison Table Card */}
           <div 
-            className="p-8 md:p-14 transition-all duration-700 overflow-x-auto"
+            className="transition-all duration-700 overflow-x-auto"
             style={{ 
               backgroundColor: '#FFFFFF',
-              borderRadius: '20px',
-              boxShadow: '0 4px 32px rgba(61, 56, 53, 0.06)',
-              maxWidth: '880px',
+              borderRadius: '24px',
+              boxShadow: '0 8px 48px rgba(61, 56, 53, 0.08), 0 2px 8px rgba(61, 56, 53, 0.04)',
+              maxWidth: '920px',
               margin: '0 auto',
               opacity: tableVisible ? 1 : 0,
               transform: tableVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -172,42 +172,50 @@ const Pricing = () => {
             }}
           >
             {/* Table */}
-            <div className="min-w-[600px]">
+            <div className="min-w-[640px]">
               {/* Header Row */}
               <div 
-                className="grid pb-5 border-b"
+                className="grid"
                 style={{ 
-                  gridTemplateColumns: '1.4fr 1fr 1fr 1fr',
-                  borderColor: 'rgba(61, 56, 53, 0.08)'
+                  gridTemplateColumns: '1.5fr 1fr 1fr 1fr',
+                  borderBottom: '1px solid rgba(61, 56, 53, 0.06)'
                 }}
               >
-                <div></div>
+                <div className="p-6 md:p-8"></div>
+                
+                {/* CRUDA Header - Highlighted */}
                 <div 
-                  className="text-center text-[12px] font-semibold uppercase"
+                  className="p-6 md:p-8 text-center relative"
                   style={{ 
-                    letterSpacing: '1.5px',
-                    color: '#FF2E63'
+                    backgroundColor: 'rgba(255, 46, 99, 0.04)',
+                    borderBottom: '3px solid #FF2E63',
+                    marginBottom: '-1px'
                   }}
                 >
-                  CRUDA
+                  <span 
+                    className="text-[11px] md:text-[12px] font-bold uppercase tracking-[0.15em]"
+                    style={{ color: '#FF2E63' }}
+                  >
+                    CRUDA
+                  </span>
                 </div>
-                <div 
-                  className="text-center text-[12px] font-semibold uppercase"
-                  style={{ 
-                    letterSpacing: '1.5px',
-                    color: '#3D3835'
-                  }}
-                >
-                  AGENCY
+                
+                <div className="p-6 md:p-8 text-center">
+                  <span 
+                    className="text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.12em]"
+                    style={{ color: 'rgba(61, 56, 53, 0.5)' }}
+                  >
+                    AGENCY
+                  </span>
                 </div>
-                <div 
-                  className="text-center text-[12px] font-semibold uppercase"
-                  style={{ 
-                    letterSpacing: '1.5px',
-                    color: '#3D3835'
-                  }}
-                >
-                  FREELANCER
+                
+                <div className="p-6 md:p-8 text-center">
+                  <span 
+                    className="text-[11px] md:text-[12px] font-semibold uppercase tracking-[0.12em]"
+                    style={{ color: 'rgba(61, 56, 53, 0.5)' }}
+                  >
+                    FREELANCER
+                  </span>
                 </div>
               </div>
 
@@ -215,47 +223,61 @@ const Pricing = () => {
               {comparisonData.map((row, index) => (
                 <div 
                   key={index}
-                  className="grid py-6 border-b last:border-b-0"
+                  className="grid transition-colors duration-200"
                   style={{ 
-                    gridTemplateColumns: '1.4fr 1fr 1fr 1fr',
-                    borderColor: 'rgba(61, 56, 53, 0.05)'
+                    gridTemplateColumns: '1.5fr 1fr 1fr 1fr',
+                    borderBottom: index < comparisonData.length - 1 ? '1px solid rgba(61, 56, 53, 0.04)' : 'none',
+                    backgroundColor: index % 2 === 1 ? 'rgba(61, 56, 53, 0.015)' : 'transparent'
                   }}
                 >
                   {/* Label */}
                   <div 
-                    className="text-[15px] font-medium pr-4"
-                    style={{ color: 'rgba(61, 56, 53, 0.7)' }}
+                    className="p-6 md:p-8 text-[14px] md:text-[15px] font-medium flex items-center"
+                    style={{ color: 'rgba(61, 56, 53, 0.65)' }}
                   >
                     {row.label}
                   </div>
                   
-                  {/* CRUDA Column */}
+                  {/* CRUDA Column - Highlighted */}
                   <div 
-                    className="text-center text-[15px] font-medium px-4"
+                    className="p-6 md:p-8 text-center flex items-center justify-center"
                     style={{ 
-                      backgroundColor: 'rgba(255, 46, 99, 0.03)',
-                      margin: '-24px 0',
-                      padding: '24px 16px',
-                      color: row.cruda.highlight ? '#FF2E63' : '#3D3835',
-                      fontWeight: row.cruda.highlight ? 600 : 500
+                      backgroundColor: 'rgba(255, 46, 99, 0.04)'
                     }}
                   >
-                    <span style={{ color: '#22C55E', marginRight: '8px' }}>✓</span>
-                    {row.cruda.value}
+                    <div className="flex items-center gap-2">
+                      <span 
+                        className="w-5 h-5 rounded-full flex items-center justify-center text-[11px]"
+                        style={{ 
+                          backgroundColor: 'rgba(34, 197, 94, 0.12)',
+                          color: '#16A34A'
+                        }}
+                      >
+                        ✓
+                      </span>
+                      <span 
+                        className="text-[14px] md:text-[15px] font-semibold"
+                        style={{ 
+                          color: row.cruda.highlight ? '#FF2E63' : '#3D3835'
+                        }}
+                      >
+                        {row.cruda.value}
+                      </span>
+                    </div>
                   </div>
                   
                   {/* Agency Column */}
                   <div 
-                    className="text-center text-[15px] px-4"
-                    style={{ color: 'rgba(61, 56, 53, 0.55)' }}
+                    className="p-6 md:p-8 text-center text-[14px] md:text-[15px] flex items-center justify-center"
+                    style={{ color: 'rgba(61, 56, 53, 0.5)' }}
                   >
                     {row.agency}
                   </div>
                   
                   {/* Freelancer Column */}
                   <div 
-                    className="text-center text-[15px] px-4"
-                    style={{ color: 'rgba(61, 56, 53, 0.55)' }}
+                    className="p-6 md:p-8 text-center text-[14px] md:text-[15px] flex items-center justify-center"
+                    style={{ color: 'rgba(61, 56, 53, 0.5)' }}
                   >
                     {row.freelancer}
                   </div>

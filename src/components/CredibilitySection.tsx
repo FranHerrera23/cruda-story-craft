@@ -49,6 +49,17 @@ const CredibilitySection = () => {
         style={{ backgroundColor: '#3D3835' }}
       >
         <div className="max-w-[900px] mx-auto text-center">
+          {/* Section Label */}
+          <p 
+            className="text-[13px] md:text-[14px] font-medium tracking-[0.15em] uppercase mb-6 transition-opacity duration-[600ms]"
+            style={{ 
+              color: '#FF2E63',
+              opacity: moment1Visible ? 1 : 0
+            }}
+          >
+            WHERE WE COME FROM
+          </p>
+          
           {/* Headline */}
           <h2 
             className="text-[38px] md:text-[52px] font-bold leading-[1.1] mb-8 transition-all duration-[600ms]"
@@ -56,7 +67,8 @@ const CredibilitySection = () => {
               color: '#FDFBF7',
               opacity: moment1Visible ? 1 : 0,
               transform: moment1Visible ? 'scale(1)' : 'scale(0.98)',
-              willChange: 'transform'
+              willChange: 'transform',
+              transitionDelay: '100ms'
             }}
           >
             We've been inside the machine.
@@ -68,7 +80,7 @@ const CredibilitySection = () => {
             style={{ 
               color: '#FDFBF7',
               opacity: moment1Visible ? 1 : 0,
-              transitionDelay: '200ms'
+              transitionDelay: '300ms'
             }}
           >
             Over a decade translating across companies, cultures, and languages before founding CRUDA. Latin America. United States. Middle East. Europe. Buenos Aires, to Miami, Los Angeles, Dubai & Madrid.
@@ -79,10 +91,22 @@ const CredibilitySection = () => {
             style={{ 
               color: '#FDFBF7',
               opacity: moment1Visible ? 1 : 0,
-              transitionDelay: '300ms'
+              transitionDelay: '400ms'
             }}
           >
             That gap—between what you know and what people understand—we've lived it.
+          </p>
+
+          {/* Who We've Helped Label */}
+          <p 
+            className="text-[13px] md:text-[14px] font-medium tracking-[0.15em] uppercase mb-4 transition-opacity duration-[600ms]"
+            style={{ 
+              color: 'rgba(253, 251, 247, 0.6)',
+              opacity: moment1Visible ? 1 : 0,
+              transitionDelay: '500ms'
+            }}
+          >
+            WHO WE'VE HELPED
           </p>
 
           {/* Brand names - MASSIVE Display */}
@@ -93,7 +117,7 @@ const CredibilitySection = () => {
               opacity: moment1Visible ? 1 : 0,
               transform: moment1Visible ? 'scale(1)' : 'scale(0.95)',
               willChange: 'transform',
-              transitionDelay: '600ms'
+              transitionDelay: '700ms'
             }}
           >
             TikTok. Mondelez. Nestlé. DeliveryHero. DirecTV. Natura. Ab InBev. United Nations.

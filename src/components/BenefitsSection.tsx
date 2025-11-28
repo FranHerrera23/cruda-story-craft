@@ -1,12 +1,11 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const benefits = [
-  "A narrative foundation you can use forever",
-  "A content strategy that builds authority",
-  "Messaging that works in every context",
-  "PR targets and pitch templates",
-  "A voice guide that sounds like you over time",
-  "Clarity that compounds"
+  "A website that educates your customers",
+  "Social profiles that build connection and trust",
+  "Pitch decks that tell your story in one slide",
+  "Project descriptions that get forwarded",
+  "The same answer every time someone asks 'what do you do?'"
 ];
 
 const BenefitsSection = () => {
@@ -32,11 +31,11 @@ const BenefitsSection = () => {
         </h2>
 
         {/* Benefits List */}
-        <div className="flex flex-col gap-6 md:gap-8">
+        <div className="flex flex-col gap-8">
           {benefits.map((benefit, index) => (
             <p
               key={index}
-              className="text-[18px] md:text-[22px] leading-[1.5] transition-all duration-700"
+              className="text-[18px] leading-[1.5] transition-all duration-700"
               style={{
                 color: '#1A1A1A',
                 opacity: isVisible ? 1 : 0,

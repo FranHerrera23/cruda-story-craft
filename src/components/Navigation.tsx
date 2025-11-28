@@ -42,21 +42,12 @@ export const Navigation = () => {
           >
             Home
           </Link>
-          <a 
-            href="/#see-the-work" 
-            className="nav-menu-item"
-            onClick={(e) => {
-              if (location.pathname === '/') {
-                e.preventDefault();
-                const element = document.getElementById('see-the-work');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }
-            }}
+          <Link 
+            to="/work" 
+            className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
           >
             Work
-          </a>
+          </Link>
           <Link 
             to="/pricing" 
             className={`nav-menu-item ${location.pathname === '/pricing' ? 'active' : ''}`}

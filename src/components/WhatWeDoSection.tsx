@@ -56,7 +56,7 @@ const WhatWeDoSection = () => {
             fontWeight: 500
           }}
         >
-          OUR ZONE OF GENIUS
+          WHAT YOU WALK AWAY WITH
         </div>
         
         {/* Intro Text with Visual Hierarchy */}
@@ -161,7 +161,7 @@ const WhatWeDoSection = () => {
         
         {/* Service Cards with Visual Hierarchy */}
         <div className="grid md:grid-cols-3 gap-[48px]">
-          {/* Card 1 */}
+          {/* Card 1: Extracted */}
           <div 
             className="bg-white/50 p-[48px] px-[40px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/70 hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(61,56,53,0.15)] cursor-pointer"
             style={{
@@ -182,7 +182,7 @@ const WhatWeDoSection = () => {
                   color: '#3D3835'
                 }}
               >
-                Brand Architecture<br/>& Strategy
+                Extracted
               </h3>
               <p 
                 className="m-0"
@@ -193,7 +193,7 @@ const WhatWeDoSection = () => {
                   fontStyle: 'italic'
                 }}
               >
-                (aka: How Everything Fits Together)
+                (aka: Your Story, Finally Clear)
               </p>
             </div>
             
@@ -207,7 +207,7 @@ const WhatWeDoSection = () => {
                   color: 'rgba(61, 56, 53, 0.85)'
                 }}
               >
-                You've built more than one thing. Maybe different services. Different projects. Different audiences. Right now they feel scattered.
+                Years of knowledge, patterns, and client conversations—pulled out of your head and turned into something consistent.
               </p>
               <p 
                 className="mb-0"
@@ -217,12 +217,12 @@ const WhatWeDoSection = () => {
                   color: 'rgba(61, 56, 53, 0.85)'
                 }}
               >
-                We map how it all connects. Not by changing what you do—by showing how it already fits together in a way that makes sense to someone who just met you.
+                A narrative that builds trust whether you say it once or someone else repeats it in a room you'll never be in.
               </p>
             </div>
           </div>
           
-          {/* Card 2 */}
+          {/* Card 2: Deployed */}
           <div 
             className="bg-white/50 p-[48px] px-[40px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/70 hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(61,56,53,0.15)] cursor-pointer"
             style={{
@@ -243,7 +243,7 @@ const WhatWeDoSection = () => {
                   color: '#3D3835'
                 }}
               >
-                Narrative & Content<br/>Strategy
+                Deployed
               </h3>
               <p 
                 className="m-0"
@@ -254,7 +254,7 @@ const WhatWeDoSection = () => {
                   fontStyle: 'italic'
                 }}
               >
-                (aka: Making It Make Sense)
+                (aka: Put to Work Everywhere)
               </p>
             </div>
             
@@ -268,7 +268,7 @@ const WhatWeDoSection = () => {
                   color: 'rgba(61, 56, 53, 0.85)'
                 }}
               >
-                You need to talk about your work in a hundred different places. LinkedIn. Pitch decks. Conference stages. Coffee meetings.
+                LinkedIn. Pitch decks. Conference stages. Press interviews. Your narrative implemented across every touchpoint that matters.
               </p>
               <p 
                 className="mb-0"
@@ -278,12 +278,12 @@ const WhatWeDoSection = () => {
                   color: 'rgba(61, 56, 53, 0.85)'
                 }}
               >
-                We give you a vocabulary—phrases, stories, examples—that work everywhere. Not corporate speak. Not buzzwords. Just clear language that sounds like you and makes people go "Oh, I get it."
+                Not corporate speak. Not buzzwords. Clear language that sounds like you and makes people go "Oh, I get it."
               </p>
             </div>
           </div>
           
-          {/* Card 3 */}
+          {/* Card 3: Amplified */}
           <div 
             className="bg-white/50 p-[48px] px-[40px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/70 hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(61,56,53,0.15)] cursor-pointer"
             style={{
@@ -304,7 +304,7 @@ const WhatWeDoSection = () => {
                   color: '#3D3835'
                 }}
               >
-                PR & Communications<br/>Strategy
+                Amplified
               </h3>
               <p 
                 className="m-0"
@@ -315,7 +315,7 @@ const WhatWeDoSection = () => {
                   fontStyle: 'italic'
                 }}
               >
-                (aka: Getting in the Right Rooms)
+                (aka: Scaled Beyond You)
               </p>
             </div>
             
@@ -329,7 +329,7 @@ const WhatWeDoSection = () => {
                   color: 'rgba(61, 56, 53, 0.85)'
                 }}
               >
-                Once you can explain your work clearly, the next question is: who needs to hear it?
+                Press features. Podcast interviews. Speaking opportunities. Industry publications. The places where your ideal clients are already paying attention.
               </p>
               <p 
                 className="mb-0"
@@ -339,7 +339,7 @@ const WhatWeDoSection = () => {
                   color: 'rgba(61, 56, 53, 0.85)'
                 }}
               >
-                We figure that out—then we get you there. Press features. Podcast interviews. Speaking opportunities. Industry publications. The places where your ideal clients and partners are already paying attention.
+                Your narrative, reaching rooms you'll never be in—building trust at scale.
               </p>
             </div>
           </div>

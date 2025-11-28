@@ -37,12 +37,6 @@ export const Navigation = () => {
         </Link>
         <div className="nav-menu">
           <Link 
-            to="/" 
-            className={`nav-menu-item ${location.pathname === '/' ? 'active' : ''}`}
-          >
-            Home
-          </Link>
-          <Link 
             to="/work" 
             className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
           >
@@ -55,16 +49,10 @@ export const Navigation = () => {
             Pricing
           </Link>
           <Link 
-            to="/people" 
-            className={`nav-menu-item ${location.pathname === '/people' ? 'active' : ''}`}
-          >
-            People
-          </Link>
-          <Link 
             to="/book-call" 
-            className={`nav-menu-item ${location.pathname === '/book-call' ? 'active' : ''}`}
+            className="nav-cta-button"
           >
-            Contact
+            Start a Conversation
           </Link>
         </div>
       </div>

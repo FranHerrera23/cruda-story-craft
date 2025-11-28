@@ -4,6 +4,7 @@ import PhilosophySection from "@/components/PhilosophySection";
 import ProofOfWork from "@/components/ProofOfWork";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialSection from "@/components/TestimonialSection";
+import LogoMarquee from "@/components/LogoMarquee";
 import CredibilitySection from "@/components/CredibilitySection";
 import CTASection from "@/components/CTASection";
 
@@ -16,6 +17,7 @@ const Index = () => {
       <ProofOfWork />
       <BenefitsSection />
       <TestimonialSection />
+      <LogoMarquee />
       <CredibilitySection />
       <CTASection />
     </main>

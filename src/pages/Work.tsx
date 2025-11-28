@@ -45,7 +45,7 @@ const Work = () => {
   return (
     <main 
       className="min-h-screen"
-      style={{ backgroundColor: '#F5F1E8' }}
+      style={{ backgroundColor: '#FFFFFF' }}
     >
       {/* Hero Section */}
       <div 
@@ -57,7 +57,7 @@ const Work = () => {
           <h1 
             className="text-[40px] md:text-[52px] font-semibold mb-4 transition-all duration-700"
             style={{ 
-              color: '#3D3835',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em',
               opacity: headerVisible ? 1 : 0,
               transform: headerVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -70,7 +70,7 @@ const Work = () => {
           <p 
             className="text-[18px] md:text-[20px] max-w-[540px] mx-auto mb-[80px] transition-all duration-700"
             style={{ 
-              color: 'rgba(61, 56, 53, 0.65)',
+              color: 'rgba(26, 26, 26, 0.6)',
               lineHeight: '1.6',
               opacity: headerVisible ? 1 : 0,
               transform: headerVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -106,17 +106,17 @@ const Work = () => {
                 className="bg-white overflow-hidden transition-all duration-400"
                 style={{ 
                   borderRadius: '16px',
-                  boxShadow: '0 4px 24px rgba(61, 56, 53, 0.06)'
+                  boxShadow: '0 4px 24px rgba(26, 26, 26, 0.04)'
                 }}
                 onMouseEnter={(e) => {
                   if (project.status === 'live') {
                     e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(61, 56, 53, 0.1)';
+                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(26, 26, 26, 0.08)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(61, 56, 53, 0.06)';
+                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(26, 26, 26, 0.04)';
                 }}
               >
                 {/* Image Area */}
@@ -124,7 +124,7 @@ const Work = () => {
                   className="relative w-full overflow-hidden"
                   style={{ 
                     aspectRatio: '4/3',
-                    backgroundColor: '#E8DED1'
+                    backgroundColor: '#FAFAFA'
                   }}
                 >
                   {project.image ? (
@@ -137,7 +137,7 @@ const Work = () => {
                     <div className="w-full h-full flex items-center justify-center">
                       <span 
                         className="text-[14px] font-medium"
-                        style={{ color: 'rgba(61, 56, 53, 0.3)' }}
+                        style={{ color: 'rgba(26, 26, 26, 0.3)' }}
                       >
                         Image coming soon
                       </span>
@@ -149,8 +149,8 @@ const Work = () => {
                     <div 
                       className="absolute top-4 right-4 px-3 py-1.5 text-[10px] font-medium uppercase"
                       style={{ 
-                        backgroundColor: 'rgba(61, 56, 53, 0.8)',
-                        color: '#FDFBF7',
+                        backgroundColor: 'rgba(26, 26, 26, 0.8)',
+                        color: '#FFFFFF',
                         letterSpacing: '1.5px',
                         borderRadius: '4px'
                       }}
@@ -167,7 +167,7 @@ const Work = () => {
                     className="text-[11px] font-medium uppercase mb-2"
                     style={{ 
                       letterSpacing: '2px',
-                      color: 'rgba(61, 56, 53, 0.45)'
+                      color: 'rgba(26, 26, 26, 0.4)'
                     }}
                   >
                     {project.client}
@@ -177,7 +177,7 @@ const Work = () => {
                   <h3 
                     className="text-[22px] font-semibold mb-3"
                     style={{ 
-                      color: '#3D3835',
+                      color: '#1A1A1A',
                       letterSpacing: '-0.01em'
                     }}
                   >
@@ -188,7 +188,7 @@ const Work = () => {
                   <p 
                     className="text-[15px] mb-5"
                     style={{ 
-                      color: 'rgba(61, 56, 53, 0.7)',
+                      color: 'rgba(26, 26, 26, 0.6)',
                       lineHeight: '1.6'
                     }}
                   >
@@ -215,13 +215,13 @@ const Work = () => {
       {/* CTA Section */}
       <section 
         className="py-[80px] px-6 md:px-[60px]"
-        style={{ backgroundColor: '#3D3835' }}
+        style={{ backgroundColor: '#1A1A1A' }}
       >
         <div className="max-w-[500px] mx-auto text-center">
           <h2 
             className="text-[28px] md:text-[32px] font-semibold mb-4"
             style={{ 
-              color: '#FDFBF7',
+              color: '#FFFFFF',
               letterSpacing: '-0.01em'
             }}
           >
@@ -230,7 +230,7 @@ const Work = () => {
           <p 
             className="text-[17px] mb-8"
             style={{ 
-              color: 'rgba(253, 251, 247, 0.7)',
+              color: 'rgba(255, 255, 255, 0.7)',
               lineHeight: '1.6'
             }}
           >

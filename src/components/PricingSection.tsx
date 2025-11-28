@@ -5,13 +5,13 @@ const PricingSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section ref={elementRef} className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
+    <section ref={elementRef} className="py-24 md:py-32 px-6 md:px-16" style={{ backgroundColor: '#FFFFFF' }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Section Header */}
         <h2 
           className="text-[44px] md:text-[44px] font-bold text-center mb-20 transition-all duration-700" 
           style={{ 
-            color: '#3D3835',
+            color: '#1A1A1A',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
           }}
@@ -23,7 +23,7 @@ const PricingSection = () => {
         <p 
           className="text-[20px] md:text-[24px] text-center mb-24 max-w-[800px] mx-auto" 
           style={{ 
-            color: '#3D3835',
+            color: '#1A1A1A',
             lineHeight: '1.8'
           }}
         >
@@ -34,7 +34,7 @@ const PricingSection = () => {
         <p 
           className="text-[22px] md:text-[28px] text-center mb-32 max-w-[900px] mx-auto" 
           style={{ 
-            color: '#3D3835',
+            color: '#1A1A1A',
             lineHeight: '1.6'
           }}
         >
@@ -45,9 +45,9 @@ const PricingSection = () => {
         <div 
           className="max-w-[480px] mx-auto mb-24 py-12 px-10 transition-all duration-700 text-center"
           style={{
-            backgroundColor: '#FFFFFF',
+            backgroundColor: '#FAFAFA',
             borderRadius: '16px',
-            boxShadow: '0 4px 24px rgba(61, 56, 53, 0.06)',
+            boxShadow: '0 4px 24px rgba(26, 26, 26, 0.04)',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'scale(1)' : 'scale(0.95)',
             transitionDelay: '200ms'
@@ -58,7 +58,7 @@ const PricingSection = () => {
             className="text-[11px] font-medium uppercase mb-4"
             style={{ 
               letterSpacing: '2.5px',
-              color: 'rgba(61, 56, 53, 0.45)' 
+              color: 'rgba(26, 26, 26, 0.4)' 
             }}
           >
             INVESTMENT
@@ -68,7 +68,7 @@ const PricingSection = () => {
           <h3 
             className="text-[48px] font-bold mb-3"
             style={{ 
-              color: '#3D3835',
+              color: '#1A1A1A',
               letterSpacing: '-0.02em'
             }}
           >
@@ -78,7 +78,7 @@ const PricingSection = () => {
           {/* Context Line */}
           <p 
             className="text-[15px] mb-7"
-            style={{ color: 'rgba(61, 56, 53, 0.6)' }}
+            style={{ color: 'rgba(26, 26, 26, 0.6)' }}
           >
             4 months · Founder-led · Narrative system
           </p>
@@ -112,7 +112,7 @@ const PricingSection = () => {
           {/* Heading */}
           <h3 
             className="text-[28px] md:text-[36px] font-bold mb-6"
-            style={{ color: '#3D3835' }}
+            style={{ color: '#1A1A1A' }}
           >
             December Waitlist Open
           </h3>
@@ -121,7 +121,7 @@ const PricingSection = () => {
           <p 
             className="text-[18px] mb-10 max-w-[700px] mx-auto"
             style={{ 
-              color: 'rgba(61, 56, 53, 0.85)',
+              color: 'rgba(26, 26, 26, 0.8)',
               lineHeight: '1.8'
             }}
           >
@@ -143,7 +143,7 @@ const PricingSection = () => {
           {/* Fine Print */}
           <p 
             className="text-[15px]"
-            style={{ color: 'rgba(61, 56, 53, 0.6)' }}
+            style={{ color: 'rgba(26, 26, 26, 0.6)' }}
           >
             Can't start in December? We'll hold your spot for early 2026.
           </p>

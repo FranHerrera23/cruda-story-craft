@@ -40,11 +40,11 @@ const WhoWeWorkWith = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
+    <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
       <div className="max-w-[1200px] mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-[32px] md:text-[36px] font-display font-semibold leading-[1.2] tracking-tight-2 mb-4 max-w-[750px] mx-auto" style={{ color: '#3D3835' }}>
+          <h2 className="text-[32px] md:text-[36px] font-display font-semibold leading-[1.2] tracking-tight-2 mb-4 max-w-[750px] mx-auto" style={{ color: '#1A1A1A' }}>
             Who We Work With
           </h2>
           {/* Red underline accent with animation */}
@@ -66,18 +66,18 @@ const WhoWeWorkWith = () => {
               key={vertical.id}
               className="bg-white border overflow-hidden group client-card transition-all duration-300"
               style={{ 
-                borderColor: 'rgba(61, 56, 53, 0.08)',
+                borderColor: 'rgba(26, 26, 26, 0.06)',
                 borderRadius: '12px',
-                boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
+                boxShadow: '0 2px 16px rgba(26,26,26,0.06)',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
                 transition: `all 0.6s cubic-bezier(0.4, 0, 0.2, 1) ${0.15 * index}s`
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.12)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(26,26,26,0.1)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = '0 2px 16px rgba(61,56,53,0.08)';
+                e.currentTarget.style.boxShadow = '0 2px 16px rgba(26,26,26,0.06)';
               }}
             >
               {/* Image Container */}
@@ -99,7 +99,7 @@ const WhoWeWorkWith = () => {
               {/* Text Container */}
               <div className="p-10">
                 <h3 className="font-display font-bold mb-4 group-hover:underline transition-all duration-300" style={{ 
-                  color: '#3D3835',
+                  color: '#1A1A1A',
                   fontSize: '22px',
                   lineHeight: '1.3',
                   textDecorationColor: '#FF2E63'
@@ -107,7 +107,7 @@ const WhoWeWorkWith = () => {
                   {vertical.title}
                 </h3>
                 <p className="leading-[1.7]" style={{ 
-                  color: 'rgba(61, 56, 53, 0.85)',
+                  color: 'rgba(26, 26, 26, 0.8)',
                   fontSize: '17px'
                 }}>
                   {vertical.description}

@@ -101,10 +101,10 @@ const ProofOfWork = () => {
   return (
     <>
       {/* Large Card Carousel */}
-      <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FAFAFA' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-[28px] md:text-[44px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
+            <h2 className="text-[28px] md:text-[44px] font-bold leading-[1.2] mb-2" style={{ color: '#1A1A1A' }}>
               Who trusts us with their story and reputation
             </h2>
             {/* Red underline accent */}
@@ -126,9 +126,9 @@ const ProofOfWork = () => {
                     style={{
                       width: '380px',
                       minWidth: '380px',
-                      backgroundColor: '#FDFBF7',
+                      backgroundColor: '#FFFFFF',
                       borderRadius: '16px',
-                      boxShadow: '0 4px 16px rgba(61,56,53,0.12)',
+                      boxShadow: '0 4px 16px rgba(26,26,26,0.08)',
                       opacity: isVisible ? 1 : 0,
                       transform: isVisible ? 'translateX(0)' : 'translateX(40px)',
                       transition: `all 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s`,
@@ -136,11 +136,11 @@ const ProofOfWork = () => {
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-4px)';
-                      e.currentTarget.style.boxShadow = '0 6px 24px rgba(61, 56, 53, 0.15)';
+                      e.currentTarget.style.boxShadow = '0 6px 24px rgba(26, 26, 26, 0.12)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 4px 16px rgba(61,56,53,0.12)';
+                      e.currentTarget.style.boxShadow = '0 4px 16px rgba(26,26,26,0.08)';
                     }}
                   >
                     {/* Image - Fixed height */}
@@ -161,26 +161,26 @@ const ProofOfWork = () => {
 
                     {/* Text Content - Flexible height */}
                     <div className="flex flex-col justify-start px-6 py-5" style={{ 
-                      backgroundColor: '#FDFBF7',
+                      backgroundColor: '#FFFFFF',
                       flexGrow: 1
                     }}>
                       <h3 className="font-semibold mb-1" style={{ 
                         fontSize: '22px',
-                        color: '#3D3835',
+                        color: '#1A1A1A',
                         lineHeight: '1.3'
                       }}>
                         {client.name}
                       </h3>
                       <p className="mb-1" style={{ 
                         fontSize: '15px',
-                        color: 'rgba(61, 56, 53, 0.85)',
+                        color: 'rgba(26, 26, 26, 0.8)',
                         lineHeight: '1.4'
                       }}>
                         {client.title}
                       </p>
                       <p style={{ 
                         fontSize: '13px',
-                        color: 'rgba(61, 56, 53, 0.6)',
+                        color: 'rgba(26, 26, 26, 0.6)',
                         lineHeight: '1.4'
                       }}>
                         {client.location}
@@ -192,7 +192,7 @@ const ProofOfWork = () => {
                             fontSize: '14px',
                             fontWeight: 400,
                             fontStyle: 'italic',
-                            color: 'rgba(61, 56, 53, 0.65)',
+                            color: 'rgba(26, 26, 26, 0.6)',
                             lineHeight: '1.6'
                           }}
                         >
@@ -206,7 +206,7 @@ const ProofOfWork = () => {
                       <div 
                         className="absolute inset-0 flex items-center justify-center"
                         style={{
-                          backgroundColor: 'rgba(61, 56, 53, 0.92)',
+                          backgroundColor: 'rgba(26, 26, 26, 0.92)',
                           backdropFilter: 'blur(4px)',
                           borderRadius: '16px',
                           zIndex: 20
@@ -233,7 +233,7 @@ const ProofOfWork = () => {
                           </div>
                           <p style={{
                             fontSize: '16px',
-                            color: 'rgba(253, 251, 247, 0.85)',
+                            color: 'rgba(255, 255, 255, 0.85)',
                             lineHeight: '1.6',
                             maxWidth: '280px',
                             margin: '0 auto'
@@ -255,9 +255,9 @@ const ProofOfWork = () => {
                 if (carousel) carousel.scrollBy({ left: -400, behavior: 'smooth' });
               }}
               className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
-              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A1A1A'}
             >
               ←
             </button>
@@ -267,9 +267,9 @@ const ProofOfWork = () => {
                 if (carousel) carousel.scrollBy({ left: 400, behavior: 'smooth' });
               }}
               className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
-              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A1A1A'}
             >
               →
             </button>

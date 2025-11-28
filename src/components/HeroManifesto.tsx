@@ -93,7 +93,7 @@ const HeroManifesto = () => {
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
               }}
             >
-              We help technical founders turn years of mastery into narratives that travel—across continents, industries, and into the rooms where opportunities live.
+              We help architects, developers, and design leaders turn years of mastery into narratives that travel—across continents, industries, and into the rooms where opportunities live.
             </p>
             
             <Link 
@@ -123,6 +123,22 @@ const HeroManifesto = () => {
             >
               Start a Conversation
             </Link>
+
+            {/* Proof Line */}
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: '400',
+                color: 'rgba(61, 56, 53, 0.45)',
+                letterSpacing: '0.5px',
+                marginTop: '24px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s"
+              }}
+            >
+              Trusted by: TRAZZO Lighting · Norhart · UNIK Parquet · SSMC
+            </p>
           </div>
           
           {/* Right Side - Image */}

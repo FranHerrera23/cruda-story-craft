@@ -42,13 +42,27 @@ export const Navigation = () => {
           >
             Home
           </Link>
-          {/* HIDDEN UNTIL CONTENT READY */}
-          {/* <Link 
-            to="/work" 
-            className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
+          <a 
+            href="/#see-the-work" 
+            className="nav-menu-item"
+            onClick={(e) => {
+              if (location.pathname === '/') {
+                e.preventDefault();
+                const element = document.getElementById('see-the-work');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
+            }}
           >
             Work
-          </Link> */}
+          </a>
+          <Link 
+            to="/pricing" 
+            className={`nav-menu-item ${location.pathname === '/pricing' ? 'active' : ''}`}
+          >
+            Pricing
+          </Link>
           <Link 
             to="/people" 
             className={`nav-menu-item ${location.pathname === '/people' ? 'active' : ''}`}

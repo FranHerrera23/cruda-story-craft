@@ -70,7 +70,7 @@ const SeeTheWork = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
+    <section id="see-the-work" ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>

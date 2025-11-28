@@ -43,7 +43,7 @@ const WhatWeDoSection = () => {
     <section 
       ref={sectionRef}
       className="py-[100px] px-[60px]"
-      style={{ backgroundColor: '#E8DED1' }}
+      style={{ backgroundColor: '#FAFAFA' }}
     >
       <div className="max-w-[1300px] mx-auto">
         {/* Section Label */}
@@ -52,7 +52,7 @@ const WhatWeDoSection = () => {
           style={{ 
             fontSize: '11px',
             letterSpacing: '3px',
-            color: 'rgba(61, 56, 53, 0.4)',
+            color: 'rgba(26, 26, 26, 0.4)',
             fontWeight: 500
           }}
         >
@@ -68,7 +68,7 @@ const WhatWeDoSection = () => {
               fontSize: '32px',
               fontWeight: 600,
               lineHeight: '1.5',
-              color: '#3D3835'
+              color: '#1A1A1A'
             }}
           >
             You know what you do. You can talk about it. Hell, you've been talking about it for years.
@@ -110,7 +110,7 @@ const WhatWeDoSection = () => {
               fontSize: '22px',
               fontWeight: 400,
               lineHeight: '1.8',
-              color: 'rgba(61, 56, 53, 0.85)'
+              color: 'rgba(26, 26, 26, 0.8)'
             }}
           >
             The problem isn't that you can't explain your work. It's that the explanation changes every time. Different stories for different people. Different angles for different contexts. Some land. Some don't. Nothing compounds.
@@ -152,7 +152,7 @@ const WhatWeDoSection = () => {
               fontSize: '22px',
               fontWeight: 400,
               lineHeight: '1.8',
-              color: '#3D3835'
+              color: '#1A1A1A'
             }}
           >
             We take everything you know—all the years, all the patterns, all the client conversations—and turn it into something consistent. A narrative that builds trust whether you say it once or someone else repeats it in a room you'll never be in.
@@ -163,7 +163,7 @@ const WhatWeDoSection = () => {
         <div className="grid md:grid-cols-3 gap-[48px]">
           {/* Card 1: Extracted */}
           <div 
-            className="bg-white/50 p-[48px] px-[40px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/70 hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(61,56,53,0.15)] cursor-pointer"
+            className="bg-white/70 p-[48px] px-[40px] rounded-xl border border-[rgba(26,26,26,0.06)] transition-all duration-[400ms] hover:bg-white hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(26,26,26,0.1)] cursor-pointer"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
@@ -172,14 +172,14 @@ const WhatWeDoSection = () => {
             }}
           >
             {/* Card Header with Border */}
-            <div className="mb-[32px] pb-[28px] border-b border-[rgba(61,56,53,0.1)]">
+            <div className="mb-[32px] pb-[28px] border-b border-[rgba(26,26,26,0.08)]">
               <h3 
                 className="mb-[8px]"
                 style={{ 
                   fontSize: '20px',
                   fontWeight: 600,
                   lineHeight: '1.4',
-                  color: '#3D3835'
+                  color: '#1A1A1A'
                 }}
               >
                 Extracted
@@ -189,7 +189,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '16px',
                   fontWeight: 400,
-                  color: 'rgba(61, 56, 53, 0.55)',
+                  color: 'rgba(26, 26, 26, 0.5)',
                   fontStyle: 'italic'
                 }}
               >
@@ -204,7 +204,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '17px',
                   lineHeight: '1.9',
-                  color: 'rgba(61, 56, 53, 0.85)'
+                  color: 'rgba(26, 26, 26, 0.8)'
                 }}
               >
                 Years of knowledge, patterns, and client conversations—pulled out of your head and turned into something consistent.
@@ -214,7 +214,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '17px',
                   lineHeight: '1.9',
-                  color: 'rgba(61, 56, 53, 0.85)'
+                  color: 'rgba(26, 26, 26, 0.8)'
                 }}
               >
                 A narrative that builds trust whether you say it once or someone else repeats it in a room you'll never be in.
@@ -224,7 +224,7 @@ const WhatWeDoSection = () => {
           
           {/* Card 2: Deployed */}
           <div 
-            className="bg-white/50 p-[48px] px-[40px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/70 hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(61,56,53,0.15)] cursor-pointer"
+            className="bg-white/70 p-[48px] px-[40px] rounded-xl border border-[rgba(26,26,26,0.06)] transition-all duration-[400ms] hover:bg-white hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(26,26,26,0.1)] cursor-pointer"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
@@ -233,14 +233,14 @@ const WhatWeDoSection = () => {
             }}
           >
             {/* Card Header with Border */}
-            <div className="mb-[32px] pb-[28px] border-b border-[rgba(61,56,53,0.1)]">
+            <div className="mb-[32px] pb-[28px] border-b border-[rgba(26,26,26,0.08)]">
               <h3 
                 className="mb-[8px]"
                 style={{ 
                   fontSize: '20px',
                   fontWeight: 600,
                   lineHeight: '1.4',
-                  color: '#3D3835'
+                  color: '#1A1A1A'
                 }}
               >
                 Deployed
@@ -250,7 +250,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '16px',
                   fontWeight: 400,
-                  color: 'rgba(61, 56, 53, 0.55)',
+                  color: 'rgba(26, 26, 26, 0.5)',
                   fontStyle: 'italic'
                 }}
               >
@@ -265,7 +265,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '17px',
                   lineHeight: '1.9',
-                  color: 'rgba(61, 56, 53, 0.85)'
+                  color: 'rgba(26, 26, 26, 0.8)'
                 }}
               >
                 LinkedIn. Pitch decks. Conference stages. Press interviews. Your narrative implemented across every touchpoint that matters.
@@ -275,7 +275,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '17px',
                   lineHeight: '1.9',
-                  color: 'rgba(61, 56, 53, 0.85)'
+                  color: 'rgba(26, 26, 26, 0.8)'
                 }}
               >
                 Not corporate speak. Not buzzwords. Clear language that sounds like you and makes people go "Oh, I get it."
@@ -285,7 +285,7 @@ const WhatWeDoSection = () => {
           
           {/* Card 3: Amplified */}
           <div 
-            className="bg-white/50 p-[48px] px-[40px] rounded-xl border border-[rgba(61,56,53,0.08)] transition-all duration-[400ms] hover:bg-white/70 hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(61,56,53,0.15)] cursor-pointer"
+            className="bg-white/70 p-[48px] px-[40px] rounded-xl border border-[rgba(26,26,26,0.06)] transition-all duration-[400ms] hover:bg-white hover:-translate-y-[6px] hover:shadow-[0_12px_40px_rgba(26,26,26,0.1)] cursor-pointer"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
@@ -294,14 +294,14 @@ const WhatWeDoSection = () => {
             }}
           >
             {/* Card Header with Border */}
-            <div className="mb-[32px] pb-[28px] border-b border-[rgba(61,56,53,0.1)]">
+            <div className="mb-[32px] pb-[28px] border-b border-[rgba(26,26,26,0.08)]">
               <h3 
                 className="mb-[8px]"
                 style={{ 
                   fontSize: '20px',
                   fontWeight: 600,
                   lineHeight: '1.4',
-                  color: '#3D3835'
+                  color: '#1A1A1A'
                 }}
               >
                 Amplified
@@ -311,7 +311,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '16px',
                   fontWeight: 400,
-                  color: 'rgba(61, 56, 53, 0.55)',
+                  color: 'rgba(26, 26, 26, 0.5)',
                   fontStyle: 'italic'
                 }}
               >
@@ -326,7 +326,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '17px',
                   lineHeight: '1.9',
-                  color: 'rgba(61, 56, 53, 0.85)'
+                  color: 'rgba(26, 26, 26, 0.8)'
                 }}
               >
                 Press features. Podcast interviews. Speaking opportunities. Industry publications. The places where your ideal clients are already paying attention.
@@ -336,7 +336,7 @@ const WhatWeDoSection = () => {
                 style={{ 
                   fontSize: '17px',
                   lineHeight: '1.9',
-                  color: 'rgba(61, 56, 53, 0.85)'
+                  color: 'rgba(26, 26, 26, 0.8)'
                 }}
               >
                 Your narrative, reaching rooms you'll never be in—building trust at scale.

@@ -70,10 +70,10 @@ const SeeTheWork = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section id="see-the-work" ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FDFBF7' }}>
+    <section id="see-the-work" ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FAFAFA' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#3D3835' }}>
+            <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#1A1A1A' }}>
               See the Work
             </h2>
             {/* Red underline accent */}
@@ -93,7 +93,7 @@ const SeeTheWork = () => {
                       className="bg-white overflow-hidden"
                       style={{ 
                         borderRadius: '12px',
-                        boxShadow: '0 2px 16px rgba(61,56,53,0.08)',
+                        boxShadow: '0 2px 16px rgba(26,26,26,0.06)',
                         transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, opacity 0.6s ease',
                         opacity: isVisible ? 1 : 0,
                         transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -101,11 +101,11 @@ const SeeTheWork = () => {
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.transform = 'scale(1.02)';
-                        e.currentTarget.style.boxShadow = '0 12px 32px rgba(61,56,53,0.15)';
+                        e.currentTarget.style.boxShadow = '0 12px 32px rgba(26,26,26,0.12)';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.transform = 'scale(1)';
-                        e.currentTarget.style.boxShadow = '0 2px 16px rgba(61,56,53,0.08)';
+                        e.currentTarget.style.boxShadow = '0 2px 16px rgba(26,26,26,0.06)';
                       }}
                     >
                       {/* Media - Image or Video */}
@@ -130,23 +130,23 @@ const SeeTheWork = () => {
                       
                       {/* Content */}
                       <div className="p-8">
-                        <p className="text-xs uppercase tracking-wide mb-3" style={{ color: 'rgba(61, 56, 53, 0.6)' }}>
+                        <p className="text-xs uppercase tracking-wide mb-3" style={{ color: 'rgba(26, 26, 26, 0.5)' }}>
                           {item.clientName}
                         </p>
                         
-                        <h3 className="text-2xl font-bold mb-2" style={{ color: '#3D3835' }}>
+                        <h3 className="text-2xl font-bold mb-2" style={{ color: '#1A1A1A' }}>
                           {item.title}
                         </h3>
 
-                        <p className="text-sm mb-4" style={{ color: 'rgba(61, 56, 53, 0.7)' }}>
+                        <p className="text-sm mb-4" style={{ color: 'rgba(26, 26, 26, 0.6)' }}>
                           {item.subtitle}
                         </p>
 
-                        <p className="text-[15px] leading-[1.6] mb-6 line-clamp-3" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                        <p className="text-[15px] leading-[1.6] mb-6 line-clamp-3" style={{ color: 'rgba(26, 26, 26, 0.8)' }}>
                           {item.description}
                         </p>
 
-                        <div className="inline-flex items-center gap-2 text-sm font-semibold" style={{ color: '#3D3835' }}>
+                        <div className="inline-flex items-center gap-2 text-sm font-semibold" style={{ color: '#1A1A1A' }}>
                           <span>{item.type === 'media' ? 'Read Article' : item.type === 'video' ? 'Watch Video' : 'View Project'}</span>
                           <span className="opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">→</span>
                         </div>
@@ -192,9 +192,9 @@ const SeeTheWork = () => {
                 if (carousel) carousel.scrollBy({ left: -440, behavior: 'smooth' });
               }}
               className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
-              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A1A1A'}
             >
               ←
             </button>
@@ -204,9 +204,9 @@ const SeeTheWork = () => {
                 if (carousel) carousel.scrollBy({ left: 440, behavior: 'smooth' });
               }}
               className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
-              style={{ backgroundColor: '#3D3835', color: '#FDFBF7' }}
+              style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF' }}
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#3D3835'}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A1A1A'}
             >
               →
             </button>

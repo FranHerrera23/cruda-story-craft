@@ -46,7 +46,7 @@ const CredibilitySection = () => {
       <section 
         ref={moment1Ref}
         className="py-[100px] md:py-[100px] px-10 md:px-20" 
-        style={{ backgroundColor: '#3D3835' }}
+        style={{ backgroundColor: '#1A1A1A' }}
       >
         <div className="max-w-[900px] mx-auto text-center">
           {/* Section Label */}
@@ -64,7 +64,7 @@ const CredibilitySection = () => {
           <h2 
             className="text-[38px] md:text-[52px] font-bold leading-[1.1] mb-8 transition-all duration-[600ms]"
             style={{ 
-              color: '#FDFBF7',
+              color: '#FFFFFF',
               opacity: moment1Visible ? 1 : 0,
               transform: moment1Visible ? 'scale(1)' : 'scale(0.98)',
               willChange: 'transform',
@@ -78,7 +78,7 @@ const CredibilitySection = () => {
           <p 
             className="text-[19px] md:text-[20px] leading-[1.8] mb-10 transition-opacity duration-[600ms]"
             style={{ 
-              color: '#FDFBF7',
+              color: '#FFFFFF',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '300ms'
             }}
@@ -89,7 +89,7 @@ const CredibilitySection = () => {
           <p 
             className="text-[19px] md:text-[20px] leading-[1.8] mb-10 transition-opacity duration-[600ms]"
             style={{ 
-              color: '#FDFBF7',
+              color: '#FFFFFF',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '400ms'
             }}
@@ -101,7 +101,7 @@ const CredibilitySection = () => {
           <p 
             className="text-[13px] md:text-[14px] font-medium tracking-[0.15em] uppercase mb-4 transition-opacity duration-[600ms]"
             style={{ 
-              color: 'rgba(253, 251, 247, 0.6)',
+              color: 'rgba(255, 255, 255, 0.6)',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '500ms'
             }}
@@ -127,7 +127,7 @@ const CredibilitySection = () => {
           <p 
             className="text-[19px] md:text-[22px] leading-[1.8] mb-8 transition-opacity duration-[600ms]"
             style={{ 
-              color: '#FDFBF7',
+              color: '#FFFFFF',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '1000ms'
             }}
@@ -138,7 +138,7 @@ const CredibilitySection = () => {
           <p 
             className="text-[19px] md:text-[22px] leading-[1.8] transition-opacity duration-[600ms]"
             style={{ 
-              color: '#FDFBF7',
+              color: '#FFFFFF',
               opacity: moment1Visible ? 1 : 0,
               transitionDelay: '1100ms'
             }}

@@ -28,7 +28,7 @@ const HeroManifesto = () => {
   return (
     <section 
       className="py-[120px] px-[60px] min-h-screen flex items-center"
-      style={{ backgroundColor: '#F5F1E8' }}
+      style={{ backgroundColor: '#FFFFFF' }}
     >
       <div className="max-w-[1400px] mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-[100px] items-center">
@@ -40,7 +40,7 @@ const HeroManifesto = () => {
                 fontSize: 'clamp(48px, 6vw, 80px)',
                 fontWeight: '300',
                 lineHeight: '1.1',
-                color: '#3D3835'
+                color: '#1A1A1A'
               }}
             >
               <span 
@@ -87,7 +87,7 @@ const HeroManifesto = () => {
                 fontSize: 'clamp(18px, 2vw, 24px)',
                 fontWeight: '300',
                 lineHeight: '1.6',
-                color: '#3D3835',
+                color: '#1A1A1A',
                 opacity: subtitleVisible ? 0.8 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
@@ -129,7 +129,7 @@ const HeroManifesto = () => {
               style={{
                 fontSize: '13px',
                 fontWeight: '400',
-                color: 'rgba(61, 56, 53, 0.45)',
+                color: 'rgba(26, 26, 26, 0.4)',
                 letterSpacing: '0.5px',
                 marginTop: '24px',
                 opacity: subtitleVisible ? 1 : 0,
@@ -149,7 +149,7 @@ const HeroManifesto = () => {
               className="w-full h-auto block"
               style={{
                 borderRadius: '16px',
-                boxShadow: '0 12px 48px rgba(61, 56, 53, 0.2)'
+                boxShadow: '0 12px 48px rgba(26, 26, 26, 0.15)'
               }}
             />
           </div>

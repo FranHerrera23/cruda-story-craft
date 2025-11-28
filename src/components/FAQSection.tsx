@@ -39,12 +39,12 @@ const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section ref={elementRef} className="py-20 md:py-24 px-6 md:px-16" style={{ backgroundColor: '#F5F1E8' }}>
+    <section ref={elementRef} className="py-20 md:py-24 px-6 md:px-16" style={{ backgroundColor: '#FFFFFF' }}>
       <div className="max-w-[1000px] mx-auto">
         <h2 
           className="text-[32px] md:text-[38px] font-display font-semibold text-center mb-12 transition-all duration-700" 
           style={{ 
-            color: '#3D3835',
+            color: '#1A1A1A',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(30px)'
           }}
@@ -58,7 +58,7 @@ const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
               key={index}
               className="border-b transition-all duration-500"
               style={{ 
-                borderColor: 'rgba(61, 56, 53, 0.15)',
+                borderColor: 'rgba(26, 26, 26, 0.1)',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: `${index * 100}ms`
@@ -68,7 +68,7 @@ const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full py-6 flex items-center justify-between text-left transition-all hover:opacity-70"
               >
-                <span className="text-lg md:text-xl font-semibold pr-8" style={{ color: '#3D3835' }}>
+                <span className="text-lg md:text-xl font-semibold pr-8" style={{ color: '#1A1A1A' }}>
                   {faq.question}
                 </span>
                 <ChevronDown
@@ -85,7 +85,7 @@ const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
                   openIndex === index ? 'max-h-96 pb-6' : 'max-h-0'
                 }`}
               >
-                <p className="text-base md:text-lg leading-[1.65]" style={{ color: 'rgba(61, 56, 53, 0.85)' }}>
+                <p className="text-base md:text-lg leading-[1.65]" style={{ color: 'rgba(26, 26, 26, 0.8)' }}>
                   {faq.answer}
                 </p>
               </div>
@@ -102,7 +102,7 @@ const FAQSection = ({ showCTA = true }: { showCTA?: boolean }) => {
               style={{ 
                 backgroundColor: '#FF2E63',
                 borderColor: '#FF2E63',
-                color: '#FDFBF7'
+                color: '#FFFFFF'
               }}
             >
               I want to tell my story

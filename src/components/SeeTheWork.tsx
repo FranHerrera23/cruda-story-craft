@@ -211,6 +211,20 @@ const SeeTheWork = () => {
               →
             </button>
           </div>
+
+          {/* View All Projects Link */}
+          <div className="text-center mt-12">
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 text-[16px] font-medium transition-all duration-300 hover:gap-3"
+              style={{ color: '#FF2E63' }}
+              onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
+              onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+            >
+              View all projects
+              <span>→</span>
+            </Link>
+          </div>
         </div>
     </section>
   );

@@ -1,170 +1,257 @@
 import { Link } from 'react-router-dom';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import karenImage from '@/assets/karen-mannheim-casestudy.jpg';
 import mikeImage from '@/assets/mike-kaeding.webp';
-import juanPabloImage from '@/assets/juan-pablo-romero.jpeg';
-import hospitalityImage from '@/assets/hospitality-manager.jpg';
-import retailImage from '@/assets/retail-ceo.jpg';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Work = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: subtitleRef, isVisible: subtitleVisible } = useScrollAnimation<HTMLParagraphElement>();
+  const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation<HTMLDivElement>();
 
-  const clients = [
+  const projects = [
     {
-      name: "Karen Mannheim",
-      title: "Lighting Designer",
-      description: "From technical expert to cultural curator—translating 20 years of lighting mastery into a narrative that travels across continents.",
+      client: "KAREN MANNHEIM",
+      title: "TRAZZO Lighting",
+      description: "Brand narrative and positioning for a luxury architectural lighting designer working with Robert A.M. Stern, Porsche, and global hospitality brands.",
       image: karenImage,
-      slug: "karen-mannheim",
+      link: "/clients/karen-mannheim",
       status: "live"
     },
     {
-      name: "Mike Kaeding",
-      title: "CEO & Founder, Norhart",
-      description: "Transforming a construction CEO into a thought leader whose ideas about housing reform reach millions.",
+      client: "MIKE KAEDING",
+      title: "Norhart",
+      description: "Founder story and media strategy for the CEO of a $200M housing innovation company transforming how apartments are built.",
       image: mikeImage,
-      slug: "mike-kaeding",
+      link: "/clients/mike-kaeding",
       status: "live"
     },
     {
-      name: "Juan Pablo Romero",
-      title: "Founder & Managing Partner",
-      description: "Elevating a venture capital narrative from startup to sophistication.",
-      image: juanPabloImage,
-      slug: "juan-pablo-romero",
+      client: "JUAN PABLO ROMERO",
+      title: "UNIK Parquet",
+      description: "Brand positioning for a premium flooring manufacturer serving luxury residential projects across Latin America.",
+      image: null,
+      link: "#",
       status: "coming-soon"
     },
     {
-      name: "Hospitality GM",
-      title: "General Manager, Luxury Hotels",
-      description: "Translating decades of hospitality expertise into a personal brand that opens doors.",
-      image: hospitalityImage,
-      slug: "hospitality-gm-abudhabi",
-      status: "coming-soon"
-    },
-    {
-      name: "Retail CEO",
-      title: "Chief Executive Officer",
-      description: "Positioning a retail visionary as the architect of customer experience transformation.",
-      image: retailImage,
-      slug: "retail-ceo-dubai",
+      client: "GIRISH SEHGAL",
+      title: "SSMC",
+      description: "Executive narrative for a hospitality leader with Four Seasons, JW Marriott, and Grand Hyatt experience.",
+      image: null,
+      link: "#",
       status: "coming-soon"
     }
   ];
 
   return (
-    <main className="min-h-screen" style={{ backgroundColor: '#F5F1E8', paddingTop: '80px' }}>
+    <main 
+      className="min-h-screen"
+      style={{ backgroundColor: '#F5F1E8' }}
+    >
       {/* Hero Section */}
-      <section className="py-24 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto">
-          <div 
-            ref={headerRef}
-            className={`animate-on-scroll animate-header ${headerVisible ? 'visible' : ''}`}
+      <div 
+        ref={headerRef}
+        className="pt-[120px] md:pt-[140px] pb-[80px] px-6 md:px-[60px]"
+      >
+        <div className="max-w-[1200px] mx-auto text-center">
+          {/* Page Title */}
+          <h1 
+            className="text-[40px] md:text-[52px] font-semibold mb-4 transition-all duration-700"
+            style={{ 
+              color: '#3D3835',
+              letterSpacing: '-0.02em',
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light mb-8" style={{ color: '#3D3835', lineHeight: '1.1' }}>
-              The Work That{' '}
-              <span style={{ color: '#FF2E63', fontWeight: 300 }}>Travels</span>
-            </h1>
-          </div>
+            Work
+          </h1>
+          
+          {/* Subheadline */}
           <p 
-            ref={subtitleRef}
-            className={`text-xl md:text-2xl font-light max-w-3xl animate-on-scroll animate-paragraph ${subtitleVisible ? 'visible' : ''}`}
-            style={{ color: '#3D3835', opacity: 0.8, lineHeight: '1.6' }}
+            className="text-[18px] md:text-[20px] max-w-[540px] mx-auto mb-[80px] transition-all duration-700"
+            style={{ 
+              color: 'rgba(61, 56, 53, 0.65)',
+              lineHeight: '1.6',
+              opacity: headerVisible ? 1 : 0,
+              transform: headerVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '100ms'
+            }}
           >
-            Real stories. Real expertise. Real results. See how we help founders transform years of mastery into narratives that move markets.
+            Narrative strategy for the leaders shaping spaces, experiences, and industries.
           </p>
         </div>
-      </section>
+      </div>
 
-      {/* Case Studies Grid */}
-      <section className="pb-32 px-6 md:px-12 lg:px-20">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {clients.map((client, index) => {
-              const { elementRef, isVisible } = useScrollAnimation<HTMLDivElement>();
-              
-              return (
-                <div
-                  key={client.slug}
-                  ref={elementRef}
-                  className={`animate-on-scroll animate-box ${isVisible ? 'visible' : ''}`}
+      {/* Project Cards Grid */}
+      <div 
+        ref={gridRef}
+        className="pb-[120px] px-6 md:px-[60px]"
+      >
+        <div 
+          className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10"
+        >
+          {projects.map((project, index) => (
+            <Link
+              key={index}
+              to={project.link}
+              className={`block group ${project.status === 'coming-soon' ? 'cursor-default' : ''}`}
+              onClick={(e) => project.status === 'coming-soon' && e.preventDefault()}
+              style={{
+                opacity: gridVisible ? 1 : 0,
+                transform: gridVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition: `all 0.7s cubic-bezier(0.4, 0, 0.2, 1) ${index * 100}ms`
+              }}
+            >
+              <div 
+                className="bg-white overflow-hidden transition-all duration-400"
+                style={{ 
+                  borderRadius: '16px',
+                  boxShadow: '0 4px 24px rgba(61, 56, 53, 0.06)'
+                }}
+                onMouseEnter={(e) => {
+                  if (project.status === 'live') {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(61, 56, 53, 0.1)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(61, 56, 53, 0.06)';
+                }}
+              >
+                {/* Image Area */}
+                <div 
+                  className="relative w-full overflow-hidden"
                   style={{ 
-                    opacity: 0,
-                    transform: 'translateY(30px)',
-                    transition: `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.1}s`
+                    aspectRatio: '4/3',
+                    backgroundColor: '#E8DED1'
                   }}
                 >
-                  <Link 
-                    to={client.status === 'live' ? `/clients/${client.slug}` : '#'}
-                    className={`block group relative ${client.status === 'coming-soon' ? 'cursor-default' : ''}`}
-                  >
-                    {/* Image Container */}
-                    <div className="relative overflow-hidden rounded-lg mb-6 aspect-[4/3]">
-                      <img 
-                        src={client.image}
-                        alt={client.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      
-                      {/* Coming Soon Overlay */}
-                      {client.status === 'coming-soon' && (
-                        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center z-10">
-                          <span className="text-white text-sm font-medium px-4 py-2 border border-white/30 rounded-full mb-3">
-                            COMING SOON
-                          </span>
-                          <p className="text-white/80 text-sm">Full case study in progress</p>
-                        </div>
-                      )}
-                      
-                      {/* Hover Overlay for Live Cases */}
-                      {client.status === 'live' && (
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-start p-8">
-                          <span className="text-white text-lg font-light flex items-center gap-2">
-                            View Case Study
-                            <span className="transform translate-x-0 group-hover:translate-x-2 transition-transform duration-300">→</span>
-                          </span>
-                        </div>
-                      )}
+                  {project.image ? (
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center">
+                      <span 
+                        className="text-[14px] font-medium"
+                        style={{ color: 'rgba(61, 56, 53, 0.3)' }}
+                      >
+                        Image coming soon
+                      </span>
                     </div>
-                    
-                    {/* Text Content */}
-                    <div>
-                      <h3 className="text-3xl font-light mb-2" style={{ color: '#3D3835' }}>
-                        {client.name}
-                      </h3>
-                      <p className="text-sm font-medium mb-4" style={{ color: '#FF2E63', letterSpacing: '0.05em' }}>
-                        {client.title}
-                      </p>
-                      <p className="text-base font-light leading-relaxed" style={{ color: '#3D3835', opacity: 0.7 }}>
-                        {client.description}
-                      </p>
+                  )}
+                  
+                  {/* Coming Soon Badge */}
+                  {project.status === 'coming-soon' && (
+                    <div 
+                      className="absolute top-4 right-4 px-3 py-1.5 text-[10px] font-medium uppercase"
+                      style={{ 
+                        backgroundColor: 'rgba(61, 56, 53, 0.8)',
+                        color: '#FDFBF7',
+                        letterSpacing: '1.5px',
+                        borderRadius: '4px'
+                      }}
+                    >
+                      Coming Soon
                     </div>
-                  </Link>
+                  )}
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Content Area */}
+                <div className="p-7 pb-8">
+                  {/* Client Name */}
+                  <p 
+                    className="text-[11px] font-medium uppercase mb-2"
+                    style={{ 
+                      letterSpacing: '2px',
+                      color: 'rgba(61, 56, 53, 0.45)'
+                    }}
+                  >
+                    {project.client}
+                  </p>
+                  
+                  {/* Project Title */}
+                  <h3 
+                    className="text-[22px] font-semibold mb-3"
+                    style={{ 
+                      color: '#3D3835',
+                      letterSpacing: '-0.01em'
+                    }}
+                  >
+                    {project.title}
+                  </h3>
+                  
+                  {/* Description */}
+                  <p 
+                    className="text-[15px] mb-5"
+                    style={{ 
+                      color: 'rgba(61, 56, 53, 0.7)',
+                      lineHeight: '1.6'
+                    }}
+                  >
+                    {project.description}
+                  </p>
+                  
+                  {/* View Project Link */}
+                  {project.status === 'live' && (
+                    <span 
+                      className="text-[14px] font-medium inline-flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
+                      style={{ color: '#FF2E63' }}
+                    >
+                      View Project 
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* CTA Section */}
-      <section className="py-24 px-6 md:px-12 lg:px-20" style={{ backgroundColor: '#3D3835' }}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-light mb-8 text-white">
+      <section 
+        className="py-[80px] px-6 md:px-[60px]"
+        style={{ backgroundColor: '#3D3835' }}
+      >
+        <div className="max-w-[500px] mx-auto text-center">
+          <h2 
+            className="text-[28px] md:text-[32px] font-semibold mb-4"
+            style={{ 
+              color: '#FDFBF7',
+              letterSpacing: '-0.01em'
+            }}
+          >
             Ready to translate your expertise?
           </h2>
-          <p className="text-xl font-light mb-12 text-white/80 max-w-2xl mx-auto">
-            Let's turn your years of mastery into a narrative that opens doors, attracts opportunities, and positions you where you belong.
+          <p 
+            className="text-[17px] mb-8"
+            style={{ 
+              color: 'rgba(253, 251, 247, 0.7)',
+              lineHeight: '1.6'
+            }}
+          >
+            Let's turn your years of mastery into a narrative that opens doors.
           </p>
           <Link
             to="/book-call"
-            className="inline-block px-12 py-4 text-lg font-medium transition-all duration-300 hover:scale-105"
-            style={{
+            className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-400"
+            style={{ 
               backgroundColor: '#FF2E63',
-              color: 'white',
-              borderRadius: '8px',
-              textDecoration: 'none'
+              color: '#FFFFFF'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#E62958';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(255, 46, 99, 0.25)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#FF2E63';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           >
             Start Your Story

@@ -41,14 +41,13 @@ const PricingSection = () => {
           It requires <span style={{ color: '#FF2E63', fontWeight: 700 }}>presence, not productivity. Focus, not volume.</span>
         </p>
 
-        {/* Pricing Card - White on Cream */}
+        {/* Simplified Pricing Card - Teaser */}
         <div 
-          className="max-w-[700px] mx-auto mb-24 p-10 md:p-20 transition-all duration-700"
+          className="max-w-[480px] mx-auto mb-24 py-12 px-10 transition-all duration-700 text-center"
           style={{
             backgroundColor: '#FFFFFF',
             borderRadius: '16px',
-            boxShadow: '0 4px 24px rgba(61, 56, 53, 0.12)',
-            border: '1px solid rgba(61, 56, 53, 0.08)',
+            boxShadow: '0 4px 24px rgba(61, 56, 53, 0.06)',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'scale(1)' : 'scale(0.95)',
             transitionDelay: '200ms'
@@ -56,79 +55,42 @@ const PricingSection = () => {
         >
           {/* Label */}
           <p 
-            className="text-[12px] uppercase tracking-[2px] text-center mb-8"
-            style={{ color: 'rgba(61, 56, 53, 0.5)' }}
+            className="text-[11px] font-medium uppercase mb-4"
+            style={{ 
+              letterSpacing: '2.5px',
+              color: 'rgba(61, 56, 53, 0.45)' 
+            }}
           >
-            FOUNDATIONAL PHASE
+            INVESTMENT
           </p>
           
-          {/* Main Pricing */}
+          {/* Main Price */}
           <h3 
-            className="text-[36px] md:text-[48px] font-bold text-center mb-4"
-            style={{ color: '#3D3835' }}
+            className="text-[48px] font-bold mb-3"
+            style={{ 
+              color: '#3D3835',
+              letterSpacing: '-0.02em'
+            }}
           >
-            $1,800 monthly
+            $7,200
           </h3>
           
-          {/* Total Amount */}
+          {/* Context Line */}
           <p 
-            className="text-[18px] text-center mb-16"
-            style={{ color: 'rgba(61, 56, 53, 0.7)' }}
+            className="text-[15px] mb-7"
+            style={{ color: 'rgba(61, 56, 53, 0.6)' }}
           >
-            $7,200 total (4-month minimum commitment)
+            4 months · Founder-led · Narrative system
           </p>
           
-          {/* Visual Divider */}
-          <div 
-            className="my-16"
-            style={{ 
-              height: '1px', 
-              backgroundColor: 'rgba(61, 56, 53, 0.1)' 
-            }}
-          />
-          
-          {/* What's Included */}
-          <div className="text-left">
-            <h4 
-              className="text-[20px] font-semibold mb-8"
-              style={{ color: '#3D3835' }}
-            >
-              What's Included:
-            </h4>
-            
-            <ul className="space-y-6 mb-12">
-              {[
-                'Month 1: Discovery, research, and narrative building',
-                'Months 2-4: 90 days of execution and activation',
-                'LinkedIn & Instagram content takeover',
-                'PR & communications strategy',
-                'Written content review (decks, brochures, company materials)'
-              ].map((item, index) => (
-                <li 
-                  key={index}
-                  className="text-[17px] flex items-start" 
-                  style={{ 
-                    color: 'rgba(61, 56, 53, 0.85)',
-                    lineHeight: '2.0'
-                  }}
-                >
-                  <span style={{ color: '#FF2E63', marginRight: '12px', fontWeight: 700 }}>→</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            
-            {/* Footer Note */}
-            <p 
-              className="text-[15px] text-center italic mt-10"
-              style={{ 
-                color: 'rgba(61, 56, 53, 0.6)',
-                lineHeight: '1.7'
-              }}
-            >
-              Detailed deliverables and scope discussed during our initial conversation. Most founders continue into ongoing positioning work after the foundation is built.
-            </p>
-          </div>
+          {/* Link to Pricing Page */}
+          <Link
+            to="/pricing"
+            className="inline-block text-[15px] font-medium transition-all duration-300 hover:underline"
+            style={{ color: '#FF2E63' }}
+          >
+            See what's included →
+          </Link>
         </div>
 
         {/* Availability Badge & CTA */}

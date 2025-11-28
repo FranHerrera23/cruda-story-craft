@@ -22,6 +22,7 @@ import KarenFourSeasonsProject from "./pages/projects/KarenFourSeasonsProject";
 import KarenSaadiyatProject from "./pages/projects/KarenSaadiyatProject";
 import KarenTrazzoExpansionProject from "./pages/projects/KarenTrazzoExpansionProject";
 import KarenPorscheProject from "./pages/projects/KarenPorscheProject";
+import Pricing from "./pages/Pricing";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />
+            <Route path="/pricing" element={<Pricing />} />
             <Route path="/people" element={<People />} />
             <Route path="/clients/karen-mannheim" element={<KarenMannheimCaseStudy />} />
             <Route path="/clients/mike-kaeding" element={<MikeKaedingCaseStudy />} />

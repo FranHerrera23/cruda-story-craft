@@ -4,9 +4,10 @@ import PhilosophySection from "@/components/PhilosophySection";
 import ProofOfWork from "@/components/ProofOfWork";
 import BenefitsSection from "@/components/BenefitsSection";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
+import HowWeWorkSection from "@/components/HowWeWorkSection";
 import TestimonialSection from "@/components/TestimonialSection";
-import LogoMarquee from "@/components/LogoMarquee";
 import CredibilitySection from "@/components/CredibilitySection";
+import LogoMarquee from "@/components/LogoMarquee";
 import CTASection from "@/components/CTASection";
 
 const Index = () => {
@@ -18,9 +19,10 @@ const Index = () => {
       <ProofOfWork />
       <BenefitsSection />
       <BeforeAfterSection />
+      <HowWeWorkSection />
       <TestimonialSection />
-      <LogoMarquee />
       <CredibilitySection />
+      <LogoMarquee />
       <CTASection />
     </main>
   );

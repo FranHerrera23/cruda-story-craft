@@ -105,7 +105,7 @@ const ProofOfWork = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12 md:mb-16">
             <h2 className="text-[28px] md:text-[44px] font-bold leading-[1.2] mb-2" style={{ color: '#1A1A1A' }}>
-              Who trusts us with their story and reputation
+              Who trusts us with their story
             </h2>
             {/* Red underline accent */}
             <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#FF2E63' }} />

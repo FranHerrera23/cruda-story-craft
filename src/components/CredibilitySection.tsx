@@ -41,34 +41,66 @@ const CredibilitySection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 md:py-[120px] px-6 md:px-[60px]" 
+      className="py-24 md:py-[120px] px-6 md:px-[60px]" 
       style={{ backgroundColor: '#1A1A1A' }}
     >
-      <div className="max-w-[700px] mx-auto text-center">
+      <div className="max-w-[750px] mx-auto text-center">
         {/* Headline */}
         <h2 
-          className="text-[32px] md:text-[42px] font-semibold leading-[1.2] mb-8 transition-all duration-[600ms]"
+          className="text-[32px] md:text-[32px] font-semibold leading-[1.2] mb-10 transition-all duration-[600ms]"
           style={{ 
             color: '#FFFFFF',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(16px)'
           }}
         >
-          Your story is clear because ours was long.
+          Where we've been
         </h2>
         
         {/* Body text */}
-        <p 
-          className="text-[18px] md:text-[20px] leading-[1.6] transition-all duration-[600ms]"
+        <div
+          className="transition-all duration-[600ms]"
           style={{ 
-            color: 'rgba(255, 255, 255, 0.7)',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
             transitionDelay: '150ms'
           }}
         >
-          A decade translating across companies, cultures, and continents. From Buenos Aires to Dubai to Los Angeles. That gap—between what you know and what people understand—we've lived it.
-        </p>
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            A decade inside TikTok, Mondelez, Nestlé, United Nations, DeliveryHero, DirecTV, Natura, Ab InBev.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            Five countries. Three languages. Ten nationalities on the teams we've built.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            Buenos Aires. Miami. Dubai. Los Angeles. Madrid.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            That gap—between what you know and what people understand—we've lived it. Every day. In rooms where we were the only one who looked different, spoke different, thought different.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7]"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            That's why we can help you translate.
+          </p>
+        </div>
       </div>
     </section>
   );

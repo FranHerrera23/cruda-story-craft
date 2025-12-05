@@ -93,7 +93,7 @@ const HeroManifesto = () => {
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
               }}
             >
-              We help architects, developers, and design leaders turn years of mastery into narratives that travel—across continents, industries, and into the rooms where opportunities live.
+              You already know what makes your work yours. We help you find the words. Then we put them to work.
             </p>
             
             <Link 
@@ -137,7 +137,7 @@ const HeroManifesto = () => {
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s"
               }}
             >
-              Trusted by: TRAZZO Lighting · Norhart · UNIK Parquet · SSMC
+              Trusted by: TRAZZO Lighting · Norhart · UNIK Parquet
             </p>
           </div>
           

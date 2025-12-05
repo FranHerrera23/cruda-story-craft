@@ -79,7 +79,7 @@ const LogoMarquee = () => {
           className="text-[13px]"
           style={{ color: 'rgba(26, 26, 26, 0.4)' }}
         >
-          2014
+          2017
         </span>
 
         {/* Left Dot */}
@@ -105,7 +105,7 @@ const LogoMarquee = () => {
           className="text-[13px]"
           style={{ color: 'rgba(26, 26, 26, 0.4)' }}
         >
-          Now
+          2025
         </span>
       </div>
 

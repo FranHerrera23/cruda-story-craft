@@ -28,21 +28,24 @@ const Pricing = () => {
     },
     {
       label: "Outcome",
-      cruda: { value: "Narrative system", highlight: false },
+      cruda: { value: "Your philosophy, deployed", highlight: false },
       agency: "Campaign assets",
       freelancer: "Content pieces"
     }
   ];
 
-  const deliverables = [
-    { text: "Discovery interviews (you + key stakeholders)", column: "left" },
-    { text: "Narrative foundation document", column: "left" },
-    { text: "Messaging hierarchy & voice guide", column: "left" },
-    { text: "12-month content strategy roadmap", column: "left" },
-    { text: "4x monthly strategy calls", column: "right" },
-    { text: "LinkedIn & social content framework", column: "right" },
-    { text: "PR target list & pitch templates", column: "right" },
-    { text: "Unlimited Slack access during engagement", column: "right" }
+  const leftDeliverables = [
+    "Discovery conversations — we learn how you think",
+    "Your philosophy, documented",
+    "Messaging you can use everywhere",
+    "4 monthly strategy calls (1 hour each)"
+  ];
+
+  const rightDeliverables = [
+    "A 12-month content roadmap",
+    "LinkedIn and social content framework",
+    "PR targets and pitch templates",
+    "Unlimited WhatsApp access throughout"
   ];
 
   return (
@@ -81,7 +84,7 @@ const Pricing = () => {
             }}
           >
             One engagement. Four months.<br />
-            Complete narrative clarity.
+            Your philosophy, documented and deployed.
           </p>
 
           {/* Phase Label */}
@@ -304,7 +307,7 @@ const Pricing = () => {
               transform: includesVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            What's Included
+            What's included
           </h3>
 
           {/* Deliverables Grid */}
@@ -316,28 +319,57 @@ const Pricing = () => {
               transitionDelay: '150ms'
             }}
           >
-            {deliverables.map((item, index) => (
-              <div 
-                key={index}
-                className="flex items-start gap-3"
-              >
-                <span 
-                  className="text-[16px] font-medium flex-shrink-0 mt-0.5"
-                  style={{ color: '#FF2E63' }}
+            {/* Left Column */}
+            <div className="flex flex-col gap-5">
+              {leftDeliverables.map((item, index) => (
+                <div 
+                  key={index}
+                  className="flex items-start gap-3"
                 >
-                  →
-                </span>
-                <span 
-                  className="text-[16px]"
-                  style={{ 
-                    color: 'rgba(61, 56, 53, 0.8)',
-                    lineHeight: '1.5'
-                  }}
+                  <span 
+                    className="text-[16px] font-medium flex-shrink-0 mt-0.5"
+                    style={{ color: '#FF2E63' }}
+                  >
+                    →
+                  </span>
+                  <span 
+                    className="text-[17px]"
+                    style={{ 
+                      color: 'rgba(61, 56, 53, 0.8)',
+                      lineHeight: '1.5'
+                    }}
+                  >
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+            
+            {/* Right Column */}
+            <div className="flex flex-col gap-5">
+              {rightDeliverables.map((item, index) => (
+                <div 
+                  key={index}
+                  className="flex items-start gap-3"
                 >
-                  {item.text}
-                </span>
-              </div>
-            ))}
+                  <span 
+                    className="text-[16px] font-medium flex-shrink-0 mt-0.5"
+                    style={{ color: '#FF2E63' }}
+                  >
+                    →
+                  </span>
+                  <span 
+                    className="text-[17px]"
+                    style={{ 
+                      color: 'rgba(61, 56, 53, 0.8)',
+                      lineHeight: '1.5'
+                    }}
+                  >
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -371,7 +403,7 @@ const Pricing = () => {
               transitionDelay: '100ms'
             }}
           >
-            If this resonates, let's have a conversation. No pitch, no pressure—just a real talk about whether we're the right fit.
+            No pitch. No pressure. Just a conversation about whether we're the right fit.
           </p>
 
           {/* CTA Button */}
@@ -406,7 +438,7 @@ const Pricing = () => {
               transitionDelay: '200ms'
             }}
           >
-            December has one spot open. If timing doesn't work, we'll hold a spot for early 2026.
+            We take one new client per month. December is open. If timing doesn't work, we'll hold a spot for Q1 2026.
           </p>
         </div>
       </div>

@@ -95,7 +95,7 @@ const PricingSection = () => {
 
         {/* Availability Badge & CTA */}
         <div className="text-center mt-24">
-          {/* December Badge */}
+          {/* January Badge */}
           <div 
             className="inline-block px-8 py-3 rounded-full mb-8"
             style={{ 
@@ -106,7 +106,7 @@ const PricingSection = () => {
               fontWeight: 600
             }}
           >
-            DECEMBER
+            JANUARY
           </div>
           
           {/* Heading */}
@@ -114,7 +114,7 @@ const PricingSection = () => {
             className="text-[28px] md:text-[36px] font-bold mb-6"
             style={{ color: '#1A1A1A' }}
           >
-            December Waitlist Open
+            January has one spot open.
           </h3>
           
           {/* Body Copy */}
@@ -125,7 +125,7 @@ const PricingSection = () => {
               lineHeight: '1.8'
             }}
           >
-            December has one spot open. If you've read this far and it resonates, that's worth a conversation. Reach out. We'll talk, and if it feels right, we'll move forward together.
+            If you've read this far and it resonates, that's worth a conversation. Reach out. We'll talk, and if it feels right, we'll move forward together.
           </p>
           
           {/* CTA Button */}
@@ -145,7 +145,7 @@ const PricingSection = () => {
             className="text-[15px]"
             style={{ color: 'rgba(26, 26, 26, 0.6)' }}
           >
-            Can't start in December? We'll hold your spot for early 2026.
+            Can't start in January? We'll hold your spot for Q1 2026.
           </p>
         </div>
       </div>

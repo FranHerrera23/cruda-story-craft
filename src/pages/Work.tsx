@@ -6,36 +6,37 @@ import mikeImage from '@/assets/mike-kaeding.webp';
 const Work = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
-  const projects = [
+  const clients = [
     {
-      client: "KAREN MANNHEIM",
-      title: "TRAZZO Lighting",
-      description: "Brand narrative and positioning for a luxury architectural lighting designer working with Robert A.M. Stern, Porsche, and global hospitality brands.",
+      name: "Karen Mannheim",
+      title: "Founder, TRAZZO Lighting",
+      description: "Luxury architectural lighting designer working with Robert A.M. Stern, Porsche, and global hospitality brands.",
       image: karenImage,
       link: "/clients/karen-mannheim",
       status: "live"
     },
     {
-      client: "MIKE KAEDING",
-      title: "Norhart",
-      description: "Founder story and media strategy for the CEO of a $200M housing innovation company transforming how apartments are built.",
+      name: "Mike Kaeding",
+      title: "CEO, Norhart",
+      description: "Leading a $200M housing innovation company transforming how apartments are built in America.",
       image: mikeImage,
       link: "/clients/mike-kaeding",
       status: "live"
     },
     {
-      client: "JUAN PABLO ROMERO",
-      title: "UNIK Parquet",
-      description: "Brand positioning for a premium flooring manufacturer serving luxury residential projects across Latin America.",
+      name: "Juan Pablo Romero",
+      title: "Founder, UNIK Parquet",
+      description: "Premium flooring manufacturer serving luxury residential projects across Latin America.",
       image: null,
       link: "#",
       status: "coming-soon"
     },
     {
-      client: "GIRISH SEHGAL",
-      title: "SSMC",
-      description: "Executive narrative for a hospitality leader with Four Seasons, JW Marriott, and Grand Hyatt experience.",
+      name: "Girish Sehgal",
+      title: "Hospitality Executive",
+      description: "Three decades of leadership across Four Seasons, JW Marriott, and Grand Hyatt properties.",
       image: null,
       link: "#",
       status: "coming-soon"
@@ -43,19 +44,16 @@ const Work = () => {
   ];
 
   return (
-    <main 
-      className="min-h-screen"
-      style={{ backgroundColor: '#FFFFFF' }}
-    >
-      {/* Hero Section */}
-      <div 
+    <main className="min-h-screen">
+      {/* SECTION 1: Hero */}
+      <section 
         ref={headerRef}
-        className="pt-[120px] md:pt-[140px] pb-[80px] px-6 md:px-[60px]"
+        className="pt-[120px] pb-[80px] px-6 md:px-[60px]"
+        style={{ backgroundColor: '#FAFAFA' }}
       >
-        <div className="max-w-[1200px] mx-auto text-center">
-          {/* Page Title */}
+        <div className="max-w-[600px] mx-auto text-center">
           <h1 
-            className="text-[40px] md:text-[52px] font-semibold mb-4 transition-all duration-700"
+            className="text-[36px] md:text-[48px] font-semibold mb-4 transition-all duration-700"
             style={{ 
               color: '#1A1A1A',
               letterSpacing: '-0.02em',
@@ -66,9 +64,8 @@ const Work = () => {
             Work
           </h1>
           
-          {/* Subheadline */}
           <p 
-            className="text-[18px] md:text-[20px] max-w-[540px] mx-auto mb-[80px] transition-all duration-700"
+            className="text-[20px] transition-all duration-700"
             style={{ 
               color: 'rgba(26, 26, 26, 0.6)',
               lineHeight: '1.6',
@@ -77,25 +74,24 @@ const Work = () => {
               transitionDelay: '100ms'
             }}
           >
-            Narrative strategy for the leaders shaping spaces, experiences, and industries.
+            People who trusted us with their story.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Project Cards Grid */}
-      <div 
+      {/* SECTION 2: Client Cards */}
+      <section 
         ref={gridRef}
-        className="pb-[120px] px-6 md:px-[60px]"
+        className="py-[100px] px-6 md:px-[60px]"
+        style={{ backgroundColor: '#FFFFFF' }}
       >
-        <div 
-          className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10"
-        >
-          {projects.map((project, index) => (
+        <div className="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+          {clients.map((client, index) => (
             <Link
               key={index}
-              to={project.link}
-              className={`block group ${project.status === 'coming-soon' ? 'cursor-default' : ''}`}
-              onClick={(e) => project.status === 'coming-soon' && e.preventDefault()}
+              to={client.link}
+              className={`block group ${client.status === 'coming-soon' ? 'cursor-default' : ''}`}
+              onClick={(e) => client.status === 'coming-soon' && e.preventDefault()}
               style={{
                 opacity: gridVisible ? 1 : 0,
                 transform: gridVisible ? 'translateY(0)' : 'translateY(30px)',
@@ -103,35 +99,36 @@ const Work = () => {
               }}
             >
               <div 
-                className="bg-white overflow-hidden transition-all duration-400"
+                className="overflow-hidden transition-all duration-400"
                 style={{ 
-                  borderRadius: '16px',
-                  boxShadow: '0 4px 24px rgba(26, 26, 26, 0.04)'
+                  borderRadius: '8px'
                 }}
                 onMouseEnter={(e) => {
-                  if (project.status === 'live') {
+                  if (client.status === 'live') {
                     e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 12px 40px rgba(26, 26, 26, 0.08)';
+                    e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.1)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 24px rgba(26, 26, 26, 0.04)';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 {/* Image Area */}
                 <div 
                   className="relative w-full overflow-hidden"
                   style={{ 
-                    aspectRatio: '4/3',
-                    backgroundColor: '#FAFAFA'
+                    aspectRatio: '1/1',
+                    backgroundColor: '#FAFAFA',
+                    borderRadius: '8px'
                   }}
                 >
-                  {project.image ? (
+                  {client.image ? (
                     <img 
-                      src={project.image} 
-                      alt={project.title}
+                      src={client.image} 
+                      alt={client.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{ borderRadius: '8px' }}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
@@ -139,13 +136,13 @@ const Work = () => {
                         className="text-[14px] font-medium"
                         style={{ color: 'rgba(26, 26, 26, 0.3)' }}
                       >
-                        Image coming soon
+                        Photo coming soon
                       </span>
                     </div>
                   )}
                   
                   {/* Coming Soon Badge */}
-                  {project.status === 'coming-soon' && (
+                  {client.status === 'coming-soon' && (
                     <div 
                       className="absolute top-4 right-4 px-3 py-1.5 text-[10px] font-medium uppercase"
                       style={{ 
@@ -161,47 +158,44 @@ const Work = () => {
                 </div>
 
                 {/* Content Area */}
-                <div className="p-7 pb-8">
+                <div className="pt-6">
                   {/* Client Name */}
-                  <p 
-                    className="text-[11px] font-medium uppercase mb-2"
-                    style={{ 
-                      letterSpacing: '2px',
-                      color: 'rgba(26, 26, 26, 0.4)'
-                    }}
-                  >
-                    {project.client}
-                  </p>
-                  
-                  {/* Project Title */}
                   <h3 
-                    className="text-[22px] font-semibold mb-3"
+                    className="text-[24px] font-semibold mb-1"
                     style={{ 
                       color: '#1A1A1A',
                       letterSpacing: '-0.01em'
                     }}
                   >
-                    {project.title}
+                    {client.name}
                   </h3>
+                  
+                  {/* Title/Company */}
+                  <p 
+                    className="text-[16px] mb-3"
+                    style={{ color: 'rgba(26, 26, 26, 0.6)' }}
+                  >
+                    {client.title}
+                  </p>
                   
                   {/* Description */}
                   <p 
-                    className="text-[15px] mb-5"
+                    className="text-[15px] mb-4"
                     style={{ 
-                      color: 'rgba(26, 26, 26, 0.6)',
+                      color: 'rgba(26, 26, 26, 0.5)',
                       lineHeight: '1.6'
                     }}
                   >
-                    {project.description}
+                    {client.description}
                   </p>
                   
-                  {/* View Project Link */}
-                  {project.status === 'live' && (
+                  {/* View Case Study Link */}
+                  {client.status === 'live' && (
                     <span 
                       className="text-[14px] font-medium inline-flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
                       style={{ color: '#FF2E63' }}
                     >
-                      View Project 
+                      View case study 
                       <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </span>
                   )}
@@ -210,35 +204,30 @@ const Work = () => {
             </Link>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* CTA Section */}
+      {/* SECTION 4: CTA */}
       <section 
-        className="py-[80px] px-6 md:px-[60px]"
+        ref={ctaRef}
+        className="py-[120px] px-6 md:px-[60px]"
         style={{ backgroundColor: '#1A1A1A' }}
       >
         <div className="max-w-[500px] mx-auto text-center">
           <h2 
-            className="text-[28px] md:text-[32px] font-semibold mb-4"
+            className="text-[36px] font-semibold mb-8 transition-all duration-700"
             style={{ 
               color: '#FFFFFF',
-              letterSpacing: '-0.01em'
+              letterSpacing: '-0.01em',
+              opacity: ctaVisible ? 1 : 0,
+              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            Ready to translate your expertise?
+            Your story could be next.
           </h2>
-          <p 
-            className="text-[17px] mb-8"
-            style={{ 
-              color: 'rgba(255, 255, 255, 0.7)',
-              lineHeight: '1.6'
-            }}
-          >
-            Let's turn your years of mastery into a narrative that opens doors.
-          </p>
+          
           <Link
             to="/book-call"
-            className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-400"
+            className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-300"
             style={{ 
               backgroundColor: '#FF2E63',
               color: '#FFFFFF'
@@ -254,7 +243,7 @@ const Work = () => {
               e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            Start Your Story
+            Start a Conversation
           </Link>
         </div>
       </section>

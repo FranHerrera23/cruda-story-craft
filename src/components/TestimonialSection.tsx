@@ -6,16 +6,21 @@ const TestimonialSection = () => {
   return (
     <section 
       ref={elementRef} 
-      className="py-24 md:py-32 px-6 md:px-16" 
-      style={{ backgroundColor: '#1A1A1A' }}
+      style={{ 
+        backgroundColor: '#0A0A0A',
+        padding: '180px 60px'
+      }}
     >
-      <div className="max-w-[800px] mx-auto text-center">
+      <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
         {/* Quote */}
         <blockquote
-          className="text-[24px] md:text-[32px] font-normal leading-[1.5] mb-8 transition-all duration-700"
+          className="transition-all duration-700"
           style={{
-            color: '#FFFFFF',
+            fontSize: 'clamp(28px, 3.5vw, 42px)',
+            fontWeight: '400',
             fontStyle: 'italic',
+            color: '#FFFFFF',
+            lineHeight: '1.4',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -25,16 +30,28 @@ const TestimonialSection = () => {
 
         {/* Attribution */}
         <p
-          className="text-[16px] md:text-[18px] transition-all duration-700"
+          className="transition-all duration-700"
           style={{
-            color: 'rgba(255, 255, 255, 0.7)',
+            fontSize: '18px',
+            fontWeight: '400',
+            color: 'rgba(255, 255, 255, 0.5)',
+            marginTop: '40px',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '200ms'
           }}
         >
-          — <span style={{ color: '#FF2E63', fontWeight: 500 }}>Karen Mannheim</span>, Architectural Lighting Designer
+          — <span style={{ color: '#FF2E63' }}>Karen Mannheim</span>, TRAZZO Lighting
         </p>
       </div>
+
+      {/* Mobile Styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          section {
+            padding: 120px 24px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

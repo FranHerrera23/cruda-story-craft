@@ -1,80 +1,81 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const CredibilitySection = () => {
+const TheChangeSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#0A0A0A',
-        padding: '120px 60px 160px 60px'
+        backgroundColor: '#FFFFFF',
+        padding: '160px 60px'
       }}
     >
-      <div style={{ maxWidth: '800px' }}>
-        {/* Header */}
+      <div style={{ maxWidth: '750px' }}>
+        {/* Main headline */}
         <h2
           className="transition-all duration-700"
           style={{
-            fontSize: 'clamp(32px, 3.5vw, 42px)',
+            fontSize: 'clamp(36px, 4vw, 48px)',
             fontWeight: '600',
-            color: '#FFFFFF',
+            color: '#0A0A0A',
             marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          We've been on both sides.
+          Reputation is built online now.
         </h2>
 
-        {/* Companies */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '22px',
-            fontWeight: '400',
-            color: 'rgba(255, 255, 255, 0.6)',
-            lineHeight: '1.6',
-            marginBottom: '24px',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '100ms'
-          }}
-        >
-          A decade inside TikTok, Mondelez, Nestlé, United Nations, DeliveryHero, Natura, Ab InBev.
-        </p>
-
-        {/* Cities */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '20px',
-            fontWeight: '400',
-            color: 'rgba(255, 255, 255, 0.5)',
-            marginBottom: '48px',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '200ms'
-          }}
-        >
-          Buenos Aires. Miami. Dubai. Los Angeles. Madrid.
-        </p>
-
-        {/* Closing */}
+        {/* Body paragraphs */}
         <p
           className="transition-all duration-700"
           style={{
             fontSize: '24px',
             fontWeight: '400',
-            fontStyle: 'italic',
-            color: 'rgba(255, 255, 255, 0.8)',
-            maxWidth: '600px',
+            color: 'rgba(10, 10, 10, 0.7)',
+            lineHeight: '1.6',
+            marginBottom: '32px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '100ms'
+          }}
+        >
+          Before you walk in the room, they've already Googled you.
+        </p>
+
+        <p
+          className="transition-all duration-700"
+          style={{
+            fontSize: '24px',
+            fontWeight: '400',
+            color: 'rgba(10, 10, 10, 0.7)',
+            lineHeight: '1.6',
+            marginBottom: '32px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '200ms'
+          }}
+        >
+          Your LinkedIn. Your website. Your content.<br />
+          That's the first impression.
+        </p>
+
+        {/* Closing statement */}
+        <p
+          className="transition-all duration-700"
+          style={{
+            fontSize: '24px',
+            fontWeight: '500',
+            color: '#0A0A0A',
+            lineHeight: '1.6',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transitionDelay: '300ms'
           }}
         >
-          That gap — between what you know and what people understand — we've lived it.
+          The question isn't whether you need a narrative.<br />
+          It's whether you're shaping it — or letting others assume it.
         </p>
       </div>
 
@@ -82,7 +83,7 @@ const CredibilitySection = () => {
       <style>{`
         @media (max-width: 768px) {
           section {
-            padding: 80px 24px 120px 24px !important;
+            padding: 120px 24px !important;
           }
         }
       `}</style>
@@ -90,4 +91,4 @@ const CredibilitySection = () => {
   );
 };
 
-export default CredibilitySection;
+export default TheChangeSection;

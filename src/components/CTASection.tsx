@@ -29,10 +29,10 @@ const CTASection = () => {
           Ready when you are.
         </h2>
 
-        {/* CTA Button */}
+        {/* CTA Button with hover-lift effect */}
         <Link
           to="/book-call"
-          className="inline-block"
+          className="inline-block hover-lift"
           style={{
             backgroundColor: '#FF2E63',
             color: '#FFFFFF',
@@ -42,16 +42,17 @@ const CTASection = () => {
             borderRadius: '8px',
             textDecoration: 'none',
             opacity: isVisible ? 1 : 0,
-            transition: 'all 0.2s ease',
-            transitionDelay: '100ms'
+            transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
+            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1), background-color 300ms ease, box-shadow 300ms ease',
+            transitionDelay: '200ms'
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = '#E8284A';
-            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 16px 32px -8px rgba(255, 46, 99, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = '#FF2E63';
-            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
           }}
         >
           Start a Conversation

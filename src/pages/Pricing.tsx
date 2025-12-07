@@ -3,33 +3,6 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useStaggerAnimation, useScrollProgress } from "@/hooks/useStaggerAnimation";
 import { useState, useEffect, useRef } from "react";
 
-// Dot Grid Icon Component
-const DotGridIcon = () => (
-  <div 
-    style={{ 
-      display: 'grid',
-      gridTemplateColumns: 'repeat(2, 6px)',
-      gridTemplateRows: 'repeat(3, 6px)',
-      gap: '8px',
-      marginTop: '16px',
-      marginRight: '60px',
-      flexShrink: 0
-    }}
-  >
-    {[...Array(6)].map((_, i) => (
-      <div 
-        key={i}
-        style={{
-          width: '6px',
-          height: '6px',
-          borderRadius: '50%',
-          backgroundColor: '#0A0A0A'
-        }}
-      />
-    ))}
-  </div>
-);
-
 // Animated counter hook
 const useCountUp = (end: number, duration: number = 1500, trigger: boolean = true) => {
   const [count, setCount] = useState(0);
@@ -57,85 +30,100 @@ const useCountUp = (end: number, duration: number = 1500, trigger: boolean = tru
   return count;
 };
 
-const includedItems = [
-  {
-    title: "Weekly sessions",
-    description: "60-minute conversations, every week for four months. We dig into how you think, what you've built, what sets you apart."
-  },
-  {
-    title: "Narrative development",
-    description: "We find the pattern underneath — the philosophy that makes your work yours. Then we document it in a way that travels."
-  },
-  {
-    title: "LinkedIn presence",
-    description: "Profile rewrite. Content strategy. Voice that sounds like you, not a press release."
-  },
-  {
-    title: "Pitch deck language",
-    description: "The words that frame your work. For investor decks, partnership proposals, client presentations."
-  },
-  {
-    title: "Talking points",
-    description: "For podcasts, panels, press, and every room you walk into."
-  },
-  {
-    title: "Ongoing support",
-    description: "WhatsApp access throughout the engagement. Quick feedback, fast iterations."
-  }
+// Data for How It Works section
+const month1WhatWeNeed = [
+  "Access to your project portfolio",
+  "Company milestones and proof points",
+  "One hour a week for discovery"
 ];
 
-const timelineMonths = [
-  {
-    month: "MONTH 1",
-    phase: "Discovery",
-    description: "Deep conversations. Understanding how you think, what you've built, what makes your work different."
-  },
-  {
-    month: "MONTH 2",
-    phase: "Pattern",
-    description: "Finding the through-line. The philosophy underneath. Drafting the narrative."
-  },
-  {
-    month: "MONTH 3",
-    phase: "Build",
-    description: "LinkedIn. Talking points. Pitch deck language. Putting the narrative to work."
-  },
-  {
-    month: "MONTH 4",
-    phase: "Deploy",
-    description: "Refinement. Implementation support. Making sure it sticks."
-  }
+const month1WhatYouGet = [
+  "Narrative strategy document",
+  "Founder bio",
+  "Content pillars + tone of voice",
+  "AI writing prompt",
+  "30-day content calendar",
+  "10–15 ready-to-post pieces"
 ];
 
-const deliverables = [
-  "Your story in one sentence",
-  "A narrative document your team can use",
-  "LinkedIn profile + content strategy",
+const months24WhatWeDeliver = [
+  "LinkedIn profile + content",
+  "Instagram presence",
   "Pitch deck language",
   "Talking points for any room",
-  "Clarity that compounds"
+  "WhatsApp support throughout",
+  "Monthly refinement"
+];
+
+// Data for Deliverables section
+const deliverables1 = [
+  "Narrative strategy document",
+  "Founder bio",
+  "Content pillars",
+  "Tone of voice guide",
+  "AI writing prompt",
+  "30-day content calendar",
+  "10–15 ready-to-post pieces"
+];
+
+const deliverables24 = [
+  "LinkedIn profile + content",
+  "Instagram presence",
+  "Pitch deck language",
+  "Talking points for any room",
+  "WhatsApp support throughout",
+  "Monthly refinement"
+];
+
+const commitmentLines = [
+  "Access to your portfolio and milestones.",
+  "One hour a week.",
+  "Feedback over WhatsApp."
 ];
 
 const Pricing = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: philosophyRef, isVisible: philosophyVisible } = useScrollAnimation<HTMLElement>();
-  const { containerRef: includedRef, isVisible: includedVisible, visibleItems: includedVisibleItems } = useStaggerAnimation<HTMLElement>(includedItems.length, 150);
+  const { elementRef: howRef, isVisible: howVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: timelineRef, isVisible: timelineVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: progressRef, progress } = useScrollProgress();
-  const { containerRef: deliverablesRef, isVisible: deliverablesVisible, visibleItems: deliverableVisibleItems } = useStaggerAnimation<HTMLElement>(deliverables.length, 120);
+  const { containerRef: commitmentRef, isVisible: commitmentVisible, visibleItems: commitmentVisibleItems } = useStaggerAnimation<HTMLElement>(commitmentLines.length, 150);
+  const { elementRef: deliverablesRef, isVisible: deliverablesVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
   const priceCount = useCountUp(7200, 1500, heroVisible);
 
+  // Timeline animation state
+  const [timelineProgress, setTimelineProgress] = useState(0);
+  const timelineBarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!timelineVisible) return;
+    
+    let start: number | null = null;
+    const duration = 1200;
+    
+    const animate = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      const progress = Math.min(elapsed / duration, 1);
+      setTimelineProgress(progress);
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    
+    requestAnimationFrame(animate);
+  }, [timelineVisible]);
+
   return (
     <main className="min-h-screen">
-      {/* SECTION 1: Pricing Hero */}
+      {/* SECTION 1: HERO */}
       <section 
         ref={heroRef}
         style={{ 
           backgroundColor: '#FFFFFF',
           padding: '160px 80px',
-          minHeight: '80vh',
+          minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -143,7 +131,7 @@ const Pricing = () => {
           textAlign: 'center'
         }}
       >
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '700px' }}>
           {/* Price */}
           <h1
             className="transition-all duration-700"
@@ -160,303 +148,362 @@ const Pricing = () => {
             ${priceCount.toLocaleString()}
           </h1>
 
+          {/* Three Value Props */}
+          <div
+            style={{
+              marginTop: '48px',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '8px'
+            }}
+          >
+            {[
+              "The depth of an agency.",
+              "The speed of a freelancer.",
+              "The confidentiality of an in-house team."
+            ].map((line, index) => (
+              <p
+                key={index}
+                className="transition-all duration-700"
+                style={{
+                  fontSize: '28px',
+                  fontWeight: '400',
+                  color: '#0A0A0A',
+                  lineHeight: '1.6',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transitionDelay: `${200 + index * 150}ms`
+                }}
+              >
+                {line}
+              </p>
+            ))}
+          </div>
+
           {/* Subline */}
           <p
             className="transition-all duration-700"
             style={{
-              fontSize: '24px',
+              fontSize: '20px',
+              fontWeight: '500',
               color: 'rgba(10, 10, 10, 0.6)',
-              marginTop: '24px',
+              marginTop: '40px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '200ms'
+              transitionDelay: '650ms'
             }}
           >
-            Four months. Founder-led. Everything included.
+            Four months. Founder-led. Done for you.
           </p>
 
           {/* Alternative */}
           <p
             className="transition-all duration-700"
             style={{
-              fontSize: '17px',
+              fontSize: '16px',
               color: 'rgba(10, 10, 10, 0.4)',
-              marginTop: '12px',
+              marginTop: '16px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '300ms'
+              transitionDelay: '750ms'
             }}
           >
             $1,800/month if that's easier.
           </p>
 
-          {/* Divider */}
-          <div
-            className="transition-all duration-1000"
+          {/* CTA Button */}
+          <Link
+            to="/book-call"
+            className="inline-block transition-all duration-300"
             style={{
-              width: '120px',
-              height: '2px',
-              backgroundColor: 'rgba(10, 10, 10, 0.15)',
-              margin: '60px auto',
-              transform: heroVisible ? 'scaleX(1)' : 'scaleX(0)',
-              transformOrigin: 'center',
-              transitionDelay: '400ms'
-            }}
-          />
-
-          {/* Headline */}
-          <p
-            className="transition-all duration-700"
-            style={{
-              fontSize: '32px',
-              fontWeight: '500',
-              color: '#0A0A0A',
-              lineHeight: '1.4',
-              maxWidth: '500px',
-              margin: '0 auto',
+              backgroundColor: '#FF2E63',
+              color: '#FFFFFF',
+              padding: '20px 44px',
+              fontSize: '16px',
+              fontWeight: '600',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              marginTop: '48px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '500ms'
+              transitionDelay: '850ms'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#E8284A';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = '#FF2E63';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           >
-            This isn't a content package.<br />
-            It's clarity that compounds.
-          </p>
+            Start a Conversation
+          </Link>
         </div>
       </section>
 
-      {/* SECTION 2: Philosophy */}
+      {/* SECTION 2: HOW IT WORKS */}
       <section
-        ref={philosophyRef}
+        ref={howRef}
         style={{
           backgroundColor: '#F7F7F7',
           padding: '160px 80px'
         }}
       >
-        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'flex-start', maxWidth: '800px' }}>
-            {/* Dot Grid Icon */}
+        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+          {/* Label */}
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '13px',
+              fontWeight: '600',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'rgba(10, 10, 10, 0.4)',
+              marginBottom: '60px',
+              opacity: howVisible ? 1 : 0,
+              transform: howVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
+            How it works
+          </p>
+
+          {/* Two Cards Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '32px'
+            }}
+            className="how-it-works-grid"
+          >
+            {/* Card 1: Month 1 */}
             <div
-              className="hidden md:block transition-all duration-700"
+              className="transition-all duration-700"
               style={{
-                opacity: philosophyVisible ? 1 : 0,
-                transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)'
+                backgroundColor: '#FFFFFF',
+                border: '1px solid rgba(10, 10, 10, 0.08)',
+                borderRadius: '8px',
+                padding: '48px',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)',
+                opacity: howVisible ? 1 : 0,
+                transform: howVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '100ms'
               }}
             >
-              <DotGridIcon />
-            </div>
-
-            {/* Text Block */}
-            <div style={{ flex: 1 }}>
-              {/* Headline */}
-              <h2
-                className="transition-all duration-700"
+              {/* Phase Label */}
+              <p
                 style={{
-                  fontSize: '48px',
+                  fontSize: '13px',
                   fontWeight: '600',
-                  color: '#0A0A0A',
-                  marginBottom: '48px',
-                  opacity: philosophyVisible ? 1 : 0,
-                  transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)'
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#FF2E63'
                 }}
               >
-                Why this investment matters.
-              </h2>
+                Month 1
+              </p>
 
-              {/* Paragraphs */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
-                <p
-                  className="transition-all duration-700"
-                  style={{
-                    fontSize: '22px',
-                    color: 'rgba(10, 10, 10, 0.7)',
-                    lineHeight: '1.7',
-                    opacity: philosophyVisible ? 1 : 0,
-                    transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '100ms'
-                  }}
-                >
-                  You've spent years — maybe decades — building something real.
-                </p>
+              {/* Phase Title */}
+              <h3
+                style={{
+                  fontSize: '36px',
+                  fontWeight: '600',
+                  color: '#0A0A0A',
+                  marginTop: '12px'
+                }}
+              >
+                Strategy
+              </h3>
 
-                <p
-                  className="transition-all duration-700"
-                  style={{
-                    fontSize: '22px',
-                    color: 'rgba(10, 10, 10, 0.7)',
-                    lineHeight: '1.7',
-                    opacity: philosophyVisible ? 1 : 0,
-                    transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '200ms'
-                  }}
-                >
-                  The projects are there. The milestones. The proof.
-                </p>
+              {/* Phase Description */}
+              <p
+                style={{
+                  fontSize: '20px',
+                  color: 'rgba(10, 10, 10, 0.6)',
+                  marginTop: '16px',
+                  marginBottom: '32px'
+                }}
+              >
+                We build your narrative system.
+              </p>
 
-                <p
-                  className="transition-all duration-700"
-                  style={{
-                    fontSize: '22px',
-                    color: 'rgba(10, 10, 10, 0.7)',
-                    lineHeight: '1.7',
-                    opacity: philosophyVisible ? 1 : 0,
-                    transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '300ms'
-                  }}
-                >
-                  But it's hidden. Buried in bad bios, generic websites, LinkedIn posts that sound like everyone else.
-                </p>
+              {/* Divider */}
+              <div style={{ height: '1px', backgroundColor: 'rgba(10, 10, 10, 0.1)' }} />
 
-                <p
-                  className="transition-all duration-700"
-                  style={{
-                    fontSize: '22px',
-                    fontWeight: '500',
-                    color: '#0A0A0A',
-                    lineHeight: '1.7',
-                    opacity: philosophyVisible ? 1 : 0,
-                    transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '400ms'
-                  }}
-                >
-                  We don't create a story from nothing.<br />
-                  We carve out the one that's already there — and put it to work.
-                </p>
-
-                <p
-                  className="transition-all duration-700"
-                  style={{
-                    fontSize: '22px',
-                    fontWeight: '500',
-                    color: '#0A0A0A',
-                    lineHeight: '1.7',
-                    opacity: philosophyVisible ? 1 : 0,
-                    transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '500ms'
-                  }}
-                >
-                  This isn't about vanity. It's about leverage.
-                </p>
-
-                <p
-                  className="transition-all duration-700"
-                  style={{
-                    fontSize: '22px',
-                    color: 'rgba(10, 10, 10, 0.7)',
-                    lineHeight: '1.7',
-                    opacity: philosophyVisible ? 1 : 0,
-                    transform: philosophyVisible ? 'translateY(0)' : 'translateY(20px)',
-                    transitionDelay: '600ms'
-                  }}
-                >
-                  Your reputation, compounding across every surface where trust is built.
-                </p>
+              {/* What We Need */}
+              <p
+                style={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(10, 10, 10, 0.35)',
+                  marginTop: '32px',
+                  marginBottom: '16px'
+                }}
+              >
+                What we need
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {month1WhatWeNeed.map((item, i) => (
+                  <p key={i} style={{ fontSize: '17px', color: '#0A0A0A', lineHeight: '1.8' }}>
+                    <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                    {item}
+                  </p>
+                ))}
               </div>
+
+              {/* Divider */}
+              <div style={{ height: '1px', backgroundColor: 'rgba(10, 10, 10, 0.1)', marginTop: '24px' }} />
+
+              {/* What You Get */}
+              <p
+                style={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(10, 10, 10, 0.35)',
+                  marginTop: '32px',
+                  marginBottom: '16px'
+                }}
+              >
+                What you get
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {month1WhatYouGet.map((item, i) => (
+                  <p key={i} style={{ fontSize: '17px', color: '#0A0A0A', lineHeight: '1.8' }}>
+                    <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* Card 2: Months 2-4 */}
+            <div
+              className="transition-all duration-700"
+              style={{
+                backgroundColor: '#FFFFFF',
+                border: '1px solid rgba(10, 10, 10, 0.08)',
+                borderRadius: '8px',
+                padding: '48px',
+                boxShadow: '0 4px 24px rgba(0, 0, 0, 0.04)',
+                opacity: howVisible ? 1 : 0,
+                transform: howVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '300ms'
+              }}
+            >
+              {/* Phase Label */}
+              <p
+                style={{
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#FF2E63'
+                }}
+              >
+                Months 2–4
+              </p>
+
+              {/* Phase Title */}
+              <h3
+                style={{
+                  fontSize: '36px',
+                  fontWeight: '600',
+                  color: '#0A0A0A',
+                  marginTop: '12px'
+                }}
+              >
+                Execution
+              </h3>
+
+              {/* Phase Description */}
+              <p
+                style={{
+                  fontSize: '20px',
+                  color: 'rgba(10, 10, 10, 0.6)',
+                  marginTop: '16px',
+                  marginBottom: '32px'
+                }}
+              >
+                We put it to work.
+              </p>
+
+              {/* Divider */}
+              <div style={{ height: '1px', backgroundColor: 'rgba(10, 10, 10, 0.1)' }} />
+
+              {/* What We Deliver */}
+              <p
+                style={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(10, 10, 10, 0.35)',
+                  marginTop: '32px',
+                  marginBottom: '16px'
+                }}
+              >
+                What we deliver
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {months24WhatWeDeliver.map((item, i) => (
+                  <p key={i} style={{ fontSize: '17px', color: '#0A0A0A', lineHeight: '1.8' }}>
+                    <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                    {item}
+                  </p>
+                ))}
+              </div>
+
+              {/* Divider */}
+              <div style={{ height: '1px', backgroundColor: 'rgba(10, 10, 10, 0.1)', marginTop: '24px' }} />
+
+              {/* Optional Add-on */}
+              <p
+                style={{
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(10, 10, 10, 0.35)',
+                  marginTop: '32px',
+                  marginBottom: '16px'
+                }}
+              >
+                Optional add-on
+              </p>
+              <p style={{ fontSize: '17px', color: 'rgba(10, 10, 10, 0.5)', fontStyle: 'italic' }}>
+                <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                C-level content strategy (for leadership teams)
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 3: What's Included */}
-      <section
-        ref={includedRef}
-        style={{
-          backgroundColor: '#FFFFFF',
-          padding: '160px 80px'
-        }}
-      >
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          {/* Label */}
-          <p
-            className="transition-all duration-700"
-            style={{
-              fontSize: '13px',
-              fontWeight: '600',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'rgba(10, 10, 10, 0.4)',
-              marginBottom: '40px',
-              opacity: includedVisible ? 1 : 0,
-              transform: includedVisible ? 'translateY(0)' : 'translateY(20px)'
-            }}
-          >
-            What's included
-          </p>
-
-          {/* Items */}
-          {includedItems.map((item, index) => (
-            <div
-              key={index}
-              style={{
-                padding: '40px 0',
-                borderBottom: '1px solid rgba(10, 10, 10, 0.1)',
-                opacity: includedVisibleItems[index] ? 1 : 0,
-                transform: includedVisibleItems[index] ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: '24px',
-                  fontWeight: '600',
-                  color: '#0A0A0A',
-                  marginBottom: '12px'
-                }}
-              >
-                {item.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '18px',
-                  color: 'rgba(10, 10, 10, 0.6)',
-                  lineHeight: '1.7'
-                }}
-              >
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* SECTION 4: Timeline */}
+      {/* SECTION 3: VISUAL TIMELINE */}
       <section
         ref={timelineRef}
         style={{
-          backgroundColor: '#F7F7F7',
-          padding: '160px 80px'
+          backgroundColor: '#FFFFFF',
+          padding: '80px 80px'
         }}
       >
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-          {/* Label */}
-          <p
-            className="transition-all duration-700"
-            style={{
-              fontSize: '13px',
-              fontWeight: '600',
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              color: 'rgba(10, 10, 10, 0.4)',
-              marginBottom: '60px',
-              opacity: timelineVisible ? 1 : 0,
-              transform: timelineVisible ? 'translateY(0)' : 'translateY(20px)'
-            }}
-          >
-            The journey
-          </p>
-
+        <div style={{ maxWidth: '800px', margin: '0 auto' }} ref={timelineBarRef}>
           {/* Timeline Bar */}
           <div
-            ref={progressRef}
             className="transition-all duration-700"
             style={{
               position: 'relative',
-              marginBottom: '60px',
-              opacity: timelineVisible ? 1 : 0,
-              transitionDelay: '200ms'
+              opacity: timelineVisible ? 1 : 0
             }}
           >
-            {/* Bar */}
+            {/* Bar Background */}
             <div
               style={{
                 width: '100%',
@@ -472,86 +519,142 @@ const Pricing = () => {
                   left: 0,
                   top: 0,
                   height: '100%',
-                  width: '100%',
+                  width: `${timelineProgress * 100}%`,
                   backgroundColor: '#FF2E63',
-                  transformOrigin: 'left',
-                  transform: `scaleX(${Math.min(progress * 1.5, 1)})`,
-                  transition: 'transform 100ms linear'
+                  transition: 'width 50ms linear'
                 }}
               />
             </div>
 
-            {/* Dots */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', position: 'absolute', top: '-5px', left: 0, right: 0 }}>
-              {timelineMonths.map((_, index) => {
-                const dotProgress = index / (timelineMonths.length - 1);
-                const isActive = progress * 1.5 >= dotProgress;
-                return (
-                  <div
-                    key={index}
-                    style={{
-                      width: '14px',
-                      height: '14px',
-                      borderRadius: '50%',
-                      backgroundColor: isActive ? '#FF2E63' : 'rgba(10, 10, 10, 0.15)',
-                      transition: 'background-color 300ms ease'
-                    }}
-                  />
-                );
-              })}
+            {/* Dots Container */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', position: 'absolute', top: '-6px', left: 0, right: 0 }}>
+              {/* Month 1 dot - at 0% */}
+              <div
+                style={{
+                  width: '14px',
+                  height: '14px',
+                  borderRadius: '50%',
+                  backgroundColor: timelineProgress >= 0 ? '#FF2E63' : 'rgba(10, 10, 10, 0.3)',
+                  transition: 'background-color 300ms ease, transform 300ms ease',
+                  transform: timelineProgress >= 0.1 ? 'scale(1.1)' : 'scale(1)'
+                }}
+              />
+              {/* Month 2 dot - at 25% */}
+              <div
+                style={{
+                  width: '10px',
+                  height: '10px',
+                  borderRadius: '50%',
+                  backgroundColor: timelineProgress >= 0.25 ? '#FF2E63' : 'rgba(10, 10, 10, 0.3)',
+                  transition: 'background-color 300ms ease',
+                  marginTop: '2px'
+                }}
+              />
+              {/* Month 4 dot - at 100% */}
+              <div
+                style={{
+                  width: '14px',
+                  height: '14px',
+                  borderRadius: '50%',
+                  backgroundColor: timelineProgress >= 1 ? '#FF2E63' : 'rgba(10, 10, 10, 0.3)',
+                  transition: 'background-color 300ms ease, transform 300ms ease',
+                  transform: timelineProgress >= 1 ? 'scale(1.1)' : 'scale(1)'
+                }}
+              />
+            </div>
+
+            {/* Labels below dots */}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: '24px',
+                opacity: timelineProgress > 0.5 ? 1 : 0,
+                transition: 'opacity 500ms ease'
+              }}
+            >
+              <p style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)' }}>
+                Month 1
+              </p>
+              <p style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)' }}>
+                Month 2
+              </p>
+              <p style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)' }}>
+                Month 4
+              </p>
+            </div>
+
+            {/* Phase Labels */}
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                marginTop: '8px',
+                opacity: timelineProgress > 0.8 ? 1 : 0,
+                transition: 'opacity 500ms ease'
+              }}
+            >
+              <p style={{ fontSize: '16px', fontWeight: '500', color: '#0A0A0A' }}>
+                Strategy
+              </p>
+              <p style={{ fontSize: '16px', fontWeight: '500', color: '#0A0A0A', textAlign: 'center', flex: 1, marginLeft: '40px' }}>
+                ——— Execution ———
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Month Cards */}
-          <div
-            className="grid grid-cols-1 md:grid-cols-4 gap-8"
+      {/* SECTION 4: THE COMMITMENT */}
+      <section
+        ref={commitmentRef}
+        style={{
+          backgroundColor: '#F7F7F7',
+          padding: '120px 80px',
+          textAlign: 'center'
+        }}
+      >
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+          {/* Label */}
+          <p
+            className="transition-all duration-700"
             style={{
-              opacity: timelineVisible ? 1 : 0,
-              transform: timelineVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)',
-              transitionDelay: '400ms'
+              fontSize: '13px',
+              fontWeight: '600',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'rgba(10, 10, 10, 0.4)',
+              marginBottom: '40px',
+              opacity: commitmentVisible ? 1 : 0,
+              transform: commitmentVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            {timelineMonths.map((month, index) => (
-              <div key={index}>
-                <p
-                  style={{
-                    fontSize: '13px',
-                    fontWeight: '600',
-                    letterSpacing: '0.1em',
-                    color: 'rgba(10, 10, 10, 0.5)',
-                    marginBottom: '8px'
-                  }}
-                >
-                  {month.month}
-                </p>
-                <p
-                  style={{
-                    fontSize: '22px',
-                    fontWeight: '600',
-                    color: '#0A0A0A',
-                    marginBottom: '12px'
-                  }}
-                >
-                  {month.phase}
-                </p>
-                <p
-                  style={{
-                    fontSize: '16px',
-                    color: 'rgba(10, 10, 10, 0.6)',
-                    lineHeight: '1.6',
-                    maxWidth: '220px'
-                  }}
-                >
-                  {month.description}
-                </p>
-              </div>
+            What we need from you
+          </p>
+
+          {/* Lines */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            {commitmentLines.map((line, index) => (
+              <p
+                key={index}
+                style={{
+                  fontSize: '24px',
+                  fontWeight: '400',
+                  color: '#0A0A0A',
+                  lineHeight: '1.8',
+                  opacity: commitmentVisibleItems[index] ? 1 : 0,
+                  transform: commitmentVisibleItems[index] ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+              >
+                {line}
+              </p>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION 5: What You Walk Away With */}
+      {/* SECTION 5: WHAT YOU WALK AWAY WITH */}
       <section
         ref={deliverablesRef}
         style={{
@@ -559,7 +662,7 @@ const Pricing = () => {
           padding: '160px 80px'
         }}
       >
-        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           {/* Headline */}
           <h2
             className="transition-all duration-700"
@@ -567,7 +670,7 @@ const Pricing = () => {
               fontSize: '48px',
               fontWeight: '600',
               color: '#0A0A0A',
-              marginBottom: '48px',
+              marginBottom: '60px',
               opacity: deliverablesVisible ? 1 : 0,
               transform: deliverablesVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
@@ -575,36 +678,114 @@ const Pricing = () => {
             What you walk away with.
           </h2>
 
-          {/* List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {deliverables.map((item, index) => (
+          {/* Two Columns */}
+          <div
+            className="deliverables-grid"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '80px'
+            }}
+          >
+            {/* Column 1: Month 1 */}
+            <div
+              className="transition-all duration-700"
+              style={{
+                opacity: deliverablesVisible ? 1 : 0,
+                transform: deliverablesVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '200ms'
+              }}
+            >
               <p
-                key={index}
                 style={{
-                  fontSize: '24px',
-                  color: '#0A0A0A',
-                  display: 'flex',
-                  alignItems: 'center',
-                  opacity: deliverableVisibleItems[index] ? 1 : 0,
-                  transform: deliverableVisibleItems[index] ? 'translateX(0)' : 'translateX(-20px)',
-                  transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1)'
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#FF2E63',
+                  marginBottom: '24px'
                 }}
               >
-                <span style={{ color: '#FF2E63', marginRight: '20px' }}>→</span>
-                {item}
+                Month 1
               </p>
-            ))}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {deliverables1.map((item, i) => (
+                  <p
+                    key={i}
+                    className="transition-all duration-500"
+                    style={{
+                      fontSize: '18px',
+                      color: '#0A0A0A',
+                      lineHeight: '2.2',
+                      opacity: deliverablesVisible ? 1 : 0,
+                      transform: deliverablesVisible ? 'translateX(0)' : 'translateX(-20px)',
+                      transitionDelay: `${300 + i * 100}ms`
+                    }}
+                  >
+                    <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+
+            {/* Column 2: Months 2-4 */}
+            <div
+              className="transition-all duration-700"
+              style={{
+                opacity: deliverablesVisible ? 1 : 0,
+                transform: deliverablesVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '400ms'
+              }}
+            >
+              <p
+                style={{
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#FF2E63',
+                  marginBottom: '24px'
+                }}
+              >
+                Months 2–4
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                {deliverables24.map((item, i) => (
+                  <p
+                    key={i}
+                    className="transition-all duration-500"
+                    style={{
+                      fontSize: '18px',
+                      color: '#0A0A0A',
+                      lineHeight: '2.2',
+                      opacity: deliverablesVisible ? 1 : 0,
+                      transform: deliverablesVisible ? 'translateX(0)' : 'translateX(-20px)',
+                      transitionDelay: `${500 + i * 100}ms`
+                    }}
+                  >
+                    <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 6: CTA (Dark) */}
+      {/* SECTION 6: CTA (DARK) */}
       <section
         ref={ctaRef}
         style={{
           backgroundColor: '#0A0A0A',
           padding: '180px 80px',
-          textAlign: 'center'
+          textAlign: 'center',
+          minHeight: '60vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'
         }}
       >
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -628,39 +809,41 @@ const Pricing = () => {
             style={{
               fontSize: '20px',
               color: 'rgba(255, 255, 255, 0.6)',
-              marginTop: '20px',
-              marginBottom: '48px',
+              marginTop: '24px',
               opacity: ctaVisible ? 1 : 0,
               transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms'
+              transitionDelay: '150ms'
             }}
           >
-            We take one client per month. Let's see if we're a fit.
+            We take one client per month.
           </p>
 
           {/* Button */}
           <Link
             to="/book-call"
-            className="inline-block transition-all duration-200"
+            className="inline-block transition-all duration-300"
             style={{
               backgroundColor: '#FF2E63',
               color: '#FFFFFF',
-              padding: '22px 52px',
-              fontSize: '18px',
+              padding: '20px 44px',
+              fontSize: '16px',
               fontWeight: '600',
               borderRadius: '8px',
               textDecoration: 'none',
+              marginTop: '48px',
               opacity: ctaVisible ? 1 : 0,
               transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '200ms'
+              transitionDelay: '300ms'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#E8284A';
               e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = '#FF2E63';
               e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
             }}
           >
             Start a Conversation
@@ -679,6 +862,21 @@ const Pricing = () => {
           }
           section h2 {
             font-size: 36px !important;
+          }
+          .how-it-works-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .deliverables-grid {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          section h1 {
+            font-size: 56px !important;
+          }
+          section h2 {
+            font-size: 28px !important;
           }
         }
       `}</style>

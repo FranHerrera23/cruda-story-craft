@@ -6,13 +6,13 @@ const TestimonialSection = () => {
   return (
     <section 
       ref={elementRef} 
-      className="py-[120px] md:py-[160px] px-6 md:px-16" 
+      className="py-24 md:py-32 px-6 md:px-16" 
       style={{ backgroundColor: '#1A1A1A' }}
     >
-      <div className="max-w-[900px] mx-auto text-center">
+      <div className="max-w-[800px] mx-auto text-center">
         {/* Quote */}
         <blockquote
-          className="text-[28px] md:text-[36px] font-normal leading-[1.5] mb-8 transition-all duration-700"
+          className="text-[24px] md:text-[32px] font-normal leading-[1.5] mb-8 transition-all duration-700"
           style={{
             color: '#FFFFFF',
             fontStyle: 'italic',
@@ -25,14 +25,14 @@ const TestimonialSection = () => {
 
         {/* Attribution */}
         <p
-          className="text-[18px] transition-all duration-700"
+          className="text-[16px] md:text-[18px] transition-all duration-700"
           style={{
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(255, 255, 255, 0.7)',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '200ms'
           }}
         >
-          — <span style={{ color: '#FF2E63', fontWeight: 500 }}>Karen Mannheim</span>, TRAZZO Lighting
+          — <span style={{ color: '#FF2E63', fontWeight: 500 }}>Karen Mannheim</span>, Architectural Lighting Designer
         </p>
       </div>
     </section>

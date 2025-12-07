@@ -7,13 +7,13 @@ const CTASection = () => {
   return (
     <section 
       ref={elementRef} 
-      className="py-[100px] md:py-[140px] px-6 md:px-16" 
-      style={{ backgroundColor: '#FFFFFF' }}
+      className="py-28 md:py-36 px-6 md:px-16" 
+      style={{ backgroundColor: '#FAFAFA' }}
     >
       <div className="max-w-[600px] mx-auto text-center">
         {/* Price */}
         <h2
-          className="text-[64px] md:text-[80px] font-bold mb-4 transition-all duration-700"
+          className="text-[56px] md:text-[72px] font-bold mb-4 transition-all duration-700"
           style={{
             color: '#1A1A1A',
             letterSpacing: '-0.02em',
@@ -24,34 +24,22 @@ const CTASection = () => {
           $7,200
         </h2>
 
-        {/* Subline */}
+        {/* Context */}
         <p
-          className="text-[20px] mb-2 transition-all duration-700"
+          className="text-[16px] md:text-[18px] mb-10 transition-all duration-700"
           style={{
             color: 'rgba(26, 26, 26, 0.6)',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '100ms'
           }}
         >
-          Four months. Founder-led. Everything included.
-        </p>
-
-        {/* Monthly breakdown */}
-        <p
-          className="text-[16px] mb-10 transition-all duration-700"
-          style={{
-            color: 'rgba(26, 26, 26, 0.4)',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '150ms'
-          }}
-        >
-          $1,800/month if that's easier.
+          4 months · Founder-led · Everything included
         </p>
 
         {/* CTA Button */}
         <Link
           to="/book-call"
-          className="inline-block px-12 py-5 rounded-lg font-semibold text-[18px] mb-4 transition-all duration-300"
+          className="inline-block px-12 py-5 rounded-lg font-semibold text-[18px] mb-6 transition-all duration-300"
           style={{
             backgroundColor: '#FF2E63',
             color: '#FFFFFF',
@@ -73,10 +61,10 @@ const CTASection = () => {
 
         {/* Link to pricing */}
         <p
-          className="transition-all duration-700 mb-8"
+          className="transition-all duration-700"
           style={{
             opacity: isVisible ? 1 : 0,
-            transitionDelay: '250ms'
+            transitionDelay: '300ms'
           }}
         >
           <Link
@@ -86,20 +74,8 @@ const CTASection = () => {
             onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
             onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
           >
-            See how it breaks down →
+            See full details →
           </Link>
-        </p>
-
-        {/* Scarcity */}
-        <p
-          className="text-[14px] transition-all duration-700"
-          style={{
-            color: 'rgba(26, 26, 26, 0.4)',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '300ms'
-          }}
-        >
-          We take one new client per month. January is open.
         </p>
       </div>
     </section>

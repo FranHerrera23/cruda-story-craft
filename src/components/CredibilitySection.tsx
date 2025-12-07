@@ -1,82 +1,106 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useEffect, useRef, useState } from 'react';
 
 const CredibilitySection = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      setIsVisible(true);
+      return;
+    }
+
+    const fallbackTimer = setTimeout(() => {
+      setIsVisible(true);
+    }, 1000);
+
+    const options = {
+      rootMargin: '0px 0px -10% 0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target === sectionRef.current && entry.isIntersecting) {
+          setIsVisible(true);
+          clearTimeout(fallbackTimer);
+        }
+      });
+    }, options);
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(fallbackTimer);
+    };
+  }, []);
 
   return (
     <section 
-      ref={elementRef}
-      className="py-[80px] md:py-[120px] px-6 md:px-[60px]" 
+      ref={sectionRef}
+      className="py-24 md:py-[120px] px-6 md:px-[60px]" 
       style={{ backgroundColor: '#1A1A1A' }}
     >
-      <div className="max-w-[800px] mx-auto text-center">
+      <div className="max-w-[750px] mx-auto text-center">
         {/* Headline */}
         <h2 
-          className="text-[32px] md:text-[36px] font-semibold leading-[1.2] mb-12 transition-all duration-700"
+          className="text-[32px] md:text-[32px] font-semibold leading-[1.2] mb-10 transition-all duration-[600ms]"
           style={{ 
             color: '#FFFFFF',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(16px)'
           }}
         >
-          A decade of translation
+          Where we've been
         </h2>
         
-        {/* Companies - Row 1 */}
-        <p
-          className="text-[18px] mb-3 transition-all duration-700"
+        {/* Body text */}
+        <div
+          className="transition-all duration-[600ms]"
           style={{ 
-            color: 'rgba(255, 255, 255, 0.5)',
-            letterSpacing: '0.02em',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-            transitionDelay: '100ms'
-          }}
-        >
-          TikTok · Mondelez · Nestlé · United Nations
-        </p>
-
-        {/* Companies - Row 2 */}
-        <p
-          className="text-[18px] mb-6 transition-all duration-700"
-          style={{ 
-            color: 'rgba(255, 255, 255, 0.5)',
-            letterSpacing: '0.02em',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
             transitionDelay: '150ms'
           }}
         >
-          DeliveryHero · DirecTV · Natura · Ab InBev
-        </p>
-
-        {/* Cities */}
-        <p
-          className="text-[16px] mb-12 transition-all duration-700"
-          style={{ 
-            color: 'rgba(255, 255, 255, 0.4)',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-            transitionDelay: '200ms'
-          }}
-        >
-          Buenos Aires · Miami · Dubai · Los Angeles · Madrid
-        </p>
-
-        {/* Closing Line */}
-        <p
-          className="text-[20px] md:text-[22px] italic leading-[1.6] transition-all duration-700"
-          style={{ 
-            color: 'rgba(255, 255, 255, 0.8)',
-            maxWidth: '700px',
-            margin: '0 auto',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
-            transitionDelay: '300ms'
-          }}
-        >
-          That gap—between what you know and what people understand—we've lived it.
-        </p>
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            A decade inside TikTok, Mondelez, Nestlé, United Nations, DeliveryHero, DirecTV, Natura, Ab InBev.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            Five countries. Three languages. Ten nationalities on the teams we've built.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            Buenos Aires. Miami. Dubai. Los Angeles. Madrid.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7] mb-6"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            That gap—between what you know and what people understand—we've lived it. Every day. In rooms where we were the only one who looked different, spoke different, thought different.
+          </p>
+          
+          <p 
+            className="text-[18px] md:text-[20px] leading-[1.7]"
+            style={{ color: 'rgba(255, 255, 255, 0.75)' }}
+          >
+            That's why we can help you translate.
+          </p>
+        </div>
       </div>
     </section>
   );

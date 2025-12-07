@@ -1,9 +1,10 @@
 import HeroManifesto from "@/components/HeroManifesto";
-import ProblemSection from "@/components/ProblemSection";
-import WhatYouGetSection from "@/components/WhatYouGetSection";
-import HowWeWorkSection from "@/components/HowWeWorkSection";
+import ValuePropsSection from "@/components/ValuePropsSection";
+import PhilosophySection from "@/components/PhilosophySection";
 import ProofOfWork from "@/components/ProofOfWork";
+import BenefitsSection from "@/components/BenefitsSection";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
+import HowWeWorkSection from "@/components/HowWeWorkSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import CredibilitySection from "@/components/CredibilitySection";
 import LogoMarquee from "@/components/LogoMarquee";
@@ -13,11 +14,12 @@ const Index = () => {
   return (
     <main className="overflow-x-hidden">
       <HeroManifesto />
-      <ProblemSection />
-      <WhatYouGetSection />
-      <HowWeWorkSection />
+      <ValuePropsSection />
+      <PhilosophySection />
       <ProofOfWork />
+      <BenefitsSection />
       <BeforeAfterSection />
+      <HowWeWorkSection />
       <TestimonialSection />
       <CredibilitySection />
       <LogoMarquee />

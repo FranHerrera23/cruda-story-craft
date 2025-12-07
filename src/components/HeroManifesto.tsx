@@ -3,102 +3,77 @@ import franCallImage from "@/assets/fran-portrait-hero.png";
 import { Link } from "react-router-dom";
 
 const HeroManifesto = () => {
-  const [wordsVisible, setWordsVisible] = useState<boolean[]>([false, false, false]);
-  const [subtitleVisible, setSubtitleVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
-      setWordsVisible([true, true, true]);
-      setSubtitleVisible(true);
+      setIsVisible(true);
       return;
     }
 
-    const timers = [
-      setTimeout(() => setWordsVisible([true, false, false]), 200),
-      setTimeout(() => setWordsVisible([true, true, false]), 400),
-      setTimeout(() => setWordsVisible([true, true, true]), 600),
-      setTimeout(() => setSubtitleVisible(true), 1000)
-    ];
-    
-    return () => timers.forEach(timer => clearTimeout(timer));
+    const timer = setTimeout(() => setIsVisible(true), 200);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <section 
-      className="py-[120px] px-[60px] min-h-screen flex items-center"
+      className="py-[100px] md:py-[140px] px-6 md:px-[60px] min-h-screen flex items-center"
       style={{ backgroundColor: '#FFFFFF' }}
     >
       <div className="max-w-[1400px] mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-[100px] items-center">
+        <div className="grid md:grid-cols-[60%_40%] gap-12 md:gap-[60px] items-center">
           {/* Left Side - Text Content */}
-          <div className="md:pr-[40px]">
+          <div>
             <h1 
-              className="mb-[32px]"
+              className="mb-6"
               style={{ 
-                fontSize: 'clamp(48px, 6vw, 80px)',
-                fontWeight: '300',
+                fontSize: 'clamp(40px, 5vw, 56px)',
+                fontWeight: '700',
                 lineHeight: '1.1',
-                color: '#1A1A1A'
+                color: '#1A1A1A',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             >
-              <span 
-                style={{ 
-                  display: "inline-block",
-                  opacity: wordsVisible[0] ? 1 : 0,
-                  transform: wordsVisible[0] ? "translateY(0)" : "translateY(30px)",
-                  filter: wordsVisible[0] ? "blur(0)" : "blur(10px)",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-              >
-                Your
-              </span>{' '}
-              <span 
-                style={{ 
-                  display: "inline-block",
-                  opacity: wordsVisible[1] ? 1 : 0,
-                  transform: wordsVisible[1] ? "translateY(0)" : "translateY(30px)",
-                  filter: wordsVisible[1] ? "blur(0)" : "blur(10px)",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-              >
-                expertise.
-              </span>
-              <br />
-              <span 
-                style={{ 
-                  color: "#FF2E63", 
-                  fontWeight: "400",
-                  display: "inline-block",
-                  opacity: wordsVisible[2] ? 1 : 0,
-                  transform: wordsVisible[2] ? "translateY(0)" : "translateY(30px)",
-                  filter: wordsVisible[2] ? "blur(0)" : "blur(10px)",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-              >
-                Translated.
-              </span>
+              We turn how you think into content that opens doors.
             </h1>
             
             <p 
-              className="mb-[48px]"
+              className="mb-4"
               style={{ 
-                fontSize: 'clamp(18px, 2vw, 24px)',
-                fontWeight: '300',
+                fontSize: '20px',
+                fontWeight: '400',
                 lineHeight: '1.6',
-                color: '#1A1A1A',
-                opacity: subtitleVisible ? 0.8 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
+                color: 'rgba(26, 26, 26, 0.7)',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.15s'
               }}
             >
-              You already know what makes your work yours. We help you find the words. Then we put them to work.
+              LinkedIn. Pitch decks. Proposals. Conference talks. Your philosophy, documented and deployed.
+            </p>
+
+            <p 
+              className="mb-10"
+              style={{ 
+                fontSize: '16px',
+                fontWeight: '400',
+                lineHeight: '1.5',
+                color: 'rgba(26, 26, 26, 0.5)',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s'
+              }}
+            >
+              For founders and senior leaders in architecture, design, construction, and hospitality.
             </p>
             
             <Link 
               to="/book-call"
-              className="inline-block font-medium transition-all duration-300"
+              className="inline-block font-semibold transition-all duration-300"
               style={{ 
                 background: '#FF2E63',
                 color: '#FFFFFF',
@@ -106,17 +81,15 @@ const HeroManifesto = () => {
                 padding: '18px 48px',
                 borderRadius: '8px',
                 textDecoration: 'none',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s"
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.35s'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#E61E53';
                 e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#FF2E63';
                 e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
@@ -127,17 +100,16 @@ const HeroManifesto = () => {
             {/* Proof Line */}
             <p
               style={{
-                fontSize: '13px',
+                fontSize: '14px',
                 fontWeight: '400',
                 color: 'rgba(26, 26, 26, 0.4)',
-                letterSpacing: '0.5px',
-                marginTop: '24px',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s"
+                marginTop: '40px',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(10px)',
+                transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.45s'
               }}
             >
-              Trusted by: TRAZZO Lighting · Norhart · UNIK Parquet
+              Trusted by TRAZZO Lighting · Norhart · UNIK Parquet
             </p>
           </div>
           
@@ -149,7 +121,10 @@ const HeroManifesto = () => {
               className="w-full h-auto block"
               style={{
                 borderRadius: '16px',
-                boxShadow: '0 12px 48px rgba(26, 26, 26, 0.15)'
+                boxShadow: '0 12px 48px rgba(26, 26, 26, 0.15)',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s'
               }}
             />
           </div>
@@ -158,34 +133,10 @@ const HeroManifesto = () => {
       
       {/* Mobile Styles */}
       <style>{`
-        @media (max-width: 1024px) {
-          section {
-            padding: 80px 40px !important;
-          }
-          
-          h1 {
-            font-size: 36px !important;
-            text-align: center;
-          }
-          
-          p {
-            font-size: 18px !important;
-            text-align: center;
-          }
-          
-          .uppercase {
-            text-align: center;
-          }
-          
-          a {
-            display: block !important;
-            text-align: center;
-          }
-        }
-        
         @media (max-width: 768px) {
-          h1 {
-            font-size: 32px !important;
+          section {
+            padding: 80px 24px !important;
+            min-height: auto !important;
           }
         }
       `}</style>

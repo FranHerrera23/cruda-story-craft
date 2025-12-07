@@ -57,11 +57,11 @@ const BeliefSection = () => {
             <h2
               className="transition-all duration-700"
               style={{
-                fontSize: '56px',
+                fontSize: '52px',
                 fontWeight: '600',
                 color: '#0A0A0A',
                 lineHeight: '1.1',
-                marginBottom: '48px',
+                marginBottom: '40px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
               }}
@@ -73,11 +73,11 @@ const BeliefSection = () => {
             <p
               className="transition-all duration-700"
               style={{
-                fontSize: '26px',
+                fontSize: '24px',
                 fontWeight: '400',
                 color: 'rgba(10, 10, 10, 0.6)',
                 lineHeight: '1.6',
-                marginBottom: '40px',
+                marginBottom: '32px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: '100ms'
@@ -91,11 +91,11 @@ const BeliefSection = () => {
             <p
               className="transition-all duration-700"
               style={{
-                fontSize: '26px',
+                fontSize: '24px',
                 fontWeight: '500',
                 color: '#0A0A0A',
                 lineHeight: '1.5',
-                marginBottom: '40px',
+                marginBottom: '32px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: '200ms'
@@ -104,86 +104,121 @@ const BeliefSection = () => {
               A CEO without a voice is a business without a soul.
             </p>
 
-            {/* Closing */}
+            {/* Bridge line */}
             <p
               className="transition-all duration-700"
               style={{
-                fontSize: '26px',
+                fontSize: '22px',
                 fontWeight: '400',
                 color: 'rgba(10, 10, 10, 0.6)',
                 lineHeight: '1.5',
+                marginBottom: '24px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: '300ms'
               }}
             >
-              The story is already there. We help you find it.
+              When people trust the leader, they trust the company.
+            </p>
+
+            {/* Punk line */}
+            <p
+              className="transition-all duration-700"
+              style={{
+                fontSize: '20px',
+                fontWeight: '500',
+                color: '#0A0A0A',
+                fontStyle: 'italic',
+                lineHeight: '1.5',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '400ms'
+              }}
+            >
+              We don't dance around truth. We carve it.
             </p>
 
             {/* Timeline Bar */}
             <div
-              className="transition-all duration-700"
+              className="transition-all duration-1000"
               style={{
-                marginTop: '100px',
+                marginTop: '80px',
                 position: 'relative',
                 width: '100%',
+                height: '2px',
+                backgroundColor: 'rgba(10, 10, 10, 0.15)',
                 opacity: isVisible ? 1 : 0,
-                transitionDelay: '400ms'
+                transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+                transformOrigin: 'left',
+                transitionDelay: '500ms'
+              }}
+            />
+
+            {/* Before/After Grid */}
+            <div
+              className="transition-all duration-700"
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '80px',
+                marginTop: '40px',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: '700ms'
               }}
             >
-              {/* Labels */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-                <span
+              {/* Before Column */}
+              <div>
+                <p
                   style={{
-                    fontSize: '13px',
-                    fontWeight: '500',
-                    color: 'rgba(10, 10, 10, 0.4)',
-                    letterSpacing: '0.05em',
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    letterSpacing: '0.12em',
+                    color: 'rgba(10, 10, 10, 0.35)',
+                    marginBottom: '16px',
                     textTransform: 'uppercase'
                   }}
                 >
                   BEFORE
-                </span>
-                <span
+                </p>
+                <p
                   style={{
-                    fontSize: '13px',
-                    fontWeight: '500',
+                    fontSize: '20px',
+                    fontWeight: '400',
                     color: 'rgba(10, 10, 10, 0.4)',
-                    letterSpacing: '0.05em',
+                    fontStyle: 'italic',
+                    lineHeight: '1.5'
+                  }}
+                >
+                  Great work.<br />
+                  No one knows about it.
+                </p>
+              </div>
+
+              {/* After Column */}
+              <div>
+                <p
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: '600',
+                    letterSpacing: '0.12em',
+                    color: 'rgba(10, 10, 10, 0.35)',
+                    marginBottom: '16px',
                     textTransform: 'uppercase'
                   }}
                 >
                   AFTER
-                </span>
-              </div>
-
-              {/* Bar with dots */}
-              <div style={{ display: 'flex', alignItems: 'center' }}>
-                <div
+                </p>
+                <p
                   style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: 'rgba(10, 10, 10, 0.2)',
-                    flexShrink: 0
+                    fontSize: '20px',
+                    fontWeight: '500',
+                    color: '#0A0A0A',
+                    lineHeight: '1.5'
                   }}
-                />
-                <div
-                  style={{
-                    flex: 1,
-                    height: '2px',
-                    backgroundColor: 'rgba(10, 10, 10, 0.12)'
-                  }}
-                />
-                <div
-                  style={{
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    backgroundColor: 'rgba(10, 10, 10, 0.2)',
-                    flexShrink: 0
-                  }}
-                />
+                >
+                  Great work. Now people get it before you walk in the room.
+                </p>
               </div>
             </div>
           </div>
@@ -197,10 +232,14 @@ const BeliefSection = () => {
             padding: 120px 24px !important;
           }
           section h2 {
-            font-size: 40px !important;
+            font-size: 36px !important;
           }
           section p {
-            font-size: 20px !important;
+            font-size: 18px !important;
+          }
+          section > div > div > div:last-child > div:last-child {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
           }
         }
       `}</style>

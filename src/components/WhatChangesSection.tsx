@@ -59,7 +59,7 @@ const WhatChangesSection = () => {
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                padding: '36px 0',
+                padding: '32px 0',
                 borderBottom: '1px solid rgba(10, 10, 10, 0.1)',
                 opacity: visibleItems[index] ? 1 : 0,
                 transform: visibleItems[index] ? 'translateY(0)' : 'translateY(16px)',
@@ -71,9 +71,9 @@ const WhatChangesSection = () => {
               <span 
                 className="transition-transform duration-300"
                 style={{ 
-                  fontSize: '22px',
+                  fontSize: '20px',
                   color: '#FF2E63', 
-                  marginRight: '24px',
+                  marginRight: '20px',
                   flexShrink: 0,
                   lineHeight: '1.4'
                 }}
@@ -94,6 +94,24 @@ const WhatChangesSection = () => {
               </p>
             </div>
           ))}
+
+          {/* Closer line */}
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '24px',
+              fontWeight: '500',
+              color: '#0A0A0A',
+              textAlign: 'center',
+              marginTop: '60px',
+              fontStyle: 'italic',
+              opacity: visibleItems[changes.length - 1] ? 1 : 0,
+              transform: visibleItems[changes.length - 1] ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '500ms'
+            }}
+          >
+            Your story finally works as hard as you do.
+          </p>
         </div>
       </div>
 

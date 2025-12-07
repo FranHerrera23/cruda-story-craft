@@ -4,22 +4,30 @@ const steps = [
   {
     number: "01",
     title: "We talk.",
-    description: "About how you think. What you've built. What you'd never compromise on."
+    description: "Weekly conversations about how you think, what you've built, what you'd never compromise on."
   },
   {
     number: "02",
     title: "We find the pattern.",
-    description: "The philosophy underneath your work. The thing that makes it yours."
+    description: "The milestones, projects, and proof points that were never communicated — or communicated badly. We find what makes your work yours."
   },
   {
     number: "03",
     title: "We put it to work.",
-    description: "Pitch decks. LinkedIn. Proposals. Talks. Content that builds trust before you show up."
+    description: "Your narrative — alive across LinkedIn, Instagram, website, pitch decks. Reputation in motion."
   }
 ];
 
+const deliverables = [
+  "Your story in one sentence",
+  "A narrative document your team can use",
+  "LinkedIn presence that sounds like you",
+  "Pitch deck language",
+  "Talking points for any room"
+];
+
 const HowWeWorkSection = () => {
-  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(steps.length + 2, 150);
+  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(steps.length + 3, 150);
   const { elementRef: timelineRef, progress } = useScrollProgress();
 
   return (
@@ -110,7 +118,7 @@ const HowWeWorkSection = () => {
           ref={timelineRef}
           className="transition-all duration-700"
           style={{
-            marginTop: '100px',
+            marginTop: '80px',
             position: 'relative',
             maxWidth: '1100px',
             opacity: visibleItems[steps.length] ? 1 : 0
@@ -166,65 +174,129 @@ const HowWeWorkSection = () => {
 
           {/* Labels */}
           <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <span
-              style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: progress > 0.1 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
-                transition: 'color 300ms ease'
-              }}
-            >
-              Month 1
-            </span>
-            <span
-              style={{
-                fontSize: '14px',
-                fontWeight: '500',
-                color: progress > 0.6 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
-                transition: 'color 300ms ease'
-              }}
-            >
-              Month 4
-            </span>
+            <div>
+              <span
+                style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: progress > 0.1 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
+                  transition: 'color 300ms ease',
+                  display: 'block'
+                }}
+              >
+                Month 1
+              </span>
+              <span
+                style={{
+                  fontSize: '13px',
+                  color: 'rgba(10, 10, 10, 0.4)',
+                  marginTop: '4px',
+                  display: 'block'
+                }}
+              >
+                Discovery
+              </span>
+            </div>
+            <div style={{ textAlign: 'right' }}>
+              <span
+                style={{
+                  fontSize: '14px',
+                  fontWeight: '500',
+                  color: progress > 0.6 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
+                  transition: 'color 300ms ease',
+                  display: 'block'
+                }}
+              >
+                Month 4
+              </span>
+              <span
+                style={{
+                  fontSize: '13px',
+                  color: 'rgba(10, 10, 10, 0.4)',
+                  marginTop: '4px',
+                  display: 'block'
+                }}
+              >
+                Deployment
+              </span>
+            </div>
           </div>
         </div>
 
-        {/* What We Need Box */}
+        {/* Two-column bottom section */}
         <div
-          className="hover-lift"
+          className="hover-lift grid grid-cols-1 md:grid-cols-2"
           style={{
-            marginTop: '80px',
+            marginTop: '60px',
             backgroundColor: '#FFFFFF',
-            padding: '40px 48px',
+            padding: '48px',
             borderRadius: '8px',
-            maxWidth: '500px',
+            gap: '60px',
+            maxWidth: '1100px',
             opacity: visibleItems[steps.length + 1] ? 1 : 0,
             transform: visibleItems[steps.length + 1] ? 'translateY(0)' : 'translateY(20px)',
             transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms ease'
           }}
         >
-          <p
-            style={{
-              fontSize: '11px',
-              fontWeight: '600',
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              color: 'rgba(10, 10, 10, 0.4)',
-              marginBottom: '16px'
-            }}
-          >
-            What we need from you
-          </p>
-          <p
-            style={{
-              fontSize: '20px',
-              fontWeight: '400',
-              color: '#0A0A0A',
-              lineHeight: '1.5'
-            }}
-          >
-            One hour a week. WhatsApp. And guts.
-          </p>
+          {/* What We Need */}
+          <div>
+            <p
+              style={{
+                fontSize: '11px',
+                fontWeight: '600',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginBottom: '20px'
+              }}
+            >
+              What we need from you
+            </p>
+            <p
+              style={{
+                fontSize: '20px',
+                fontWeight: '400',
+                color: '#0A0A0A',
+                lineHeight: '1.5'
+              }}
+            >
+              One hour a week. Feedback over WhatsApp. And guts.
+            </p>
+          </div>
+
+          {/* What You Walk Away With */}
+          <div>
+            <p
+              style={{
+                fontSize: '11px',
+                fontWeight: '600',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginBottom: '20px'
+              }}
+            >
+              What you walk away with
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {deliverables.map((item, index) => (
+                <p
+                  key={index}
+                  style={{
+                    fontSize: '17px',
+                    fontWeight: '400',
+                    color: 'rgba(10, 10, 10, 0.7)',
+                    lineHeight: '1.8',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

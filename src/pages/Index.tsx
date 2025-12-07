@@ -3,7 +3,6 @@ import BeliefSection from "@/components/BeliefSection";
 import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import WhoTrustsUsSection from "@/components/WhoTrustsUsSection";
-import BeforeAfterSection from "@/components/BeforeAfterSection";
 import CredibilitySection from "@/components/CredibilitySection";
 import LogoMarquee from "@/components/LogoMarquee";
 import CTASection from "@/components/CTASection";
@@ -14,7 +13,7 @@ const Index = () => {
       {/* Section 1: Hero */}
       <HeroManifesto />
       
-      {/* Section 2: Belief */}
+      {/* Section 2: Belief (includes Before/After) */}
       <BeliefSection />
       
       {/* Section 3: What Changes */}
@@ -26,14 +25,11 @@ const Index = () => {
       {/* Section 5: Who Trusts Us */}
       <WhoTrustsUsSection />
       
-      {/* Section 6: Before/After */}
-      <BeforeAfterSection />
-      
-      {/* Section 7: Credibility + Logo Marquee */}
+      {/* Section 6: Credibility + Logo Marquee */}
       <CredibilitySection />
       <LogoMarquee />
       
-      {/* Section 9: CTA */}
+      {/* Section 7: CTA */}
       <CTASection />
     </main>
   );

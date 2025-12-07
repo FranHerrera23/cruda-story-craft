@@ -148,20 +148,35 @@ const HeroManifesto = () => {
               Start a Conversation
             </Link>
 
+            {/* Punk Line */}
+            <p
+              style={{
+                fontSize: '15px',
+                fontWeight: '500',
+                color: '#0A0A0A',
+                marginTop: '48px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s"
+              }}
+            >
+              People don't hire us for content. They hire us for clarity.
+            </p>
+
             {/* Proof Line */}
             <p
               style={{
                 fontSize: '13px',
                 fontWeight: '400',
                 color: 'rgba(10, 10, 10, 0.4)',
-                letterSpacing: '0.01em',
-                marginTop: '48px',
+                letterSpacing: '0.02em',
+                marginTop: '16px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.35s"
               }}
             >
-              Trusted by TRAZZO Lighting · Norhart · UNIK Parquet
+              TRAZZO Lighting · Norhart · UNIK Parquet
             </p>
           </div>
           

@@ -35,7 +35,7 @@ const CredibilitySection = () => {
       ref={elementRef} 
       style={{ 
         backgroundColor: '#0A0A0A',
-        padding: '140px 80px'
+        padding: '160px 80px'
       }}
     >
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>

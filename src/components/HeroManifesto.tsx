@@ -27,20 +27,23 @@ const HeroManifesto = () => {
 
   return (
     <section 
-      className="py-[120px] px-[60px] min-h-screen flex items-center"
-      style={{ backgroundColor: '#FFFFFF' }}
+      className="min-h-[90vh] flex items-center"
+      style={{ 
+        backgroundColor: '#FFFFFF',
+        padding: '120px 60px 160px 60px'
+      }}
     >
-      <div className="max-w-[1400px] mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-[100px] items-center">
+      <div className="max-w-[1200px] mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-16 lg:gap-12 items-center">
           {/* Left Side - Text Content */}
-          <div className="md:pr-[40px]">
+          <div>
             <h1 
-              className="mb-[32px]"
               style={{ 
-                fontSize: 'clamp(48px, 6vw, 80px)',
-                fontWeight: '300',
-                lineHeight: '1.1',
-                color: '#1A1A1A'
+                fontSize: 'clamp(48px, 5vw, 72px)',
+                fontWeight: '700',
+                lineHeight: '1.0',
+                letterSpacing: '-0.03em',
+                color: '#0A0A0A'
               }}
             >
               <span 
@@ -69,7 +72,7 @@ const HeroManifesto = () => {
               <span 
                 style={{ 
                   color: "#FF2E63", 
-                  fontWeight: "400",
+                  fontWeight: '700',
                   display: "inline-block",
                   opacity: wordsVisible[2] ? 1 : 0,
                   transform: wordsVisible[2] ? "translateY(0)" : "translateY(30px)",
@@ -81,43 +84,64 @@ const HeroManifesto = () => {
               </span>
             </h1>
             
+            {/* Subline */}
             <p 
-              className="mb-[48px]"
               style={{ 
-                fontSize: 'clamp(18px, 2vw, 24px)',
-                fontWeight: '300',
-                lineHeight: '1.6',
-                color: '#1A1A1A',
-                opacity: subtitleVisible ? 0.8 : 0,
+                fontSize: 'clamp(20px, 2vw, 24px)',
+                fontWeight: '400',
+                lineHeight: '1.5',
+                color: 'rgba(10, 10, 10, 0.7)',
+                marginTop: '40px',
+                maxWidth: '500px',
+                opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
               }}
             >
-              You already know what makes your work yours. We help you find the words. Then we put them to work.
+              You're not bad at telling your story.<br />
+              You've just been too busy building it.
             </p>
             
+            {/* What We Do */}
+            <p
+              style={{
+                fontSize: '18px',
+                fontWeight: '400',
+                lineHeight: '1.6',
+                color: 'rgba(10, 10, 10, 0.6)',
+                marginTop: '32px',
+                maxWidth: '480px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s"
+              }}
+            >
+              We help founders, CEOs, and senior leaders in construction, architecture, design, and hospitality craft narratives that build trust & reputation at scale.
+            </p>
+            
+            {/* CTA Button */}
             <Link 
               to="/book-call"
-              className="inline-block font-medium transition-all duration-300"
+              className="inline-block transition-all duration-300"
               style={{ 
                 background: '#FF2E63',
                 color: '#FFFFFF',
-                fontSize: '18px',
-                padding: '18px 48px',
+                fontSize: '16px',
+                fontWeight: '600',
+                padding: '20px 40px',
                 borderRadius: '8px',
                 textDecoration: 'none',
+                marginTop: '48px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.5s"
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s"
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = '#E61E53';
-                e.currentTarget.style.transform = 'translateY(-2px)';
                 e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#FF2E63';
-                e.currentTarget.style.transform = 'translateY(0)';
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
@@ -127,29 +151,27 @@ const HeroManifesto = () => {
             {/* Proof Line */}
             <p
               style={{
-                fontSize: '13px',
+                fontSize: '14px',
                 fontWeight: '400',
-                color: 'rgba(26, 26, 26, 0.4)',
-                letterSpacing: '0.5px',
-                marginTop: '24px',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginTop: '48px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.7s"
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s"
               }}
             >
-              Trusted by: TRAZZO Lighting · Norhart · UNIK Parquet
+              Trusted by TRAZZO Lighting · Norhart · UNIK Parquet
             </p>
           </div>
           
           {/* Right Side - Image */}
-          <div className="relative order-first md:order-last">
+          <div className="relative order-first lg:order-last">
             <img
               src={franCallImage}
               alt="Fran Herrera, Founder of CRUDA"
               className="w-full h-auto block"
               style={{
-                borderRadius: '16px',
-                boxShadow: '0 12px 48px rgba(26, 26, 26, 0.15)'
+                objectFit: 'cover'
               }}
             />
           </div>
@@ -160,32 +182,7 @@ const HeroManifesto = () => {
       <style>{`
         @media (max-width: 1024px) {
           section {
-            padding: 80px 40px !important;
-          }
-          
-          h1 {
-            font-size: 36px !important;
-            text-align: center;
-          }
-          
-          p {
-            font-size: 18px !important;
-            text-align: center;
-          }
-          
-          .uppercase {
-            text-align: center;
-          }
-          
-          a {
-            display: block !important;
-            text-align: center;
-          }
-        }
-        
-        @media (max-width: 768px) {
-          h1 {
-            font-size: 32px !important;
+            padding: 80px 24px !important;
           }
         }
       `}</style>

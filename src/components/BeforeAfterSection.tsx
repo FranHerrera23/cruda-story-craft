@@ -6,12 +6,17 @@ const BeforeAfterSection = () => {
   return (
     <section 
       ref={elementRef} 
-      className="py-20 md:py-[100px] px-6 md:px-[60px]" 
-      style={{ backgroundColor: '#FAFAFA' }}
+      style={{ 
+        backgroundColor: '#FFFFFF',
+        padding: '160px 60px'
+      }}
     >
-      <div className="max-w-[1000px] mx-auto">
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         {/* Two columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[60px]">
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2"
+          style={{ gap: '80px' }}
+        >
           {/* Before Column */}
           <div
             className="transition-all duration-700"
@@ -21,14 +26,25 @@ const BeforeAfterSection = () => {
             }}
           >
             <p 
-              className="text-[12px] font-semibold tracking-[0.1em] uppercase mb-4"
-              style={{ color: 'rgba(26, 26, 26, 0.4)' }}
+              style={{
+                fontSize: '12px',
+                fontWeight: '600',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.3)',
+                marginBottom: '20px'
+              }}
             >
               BEFORE
             </p>
             <p 
-              className="text-[20px] leading-[1.6] italic"
-              style={{ color: 'rgba(26, 26, 26, 0.6)' }}
+              style={{
+                fontSize: '22px',
+                fontStyle: 'italic',
+                fontWeight: '400',
+                color: 'rgba(10, 10, 10, 0.4)',
+                lineHeight: '1.6'
+              }}
             >
               "TRAZZO is a premier lighting design firm with over thirty years of experience, committed to excellence and innovation in architectural illumination."
             </p>
@@ -44,14 +60,24 @@ const BeforeAfterSection = () => {
             }}
           >
             <p 
-              className="text-[12px] font-semibold tracking-[0.1em] uppercase mb-4"
-              style={{ color: 'rgba(26, 26, 26, 0.4)' }}
+              style={{
+                fontSize: '12px',
+                fontWeight: '600',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.3)',
+                marginBottom: '20px'
+              }}
             >
               AFTER
             </p>
             <p 
-              className="text-[20px] leading-[1.6] font-medium"
-              style={{ color: '#1A1A1A' }}
+              style={{
+                fontSize: '22px',
+                fontWeight: '600',
+                color: '#0A0A0A',
+                lineHeight: '1.5'
+              }}
             >
               "TRAZZO: Lighting partner to Robert A.M. Stern Architects. Three projects. Seven years. From Lima to Miami."
             </p>
@@ -60,16 +86,28 @@ const BeforeAfterSection = () => {
 
         {/* Bottom tagline */}
         <p 
-          className="text-[16px] text-center mt-12 transition-all duration-700"
+          className="transition-all duration-700"
           style={{ 
-            color: 'rgba(26, 26, 26, 0.5)',
+            fontSize: '18px',
+            color: 'rgba(10, 10, 10, 0.5)',
+            textAlign: 'center',
+            marginTop: '60px',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '300ms'
           }}
         >
-          The first is forgettable. The second opens doors.
+          The first is forgettable. The second builds trust.
         </p>
       </div>
+
+      {/* Mobile Styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          section {
+            padding: 120px 24px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

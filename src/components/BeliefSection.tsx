@@ -1,80 +1,79 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const CredibilitySection = () => {
+const BeliefSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#0A0A0A',
-        padding: '120px 60px 160px 60px'
+        backgroundColor: '#FAFAFA',
+        padding: '160px 60px'
       }}
     >
-      <div style={{ maxWidth: '800px' }}>
-        {/* Header */}
+      <div style={{ maxWidth: '700px' }}>
+        {/* Main headline */}
         <h2
           className="transition-all duration-700"
           style={{
-            fontSize: 'clamp(32px, 3.5vw, 42px)',
+            fontSize: 'clamp(40px, 4vw, 56px)',
             fontWeight: '600',
-            color: '#FFFFFF',
+            color: '#0A0A0A',
             marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          We've been on both sides.
+          Trust shifted.
         </h2>
 
-        {/* Companies */}
+        {/* First paragraph */}
         <p
           className="transition-all duration-700"
           style={{
-            fontSize: '22px',
+            fontSize: '28px',
             fontWeight: '400',
-            color: 'rgba(255, 255, 255, 0.6)',
+            color: 'rgba(10, 10, 10, 0.7)',
             lineHeight: '1.6',
-            marginBottom: '24px',
+            marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transitionDelay: '100ms'
           }}
         >
-          A decade inside TikTok, Mondelez, Nestlé, United Nations, DeliveryHero, Natura, Ab InBev.
+          From institutions to people.<br />
+          From logos to leaders.
         </p>
 
-        {/* Cities */}
+        {/* Key statement */}
         <p
           className="transition-all duration-700"
           style={{
-            fontSize: '20px',
-            fontWeight: '400',
-            color: 'rgba(255, 255, 255, 0.5)',
+            fontSize: '28px',
+            fontWeight: '500',
+            color: '#0A0A0A',
             marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transitionDelay: '200ms'
           }}
         >
-          Buenos Aires. Miami. Dubai. Los Angeles. Madrid.
+          A CEO without a voice is a business without a soul.
         </p>
 
         {/* Closing */}
         <p
           className="transition-all duration-700"
           style={{
-            fontSize: '24px',
+            fontSize: '28px',
             fontWeight: '400',
-            fontStyle: 'italic',
-            color: 'rgba(255, 255, 255, 0.8)',
-            maxWidth: '600px',
+            color: 'rgba(10, 10, 10, 0.7)',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transitionDelay: '300ms'
           }}
         >
-          That gap — between what you know and what people understand — we've lived it.
+          The story is already there. We help you find it.
         </p>
       </div>
 
@@ -82,7 +81,7 @@ const CredibilitySection = () => {
       <style>{`
         @media (max-width: 768px) {
           section {
-            padding: 80px 24px 120px 24px !important;
+            padding: 120px 24px !important;
           }
         }
       `}</style>
@@ -90,4 +89,4 @@ const CredibilitySection = () => {
   );
 };
 
-export default CredibilitySection;
+export default BeliefSection;

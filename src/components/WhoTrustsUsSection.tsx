@@ -1,0 +1,139 @@
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Link } from "react-router-dom";
+import karenPhoto from "@/assets/karen-mannheim-new.jpg";
+import mikePhoto from "@/assets/mike-kaeding.webp";
+
+const clients = [
+  {
+    slug: "karen-mannheim",
+    name: "Karen Mannheim",
+    title: "Architectural Lighting Designer · TRAZZO Lighting",
+    photo: karenPhoto,
+    quote: "Fran helped us articulate what made our work different in a way our clients finally understood."
+  },
+  {
+    slug: "mike-kaeding",
+    name: "Mike Kaeding",
+    title: "CEO · Norhart",
+    photo: mikePhoto,
+    quote: "The narrative system we built together works whether I'm on stage, on a podcast, or in a pitch meeting."
+  }
+];
+
+const WhoTrustsUsSection = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+
+  return (
+    <section 
+      ref={elementRef} 
+      style={{ 
+        backgroundColor: '#FAFAFA',
+        padding: '160px 60px'
+      }}
+    >
+      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+        {/* Section header */}
+        <p
+          className="transition-all duration-700"
+          style={{
+            fontSize: '14px',
+            fontWeight: '600',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: 'rgba(10, 10, 10, 0.4)',
+            marginBottom: '60px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+          }}
+        >
+          Who trusts us with their story
+        </p>
+
+        {/* Two cards grid */}
+        <div 
+          className="grid grid-cols-1 md:grid-cols-2"
+          style={{ gap: '48px' }}
+        >
+          {clients.map((client, index) => (
+            <Link
+              key={index}
+              to={`/clients/${client.slug}`}
+              className="block transition-all duration-300"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${(index + 1) * 100}ms`
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              {/* Photo */}
+              <div style={{ aspectRatio: '4/3', overflow: 'hidden' }}>
+                <img
+                  src={client.photo}
+                  alt={client.name}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                  }}
+                />
+              </div>
+
+              {/* Name */}
+              <p
+                style={{
+                  fontSize: '24px',
+                  fontWeight: '600',
+                  color: '#0A0A0A',
+                  marginTop: '24px'
+                }}
+              >
+                {client.name}
+              </p>
+
+              {/* Title */}
+              <p
+                style={{
+                  fontSize: '16px',
+                  color: 'rgba(10, 10, 10, 0.5)',
+                  marginTop: '8px'
+                }}
+              >
+                {client.title}
+              </p>
+
+              {/* Quote */}
+              <p
+                style={{
+                  fontSize: '18px',
+                  fontStyle: 'italic',
+                  color: 'rgba(10, 10, 10, 0.7)',
+                  lineHeight: '1.6',
+                  marginTop: '20px'
+                }}
+              >
+                "{client.quote}"
+              </p>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Mobile Styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          section {
+            padding: 120px 24px !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+};
+
+export default WhoTrustsUsSection;

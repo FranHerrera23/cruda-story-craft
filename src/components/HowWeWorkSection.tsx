@@ -1,4 +1,4 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useStaggerAnimation, useScrollProgress } from "@/hooks/useStaggerAnimation";
 
 const steps = [
   {
@@ -19,11 +19,12 @@ const steps = [
 ];
 
 const HowWeWorkSection = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(steps.length + 2, 150);
+  const { elementRef: timelineRef, progress } = useScrollProgress();
 
   return (
     <section 
-      ref={elementRef} 
+      ref={containerRef} 
       style={{ 
         backgroundColor: '#F7F7F7',
         padding: '160px 80px'
@@ -47,7 +48,7 @@ const HowWeWorkSection = () => {
           How it works
         </p>
 
-        {/* Three columns */}
+        {/* Three columns with staggered animation */}
         <div 
           className="grid grid-cols-1 md:grid-cols-3"
           style={{ gap: '48px', maxWidth: '1100px' }}
@@ -55,11 +56,11 @@ const HowWeWorkSection = () => {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="transition-all duration-700"
+              className="hover-breathe"
               style={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 100}ms`
+                opacity: visibleItems[index] ? 1 : 0,
+                transform: visibleItems[index] ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             >
               {/* Number */}
@@ -104,15 +105,15 @@ const HowWeWorkSection = () => {
           ))}
         </div>
 
-        {/* Timeline Bar */}
+        {/* Timeline Bar with scroll progress */}
         <div
+          ref={timelineRef}
           className="transition-all duration-700"
           style={{
             marginTop: '100px',
             position: 'relative',
             maxWidth: '1100px',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '400ms'
+            opacity: visibleItems[steps.length] ? 1 : 0
           }}
         >
           {/* Bar with dots */}
@@ -122,24 +123,43 @@ const HowWeWorkSection = () => {
                 width: '10px',
                 height: '10px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(10, 10, 10, 0.25)',
-                flexShrink: 0
+                backgroundColor: progress > 0.1 ? '#FF2E63' : 'rgba(10, 10, 10, 0.25)',
+                flexShrink: 0,
+                transition: 'background-color 300ms ease'
               }}
             />
             <div
               style={{
                 flex: 1,
                 height: '2px',
-                backgroundColor: 'rgba(10, 10, 10, 0.15)'
+                backgroundColor: 'rgba(10, 10, 10, 0.15)',
+                position: 'relative',
+                overflow: 'hidden'
               }}
-            />
+            >
+              {/* Progress fill */}
+              <div
+                style={{
+                  position: 'absolute',
+                  left: 0,
+                  top: 0,
+                  height: '100%',
+                  width: '100%',
+                  backgroundColor: '#FF2E63',
+                  transformOrigin: 'left',
+                  transform: `scaleX(${Math.min(progress * 1.5, 1)})`,
+                  transition: 'transform 100ms linear'
+                }}
+              />
+            </div>
             <div
               style={{
                 width: '10px',
                 height: '10px',
                 borderRadius: '50%',
-                backgroundColor: 'rgba(10, 10, 10, 0.25)',
-                flexShrink: 0
+                backgroundColor: progress > 0.6 ? '#FF2E63' : 'rgba(10, 10, 10, 0.25)',
+                flexShrink: 0,
+                transition: 'background-color 300ms ease'
               }}
             />
           </div>
@@ -150,7 +170,8 @@ const HowWeWorkSection = () => {
               style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: 'rgba(10, 10, 10, 0.5)'
+                color: progress > 0.1 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
+                transition: 'color 300ms ease'
               }}
             >
               Month 1
@@ -159,7 +180,8 @@ const HowWeWorkSection = () => {
               style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: 'rgba(10, 10, 10, 0.5)'
+                color: progress > 0.6 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
+                transition: 'color 300ms ease'
               }}
             >
               Month 4
@@ -169,15 +191,16 @@ const HowWeWorkSection = () => {
 
         {/* What We Need Box */}
         <div
-          className="transition-all duration-700"
+          className="hover-lift"
           style={{
             marginTop: '80px',
             backgroundColor: '#FFFFFF',
             padding: '40px 48px',
             borderRadius: '8px',
             maxWidth: '500px',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '500ms'
+            opacity: visibleItems[steps.length + 1] ? 1 : 0,
+            transform: visibleItems[steps.length + 1] ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms ease'
           }}
         >
           <p

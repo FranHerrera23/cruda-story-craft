@@ -30,25 +30,24 @@ const LogoMarquee = () => {
           transitionDelay: '200ms'
         }}
       >
-        {/* Marquee Track */}
+        {/* Marquee Track - uses new CSS animation class */}
         <div 
-          className="flex animate-marquee"
-          style={{ 
-            width: 'fit-content',
-            gap: '80px'
-          }}
+          className="marquee-track"
+          style={{ gap: '80px' }}
         >
           {/* First set of logos */}
           {logos.map((logo, index) => (
             <span
               key={`logo-1-${index}`}
+              className="transition-opacity duration-300 hover:opacity-50"
               style={{
                 fontSize: '22px',
                 fontWeight: '500',
                 color: 'rgba(10, 10, 10, 0.25)',
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
-                flexShrink: 0
+                flexShrink: 0,
+                cursor: 'default'
               }}
             >
               {logo}
@@ -58,13 +57,15 @@ const LogoMarquee = () => {
           {logos.map((logo, index) => (
             <span
               key={`logo-2-${index}`}
+              className="transition-opacity duration-300 hover:opacity-50"
               style={{
                 fontSize: '22px',
                 fontWeight: '500',
                 color: 'rgba(10, 10, 10, 0.25)',
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
-                flexShrink: 0
+                flexShrink: 0,
+                cursor: 'default'
               }}
             >
               {logo}
@@ -88,28 +89,34 @@ const LogoMarquee = () => {
         {/* Bar with dots */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div
+            className="transition-all duration-500"
             style={{
               width: '6px',
               height: '6px',
               borderRadius: '50%',
-              backgroundColor: 'rgba(10, 10, 10, 0.25)',
+              backgroundColor: isVisible ? 'rgba(10, 10, 10, 0.4)' : 'rgba(10, 10, 10, 0.25)',
               flexShrink: 0
             }}
           />
           <div
+            className="transition-transform duration-700"
             style={{
               flex: 1,
               height: '1px',
-              backgroundColor: 'rgba(10, 10, 10, 0.15)'
+              backgroundColor: 'rgba(10, 10, 10, 0.15)',
+              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+              transitionDelay: '300ms'
             }}
           />
           <div
+            className="transition-all duration-500"
             style={{
               width: '6px',
               height: '6px',
               borderRadius: '50%',
-              backgroundColor: 'rgba(10, 10, 10, 0.25)',
-              flexShrink: 0
+              backgroundColor: isVisible ? 'rgba(10, 10, 10, 0.4)' : 'rgba(10, 10, 10, 0.25)',
+              flexShrink: 0,
+              transitionDelay: '600ms'
             }}
           />
         </div>
@@ -117,19 +124,25 @@ const LogoMarquee = () => {
         {/* Labels */}
         <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
           <span
+            className="transition-opacity duration-500"
             style={{
               fontSize: '13px',
               fontWeight: '500',
-              color: 'rgba(10, 10, 10, 0.4)'
+              color: 'rgba(10, 10, 10, 0.4)',
+              opacity: isVisible ? 1 : 0,
+              transitionDelay: '400ms'
             }}
           >
             2017
           </span>
           <span
+            className="transition-opacity duration-500"
             style={{
               fontSize: '13px',
               fontWeight: '500',
-              color: 'rgba(10, 10, 10, 0.4)'
+              color: 'rgba(10, 10, 10, 0.4)',
+              opacity: isVisible ? 1 : 0,
+              transitionDelay: '700ms'
             }}
           >
             2025
@@ -137,21 +150,8 @@ const LogoMarquee = () => {
         </div>
       </div>
 
-      {/* CSS Animation */}
+      {/* Mobile Styles */}
       <style>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-        
-        .animate-marquee {
-          animation: marquee 40s linear infinite;
-        }
-
         @media (max-width: 768px) {
           section > div:last-child {
             padding: 0 24px !important;

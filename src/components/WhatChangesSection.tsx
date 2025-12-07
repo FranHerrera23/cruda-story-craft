@@ -1,4 +1,4 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useStaggerAnimation } from "@/hooks/useStaggerAnimation";
 
 const changes = [
   "You walk into a room and they already know who you are",
@@ -9,11 +9,11 @@ const changes = [
 ];
 
 const WhatChangesSection = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(changes.length, 100);
 
   return (
     <section 
-      ref={elementRef} 
+      ref={containerRef} 
       style={{ 
         backgroundColor: '#FFFFFF',
         padding: '160px 80px'
@@ -41,30 +41,35 @@ const WhatChangesSection = () => {
         <div style={{ maxWidth: '800px' }}>
           {/* Initial divider */}
           <div
+            className="transition-all duration-500"
             style={{
               height: '1px',
               backgroundColor: 'rgba(10, 10, 10, 0.1)',
-              marginTop: '24px'
+              marginTop: '24px',
+              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
+              transformOrigin: 'left'
             }}
           />
 
-          {/* List */}
+          {/* List with staggered animation */}
           {changes.map((change, index) => (
             <div
               key={index}
-              className="transition-all duration-700"
+              className="stagger-item hover-glow"
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
                 padding: '36px 0',
                 borderBottom: '1px solid rgba(10, 10, 10, 0.1)',
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 100}ms`
+                opacity: visibleItems[index] ? 1 : 0,
+                transform: visibleItems[index] ? 'translateY(0)' : 'translateY(16px)',
+                transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1)',
+                cursor: 'default'
               }}
             >
-              {/* Arrow */}
+              {/* Arrow with hover animation */}
               <span 
+                className="transition-transform duration-300"
                 style={{ 
                   fontSize: '22px',
                   color: '#FF2E63', 
@@ -101,6 +106,10 @@ const WhatChangesSection = () => {
           section p {
             font-size: 18px !important;
           }
+        }
+        
+        .stagger-item:hover span {
+          transform: translateX(4px);
         }
       `}</style>
     </section>

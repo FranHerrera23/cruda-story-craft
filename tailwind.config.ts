@@ -119,6 +119,22 @@ export default {
             opacity: "1",
             transform: "translateY(0)" 
           }
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" }
+        },
+        "progress-fill": {
+          "0%": { transform: "scaleX(0)" },
+          "100%": { transform: "scaleX(1)" }
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-8px)" }
+        },
+        breathe: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.02)" }
         }
       },
       animation: {
@@ -127,6 +143,10 @@ export default {
         "reveal": "reveal 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards",
         "fade-in": "fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards",
         "drift-up": "drift 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards",
+        "marquee": "marquee 40s linear infinite",
+        "progress-fill": "progress-fill 1s cubic-bezier(0.33, 1, 0.68, 1) forwards",
+        "float": "float 3s ease-in-out infinite",
+        "breathe": "breathe 4s ease-in-out infinite",
       },
       transitionTimingFunction: {
         'cruda': 'cubic-bezier(0.33, 1, 0.68, 1)',

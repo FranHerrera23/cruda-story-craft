@@ -25,18 +25,18 @@ const HowWeWorkSection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#FFFFFF',
-        padding: '160px 60px'
+        backgroundColor: '#F7F7F7',
+        padding: '160px 80px'
       }}
     >
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Section header */}
         <p
           className="transition-all duration-700"
           style={{
-            fontSize: '14px',
+            fontSize: '13px',
             fontWeight: '600',
-            letterSpacing: '0.1em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color: 'rgba(10, 10, 10, 0.4)',
             marginBottom: '80px',
@@ -50,7 +50,7 @@ const HowWeWorkSection = () => {
         {/* Three columns */}
         <div 
           className="grid grid-cols-1 md:grid-cols-3"
-          style={{ gap: '60px' }}
+          style={{ gap: '48px', maxWidth: '1100px' }}
         >
           {steps.map((step, index) => (
             <div
@@ -65,10 +65,12 @@ const HowWeWorkSection = () => {
               {/* Number */}
               <p
                 style={{
-                  fontSize: 'clamp(56px, 5vw, 72px)',
+                  fontSize: '100px',
                   fontWeight: '700',
-                  color: 'rgba(10, 10, 10, 0.08)',
-                  marginBottom: '24px'
+                  color: 'rgba(10, 10, 10, 0.06)',
+                  lineHeight: '1',
+                  marginBottom: '24px',
+                  fontFeatureSettings: '"tnum"'
                 }}
               >
                 {step.number}
@@ -77,9 +79,10 @@ const HowWeWorkSection = () => {
               {/* Title */}
               <p
                 style={{
-                  fontSize: '28px',
+                  fontSize: '26px',
                   fontWeight: '600',
                   color: '#0A0A0A',
+                  lineHeight: '1.3',
                   marginBottom: '16px'
                 }}
               >
@@ -89,10 +92,10 @@ const HowWeWorkSection = () => {
               {/* Description */}
               <p
                 style={{
-                  fontSize: '18px',
+                  fontSize: '17px',
                   fontWeight: '400',
                   color: 'rgba(10, 10, 10, 0.6)',
-                  lineHeight: '1.6'
+                  lineHeight: '1.7'
                 }}
               >
                 {step.description}
@@ -106,36 +109,85 @@ const HowWeWorkSection = () => {
           className="transition-all duration-700"
           style={{
             marginTop: '100px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px',
+            position: 'relative',
+            maxWidth: '1100px',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '400ms'
           }}
         >
-          <span style={{ fontSize: '14px', color: 'rgba(10, 10, 10, 0.4)' }}>Month 1</span>
-          <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(10, 10, 10, 0.2)' }} />
-          <div style={{ flex: 1, height: '2px', backgroundColor: 'rgba(10, 10, 10, 0.1)' }} />
-          <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(10, 10, 10, 0.2)' }} />
-          <span style={{ fontSize: '14px', color: 'rgba(10, 10, 10, 0.4)' }}>Month 4</span>
+          {/* Bar with dots */}
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(10, 10, 10, 0.25)',
+                flexShrink: 0
+              }}
+            />
+            <div
+              style={{
+                flex: 1,
+                height: '2px',
+                backgroundColor: 'rgba(10, 10, 10, 0.15)'
+              }}
+            />
+            <div
+              style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(10, 10, 10, 0.25)',
+                flexShrink: 0
+              }}
+            />
+          </div>
+
+          {/* Labels */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+            <span
+              style={{
+                fontSize: '14px',
+                fontWeight: '500',
+                color: 'rgba(10, 10, 10, 0.5)'
+              }}
+            >
+              Month 1
+            </span>
+            <span
+              style={{
+                fontSize: '14px',
+                fontWeight: '500',
+                color: 'rgba(10, 10, 10, 0.5)'
+              }}
+            >
+              Month 4
+            </span>
+          </div>
         </div>
 
-        {/* What We Need */}
+        {/* What We Need Box */}
         <div
           className="transition-all duration-700"
           style={{
             marginTop: '80px',
+            backgroundColor: '#FFFFFF',
+            padding: '40px 48px',
+            borderRadius: '8px',
+            maxWidth: '500px',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '500ms'
           }}
         >
           <p
             style={{
-              fontSize: '12px',
+              fontSize: '11px',
               fontWeight: '600',
-              letterSpacing: '0.1em',
+              letterSpacing: '0.15em',
               textTransform: 'uppercase',
-              color: 'rgba(10, 10, 10, 0.4)'
+              color: 'rgba(10, 10, 10, 0.4)',
+              marginBottom: '16px'
             }}
           >
             What we need from you
@@ -144,8 +196,8 @@ const HowWeWorkSection = () => {
             style={{
               fontSize: '20px',
               fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.7)',
-              marginTop: '16px'
+              color: '#0A0A0A',
+              lineHeight: '1.5'
             }}
           >
             One hour a week. WhatsApp. And guts.
@@ -158,6 +210,9 @@ const HowWeWorkSection = () => {
         @media (max-width: 768px) {
           section {
             padding: 120px 24px !important;
+          }
+          section .grid > div > p:first-child {
+            font-size: 72px !important;
           }
         }
       `}</style>

@@ -1,6 +1,5 @@
 import HeroManifesto from "@/components/HeroManifesto";
 import BeliefSection from "@/components/BeliefSection";
-import TheChangeSection from "@/components/TheChangeSection";
 import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import WhoTrustsUsSection from "@/components/WhoTrustsUsSection";
@@ -13,37 +12,32 @@ import CTASection from "@/components/CTASection";
 const Index = () => {
   return (
     <main className="overflow-x-hidden">
-      {/* Section 1: Hero - White */}
+      {/* Section 1: Hero */}
       <HeroManifesto />
       
-      {/* Section 2: Belief - Light gray */}
+      {/* Section 2: Belief */}
       <BeliefSection />
       
-      {/* Section 3: The Change - White */}
-      <TheChangeSection />
-      
-      {/* Section 4: What Changes - Light gray */}
+      {/* Section 3: What Changes */}
       <WhatChangesSection />
       
-      {/* Section 5: How It Works - White */}
+      {/* Section 4: How It Works */}
       <HowWeWorkSection />
       
-      {/* Section 6: Who Trusts Us - Light gray */}
+      {/* Section 5: Who Trusts Us */}
       <WhoTrustsUsSection />
       
-      {/* Section 7: Before/After - White */}
+      {/* Section 6: Before/After */}
       <BeforeAfterSection />
       
-      {/* Section 8: Testimonial - Dark */}
+      {/* Section 7: Testimonial */}
       <TestimonialSection />
       
-      {/* Section 9: Credibility - Dark */}
+      {/* Section 8: Credibility + Logo Marquee */}
       <CredibilitySection />
-      
-      {/* Section 10: Logo Marquee - White */}
       <LogoMarquee />
       
-      {/* Section 11: CTA - Light gray */}
+      {/* Section 9: CTA */}
       <CTASection />
     </main>
   );

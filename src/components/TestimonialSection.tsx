@@ -8,15 +8,19 @@ const TestimonialSection = () => {
       ref={elementRef} 
       style={{ 
         backgroundColor: '#0A0A0A',
-        padding: '180px 60px'
+        padding: '200px 80px',
+        minHeight: '80vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
       }}
     >
-      <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ maxWidth: '900px', textAlign: 'center' }}>
         {/* Quote */}
         <blockquote
           className="transition-all duration-700"
           style={{
-            fontSize: 'clamp(28px, 3.5vw, 42px)',
+            fontSize: '44px',
             fontWeight: '400',
             fontStyle: 'italic',
             color: '#FFFFFF',
@@ -32,10 +36,10 @@ const TestimonialSection = () => {
         <p
           className="transition-all duration-700"
           style={{
-            fontSize: '18px',
+            fontSize: '17px',
             fontWeight: '400',
             color: 'rgba(255, 255, 255, 0.5)',
-            marginTop: '40px',
+            marginTop: '48px',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '200ms'
           }}
@@ -49,6 +53,10 @@ const TestimonialSection = () => {
         @media (max-width: 768px) {
           section {
             padding: 120px 24px !important;
+            min-height: auto !important;
+          }
+          section blockquote {
+            font-size: 28px !important;
           }
         }
       `}</style>

@@ -8,97 +8,54 @@ const CTASection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#FAFAFA',
-        padding: '160px 60px',
+        backgroundColor: '#F7F7F7',
+        padding: '160px 80px',
         textAlign: 'center'
       }}
     >
       <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-        {/* Price */}
+        {/* Headline */}
         <h2
           className="transition-all duration-700"
           style={{
-            fontSize: 'clamp(56px, 6vw, 80px)',
-            fontWeight: '700',
+            fontSize: '48px',
+            fontWeight: '600',
             color: '#0A0A0A',
-            letterSpacing: '-0.03em',
+            marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'scale(1)' : 'scale(0.95)'
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          $7,200
+          Ready when you are.
         </h2>
-
-        {/* Subline */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '22px',
-            fontWeight: '400',
-            color: 'rgba(10, 10, 10, 0.6)',
-            marginTop: '20px',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '100ms'
-          }}
-        >
-          Four months. Founder-led. Everything included.
-        </p>
-
-        {/* Breakdown */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '16px',
-            color: 'rgba(10, 10, 10, 0.4)',
-            marginTop: '12px',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '150ms'
-          }}
-        >
-          $1,800/month if that's easier.
-        </p>
 
         {/* CTA Button */}
         <Link
           to="/book-call"
-          className="inline-block transition-all duration-300"
+          className="inline-block"
           style={{
             backgroundColor: '#FF2E63',
             color: '#FFFFFF',
             fontSize: '18px',
             fontWeight: '600',
-            padding: '22px 48px',
+            padding: '24px 56px',
             borderRadius: '8px',
-            marginTop: '48px',
             textDecoration: 'none',
             opacity: isVisible ? 1 : 0,
-            transitionDelay: '200ms'
+            transition: 'all 0.2s ease',
+            transitionDelay: '100ms'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#E61E53';
-            e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
+            e.currentTarget.style.backgroundColor = '#E8284A';
+            e.currentTarget.style.transform = 'translateY(-2px)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = '#FF2E63';
-            e.currentTarget.style.boxShadow = 'none';
+            e.currentTarget.style.transform = 'translateY(0)';
           }}
         >
           Start a Conversation
         </Link>
-
-        {/* Scarcity */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '15px',
-            color: 'rgba(10, 10, 10, 0.4)',
-            marginTop: '24px',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '300ms'
-          }}
-        >
-          We take one client per month. January is open.
-        </p>
       </div>
 
       {/* Mobile Styles */}
@@ -106,6 +63,13 @@ const CTASection = () => {
         @media (max-width: 768px) {
           section {
             padding: 120px 24px !important;
+          }
+          section h2 {
+            font-size: 36px !important;
+          }
+          section a {
+            width: 100% !important;
+            max-width: 320px !important;
           }
         }
       `}</style>

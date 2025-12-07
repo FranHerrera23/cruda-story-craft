@@ -6,12 +6,12 @@ const BeforeAfterSection = () => {
   return (
     <section 
       ref={elementRef} 
-      className="py-20 md:py-[100px] px-6 md:px-[60px]" 
+      className="py-[80px] md:py-[120px] px-6 md:px-[60px]" 
       style={{ backgroundColor: '#FAFAFA' }}
     >
       <div className="max-w-[1000px] mx-auto">
         {/* Two columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-[60px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
           {/* Before Column */}
           <div
             className="transition-all duration-700"
@@ -27,8 +27,8 @@ const BeforeAfterSection = () => {
               BEFORE
             </p>
             <p 
-              className="text-[20px] leading-[1.6] italic"
-              style={{ color: 'rgba(26, 26, 26, 0.6)' }}
+              className="text-[22px] leading-[1.6] italic"
+              style={{ color: 'rgba(26, 26, 26, 0.4)' }}
             >
               "TRAZZO is a premier lighting design firm with over thirty years of experience, committed to excellence and innovation in architectural illumination."
             </p>
@@ -50,7 +50,7 @@ const BeforeAfterSection = () => {
               AFTER
             </p>
             <p 
-              className="text-[20px] leading-[1.6] font-medium"
+              className="text-[22px] leading-[1.5] font-semibold"
               style={{ color: '#1A1A1A' }}
             >
               "TRAZZO: Lighting partner to Robert A.M. Stern Architects. Three projects. Seven years. From Lima to Miami."

@@ -4,7 +4,6 @@ import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import WhoTrustsUsSection from "@/components/WhoTrustsUsSection";
 import BeforeAfterSection from "@/components/BeforeAfterSection";
-import TestimonialSection from "@/components/TestimonialSection";
 import CredibilitySection from "@/components/CredibilitySection";
 import LogoMarquee from "@/components/LogoMarquee";
 import CTASection from "@/components/CTASection";
@@ -30,10 +29,7 @@ const Index = () => {
       {/* Section 6: Before/After */}
       <BeforeAfterSection />
       
-      {/* Section 7: Testimonial */}
-      <TestimonialSection />
-      
-      {/* Section 8: Credibility + Logo Marquee */}
+      {/* Section 7: Credibility + Logo Marquee */}
       <CredibilitySection />
       <LogoMarquee />
       

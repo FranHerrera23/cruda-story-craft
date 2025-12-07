@@ -58,11 +58,11 @@ const WhoTrustsUsSection = () => {
             <Link
               key={index}
               to={`/clients/${client.slug}`}
-              className="block transition-all duration-300"
+              className="group block transition-all duration-300"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 100}ms`
+                transitionDelay: `${(index + 1) * 150}ms`
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
@@ -71,7 +71,7 @@ const WhoTrustsUsSection = () => {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              {/* Photo */}
+              {/* Photo with scale on hover */}
               <div 
                 style={{ 
                   aspectRatio: '4/3', 
@@ -82,6 +82,7 @@ const WhoTrustsUsSection = () => {
                 <img
                   src={client.photo}
                   alt={client.name}
+                  className="transition-transform duration-500 group-hover:scale-[1.03]"
                   style={{
                     width: '100%',
                     height: '100%',

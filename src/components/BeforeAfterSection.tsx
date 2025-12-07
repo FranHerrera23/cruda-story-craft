@@ -7,15 +7,15 @@ const BeforeAfterSection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#FFFFFF',
-        padding: '160px 60px'
+        backgroundColor: '#F7F7F7',
+        padding: '160px 80px'
       }}
     >
-      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Two columns */}
         <div 
           className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: '80px' }}
+          style={{ gap: '80px', maxWidth: '1000px', alignItems: 'start' }}
         >
           {/* Before Column */}
           <div
@@ -29,10 +29,10 @@ const BeforeAfterSection = () => {
               style={{
                 fontSize: '12px',
                 fontWeight: '600',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: 'rgba(10, 10, 10, 0.3)',
-                marginBottom: '20px'
+                color: 'rgba(10, 10, 10, 0.35)',
+                marginBottom: '24px'
               }}
             >
               BEFORE
@@ -42,7 +42,7 @@ const BeforeAfterSection = () => {
                 fontSize: '22px',
                 fontStyle: 'italic',
                 fontWeight: '400',
-                color: 'rgba(10, 10, 10, 0.4)',
+                color: 'rgba(10, 10, 10, 0.35)',
                 lineHeight: '1.6'
               }}
             >
@@ -63,10 +63,10 @@ const BeforeAfterSection = () => {
               style={{
                 fontSize: '12px',
                 fontWeight: '600',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: 'rgba(10, 10, 10, 0.3)',
-                marginBottom: '20px'
+                color: 'rgba(10, 10, 10, 0.35)',
+                marginBottom: '24px'
               }}
             >
               AFTER
@@ -89,9 +89,10 @@ const BeforeAfterSection = () => {
           className="transition-all duration-700"
           style={{ 
             fontSize: '18px',
+            fontWeight: '400',
             color: 'rgba(10, 10, 10, 0.5)',
             textAlign: 'center',
-            marginTop: '60px',
+            marginTop: '80px',
             opacity: isVisible ? 1 : 0,
             transitionDelay: '300ms'
           }}

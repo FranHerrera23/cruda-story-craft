@@ -27,21 +27,21 @@ const HeroManifesto = () => {
 
   return (
     <section 
-      className="min-h-[90vh] flex items-center"
+      className="min-h-screen flex items-center"
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '120px 60px 160px 60px'
+        padding: '120px 80px 160px 80px'
       }}
     >
-      <div className="max-w-[1200px] mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-16 lg:gap-12 items-center">
-          {/* Left Side - Text Content */}
-          <div>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Text Content */}
+          <div style={{ maxWidth: '560px' }}>
             <h1 
               style={{ 
-                fontSize: 'clamp(48px, 5vw, 72px)',
+                fontSize: '80px',
                 fontWeight: '700',
-                lineHeight: '1.0',
+                lineHeight: '0.95',
                 letterSpacing: '-0.03em',
                 color: '#0A0A0A'
               }}
@@ -87,12 +87,12 @@ const HeroManifesto = () => {
             {/* Subline */}
             <p 
               style={{ 
-                fontSize: 'clamp(20px, 2vw, 24px)',
+                fontSize: '24px',
                 fontWeight: '400',
                 lineHeight: '1.5',
                 color: 'rgba(10, 10, 10, 0.7)',
-                marginTop: '40px',
-                maxWidth: '500px',
+                marginTop: '48px',
+                maxWidth: '440px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
@@ -105,12 +105,12 @@ const HeroManifesto = () => {
             {/* What We Do */}
             <p
               style={{
-                fontSize: '18px',
+                fontSize: '17px',
                 fontWeight: '400',
-                lineHeight: '1.6',
-                color: 'rgba(10, 10, 10, 0.6)',
-                marginTop: '32px',
-                maxWidth: '480px',
+                lineHeight: '1.7',
+                color: 'rgba(10, 10, 10, 0.55)',
+                marginTop: '28px',
+                maxWidth: '420px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s"
@@ -122,27 +122,27 @@ const HeroManifesto = () => {
             {/* CTA Button */}
             <Link 
               to="/book-call"
-              className="inline-block transition-all duration-300"
+              className="inline-block"
               style={{ 
                 background: '#FF2E63',
                 color: '#FFFFFF',
                 fontSize: '16px',
                 fontWeight: '600',
-                padding: '20px 40px',
+                padding: '20px 44px',
                 borderRadius: '8px',
                 textDecoration: 'none',
                 marginTop: '48px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s"
+                transition: "all 0.2s ease"
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#E61E53';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(255, 46, 99, 0.3)';
+                e.currentTarget.style.background = '#E8284A';
+                e.currentTarget.style.transform = 'translateY(-2px)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.background = '#FF2E63';
-                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
               Start a Conversation
@@ -151,9 +151,10 @@ const HeroManifesto = () => {
             {/* Proof Line */}
             <p
               style={{
-                fontSize: '14px',
+                fontSize: '13px',
                 fontWeight: '400',
                 color: 'rgba(10, 10, 10, 0.4)',
+                letterSpacing: '0.01em',
                 marginTop: '48px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
@@ -164,14 +165,15 @@ const HeroManifesto = () => {
             </p>
           </div>
           
-          {/* Right Side - Image */}
+          {/* Right Column - Photo */}
           <div className="relative order-first lg:order-last">
             <img
               src={franCallImage}
               alt="Fran Herrera, Founder of CRUDA"
               className="w-full h-auto block"
               style={{
-                objectFit: 'cover'
+                objectFit: 'cover',
+                borderRadius: '4px'
               }}
             />
           </div>
@@ -183,6 +185,9 @@ const HeroManifesto = () => {
         @media (max-width: 1024px) {
           section {
             padding: 80px 24px !important;
+          }
+          section h1 {
+            font-size: 48px !important;
           }
         }
       `}</style>

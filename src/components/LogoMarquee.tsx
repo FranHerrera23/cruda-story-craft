@@ -43,9 +43,9 @@ const LogoMarquee = () => {
             <span
               key={`logo-1-${index}`}
               style={{
-                fontSize: '24px',
+                fontSize: '22px',
                 fontWeight: '500',
-                color: 'rgba(10, 10, 10, 0.3)',
+                color: 'rgba(10, 10, 10, 0.25)',
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
                 flexShrink: 0
@@ -59,9 +59,9 @@ const LogoMarquee = () => {
             <span
               key={`logo-2-${index}`}
               style={{
-                fontSize: '24px',
+                fontSize: '22px',
                 fontWeight: '500',
-                color: 'rgba(10, 10, 10, 0.3)',
+                color: 'rgba(10, 10, 10, 0.25)',
                 letterSpacing: '0.02em',
                 whiteSpace: 'nowrap',
                 flexShrink: 0
@@ -77,57 +77,64 @@ const LogoMarquee = () => {
       <div 
         className="transition-opacity duration-700"
         style={{ 
-          marginTop: '40px',
-          maxWidth: '1200px',
-          margin: '40px auto 0',
-          padding: '0 60px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
+          marginTop: '48px',
+          maxWidth: '1000px',
+          margin: '48px auto 0',
+          padding: '0 80px',
           opacity: isVisible ? 1 : 0,
           transitionDelay: '400ms'
         }}
       >
-        {/* Left Label */}
-        <span style={{ fontSize: '14px', color: 'rgba(10, 10, 10, 0.4)' }}>
-          2017
-        </span>
+        {/* Bar with dots */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(10, 10, 10, 0.25)',
+              flexShrink: 0
+            }}
+          />
+          <div
+            style={{
+              flex: 1,
+              height: '1px',
+              backgroundColor: 'rgba(10, 10, 10, 0.15)'
+            }}
+          />
+          <div
+            style={{
+              width: '6px',
+              height: '6px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(10, 10, 10, 0.25)',
+              flexShrink: 0
+            }}
+          />
+        </div>
 
-        {/* Left Dot */}
-        <div 
-          style={{ 
-            width: '6px', 
-            height: '6px', 
-            borderRadius: '50%', 
-            backgroundColor: 'rgba(10, 10, 10, 0.15)',
-            flexShrink: 0
-          }}
-        />
-
-        {/* Line */}
-        <div 
-          style={{ 
-            flex: 1, 
-            height: '1px', 
-            backgroundColor: 'rgba(10, 10, 10, 0.15)' 
-          }}
-        />
-
-        {/* Right Dot */}
-        <div 
-          style={{ 
-            width: '6px', 
-            height: '6px', 
-            borderRadius: '50%', 
-            backgroundColor: 'rgba(10, 10, 10, 0.15)',
-            flexShrink: 0
-          }}
-        />
-
-        {/* Right Label */}
-        <span style={{ fontSize: '14px', color: 'rgba(10, 10, 10, 0.4)' }}>
-          2025
-        </span>
+        {/* Labels */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '16px' }}>
+          <span
+            style={{
+              fontSize: '13px',
+              fontWeight: '500',
+              color: 'rgba(10, 10, 10, 0.4)'
+            }}
+          >
+            2017
+          </span>
+          <span
+            style={{
+              fontSize: '13px',
+              fontWeight: '500',
+              color: 'rgba(10, 10, 10, 0.4)'
+            }}
+          >
+            2025
+          </span>
+        </div>
       </div>
 
       {/* CSS Animation */}

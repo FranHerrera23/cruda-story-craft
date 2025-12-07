@@ -7,7 +7,7 @@ const clients = [
   {
     slug: "karen-mannheim",
     name: "Karen Mannheim",
-    title: "Architectural Lighting Designer · TRAZZO Lighting",
+    title: "Architectural Lighting Designer · TRAZZO",
     photo: karenPhoto,
     quote: "Fran helped us articulate what made our work different in a way our clients finally understood."
   },
@@ -27,18 +27,18 @@ const WhoTrustsUsSection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#FAFAFA',
-        padding: '160px 60px'
+        backgroundColor: '#FFFFFF',
+        padding: '160px 80px'
       }}
     >
-      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         {/* Section header */}
         <p
           className="transition-all duration-700"
           style={{
-            fontSize: '14px',
+            fontSize: '13px',
             fontWeight: '600',
-            letterSpacing: '0.1em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color: 'rgba(10, 10, 10, 0.4)',
             marginBottom: '60px',
@@ -52,7 +52,7 @@ const WhoTrustsUsSection = () => {
         {/* Two cards grid */}
         <div 
           className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: '48px' }}
+          style={{ gap: '48px', maxWidth: '1000px' }}
         >
           {clients.map((client, index) => (
             <Link
@@ -72,7 +72,13 @@ const WhoTrustsUsSection = () => {
               }}
             >
               {/* Photo */}
-              <div style={{ aspectRatio: '4/3', overflow: 'hidden' }}>
+              <div 
+                style={{ 
+                  aspectRatio: '4/3', 
+                  overflow: 'hidden',
+                  borderRadius: '4px'
+                }}
+              >
                 <img
                   src={client.photo}
                   alt={client.name}
@@ -90,7 +96,8 @@ const WhoTrustsUsSection = () => {
                   fontSize: '24px',
                   fontWeight: '600',
                   color: '#0A0A0A',
-                  marginTop: '24px'
+                  marginTop: '28px',
+                  marginBottom: '8px'
                 }}
               >
                 {client.name}
@@ -99,9 +106,10 @@ const WhoTrustsUsSection = () => {
               {/* Title */}
               <p
                 style={{
-                  fontSize: '16px',
+                  fontSize: '15px',
+                  fontWeight: '400',
                   color: 'rgba(10, 10, 10, 0.5)',
-                  marginTop: '8px'
+                  marginBottom: '20px'
                 }}
               >
                 {client.title}
@@ -110,11 +118,11 @@ const WhoTrustsUsSection = () => {
               {/* Quote */}
               <p
                 style={{
-                  fontSize: '18px',
+                  fontSize: '17px',
+                  fontWeight: '400',
                   fontStyle: 'italic',
                   color: 'rgba(10, 10, 10, 0.7)',
-                  lineHeight: '1.6',
-                  marginTop: '20px'
+                  lineHeight: '1.6'
                 }}
               >
                 "{client.quote}"

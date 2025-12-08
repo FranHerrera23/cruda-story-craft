@@ -148,19 +148,21 @@ const HeroManifesto = () => {
               Start a Conversation
             </Link>
 
-            {/* Punk Line */}
+            {/* Trusted By Line */}
             <p
               style={{
-                fontSize: '15px',
+                fontSize: '13px',
                 fontWeight: '500',
-                color: '#0A0A0A',
+                color: 'rgba(10, 10, 10, 0.5)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
                 marginTop: '48px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s"
               }}
             >
-              People don't hire us for content. They hire us for clarity.
+              trusted by
             </p>
 
             {/* Proof Line */}

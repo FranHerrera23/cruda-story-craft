@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useStaggerAnimation } from "@/hooks/useStaggerAnimation";
 import { useState, useEffect, useRef } from "react";
+import mikeKaeding from "@/assets/mike-kaeding.webp";
 
 // Animated counter hook
 const useCountUp = (end: number, duration: number = 1500, trigger: boolean = true) => {
@@ -29,7 +30,26 @@ const useCountUp = (end: number, duration: number = 1500, trigger: boolean = tru
   return count;
 };
 
-// Data for How It Works section
+// Data
+const comparisonRows = [
+  {
+    cruda: "Brand + PR + Content + Sales",
+    others: "Social agencies don't get PR. PR firms don't get social. Freelancers don't get strategy."
+  },
+  {
+    cruda: "One team. One vision.",
+    others: "Silos. Handoffs. Gaps."
+  },
+  {
+    cruda: "4 months to a system.",
+    others: "6–12 months. Maybe."
+  },
+  {
+    cruda: "$7,200 flat.",
+    others: "$15k–50k+ retainers"
+  }
+];
+
 const month1WhatWeNeed = [
   "Access to your project portfolio",
   "Company milestones and proof points",
@@ -54,35 +74,26 @@ const months24WhatWeDeliver = [
   "Monthly refinement"
 ];
 
+const youreHereReasons = [
+  "You're entering a new market and need people to trust you before you walk in the room.",
+  "You've done incredible work — but nobody outside your clients knows about it.",
+  "You want investors, partners, and talent to get it without you explaining it every time.",
+  "You're tired of sounding like everyone else in your industry."
+];
+
 const commitmentLines = [
   "Access to your portfolio and milestones.",
   "One hour a week.",
   "Feedback over WhatsApp."
 ];
 
-const outcomeCards = [
-  {
-    title: "Market Expansion",
-    description: "Enter new markets with clarity that opens doors.",
-    proof: "TRAZZO: Lima → Florida"
-  },
-  {
-    title: "Thought Leadership",
-    description: "Become the voice your industry listens to.",
-    proof: "Norhart: Stages, podcasts, investor rooms"
-  },
-  {
-    title: "Reputation at Scale",
-    description: "Your story working across every surface — without you.",
-    proof: "LinkedIn, pitch decks, press, stages, every room"
-  }
-];
-
 const Pricing = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: comparisonRef, isVisible: comparisonVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: howRef, isVisible: howVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: timelineRef, isVisible: timelineVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: outcomesRef, isVisible: outcomesVisible } = useScrollAnimation<HTMLElement>();
+  const { containerRef: reasonsRef, isVisible: reasonsVisible, visibleItems: reasonsVisibleItems } = useStaggerAnimation<HTMLElement>(youreHereReasons.length, 150);
+  const { elementRef: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation<HTMLElement>();
   const { containerRef: commitmentRef, isVisible: commitmentVisible, visibleItems: commitmentVisibleItems } = useStaggerAnimation<HTMLElement>(commitmentLines.length, 150);
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
@@ -116,10 +127,10 @@ const Pricing = () => {
       {/* SECTION 1: HERO */}
       <section 
         ref={heroRef}
-        className="min-h-screen flex flex-col justify-center items-center text-center px-6 md:px-20 py-24 md:py-40"
+        className="min-h-[90vh] flex flex-col justify-center items-center text-center px-6 md:px-20 py-20 md:py-32"
         style={{ backgroundColor: '#FFFFFF' }}
       >
-        <div style={{ maxWidth: '700px' }}>
+        <div style={{ maxWidth: '600px' }}>
           {/* Price */}
           <h1
             className="transition-all duration-700 text-[72px] md:text-[120px]"
@@ -127,7 +138,7 @@ const Pricing = () => {
               fontWeight: '700',
               color: '#0A0A0A',
               letterSpacing: '-0.03em',
-              lineHeight: '1',
+              lineHeight: '0.9',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(30px)'
             }}
@@ -135,54 +146,57 @@ const Pricing = () => {
             ${priceCount.toLocaleString()}
           </h1>
 
-          {/* Three Value Props */}
-          <div className="mt-12 flex flex-col gap-2">
-            {[
-              "The depth of an agency.",
-              "The speed of a freelancer.",
-              "The confidentiality of an in-house team."
-            ].map((line, index) => (
-              <p
-                key={index}
-                className="transition-all duration-700 text-[20px] md:text-[28px]"
-                style={{
-                  fontWeight: '400',
-                  color: '#0A0A0A',
-                  lineHeight: '1.6',
-                  opacity: heroVisible ? 1 : 0,
-                  transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transitionDelay: `${200 + index * 150}ms`
-                }}
-              >
-                {line}
-              </p>
-            ))}
-          </div>
+          {/* Statement */}
+          <p
+            className="transition-all duration-700 text-[24px] md:text-[32px] mt-8"
+            style={{
+              fontWeight: '400',
+              color: '#0A0A0A',
+              lineHeight: '1.4',
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '200ms'
+            }}
+          >
+            Narrative strategy for leaders<br />
+            who are done being invisible.
+          </p>
+
+          {/* Divider */}
+          <div
+            className="transition-all duration-700 mx-auto my-10"
+            style={{
+              width: '80px',
+              height: '1px',
+              backgroundColor: 'rgba(10, 10, 10, 0.2)',
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'scaleX(1)' : 'scaleX(0)',
+              transitionDelay: '400ms'
+            }}
+          />
 
           {/* Subline */}
           <p
-            className="transition-all duration-700 text-[18px] md:text-[20px]"
+            className="transition-all duration-700 text-[18px]"
             style={{
               fontWeight: '500',
               color: 'rgba(10, 10, 10, 0.6)',
-              marginTop: '40px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '650ms'
+              transitionDelay: '500ms'
             }}
           >
-            Your 4-month kick-off. Founder-led. Done for you.
+            Your 4-month kick-off. Done for you.
           </p>
 
           {/* Alternative */}
           <p
-            className="transition-all duration-700 text-[14px] md:text-[16px]"
+            className="transition-all duration-700 text-[15px] mt-2"
             style={{
               color: 'rgba(10, 10, 10, 0.4)',
-              marginTop: '16px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '750ms'
+              transitionDelay: '600ms'
             }}
           >
             $1,800/month if that's easier.
@@ -191,18 +205,18 @@ const Pricing = () => {
           {/* CTA Button */}
           <Link
             to="/book-call"
-            className="inline-block transition-all duration-300 mt-12 hover:opacity-90"
+            className="inline-block transition-all duration-300 mt-10 hover:translate-y-[-2px]"
             style={{
               backgroundColor: '#FF2E63',
               color: '#FFFFFF',
-              padding: '20px 44px',
-              fontSize: '16px',
+              padding: '18px 40px',
+              fontSize: '15px',
               fontWeight: '600',
-              borderRadius: '8px',
+              borderRadius: '6px',
               textDecoration: 'none',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '850ms'
+              transitionDelay: '700ms'
             }}
           >
             Start a Conversation
@@ -210,11 +224,80 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* SECTION 2: HOW IT WORKS */}
+      {/* SECTION 2: COMPARISON TABLE */}
+      <section
+        ref={comparisonRef}
+        className="py-24 md:py-32 px-6 md:px-20"
+        style={{ backgroundColor: '#F7F7F7' }}
+      >
+        <div className="max-w-[900px] mx-auto">
+          {/* Headers */}
+          <div
+            className="transition-all duration-700 grid grid-cols-2 gap-8 md:gap-16 mb-10"
+            style={{
+              opacity: comparisonVisible ? 1 : 0,
+              transform: comparisonVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
+            <p
+              className="text-[14px] md:text-[15px] font-semibold uppercase"
+              style={{ letterSpacing: '0.05em', color: '#0A0A0A' }}
+            >
+              CRUDA
+            </p>
+            <p
+              className="text-[14px] md:text-[15px] font-semibold uppercase"
+              style={{ letterSpacing: '0.05em', color: 'rgba(10, 10, 10, 0.4)' }}
+            >
+              THE OTHERS
+            </p>
+          </div>
+
+          {/* Rows */}
+          {comparisonRows.map((row, i) => (
+            <div key={i}>
+              {/* Divider */}
+              <div
+                className="transition-all duration-700"
+                style={{
+                  height: '1px',
+                  backgroundColor: 'rgba(10, 10, 10, 0.08)',
+                  opacity: comparisonVisible ? 1 : 0,
+                  transform: comparisonVisible ? 'scaleX(1)' : 'scaleX(0)',
+                  transformOrigin: 'left',
+                  transitionDelay: `${100 + i * 100}ms`
+                }}
+              />
+              
+              <div
+                className="transition-all duration-700 grid grid-cols-2 gap-8 md:gap-16 py-8"
+                style={{
+                  opacity: comparisonVisible ? 1 : 0,
+                  transform: comparisonVisible ? 'translateY(0)' : 'translateY(16px)',
+                  transitionDelay: `${150 + i * 100}ms`
+                }}
+              >
+                {/* CRUDA column */}
+                <p className="text-[18px] md:text-[20px] font-medium" style={{ color: '#0A0A0A' }}>
+                  <span style={{ color: '#FF2E63', marginRight: '10px' }}>⚡</span>
+                  {row.cruda}
+                </p>
+                
+                {/* Others column */}
+                <p className="text-[16px] md:text-[18px]" style={{ color: 'rgba(10, 10, 10, 0.45)' }}>
+                  {row.others}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* SECTION 3: HOW IT WORKS */}
       <section
         ref={howRef}
-        className="py-24 md:py-40 px-6 md:px-20"
-        style={{ backgroundColor: '#F7F7F7' }}
+        className="py-24 md:py-36 px-6 md:px-20"
+        style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="max-w-[1100px] mx-auto">
           {/* Two Cards Grid */}
@@ -368,11 +451,11 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* SECTION 3: VISUAL TIMELINE */}
+      {/* SECTION 4: VISUAL TIMELINE */}
       <section
         ref={timelineRef}
         className="py-20 px-6 md:px-20"
-        style={{ backgroundColor: '#FFFFFF' }}
+        style={{ backgroundColor: '#F7F7F7' }}
       >
         <div className="max-w-[800px] mx-auto">
           {/* Timeline Bar */}
@@ -440,79 +523,105 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* SECTION 4: WHAT CLIENTS COME FOR */}
+      {/* SECTION 5: YOU'RE HERE BECAUSE */}
       <section
-        ref={outcomesRef}
-        className="py-24 md:py-40 px-6 md:px-20"
-        style={{ backgroundColor: '#F7F7F7' }}
+        ref={reasonsRef}
+        className="py-24 md:py-36 px-6 md:px-20"
+        style={{ backgroundColor: '#FFFFFF' }}
       >
-        <div className="max-w-[1100px] mx-auto">
+        <div className="max-w-[700px] mx-auto md:mx-0 md:ml-[15%]">
           {/* Label */}
           <p
-            className="transition-all duration-700 text-[12px] md:text-[13px] font-semibold uppercase mb-12 md:mb-16"
+            className="transition-all duration-700 text-[13px] font-semibold uppercase mb-12"
             style={{
               letterSpacing: '0.12em',
               color: 'rgba(10, 10, 10, 0.4)',
-              opacity: outcomesVisible ? 1 : 0,
-              transform: outcomesVisible ? 'translateY(0)' : 'translateY(16px)'
+              opacity: reasonsVisible ? 1 : 0,
+              transform: reasonsVisible ? 'translateY(0)' : 'translateY(16px)'
             }}
           >
-            What clients come for
+            You're here because
           </p>
 
-          {/* Three Outcome Cards */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {outcomeCards.map((card, i) => (
-              <div
+          {/* Reasons */}
+          <div className="flex flex-col gap-8">
+            {youreHereReasons.map((reason, i) => (
+              <p
                 key={i}
-                className="transition-all duration-700 p-8 md:p-10 rounded-lg"
+                className="transition-all duration-700 text-[20px] md:text-[22px]"
                 style={{
-                  backgroundColor: '#FFFFFF',
-                  border: '1px solid rgba(10, 10, 10, 0.08)',
-                  boxShadow: '0 4px 24px rgba(0, 0, 0, 0.03)',
-                  opacity: outcomesVisible ? 1 : 0,
-                  transform: outcomesVisible ? 'translateY(0)' : 'translateY(24px)',
-                  transitionDelay: `${150 + i * 150}ms`
+                  color: '#0A0A0A',
+                  lineHeight: '1.6',
+                  maxWidth: '600px',
+                  opacity: reasonsVisibleItems[i] ? 1 : 0,
+                  transform: reasonsVisibleItems[i] ? 'translateY(0)' : 'translateY(16px)'
                 }}
               >
-                <h3
-                  className="text-[20px] md:text-[24px] font-semibold mb-4"
-                  style={{ color: '#0A0A0A' }}
-                >
-                  {card.title}
-                </h3>
-                <p
-                  className="text-[15px] md:text-[17px]"
-                  style={{ color: 'rgba(10, 10, 10, 0.6)', lineHeight: 1.6 }}
-                >
-                  {card.description}
-                </p>
-
-                {/* Divider */}
-                <div className="my-6" style={{ height: '1px', backgroundColor: 'rgba(10, 10, 10, 0.1)' }} />
-
-                {/* Proof */}
-                <p
-                  className="text-[13px] md:text-[15px] italic transition-all duration-700"
-                  style={{
-                    color: 'rgba(10, 10, 10, 0.5)',
-                    opacity: outcomesVisible ? 1 : 0,
-                    transitionDelay: `${500 + i * 150}ms`
-                  }}
-                >
-                  {card.proof}
-                </p>
-              </div>
+                <span style={{ color: '#FF2E63', marginRight: '16px' }}>→</span>
+                {reason}
+              </p>
             ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION 5: THE COMMITMENT */}
+      {/* SECTION 6: TESTIMONIAL */}
+      <section
+        ref={testimonialRef}
+        className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 md:px-20 py-24 md:py-36"
+        style={{ backgroundColor: '#0A0A0A' }}
+      >
+        {/* Quote */}
+        <p
+          className="transition-all duration-[800ms] text-[26px] md:text-[36px] italic max-w-[800px]"
+          style={{
+            fontWeight: '400',
+            color: '#FFFFFF',
+            lineHeight: '1.5',
+            opacity: testimonialVisible ? 1 : 0,
+            transform: testimonialVisible ? 'translateY(0)' : 'translateY(30px)'
+          }}
+        >
+          "Why work with a big agency when you can get from invisible to industry voice in four months — without the overhead, without the bureaucracy. CRUDA gets it."
+        </p>
+
+        {/* Attribution */}
+        <div
+          className="transition-all duration-700 flex items-center gap-5 mt-12"
+          style={{
+            opacity: testimonialVisible ? 1 : 0,
+            transform: testimonialVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '300ms'
+          }}
+        >
+          {/* Photo */}
+          <img
+            src={mikeKaeding}
+            alt="Mike Kaeding"
+            className="w-16 h-16 rounded-full object-cover"
+            style={{ border: '2px solid rgba(255, 255, 255, 0.2)' }}
+          />
+
+          {/* Text */}
+          <div className="text-left">
+            <p className="text-[17px] font-semibold" style={{ color: '#FF2E63' }}>
+              Mike Kaeding
+            </p>
+            <p className="text-[15px]" style={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              CEO, Norhart
+            </p>
+            <p className="text-[14px]" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
+              $200M Construction · Minneapolis
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 7: THE COMMITMENT */}
       <section
         ref={commitmentRef}
         className="py-24 md:py-32 px-6 md:px-20 text-center"
-        style={{ backgroundColor: '#FFFFFF' }}
+        style={{ backgroundColor: '#F7F7F7' }}
       >
         <div className="max-w-[600px] mx-auto">
           {/* Label */}
@@ -548,14 +657,14 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* SECTION 6: CTA */}
+      {/* SECTION 8: CTA */}
       <section
         ref={ctaRef}
-        className="min-h-[60vh] flex flex-col items-center justify-center text-center px-6 md:px-20 py-32 md:py-44"
+        className="min-h-[50vh] flex flex-col items-center justify-center text-center px-6 md:px-20 py-28 md:py-36"
         style={{ backgroundColor: '#0A0A0A' }}
       >
         <h2
-          className="transition-all duration-700 text-[32px] md:text-[52px] font-semibold mb-6"
+          className="transition-all duration-700 text-[32px] md:text-[48px] font-semibold"
           style={{
             color: '#FFFFFF',
             letterSpacing: '-0.02em',
@@ -567,7 +676,7 @@ const Pricing = () => {
         </h2>
 
         <p
-          className="transition-all duration-700 text-[16px] md:text-[20px] mb-12"
+          className="transition-all duration-700 text-[16px] md:text-[18px] mt-5"
           style={{
             color: 'rgba(255, 255, 255, 0.6)',
             opacity: ctaVisible ? 1 : 0,
@@ -580,14 +689,14 @@ const Pricing = () => {
 
         <Link
           to="/book-call"
-          className="inline-block transition-all duration-300 hover:opacity-90"
+          className="inline-block transition-all duration-300 mt-10 hover:translate-y-[-2px]"
           style={{
             backgroundColor: '#FF2E63',
             color: '#FFFFFF',
-            padding: '20px 44px',
-            fontSize: '16px',
+            padding: '18px 40px',
+            fontSize: '15px',
             fontWeight: '600',
-            borderRadius: '8px',
+            borderRadius: '6px',
             textDecoration: 'none',
             opacity: ctaVisible ? 1 : 0,
             transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',

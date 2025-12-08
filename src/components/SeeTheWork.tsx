@@ -1,231 +1,177 @@
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pezetHero from "@/assets/pezet-hero.jpg";
-import porscheGridCover from "@/assets/porsche-cover-new.png";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
-import mikeCBSNews from "@/assets/mike-cbs-news.png";
+import mikeKaeding from "@/assets/mike-kaeding.webp";
+import hospitalityManager from "@/assets/hospitality-manager.jpg";
 
 const workItems = [
   {
     id: 1,
-    type: "project",
     slug: "/projects/karen-mannheim/pezet",
-    clientName: "KAREN MANNHEIM",
-    title: "PEZET",
-    subtitle: "Lima, Peru | Robert A.M. Stern Architects Partnership",
+    name: "PEZET",
+    location: "Lima, Peru",
+    tag: "World-class partnerships",
+    tagline: "Robert A.M. Stern Architects",
     image: pezetHero,
-    description: "High-end residential tower positioning and project narrative development."
   },
   {
     id: 2,
-    type: "project",
-    slug: "/projects/karen-mannheim/porsche-flagship",
-    clientName: "KAREN MANNHEIM",
-    title: "Porsche Flagship Peru",
-    subtitle: "Lighting 75 Years of Aspiration",
-    image: porscheGridCover,
-    description: "Storytelling & positioning for luxury retail lighting design."
+    slug: "/projects/karen-mannheim/saadiyat-music-festival",
+    name: "Saadiyat Music Festival",
+    location: "Abu Dhabi, UAE",
+    tag: "International expansion",
+    tagline: "Jennifer Lopez · Christina Aguilera",
+    image: saadiyatHero,
   },
   {
     id: 3,
-    type: "project",
-    slug: "/projects/karen-mannheim/saadiyat-music-festival",
-    clientName: "KAREN MANNHEIM",
-    title: "Saadiyat Music Festival",
-    subtitle: "Abu Dhabi · 2024",
-    image: saadiyatHero,
-    description: "Jennifer Lopez, Christina Aguilera. Lighting a festival for clients who'd never met her."
+    slug: "/clients/mike-kaeding",
+    name: "Norhart",
+    location: "Minneapolis, USA",
+    tag: "Construction → thought leadership",
+    tagline: "$200M multifamily development",
+    image: mikeKaeding,
   },
   {
     id: 4,
-    type: "video",
-    clientName: "MIKE KAEDING",
-    title: "The Norhart Story",
-    subtitle: "Real Estate Development | Innovation in Construction",
-    videoUrl: "https://www.youtube.com/embed/jjocftqFqaw",
-    description: "How Norhart is revolutionizing apartment construction and affordability."
+    slug: "/clients/girish-sehgal",
+    name: "Girish Sehgal",
+    location: "Abu Dhabi, UAE",
+    tag: "Executive → thought leadership",
+    tagline: "Four Seasons · Taj · JW Marriott · 25 years",
+    image: hospitalityManager,
+    comingSoon: true,
   },
-  {
-    id: 5,
-    type: "video",
-    clientName: "MIKE KAEDING",
-    title: "Interview to Batman's Exec Producer",
-    subtitle: "Zero to Unicorn Podcast by Mike",
-    videoUrl: "https://www.youtube.com/embed/SWNppX4R1KY",
-    description: "Mike interviewing people like Michael Uslan, creator and producer of Batman, who made a billion-dollar impact in the world."
-  },
-  {
-    id: 6,
-    type: "media",
-    clientName: "MIKE KAEDING",
-    title: "Featured on CBS News",
-    subtitle: "Media Coverage | Housing Affordability Crisis",
-    image: mikeCBSNews,
-    externalUrl: "https://www.cbsnews.com/minnesota/news/minneapolis-rent-home-ownership-cost-gap/",
-    description: "CBS News coverage on Minneapolis housing affordability and Norhart's approach."
-  }
 ];
 
 const SeeTheWork = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section id="see-the-work" ref={elementRef} className="py-20 md:py-30 px-6 md:px-20" style={{ backgroundColor: '#FAFAFA' }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-[28px] md:text-[36px] font-bold leading-[1.2] mb-2" style={{ color: '#1A1A1A' }}>
-              See the Work
-            </h2>
-            {/* Red underline accent */}
-            <div className="h-[2px] w-[80px] mx-auto" style={{ backgroundColor: '#FF2E63' }} />
-          </div>
+    <section 
+      id="see-the-work" 
+      ref={elementRef} 
+      className="py-20 md:py-28 px-6 md:px-20"
+      style={{ backgroundColor: '#FFFFFF' }}
+    >
+      <div className="max-w-[1200px] mx-auto">
+        {/* Headline */}
+        <h2 
+          className="mb-12 md:mb-16"
+          style={{ 
+            fontSize: 'clamp(32px, 4vw, 44px)',
+            fontWeight: 600,
+            color: '#0A0A0A',
+            letterSpacing: '-0.02em',
+            lineHeight: 1.2,
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
+          See the work
+        </h2>
 
-          {/* Horizontal Carousel */}
-          <div className="relative">
-            <div 
-              id="work-carousel"
-              className="overflow-x-auto pb-8 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide scroll-smooth snap-x snap-mandatory"
-            >
-              <div className="flex gap-8 md:gap-10">
-                {workItems.map((item, index) => {
-                  const cardContent = (
-                    <div 
-                      className="bg-white overflow-hidden"
-                      style={{ 
-                        borderRadius: '12px',
-                        boxShadow: '0 2px 16px rgba(26,26,26,0.06)',
-                        transition: 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, opacity 0.6s ease',
-                        opacity: isVisible ? 1 : 0,
-                        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                        transitionDelay: `${index * 100}ms`
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'scale(1.02)';
-                        e.currentTarget.style.boxShadow = '0 12px 32px rgba(26,26,26,0.12)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'scale(1)';
-                        e.currentTarget.style.boxShadow = '0 2px 16px rgba(26,26,26,0.06)';
-                      }}
-                    >
-                      {/* Media - Image or Video */}
-                      <div className="relative overflow-hidden" style={{ height: '320px' }}>
-                        {item.type === 'video' ? (
-                          <iframe
-                            src={item.videoUrl}
-                            className="w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                            loading="lazy"
-                          />
-                        ) : (
-                          <img 
-                            src={item.image} 
-                            alt={item.title}
-                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                            loading="lazy"
-                          />
-                        )}
-                      </div>
-                      
-                      {/* Content */}
-                      <div className="p-8">
-                        <p className="text-xs uppercase tracking-wide mb-3" style={{ color: 'rgba(26, 26, 26, 0.5)' }}>
-                          {item.clientName}
-                        </p>
-                        
-                        <h3 className="text-2xl font-bold mb-2" style={{ color: '#1A1A1A' }}>
-                          {item.title}
-                        </h3>
-
-                        <p className="text-sm mb-4" style={{ color: 'rgba(26, 26, 26, 0.6)' }}>
-                          {item.subtitle}
-                        </p>
-
-                        <p className="text-[15px] leading-[1.6] mb-6 line-clamp-3" style={{ color: 'rgba(26, 26, 26, 0.8)' }}>
-                          {item.description}
-                        </p>
-
-                        <div className="inline-flex items-center gap-2 text-sm font-semibold" style={{ color: '#1A1A1A' }}>
-                          <span>{item.type === 'media' ? 'Read Article' : item.type === 'video' ? 'Watch Video' : 'View Project'}</span>
-                          <span className="opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1">→</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-
-                  const wrapperStyle = {
-                    opacity: 0,
-                    transform: 'translateX(40px)',
-                    animation: `fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) ${0.15 * index}s forwards`
-                  };
-
-                  return item.type === 'media' ? (
-                    <a
-                      key={item.id}
-                      href={item.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group cursor-pointer w-[85vw] md:w-[420px] flex-shrink-0 snap-start"
-                      style={wrapperStyle}
-                    >
-                      {cardContent}
-                    </a>
-                  ) : (
-                    <Link
-                      key={item.id}
-                      to={item.slug || '#'}
-                      className="group cursor-pointer w-[85vw] md:w-[420px] flex-shrink-0 snap-start"
-                      style={wrapperStyle}
-                    >
-                      {cardContent}
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-            
-            {/* Navigation Arrows */}
-            <button
-              onClick={() => {
-                const carousel = document.getElementById('work-carousel');
-                if (carousel) carousel.scrollBy({ left: -440, behavior: 'smooth' });
-              }}
-              className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
-              style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A1A1A'}
-            >
-              ←
-            </button>
-            <button
-              onClick={() => {
-                const carousel = document.getElementById('work-carousel');
-                if (carousel) carousel.scrollBy({ left: 440, behavior: 'smooth' });
-              }}
-              className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 items-center justify-center rounded-full transition-all duration-300 z-10"
-              style={{ backgroundColor: '#1A1A1A', color: '#FFFFFF' }}
-              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FF2E63'}
-              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#1A1A1A'}
-            >
-              →
-            </button>
-          </div>
-
-          {/* View All Projects Link */}
-          <div className="text-center mt-12">
+        {/* Project Grid - 4 columns desktop, 2 tablet, 1 mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {workItems.map((item, index) => (
             <Link
-              to="/work"
-              className="inline-flex items-center gap-2 text-[16px] font-medium transition-all duration-300 hover:gap-3"
-              style={{ color: '#FF2E63' }}
-              onMouseEnter={(e) => e.currentTarget.style.textDecoration = 'underline'}
-              onMouseLeave={(e) => e.currentTarget.style.textDecoration = 'none'}
+              key={item.id}
+              to={item.slug}
+              className="group relative flex flex-col transition-all duration-300"
+              style={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: `opacity 600ms cubic-bezier(0.4, 0, 0.2, 1) ${index * 100}ms, transform 600ms cubic-bezier(0.4, 0, 0.2, 1) ${index * 100}ms`,
+              }}
             >
-              View all projects
-              <span>→</span>
+              {/* Image */}
+              <div 
+                className="relative overflow-hidden mb-4"
+                style={{ 
+                  aspectRatio: '16/10',
+                  borderRadius: '8px'
+                }}
+              >
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                
+                {/* Coming Soon Badge */}
+                {item.comingSoon && (
+                  <div 
+                    className="absolute top-3 right-3 px-3 py-1 text-xs font-semibold uppercase tracking-wide"
+                    style={{ 
+                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                      color: '#FFFFFF',
+                      borderRadius: '4px'
+                    }}
+                  >
+                    Coming Soon
+                  </div>
+                )}
+              </div>
+              
+              {/* Title */}
+              <h3 
+                className="mb-1"
+                style={{ 
+                  fontSize: '20px',
+                  fontWeight: 600,
+                  color: '#0A0A0A',
+                }}
+              >
+                {item.name}
+              </h3>
+              
+              {/* Location */}
+              <p 
+                className="mb-2"
+                style={{ 
+                  fontSize: '14px',
+                  color: 'rgba(10, 10, 10, 0.4)',
+                }}
+              >
+                {item.location}
+              </p>
+              
+              {/* Tag */}
+              <p 
+                style={{ 
+                  fontSize: '14px',
+                  color: '#FF2E63',
+                  fontWeight: 500
+                }}
+              >
+                {item.tag}
+              </p>
+              
+              {/* Tagline */}
+              <p 
+                className="mt-1"
+                style={{ 
+                  fontSize: '14px',
+                  color: 'rgba(10, 10, 10, 0.6)',
+                }}
+              >
+                {item.tagline}
+              </p>
+              
+              {/* Hover lift effect */}
+              <style>
+                {`
+                  .group:hover {
+                    transform: translateY(-4px) !important;
+                  }
+                `}
+              </style>
             </Link>
-          </div>
+          ))}
         </div>
+      </div>
     </section>
   );
 };

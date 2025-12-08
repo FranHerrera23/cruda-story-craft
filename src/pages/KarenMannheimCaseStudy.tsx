@@ -144,7 +144,7 @@ const KarenMannheimCaseStudy = () => {
                 className="mb-6"
                 style={{ 
                   fontSize: '13px',
-                  color: 'rgba(10, 10, 10, 0.4)',
+                  color: '#FF2E63',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 600
@@ -180,7 +180,7 @@ const KarenMannheimCaseStudy = () => {
                 className="mb-6"
                 style={{ 
                   fontSize: '13px',
-                  color: 'rgba(10, 10, 10, 0.4)',
+                  color: '#FF2E63',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 600

@@ -133,7 +133,7 @@ const KarenMannheimCaseStudy = () => {
           Two columns — quick context
       ========================================= */}
       <section 
-        className="py-24 md:py-32 px-6 md:px-20"
+        className="py-20 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="max-w-[1100px] mx-auto">
@@ -237,7 +237,7 @@ const KarenMannheimCaseStudy = () => {
       ========================================= */}
       <section 
         id="projects"
-        className="py-28 md:py-36 px-6 md:px-20"
+        className="py-20 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto">
@@ -367,7 +367,7 @@ const KarenMannheimCaseStudy = () => {
           Condensed narrative — punchy
       ========================================= */}
       <section 
-        className="py-28 md:py-36 px-6 md:px-20"
+        className="py-20 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="max-w-[900px] mx-auto">
@@ -569,7 +569,7 @@ const KarenMannheimCaseStudy = () => {
           Metrics on black background
       ========================================= */}
       <section 
-        className="py-28 md:py-36 px-6 md:px-20"
+        className="py-20 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#0A0A0A' }}
       >
         <div className="max-w-[1000px] mx-auto">
@@ -789,7 +789,7 @@ const KarenMannheimCaseStudy = () => {
           Six outcome cards
       ========================================= */}
       <section 
-        className="py-28 md:py-36 px-6 md:px-20"
+        className="py-20 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1000px] mx-auto">
@@ -853,7 +853,7 @@ const KarenMannheimCaseStudy = () => {
           Karen quote with accent border
       ========================================= */}
       <section 
-        className="py-24 md:py-32 px-6 md:px-20"
+        className="py-20 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#FFFFFF' }}
       >
         <div 
@@ -888,7 +888,7 @@ const KarenMannheimCaseStudy = () => {
           "Want to build trust like Karen?"
       ========================================= */}
       <section 
-        className="py-28 md:py-36 px-6 md:px-20 text-center"
+        className="py-20 md:py-28 px-6 md:px-20 text-center"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-3xl mx-auto">

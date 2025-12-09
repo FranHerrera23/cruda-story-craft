@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import karenImage from '@/assets/karen-mannheim-casestudy.jpg';
 import mikeImage from '@/assets/mike-kaeding.webp';
+import girishImage from '@/assets/girish-sehgal.jpeg';
 
 const Work = () => {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
@@ -26,17 +27,17 @@ const Work = () => {
       status: "live"
     },
     {
-      name: "Juan Pablo Romero",
-      title: "Founder, UNIK Parquet",
-      description: "Premium flooring manufacturer serving luxury residential projects across Latin America.",
-      image: null,
-      link: "#",
-      status: "coming-soon"
+      name: "Girish Sehgal",
+      title: "Chief Patient Experience Officer, SSMC",
+      description: "Three decades of leadership across Four Seasons, Taj, JW Marriott, and Grand Hyatt properties.",
+      image: girishImage,
+      link: "/clients/girish-sehgal",
+      status: "live"
     },
     {
-      name: "Girish Sehgal",
-      title: "Hospitality Executive",
-      description: "Three decades of leadership across Four Seasons, JW Marriott, and Grand Hyatt properties.",
+      name: "Juan Pablo Romero",
+      title: "Regional Sales Manager, US & Caribbean, UNIK Parquet",
+      description: "High-end flooring manufacturer serving luxury residential & commercial across US.",
       image: null,
       link: "#",
       status: "coming-soon"

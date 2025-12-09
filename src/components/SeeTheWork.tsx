@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pezetHero from "@/assets/pezet-hero.jpg";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeKaeding from "@/assets/mike-kaeding.webp";
-import girishSehgal from "@/assets/girish-sehgal.jpeg";
+import girishLinkedin from "@/assets/girish-linkedin-01.png";
 
 const workItems = [
   {
@@ -36,11 +36,11 @@ const workItems = [
   {
     id: 4,
     slug: "/clients/girish-sehgal",
-    name: "Girish Sehgal",
-    location: "Abu Dhabi, UAE",
-    tag: "Executive leadership → thought leadership",
-    tagline: "Four Seasons · Taj · JW Marriott · 25 years",
-    image: girishSehgal,
+    name: "The Golden Rule Still Wins",
+    location: "Girish Sehgal · SSMC Abu Dhabi",
+    tag: "Executive content strategy",
+    tagline: "184 reactions · 23 comments",
+    image: girishLinkedin,
   },
 ];
 

@@ -35,7 +35,7 @@ const GirishSehgalCaseStudy = () => {
           height: '100vh',
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${heroImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center top',
+          backgroundPosition: 'center 30%',
         }}
       >
         <div className="max-w-4xl px-6 md:px-20">

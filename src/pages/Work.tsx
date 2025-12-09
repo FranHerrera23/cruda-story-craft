@@ -100,19 +100,9 @@ const Work = () => {
               }}
             >
               <div 
-                className="overflow-hidden transition-all duration-400"
+                className={`overflow-hidden transition-all duration-300 ${client.status === 'live' ? 'hover:-translate-y-1 hover:shadow-lg' : ''}`}
                 style={{ 
                   borderRadius: '8px'
-                }}
-                onMouseEnter={(e) => {
-                  if (client.status === 'live') {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 16px 48px rgba(26, 26, 26, 0.1)';
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 {/* Image Area */}

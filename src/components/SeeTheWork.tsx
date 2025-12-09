@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pezetHero from "@/assets/pezet-hero.jpg";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeKaeding from "@/assets/mike-kaeding.webp";
-import girishLinkedin from "@/assets/girish-linkedin-01.png";
+import girishLinkedin from "@/assets/girish-golden-rule-post.png";
 
 const workItems = [
   {

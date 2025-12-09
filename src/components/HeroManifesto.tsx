@@ -84,39 +84,21 @@ const HeroManifesto = () => {
               </span>
             </h1>
             
-            {/* Subline */}
-            <p 
-              style={{ 
-                fontSize: '24px',
+            {/* What We Do */}
+            <p
+              style={{
+                fontSize: '18px',
                 fontWeight: '400',
-                lineHeight: '1.5',
-                color: 'rgba(10, 10, 10, 0.7)',
+                lineHeight: '1.7',
+                color: 'rgba(10, 10, 10, 0.6)',
                 marginTop: '48px',
-                maxWidth: '440px',
+                maxWidth: '460px',
                 opacity: subtitleVisible ? 1 : 0,
                 transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
                 transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
               }}
             >
-              You're not bad at telling your story.<br />
-              You've just been too busy building it.
-            </p>
-            
-            {/* What We Do */}
-            <p
-              style={{
-                fontSize: '17px',
-                fontWeight: '400',
-                lineHeight: '1.7',
-                color: 'rgba(10, 10, 10, 0.55)',
-                marginTop: '28px',
-                maxWidth: '420px',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.1s"
-              }}
-            >
-              We help founders, CEOs, and senior leaders in construction, architecture, design, and hospitality craft narratives that build trust & reputation at scale.
+              We help real estate, construction, architecture, and design firms build trust through the stories that travel when you're not in the room — LinkedIn, Instagram, decks, and the narrative that ties them together.
             </p>
             
             {/* CTA Button */}

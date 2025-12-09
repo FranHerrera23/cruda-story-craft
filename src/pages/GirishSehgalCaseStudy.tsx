@@ -4,6 +4,12 @@ import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
 import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
 import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
 import heroImage from "@/assets/girish-sehgal.jpeg";
+import girishLinkedin01 from "@/assets/girish-linkedin-01.png";
+import girishLinkedin02 from "@/assets/girish-linkedin-02.png";
+import girishLinkedin03 from "@/assets/girish-linkedin-03.png";
+import girishLinkedin04 from "@/assets/girish-linkedin-04.png";
+import girishLinkedin05 from "@/assets/girish-linkedin-05.png";
+import girishLinkedin06 from "@/assets/girish-linkedin-06.png";
 
 const GirishSehgalCaseStudy = () => {
   const navigate = useNavigate();
@@ -394,7 +400,92 @@ const GirishSehgalCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 7: THE RESULTS - DARK SECTION */}
+      {/* SECTION 6.5: THE CONTENT THAT TRAVELS - LINKEDIN POSTS */}
+      <section 
+        className="py-24 md:py-32 px-10 md:px-20"
+        style={{ backgroundColor: '#F5F1E8' }}
+      >
+        <div className="max-w-[1200px] mx-auto">
+          <AnimatedHeader
+            className="mb-6"
+            style={{ 
+              fontSize: 'clamp(36px, 5vw, 52px)',
+              color: '#0A0A0A',
+              fontWeight: 600,
+              lineHeight: 1.2
+            }}
+          >
+            The content that now travels
+          </AnimatedHeader>
+          
+          <AnimatedParagraph 
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(18px, 2.2vw, 20px)',
+              lineHeight: 1.8,
+              color: 'rgba(10, 10, 10, 0.7)',
+              maxWidth: '600px'
+            }}
+          >
+            Each post shows how we turned twenty-five years of hospitality leadership into a voice that builds trust with healthcare executives, leadership platforms, and business media.
+          </AnimatedParagraph>
+          
+          {/* LinkedIn Post Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { image: girishLinkedin01, title: "From Luxury Hotels to Healthcare", reactions: "263", comments: "32" },
+              { image: girishLinkedin02, title: "Guest Experience Stories", reactions: "69", comments: "4" },
+              { image: girishLinkedin03, title: "The Golden Rule Still Wins", reactions: "184", comments: "23" },
+              { image: girishLinkedin04, title: "Not Every Star Player Needs to Sprint", reactions: "123", comments: "13" },
+              { image: girishLinkedin05, title: "14 Cities, 6 Countries", reactions: "576", comments: "55" },
+              { image: girishLinkedin06, title: "Split Rocks or Build Cathedrals", reactions: "209", comments: "17" }
+            ].map((post, index) => (
+              <div 
+                key={index}
+                className="transition-all duration-300 hover:translate-y-[-4px]"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '16px',
+                  overflow: 'hidden',
+                  boxShadow: '0 2px 16px rgba(10, 10, 10, 0.06)'
+                }}
+              >
+                <img
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-auto"
+                  style={{ display: 'block' }}
+                />
+                <div className="p-5">
+                  <p 
+                    style={{ 
+                      fontSize: '14px',
+                      color: 'rgba(10, 10, 10, 0.5)',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    {post.reactions} reactions · {post.comments} comments
+                  </p>
+                  <a
+                    href="https://www.linkedin.com/in/girishsehgal/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block transition-all duration-300 hover:underline"
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      color: '#FF2E63'
+                    }}
+                  >
+                    View on LinkedIn →
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section 
         className="py-24 md:py-32 px-10 md:px-20"
         style={{ backgroundColor: '#0A0A0A' }}

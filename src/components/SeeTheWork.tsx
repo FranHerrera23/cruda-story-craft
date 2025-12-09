@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pezetHero from "@/assets/pezet-hero.jpg";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
 import mikeKaeding from "@/assets/mike-kaeding.webp";
-import hospitalityManager from "@/assets/hospitality-manager.jpg";
+import girishSehgal from "@/assets/girish-sehgal.jpeg";
 
 const workItems = [
   {
@@ -40,7 +40,7 @@ const workItems = [
     location: "Abu Dhabi, UAE",
     tag: "Executive → thought leadership",
     tagline: "Four Seasons · Taj · JW Marriott · 25 years",
-    image: hospitalityManager,
+    image: girishSehgal,
     comingSoon: true,
   },
 ];

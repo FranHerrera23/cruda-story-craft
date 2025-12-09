@@ -38,10 +38,9 @@ const workItems = [
     slug: "/clients/girish-sehgal",
     name: "Girish Sehgal",
     location: "Abu Dhabi, UAE",
-    tag: "Executive → thought leadership",
+    tag: "Executive leadership → thought leadership",
     tagline: "Four Seasons · Taj · JW Marriott · 25 years",
     image: girishSehgal,
-    comingSoon: true,
   },
 ];
 
@@ -100,19 +99,6 @@ const SeeTheWork = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 
-                {/* Coming Soon Badge */}
-                {item.comingSoon && (
-                  <div 
-                    className="absolute top-3 right-3 px-3 py-1 text-xs font-semibold uppercase tracking-wide"
-                    style={{ 
-                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                      color: '#FFFFFF',
-                      borderRadius: '4px'
-                    }}
-                  >
-                    Coming Soon
-                  </div>
-                )}
               </div>
               
               {/* Title */}

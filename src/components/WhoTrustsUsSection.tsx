@@ -2,6 +2,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Link } from "react-router-dom";
 import karenPhoto from "@/assets/karen-mannheim-new.jpg";
 import mikePhoto from "@/assets/mike-kaeding.webp";
+import girishPhoto from "@/assets/girish-sehgal.jpeg";
 
 const clients = [
   {
@@ -9,6 +10,7 @@ const clients = [
     name: "Karen Mannheim",
     title: "Architectural Lighting Designer · TRAZZO",
     photo: karenPhoto,
+    photoPosition: "center 25%",
     quote: "Fran helped us articulate what made our work different in a way our clients finally understood."
   },
   {
@@ -16,7 +18,16 @@ const clients = [
     name: "Mike Kaeding",
     title: "CEO · Norhart",
     photo: mikePhoto,
+    photoPosition: "center 20%",
     quote: "The narrative system we built together works whether I'm on stage, on a podcast, or in a pitch meeting."
+  },
+  {
+    slug: "girish-sehgal",
+    name: "Girish Sehgal",
+    title: "Chief Patient Experience Officer · SSMC Abu Dhabi",
+    photo: girishPhoto,
+    photoPosition: "center 30%",
+    quote: "CRUDA helped me translate twenty-five years of hospitality leadership into a voice that travels."
   }
 ];
 
@@ -49,10 +60,10 @@ const WhoTrustsUsSection = () => {
           Who trusts us with their story
         </p>
 
-        {/* Two cards grid */}
+        {/* Three cards grid */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-2"
-          style={{ gap: '48px', maxWidth: '1000px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+          style={{ gap: '48px' }}
         >
           {clients.map((client, index) => (
             <Link
@@ -86,7 +97,8 @@ const WhoTrustsUsSection = () => {
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
+                    objectFit: 'cover',
+                    objectPosition: client.photoPosition
                   }}
                 />
               </div>

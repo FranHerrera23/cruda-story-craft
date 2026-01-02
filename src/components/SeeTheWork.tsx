@@ -89,7 +89,7 @@ const SeeTheWork = () => {
               <div 
                 className="relative overflow-hidden mb-4"
                 style={{ 
-                  aspectRatio: '16/10',
+                  aspectRatio: item.id === 4 ? '4/5' : '16/10',
                   borderRadius: '8px'
                 }}
               >
@@ -97,6 +97,7 @@ const SeeTheWork = () => {
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  style={{ objectPosition: item.id === 3 ? 'center 20%' : 'center' }}
                 />
                 
               </div>

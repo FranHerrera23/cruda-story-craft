@@ -227,7 +227,7 @@ const KarenMannheimCaseStudy = () => {
           height: '70vh',
           backgroundImage: `url(${karenMannheim})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center 25%'
         }}
       />
 
@@ -358,7 +358,7 @@ const KarenMannheimCaseStudy = () => {
           height: '60vh',
           backgroundImage: `url(${franPortrait})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center 20%'
         }}
       />
 

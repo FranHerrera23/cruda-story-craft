@@ -592,7 +592,7 @@ const GirishSehgalCaseStudy = () => {
           height: '50vh',
           backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center bottom'
+          backgroundPosition: 'center 25%'
         }}
       />
 

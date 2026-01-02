@@ -780,7 +780,7 @@ const KarenMannheimCaseStudy = () => {
           height: '50vh',
           backgroundImage: `url(${karenProjectConstruction})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center'
+          backgroundPosition: 'center 30%'
         }}
       />
 

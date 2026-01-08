@@ -178,10 +178,9 @@ const NitinPassiCaseStudy = () => {
                   lineHeight: '1.8'
                 }}
               >
-                Second-time founder. Lessons learned. New model built. No public narrative while raising capital 
-                and building operations. NDAs protect details. But the transformation—from traditional retail to 
-                on-demand manufacturing—required strategic positioning that could travel to investors and industry 
-                without revealing operational secrets.
+                Second-time founder. Lessons learned. New model built. The transformation—from traditional retail to 
+                a new manufacturing approach—required strategic positioning that could educate investors and industry 
+                on why this model is fundamentally better.
               </p>
             </div>
           </div>
@@ -284,13 +283,13 @@ const NitinPassiCaseStudy = () => {
               We worked with them over three months on:
             </p>
             <ul style={{ marginBottom: '24px', paddingLeft: '24px' }}>
-              <li style={{ marginBottom: '8px' }}>Strategic positioning (second-time founder, not tied to past business)</li>
-              <li style={{ marginBottom: '8px' }}>Market narrative (explaining on-demand model without operational details)</li>
+              <li style={{ marginBottom: '8px' }}>Strategic positioning (second-time founder, lessons applied)</li>
+              <li style={{ marginBottom: '8px' }}>Market education (explaining how the model works and why it's better)</li>
               <li style={{ marginBottom: '8px' }}>Founder story (what changed between first company and this one)</li>
               <li>Content system (weekly LinkedIn, messaging matrix, investor-ready language)</li>
             </ul>
             <p>
-              The work was sophisticated. The NDAs are airtight. We can share results, not strategy.
+              The work was sophisticated. We can share results, not the full strategy.
             </p>
           </div>
         </div>
@@ -419,9 +418,9 @@ const NitinPassiCaseStudy = () => {
                   lineHeight: '1.7'
                 }}
               >
-                Explaining the model without the secrets. This venture challenges every assumption 
-                about inventory, manufacturing, and retail margins. We helped this founder explain why the 
-                model works—without revealing how it works operationally.
+                Educating the market on how it works. This venture challenges every assumption 
+                about inventory, manufacturing, and retail margins. We helped this founder clearly explain 
+                how the model works and why it's fundamentally better than traditional approaches.
               </p>
             </div>
 
@@ -574,7 +573,7 @@ const NitinPassiCaseStudy = () => {
               </div>
             </div>
 
-            {/* Results We Can't Show */}
+            {/* The Full Strategy */}
             <div
               className="transition-all duration-700"
               style={{
@@ -593,15 +592,15 @@ const NitinPassiCaseStudy = () => {
                   marginBottom: '32px'
                 }}
               >
-                RESULTS WE CAN'T SHOW
+                THE FULL STRATEGY
               </p>
               
               <ul style={{ listStyle: 'none', padding: 0 }}>
                 {[
-                  'Strategic positioning details',
-                  'Investor messaging framework',
-                  'Content system architecture',
-                  'Market narrative approach'
+                  'Strategic positioning framework',
+                  'Investor messaging architecture',
+                  'Content system design',
+                  'Market education approach'
                 ].map((item, index) => (
                   <li
                     key={index}
@@ -635,7 +634,7 @@ const NitinPassiCaseStudy = () => {
                   marginTop: '24px'
                 }}
               >
-                (NDAs honored.)
+                (Available on request.)
               </p>
             </div>
           </div>
@@ -668,15 +667,15 @@ const NitinPassiCaseStudy = () => {
                 maxWidth: '800px'
               }}
             >
-              Sometimes the most sophisticated work is the work you can't show. This founder needed strategic 
-              positioning during a critical growth phase. The narrative had to work for investors, industry 
-              peers, and potential hires—without revealing operational details that competitors could use.
+              Sometimes the most sophisticated work is helping people understand something new. This founder needed 
+              strategic positioning during a critical growth phase. The narrative had to educate investors, industry 
+              peers, and potential hires on how the business actually works—and why it's better.
               <br /><br />
-              We built a system that balances visibility with discretion. The founder can speak publicly about 
-              lessons learned, industry shifts, and philosophy—while protecting the details that make the 
-              business defensible.
+              We built a system that turns complexity into clarity. The founder can speak publicly about 
+              the model, the lessons learned, and the vision—making the business understandable and compelling 
+              to everyone who needs to believe in it.
               <br /><br />
-              <span style={{ fontStyle: 'italic' }}>That's not marketing. That's strategy.</span>
+              <span style={{ fontStyle: 'italic' }}>That's not marketing. That's education at scale.</span>
             </p>
           </div>
         </div>
@@ -758,7 +757,7 @@ const NitinPassiCaseStudy = () => {
               transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            If you need strategic positioning under NDAs, we understand the constraints.
+            If you need strategic positioning that educates your market, we understand the challenge.
           </p>
           
           <Link

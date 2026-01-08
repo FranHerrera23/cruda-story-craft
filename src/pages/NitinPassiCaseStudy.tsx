@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ChevronDown } from 'lucide-react';
+import confidentialHero from '@/assets/confidential-hero.jpg';
 
 const NitinPassiCaseStudy = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
@@ -144,8 +145,8 @@ const NitinPassiCaseStudy = () => {
                   lineHeight: '1.8'
                 }}
               >
-                Third-generation entrepreneur. Built UK fashion brand to £300M+ revenue. 
-                Launched SUMWON Studios (on-demand fashion), $100M revenue in under 2 years.
+                Third-generation entrepreneur. Built multiple retail brands across global markets. 
+                Current venture reached $500M revenue in under 2 years.
               </p>
             </div>
 
@@ -187,23 +188,21 @@ const NitinPassiCaseStudy = () => {
         </div>
       </section>
 
-      {/* FULL-BLEED DIVIDER #1 - Abstract placeholder */}
+      {/* FULL-BLEED DIVIDER #1 - Hero Image */}
       <div
         className="w-full"
         style={{
           height: '60vh',
-          background: `
-            linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 50%, #1A1A1A 100%)
-          `,
+          backgroundImage: `url(${confidentialHero})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           position: 'relative'
         }}
       >
         <div
           className="absolute inset-0 flex items-center justify-center"
           style={{
-            background: `
-              radial-gradient(circle at 50% 50%, rgba(255, 46, 99, 0.1) 0%, transparent 60%)
-            `
+            background: 'rgba(0, 0, 0, 0.3)'
           }}
         >
           <div className="text-center">
@@ -213,7 +212,7 @@ const NitinPassiCaseStudy = () => {
                 fontWeight: '600',
                 letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                color: 'rgba(255, 255, 255, 0.3)'
+                color: 'rgba(255, 255, 255, 0.5)'
               }}
             >
               CONFIDENTIAL PROJECT
@@ -279,8 +278,7 @@ const NitinPassiCaseStudy = () => {
             </p>
             <p style={{ marginBottom: '24px' }}>
               Our client is a second-time founder in retail. Third-generation entrepreneur. Previously built 
-              a UK fashion brand to £300M+ revenue. Now running SUMWON Studios, an on-demand fashion company 
-              that hit $100M revenue in under two years.
+              global retail brands to significant scale. Current venture reached $500M revenue in under two years.
             </p>
             <p style={{ marginBottom: '24px' }}>
               We worked with them over three months on:
@@ -421,7 +419,7 @@ const NitinPassiCaseStudy = () => {
                   lineHeight: '1.7'
                 }}
               >
-                Explaining the model without the secrets. On-demand fashion challenges every assumption 
+                Explaining the model without the secrets. This venture challenges every assumption 
                 about inventory, manufacturing, and retail margins. We helped this founder explain why the 
                 model works—without revealing how it works operationally.
               </p>

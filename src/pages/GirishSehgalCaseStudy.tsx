@@ -431,87 +431,56 @@ const GirishSehgalCaseStudy = () => {
           
           {/* LinkedIn Post Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Golden Rule - First and Active */}
-            <a 
-              href="https://www.linkedin.com/posts/girishsehgal_hospitality-activity-7317432858741493760-6YlK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-all duration-300 hover:translate-y-[-4px] block cursor-pointer"
-              style={{
-                backgroundColor: '#FFFFFF',
-                borderRadius: '16px',
-                overflow: 'hidden',
-                boxShadow: '0 2px 16px rgba(10, 10, 10, 0.06)',
-                textDecoration: 'none'
-              }}
-            >
-              <img
-                src={girishLinkedin03}
-                alt="The Golden Rule Still Wins"
-                className="w-full h-auto"
-                style={{ display: 'block' }}
-              />
-              <div className="p-5">
-                <p 
-                  style={{ 
-                    fontSize: '14px',
-                    color: 'rgba(10, 10, 10, 0.5)',
-                    marginBottom: '4px'
-                  }}
-                >
-                  184 reactions · 23 comments
-                </p>
-                <span
-                  className="inline-block"
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 500,
-                    color: '#FF2E63'
-                  }}
-                >
-                  View on LinkedIn →
-                </span>
-              </div>
-            </a>
-
-            {/* Remaining posts - Coming Soon */}
             {[
-              { image: girishLinkedin01, title: "From Luxury Hotels to Healthcare" },
-              { image: girishLinkedin02, title: "Guest Experience Stories" },
-              { image: girishLinkedin04, title: "Not Every Star Player Needs to Sprint" },
-              { image: girishLinkedin05, title: "14 Cities, 6 Countries" },
-              { image: girishLinkedin06, title: "Split Rocks or Build Cathedrals" }
+              { image: girishLinkedin03, title: "The Golden Rule Still Wins", reactions: "184", comments: "23", url: "https://www.linkedin.com/posts/girishsehgal_hospitality-activity-7317432858741493760-6YlK" },
+              { image: girishLinkedin01, title: "From Luxury Hotels to Healthcare", reactions: "263", comments: "32", url: "https://www.linkedin.com/in/girishsehgal/" },
+              { image: girishLinkedin02, title: "Guest Experience Stories", reactions: "69", comments: "4", url: "https://www.linkedin.com/in/girishsehgal/" },
+              { image: girishLinkedin04, title: "Not Every Star Player Needs to Sprint", reactions: "123", comments: "13", url: "https://www.linkedin.com/in/girishsehgal/" },
+              { image: girishLinkedin05, title: "14 Cities, 6 Countries", reactions: "576", comments: "55", url: "https://www.linkedin.com/in/girishsehgal/" },
+              { image: girishLinkedin06, title: "Split Rocks or Build Cathedrals", reactions: "209", comments: "17", url: "https://www.linkedin.com/in/girishsehgal/" }
             ].map((post, index) => (
-              <div 
+              <a 
                 key={index}
-                className="transition-all duration-300 relative"
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300 hover:translate-y-[-4px] block cursor-pointer"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '16px',
                   overflow: 'hidden',
                   boxShadow: '0 2px 16px rgba(10, 10, 10, 0.06)',
-                  opacity: 0.6
+                  textDecoration: 'none'
                 }}
               >
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-auto"
-                  style={{ display: 'block', filter: 'grayscale(50%)' }}
+                  style={{ display: 'block' }}
                 />
                 <div className="p-5">
                   <p 
                     style={{ 
                       fontSize: '14px',
-                      color: 'rgba(10, 10, 10, 0.4)',
-                      marginBottom: '4px',
-                      fontStyle: 'italic'
+                      color: 'rgba(10, 10, 10, 0.5)',
+                      marginBottom: '4px'
                     }}
                   >
-                    Coming soon
+                    {post.reactions} reactions · {post.comments} comments
                   </p>
+                  <span
+                    className="inline-block"
+                    style={{
+                      fontSize: '14px',
+                      fontWeight: 500,
+                      color: '#FF2E63'
+                    }}
+                  >
+                    View on LinkedIn →
+                  </span>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

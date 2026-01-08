@@ -220,57 +220,156 @@ const MikeKaedingCaseStudy = () => {
       <section 
         className="relative flex items-center justify-center text-center"
         style={{
-          height: '70vh',
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${heroImage})`,
+          height: '100vh',
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 20%',
         }}
       >
         <div className="max-w-4xl px-6 md:px-20">
           <p 
-            className="mb-6"
+            className="mb-8"
             style={{ 
-              fontSize: '12px',
-              color: '#FDFBF7',
-              opacity: 0.7,
-              letterSpacing: '2px',
+              fontSize: '13px',
+              color: '#FFFFFF',
+              opacity: 0.8,
+              letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              fontWeight: 500
+              fontWeight: 600
             }}
           >
-            CEO, NORHART • MINNEAPOLIS • 20+ YEARS IN CONSTRUCTION
+            CONSTRUCTION INNOVATION • MINNEAPOLIS
           </p>
           <h1 
             className="font-bold"
             style={{ 
-              fontSize: 'clamp(36px, 5vw, 72px)',
-              color: '#FDFBF7',
-              lineHeight: 1.1,
-              fontWeight: 700
+              fontSize: 'clamp(48px, 6vw, 72px)',
+              color: '#FFFFFF',
+              lineHeight: 1.0,
+              fontWeight: 600,
+              letterSpacing: '-0.03em'
             }}
           >
             Mike Kaeding
           </h1>
         </div>
         <div className="absolute bottom-8">
-          <ChevronDown className="w-8 h-8 animate-bounce" style={{ color: '#FDFBF7' }} />
+          <ChevronDown className="w-8 h-8 animate-bounce" style={{ color: '#FFFFFF' }} />
         </div>
       </section>
 
-      {/* SECTION 2: CONTEXT BAR */}
+      {/* SECTION 2: THE SNAPSHOT */}
       <section 
-        className="py-16 px-6 md:px-20 text-center"
-        style={{ backgroundColor: '#F5F1E8' }}
+        className="py-24 md:py-28 px-10 md:px-20"
+        style={{ backgroundColor: '#FFFFFF' }}
       >
-        <p style={{ 
-          fontSize: '18px',
-          color: '#3D3835',
-          lineHeight: 1.8,
-          fontWeight: 400
-        }}>
-          CEO, Norhart • Minneapolis • 20+ years in construction
-        </p>
+        <div className="max-w-[1100px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+            {/* Left Column - The Client */}
+            <div>
+              <p 
+                className="mb-6"
+                style={{ 
+                  fontSize: '13px',
+                  color: '#FF2E63',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  fontWeight: 600
+                }}
+              >
+                THE CLIENT
+              </p>
+              <h2 
+                className="mb-4"
+                style={{ 
+                  fontSize: 'clamp(32px, 4vw, 44px)',
+                  color: '#0A0A0A',
+                  fontWeight: 600,
+                  lineHeight: 1.2
+                }}
+              >
+                Mike Kaeding
+              </h2>
+              <p 
+                className="mb-4"
+                style={{ 
+                  fontSize: '20px',
+                  color: '#0A0A0A',
+                  lineHeight: 1.7
+                }}
+              >
+                CEO, Norhart<br />
+                Minneapolis, Minnesota
+              </p>
+              <p 
+                style={{ 
+                  fontSize: '18px',
+                  color: 'rgba(10, 10, 10, 0.7)',
+                  lineHeight: 1.7
+                }}
+              >
+                Software engineer by training. Builder by conviction. Twenty years in construction. Largest residential project in Minneapolis history—a $100 million building, over 1,000 units delivered, $230M in assets.
+              </p>
+            </div>
+            
+            {/* Right Column - The Challenge */}
+            <div>
+              <p 
+                className="mb-6"
+                style={{ 
+                  fontSize: '13px',
+                  color: '#FF2E63',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  fontWeight: 600
+                }}
+              >
+                THE CHALLENGE
+              </p>
+              <AnimatedParagraph 
+                className="mb-4"
+                style={{ 
+                  fontSize: '20px',
+                  color: '#0A0A0A',
+                  lineHeight: 1.7,
+                  fontWeight: 600
+                }}
+              >
+                Mission clear: cut construction costs in half to solve America's housing crisis.
+              </AnimatedParagraph>
+              <AnimatedParagraph 
+                className="mb-4"
+                style={{ 
+                  fontSize: '20px',
+                  color: '#0A0A0A',
+                  lineHeight: 1.7
+                }}
+              >
+                Zero online presence to make that mission travel.
+              </AnimatedParagraph>
+              <AnimatedParagraph 
+                style={{ 
+                  fontSize: '18px',
+                  color: 'rgba(10, 10, 10, 0.7)',
+                  lineHeight: 1.7
+                }}
+              >
+                Technical posts. Intermittent. Impersonal. The work was loud. The story was quiet. Being the best-kept secret in an industry that desperately needs what he's building.
+              </AnimatedParagraph>
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* SECTION 2.5: FULL-BLEED IMAGE DIVIDER */}
+      <section 
+        className="w-full md:h-[60vh] h-[50vh]"
+        style={{
+          backgroundImage: `url(${mikeCarousel1})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 30%'
+        }}
+      />
 
       {/* SECTION 3: OPENING NARRATIVE */}
       <section 

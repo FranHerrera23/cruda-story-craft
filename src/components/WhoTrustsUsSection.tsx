@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import karenPhoto from "@/assets/karen-mannheim-new.jpg";
 import mikePhoto from "@/assets/mike-kaeding.webp";
 import girishPhoto from "@/assets/girish-sehgal.jpeg";
+import juanPabloPhoto from "@/assets/juan-pablo-romero.jpeg";
 
 const clients = [
   {
@@ -28,6 +29,14 @@ const clients = [
     photo: girishPhoto,
     photoPosition: "center 30%",
     quote: "CRUDA helped me translate twenty-five years of hospitality leadership into a voice that travels."
+  },
+  {
+    slug: "juan-pablo-romero",
+    name: "Juan Pablo Romero",
+    title: "Regional Sales Manager, US & Caribbean · UNIK Parquet",
+    photo: juanPabloPhoto,
+    photoPosition: "center 25%",
+    quote: "CRUDA helped me position a brand nobody knew into the choice for architects who care about quality."
   }
 ];
 
@@ -60,10 +69,10 @@ const WhoTrustsUsSection = () => {
           Who trusts us with their story
         </p>
 
-        {/* Three cards grid */}
+        {/* Four cards grid */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-          style={{ gap: '48px' }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+          style={{ gap: '32px' }}
         >
           {clients.map((client, index) => (
             <Link

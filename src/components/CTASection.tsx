@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { Linkedin, Instagram } from "lucide-react";
 import crudaLogo from "@/assets/cruda-logo.png";
 
 const CTASection = () => {
@@ -74,6 +75,33 @@ const CTASection = () => {
             className="h-8 md:h-10 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
           />
         </Link>
+        
+        {/* Social Media Links */}
+        <div className="flex items-center justify-center gap-6 mb-6">
+          <a 
+            href="https://www.linkedin.com/company/cruda-agency" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transition-all duration-300 hover:opacity-100"
+            style={{ color: 'rgba(10, 10, 10, 0.4)' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#0A0A0A'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(10, 10, 10, 0.4)'}
+          >
+            <Linkedin size={20} />
+          </a>
+          <a 
+            href="https://www.instagram.com/cruda.agency" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="transition-all duration-300 hover:opacity-100"
+            style={{ color: 'rgba(10, 10, 10, 0.4)' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#0A0A0A'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(10, 10, 10, 0.4)'}
+          >
+            <Instagram size={20} />
+          </a>
+        </div>
+
         <p 
           style={{ 
             fontSize: '13px', 

@@ -484,14 +484,15 @@ const MikeKaedingCaseStudy = () => {
                 href={post.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300 hover:-translate-y-1 block"
+                className="transition-all duration-300 hover:-translate-y-1 block cursor-pointer"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '8px',
                   overflow: 'hidden',
                   boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
                   textDecoration: 'none',
-                  pointerEvents: post.url === '#' ? 'none' : 'auto'
+                  pointerEvents: post.url === '#' ? 'none' : 'auto',
+                  cursor: post.url === '#' ? 'default' : 'pointer'
                 }}
               >
                 <img 

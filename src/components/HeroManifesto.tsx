@@ -66,9 +66,8 @@ const HeroManifesto = () => {
                   transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
                 }}
               >
-                expertise.
-              </span>
-              <br />
+                expertise,
+              </span>{' '}
               <span 
                 style={{ 
                   color: "#FF2E63", 
@@ -80,7 +79,7 @@ const HeroManifesto = () => {
                   transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
                 }}
               >
-                Translated.
+                translated.
               </span>
             </h1>
             

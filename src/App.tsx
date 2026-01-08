@@ -17,6 +17,7 @@ import JuanPabloRomeroCaseStudy from "./pages/JuanPabloRomeroCaseStudy";
 import HospitalityGMCaseStudy from "./pages/HospitalityGMCaseStudy";
 import GirishSehgalCaseStudy from "./pages/GirishSehgalCaseStudy";
 import RetailCEOCaseStudy from "./pages/RetailCEOCaseStudy";
+import NitinPassiCaseStudy from "./pages/NitinPassiCaseStudy";
 import NotFound from "./pages/NotFound";
 import KarenPezetProject from "./pages/projects/KarenPezetProject";
 import KarenFourSeasonsProject from "./pages/projects/KarenFourSeasonsProject";
@@ -47,6 +48,7 @@ const App = () => (
             <Route path="/clients/hospitality-gm-abudhabi" element={<HospitalityGMCaseStudy />} />
             <Route path="/clients/girish-sehgal" element={<GirishSehgalCaseStudy />} />
             <Route path="/clients/retail-ceo-dubai" element={<RetailCEOCaseStudy />} />
+            <Route path="/clients/nitin-passi" element={<NitinPassiCaseStudy />} />
             <Route path="/clients/:clientSlug" element={<ClientDetail />} />
             <Route path="/work/:projectSlug" element={<CaseStudyDetail />} />
             <Route path="/book-call" element={<BookCall />} />

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import crudaLogo from "@/assets/cruda-logo.png";
 
 const CTASection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
@@ -9,7 +10,7 @@ const CTASection = () => {
       ref={elementRef} 
       style={{ 
         backgroundColor: '#F7F7F7',
-        padding: '160px 80px',
+        padding: '160px 80px 80px',
         textAlign: 'center'
       }}
     >
@@ -59,11 +60,36 @@ const CTASection = () => {
         </Link>
       </div>
 
+      {/* Footer with Logo */}
+      <footer 
+        className="mt-24 pt-12"
+        style={{ 
+          borderTop: '1px solid rgba(10, 10, 10, 0.1)'
+        }}
+      >
+        <Link to="/" className="inline-block mb-6">
+          <img 
+            src={crudaLogo} 
+            alt="CRUDA" 
+            className="h-8 md:h-10 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+          />
+        </Link>
+        <p 
+          style={{ 
+            fontSize: '13px', 
+            color: 'rgba(10, 10, 10, 0.4)',
+            letterSpacing: '0.02em'
+          }}
+        >
+          © {new Date().getFullYear()} CRUDA. All rights reserved.
+        </p>
+      </footer>
+
       {/* Mobile Styles */}
       <style>{`
         @media (max-width: 768px) {
           section {
-            padding: 120px 24px !important;
+            padding: 120px 24px 60px !important;
           }
           section h2 {
             font-size: 36px !important;

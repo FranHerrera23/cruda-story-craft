@@ -34,7 +34,11 @@ export const Navigation = () => {
     >
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <img src={crudaLogo} alt="CRUDA" style={{ height: '28px', width: 'auto' }} />
+          <img 
+            src={crudaLogo} 
+            alt="CRUDA" 
+            className="h-6 md:h-7 w-auto" 
+          />
         </Link>
         <div className="nav-menu">
           <Link 

@@ -33,21 +33,21 @@ const GirishSehgalCaseStudy = () => {
         className="relative flex items-center justify-center text-center"
         style={{
           height: '100vh',
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${heroImage})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%',
         }}
       >
         <div className="max-w-4xl px-6 md:px-20">
           <p 
-            className="mb-6"
+            className="mb-8"
             style={{ 
               fontSize: '13px',
-              color: '#FDFBF7',
-              opacity: 0.7,
+              color: '#FFFFFF',
+              opacity: 0.8,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              fontWeight: 500
+              fontWeight: 600
             }}
           >
             HOSPITALITY LEADERSHIP • ABU DHABI
@@ -55,28 +55,29 @@ const GirishSehgalCaseStudy = () => {
           <h1 
             className="font-bold"
             style={{ 
-              fontSize: 'clamp(40px, 5vw, 64px)',
-              color: '#FDFBF7',
-              lineHeight: 1.1,
-              fontWeight: 700
+              fontSize: 'clamp(48px, 6vw, 72px)',
+              color: '#FFFFFF',
+              lineHeight: 1.0,
+              fontWeight: 600,
+              letterSpacing: '-0.03em'
             }}
           >
-            When excellence doesn't travel
+            Girish Sehgal
           </h1>
         </div>
         <div className="absolute bottom-8">
-          <ChevronDown className="w-8 h-8 animate-bounce" style={{ color: '#FDFBF7' }} />
+          <ChevronDown className="w-8 h-8 animate-bounce" style={{ color: '#FFFFFF' }} />
         </div>
       </section>
 
       {/* SECTION 2: THE SNAPSHOT */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20"
+        className="py-24 md:py-28 px-10 md:px-20"
         style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="max-w-[1200px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-            {/* Left Column - The Executive */}
+            {/* Left Column - The Client */}
             <div>
               <p 
                 className="mb-6"
@@ -88,7 +89,7 @@ const GirishSehgalCaseStudy = () => {
                   fontWeight: 600
                 }}
               >
-                THE EXECUTIVE
+                THE CLIENT
               </p>
               <h2 
                 className="mb-6"
@@ -119,8 +120,7 @@ const GirishSehgalCaseStudy = () => {
                   lineHeight: 1.7
                 }}
               >
-                Four Seasons. Taj. JW Marriott. Grand Hyatt. Kempinski.<br />
-                14 cities across 6 countries.
+                Four Seasons. Taj. JW Marriott. Grand Hyatt. Kempinski. 14 cities across 6 countries. Twenty-five years building cultures at the world's most renowned hospitality brands.
               </p>
             </div>
             
@@ -143,21 +143,21 @@ const GirishSehgalCaseStudy = () => {
                 style={{ 
                   fontSize: '20px',
                   color: '#0A0A0A',
-                  lineHeight: 1.7
+                  lineHeight: 1.7,
+                  fontWeight: 600
                 }}
               >
-                Twenty-five years building cultures at Four Seasons, Taj, JW Marriott.
+                Two decades building excellence in hospitality.
               </AnimatedParagraph>
               <AnimatedParagraph 
                 className="mb-4"
                 style={{ 
                   fontSize: '20px',
                   color: '#0A0A0A',
-                  lineHeight: 1.7,
-                  fontWeight: 600
+                  lineHeight: 1.7
                 }}
               >
-                Zero digital presence.
+                Zero digital presence in healthcare.
               </AnimatedParagraph>
               <AnimatedParagraph 
                 style={{ 
@@ -166,7 +166,7 @@ const GirishSehgalCaseStudy = () => {
                   lineHeight: 1.7
                 }}
               >
-                The resume spoke for itself — to people who saw it. Most people never saw it.
+                The resume spoke for itself—to people who saw it. Most people never saw it. Moving from hotels to hospitals meant bringing a philosophy, not just a skillset.
               </AnimatedParagraph>
             </div>
           </div>
@@ -248,9 +248,8 @@ const GirishSehgalCaseStudy = () => {
 
       {/* SECTION 5: FULL-BLEED IMAGE DIVIDER */}
       <section 
-        className="w-full"
+        className="w-full md:h-[60vh] h-[50vh]"
         style={{
-          height: '60vh',
           backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%'
@@ -587,9 +586,8 @@ const GirishSehgalCaseStudy = () => {
 
       {/* SECTION 8: FULL-BLEED IMAGE DIVIDER */}
       <section 
-        className="w-full"
+        className="w-full md:h-[60vh] h-[50vh]"
         style={{
-          height: '50vh',
           backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 25%'

@@ -39,8 +39,16 @@ const Work = () => {
       title: "Regional Sales Manager, US & Caribbean, UNIK Parquet",
       description: "High-end flooring manufacturer serving luxury residential & commercial across US.",
       image: null,
-      link: "#",
-      status: "coming-soon"
+      link: "/clients/juan-pablo-romero",
+      status: "live"
+    },
+    {
+      name: "[Name Redacted]",
+      title: "Retail CEO & Founder, Dubai",
+      description: "Confidential case study. Strategic positioning under NDAs for a second-time founder.",
+      image: null,
+      link: "/clients/nitin-passi",
+      status: "live"
     }
   ];
 

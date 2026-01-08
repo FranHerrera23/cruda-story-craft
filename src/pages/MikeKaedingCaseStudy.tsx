@@ -21,32 +21,38 @@ const linkedInPosts = [
   {
     preview: "I'm part of an organization with over 34,000 CEOs and multimillion-dollar business owners across 130 countries: I haven't met a single one in their 20s.",
     image: mikeWork1,
-    engagement: "106 reactions • 12 comments • 2 reposts"
+    engagement: "106 reactions • 12 comments • 2 reposts",
+    url: "https://www.linkedin.com/posts/mikekaeding_im-part-of-an-organization-with-over-34000-activity-7254885302115188737-NmoZ"
   },
   {
     preview: 'Today, I started applying the "The 5 AM Club" formula to become as successful as those big-shot CEOs...',
     image: mikeWork2,
-    engagement: "297 reactions • 52 comments • 6 reposts"
+    engagement: "297 reactions • 52 comments • 6 reposts",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7140732854015041536"
   },
   {
     preview: '"Women are not meant for construction," I heard back then from a guy who used to help my dad and me on some projects.',
     image: mikeWork3,
-    engagement: "50 reactions • 12 comments • 2 reposts"
+    engagement: "50 reactions • 12 comments • 2 reposts",
+    url: "https://www.linkedin.com/posts/mikekaeding_propertymanagement-breakingbarriers-womeninconstruction-activity-7135704576980094976-LyNU"
   },
   {
     preview: "He isn't your typical executive; He doesn't hide behind a glossy title or a corner office.",
     image: mikeWork4,
-    engagement: "103 reactions • 30 comments • 2 reposts"
+    engagement: "103 reactions • 30 comments • 2 reposts",
+    url: "#"
   },
   {
     preview: "We are building a $100,000,000 project. We are transforming neighbourhoods into communities. We are building better communities for hundreds of residents.",
     image: mikeWork5,
-    engagement: ""
+    engagement: "",
+    url: "https://www.linkedin.com/posts/mikekaeding_oakdale-realestate-residentialconstruction-activity-7107036479498973184-rYuu"
   },
   {
     preview: "Want to lower your rent? Here are a few tips I gave during my interview with ABC in Los Angeles.",
     image: mikeWork6,
-    engagement: "25 reactions • 4 comments"
+    engagement: "25 reactions • 4 comments",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7122034472371318784"
   }
 ];
 
@@ -54,32 +60,32 @@ const pressItems = [
   {
     outlet: "CBS News",
     title: "Minneapolis CEO's mission to cut construction costs in half",
-    image: mikeCbsNews
+    image: mikeCbsNews,
+    url: "https://www.cbsnews.com/minnesota/news/twin-cities-apartments-price-gap/"
   },
   {
-    outlet: "Business Insider",
-    title: "This CEO wants to solve America's housing crisis by rethinking how we build",
-    image: mikePress1
+    outlet: "CBS News",
+    title: "Did you know you can negotiate a lower monthly rent?",
+    image: mikePress1,
+    url: "https://www.cbsnews.com/minnesota/news/with-rent-prices-surging-did-you-know-you-can-negotiate-a-lower-monthly-cost/"
   },
   {
-    outlet: "Star Tribune",
-    title: "Norhart's Mike Kaeding on building Minneapolis' biggest residential project",
-    image: mikePress2
+    outlet: "CBS News",
+    title: "Minneapolis rent vs home ownership cost gap",
+    image: mikePress2,
+    url: "https://www.cbsnews.com/minnesota/news/minneapolis-rent-home-ownership-cost-gap/"
   },
   {
-    outlet: "Housing Wire",
-    title: "The construction CEO who thinks the industry has it all wrong",
-    image: mikePress3
+    outlet: "Finance & Commerce",
+    title: "Share of Lexington Lofts apartment complex sells for $44.6M",
+    image: mikePress3,
+    url: "https://finance-commerce.com/2024/07/share-of-lexington-lofts-apartment-complex-sells-for-44-6m/"
   },
   {
-    outlet: "Fast Company",
-    title: "Can cutting waste solve the affordable housing crisis?",
-    image: mikePress4
-  },
-  {
-    outlet: "The Wall Street Journal",
-    title: "A builder's bet on manufacturing apartments like cars",
-    image: mikePress5
+    outlet: "ABC7",
+    title: "Renters: Hidden fees and saving money on your rental lease",
+    image: mikePress4,
+    url: "https://abc7.com/post/renters-hidden-fees-saving-money-rental-lease/13523041/"
   }
 ];
 
@@ -473,14 +479,19 @@ const MikeKaedingCaseStudy = () => {
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}
           >
             {linkedInPosts.map((post, index) => (
-              <div 
+              <a 
                 key={index}
-                className="transition-all duration-300 hover:-translate-y-1"
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300 hover:-translate-y-1 block"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '8px',
                   overflow: 'hidden',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)'
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+                  textDecoration: 'none',
+                  pointerEvents: post.url === '#' ? 'none' : 'auto'
                 }}
               >
                 <img 
@@ -509,7 +520,7 @@ const MikeKaedingCaseStudy = () => {
                     {post.engagement}
                   </p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -555,14 +566,18 @@ const MikeKaedingCaseStudy = () => {
             style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}
           >
             {pressItems.map((item, index) => (
-              <div 
+              <a 
                 key={index}
-                className="transition-all duration-300 hover:-translate-y-1"
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-all duration-300 hover:-translate-y-1 block"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '8px',
                   overflow: 'hidden',
-                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)'
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+                  textDecoration: 'none'
                 }}
               >
                 <img 
@@ -591,7 +606,7 @@ const MikeKaedingCaseStudy = () => {
                     {item.title}
                   </p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>

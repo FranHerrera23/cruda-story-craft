@@ -1,5 +1,8 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Link } from "react-router-dom";
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import karenPhoto from "@/assets/karen-mannheim-new.jpg";
 import mikePhoto from "@/assets/mike-kaeding.webp";
 import girishPhoto from "@/assets/girish-sehgal.jpeg";
@@ -59,47 +62,107 @@ const clients: Client[] = [
 
 const WhoTrustsUsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: 'start',
+    slidesToScroll: 1,
+    containScroll: 'trimSnaps'
+  });
+
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+  const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setCanScrollPrev(emblaApi.canScrollPrev());
+    setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on('select', onSelect);
+    emblaApi.on('reInit', onSelect);
+    return () => {
+      emblaApi.off('select', onSelect);
+      emblaApi.off('reInit', onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   return (
     <section 
       ref={elementRef} 
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '160px 80px'
+        padding: '160px 0'
       }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        {/* Section header */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '13px',
-            fontWeight: '600',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: 'rgba(10, 10, 10, 0.4)',
-            marginBottom: '60px',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
-          }}
-        >
-          Who trusts us with their story
-        </p>
+      <div style={{ maxWidth: '1400px', margin: '0 auto', paddingLeft: '80px', paddingRight: '80px' }}>
+        {/* Section header with navigation */}
+        <div className="flex items-center justify-between mb-12">
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '13px',
+              fontWeight: '600',
+              letterSpacing: '0.12em',
+              textTransform: 'uppercase',
+              color: 'rgba(10, 10, 10, 0.4)',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
+            Who trusts us with their story
+          </p>
 
-        {/* Four cards grid */}
-        <div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-          style={{ gap: '32px' }}
-        >
+          {/* Navigation arrows */}
+          <div className="hidden md:flex items-center gap-2">
+            <button
+              onClick={scrollPrev}
+              disabled={!canScrollPrev}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+              style={{
+                backgroundColor: canScrollPrev ? '#0A0A0A' : 'rgba(10, 10, 10, 0.1)',
+                cursor: canScrollPrev ? 'pointer' : 'not-allowed'
+              }}
+            >
+              <ChevronLeft size={20} color={canScrollPrev ? '#FFFFFF' : 'rgba(10, 10, 10, 0.3)'} />
+            </button>
+            <button
+              onClick={scrollNext}
+              disabled={!canScrollNext}
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+              style={{
+                backgroundColor: canScrollNext ? '#0A0A0A' : 'rgba(10, 10, 10, 0.1)',
+                cursor: canScrollNext ? 'pointer' : 'not-allowed'
+              }}
+            >
+              <ChevronRight size={20} color={canScrollNext ? '#FFFFFF' : 'rgba(10, 10, 10, 0.3)'} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Carousel container - full width for edge-to-edge feel */}
+      <div 
+        className="overflow-hidden"
+        ref={emblaRef}
+        style={{ paddingLeft: '80px' }}
+      >
+        <div className="flex gap-8">
           {clients.map((client, index) => (
             <Link
               key={index}
               to={`/clients/${client.slug}`}
-              className="group block transition-all duration-300"
+              className="group block transition-all duration-300 flex-shrink-0"
               style={{
+                width: '320px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 150}ms`
+                transitionDelay: `${(index + 1) * 100}ms`
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
@@ -161,11 +224,11 @@ const WhoTrustsUsSection = () => {
               {/* Name */}
               <p
                 style={{
-                  fontSize: '24px',
+                  fontSize: '22px',
                   fontWeight: '600',
                   color: '#0A0A0A',
-                  marginTop: '28px',
-                  marginBottom: '8px'
+                  marginTop: '24px',
+                  marginBottom: '6px'
                 }}
               >
                 {client.name}
@@ -174,10 +237,10 @@ const WhoTrustsUsSection = () => {
               {/* Title */}
               <p
                 style={{
-                  fontSize: '15px',
+                  fontSize: '14px',
                   fontWeight: '400',
                   color: 'rgba(10, 10, 10, 0.5)',
-                  marginBottom: '20px'
+                  marginBottom: '16px'
                 }}
               >
                 {client.title}
@@ -186,7 +249,7 @@ const WhoTrustsUsSection = () => {
               {/* Quote */}
               <p
                 style={{
-                  fontSize: '17px',
+                  fontSize: '16px',
                   fontWeight: '400',
                   fontStyle: 'italic',
                   color: 'rgba(10, 10, 10, 0.7)',
@@ -197,6 +260,8 @@ const WhoTrustsUsSection = () => {
               </p>
             </Link>
           ))}
+          {/* Spacer for right padding */}
+          <div className="flex-shrink-0" style={{ width: '48px' }} />
         </div>
       </div>
 
@@ -204,7 +269,14 @@ const WhoTrustsUsSection = () => {
       <style>{`
         @media (max-width: 768px) {
           section {
-            padding: 120px 24px !important;
+            padding: 120px 0 !important;
+          }
+          section > div:first-child {
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+          }
+          section .overflow-hidden {
+            padding-left: 24px !important;
           }
         }
       `}</style>

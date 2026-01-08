@@ -19,34 +19,34 @@ import mikePress5 from "@/assets/mike-press-5.png";
 
 const linkedInPosts = [
   {
-    preview: "Most construction companies try to be efficient. We decided to stop building altogether—at least, the way everyone else builds...",
+    preview: "I'm part of an organization with over 34,000 CEOs and multimillion-dollar business owners across 130 countries: I haven't met a single one in their 20s.",
     image: mikeWork1,
-    engagement: "1,247 reactions • 89 comments"
+    engagement: "106 reactions • 12 comments • 2 reposts"
   },
   {
-    preview: "I inherited a company I never asked to run. My father died. I became CEO overnight. But having a story to tell? That came later...",
+    preview: 'Today, I started applying the "The 5 AM Club" formula to become as successful as those big-shot CEOs...',
     image: mikeWork2,
-    engagement: "2,891 reactions • 156 comments"
+    engagement: "297 reactions • 52 comments • 6 reposts"
   },
   {
-    preview: "Why does it cost $400,000 to build an apartment? I spent 20 years trying to answer this question. Here's what I found...",
+    preview: '"Women are not meant for construction," I heard back then from a guy who used to help my dad and me on some projects.',
     image: mikeWork3,
-    engagement: "3,456 reactions • 234 comments"
+    engagement: "50 reactions • 12 comments • 2 reposts"
   },
   {
-    preview: "Everyone talks about housing affordability. Nobody talks about why construction costs doubled in 20 years. Until now...",
+    preview: "He isn't your typical executive; He doesn't hide behind a glossy title or a corner office.",
     image: mikeWork4,
-    engagement: "1,892 reactions • 143 comments"
+    engagement: "103 reactions • 30 comments • 2 reposts"
   },
   {
-    preview: "The hardest part of leading isn't the strategy. It's learning to be the person your company needs you to be...",
+    preview: "We are building a $100,000,000 project. We are transforming neighbourhoods into communities. We are building better communities for hundreds of residents.",
     image: mikeWork5,
-    engagement: "2,134 reactions • 178 comments"
+    engagement: ""
   },
   {
-    preview: "We built the largest residential project in Minneapolis history. Here's what nobody tells you about $100M buildings...",
+    preview: "Want to lower your rent? Here are a few tips I gave during my interview with ABC in Los Angeles.",
     image: mikeWork6,
-    engagement: "4,012 reactions • 287 comments"
+    engagement: "25 reactions • 4 comments"
   }
 ];
 

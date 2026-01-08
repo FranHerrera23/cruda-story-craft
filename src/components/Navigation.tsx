@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import './Navigation.css';
+import crudaLogo from '@/assets/cruda-logo.png';
 
 export const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,7 +34,7 @@ export const Navigation = () => {
     >
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          CRUDA
+          <img src={crudaLogo} alt="CRUDA" style={{ height: '28px', width: 'auto' }} />
         </Link>
         <div className="nav-menu">
           <Link 

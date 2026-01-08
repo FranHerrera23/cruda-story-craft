@@ -5,7 +5,17 @@ import mikePhoto from "@/assets/mike-kaeding.webp";
 import girishPhoto from "@/assets/girish-sehgal.jpeg";
 import juanPabloPhoto from "@/assets/juan-pablo-romero.jpeg";
 
-const clients = [
+interface Client {
+  slug: string;
+  name: string;
+  title: string;
+  photo?: string;
+  photoPosition?: string;
+  quote: string;
+  isConfidential?: boolean;
+}
+
+const clients: Client[] = [
   {
     slug: "karen-mannheim",
     name: "Karen Mannheim",
@@ -37,6 +47,13 @@ const clients = [
     photo: juanPabloPhoto,
     photoPosition: "center 25%",
     quote: "CRUDA helped me position a brand nobody knew into the choice for architects who care about quality."
+  },
+  {
+    slug: "nitin-passi",
+    name: "[Name Protected]",
+    title: "Founder & Creative Director · Global Fashion House",
+    isConfidential: true,
+    quote: "They understood what we couldn't say publicly was just as important as what we could."
   }
 ];
 
@@ -91,7 +108,7 @@ const WhoTrustsUsSection = () => {
                 e.currentTarget.style.transform = 'translateY(0)';
               }}
             >
-              {/* Photo with scale on hover */}
+              {/* Photo or confidential placeholder */}
               <div 
                 style={{ 
                   aspectRatio: '4/3', 
@@ -99,17 +116,46 @@ const WhoTrustsUsSection = () => {
                   borderRadius: '4px'
                 }}
               >
-                <img
-                  src={client.photo}
-                  alt={client.name}
-                  className="transition-transform duration-500 group-hover:scale-[1.03]"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: client.photoPosition
-                  }}
-                />
+                {client.isConfidential ? (
+                  <div 
+                    className="w-full h-full flex items-center justify-center transition-all duration-500 group-hover:scale-[1.03]"
+                    style={{
+                      background: 'linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 50%, #1A1A1A 100%)'
+                    }}
+                  >
+                    <div className="text-center">
+                      <div 
+                        className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                        style={{ 
+                          border: '2px solid rgba(255,255,255,0.2)',
+                          background: 'rgba(255,255,255,0.05)'
+                        }}
+                      >
+                        <span style={{ fontSize: '24px', color: 'rgba(255,255,255,0.4)' }}>?</span>
+                      </div>
+                      <p style={{ 
+                        fontSize: '11px', 
+                        letterSpacing: '0.15em', 
+                        color: 'rgba(255,255,255,0.4)',
+                        textTransform: 'uppercase'
+                      }}>
+                        Confidential
+                      </p>
+                    </div>
+                  </div>
+                ) : (
+                  <img
+                    src={client.photo}
+                    alt={client.name}
+                    className="transition-transform duration-500 group-hover:scale-[1.03]"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      objectPosition: client.photoPosition
+                    }}
+                  />
+                )}
               </div>
 
               {/* Name */}

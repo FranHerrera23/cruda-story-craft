@@ -37,7 +37,7 @@ export const Navigation = () => {
           <img 
             src={crudaLogo} 
             alt="CRUDA" 
-            className="h-6 md:h-7 w-auto" 
+            className="h-6 md:h-9 w-auto" 
           />
         </Link>
         <div className="nav-menu">

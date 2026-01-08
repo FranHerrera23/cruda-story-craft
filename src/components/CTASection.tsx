@@ -68,11 +68,11 @@ const CTASection = () => {
           borderTop: '1px solid rgba(10, 10, 10, 0.1)'
         }}
       >
-        <Link to="/" className="inline-block mb-6">
+        <Link to="/" className="inline-block mb-8">
           <img 
             src={crudaLogo} 
             alt="CRUDA" 
-            className="h-8 md:h-10 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+            className="h-10 md:h-16 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
           />
         </Link>
         

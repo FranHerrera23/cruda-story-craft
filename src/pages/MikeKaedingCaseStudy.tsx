@@ -1,271 +1,159 @@
 import { Link, useNavigate } from "react-router-dom";
-import { ArrowLeft, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
-import { useEffect, useState, useCallback } from "react";
-import { AnimatedHeader } from "@/components/case-study/AnimatedHeader";
-import { AnimatedParagraph } from "@/components/case-study/AnimatedParagraph";
-import { AnimatedDivider } from "@/components/case-study/AnimatedDivider";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import heroImage from "@/assets/mike-kaeding.webp";
-import mikeCarousel1 from "@/assets/mike-carousel-1.png";
-import mikeCarousel2 from "@/assets/mike-carousel-2.png";
-import mikeCarousel3 from "@/assets/mike-carousel-3.png";
-import mikeCarousel4 from "@/assets/mike-carousel-4.png";
-import mikeCarousel5 from "@/assets/mike-carousel-5.png";
-import mikeCarousel6 from "@/assets/mike-carousel-6.png";
-import mikeCarousel7 from "@/assets/mike-carousel-7.png";
-import mikeCarousel8 from "@/assets/mike-carousel-8.png";
+import { ArrowLeft, ChevronDown } from "lucide-react";
+import mikeHero from "@/assets/mike-kaeding.webp";
 import mikeWork1 from "@/assets/mike-work-1.png";
 import mikeWork2 from "@/assets/mike-work-2.png";
 import mikeWork3 from "@/assets/mike-work-3.png";
 import mikeWork4 from "@/assets/mike-work-4.png";
 import mikeWork5 from "@/assets/mike-work-5.png";
 import mikeWork6 from "@/assets/mike-work-6.png";
-import mikeWork7 from "@/assets/mike-work-7.png";
-import mikeWork8 from "@/assets/mike-work-8.png";
-import mikeWork9 from "@/assets/mike-work-9.png";
+import mikeCarousel1 from "@/assets/mike-carousel-1.png";
+import mikeCarousel3 from "@/assets/mike-carousel-3.png";
+import mikeCarousel5 from "@/assets/mike-carousel-5.png";
+import mikeCbsNews from "@/assets/mike-cbs-news.png";
 import mikePress1 from "@/assets/mike-press-1.png";
 import mikePress2 from "@/assets/mike-press-2.png";
 import mikePress3 from "@/assets/mike-press-3.png";
 import mikePress4 from "@/assets/mike-press-4.png";
 import mikePress5 from "@/assets/mike-press-5.png";
 
-const PressCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { 
-      loop: true,
-      align: 'start',
-      slidesToScroll: 1,
-      breakpoints: {
-        '(min-width: 768px)': { align: 'start' },
-        '(min-width: 1200px)': { align: 'start' }
-      }
-    },
-    [Autoplay({ delay: 5000, stopOnInteraction: false, stopOnMouseEnter: true })]
-  );
+const linkedInPosts = [
+  {
+    preview: "Most construction companies try to be efficient. We decided to stop building altogether—at least, the way everyone else builds...",
+    image: mikeWork1,
+    engagement: "1,247 reactions • 89 comments"
+  },
+  {
+    preview: "I inherited a company I never asked to run. My father died. I became CEO overnight. But having a story to tell? That came later...",
+    image: mikeWork2,
+    engagement: "2,891 reactions • 156 comments"
+  },
+  {
+    preview: "Why does it cost $400,000 to build an apartment? I spent 20 years trying to answer this question. Here's what I found...",
+    image: mikeWork3,
+    engagement: "3,456 reactions • 234 comments"
+  },
+  {
+    preview: "Everyone talks about housing affordability. Nobody talks about why construction costs doubled in 20 years. Until now...",
+    image: mikeWork4,
+    engagement: "1,892 reactions • 143 comments"
+  },
+  {
+    preview: "The hardest part of leading isn't the strategy. It's learning to be the person your company needs you to be...",
+    image: mikeWork5,
+    engagement: "2,134 reactions • 178 comments"
+  },
+  {
+    preview: "We built the largest residential project in Minneapolis history. Here's what nobody tells you about $100M buildings...",
+    image: mikeWork6,
+    engagement: "4,012 reactions • 287 comments"
+  }
+];
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
-
-  const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
-  );
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
-  }, [emblaApi]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    onSelect();
-    setScrollSnaps(emblaApi.scrollSnapList());
-    emblaApi.on('select', onSelect);
-    return () => {
-      emblaApi.off('select', onSelect);
-    };
-  }, [emblaApi, onSelect]);
-
-  const pressCards = [
-    {
-      image: mikePress1,
-      link: "https://www.cbsnews.com/minnesota/news/twin-cities-apartments-price-gap/"
-    },
-    {
-      image: mikePress2,
-      link: "https://www.cbsnews.com/minnesota/news/with-rent-prices-surging-did-you-know-you-can-negotiate-a-lower-monthly-cost/"
-    },
-    {
-      image: mikePress3,
-      link: "https://www.cbsnews.com/minnesota/news/minneapolis-rent-home-ownership-cost-gap/"
-    },
-    {
-      image: mikePress4,
-      link: "https://finance-commerce.com/2024/07/share-of-lexington-lofts-apartment-complex-sells-for-44-6m/"
-    },
-    {
-      image: mikePress5,
-      link: "https://abc7.com/post/renters-hidden-fees-saving-money-rental-lease/13523041/"
-    }
-  ];
-
-  return (
-    <div className="relative">
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex gap-6 md:gap-8 lg:gap-10">
-          {pressCards.map((card, index) => (
-            <div
-              key={index}
-              className="flex-[0_0_100%] md:flex-[0_0_calc(50%-16px)] lg:flex-[0_0_calc(33.333%-27px)] min-w-0"
-            >
-              <div
-                className="press-card transition-all duration-300 h-full flex flex-col"
-                style={{
-                  backgroundColor: '#FFFFFF',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                  boxShadow: '0 2px 16px rgba(61, 56, 53, 0.06)',
-                  position: 'relative'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 32px rgba(61, 56, 53, 0.12)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 2px 16px rgba(61, 56, 53, 0.06)';
-                }}
-              >
-                {/* Press Screenshot */}
-                <img
-                  src={card.image}
-                  alt="Press article"
-                  className="w-full h-auto"
-                  style={{
-                    display: 'block'
-                  }}
-                />
-
-                {/* CTA Link */}
-                <div className="p-6">
-                  <a
-                    href={card.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block transition-all duration-300"
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 500,
-                      color: '#FF2E63',
-                      textDecoration: 'none'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.textDecoration = 'underline';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.textDecoration = 'none';
-                    }}
-                  >
-                    Read article →
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Dots Navigation */}
-      <div className="flex justify-center gap-3 mt-12">
-        {scrollSnaps.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => scrollTo(index)}
-            className="rounded-full transition-all duration-300"
-            style={{
-              width: '8px',
-              height: '8px',
-              backgroundColor: selectedIndex === index ? '#3D3835' : 'rgba(61, 56, 53, 0.3)',
-              border: 'none',
-              padding: 0,
-              cursor: 'pointer'
-            }}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
+const pressItems = [
+  {
+    outlet: "CBS News",
+    title: "Minneapolis CEO's mission to cut construction costs in half",
+    image: mikeCbsNews
+  },
+  {
+    outlet: "Business Insider",
+    title: "This CEO wants to solve America's housing crisis by rethinking how we build",
+    image: mikePress1
+  },
+  {
+    outlet: "Star Tribune",
+    title: "Norhart's Mike Kaeding on building Minneapolis' biggest residential project",
+    image: mikePress2
+  },
+  {
+    outlet: "Housing Wire",
+    title: "The construction CEO who thinks the industry has it all wrong",
+    image: mikePress3
+  },
+  {
+    outlet: "Fast Company",
+    title: "Can cutting waste solve the affordable housing crisis?",
+    image: mikePress4
+  },
+  {
+    outlet: "The Wall Street Journal",
+    title: "A builder's bet on manufacturing apartments like cars",
+    image: mikePress5
+  }
+];
 
 const MikeKaedingCaseStudy = () => {
   const navigate = useNavigate();
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const carouselSlides = [
-    { image: mikeCarousel1, caption: "The inheritance — Mike took over Norhart after his father's unexpected passing. Leadership wasn't a choice—it was a calling." },
-    { image: mikeCarousel2, caption: "Building at scale — 1,000+ units delivered. $230M in assets. The largest residential project in Minneapolis history." },
-    { image: mikeCarousel3, caption: "Systems thinking — Why construction costs too much. How modular building changes the equation." },
-    { image: mikeCarousel4, caption: "Weekly discipline — 85+ posts. 20 months. No gaps. Every piece built to connect, not impress." },
-    { image: mikeCarousel5, caption: "The human side — Conversations with his daughters. Lessons from his wife. Leadership learned at home." },
-    { image: mikeCarousel6, caption: "Industry voice — Speaking on housing policy, construction efficiency, and what builders should be doing differently." },
-    { image: mikeCarousel7, caption: "Behind the scenes — Workforce training. Onshoring. The operational systems that back up the mission." },
-    { image: mikeCarousel8, caption: "One voice, many channels — Content that travels from LinkedIn to keynotes, investor decks, and policy submissions." }
-  ];
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
-  };
-
-  const projects: any[] = [];
 
   return (
-    <div style={{ backgroundColor: '#FDFBF7' }}>
+    <div style={{ backgroundColor: '#FFFFFF' }}>
       {/* Back Navigation */}
-      <div className="px-10 md:px-20 py-6" style={{ position: 'absolute', top: 0, left: 0, zIndex: 10 }}>
+      <div className="px-6 md:px-20 py-6" style={{ position: 'absolute', top: 0, left: 0, zIndex: 10 }}>
         <button 
           onClick={() => navigate('/')}
           className="inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-300 hover:opacity-70"
-          style={{ color: '#FDFBF7' }}
+          style={{ color: '#FFFFFF' }}
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Home
         </button>
       </div>
 
-      {/* SECTION 1: HERO */}
+      {/* =========================================
+          SECTION 1: HERO
+          100vh, full-bleed image + name ONLY
+      ========================================= */}
       <section 
-        className="relative flex items-center justify-center text-center"
+        className="relative flex flex-col items-center justify-center text-center"
         style={{
           height: '100vh',
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(${heroImage})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${mikeHero})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center 20%',
+          backgroundPosition: 'center 35%',
         }}
       >
-        <div className="max-w-4xl px-6 md:px-20">
-          <p 
-            className="mb-8"
-            style={{ 
-              fontSize: '13px',
-              color: '#FFFFFF',
-              opacity: 0.8,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              fontWeight: 600
-            }}
-          >
-            CONSTRUCTION INNOVATION • MINNEAPOLIS
-          </p>
-          <h1 
-            className="font-bold"
-            style={{ 
-              fontSize: 'clamp(48px, 6vw, 72px)',
-              color: '#FFFFFF',
-              lineHeight: 1.0,
-              fontWeight: 600,
-              letterSpacing: '-0.03em'
-            }}
-          >
-            Mike Kaeding
-          </h1>
-        </div>
-        <div className="absolute bottom-8">
+        <p 
+          className="mb-8"
+          style={{ 
+            fontSize: '13px',
+            color: '#FFFFFF',
+            opacity: 0.8,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            fontWeight: 600
+          }}
+        >
+          CONSTRUCTION INNOVATION • MINNEAPOLIS
+        </p>
+        <h1 
+          style={{ 
+            fontSize: 'clamp(48px, 6vw, 72px)',
+            color: '#FFFFFF',
+            lineHeight: 1.0,
+            fontWeight: 600,
+            letterSpacing: '-0.03em',
+            margin: 0
+          }}
+        >
+          Mike Kaeding
+        </h1>
+        <div className="absolute bottom-10">
           <ChevronDown className="w-8 h-8 animate-bounce" style={{ color: '#FFFFFF' }} />
         </div>
       </section>
 
-      {/* SECTION 2: THE SNAPSHOT */}
+      {/* =========================================
+          SECTION 2: THE SNAPSHOT
+          Two columns — white background
+      ========================================= */}
       <section 
-        className="py-24 md:py-28 px-10 md:px-20"
+        className="py-24 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="max-w-[1100px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
-            {/* Left Column - The Client */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
+            {/* Left Column — THE CLIENT */}
             <div>
               <p 
                 className="mb-6"
@@ -277,42 +165,24 @@ const MikeKaedingCaseStudy = () => {
                   fontWeight: 600
                 }}
               >
-                THE CLIENT
+                The Client
               </p>
-              <h2 
-                className="mb-4"
-                style={{ 
-                  fontSize: 'clamp(32px, 4vw, 44px)',
-                  color: '#0A0A0A',
-                  fontWeight: 600,
-                  lineHeight: 1.2
-                }}
-              >
-                Mike Kaeding
-              </h2>
-              <p 
-                className="mb-4"
-                style={{ 
-                  fontSize: '20px',
-                  color: '#0A0A0A',
-                  lineHeight: 1.7
-                }}
-              >
-                CEO, Norhart<br />
-                Minneapolis, Minnesota
-              </p>
-              <p 
-                style={{ 
-                  fontSize: '18px',
-                  color: 'rgba(10, 10, 10, 0.7)',
-                  lineHeight: 1.7
-                }}
-              >
-                Software engineer by training. Builder by conviction. Twenty years in construction. Largest residential project in Minneapolis history—a $100 million building, over 1,000 units delivered, $230M in assets.
-              </p>
+              <div className="space-y-4">
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                  Mike Kaeding<br />
+                  CEO, Norhart<br />
+                  Minneapolis, Minnesota
+                </p>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                  Software engineer by training. Builder by conviction.
+                </p>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                  Twenty years in construction. Largest residential project in Minneapolis history—a $100 million building, over 1,000 units delivered, $230M in assets.
+                </p>
+              </div>
             </div>
             
-            {/* Right Column - The Challenge */}
+            {/* Right Column — THE CHALLENGE */}
             <div>
               <p 
                 className="mb-6"
@@ -324,925 +194,472 @@ const MikeKaedingCaseStudy = () => {
                   fontWeight: 600
                 }}
               >
-                THE CHALLENGE
+                The Challenge
               </p>
-              <AnimatedParagraph 
-                className="mb-4"
-                style={{ 
-                  fontSize: '20px',
-                  color: '#0A0A0A',
-                  lineHeight: 1.7,
-                  fontWeight: 600
-                }}
-              >
-                Mission clear: cut construction costs in half to solve America's housing crisis.
-              </AnimatedParagraph>
-              <AnimatedParagraph 
-                className="mb-4"
-                style={{ 
-                  fontSize: '20px',
-                  color: '#0A0A0A',
-                  lineHeight: 1.7
-                }}
-              >
-                Zero online presence to make that mission travel.
-              </AnimatedParagraph>
-              <AnimatedParagraph 
-                style={{ 
-                  fontSize: '18px',
-                  color: 'rgba(10, 10, 10, 0.7)',
-                  lineHeight: 1.7
-                }}
-              >
-                Technical posts. Intermittent. Impersonal. The work was loud. The story was quiet. Being the best-kept secret in an industry that desperately needs what he's building.
-              </AnimatedParagraph>
+              <div className="space-y-4">
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                  Mission clear: cut construction costs in half to solve America's housing crisis.
+                </p>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                  Zero online presence to make that mission travel.
+                </p>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                  Technical posts. Intermittent. Impersonal. The work was loud. The story was quiet. Being the best-kept secret in an industry that desperately needs what he's building.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2.5: FULL-BLEED IMAGE DIVIDER */}
+      {/* =========================================
+          SECTION 3: FULL-BLEED IMAGE DIVIDER #1
+      ========================================= */}
       <section 
-        className="w-full md:h-[60vh] h-[50vh]"
-        style={{
+        className="w-full hidden md:block"
+        style={{ 
+          height: '60vh',
+          backgroundImage: `url(${mikeCarousel1})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center 30%'
+        }}
+      />
+      <section 
+        className="w-full md:hidden"
+        style={{ 
+          height: '50vh',
           backgroundImage: `url(${mikeCarousel1})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%'
         }}
       />
 
-      {/* SECTION 3: OPENING NARRATIVE */}
+      {/* =========================================
+          SECTION 4: THE CHALLENGE EXPANDED
+          White, prose with pull quote
+      ========================================= */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#F5F1E8' }}
+        className="py-24 md:py-28 px-6 md:px-20"
+        style={{ backgroundColor: '#FFFFFF' }}
       >
         <div className="max-w-[900px] mx-auto">
-          <div 
-            className="mb-12 pl-8"
+          <p 
+            className="mb-8"
             style={{ 
-              borderLeft: '4px solid #FF2E63'
+              fontSize: '13px',
+              color: '#FF2E63',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600
             }}
           >
-            <p 
-              className="italic"
-              style={{ 
-                fontSize: 'clamp(32px, 4vw, 40px)',
-                lineHeight: 1.4,
-                color: '#3D3835',
-                fontWeight: 500,
-                fontStyle: 'italic'
-              }}
-            >
-              "I inherited a company I never asked to run. My father died. I became CEO overnight. But having a story to tell? That came later."
-            </p>
-          </div>
+            The Challenge
+          </p>
 
+          {/* Pull Quote */}
+          <blockquote 
+            className="mb-12"
+            style={{
+              fontSize: 'clamp(24px, 3vw, 36px)',
+              fontStyle: 'italic',
+              lineHeight: 1.4,
+              color: '#0A0A0A',
+              borderLeft: '4px solid #FF2E63',
+              paddingLeft: '32px'
+            }}
+          >
+            "I inherited a company I never asked to run. My father died. I became CEO overnight. But having a story to tell? That came later."
+          </blockquote>
+
+          {/* Body Paragraphs */}
           <div className="space-y-6">
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
+            <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
               Mike Kaeding runs Norhart, a residential construction company in Minnesota. He didn't choose to lead it—his father's unexpected death put him there. What he did next matters more: he turned a family business into the kind of company that builds the largest residential project in Minneapolis history. A $100 million building. Over 1,000 units delivered. $230M in assets.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
+            </p>
+            <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
               But none of that showed up online. Mike is a software engineer by training, a builder by conviction. He had a mission—cut construction costs in half to solve America's housing crisis—but no system to make that mission travel. His posts were technical. Intermittent. Impersonal. The work was loud. The story was quiet.
-            </AnimatedParagraph>
-            
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(17px, 2vw, 20px)',
-              lineHeight: 1.8,
-              color: '#3D3835'
-            }}>
+            </p>
+            <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
               The risk wasn't failure. It was invisibility. Being the best-kept secret in an industry that desperately needs what he's building.
-            </AnimatedParagraph>
+            </p>
           </div>
         </div>
       </section>
 
-      {/* SECTION 4: VISUAL DIVIDER */}
-      <AnimatedDivider bgColor="#F5F1E8" />
-
-
-      {/* SECTION 8: THE TRANSLATION */}
+      {/* =========================================
+          SECTION 5: FULL-BLEED IMAGE DIVIDER #2
+      ========================================= */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
+        className="w-full hidden md:block"
+        style={{ 
+          height: '60vh',
+          backgroundImage: `url(${mikeCarousel3})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+      <section 
+        className="w-full md:hidden"
+        style={{ 
+          height: '50vh',
+          backgroundImage: `url(${mikeCarousel3})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+
+      {/* =========================================
+          SECTION 6: THE TRANSLATION
+          Cream background, three pillar cards
+      ========================================= */}
+      <section 
+        className="py-24 md:py-28 px-6 md:px-20"
+        style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto">
-          
-          {/* Section Number */}
-          <div 
-            className="inline-block mb-10"
+          <p 
+            className="mb-6"
             style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}
-          >
-            <p style={{ 
-              fontSize: '12px',
+              fontSize: '13px',
               color: '#FF2E63',
-              letterSpacing: '2px',
+              letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              02
-            </p>
-          </div>
-          
-          <AnimatedHeader
-            className="mb-8"
-            style={{ 
-              fontSize: 'clamp(42px, 5vw, 56px)',
-              color: '#3D3835',
-              fontWeight: 600,
-              lineHeight: 1.2
+              fontWeight: 600
             }}
           >
-            The translation
-          </AnimatedHeader>
-          
-          <AnimatedParagraph 
-            className="mb-20"
+            The Translation
+          </p>
+
+          <p 
+            className="mb-12"
             style={{ 
               fontSize: 'clamp(20px, 2.5vw, 24px)',
-              lineHeight: 1.8,
-              color: 'rgba(61, 56, 53, 0.85)',
-              maxWidth: '700px'
+              lineHeight: 1.6,
+              color: '#0A0A0A'
             }}
           >
             We built Mike's story around three things: the personal arc that got him here, the operational clarity that sets him apart, and the industry challenge he's solving.
-          </AnimatedParagraph>
-          
-          {/* 3-Column Pillars Grid */}
-          <div className="pillars-grid mb-20">
-            
-            {/* Pillar 1: From Son to CEO */}
-            <div className="pillar-card">
-              <div className="pillar-number">01</div>
-              <h3 className="pillar-heading">From Son to CEO</h3>
-              <h4 style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px', color: '#3D3835' }}>The inheritance</h4>
-              <p className="pillar-description">
-                Mike didn't choose leadership. It chose him. His father's death forced a decision: walk away or step up. We told that story—not as tragedy, but as transformation. From fear to vision. From obligation to legacy.
-              </p>
-            </div>
-            
-            {/* Pillar 2: Builder with systems thinking */}
-            <div className="pillar-card">
-              <div className="pillar-number">02</div>
-              <h3 className="pillar-heading">Builder with systems thinking</h3>
-              <h4 style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px', color: '#3D3835' }}>Efficiency as philosophy</h4>
-              <p className="pillar-description">
-                Most construction CEOs talk about growth. Mike talks about waste. Why residential construction is broken. How regulation inflates costs. Why modular matters. He's an engineer who thinks like an operator—and we made sure every piece of content reflected that clarity.
-              </p>
-            </div>
-            
-            {/* Pillar 3: The mission behind the work */}
-            <div className="pillar-card">
-              <div className="pillar-number">03</div>
-              <h3 className="pillar-heading">The mission behind the work</h3>
-              <h4 style={{ fontSize: '17px', fontWeight: 600, marginBottom: '12px', color: '#3D3835' }}>Housing crisis, real solutions</h4>
-              <p className="pillar-description">
-                Norhart isn't building apartments. They're building a case for why construction needs to cost less. We positioned Mike not as a developer, but as someone challenging an entire industry to do better. Onshoring. Automation. Policy. The stuff that actually moves the needle.
-              </p>
-            </div>
-            
-          </div>
-          
-          {/* Closing Statement */}
-          <div className="max-w-[700px] mx-auto text-center space-y-6">
-            <AnimatedParagraph style={{ 
-              fontSize: 'clamp(19px, 2.2vw, 22px)',
-              lineHeight: 1.7,
-              color: 'rgba(61, 56, 53, 0.85)'
-            }}>
-              This gave Mike something most CEOs don't have: a narrative system. Not just posts—but a repeatable way to turn leadership into content that builds trust and travels beyond LinkedIn.
-            </AnimatedParagraph>
-          </div>
-        </div>
-      </section>
+          </p>
 
-      {/* SECTION 9: VISUAL STORY - IMAGE CAROUSEL */}
-      <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
-      >
-        <div className="max-w-[1200px] mx-auto">
-          <div 
-            className="inline-block mb-10"
-            style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}
-          >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              02.5
-            </p>
-          </div>
-          
-          <AnimatedHeader
-            className="mb-16"
-            style={{ 
-              fontSize: 'clamp(42px, 5vw, 56px)',
-              color: '#3D3835',
-              fontWeight: 600,
-              lineHeight: 1.2
-            }}
-          >
-            Visual story
-          </AnimatedHeader>
-
-          {/* Carousel */}
-          <div className="relative">
+          {/* Three Pillars Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             <div 
-              className="w-full rounded-lg overflow-hidden"
-              style={{
-                aspectRatio: '16/9',
-                backgroundColor: 'rgba(61, 56, 53, 0.1)'
+              style={{ 
+                backgroundColor: '#FFFFFF',
+                padding: '40px',
+                borderRadius: '4px'
               }}
             >
-              <img 
-                src={carouselSlides[currentSlide].image}
-                alt={carouselSlides[currentSlide].caption}
-                className="w-full h-full object-cover"
-              />
-              
-              {/* Caption overlay */}
-              <div 
-                className="absolute bottom-0 left-0 right-0 p-8"
-                style={{
-                  background: 'linear-gradient(to top, rgba(61, 56, 53, 0.9), transparent)'
-                }}
-              >
-                <p style={{ 
-                  fontSize: '16px', 
-                  color: '#FDFBF7', 
-                  lineHeight: 1.6 
-                }}>
-                  {carouselSlides[currentSlide].caption}
-                </p>
-              </div>
+              <p style={{ fontSize: '13px', color: '#FF2E63', fontWeight: 600, marginBottom: '16px' }}>01</p>
+              <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>
+                From Son to CEO
+              </h3>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(10,10,10,0.7)' }}>
+                Mike didn't choose leadership. It chose him. His father's death forced a decision: walk away or step up. We told that story—not as tragedy, but as transformation. From fear to vision.
+              </p>
             </div>
 
-            {/* Navigation arrows */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all"
-              style={{
-                backgroundColor: 'rgba(253, 251, 247, 0.9)',
-                color: '#3D3835'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#FDFBF7';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(253, 251, 247, 0.9)';
+            <div 
+              style={{ 
+                backgroundColor: '#FFFFFF',
+                padding: '40px',
+                borderRadius: '4px'
               }}
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+              <p style={{ fontSize: '13px', color: '#FF2E63', fontWeight: 600, marginBottom: '16px' }}>02</p>
+              <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>
+                Builder with systems thinking
+              </h3>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(10,10,10,0.7)' }}>
+                Most construction CEOs talk about growth. Mike talks about waste. Why residential construction is broken. How regulation inflates costs. Why reducing waste solves more than building faster. He's an engineer solving systems problems.
+              </p>
+            </div>
 
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all"
-              style={{
-                backgroundColor: 'rgba(253, 251, 247, 0.9)',
-                color: '#3D3835'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#FDFBF7';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(253, 251, 247, 0.9)';
+            <div 
+              style={{ 
+                backgroundColor: '#FFFFFF',
+                padding: '40px',
+                borderRadius: '4px'
               }}
             >
-              <ChevronRight className="w-6 h-6" />
-            </button>
-
-            {/* Dots navigation */}
-            <div className="flex justify-center gap-2 mt-6">
-              {carouselSlides.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className="rounded-full transition-all"
-                  style={{
-                    width: '12px',
-                    height: '12px',
-                    backgroundColor: currentSlide === index ? '#3D3835' : 'rgba(61, 56, 53, 0.3)'
-                  }}
-                />
-              ))}
+              <p style={{ fontSize: '13px', color: '#FF2E63', fontWeight: 600, marginBottom: '16px' }}>03</p>
+              <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>
+                The mission behind the work
+              </h3>
+              <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(10,10,10,0.7)' }}>
+                Norhart isn't building apartments. They're building a case for why construction needs to cost less. We positioned Mike not as a developer, but as someone challenging an entire industry's assumptions about what's possible.
+              </p>
             </div>
           </div>
+
+          <p style={{ fontSize: '20px', lineHeight: 1.7, color: 'rgba(10,10,10,0.7)', maxWidth: '700px' }}>
+            This gave Mike something most CEOs don't have: a narrative system. Not just posts—but a repeatable way to turn leadership into content that builds trust and travels beyond LinkedIn.
+          </p>
         </div>
       </section>
 
-      {/* SECTION 10: VISUAL DIVIDER */}
-      <AnimatedDivider bgColor="#E8DED1" />
-
-      {/* SECTION 11: THE WORK THAT TRAVELS */}
+      {/* =========================================
+          SECTION 7: FULL-BLEED IMAGE DIVIDER #3
+      ========================================= */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20"
+        className="w-full hidden md:block"
+        style={{ 
+          height: '60vh',
+          backgroundImage: `url(${mikeCarousel5})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+      <section 
+        className="w-full md:hidden"
+        style={{ 
+          height: '50vh',
+          backgroundImage: `url(${mikeCarousel5})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+
+      {/* =========================================
+          SECTION 8: THE WORK THAT TRAVELS
+          Cream, LinkedIn cards grid
+      ========================================= */}
+      <section 
+        className="py-24 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto">
-          <div 
-            className="inline-block mb-10"
+          <p 
+            className="mb-6"
             style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
+              fontSize: '13px',
+              color: '#FF2E63',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600
             }}
           >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              03
-            </p>
-          </div>
-          
-          <AnimatedHeader
-            className="mb-16"
+            03
+          </p>
+
+          <h2 
+            className="mb-6"
             style={{ 
-              fontSize: 'clamp(42px, 5vw, 56px)',
-              color: '#3D3835',
+              fontSize: 'clamp(36px, 5vw, 52px)',
               fontWeight: 600,
-              lineHeight: 1.2
+              color: '#0A0A0A',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1
             }}
           >
             The work that travels
-          </AnimatedHeader>
-          
-          {/* LinkedIn Posts Grid - 3x3 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
-            {/* Post 1 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork1} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/posts/mikekaeding_im-part-of-an-organization-with-over-34000-activity-7254885302115188737-NmoZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAABtt_60BmHm9_OshYxw31f7U3MAGs5ZcXPc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
+          </h2>
 
-            {/* Post 2 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork2} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7140732854015041536?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7140732854015041536%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 3 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork3} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/posts/mikekaeding_propertymanagement-breakingbarriers-womeninconstruction-activity-7135704576980094976-LyNU?utm_source=share&utm_medium=member_desktop&rcm=ACoAABtt_60BmHm9_OshYxw31f7U3MAGs5ZcXPc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 4 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork4} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 5 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork5} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/posts/mikekaeding_oakdale-realestate-residentialconstruction-activity-7107036479498973184-rYuu?utm_source=share&utm_medium=member_desktop&rcm=ACoAABtt_60BmHm9_OshYxw31f7U3MAGs5ZcXPc"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 6 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork6} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7122034472371318784?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7122034472371318784%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 7 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork7} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7128031329488670721?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7128031329488670721%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 8 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork8} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7095028555071311872?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7095028555071311872%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-
-            {/* Post 9 */}
-            <div className="flex flex-col items-center">
-              <div 
-                className="w-full transition-all duration-300 hover:scale-[1.02]"
-                style={{
-                  borderRadius: '8px',
-                  overflow: 'hidden',
-                  boxShadow: '0 4px 12px rgba(61, 56, 53, 0.1)'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(61, 56, 53, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(61, 56, 53, 0.1)';
-                }}
-              >
-                <img src={mikeWork9} alt="LinkedIn Post" className="w-full h-auto" />
-              </div>
-              <a
-                href="https://www.linkedin.com/feed/update/urn:li:activity:7092961366071787521?updateEntityUrn=urn%3Ali%3Afs_updateV2%3A%28urn%3Ali%3Aactivity%3A7092961366071787521%2CFEED_DETAIL%2CEMPTY%2CDEFAULT%2Cfalse%29"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 transition-all duration-300"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  color: '#FF2E63',
-                  backgroundColor: 'transparent',
-                  border: '1px solid #FF2E63',
-                  padding: '12px 24px',
-                  borderRadius: '24px',
-                  textDecoration: 'none',
-                  display: 'inline-block'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FF2E63';
-                  e.currentTarget.style.color = '#FFFFFF';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'transparent';
-                  e.currentTarget.style.color = '#FF2E63';
-                }}
-              >
-                Read on LinkedIn
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 03.5: PRESS CAROUSEL */}
-      <section 
-        className="py-24 md:py-32 px-10 md:px-20"
-        style={{ backgroundColor: '#E8DED1' }}
-      >
-        <div className="max-w-[1400px] mx-auto">
-          <div 
-            className="inline-block mb-10"
-            style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}
-          >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              03.5
-            </p>
-          </div>
-          
-          <AnimatedHeader
+          <p 
             className="mb-16"
             style={{ 
-              fontSize: 'clamp(42px, 5vw, 56px)',
-              color: '#3D3835',
-              fontWeight: 600,
-              lineHeight: 1.2
+              fontSize: '20px',
+              lineHeight: 1.6,
+              color: 'rgba(10,10,10,0.6)',
+              maxWidth: '600px'
             }}
           >
-            Press
-          </AnimatedHeader>
+            Each post turned twenty years of construction expertise into stories that opened conversations with policy makers, industry leaders, and media.
+          </p>
 
-          {/* Press Carousel using Embla */}
-          <PressCarousel />
+          {/* LinkedIn Post Cards Grid */}
+          <div 
+            className="grid gap-6"
+            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}
+          >
+            {linkedInPosts.map((post, index) => (
+              <div 
+                key={index}
+                className="transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)'
+                }}
+              >
+                <img 
+                  src={post.image} 
+                  alt={`LinkedIn post ${index + 1}`}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: '16/9' }}
+                />
+                <div style={{ padding: '24px' }}>
+                  <p style={{ 
+                    fontSize: '16px', 
+                    lineHeight: 1.6, 
+                    color: '#0A0A0A',
+                    marginBottom: '16px',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}>
+                    {post.preview}
+                  </p>
+                  <p style={{ 
+                    fontSize: '13px', 
+                    color: 'rgba(10,10,10,0.5)'
+                  }}>
+                    {post.engagement}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* SECTION 12: WHAT THIS LOOKS LIKE */}
+      {/* =========================================
+          SECTION 9: PRESS
+          Cream, press cards grid
+      ========================================= */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20"
+        className="py-24 md:py-28 px-6 md:px-20"
         style={{ backgroundColor: '#F5F1E8' }}
       >
         <div className="max-w-[1200px] mx-auto">
-          <div 
-            className="inline-block mb-10"
+          <p 
+            className="mb-6"
             style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.1)',
-              padding: '8px 16px',
-              borderRadius: '4px'
+              fontSize: '13px',
+              color: '#FF2E63',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600
             }}
           >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              04
-            </p>
-          </div>
-          
-          <AnimatedHeader
+            04
+          </p>
+
+          <h2 
             className="mb-16"
             style={{ 
-              fontSize: 'clamp(42px, 5vw, 56px)',
-              color: '#3D3835',
+              fontSize: 'clamp(36px, 5vw, 52px)',
               fontWeight: 600,
+              color: '#0A0A0A',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.1
+            }}
+          >
+            Press
+          </h2>
+
+          <div 
+            className="grid gap-6"
+            style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))' }}
+          >
+            {pressItems.map((item, index) => (
+              <div 
+                key={index}
+                className="transition-all duration-300 hover:-translate-y-1"
+                style={{
+                  backgroundColor: '#FFFFFF',
+                  borderRadius: '8px',
+                  overflow: 'hidden',
+                  boxShadow: '0 2px 12px rgba(0,0,0,0.08)'
+                }}
+              >
+                <img 
+                  src={item.image} 
+                  alt={item.outlet}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: '16/9' }}
+                />
+                <div style={{ padding: '24px' }}>
+                  <p style={{ 
+                    fontSize: '12px', 
+                    color: '#FF2E63',
+                    fontWeight: 600,
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                    marginBottom: '8px'
+                  }}>
+                    {item.outlet}
+                  </p>
+                  <p style={{ 
+                    fontSize: '18px', 
+                    lineHeight: 1.5, 
+                    color: '#0A0A0A',
+                    fontWeight: 500
+                  }}>
+                    {item.title}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================
+          SECTION 10: WHAT THIS LOOKS LIKE (METRICS)
+          Dark #0A0A0A, two-column cards
+      ========================================= */}
+      <section 
+        className="py-24 md:py-28 px-6 md:px-20"
+        style={{ backgroundColor: '#0A0A0A' }}
+      >
+        <div className="max-w-[1000px] mx-auto">
+          <h2 
+            className="mb-16"
+            style={{ 
+              fontSize: 'clamp(32px, 4.5vw, 48px)',
+              fontWeight: 600,
+              color: '#FFFFFF',
               lineHeight: 1.2
             }}
           >
-            What this looks like
-          </AnimatedHeader>
+            What this looks like.
+          </h2>
 
-          {/* Two Metric Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            {/* LinkedIn Metrics Card */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* Left Card - Blue */}
             <div 
-              className="p-12"
-              style={{
+              style={{ 
                 backgroundColor: '#4A90E2',
-                borderRadius: '16px',
-                boxShadow: '0 4px 24px rgba(61, 56, 53, 0.08)'
+                padding: '60px',
+                borderRadius: '8px'
               }}
             >
-              <h3 style={{ fontSize: '22px', fontWeight: 600, marginBottom: '16px', color: '#FFFFFF', lineHeight: 1.3 }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 600, color: '#FFFFFF', marginBottom: '32px' }}>
                 Consistent voice, consistent presence
               </h3>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: '#FFFFFF' }}>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• 85+ posts published</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• 20+ months without missing a week</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• Average 300 words per post</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '12px' }}>• Zero generic content</li>
-              </ul>
+              <div className="space-y-4">
+                <p style={{ fontSize: '18px', color: '#FFFFFF' }}>• 85+ posts published</p>
+                <p style={{ fontSize: '18px', color: '#FFFFFF' }}>• 20+ months without missing a week</p>
+                <p style={{ fontSize: '18px', color: '#FFFFFF' }}>• Average 300 words per post</p>
+                <p style={{ fontSize: '18px', color: '#FFFFFF' }}>• Zero generic content</p>
+              </div>
             </div>
 
-            {/* Content Impact Card */}
+            {/* Right Card - Cream */}
             <div 
-              className="p-12"
-              style={{
-                backgroundColor: '#E8DED1',
-                borderRadius: '16px',
-                boxShadow: '0 4px 24px rgba(61, 56, 53, 0.08)'
+              style={{ 
+                backgroundColor: '#E0D5C7',
+                padding: '60px',
+                borderRadius: '8px'
               }}
             >
-              <h3 style={{ fontSize: '22px', fontWeight: 600, marginBottom: '16px', color: '#3D3835', lineHeight: 1.3 }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 600, color: '#0A0A0A', marginBottom: '32px' }}>
                 Material reused across channels
               </h3>
-              <p style={{ fontSize: '17px', lineHeight: 1.7, color: 'rgba(61, 56, 53, 0.85)', marginBottom: '16px' }}>
+              <p style={{ fontSize: '18px', color: '#0A0A0A', marginBottom: '24px' }}>
                 Content that started on LinkedIn ended up in:
               </p>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, color: 'rgba(61, 56, 53, 0.85)' }}>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Keynote presentations</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Internal newsletters</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Investor decks</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Media interviews</li>
-                <li style={{ fontSize: '17px', lineHeight: 1.7, marginBottom: '8px' }}>• Policy submissions</li>
-              </ul>
-              <p style={{ fontSize: '17px', lineHeight: 1.7, color: 'rgba(61, 56, 53, 0.85)', marginTop: '16px', fontWeight: 600 }}>
+              <div className="space-y-3">
+                <p style={{ fontSize: '18px', color: '#0A0A0A' }}>• Keynote presentations</p>
+                <p style={{ fontSize: '18px', color: '#0A0A0A' }}>• Internal newsletters</p>
+                <p style={{ fontSize: '18px', color: '#0A0A0A' }}>• Investor decks</p>
+                <p style={{ fontSize: '18px', color: '#0A0A0A' }}>• Media interviews</p>
+                <p style={{ fontSize: '18px', color: '#0A0A0A' }}>• Policy submissions</p>
+              </div>
+              <p style={{ fontSize: '18px', fontWeight: 600, color: '#0A0A0A', marginTop: '24px' }}>
                 One system. Multiple outputs.
               </p>
             </div>
@@ -1250,96 +667,88 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-
-      {/* SECTION 13: THE IMPACT */}
+      {/* =========================================
+          SECTION 11: THE IMPACT (TESTIMONIAL)
+          Lighter dark (#3A3A3A), quote + stats
+      ========================================= */}
       <section 
-        className="py-32 md:py-40 px-10 md:px-20"
-        style={{ backgroundColor: '#3D3835' }}
+        className="py-24 md:py-28 px-6 md:px-20"
+        style={{ backgroundColor: '#3A3A3A' }}
       >
-        <div className="max-w-[1200px] mx-auto">
-          <div 
-            className="inline-block mb-10"
-            style={{ 
-              backgroundColor: 'rgba(255, 46, 99, 0.2)',
-              padding: '8px 16px',
-              borderRadius: '4px'
-            }}
-          >
-            <p style={{ 
-              fontSize: '12px',
-              color: '#FF2E63',
-              letterSpacing: '2px',
-              textTransform: 'uppercase',
-              fontWeight: 700
-            }}>
-              05
-            </p>
-          </div>
-          
-          <AnimatedHeader
-            className="mb-16"
-            style={{ 
-              fontSize: 'clamp(42px, 5vw, 56px)',
-              color: '#FDFBF7',
-              fontWeight: 600,
-              lineHeight: 1.2
-            }}
-          >
-            The impact
-          </AnimatedHeader>
-
+        <div className="max-w-[1000px] mx-auto">
           {/* Testimonial Quote */}
-          <div 
-            className="mb-20 p-12 md:p-14"
-            style={{ 
-              backgroundColor: 'rgba(253, 251, 247, 0.05)',
+          <blockquote 
+            className="mb-8"
+            style={{
+              fontSize: 'clamp(28px, 3.5vw, 36px)',
+              fontStyle: 'italic',
+              lineHeight: 1.4,
+              color: '#FFFFFF',
               borderLeft: '4px solid #FF2E63',
-              borderRadius: '8px'
+              paddingLeft: '32px'
             }}
           >
-            <p 
-              className="mb-4"
-              style={{ 
-                fontSize: 'clamp(28px, 3.5vw, 36px)',
-                lineHeight: 1.4,
-                color: '#FDFBF7',
-                fontWeight: 500
-              }}
-            >
-              "CRUDA gave me something I didn't know I was missing—a system to turn what I do every day into a story that actually travels. I don't sound like every other CEO anymore. I sound like me."
-            </p>
-            <p style={{ 
-              fontSize: '18px',
-              color: 'rgba(253, 251, 247, 0.7)',
-              fontWeight: 400
-            }}>
-              — Mike Kaeding
-            </p>
-          </div>
+            "CRUDA gave me something I didn't know I was missing—a system to turn what I do every day into a story that actually travels. I don't sound like every other CEO anymore. I sound like me."
+          </blockquote>
 
-          {/* Key Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+          <p 
+            className="mb-20"
+            style={{
+              fontSize: '16px',
+              fontWeight: 600,
+              color: 'rgba(255,255,255,0.7)',
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              paddingLeft: '32px'
+            }}
+          >
+            — Mike Kaeding<br />
+            CEO, NORHART
+          </p>
+
+          {/* Three Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div>
-              <p style={{ fontSize: 'clamp(48px, 6vw, 56px)', fontWeight: 700, color: '#FDFBF7', lineHeight: 1.1, marginBottom: '8px' }}>
+              <p style={{
+                fontSize: 'clamp(48px, 5vw, 64px)',
+                fontWeight: 700,
+                color: '#FF2E63',
+                lineHeight: 1.1,
+                marginBottom: '12px'
+              }}>
                 85+
               </p>
-              <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(253, 251, 247, 0.7)' }}>
+              <p style={{ fontSize: '16px', fontWeight: 400, color: 'rgba(255,255,255,0.7)' }}>
                 Posts published (20+ months)
               </p>
             </div>
+
             <div>
-              <p style={{ fontSize: 'clamp(48px, 6vw, 56px)', fontWeight: 700, color: '#FDFBF7', lineHeight: 1.1, marginBottom: '8px' }}>
+              <p style={{
+                fontSize: 'clamp(48px, 5vw, 64px)',
+                fontWeight: 700,
+                color: '#FF2E63',
+                lineHeight: 1.1,
+                marginBottom: '12px'
+              }}>
                 20
               </p>
-              <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(253, 251, 247, 0.7)' }}>
+              <p style={{ fontSize: '16px', fontWeight: 400, color: 'rgba(255,255,255,0.7)' }}>
                 Months of weekly publishing
               </p>
             </div>
+
             <div>
-              <p style={{ fontSize: 'clamp(48px, 6vw, 56px)', fontWeight: 700, color: '#FDFBF7', lineHeight: 1.1, marginBottom: '8px' }}>
+              <p style={{
+                fontSize: 'clamp(48px, 5vw, 64px)',
+                fontWeight: 700,
+                color: '#FF2E63',
+                lineHeight: 1.1,
+                marginBottom: '12px'
+              }}>
                 1
               </p>
-              <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(253, 251, 247, 0.7)' }}>
+              <p style={{ fontSize: '16px', fontWeight: 400, color: 'rgba(255,255,255,0.7)' }}>
                 Voice that cuts through
               </p>
             </div>
@@ -1347,67 +756,28 @@ const MikeKaedingCaseStudy = () => {
         </div>
       </section>
 
-      {/* SECTION 14: CTA */}
+      {/* =========================================
+          SECTION 12: CTA
+      ========================================= */}
       <section 
-        className="py-24 md:py-32 px-10 md:px-20 text-center"
-        style={{ backgroundColor: '#F5F1E8' }}
+        className="py-20 px-6 md:px-20 text-center"
+        style={{ backgroundColor: '#3A3A3A' }}
       >
-        <div className="max-w-3xl mx-auto">
-          <h2 
-            className="mb-10"
-            style={{ 
-              fontSize: 'clamp(32px, 4vw, 40px)',
-              color: '#3D3835',
-              fontWeight: 700
-            }}
-          >
-            Ready to tell your story?
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              to="/book-call"
-              className="inline-block px-10 py-5 text-lg font-semibold transition-all duration-300"
-              style={{ 
-                backgroundColor: '#3D3835',
-                color: '#FDFBF7',
-                borderRadius: '8px',
-                boxShadow: '0 4px 16px rgba(61, 56, 53, 0.2)',
-                fontSize: '18px',
-                fontWeight: 600
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#2A2725';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = '#3D3835';
-              }}
-            >
-              Work with us
-            </Link>
-            <Link 
-              to="/clients/karen-mannheim"
-              className="inline-block px-10 py-5 text-lg font-semibold transition-all duration-300"
-              style={{ 
-                backgroundColor: 'transparent',
-                color: '#3D3835',
-                borderRadius: '8px',
-                border: '2px solid #3D3835',
-                fontSize: '18px',
-                fontWeight: 600
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#3D3835';
-                e.currentTarget.style.color = '#FDFBF7';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.color = '#3D3835';
-              }}
-            >
-              Next case study → Karen Mannheim
-            </Link>
-          </div>
-        </div>
+        <Link
+          to="/book-call"
+          className="inline-flex items-center justify-center transition-all duration-300 hover:opacity-90"
+          style={{
+            fontSize: '16px',
+            fontWeight: 600,
+            padding: '20px 56px',
+            borderRadius: '4px',
+            backgroundColor: '#FF2E63',
+            color: '#FFFFFF',
+            textDecoration: 'none'
+          }}
+        >
+          Start a Conversation
+        </Link>
       </section>
     </div>
   );

@@ -9,7 +9,7 @@ const NitinPassiCaseStudy = () => {
   const { elementRef: challengeRef, isVisible: challengeVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: translationRef, isVisible: translationVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: resultsRef, isVisible: resultsVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: impactRef, isVisible: impactVisible } = useScrollAnimation<HTMLElement>();
+  
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
   const scrollToContent = () => {
@@ -680,65 +680,6 @@ const NitinPassiCaseStudy = () => {
           </div>
         </div>
       </section>
-
-      {/* THE IMPACT - Testimonial */}
-      <section
-        ref={impactRef}
-        className="py-20 md:py-28 px-6 md:px-20"
-        style={{ backgroundColor: '#3A3A3A' }}
-      >
-        <div className="max-w-[900px] mx-auto text-center">
-          <blockquote
-            className="transition-all duration-700"
-            style={{
-              fontSize: 'clamp(22px, 3.5vw, 32px)',
-              fontWeight: '400',
-              fontStyle: 'italic',
-              color: '#FFFFFF',
-              lineHeight: '1.6',
-              marginBottom: '40px',
-              opacity: impactVisible ? 1 : 0,
-              transform: impactVisible ? 'translateY(0)' : 'translateY(20px)'
-            }}
-          >
-            "CRUDA helped me build a narrative I could use while raising capital and hiring—without 
-            giving away what makes this business different. That balance between visibility and 
-            discretion was exactly what I needed."
-          </blockquote>
-          
-          <div
-            className="transition-all duration-700"
-            style={{
-              opacity: impactVisible ? 1 : 0,
-              transform: impactVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms'
-            }}
-          >
-            <p
-              style={{
-                fontSize: '18px',
-                fontWeight: '600',
-                color: '#FFFFFF',
-                marginBottom: '4px'
-              }}
-            >
-              — [Name Redacted]
-            </p>
-            <p
-              style={{
-                fontSize: '13px',
-                fontWeight: '500',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                color: 'rgba(255, 255, 255, 0.5)'
-              }}
-            >
-              FOUNDER & CEO
-            </p>
-          </div>
-        </div>
-      </section>
-
       {/* CTA SECTION */}
       <section
         ref={ctaRef}

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 100px;
   background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -16,7 +16,7 @@
 }
 
 .main-navigation.scrolled {
-  height: 60px;
+  height: 80px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
 }
 

@@ -252,7 +252,7 @@ const GirishSehgalCaseStudy = () => {
         style={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: 'cover',
-          backgroundPosition: 'center 30%'
+          backgroundPosition: 'center 15%'
         }}
       />
 

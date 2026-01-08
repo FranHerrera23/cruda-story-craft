@@ -431,53 +431,85 @@ const GirishSehgalCaseStudy = () => {
           
           {/* LinkedIn Post Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Golden Rule - First and Active */}
+            <a 
+              href="https://www.linkedin.com/posts/girishsehgal_hospitality-activity-7317432858741493760-6YlK"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-300 hover:translate-y-[-4px] block cursor-pointer"
+              style={{
+                backgroundColor: '#FFFFFF',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                boxShadow: '0 2px 16px rgba(10, 10, 10, 0.06)',
+                textDecoration: 'none'
+              }}
+            >
+              <img
+                src={girishLinkedin03}
+                alt="The Golden Rule Still Wins"
+                className="w-full h-auto"
+                style={{ display: 'block' }}
+              />
+              <div className="p-5">
+                <p 
+                  style={{ 
+                    fontSize: '14px',
+                    color: 'rgba(10, 10, 10, 0.5)',
+                    marginBottom: '4px'
+                  }}
+                >
+                  184 reactions · 23 comments
+                </p>
+                <span
+                  className="inline-block"
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: '#FF2E63'
+                  }}
+                >
+                  View on LinkedIn →
+                </span>
+              </div>
+            </a>
+
+            {/* Remaining posts - Coming Soon */}
             {[
-              { image: girishLinkedin01, title: "From Luxury Hotels to Healthcare", reactions: "263", comments: "32" },
-              { image: girishLinkedin02, title: "Guest Experience Stories", reactions: "69", comments: "4" },
-              { image: girishLinkedin03, title: "The Golden Rule Still Wins", reactions: "184", comments: "23" },
-              { image: girishLinkedin04, title: "Not Every Star Player Needs to Sprint", reactions: "123", comments: "13" },
-              { image: girishLinkedin05, title: "14 Cities, 6 Countries", reactions: "576", comments: "55" },
-              { image: girishLinkedin06, title: "Split Rocks or Build Cathedrals", reactions: "209", comments: "17" }
+              { image: girishLinkedin01, title: "From Luxury Hotels to Healthcare" },
+              { image: girishLinkedin02, title: "Guest Experience Stories" },
+              { image: girishLinkedin04, title: "Not Every Star Player Needs to Sprint" },
+              { image: girishLinkedin05, title: "14 Cities, 6 Countries" },
+              { image: girishLinkedin06, title: "Split Rocks or Build Cathedrals" }
             ].map((post, index) => (
               <div 
                 key={index}
-                className="transition-all duration-300 hover:translate-y-[-4px]"
+                className="transition-all duration-300 relative"
                 style={{
                   backgroundColor: '#FFFFFF',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: '0 2px 16px rgba(10, 10, 10, 0.06)'
+                  boxShadow: '0 2px 16px rgba(10, 10, 10, 0.06)',
+                  opacity: 0.6
                 }}
               >
                 <img
                   src={post.image}
                   alt={post.title}
                   className="w-full h-auto"
-                  style={{ display: 'block' }}
+                  style={{ display: 'block', filter: 'grayscale(50%)' }}
                 />
                 <div className="p-5">
                   <p 
                     style={{ 
                       fontSize: '14px',
-                      color: 'rgba(10, 10, 10, 0.5)',
-                      marginBottom: '4px'
+                      color: 'rgba(10, 10, 10, 0.4)',
+                      marginBottom: '4px',
+                      fontStyle: 'italic'
                     }}
                   >
-                    {post.reactions} reactions · {post.comments} comments
+                    Coming soon
                   </p>
-                  <a
-                    href="https://www.linkedin.com/in/girishsehgal/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block transition-all duration-300 hover:underline"
-                    style={{
-                      fontSize: '14px',
-                      fontWeight: 500,
-                      color: '#FF2E63'
-                    }}
-                  >
-                    View on LinkedIn →
-                  </a>
                 </div>
               </div>
             ))}

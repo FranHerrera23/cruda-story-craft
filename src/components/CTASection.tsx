@@ -72,7 +72,7 @@ const CTASection = () => {
           <img 
             src={crudaLogo} 
             alt="CRUDA" 
-            className="h-10 md:h-16 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+            className="h-24 md:h-40 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
           />
         </Link>
         

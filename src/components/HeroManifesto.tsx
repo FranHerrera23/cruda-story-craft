@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import heroImage from "@/assets/hero-visual.jpg";
 
 const HeroManifesto = () => {
   const [wordsVisible, setWordsVisible] = useState<boolean[]>([false, false]);
@@ -30,9 +31,9 @@ const HeroManifesto = () => {
         padding: '140px 80px 100px 80px'
       }}
     >
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '60px', alignItems: 'center' }}>
         {/* Left-aligned text */}
-        <div style={{ maxWidth: '700px' }}>
+        <div style={{ flex: '1', maxWidth: '600px' }}>
           <h1 
             style={{ 
               fontSize: 'clamp(48px, 6vw, 72px)',
@@ -165,6 +166,29 @@ const HeroManifesto = () => {
               TRAZZO Lighting · Norhart · UNIK Parquet
             </p>
           </div>
+        </div>
+        
+        {/* Right side - Hero Image */}
+        <div 
+          className="hidden md:block"
+          style={{ 
+            flex: '1',
+            opacity: subtitleVisible ? 1 : 0,
+            transform: subtitleVisible ? "translateX(0)" : "translateX(20px)",
+            transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+            transitionDelay: '400ms'
+          }}
+        >
+          <img 
+            src={heroImage} 
+            alt="CRUDA - Expertise translated"
+            style={{
+              width: '100%',
+              height: 'auto',
+              borderRadius: '8px',
+              objectFit: 'cover'
+            }}
+          />
         </div>
       </div>
       

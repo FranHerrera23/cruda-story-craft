@@ -10,8 +10,8 @@ const CTASection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#F7F7F7',
-        padding: '160px 80px 80px',
+        backgroundColor: '#F5F1E8',
+        padding: '120px 80px 80px',
         textAlign: 'center'
       }}
     >

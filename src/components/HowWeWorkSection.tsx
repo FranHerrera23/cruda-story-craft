@@ -34,7 +34,7 @@ const HowWeWorkSection = () => {
     <section 
       ref={containerRef} 
       style={{ 
-        backgroundColor: '#F7F7F7',
+        backgroundColor: '#F5F1E8',
         padding: '160px 80px'
       }}
     >
@@ -298,6 +298,24 @@ const HowWeWorkSection = () => {
             </div>
           </div>
         </div>
+
+        {/* Continuation note */}
+        <p
+          className="transition-all duration-700"
+          style={{
+            fontSize: '16px',
+            fontStyle: 'italic',
+            color: 'rgba(10, 10, 10, 0.5)',
+            textAlign: 'center',
+            marginTop: '48px',
+            maxWidth: '1100px',
+            opacity: visibleItems[steps.length + 2] ? 1 : 0,
+            transform: visibleItems[steps.length + 2] ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+          }}
+        >
+          Most clients continue past Month 4. This is a foundation, not a finish line.
+        </p>
       </div>
 
       {/* Mobile Styles */}

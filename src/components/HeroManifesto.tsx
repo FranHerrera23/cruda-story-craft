@@ -1,25 +1,23 @@
 import { useState, useEffect } from "react";
-import franCallImage from "@/assets/fran-portrait-hero.png";
 import { Link } from "react-router-dom";
 
 const HeroManifesto = () => {
-  const [wordsVisible, setWordsVisible] = useState<boolean[]>([false, false, false]);
+  const [wordsVisible, setWordsVisible] = useState<boolean[]>([false, false]);
   const [subtitleVisible, setSubtitleVisible] = useState(false);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
-      setWordsVisible([true, true, true]);
+      setWordsVisible([true, true]);
       setSubtitleVisible(true);
       return;
     }
 
     const timers = [
-      setTimeout(() => setWordsVisible([true, false, false]), 200),
-      setTimeout(() => setWordsVisible([true, true, false]), 400),
-      setTimeout(() => setWordsVisible([true, true, true]), 600),
-      setTimeout(() => setSubtitleVisible(true), 1000)
+      setTimeout(() => setWordsVisible([true, false]), 200),
+      setTimeout(() => setWordsVisible([true, true]), 500),
+      setTimeout(() => setSubtitleVisible(true), 900)
     ];
     
     return () => timers.forEach(timer => clearTimeout(timer));
@@ -27,165 +25,154 @@ const HeroManifesto = () => {
 
   return (
     <section 
-      className="min-h-screen flex items-center"
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '120px 80px 160px 80px'
+        padding: '140px 80px 100px 80px'
       }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%' }}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left Column - Text Content */}
-          <div style={{ maxWidth: '560px' }}>
-            <h1 
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        {/* Left-aligned text */}
+        <div style={{ maxWidth: '700px' }}>
+          <h1 
+            style={{ 
+              fontSize: 'clamp(48px, 6vw, 72px)',
+              fontWeight: '600',
+              lineHeight: '1.1',
+              letterSpacing: '-0.03em',
+              color: '#0A0A0A',
+              marginBottom: '32px'
+            }}
+          >
+            <span 
               style={{ 
-                fontSize: '80px',
-                fontWeight: '700',
-                lineHeight: '0.95',
-                letterSpacing: '-0.03em',
-                color: '#0A0A0A'
+                display: "inline",
+                opacity: wordsVisible[0] ? 1 : 0,
+                filter: wordsVisible[0] ? "blur(0)" : "blur(8px)",
+                transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
               }}
             >
-              <span 
-                style={{ 
-                  display: "inline-block",
-                  opacity: wordsVisible[0] ? 1 : 0,
-                  transform: wordsVisible[0] ? "translateY(0)" : "translateY(30px)",
-                  filter: wordsVisible[0] ? "blur(0)" : "blur(10px)",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-              >
-                Your
-              </span>{' '}
-              <span 
-                style={{ 
-                  display: "inline-block",
-                  opacity: wordsVisible[1] ? 1 : 0,
-                  transform: wordsVisible[1] ? "translateY(0)" : "translateY(30px)",
-                  filter: wordsVisible[1] ? "blur(0)" : "blur(10px)",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-              >
-                expertise,
-              </span>{' '}
-              <span 
-                style={{ 
-                  color: "#FF2E63", 
-                  fontWeight: '700',
-                  display: "inline-block",
-                  opacity: wordsVisible[2] ? 1 : 0,
-                  transform: wordsVisible[2] ? "translateY(0)" : "translateY(30px)",
-                  filter: wordsVisible[2] ? "blur(0)" : "blur(10px)",
-                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-                }}
-              >
-                translated.
-              </span>
-            </h1>
-            
-            {/* What We Do */}
+              Expertise,{' '}
+            </span>
+            <span 
+              style={{ 
+                color: "#FF2E63", 
+                display: "inline",
+                opacity: wordsVisible[1] ? 1 : 0,
+                filter: wordsVisible[1] ? "blur(0)" : "blur(8px)",
+                transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
+              }}
+            >
+              translated.
+            </span>
+          </h1>
+          
+          {/* Tagline paragraph */}
+          <p
+            style={{
+              fontSize: 'clamp(20px, 2.5vw, 24px)',
+              fontWeight: '400',
+              lineHeight: '1.7',
+              color: 'rgba(10, 10, 10, 0.7)',
+              marginBottom: '24px',
+              maxWidth: '700px',
+              opacity: subtitleVisible ? 1 : 0,
+              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
+            }}
+          >
+            We help construction, architecture, and built environment leaders 
+            become the voice their work deserves — on LinkedIn, in the press, 
+            and in every room that matters.
+          </p>
+
+          {/* Italic closer */}
+          <p
+            style={{
+              fontSize: '20px',
+              fontWeight: '400',
+              fontStyle: 'italic',
+              color: 'rgba(10, 10, 10, 0.7)',
+              marginBottom: '48px',
+              opacity: subtitleVisible ? 1 : 0,
+              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+              transitionDelay: '100ms'
+            }}
+          >
+            Because mastery doesn't translate itself.
+          </p>
+          
+          {/* CTA Button */}
+          <Link 
+            to="/book-call"
+            className="inline-block"
+            style={{ 
+              background: '#FF2E63',
+              color: '#FFFFFF',
+              fontSize: '16px',
+              fontWeight: '600',
+              padding: '18px 48px',
+              borderRadius: '4px',
+              textDecoration: 'none',
+              marginBottom: '60px',
+              opacity: subtitleVisible ? 1 : 0,
+              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+              transition: "all 0.3s ease",
+              transitionDelay: '200ms'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = '#E02856';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,46,99,0.3)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = '#FF2E63';
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = 'none';
+            }}
+          >
+            Start a Conversation
+          </Link>
+
+          {/* Trusted By */}
+          <div
+            style={{
+              opacity: subtitleVisible ? 1 : 0,
+              transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
+              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+              transitionDelay: '300ms'
+            }}
+          >
             <p
               style={{
-                fontSize: '18px',
-                fontWeight: '400',
-                lineHeight: '1.7',
-                color: 'rgba(10, 10, 10, 0.6)',
-                marginTop: '48px',
-                maxWidth: '460px',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
-              }}
-            >
-              We help real estate, construction, architecture, and design firms build trust through the stories that travel when you're not in the room — LinkedIn, Instagram, decks, and the narrative that ties them together.
-            </p>
-            
-            {/* CTA Button */}
-            <Link 
-              to="/book-call"
-              className="inline-block"
-              style={{ 
-                background: '#FF2E63',
-                color: '#FFFFFF',
-                fontSize: '16px',
+                fontSize: '11px',
                 fontWeight: '600',
-                padding: '20px 44px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                marginTop: '48px',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-                transition: "all 0.2s ease"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#E8284A';
-                e.currentTarget.style.transform = 'translateY(-2px)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = '#FF2E63';
-                e.currentTarget.style.transform = 'translateY(0)';
-              }}
-            >
-              Start a Conversation
-            </Link>
-
-            {/* Trusted By Line */}
-            <p
-              style={{
-                fontSize: '13px',
-                fontWeight: '500',
-                color: 'rgba(10, 10, 10, 0.5)',
+                letterSpacing: '0.15em',
                 textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                marginTop: '48px',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s"
+                color: 'rgba(10, 10, 10, 0.5)',
+                marginBottom: '12px'
               }}
             >
-              trusted by
+              TRUSTED BY
             </p>
 
-            {/* Proof Line */}
             <p
               style={{
-                fontSize: '13px',
-                fontWeight: '400',
-                color: 'rgba(10, 10, 10, 0.4)',
-                letterSpacing: '0.02em',
-                marginTop: '16px',
-                opacity: subtitleVisible ? 1 : 0,
-                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
-                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.35s"
+                fontSize: '16px',
+                color: 'rgba(10, 10, 10, 0.6)'
               }}
             >
               TRAZZO Lighting · Norhart · UNIK Parquet
             </p>
-          </div>
-          
-          {/* Right Column - Photo */}
-          <div className="relative order-first lg:order-last">
-            <img
-              src={franCallImage}
-              alt="Fran Herrera, Founder of CRUDA"
-              className="w-full h-auto block"
-              style={{
-                objectFit: 'cover',
-                borderRadius: '4px'
-              }}
-            />
           </div>
         </div>
       </div>
       
       {/* Mobile Styles */}
       <style>{`
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
           section {
-            padding: 80px 24px !important;
-          }
-          section h1 {
-            font-size: 48px !important;
+            padding: 100px 24px 80px !important;
           }
         }
       `}</style>

@@ -116,31 +116,37 @@ const Pricing = () => {
       <section 
         ref={heroRef}
         className="px-6 md:px-20 py-24 md:py-32"
-        style={{ backgroundColor: '#FFFFFF', paddingTop: '120px' }}
+        style={{ backgroundColor: '#F5F1E8', paddingTop: '140px' }}
       >
-        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
-          {/* Label */}
-          <p
-            className="transition-all duration-700 text-[13px] font-semibold uppercase mb-12"
+        <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
+          {/* Massive Headline */}
+          <h1
+            className="transition-all duration-700"
             style={{
-              letterSpacing: '0.1em',
-              color: '#FF2E63',
+              fontSize: 'clamp(48px, 8vw, 100px)',
+              fontWeight: '800',
+              lineHeight: '1.0',
+              letterSpacing: '-0.03em',
+              textTransform: 'uppercase',
+              color: '#0A0A0A',
+              marginBottom: '56px',
               opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0)' : 'translateY(16px)'
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            YOU'RE HERE BECAUSE
-          </p>
+            YOU'RE HERE<br />
+            <span style={{ color: '#FF2E63' }}>BECAUSE.</span>
+          </h1>
 
           {/* Reasons */}
           <div className="flex flex-col gap-6">
             {youreHereReasons.map((reason, i) => (
               <p
                 key={i}
-                className="transition-all duration-700 text-[20px]"
+                className="transition-all duration-700 text-[22px]"
                 style={{
-                  color: '#0A0A0A',
-                  lineHeight: '1.8',
+                  color: 'rgba(10,10,10,0.7)',
+                  lineHeight: '1.9',
                   maxWidth: '700px',
                   margin: '0 auto',
                   opacity: heroVisibleItems[i] ? 1 : 0,
@@ -158,23 +164,39 @@ const Pricing = () => {
       <section
         ref={pricingRef}
         className="py-24 md:py-32 px-6 md:px-20 text-center"
-        style={{ backgroundColor: '#F5F1E8' }}
+        style={{ backgroundColor: '#FFFFFF' }}
       >
         <div style={{ maxWidth: '700px', margin: '0 auto' }}>
-          {/* Price */}
-          <h1
+          {/* Price - Massive */}
+          <div
             className="transition-all duration-700"
             style={{
-              fontSize: 'clamp(48px, 6vw, 64px)',
-              fontWeight: '700',
-              color: '#0A0A0A',
-              marginBottom: '16px',
               opacity: pricingVisible ? 1 : 0,
               transform: pricingVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            ${priceCount.toLocaleString()}/month
-          </h1>
+            <span
+              style={{
+                fontSize: 'clamp(80px, 12vw, 160px)',
+                fontWeight: '800',
+                lineHeight: '1.0',
+                letterSpacing: '-0.03em',
+                color: '#0A0A0A'
+              }}
+            >
+              ${priceCount.toLocaleString()}
+            </span>
+            <span
+              style={{
+                fontSize: 'clamp(24px, 4vw, 40px)',
+                fontWeight: '800',
+                textTransform: 'uppercase',
+                color: '#0A0A0A'
+              }}
+            >
+              /MONTH
+            </span>
+          </div>
 
           {/* Duration */}
           <p

@@ -1,27 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import heroImage from "@/assets/hero-visual.jpg";
+import franPhoto from "@/assets/fran-portrait-hero.png";
 
 const HeroManifesto = () => {
-  const [wordsVisible, setWordsVisible] = useState<boolean[]>([false, false]);
-  const [subtitleVisible, setSubtitleVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
-      setWordsVisible([true, true]);
-      setSubtitleVisible(true);
+      setIsVisible(true);
       return;
     }
 
-    const timers = [
-      setTimeout(() => setWordsVisible([true, false]), 200),
-      setTimeout(() => setWordsVisible([true, true]), 500),
-      setTimeout(() => setSubtitleVisible(true), 900)
-    ];
-    
-    return () => timers.forEach(timer => clearTimeout(timer));
+    const timer = setTimeout(() => setIsVisible(true), 200);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -31,82 +24,62 @@ const HeroManifesto = () => {
         padding: '140px 80px 100px 80px'
       }}
     >
-      <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', gap: '60px', alignItems: 'center' }}>
-        {/* Left-aligned text */}
-        <div style={{ flex: '1', maxWidth: '600px' }}>
+      <div 
+        style={{ 
+          maxWidth: '1100px', 
+          margin: '0 auto', 
+          display: 'flex', 
+          gap: '60px', 
+          alignItems: 'center' 
+        }}
+      >
+        {/* Left Column - 55% */}
+        <div style={{ flex: '0 0 55%', maxWidth: '55%' }}>
           <h1 
+            className="transition-all duration-700"
             style={{ 
-              fontSize: 'clamp(48px, 6vw, 72px)',
-              fontWeight: '600',
-              lineHeight: '1.1',
-              letterSpacing: '-0.03em',
+              fontSize: 'clamp(42px, 6vw, 72px)',
+              fontWeight: '800',
+              lineHeight: '1.05',
+              letterSpacing: '-0.02em',
+              textTransform: 'uppercase',
               color: '#0A0A0A',
-              marginBottom: '32px'
+              marginBottom: '32px',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            <span 
-              style={{ 
-                display: "inline",
-                opacity: wordsVisible[0] ? 1 : 0,
-                filter: wordsVisible[0] ? "blur(0)" : "blur(8px)",
-                transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
-              }}
-            >
-              Expertise,{' '}
-            </span>
-            <span 
-              style={{ 
-                color: "#FF2E63", 
-                display: "inline",
-                opacity: wordsVisible[1] ? 1 : 0,
-                filter: wordsVisible[1] ? "blur(0)" : "blur(8px)",
-                transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
-              }}
-            >
-              translated.
+            YOU'VE BUILT<br />
+            SOMETHING WORTH<br />
+            TALKING ABOUT.<br />
+            <br />
+            <span style={{ color: '#FF2E63' }}>
+              WE MAKE SURE<br />
+              PEOPLE DO.
             </span>
           </h1>
           
-          {/* Tagline paragraph */}
+          {/* Descriptor */}
           <p
+            className="transition-all duration-700"
             style={{
-              fontSize: 'clamp(20px, 2.5vw, 24px)',
-              fontWeight: '400',
-              lineHeight: '1.7',
-              color: 'rgba(10, 10, 10, 0.7)',
-              marginBottom: '24px',
-              maxWidth: '700px',
-              opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)"
-            }}
-          >
-            We help construction, architecture, and built environment leaders 
-            become the voice their work deserves — on LinkedIn, in the press, 
-            and in every room that matters.
-          </p>
-
-          {/* Italic closer */}
-          <p
-            style={{
-              fontSize: '20px',
-              fontWeight: '400',
+              fontSize: '18px',
               fontStyle: 'italic',
-              color: 'rgba(10, 10, 10, 0.7)',
-              marginBottom: '48px',
-              opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
+              fontWeight: '400',
+              color: 'rgba(10, 10, 10, 0.6)',
+              marginBottom: '32px',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '100ms'
             }}
           >
-            Because mastery doesn't translate itself.
+            Narrative strategy for real estate, construction, and architecture leaders.
           </p>
           
           {/* CTA Button */}
           <Link 
             to="/book-call"
-            className="inline-block"
+            className="inline-block transition-all duration-300"
             style={{ 
               background: '#FF2E63',
               color: '#FFFFFF',
@@ -115,10 +88,8 @@ const HeroManifesto = () => {
               padding: '18px 48px',
               borderRadius: '4px',
               textDecoration: 'none',
-              marginBottom: '60px',
-              opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
-              transition: "all 0.3s ease",
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '200ms'
             }}
             onMouseEnter={(e) => {
@@ -134,59 +105,28 @@ const HeroManifesto = () => {
           >
             Start a Conversation
           </Link>
-
-          {/* Trusted By */}
-          <div
-            style={{
-              opacity: subtitleVisible ? 1 : 0,
-              transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
-              transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)",
-              transitionDelay: '300ms'
-            }}
-          >
-            <p
-              style={{
-                fontSize: '11px',
-                fontWeight: '600',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'rgba(10, 10, 10, 0.5)',
-                marginBottom: '12px'
-              }}
-            >
-              TRUSTED BY
-            </p>
-
-            <p
-              style={{
-                fontSize: '16px',
-                color: 'rgba(10, 10, 10, 0.6)'
-              }}
-            >
-              TRAZZO Lighting · Norhart · UNIK Parquet
-            </p>
-          </div>
         </div>
-        
-        {/* Right side - Hero Image */}
+
+        {/* Right Column - 45% - Fran's Photo */}
         <div 
-          className="hidden md:block"
+          className="hidden md:block transition-all duration-700"
           style={{ 
-            flex: '1',
-            opacity: subtitleVisible ? 1 : 0,
-            transform: subtitleVisible ? "translateX(0)" : "translateX(20px)",
-            transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
-            transitionDelay: '400ms'
+            flex: '0 0 45%',
+            maxWidth: '45%',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateX(0)' : 'translateX(20px)',
+            transitionDelay: '300ms'
           }}
         >
           <img 
-            src={heroImage} 
-            alt="CRUDA - Expertise translated"
+            src={franPhoto} 
+            alt="Fran - CRUDA Founder"
             style={{
               width: '100%',
               height: 'auto',
               borderRadius: '8px',
-              objectFit: 'cover'
+              objectFit: 'cover',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.08)'
             }}
           />
         </div>
@@ -197,6 +137,13 @@ const HeroManifesto = () => {
         @media (max-width: 768px) {
           section {
             padding: 100px 24px 80px !important;
+          }
+          section > div {
+            flex-direction: column !important;
+          }
+          section > div > div:first-child {
+            flex: 1 !important;
+            max-width: 100% !important;
           }
         }
       `}</style>

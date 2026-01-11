@@ -28,7 +28,7 @@ const WhatChangesSection = () => {
             fontWeight: '600',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: 'rgba(10, 10, 10, 0.4)',
+            color: '#FF2E63',
             marginBottom: '0',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -96,22 +96,30 @@ const WhatChangesSection = () => {
           ))}
 
           {/* Closer line */}
-          <p
+          <div
             className="transition-all duration-700"
             style={{
-              fontSize: '24px',
-              fontWeight: '500',
-              color: '#0A0A0A',
               textAlign: 'center',
-              marginTop: '60px',
-              fontStyle: 'italic',
+              marginTop: '64px',
               opacity: visibleItems[changes.length - 1] ? 1 : 0,
               transform: visibleItems[changes.length - 1] ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '500ms'
             }}
           >
-            Your story finally works as hard as you do.
-          </p>
+            <p
+              style={{
+                fontSize: 'clamp(32px, 5vw, 48px)',
+                fontWeight: '800',
+                lineHeight: '1.1',
+                letterSpacing: '-0.02em',
+                textTransform: 'uppercase',
+                color: '#0A0A0A'
+              }}
+            >
+              YOUR STORY FINALLY WORKS<br />
+              <span style={{ color: '#FF2E63' }}>AS HARD AS YOU DO.</span>
+            </p>
+          </div>
         </div>
       </div>
 

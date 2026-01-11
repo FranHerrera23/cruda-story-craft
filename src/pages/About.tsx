@@ -16,6 +16,50 @@ const About = () => {
     { title: "Stay True", description: "Consistency isn't repetition. It's recognition across time." }
   ];
 
+  const teamMembers = [
+    {
+      name: "Fran",
+      title: "Founder",
+      photo: franPortrait,
+      bio: [
+        "Eight years inside TikTok, Mondelez, Nestlé, United Nations, DeliveryHero. Three continents. Ten nationalities.",
+        "The gap between mastery and articulation isn't theory. It's lived experience. Every immigrant knows this gap intimately.",
+        "Now I build bridges for founders."
+      ],
+      photoPosition: "left"
+    },
+    {
+      name: "Michael Choi-Pugliano",
+      title: "Creative Director",
+      photo: null,
+      bio: [
+        "Twenty years of visual storytelling across entertainment, fashion, and luxury brands. From MTV to Mercedes, from editorial to executive.",
+        "Michael sees the frame before anyone else does. He makes complexity look inevitable."
+      ],
+      photoPosition: "right"
+    },
+    {
+      name: "Natalia Dmitrieva",
+      title: "Operations Director",
+      photo: null,
+      bio: [
+        "Fifteen years running operations across three continents. Logistics, timelines, client relationships—the invisible work that makes visible work possible.",
+        "Natalia keeps the trains running so the story can breathe."
+      ],
+      photoPosition: "left"
+    },
+    {
+      name: "Abril Lovasolo",
+      title: "Narrative Strategist",
+      photo: null,
+      bio: [
+        "Trained in psychology, built for brand. Abril finds the emotional truth beneath the business truth.",
+        "She asks the questions clients didn't know they needed to answer."
+      ],
+      photoPosition: "right"
+    }
+  ];
+
   return (
     <main className="min-h-screen">
       {/* SECTION 1: HERO */}
@@ -33,23 +77,59 @@ const About = () => {
         </div>
       </section>
 
-      {/* SECTION 2: TEAM */}
-      <section ref={teamRef} className="py-24 md:py-32 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      {/* SECTION 2: TEAM - All 4 Members */}
+      <section ref={teamRef} className="py-24 md:py-32 px-6 md:px-20" style={{ backgroundColor: '#0A0A0A' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div className="grid md:grid-cols-2 gap-12 items-start">
-            <div className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <img src={franPortrait} alt="Fran, Founder" className="w-full rounded-lg" style={{ aspectRatio: '3/4', objectFit: 'cover' }} />
-            </div>
-            <div>
-              <h3 className={`text-[28px] font-semibold mb-2 transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: '#0A0A0A', transitionDelay: '100ms' }}>Fran</h3>
-              <p className={`text-[16px] mb-6 transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: 'rgba(10,10,10,0.6)', transitionDelay: '150ms' }}>Founder</p>
-              <div className="space-y-4 text-[18px]" style={{ color: 'rgba(10,10,10,0.7)', lineHeight: '1.7' }}>
-                <p className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '200ms' }}>Eight years inside TikTok, Mondelez, Nestlé, United Nations, DeliveryHero. Three continents. Ten nationalities.</p>
-                <p className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '300ms' }}>The gap between mastery and articulation isn't theory. It's lived experience. Every immigrant knows this gap intimately.</p>
-                <p className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: '400ms' }}>Now I build bridges for founders.</p>
+          {teamMembers.map((member, index) => (
+            <div 
+              key={index}
+              className={`grid md:grid-cols-2 gap-12 items-start ${index > 0 ? 'mt-24 pt-24' : ''}`}
+              style={{ borderTop: index > 0 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}
+            >
+              {/* Photo Column */}
+              {member.photoPosition === 'left' && (
+                <div className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 100}ms` }}>
+                  {member.photo ? (
+                    <img src={member.photo} alt={member.name} className="w-full rounded-lg" style={{ aspectRatio: '3/4', objectFit: 'cover' }} />
+                  ) : (
+                    <div className="w-full rounded-lg flex items-center justify-center" style={{ aspectRatio: '3/4', backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                      <span style={{ fontSize: '64px', color: 'rgba(255,255,255,0.2)' }}>{member.name.charAt(0)}</span>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Text Column */}
+              <div className={member.photoPosition === 'right' ? 'md:order-first' : ''}>
+                <h3 className={`text-[36px] font-semibold mb-2 transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: '#FFFFFF', transitionDelay: `${index * 100 + 100}ms` }}>
+                  {member.name}
+                </h3>
+                <p className={`text-[16px] mb-6 transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ color: 'rgba(255,255,255,0.6)', transitionDelay: `${index * 100 + 150}ms` }}>
+                  {member.title}
+                </p>
+                <div className="space-y-4 text-[18px]" style={{ color: 'rgba(255,255,255,0.8)', lineHeight: '1.7' }}>
+                  {member.bio.map((paragraph, pIndex) => (
+                    <p key={pIndex} className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 100 + 200 + pIndex * 100}ms` }}>
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
               </div>
+
+              {/* Photo Column (right position) */}
+              {member.photoPosition === 'right' && (
+                <div className={`transition-all duration-700 ${teamVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`} style={{ transitionDelay: `${index * 100}ms` }}>
+                  {member.photo ? (
+                    <img src={member.photo} alt={member.name} className="w-full rounded-lg" style={{ aspectRatio: '3/4', objectFit: 'cover' }} />
+                  ) : (
+                    <div className="w-full rounded-lg flex items-center justify-center" style={{ aspectRatio: '3/4', backgroundColor: 'rgba(255,255,255,0.05)' }}>
+                      <span style={{ fontSize: '64px', color: 'rgba(255,255,255,0.2)' }}>{member.name.charAt(0)}</span>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
-          </div>
+          ))}
         </div>
       </section>
 

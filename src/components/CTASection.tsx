@@ -10,31 +10,35 @@ const CTASection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#F5F1E8',
+        backgroundColor: '#0A0A0A',
         padding: '120px 80px 80px',
         textAlign: 'center'
       }}
     >
-      <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
         {/* Headline */}
         <h2
           className="transition-all duration-700"
           style={{
-            fontSize: '48px',
-            fontWeight: '600',
-            color: '#0A0A0A',
+            fontSize: 'clamp(48px, 7vw, 96px)',
+            fontWeight: '800',
+            lineHeight: '1.0',
+            letterSpacing: '-0.03em',
+            textTransform: 'uppercase',
+            color: '#FFFFFF',
             marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          Ready when you are.
+          READY WHEN<br />
+          <span style={{ color: '#FF2E63' }}>YOU ARE.</span>
         </h2>
 
-        {/* CTA Button with hover-lift effect */}
+        {/* CTA Button */}
         <Link
           to="/book-call"
-          className="inline-block hover-lift"
+          className="inline-block"
           style={{
             backgroundColor: '#FF2E63',
             color: '#FFFFFF',
@@ -65,7 +69,7 @@ const CTASection = () => {
       <footer 
         className="mt-24 pt-12"
         style={{ 
-          borderTop: '1px solid rgba(10, 10, 10, 0.1)'
+          borderTop: '1px solid rgba(255, 255, 255, 0.1)'
         }}
       >
         <Link to="/" className="inline-block mb-8">
@@ -73,6 +77,7 @@ const CTASection = () => {
             src={crudaLogo} 
             alt="CRUDA" 
             className="h-24 md:h-40 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
+            style={{ filter: 'brightness(0) invert(1)' }}
           />
         </Link>
         
@@ -83,9 +88,9 @@ const CTASection = () => {
             target="_blank" 
             rel="noopener noreferrer"
             className="transition-all duration-300 hover:opacity-100"
-            style={{ color: 'rgba(10, 10, 10, 0.4)' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#0A0A0A'}
-            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(10, 10, 10, 0.4)'}
+            style={{ color: 'rgba(255, 255, 255, 0.4)' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}
           >
             <Linkedin size={20} />
           </a>
@@ -94,9 +99,9 @@ const CTASection = () => {
             target="_blank" 
             rel="noopener noreferrer"
             className="transition-all duration-300 hover:opacity-100"
-            style={{ color: 'rgba(10, 10, 10, 0.4)' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#0A0A0A'}
-            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(10, 10, 10, 0.4)'}
+            style={{ color: 'rgba(255, 255, 255, 0.4)' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#FFFFFF'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.4)'}
           >
             <Instagram size={20} />
           </a>
@@ -105,7 +110,7 @@ const CTASection = () => {
         <p 
           style={{ 
             fontSize: '13px', 
-            color: 'rgba(10, 10, 10, 0.4)',
+            color: 'rgba(255, 255, 255, 0.4)',
             letterSpacing: '0.02em'
           }}
         >
@@ -118,9 +123,6 @@ const CTASection = () => {
         @media (max-width: 768px) {
           section {
             padding: 120px 24px 60px !important;
-          }
-          section h2 {
-            font-size: 36px !important;
           }
           section a {
             width: 100% !important;

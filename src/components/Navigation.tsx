@@ -67,12 +67,6 @@ export const Navigation = () => {
           </Link>
           <Link 
             to="/book-call" 
-            className={`nav-menu-item ${location.pathname === '/book-call' ? 'active' : ''}`}
-          >
-            Contact
-          </Link>
-          <Link 
-            to="/book-call" 
             className="nav-cta-button"
           >
             Start a Conversation

@@ -47,7 +47,7 @@ const HowWeWorkSection = () => {
             fontWeight: '600',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: 'rgba(10, 10, 10, 0.4)',
+            color: '#FF2E63',
             marginBottom: '80px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'

@@ -53,10 +53,10 @@ const clients: Client[] = [
   },
   {
     slug: "nitin-passi",
-    name: "[Name Redacted]",
-    title: "Founder & CEO · Fashion/Retail · Dubai",
+    name: "[Name Protected]",
+    title: "Founder & Creative Director · Global Fashion House",
     isConfidential: true,
-    quote: "Strategic positioning for a second-time founder scaling to $500M."
+    quote: "They understood what we couldn't say publicly was just as important as what we could."
   }
 ];
 
@@ -110,7 +110,7 @@ const WhoTrustsUsSection = () => {
               fontWeight: '600',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
-              color: '#FF2E63',
+              color: 'rgba(10, 10, 10, 0.4)',
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
@@ -159,63 +159,63 @@ const WhoTrustsUsSection = () => {
               to={`/clients/${client.slug}`}
               className="group block transition-all duration-300 flex-shrink-0"
               style={{
-                width: '340px',
-                minWidth: '340px',
-                maxWidth: '380px',
-                background: '#FFFFFF',
-                border: '1px solid #E5E5E5',
-                borderRadius: '8px',
-                padding: '40px',
+                width: '320px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: `${(index + 1) * 100}ms`
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.borderColor = '#FF2E63';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.borderColor = '#E5E5E5';
-                e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              {/* Photo circle */}
+              {/* Photo or confidential placeholder */}
               <div 
                 style={{ 
-                  width: '80px',
-                  height: '80px',
+                  aspectRatio: '4/3', 
                   overflow: 'hidden',
-                  borderRadius: '50%',
-                  marginBottom: '24px'
+                  borderRadius: '4px'
                 }}
               >
                 {client.isConfidential ? (
                   <div 
-                    className="w-full h-full flex items-center justify-center"
+                    className="w-full h-full flex items-center justify-center transition-all duration-500 group-hover:scale-[1.03]"
                     style={{
-                      background: '#0A0A0A'
+                      background: 'linear-gradient(135deg, #1A1A1A 0%, #2A2A2A 50%, #1A1A1A 100%)'
                     }}
                   >
-                    <span style={{ 
-                      fontSize: '24px', 
-                      fontWeight: '600',
-                      color: 'rgba(255,255,255,0.4)' 
-                    }}>
-                      NP
-                    </span>
+                    <div className="text-center">
+                      <div 
+                        className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+                        style={{ 
+                          border: '2px solid rgba(255,255,255,0.2)',
+                          background: 'rgba(255,255,255,0.05)'
+                        }}
+                      >
+                        <span style={{ fontSize: '24px', color: 'rgba(255,255,255,0.4)' }}>?</span>
+                      </div>
+                      <p style={{ 
+                        fontSize: '11px', 
+                        letterSpacing: '0.15em', 
+                        color: 'rgba(255,255,255,0.4)',
+                        textTransform: 'uppercase'
+                      }}>
+                        Confidential
+                      </p>
+                    </div>
                   </div>
                 ) : (
                   <img
                     src={client.photo}
                     alt={client.name}
+                    className="transition-transform duration-500 group-hover:scale-[1.03]"
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      objectPosition: client.photoPosition,
-                      filter: 'grayscale(100%)'
+                      objectPosition: client.photoPosition
                     }}
                   />
                 )}
@@ -224,10 +224,11 @@ const WhoTrustsUsSection = () => {
               {/* Name */}
               <p
                 style={{
-                  fontSize: '20px',
+                  fontSize: '22px',
                   fontWeight: '600',
-                  color: client.isConfidential ? '#666666' : '#0A0A0A',
-                  marginBottom: '4px'
+                  color: '#0A0A0A',
+                  marginTop: '24px',
+                  marginBottom: '6px'
                 }}
               >
                 {client.name}
@@ -238,8 +239,8 @@ const WhoTrustsUsSection = () => {
                 style={{
                   fontSize: '14px',
                   fontWeight: '400',
-                  color: 'rgba(10, 10, 10, 0.6)',
-                  marginBottom: '20px'
+                  color: 'rgba(10, 10, 10, 0.5)',
+                  marginBottom: '16px'
                 }}
               >
                 {client.title}
@@ -250,12 +251,12 @@ const WhoTrustsUsSection = () => {
                 style={{
                   fontSize: '16px',
                   fontWeight: '400',
-                  fontStyle: client.isConfidential ? 'normal' : 'italic',
-                  color: client.isConfidential ? 'rgba(10, 10, 10, 0.7)' : 'rgba(10, 10, 10, 0.8)',
+                  fontStyle: 'italic',
+                  color: 'rgba(10, 10, 10, 0.7)',
                   lineHeight: '1.6'
                 }}
               >
-                {client.isConfidential ? client.quote : `"${client.quote}"`}
+                "{client.quote}"
               </p>
             </Link>
           ))}

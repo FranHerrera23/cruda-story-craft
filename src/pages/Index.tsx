@@ -1,12 +1,11 @@
 import HeroManifesto from "@/components/HeroManifesto";
-import WhoThisIsForSection from "@/components/WhoThisIsForSection";
-import WeveBeenOnBothSidesSection from "@/components/WeveBeenOnBothSidesSection";
-import LogoMarquee from "@/components/LogoMarquee";
-import PhilosophySection from "@/components/PhilosophySection";
-import TheProblemSection from "@/components/TheProblemSection";
-import HowWeWorkSection from "@/components/HowWeWorkSection";
+import BeliefSection from "@/components/BeliefSection";
 import WhatChangesSection from "@/components/WhatChangesSection";
+import HowWeWorkSection from "@/components/HowWeWorkSection";
 import WhoTrustsUsSection from "@/components/WhoTrustsUsSection";
+import SeeTheWork from "@/components/SeeTheWork";
+import CredibilitySection from "@/components/CredibilitySection";
+import LogoMarquee from "@/components/LogoMarquee";
 import CTASection from "@/components/CTASection";
 
 const Index = () => {
@@ -15,31 +14,26 @@ const Index = () => {
       {/* Section 1: Hero */}
       <HeroManifesto />
       
-      {/* Section 2: Who This Is For */}
-      <WhoThisIsForSection />
+      {/* Section 2: Belief (includes Before/After) */}
+      <BeliefSection />
       
-      {/* Section 3: We've Been On Both Sides */}
-      <WeveBeenOnBothSidesSection />
-      
-      {/* Section 4: Logo Ticker */}
-      <LogoMarquee />
-      
-      {/* Section 5: Philosophy (replaces Trust Shifted) */}
-      <PhilosophySection />
-      
-      {/* Section 6: The Problem (replaces Before/After) */}
-      <TheProblemSection />
-      
-      {/* Section 7: How It Works */}
-      <HowWeWorkSection />
-      
-      {/* Section 8: What Changes */}
+      {/* Section 3: What Changes */}
       <WhatChangesSection />
       
-      {/* Section 9: Who Trusts Us (Clients) */}
+      {/* Section 4: How It Works */}
+      <HowWeWorkSection />
+      
+      {/* Section 5: Who Trusts Us (Clients) */}
       <WhoTrustsUsSection />
       
-      {/* Section 10: Final CTA */}
+      {/* Section 6: See the Work (Projects - NEW) */}
+      <SeeTheWork />
+      
+      {/* Section 7: Credibility + Logo Marquee */}
+      <CredibilitySection />
+      <LogoMarquee />
+      
+      {/* Section 8: CTA */}
       <CTASection />
     </main>
   );

@@ -18,7 +18,7 @@ const LogoMarquee = () => {
       ref={elementRef}
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '80px 80px',
+        padding: '80px 0',
         overflow: 'hidden'
       }}
     >

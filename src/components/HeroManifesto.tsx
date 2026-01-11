@@ -1,149 +1,191 @@
 import { useState, useEffect } from "react";
+import franCallImage from "@/assets/fran-portrait-hero.png";
 import { Link } from "react-router-dom";
-import franPhoto from "@/assets/fran-portrait-hero.png";
 
 const HeroManifesto = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [wordsVisible, setWordsVisible] = useState<boolean[]>([false, false, false]);
+  const [subtitleVisible, setSubtitleVisible] = useState(false);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
     if (prefersReducedMotion) {
-      setIsVisible(true);
+      setWordsVisible([true, true, true]);
+      setSubtitleVisible(true);
       return;
     }
 
-    const timer = setTimeout(() => setIsVisible(true), 200);
-    return () => clearTimeout(timer);
+    const timers = [
+      setTimeout(() => setWordsVisible([true, false, false]), 200),
+      setTimeout(() => setWordsVisible([true, true, false]), 400),
+      setTimeout(() => setWordsVisible([true, true, true]), 600),
+      setTimeout(() => setSubtitleVisible(true), 1000)
+    ];
+    
+    return () => timers.forEach(timer => clearTimeout(timer));
   }, []);
 
   return (
     <section 
+      className="min-h-screen flex items-center"
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '140px 80px 100px 80px'
+        padding: '120px 80px 160px 80px'
       }}
     >
-      <div 
-        style={{ 
-          maxWidth: '1100px', 
-          margin: '0 auto', 
-          display: 'flex', 
-          gap: '60px', 
-          alignItems: 'center' 
-        }}
-      >
-        {/* Left Column - 55% */}
-        <div style={{ flex: '0 0 55%', maxWidth: '55%' }}>
-          <h1 
-            className="transition-all duration-700"
-            style={{ 
-              fontSize: 'clamp(42px, 6vw, 72px)',
-              fontWeight: '800',
-              lineHeight: '1.05',
-              letterSpacing: '-0.02em',
-              textTransform: 'uppercase',
-              color: '#0A0A0A',
-              marginBottom: '32px',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
-            }}
-          >
-            YOU'VE BUILT<br />
-            SOMETHING WORTH<br />
-            TALKING ABOUT.<br />
-            <br />
-            <span style={{ color: '#FF2E63' }}>
-              WE MAKE SURE<br />
-              PEOPLE DO.
-            </span>
-          </h1>
-          
-          {/* Descriptor */}
-          <p
-            className="transition-all duration-700"
-            style={{
-              fontSize: '18px',
-              fontStyle: 'italic',
-              fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.6)',
-              marginBottom: '32px',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms'
-            }}
-          >
-            Narrative strategy for real estate, construction, and architecture leaders.
-          </p>
-          
-          {/* CTA Button */}
-          <Link 
-            to="/book-call"
-            className="inline-block transition-all duration-300"
-            style={{ 
-              background: '#FF2E63',
-              color: '#FFFFFF',
-              fontSize: '16px',
-              fontWeight: '600',
-              padding: '18px 48px',
-              borderRadius: '4px',
-              textDecoration: 'none',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '200ms'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#E02856';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,46,99,0.3)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#FF2E63';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
-            }}
-          >
-            Start a Conversation
-          </Link>
-        </div>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%' }}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Left Column - Text Content */}
+          <div style={{ maxWidth: '560px' }}>
+            <h1 
+              style={{ 
+                fontSize: '80px',
+                fontWeight: '700',
+                lineHeight: '0.95',
+                letterSpacing: '-0.03em',
+                color: '#0A0A0A'
+              }}
+            >
+              <span 
+                style={{ 
+                  display: "inline-block",
+                  opacity: wordsVisible[0] ? 1 : 0,
+                  transform: wordsVisible[0] ? "translateY(0)" : "translateY(30px)",
+                  filter: wordsVisible[0] ? "blur(0)" : "blur(10px)",
+                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+              >
+                Your
+              </span>{' '}
+              <span 
+                style={{ 
+                  display: "inline-block",
+                  opacity: wordsVisible[1] ? 1 : 0,
+                  transform: wordsVisible[1] ? "translateY(0)" : "translateY(30px)",
+                  filter: wordsVisible[1] ? "blur(0)" : "blur(10px)",
+                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+              >
+                expertise,
+              </span>{' '}
+              <span 
+                style={{ 
+                  color: "#FF2E63", 
+                  fontWeight: '700',
+                  display: "inline-block",
+                  opacity: wordsVisible[2] ? 1 : 0,
+                  transform: wordsVisible[2] ? "translateY(0)" : "translateY(30px)",
+                  filter: wordsVisible[2] ? "blur(0)" : "blur(10px)",
+                  transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+              >
+                translated.
+              </span>
+            </h1>
+            
+            {/* What We Do */}
+            <p
+              style={{
+                fontSize: '18px',
+                fontWeight: '400',
+                lineHeight: '1.7',
+                color: 'rgba(10, 10, 10, 0.6)',
+                marginTop: '48px',
+                maxWidth: '460px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1)"
+              }}
+            >
+              We help real estate, construction, architecture, and design firms build trust through the stories that travel when you're not in the room — LinkedIn, Instagram, decks, and the narrative that ties them together.
+            </p>
+            
+            {/* CTA Button */}
+            <Link 
+              to="/book-call"
+              className="inline-block"
+              style={{ 
+                background: '#FF2E63',
+                color: '#FFFFFF',
+                fontSize: '16px',
+                fontWeight: '600',
+                padding: '20px 44px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                marginTop: '48px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(20px)",
+                transition: "all 0.2s ease"
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#E8284A';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#FF2E63';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              Start a Conversation
+            </Link>
 
-        {/* Right Column - 45% - Fran's Photo */}
-        <div 
-          className="hidden md:block transition-all duration-700"
-          style={{ 
-            flex: '0 0 45%',
-            maxWidth: '45%',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateX(0)' : 'translateX(20px)',
-            transitionDelay: '300ms'
-          }}
-        >
-          <img 
-            src={franPhoto} 
-            alt="Fran - CRUDA Founder"
-            style={{
-              width: '100%',
-              height: 'auto',
-              borderRadius: '8px',
-              objectFit: 'cover',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.08)'
-            }}
-          />
+            {/* Trusted By Line */}
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: '500',
+                color: 'rgba(10, 10, 10, 0.5)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.08em',
+                marginTop: '48px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s"
+              }}
+            >
+              trusted by
+            </p>
+
+            {/* Proof Line */}
+            <p
+              style={{
+                fontSize: '13px',
+                fontWeight: '400',
+                color: 'rgba(10, 10, 10, 0.4)',
+                letterSpacing: '0.02em',
+                marginTop: '16px',
+                opacity: subtitleVisible ? 1 : 0,
+                transform: subtitleVisible ? "translateY(0)" : "translateY(10px)",
+                transition: "all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.35s"
+              }}
+            >
+              TRAZZO Lighting · Norhart · UNIK Parquet
+            </p>
+          </div>
+          
+          {/* Right Column - Photo */}
+          <div className="relative order-first lg:order-last">
+            <img
+              src={franCallImage}
+              alt="Fran Herrera, Founder of CRUDA"
+              className="w-full h-auto block"
+              style={{
+                objectFit: 'cover',
+                borderRadius: '4px'
+              }}
+            />
+          </div>
         </div>
       </div>
       
       {/* Mobile Styles */}
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           section {
-            padding: 100px 24px 80px !important;
+            padding: 80px 24px !important;
           }
-          section > div {
-            flex-direction: column !important;
-          }
-          section > div > div:first-child {
-            flex: 1 !important;
-            max-width: 100% !important;
+          section h1 {
+            font-size: 48px !important;
           }
         }
       `}</style>

@@ -18,15 +18,23 @@ const steps = [
   }
 ];
 
+const deliverables = [
+  "Your story in one sentence",
+  "A narrative document your team can use",
+  "LinkedIn presence that sounds like you",
+  "Pitch deck language",
+  "Talking points for any room"
+];
+
 const HowWeWorkSection = () => {
-  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(steps.length + 2, 150);
+  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(steps.length + 3, 150);
   const { elementRef: timelineRef, progress } = useScrollProgress();
 
   return (
     <section 
       ref={containerRef} 
       style={{ 
-        backgroundColor: '#F5F1E8',
+        backgroundColor: '#F7F7F7',
         padding: '160px 80px'
       }}
     >
@@ -39,7 +47,7 @@ const HowWeWorkSection = () => {
             fontWeight: '600',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
-            color: '#FF2E63',
+            color: 'rgba(10, 10, 10, 0.4)',
             marginBottom: '80px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -215,23 +223,81 @@ const HowWeWorkSection = () => {
           </div>
         </div>
 
-        {/* Continuation note */}
-        <p
-          className="transition-all duration-700"
+        {/* Two-column bottom section */}
+        <div
+          className="hover-lift grid grid-cols-1 md:grid-cols-2"
           style={{
-            fontSize: '16px',
-            fontStyle: 'italic',
-            color: 'rgba(10, 10, 10, 0.5)',
-            textAlign: 'center',
-            marginTop: '48px',
+            marginTop: '60px',
+            backgroundColor: '#FFFFFF',
+            padding: '48px',
+            borderRadius: '8px',
+            gap: '60px',
             maxWidth: '1100px',
             opacity: visibleItems[steps.length + 1] ? 1 : 0,
-            transform: visibleItems[steps.length + 1] ? 'translateY(0)' : 'translateY(10px)',
-            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+            transform: visibleItems[steps.length + 1] ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms ease'
           }}
         >
-          Most clients continue past Month 4. This is a foundation, not a finish line.
-        </p>
+          {/* What We Need */}
+          <div>
+            <p
+              style={{
+                fontSize: '11px',
+                fontWeight: '600',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginBottom: '20px'
+              }}
+            >
+              What we need from you
+            </p>
+            <p
+              style={{
+                fontSize: '20px',
+                fontWeight: '400',
+                color: '#0A0A0A',
+                lineHeight: '1.5'
+              }}
+            >
+              One hour a week. Feedback over WhatsApp. And guts.
+            </p>
+          </div>
+
+          {/* What You Walk Away With */}
+          <div>
+            <p
+              style={{
+                fontSize: '11px',
+                fontWeight: '600',
+                letterSpacing: '0.15em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginBottom: '20px'
+              }}
+            >
+              What you walk away with
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {deliverables.map((item, index) => (
+                <p
+                  key={index}
+                  style={{
+                    fontSize: '17px',
+                    fontWeight: '400',
+                    color: 'rgba(10, 10, 10, 0.7)',
+                    lineHeight: '1.8',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                >
+                  <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Styles */}

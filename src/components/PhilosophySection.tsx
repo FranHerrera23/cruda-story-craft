@@ -16,54 +16,56 @@ const PhilosophySection = () => {
       }}
     >
       <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-        {/* Headline */}
+        {/* Line 1 - Large */}
         <h2
           className="transition-all duration-700 philosophy-headline"
           style={{
-            fontSize: '48px',
+            fontSize: '44px',
             fontWeight: '600',
             color: '#0A0A0A',
             lineHeight: '1.15',
             letterSpacing: '-0.02em',
+            marginBottom: '40px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          The story you tell<br />
-          becomes the story<br />
-          they believe.
+          The Bible. The Odyssey. Every satisfying movie.
         </h2>
 
-        {/* Accent Line */}
-        <div 
-          className="transition-all duration-700"
-          style={{
-            width: '40px',
-            height: '2px',
-            background: '#FF2E63',
-            margin: '48px auto',
-            opacity: isVisible ? 1 : 0,
-            transitionDelay: '100ms'
-          }}
-        />
-
-        {/* Body */}
+        {/* Lines 2-3 - Medium */}
         <div
           className="transition-all duration-700"
           style={{
-            fontSize: '20px',
+            fontSize: '24px',
             fontWeight: '400',
-            lineHeight: '1.7',
+            lineHeight: '1.5',
             color: 'rgba(10, 10, 10, 0.6)',
-            maxWidth: '500px',
-            margin: '0 auto',
+            marginBottom: '40px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '150ms'
+            transitionDelay: '100ms'
           }}
         >
-          <p style={{ marginBottom: '8px' }}>Your metrics get you in the room.</p>
-          <p style={{ fontStyle: 'italic', color: 'rgba(10, 10, 10, 0.8)' }}>Your story is why they say yes.</p>
+          <p style={{ marginBottom: '0' }}>
+            Humanity doesn't organize around facts.<br />
+            We organize around stories.
+          </p>
+        </div>
+
+        {/* Line 4 - Punch */}
+        <div
+          className="transition-all duration-700"
+          style={{
+            fontSize: '24px',
+            fontWeight: '500',
+            color: '#0A0A0A',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '200ms'
+          }}
+        >
+          Yours is next.
         </div>
       </div>
 
@@ -74,7 +76,7 @@ const PhilosophySection = () => {
             padding: 100px 24px !important;
           }
           .philosophy-headline {
-            font-size: 36px !important;
+            font-size: 32px !important;
           }
         }
       `}</style>

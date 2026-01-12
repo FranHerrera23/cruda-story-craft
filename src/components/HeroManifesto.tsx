@@ -118,11 +118,11 @@ const HeroManifesto = () => {
           style={{
             width: '380px',
             maxWidth: '100%',
-            height: 'auto',
-            maxHeight: '520px',
+            height: '520px',
             objectFit: 'cover',
             objectPosition: 'center top',
-            borderRadius: '0'
+            borderRadius: '2px',
+            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
           }}
         />
       </div>

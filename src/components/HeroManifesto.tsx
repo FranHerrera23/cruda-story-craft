@@ -119,9 +119,9 @@ const HeroManifesto = () => {
           style={{
             width: '380px',
             maxWidth: '100%',
-            height: '480px', // V6: Tighter crop
+            height: '420px', // V6: Even tighter crop to eliminate laptop
             objectFit: 'cover',
-            objectPosition: '50% 15%', // V6: Crop from chin up, eliminate laptop
+            objectPosition: '50% 0%', // V6: Crop from very top - face, neck, shoulders only
             borderRadius: '2px',
             boxShadow: '0 24px 48px rgba(0, 0, 0, 0.12)', // V6: More depth
             filter: 'saturate(0.9) contrast(1.02)', // V6: Editorial feel

@@ -23,11 +23,11 @@ const HeroManifesto = () => {
       style={{ 
         backgroundColor: '#FFFFFF',
         display: 'grid',
-        gridTemplateColumns: '1fr 380px',
+        gridTemplateColumns: '1fr 420px',
         gap: '80px',
         alignItems: 'center',
         padding: '80px 80px 120px 80px',
-        minHeight: 'calc(100vh - 80px)',
+        minHeight: '85vh',
         maxWidth: '1400px',
         margin: '0 auto'
       }}
@@ -36,11 +36,12 @@ const HeroManifesto = () => {
       <div>
         {/* Headline */}
         <h1 
+          className="hero-headline"
           style={{ 
-            fontSize: '52px',
+            fontSize: '68px',
             fontWeight: '600',
-            lineHeight: '1.1',
-            letterSpacing: '-0.02em',
+            lineHeight: '1.08',
+            letterSpacing: '-0.025em',
             color: '#0A0A0A',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
@@ -60,10 +61,11 @@ const HeroManifesto = () => {
             fontWeight: '400',
             fontStyle: 'italic',
             lineHeight: '1.6',
-            letterSpacing: '0.01em', // V6: Typography micro-adjustment
+            letterSpacing: '0.01em',
             color: 'rgba(10, 10, 10, 0.5)',
             maxWidth: '400px',
-            marginBottom: '40px',
+            marginTop: '28px',
+            marginBottom: '36px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.6s ease',
@@ -111,20 +113,20 @@ const HeroManifesto = () => {
         </Link>
       </div>
       
-      {/* Right Column - Photo (V6: Crop tighter, eliminate laptop) */}
+      {/* Right Column - Photo */}
       <div className="hero-photo">
         <img
           src={franCallImage}
           alt="Fran Herrera, Founder of CRUDA"
           style={{
-            width: '380px',
+            width: '420px',
             maxWidth: '100%',
-            height: '420px', // V6: Even tighter crop to eliminate laptop
+            height: '580px',
             objectFit: 'cover',
-            objectPosition: '50% 0%', // V6: Crop from very top - face, neck, shoulders only
+            objectPosition: '50% 0%',
             borderRadius: '2px',
-            boxShadow: '0 24px 48px rgba(0, 0, 0, 0.12)', // V6: More depth
-            filter: 'saturate(0.9) contrast(1.02)', // V6: Editorial feel
+            boxShadow: '0 24px 48px rgba(0, 0, 0, 0.12)',
+            filter: 'saturate(0.9) contrast(1.02)',
           }}
         />
       </div>
@@ -139,6 +141,12 @@ const HeroManifesto = () => {
           transform: translateX(4px);
         }
         
+        @media (max-width: 1200px) {
+          .hero-headline {
+            font-size: 56px !important;
+          }
+        }
+        
         @media (max-width: 768px) {
           .hero-section {
             grid-template-columns: 1fr !important;
@@ -146,12 +154,19 @@ const HeroManifesto = () => {
             padding: 60px 24px 80px 24px !important;
             min-height: auto !important;
           }
-          .hero-section h1 {
-            font-size: 36px !important;
+          .hero-headline {
+            font-size: 42px !important;
           }
           .hero-photo {
             order: 2;
           }
+          .hero-photo img {
+            width: 100% !important;
+            max-width: 320px !important;
+            height: 400px !important;
+            margin: 0 auto !important;
+          }
+        }
           .hero-photo img {
             width: 100% !important;
             max-width: 320px !important;

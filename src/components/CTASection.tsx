@@ -41,7 +41,7 @@ const CTASection = () => {
 
         {/* CTA Button - Square with Arrow (On Dark Variant) */}
         <Link
-          to="/pricing#book"
+          to="/contact"
           className="cta-button-dark"
           style={{
             display: 'inline-flex',

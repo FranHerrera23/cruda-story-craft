@@ -9,6 +9,7 @@ const CTASection = () => {
   return (
     <section 
       ref={elementRef} 
+      className="cta-section"
       style={{ 
         backgroundColor: '#0A0A0A',
         padding: '120px 80px',
@@ -38,32 +39,43 @@ const CTASection = () => {
           Ready when <span style={{ color: '#FF2E63' }}>you are.</span>
         </h2>
 
-        {/* CTA Button */}
+        {/* CTA Button - Square with Arrow (On Dark Variant) */}
         <Link
           to="/book-call"
-          className="inline-block transition-all duration-300"
+          className="cta-button-dark"
           style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
             backgroundColor: '#FF2E63',
             color: '#FFFFFF',
-            fontSize: '16px',
-            fontWeight: '600',
-            padding: '20px 40px',
-            borderRadius: '8px',
+            fontSize: '15px',
+            fontWeight: '500',
+            letterSpacing: '0.01em',
+            padding: '18px 28px',
+            borderRadius: '0',
             textDecoration: 'none',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
+            transition: 'all 0.25s ease',
             transitionDelay: '200ms'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#E0264F';
-            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.backgroundColor = '#FFFFFF';
+            e.currentTarget.style.color = '#0A0A0A';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.backgroundColor = '#FF2E63';
-            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.color = '#FFFFFF';
           }}
         >
           Start a Conversation
+          <span 
+            className="cta-arrow"
+            style={{ fontSize: '18px', transition: 'transform 0.25s ease' }}
+          >
+            →
+          </span>
         </Link>
       </div>
 
@@ -123,10 +135,14 @@ const CTASection = () => {
         </p>
       </footer>
 
-      {/* Mobile Styles */}
+      {/* Styles */}
       <style>{`
+        .cta-button-dark:hover .cta-arrow {
+          transform: translateX(4px);
+        }
+        
         @media (max-width: 768px) {
-          section {
+          .cta-section {
             padding: 80px 24px !important;
           }
           .cta-headline {

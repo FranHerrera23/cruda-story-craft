@@ -29,7 +29,7 @@ const Contact = () => {
     setIsSubmitted(true);
     // After 2 seconds, redirect to Calendly
     setTimeout(() => {
-      window.open('https://calendly.com/cruda-intro/30min', '_blank');
+      window.open('https://calendly.com/cruda-intro/narrative-sparring-live-1', '_blank');
     }, 2000);
   };
 
@@ -70,7 +70,7 @@ const Contact = () => {
             }}>
               If the calendar doesn't open automatically,{' '}
               <a 
-                href="https://calendly.com/cruda-intro/30min" 
+                href="https://calendly.com/cruda-intro/narrative-sparring-live-1" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 style={{ color: '#FF2E63', textDecoration: 'underline' }}

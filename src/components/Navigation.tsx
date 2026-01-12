@@ -10,23 +10,19 @@ export const Navigation = () => {
   const isHomepage = location.pathname === '/';
 
   useEffect(() => {
-    // Always show on non-homepage
-    if (!isHomepage) {
-      setIsVisible(true);
-      return;
-    }
+    // Always show navigation
+    setIsVisible(true);
 
-    // On homepage, show after scrolling past hero
+    // Track scroll for styling
     const handleScroll = () => {
       const scrolled = window.pageYOffset > 100;
-      setIsVisible(scrolled);
       setIsScrolled(scrolled);
     };
 
-    handleScroll(); // Check initial scroll position
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomepage]);
+  }, []);
 
   return (
     <nav 

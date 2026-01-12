@@ -38,6 +38,12 @@ export const Navigation = () => {
         </Link>
         <div className="nav-menu">
           <Link 
+            to="/" 
+            className={`nav-menu-item ${location.pathname === '/' ? 'active' : ''}`}
+          >
+            Home
+          </Link>
+          <Link 
             to="/work" 
             className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
           >

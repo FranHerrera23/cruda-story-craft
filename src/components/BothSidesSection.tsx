@@ -1,65 +1,65 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const logos = [
-  "TikTok",
-  "Mondelez",
-  "Nestlé",
-  "United Nations",
-  "DeliveryHero",
-  "Natura",
-  "Ab InBev"
-];
-
 const BothSidesSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
+  const logos = [
+    "TIKTOK", "MONDELEZ", "NESTLÉ", "UNITED NATIONS", "DELIVERYHERO",
+    "AMAZON", "TWITCH", "ELECTRONIC ARTS", "FACEBOOK", "OCULUS",
+    "LUCASARTS", "MARVEL", "UNIVERSAL", "HASBRO", "GSK"
+  ];
+
   return (
     <section 
-      ref={elementRef} 
+      ref={elementRef}
       className="both-sides-section"
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '120px 80px 80px 80px'
+        padding: '120px 80px'
       }}
     >
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        {/* Header Block - Side by Side */}
-        <div
-          className="both-sides-header transition-all duration-700"
+        {/* Header - 50/50 Grid */}
+        <div 
+          className="both-sides-header"
           style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'flex-end',
-            marginBottom: '48px',
-            paddingBottom: '48px',
-            borderBottom: '1px solid rgba(10, 10, 10, 0.08)',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '80px',
+            alignItems: 'end',
+            marginBottom: '64px',
+            paddingBottom: '64px',
+            borderBottom: '1px solid rgba(10, 10, 10, 0.08)'
           }}
         >
-          {/* Headline */}
-          <h2
-            className="both-headline"
+          {/* Headline - 48px */}
+          <h2 
+            className="transition-all duration-700 both-sides-headline"
             style={{
-              fontSize: '44px',
+              fontSize: '48px',
               fontWeight: '600',
               lineHeight: '1.1',
+              letterSpacing: '-0.02em',
               color: '#0A0A0A',
-              maxWidth: '400px'
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            We've been on both sides.
+            We've been on<br />both sides.
           </h2>
 
-          {/* Tagline - Right aligned */}
-          <div
-            className="both-tagline"
+          {/* Tagline - 20px italic */}
+          <div 
+            className="transition-all duration-700 both-sides-tagline"
             style={{
-              fontSize: '18px',
+              fontSize: '20px',
               fontStyle: 'italic',
               lineHeight: '1.5',
               color: 'rgba(10, 10, 10, 0.5)',
-              textAlign: 'right'
+              textAlign: 'right',
+              opacity: isVisible ? 1 : 0,
+              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '100ms'
             }}
           >
             <p>Inside the agency.</p>
@@ -69,18 +69,18 @@ const BothSidesSection = () => {
         </div>
 
         {/* Body Copy */}
-        <div
+        <div 
           className="transition-all duration-700"
           style={{
             fontSize: '20px',
             fontWeight: '400',
-            color: 'rgba(10, 10, 10, 0.7)',
             lineHeight: '1.7',
-            maxWidth: '700px',
+            color: 'rgba(10, 10, 10, 0.7)',
+            maxWidth: '800px',
             marginBottom: '80px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '100ms'
+            transitionDelay: '200ms'
           }}
         >
           <p style={{ marginBottom: '24px' }}>
@@ -93,57 +93,40 @@ const BothSidesSection = () => {
 
         {/* Logo Marquee */}
         <div 
-          className="logo-marquee-container"
-          style={{ 
+          className="transition-all duration-700"
+          style={{
+            paddingTop: '40px',
             borderTop: '1px solid rgba(10, 10, 10, 0.08)',
-            paddingTop: '32px',
             overflow: 'hidden',
-            maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-            WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)'
+            maskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)',
+            WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%)',
+            opacity: isVisible ? 1 : 0,
+            transitionDelay: '300ms'
           }}
         >
           <div 
-            className="marquee-track"
-            style={{ 
+            className="logo-marquee-track"
+            style={{
               display: 'flex',
-              gap: '60px',
-              animation: 'marquee 30s linear infinite'
+              gap: '48px',
+              animation: 'marquee 35s linear infinite'
             }}
           >
-            {/* First set of logos */}
-            {logos.map((logo, index) => (
-              <span
-                key={`logo-1-${index}`}
+            {/* Double the logos for seamless loop */}
+            {[...logos, ...logos].map((logo, index) => (
+              <span 
+                key={index}
                 style={{
-                  fontSize: '13px',
+                  fontSize: '12px',
                   fontWeight: '600',
                   letterSpacing: '0.15em',
                   textTransform: 'uppercase',
                   color: 'rgba(10, 10, 10, 0.2)',
-                  whiteSpace: 'nowrap',
-                  flexShrink: 0
+                  whiteSpace: 'nowrap'
                 }}
               >
                 {logo}
-                <span style={{ marginLeft: '60px', color: 'rgba(10, 10, 10, 0.15)' }}>·</span>
-              </span>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {logos.map((logo, index) => (
-              <span
-                key={`logo-2-${index}`}
-                style={{
-                  fontSize: '13px',
-                  fontWeight: '600',
-                  letterSpacing: '0.15em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(10, 10, 10, 0.2)',
-                  whiteSpace: 'nowrap',
-                  flexShrink: 0
-                }}
-              >
-                {logo}
-                <span style={{ marginLeft: '60px', color: 'rgba(10, 10, 10, 0.15)' }}>·</span>
+                <span style={{ marginLeft: '48px', color: 'rgba(10, 10, 10, 0.15)' }}>·</span>
               </span>
             ))}
           </div>
@@ -162,14 +145,13 @@ const BothSidesSection = () => {
             padding: 80px 24px !important;
           }
           .both-sides-header {
-            flex-direction: column !important;
-            align-items: flex-start !important;
+            grid-template-columns: 1fr !important;
             gap: 32px !important;
           }
-          .both-headline {
-            font-size: 32px !important;
+          .both-sides-headline {
+            font-size: 36px !important;
           }
-          .both-tagline {
+          .both-sides-tagline {
             text-align: left !important;
           }
         }

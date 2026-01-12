@@ -1,24 +1,12 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { useState, useEffect } from "react";
 
 const HowWeWorkSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
-  const [activeNodes, setActiveNodes] = useState<number[]>([]);
 
-  useEffect(() => {
-    if (isVisible) {
-      // Stagger node activation
-      [0, 1, 2].forEach((index) => {
-        setTimeout(() => {
-          setActiveNodes(prev => [...prev, index]);
-        }, 400 + (index * 400));
-      });
-    }
-  }, [isVisible]);
-
-  const timelineNodes = [
+  const steps = [
     {
-      time: "MONTH 1",
+      number: "01",
+      time: "Month 1",
       title: "We listen.",
       body: [
         "Weekly conversations. Your projects, your milestones, your way of seeing the world.",
@@ -26,7 +14,8 @@ const HowWeWorkSection = () => {
       ]
     },
     {
-      time: "MONTHS 2–6",
+      number: "02",
+      time: "Months 2–6",
       title: "We build.",
       body: [
         "Your narrative — across LinkedIn, website, pitch decks, talking points.",
@@ -34,7 +23,8 @@ const HowWeWorkSection = () => {
       ]
     },
     {
-      time: "MONTH 7+",
+      number: "03",
+      time: "Month 7+",
       title: "Most clients stay.",
       body: [
         "Because the work evolves. New markets. New projects. New rooms to walk into."
@@ -45,7 +35,7 @@ const HowWeWorkSection = () => {
   return (
     <section 
       ref={elementRef} 
-      className="how-section"
+      className="timeline-section"
       style={{ 
         backgroundColor: '#FFFFFF',
         padding: '120px 80px'
@@ -56,12 +46,12 @@ const HowWeWorkSection = () => {
         <p 
           className="transition-all duration-700"
           style={{
-            fontSize: '12px',
+            fontSize: '13px',
             fontWeight: '600',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: '#FF2E63',
-            marginBottom: '60px',
+            marginBottom: '64px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -69,124 +59,74 @@ const HowWeWorkSection = () => {
           How it works
         </p>
 
-        {/* Timeline Track - Desktop */}
+        {/* Clean 3-Column Grid */}
         <div 
-          className="timeline-track-desktop"
+          className="timeline-grid"
           style={{
-            position: 'relative',
-            display: 'flex',
-            justifyContent: 'space-between',
-            paddingTop: '12px'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '48px'
           }}
         >
-          {/* Background line */}
-          <div 
-            style={{
-              position: 'absolute',
-              top: '12px',
-              left: '12px',
-              right: '60px',
-              height: '2px',
-              background: 'rgba(10, 10, 10, 0.1)'
-            }}
-          />
-          
-          {/* Animated progress line */}
-          <div 
-            className="transition-all"
-            style={{
-              position: 'absolute',
-              top: '12px',
-              left: '12px',
-              height: '2px',
-              width: isVisible ? 'calc(100% - 72px)' : '0',
-              background: '#FF2E63',
-              transition: 'width 1.5s ease'
-            }}
-          />
-          
-          {/* Arrow at end */}
-          <span 
-            className="transition-all timeline-arrow"
-            style={{
-              position: 'absolute',
-              right: '20px',
-              top: '4px',
-              fontSize: '20px',
-              color: '#FF2E63',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateX(0)' : 'translateX(-10px)',
-              transition: 'opacity 0.3s ease, transform 0.3s ease',
-              transitionDelay: '1.2s'
-            }}
-          >
-            →
-          </span>
-
-          {/* Timeline Nodes */}
-          {timelineNodes.map((node, index) => (
+          {steps.map((step, index) => (
             <div 
               key={index}
-              className="timeline-node"
+              className="transition-all duration-700"
               style={{
-                flex: 1,
-                paddingRight: index < 2 ? '40px' : 0
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${(index + 1) * 100}ms`
               }}
             >
-              {/* Node dot */}
-              <div 
-                className="transition-all duration-300 node-dot"
-                style={{
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: activeNodes.includes(index) ? '#FF2E63' : '#FFFFFF',
-                  border: `2px solid ${activeNodes.includes(index) ? '#FF2E63' : 'rgba(10, 10, 10, 0.1)'}`,
-                  marginBottom: '32px',
-                  position: 'relative',
-                  zIndex: 2
-                }}
-              />
+              {/* Step Number */}
+              <p style={{
+                fontSize: '14px',
+                fontWeight: '600',
+                color: 'rgba(10, 10, 10, 0.2)',
+                marginBottom: '12px'
+              }}>
+                {step.number}
+              </p>
               
-              {/* Node content */}
-              <div className="node-content">
-                <span 
-                  style={{
-                    fontSize: '12px',
-                    fontWeight: '600',
-                    letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
-                    color: 'rgba(10, 10, 10, 0.4)',
-                    marginBottom: '12px',
-                    display: 'block'
-                  }}
-                >
-                  {node.time}
-                </span>
-                
-                <h4 
-                  style={{
-                    fontSize: '22px',
-                    fontWeight: '600',
-                    color: '#0A0A0A',
-                    marginBottom: '12px'
-                  }}
-                >
-                  {node.title}
-                </h4>
-                
-                {node.body.map((text, i) => (
-                  <p 
-                    key={i}
-                    style={{
-                      fontSize: '16px',
-                      fontWeight: '400',
-                      lineHeight: '1.6',
-                      color: 'rgba(10, 10, 10, 0.6)',
-                      maxWidth: '280px',
-                      marginBottom: i < node.body.length - 1 ? '12px' : 0
-                    }}
-                  >
+              {/* Time Label */}
+              <p style={{
+                fontSize: '13px',
+                fontWeight: '600',
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginBottom: '20px'
+              }}>
+                {step.time}
+              </p>
+              
+              {/* Divider */}
+              <div style={{
+                width: '32px',
+                height: '2px',
+                background: 'rgba(10, 10, 10, 0.1)',
+                marginBottom: '24px'
+              }} />
+              
+              {/* Title */}
+              <h4 style={{
+                fontSize: '22px',
+                fontWeight: '600',
+                color: '#0A0A0A',
+                marginBottom: '16px'
+              }}>
+                {step.title}
+              </h4>
+              
+              {/* Body */}
+              <div style={{
+                fontSize: '17px',
+                fontWeight: '400',
+                lineHeight: '1.65',
+                color: 'rgba(10, 10, 10, 0.6)'
+              }}>
+                {step.body.map((text, i) => (
+                  <p key={i} style={{ marginBottom: i < step.body.length - 1 ? '16px' : 0 }}>
                     {text}
                   </p>
                 ))}
@@ -194,102 +134,17 @@ const HowWeWorkSection = () => {
             </div>
           ))}
         </div>
-
-        {/* Timeline Track - Mobile (Vertical) */}
-        <div className="timeline-track-mobile" style={{ display: 'none' }}>
-          {timelineNodes.map((node, index) => (
-            <div 
-              key={index}
-              style={{
-                position: 'relative',
-                paddingLeft: '40px',
-                paddingBottom: index < 2 ? '48px' : 0
-              }}
-            >
-              {/* Vertical line */}
-              {index < 2 && (
-                <div 
-                  style={{
-                    position: 'absolute',
-                    left: '11px',
-                    top: '24px',
-                    bottom: 0,
-                    width: '2px',
-                    background: 'rgba(10, 10, 10, 0.1)'
-                  }}
-                />
-              )}
-              
-              {/* Node dot */}
-              <div 
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  width: '24px',
-                  height: '24px',
-                  borderRadius: '50%',
-                  background: '#FF2E63',
-                  border: '2px solid #FF2E63'
-                }}
-              />
-              
-              {/* Content */}
-              <span 
-                style={{
-                  fontSize: '12px',
-                  fontWeight: '600',
-                  letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(10, 10, 10, 0.4)',
-                  marginBottom: '12px',
-                  display: 'block'
-                }}
-              >
-                {node.time}
-              </span>
-              
-              <h4 
-                style={{
-                  fontSize: '22px',
-                  fontWeight: '600',
-                  color: '#0A0A0A',
-                  marginBottom: '12px'
-                }}
-              >
-                {node.title}
-              </h4>
-              
-              {node.body.map((text, i) => (
-                <p 
-                  key={i}
-                  style={{
-                    fontSize: '16px',
-                    fontWeight: '400',
-                    lineHeight: '1.6',
-                    color: 'rgba(10, 10, 10, 0.6)',
-                    marginBottom: i < node.body.length - 1 ? '12px' : 0
-                  }}
-                >
-                  {text}
-                </p>
-              ))}
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Styles */}
+      {/* Mobile Styles */}
       <style>{`
         @media (max-width: 768px) {
-          .how-section {
+          .timeline-section {
             padding: 80px 24px !important;
           }
-          .timeline-track-desktop {
-            display: none !important;
-          }
-          .timeline-track-mobile {
-            display: block !important;
+          .timeline-grid {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
           }
         }
       `}</style>

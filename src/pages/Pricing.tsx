@@ -89,13 +89,11 @@ const Pricing = () => {
             }}
           />
 
-          {/* Price Block - Dark Card */}
+          {/* Price Block - Red on White */}
           <div 
             ref={investmentRef}
             className="transition-all duration-700"
             style={{
-              backgroundColor: '#0A0A0A',
-              padding: '64px 48px',
               textAlign: 'center',
               margin: '48px 0 64px 0',
               opacity: investmentVisible ? 1 : 0,
@@ -105,7 +103,7 @@ const Pricing = () => {
             <p style={{
               fontSize: '96px',
               fontWeight: '700',
-              color: '#FFFFFF',
+              color: '#FF2E63',
               letterSpacing: '-0.03em',
               lineHeight: '1',
               margin: 0
@@ -115,7 +113,7 @@ const Pricing = () => {
             <p style={{
               fontSize: '28px',
               fontWeight: '400',
-              color: 'rgba(255, 255, 255, 0.6)',
+              color: 'rgba(10, 10, 10, 0.4)',
               marginTop: '8px'
             }}>
               /month
@@ -123,7 +121,7 @@ const Pricing = () => {
             <p style={{
               fontSize: '16px',
               fontWeight: '400',
-              color: 'rgba(255, 255, 255, 0.5)',
+              color: 'rgba(10, 10, 10, 0.5)',
               marginTop: '24px',
               lineHeight: '1.5'
             }}>

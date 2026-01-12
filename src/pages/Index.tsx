@@ -1,6 +1,7 @@
 import HeroManifesto from "@/components/HeroManifesto";
 import PhilosophySection from "@/components/PhilosophySection";
 import ProblemSection from "@/components/ProblemSection";
+import NarrativeAlignmentSection from "@/components/NarrativeAlignmentSection";
 import WhoThisIsForSection from "@/components/WhoThisIsForSection";
 import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
@@ -15,16 +16,19 @@ const Index = () => {
       {/* Section 1: Hero */}
       <HeroManifesto />
       
-      {/* Section 2: Philosophy (cream background) */}
+      {/* Section 2: Philosophy (white background) */}
       <PhilosophySection />
       
       {/* Section 3: Problem (white background) */}
       <ProblemSection />
       
-      {/* Section 4: Who This Is For (cream background) */}
+      {/* Section 4: Narrative Alignment (white background) */}
+      <NarrativeAlignmentSection />
+      
+      {/* Section 5: Who This Is For (white background) */}
       <WhoThisIsForSection />
       
-      {/* Section 5: What Changes (white background) */}
+      {/* Section 6: What Changes (white background) */}
       <WhatChangesSection />
       
       {/* Section 6: How It Works (white background) */}

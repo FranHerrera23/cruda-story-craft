@@ -6,242 +6,273 @@ const About = () => {
   return (
     <main className="about-page">
       <HeroSection />
-      <TeamMemberFran />
-      <TeamMemberMichael />
-      <TeamMemberNatalia />
-      <TeamMemberAbril />
+      <TeamSection />
       <HowWeWorkSection />
       <FinalCTA />
     </main>
   );
 };
 
-// SECTION 1: Hero
+// SECTION 1: Hero (White)
 const HeroSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      className="bg-white py-[120px] px-6 md:px-20"
+      style={{ backgroundColor: '#FFFFFF', padding: '120px 80px' }}
+      className="about-hero"
     >
-      <div className="max-w-[900px] mx-auto text-center">
+      <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
         <h1 
-          className={`text-4xl md:text-[52px] font-semibold text-[#0A0A0A] leading-[1.1] tracking-[-0.02em] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          className="transition-all duration-700 about-headline"
+          style={{ 
+            fontSize: '44px',
+            fontWeight: '600',
+            lineHeight: '1.15',
+            letterSpacing: '-0.02em',
+            color: '#0A0A0A',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+          }}
         >
           Lean by design.<br />
           Senior by default.
         </h1>
         
         <div 
-          className={`mt-8 max-w-[550px] mx-auto transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          className="transition-all duration-700"
+          style={{ 
+            marginTop: '40px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '100ms'
+          }}
         >
-          <p className="text-xl leading-[1.7] text-[rgba(10,10,10,0.7)]">
+          <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'rgba(10, 10, 10, 0.6)' }}>
             No junior teams. No account managers. No handoffs.
           </p>
-          <p className="text-xl leading-[1.7] text-[rgba(10,10,10,0.7)] mt-4">
+          <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'rgba(10, 10, 10, 0.6)', marginTop: '16px' }}>
             The people who find your story are the people who write it.
           </p>
         </div>
       </div>
+      
+      <style>{`
+        @media (max-width: 768px) {
+          .about-hero {
+            padding: 80px 24px !important;
+          }
+          .about-headline {
+            font-size: 32px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
 
-// SECTION 2: Fran - Photo LEFT, Text RIGHT
-const TeamMemberFran = () => {
+// SECTION 2: Team Cards (Dark)
+const TeamSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  
+  const teamMembers = [
+    {
+      name: "Fran",
+      title: "Founder",
+      bio: "Eight years inside TikTok, Mondelez, Nestlé, the United Nations, DeliveryHero. Three continents. The gap between mastery and articulation isn't theory — it's lived experience.",
+      image: franPortrait,
+      hasPhoto: true
+    },
+    {
+      name: "Michael",
+      title: "Creative Director",
+      bio: "A decade of brand and creative leadership. Amazon. Twitch. Electronic Arts. Facebook. Oculus. Marvel. Universal. In-house and agency side. Content that ships, not decks that sit.",
+      initial: "M",
+      hasPhoto: false
+    },
+    {
+      name: "Natalia",
+      title: "Operations",
+      bio: "Enterprise account management at GSK, Dr. Reddy's, Lundbeck. Eight years in Spain. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.",
+      initial: "N",
+      hasPhoto: false
+    }
+  ];
+
+  const abrilMember = {
+    name: "Abril",
+    title: "Narrative Strategist",
+    bio: "Marketing degree. Buenos Aires → Bangkok → Mexico City. Built Aftertaste — a newsletter dissecting culture, fashion, art. 500K+ views. Not by explaining. By provoking.",
+    initial: "A",
+    hasPhoto: false
+  };
   
   return (
     <section 
       ref={elementRef}
-      className="bg-[#0A0A0A] min-h-[600px]"
+      style={{ backgroundColor: '#0A0A0A', padding: '120px 80px' }}
+      className="team-section"
     >
-      <div className="grid md:grid-cols-[45%_55%]">
-        {/* Photo Left */}
-        <div className={`h-[400px] md:h-auto transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <img 
-            src={franPortrait}
-            alt="Fran, Founder of CRUDA"
-            className="w-full h-full object-cover"
-          />
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        {/* Label */}
+        <p 
+          className="transition-all duration-700"
+          style={{
+            fontSize: '12px',
+            fontWeight: '600',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: '#FF2E63',
+            marginBottom: '48px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+          }}
+        >
+          The team
+        </p>
+
+        {/* First Row - 3 Cards */}
+        <div 
+          className="team-grid"
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '24px',
+            marginBottom: '24px'
+          }}
+        >
+          {teamMembers.map((member, index) => (
+            <TeamCard 
+              key={member.name} 
+              member={member} 
+              isVisible={isVisible}
+              delay={index * 100}
+            />
+          ))}
         </div>
-        
-        {/* Content Right */}
-        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center">
-          <h2 
-            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Fran
-          </h2>
-          <p 
-            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Founder
-          </p>
-          
-          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Eight years inside TikTok, Mondelez, Nestlé, the United Nations, DeliveryHero. Three continents. Ten nationalities.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              The gap between mastery and articulation isn't theory. It's lived experience.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Every immigrant knows this gap intimately. You know exactly who you are — but the words don't travel.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Now I help founders close that gap.
-            </p>
+
+        {/* Second Row - Abril Centered */}
+        <div 
+          style={{
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+        >
+          <div style={{ width: 'calc(33.333% - 16px)' }} className="abril-card-container">
+            <TeamCard 
+              member={abrilMember} 
+              isVisible={isVisible}
+              delay={300}
+            />
           </div>
         </div>
       </div>
+      
+      <style>{`
+        @media (max-width: 768px) {
+          .team-section {
+            padding: 80px 24px !important;
+          }
+          .team-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .abril-card-container {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
 
-// SECTION 3: Michael - Text LEFT, Photo RIGHT (flipped)
-const TeamMemberMichael = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
-  
+// Team Card Component
+interface TeamMember {
+  name: string;
+  title: string;
+  bio: string;
+  image?: string;
+  initial?: string;
+  hasPhoto: boolean;
+}
+
+const TeamCard = ({ member, isVisible, delay }: { member: TeamMember; isVisible: boolean; delay: number }) => {
   return (
-    <section 
-      ref={elementRef}
-      className="bg-[#0A0A0A] min-h-[600px] border-t border-[rgba(255,255,255,0.1)]"
+    <div
+      className="team-card transition-all duration-700"
+      style={{
+        background: 'rgba(255, 255, 255, 0.03)',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: '2px',
+        overflow: 'hidden',
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+        transitionDelay: `${delay}ms`
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+        e.currentTarget.style.transform = 'translateY(-4px)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+        e.currentTarget.style.transform = 'translateY(0)';
+      }}
     >
-      <div className="grid md:grid-cols-[55%_45%]">
-        {/* Content Left */}
-        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center order-2 md:order-1">
-          <h2 
-            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+      {/* Photo or Placeholder */}
+      {member.hasPhoto ? (
+        <img 
+          src={member.image}
+          alt={member.name}
+          style={{
+            width: '100%',
+            aspectRatio: '4 / 5',
+            objectFit: 'cover',
+            filter: 'grayscale(20%)',
+            transition: 'filter 0.3s ease'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.filter = 'grayscale(0%)'}
+          onMouseLeave={(e) => e.currentTarget.style.filter = 'grayscale(20%)'}
+        />
+      ) : (
+        <div 
+          style={{
+            width: '100%',
+            aspectRatio: '4 / 5',
+            background: 'rgba(255, 255, 255, 0.02)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <span 
+            style={{
+              fontSize: '80px',
+              fontWeight: '600',
+              color: 'rgba(255, 255, 255, 0.05)'
+            }}
           >
-            Michael
-          </h2>
-          <p 
-            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Creative Director
-          </p>
-          
-          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              A decade of brand and creative leadership in tech and gaming. Amazon. Twitch. Electronic Arts. Facebook. Oculus. Marvel. Universal.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              In-house and agency side. Content that ships, not decks that sit.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Michael builds brand stories that create affinity — the kind that lasts longer than a campaign.
-            </p>
-          </div>
+            {member.initial}
+          </span>
         </div>
-        
-        {/* Photo Right - Placeholder */}
-        <div className={`h-[400px] md:h-auto order-1 md:order-2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center">
-            <span className="text-[64px] font-semibold text-[rgba(255,255,255,0.1)]">M</span>
-          </div>
-        </div>
+      )}
+      
+      {/* Content */}
+      <div style={{ padding: '24px' }}>
+        <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#FFFFFF', marginBottom: '4px' }}>
+          {member.name}
+        </h3>
+        <p style={{ fontSize: '14px', fontWeight: '400', color: 'rgba(255, 255, 255, 0.4)', marginBottom: '16px' }}>
+          {member.title}
+        </p>
+        <p style={{ fontSize: '15px', fontWeight: '400', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.6)' }}>
+          {member.bio}
+        </p>
       </div>
-    </section>
+    </div>
   );
 };
 
-// SECTION 4: Natalia - Photo LEFT, Text RIGHT
-const TeamMemberNatalia = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
-  
-  return (
-    <section 
-      ref={elementRef}
-      className="bg-[#0A0A0A] min-h-[600px] border-t border-[rgba(255,255,255,0.1)]"
-    >
-      <div className="grid md:grid-cols-[45%_55%]">
-        {/* Photo Left - Placeholder */}
-        <div className={`h-[400px] md:h-auto transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center">
-            <span className="text-[64px] font-semibold text-[rgba(255,255,255,0.1)]">N</span>
-          </div>
-        </div>
-        
-        {/* Content Right */}
-        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center">
-          <h2 
-            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Natalia
-          </h2>
-          <p 
-            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Operations
-          </p>
-          
-          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Enterprise account management at GSK, Dr. Reddy's, Lundbeck. Then she quit the corporate ladder.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Natalia knows how to run complex operations across borders and cultures. She keeps the work moving so the story can land.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// SECTION 5: Abril - Text LEFT, Photo RIGHT (flipped)
-const TeamMemberAbril = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
-  
-  return (
-    <section 
-      ref={elementRef}
-      className="bg-[#0A0A0A] min-h-[600px] border-t border-[rgba(255,255,255,0.1)]"
-    >
-      <div className="grid md:grid-cols-[55%_45%]">
-        {/* Content Left */}
-        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center order-2 md:order-1">
-          <h2 
-            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Abril
-          </h2>
-          <p 
-            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          >
-            Narrative Strategist
-          </p>
-          
-          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Marketing degree. Buenos Aires → Bangkok → Mexico City.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Built Aftertaste — a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.
-            </p>
-            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
-              Abril doesn't want you to nod along. She wants you to leave with something stuck in your head.
-            </p>
-          </div>
-        </div>
-        
-        {/* Photo Right - Placeholder */}
-        <div className={`h-[400px] md:h-auto order-1 md:order-2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center">
-            <span className="text-[64px] font-semibold text-[rgba(255,255,255,0.1)]">A</span>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// SECTION 6: How We Work
+// SECTION 3: How We Work (Dark continued)
 const HowWeWorkSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
@@ -263,60 +294,130 @@ const HowWeWorkSection = () => {
   return (
     <section 
       ref={elementRef}
-      className="bg-[#0A0A0A] py-[120px] px-6 md:px-20 border-t border-[rgba(255,255,255,0.1)]"
+      style={{ 
+        backgroundColor: '#0A0A0A', 
+        padding: '120px 80px',
+        borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+      }}
+      className="how-work-section"
     >
-      <div className="max-w-[700px]">
+      <div style={{ maxWidth: '700px' }}>
         <p 
-          className={`text-[13px] font-semibold tracking-[0.1em] uppercase text-[#FF2E63] mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          className="transition-all duration-700"
+          style={{
+            fontSize: '12px',
+            fontWeight: '600',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: '#FF2E63',
+            marginBottom: '48px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+          }}
         >
           How we work
         </p>
         
-        <div className="space-y-10">
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
           {principles.map((principle, index) => (
             <div 
               key={index}
-              className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+              className="transition-all duration-700"
+              style={{ 
+                opacity: isVisible ? 1 : 0, 
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${(index + 1) * 150}ms`
+              }}
             >
-              <p className="text-[22px] font-semibold text-white">
+              <p style={{ fontSize: '22px', fontWeight: '600', color: '#FFFFFF' }}>
                 {principle.bold}
               </p>
-              <p className="text-base text-[rgba(255,255,255,0.6)] mt-2">
+              <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)', marginTop: '8px' }}>
                 {principle.supporting}
               </p>
             </div>
           ))}
         </div>
       </div>
+      
+      <style>{`
+        @media (max-width: 768px) {
+          .how-work-section {
+            padding: 80px 24px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
 
-// SECTION 7: Final CTA
+// SECTION 4: Final CTA (White)
 const FinalCTA = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      className="bg-white py-[120px] px-6 md:px-20"
+      style={{ backgroundColor: '#FFFFFF', padding: '120px 80px' }}
+      className="final-cta-section"
     >
-      <div className="max-w-[900px] mx-auto text-center">
+      <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
         <h2 
-          className={`text-[32px] md:text-[44px] font-semibold text-[#0A0A0A] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          className="transition-all duration-700"
+          style={{ 
+            fontSize: '44px',
+            fontWeight: '600',
+            color: '#0A0A0A',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+          }}
         >
-          Ready when <span className="text-[#FF2E63]">you are.</span>
+          Ready when <span style={{ color: '#FF2E63' }}>you are.</span>
         </h2>
         
         <Link
           to="/book-call"
-          className={`inline-block mt-10 px-10 py-5 bg-[#FF2E63] text-white text-base font-semibold rounded-lg hover:bg-[#E0264F] transition-all duration-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-          style={{ transitionDelay: '200ms' }}
+          className="cta-button-about transition-all"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            marginTop: '40px',
+            background: '#0A0A0A',
+            color: '#FFFFFF',
+            fontSize: '15px',
+            fontWeight: '500',
+            letterSpacing: '0.01em',
+            padding: '18px 28px',
+            borderRadius: '0',
+            textDecoration: 'none',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.25s ease',
+            transitionDelay: '200ms'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#FF2E63';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#0A0A0A';
+          }}
         >
           Start a Conversation
+          <span style={{ fontSize: '18px' }}>→</span>
         </Link>
       </div>
+      
+      <style>{`
+        .cta-button-about:hover span {
+          transform: translateX(4px);
+        }
+        @media (max-width: 768px) {
+          .final-cta-section {
+            padding: 80px 24px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

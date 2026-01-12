@@ -19,126 +19,142 @@ const HeroManifesto = () => {
 
   return (
     <section 
+      className="hero-section"
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '120px 80px'
+        display: 'grid',
+        gridTemplateColumns: '1fr 380px',
+        gap: '80px',
+        alignItems: 'center',
+        padding: '80px 80px 120px 80px',
+        minHeight: 'calc(100vh - 80px)',
+        maxWidth: '1400px',
+        margin: '0 auto'
       }}
     >
-      <div 
-        style={{ 
-          maxWidth: '1280px', 
-          margin: '0 auto', 
-          display: 'grid',
-          gridTemplateColumns: '55% 45%',
-          gap: '48px',
-          alignItems: 'center',
-          minHeight: '90vh'
-        }}
-        className="hero-grid"
-      >
-        {/* Left Column - Text Content */}
-        <div>
-          {/* Headline */}
-          <h1 
-            style={{ 
-              fontSize: '64px',
-              fontWeight: '600',
-              lineHeight: '1.0',
-              letterSpacing: '-0.03em',
-              color: '#0A0A0A',
-              marginBottom: '32px',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
-              transition: 'all 0.6s ease'
-            }}
-          >
-            You've built something extraordinary.
-            <br />
-            <span style={{ color: '#FF2E63' }}>
-              Explaining it shouldn't be this hard.
-            </span>
-          </h1>
-          
-          {/* Descriptor */}
-          <p
-            style={{
-              fontSize: '18px',
-              fontWeight: '400',
-              fontStyle: 'italic',
-              lineHeight: '1.7',
-              color: 'rgba(10, 10, 10, 0.6)',
-              marginBottom: '40px',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'all 0.6s ease',
-              transitionDelay: '100ms'
-            }}
-          >
-            Narrative strategy for real estate, construction, and architecture leaders.
-          </p>
-          
-          {/* CTA Button */}
-          <Link 
-            to="/book-call"
-            className="inline-block"
-            style={{ 
-              background: '#FF2E63',
-              color: '#FFFFFF',
-              fontSize: '16px',
-              fontWeight: '600',
-              padding: '20px 40px',
-              borderRadius: '8px',
-              textDecoration: 'none',
-              opacity: isVisible ? 1 : 0,
-              transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transition: 'all 0.2s ease',
-              transitionDelay: '200ms'
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#E0264F';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#FF2E63';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
-          >
-            Start a Conversation
-          </Link>
-        </div>
+      {/* Left Column - Text Content */}
+      <div>
+        {/* Headline */}
+        <h1 
+          style={{ 
+            fontSize: '52px',
+            fontWeight: '600',
+            lineHeight: '1.1',
+            letterSpacing: '-0.02em',
+            color: '#0A0A0A',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(24px)',
+            transition: 'all 0.6s ease'
+          }}
+        >
+          <span style={{ display: 'block' }}>You've built something</span>
+          <span style={{ display: 'block', marginBottom: '8px' }}>extraordinary.</span>
+          <span style={{ display: 'block', color: '#FF2E63' }}>Explaining it shouldn't</span>
+          <span style={{ display: 'block', color: '#FF2E63', marginBottom: '40px' }}>be this hard.</span>
+        </h1>
         
-        {/* Right Column - Photo */}
-        <div className="hero-photo">
-          <img
-            src={franCallImage}
-            alt="Fran Herrera, Founder of CRUDA"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              borderRadius: '0'
-            }}
-          />
-        </div>
+        {/* Descriptor */}
+        <p
+          style={{
+            fontSize: '18px',
+            fontWeight: '400',
+            fontStyle: 'italic',
+            lineHeight: '1.6',
+            color: 'rgba(10, 10, 10, 0.5)',
+            maxWidth: '400px',
+            marginBottom: '40px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.6s ease',
+            transitionDelay: '100ms'
+          }}
+        >
+          Narrative strategy for real estate, construction, and architecture leaders.
+        </p>
+        
+        {/* CTA Button - Square with Arrow */}
+        <Link 
+          to="/book-call"
+          className="cta-button-hero"
+          style={{ 
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '12px',
+            background: '#0A0A0A',
+            color: '#FFFFFF',
+            fontSize: '15px',
+            fontWeight: '500',
+            letterSpacing: '0.01em',
+            padding: '18px 28px',
+            borderRadius: '0',
+            textDecoration: 'none',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transition: 'all 0.25s ease',
+            transitionDelay: '200ms'
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = '#FF2E63';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = '#0A0A0A';
+          }}
+        >
+          Start a Conversation
+          <span 
+            className="cta-arrow"
+            style={{ fontSize: '18px', transition: 'transform 0.25s ease' }}
+          >
+            →
+          </span>
+        </Link>
       </div>
       
-      {/* Mobile Styles */}
+      {/* Right Column - Photo */}
+      <div className="hero-photo">
+        <img
+          src={franCallImage}
+          alt="Fran Herrera, Founder of CRUDA"
+          style={{
+            width: '380px',
+            maxWidth: '100%',
+            height: 'auto',
+            maxHeight: '520px',
+            objectFit: 'cover',
+            objectPosition: 'center top',
+            borderRadius: '0'
+          }}
+        />
+      </div>
+      
+      {/* Styles */}
       <style>{`
+        .hero-section {
+          width: 100%;
+        }
+        
+        .cta-button-hero:hover .cta-arrow {
+          transform: translateX(4px);
+        }
+        
         @media (max-width: 768px) {
-          section {
-            padding: 80px 24px !important;
-          }
-          .hero-grid {
+          .hero-section {
             grid-template-columns: 1fr !important;
+            gap: 48px !important;
+            padding: 60px 24px 80px 24px !important;
             min-height: auto !important;
           }
-          .hero-grid h1 {
-            font-size: 40px !important;
+          .hero-section h1 {
+            font-size: 36px !important;
           }
           .hero-photo {
             order: 2;
-            height: 400px;
-            margin-top: 48px;
+          }
+          .hero-photo img {
+            width: 100% !important;
+            max-width: 320px !important;
+            height: 400px !important;
+            margin: 0 auto !important;
           }
         }
       `}</style>

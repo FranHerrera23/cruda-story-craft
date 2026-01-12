@@ -25,17 +25,72 @@ const Pricing = () => {
 
   return (
     <main className="min-h-screen">
-      {/* HERO */}
-      <section ref={heroRef} style={{ backgroundColor: '#FFFFFF', padding: '120px 80px' }}>
-        <div style={{ maxWidth: '650px', margin: '0 auto', textAlign: 'center' }}>
-          <h1 className="transition-all duration-700" style={{ fontSize: '52px', fontWeight: '600', lineHeight: '1.1', letterSpacing: '-0.02em', color: '#0A0A0A', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)' }}>
-            You're here because something isn't working.
+      {/* HERO - Fixed per design brief */}
+      <section ref={heroRef} className="pricing-hero" style={{ backgroundColor: '#FFFFFF', padding: '140px 80px 120px' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+          {/* Headline */}
+          <h1 
+            className="transition-all duration-700 pricing-headline"
+            style={{ 
+              fontSize: '44px', 
+              fontWeight: '600', 
+              lineHeight: '1.15', 
+              letterSpacing: '-0.02em', 
+              color: '#0A0A0A',
+              marginBottom: '32px',
+              opacity: heroVisible ? 1 : 0, 
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)' 
+            }}
+          >
+            You're here because<br />something isn't working.
           </h1>
-          <div className="transition-all duration-700" style={{ fontSize: '20px', fontWeight: '400', lineHeight: '1.7', color: 'rgba(10, 10, 10, 0.7)', marginTop: '48px', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', transitionDelay: '100ms' }}>
+          
+          {/* Accent Divider */}
+          <div 
+            className="transition-all duration-700"
+            style={{
+              width: '40px',
+              height: '2px',
+              background: '#FF2E63',
+              margin: '0 auto 40px auto',
+              opacity: heroVisible ? 1 : 0,
+              transitionDelay: '100ms'
+            }}
+          />
+          
+          {/* Body Copy */}
+          <div 
+            className="transition-all duration-700" 
+            style={{ 
+              fontSize: '18px', 
+              fontWeight: '400', 
+              lineHeight: '1.7', 
+              color: 'rgba(10, 10, 10, 0.6)', 
+              maxWidth: '500px',
+              margin: '0 auto',
+              opacity: heroVisible ? 1 : 0, 
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', 
+              transitionDelay: '150ms' 
+            }}
+          >
             <p style={{ marginBottom: '16px' }}>You've done the work. Built the portfolio. Won the projects.</p>
-            <p style={{ marginBottom: '16px' }}>But the story isn't landing.</p>
-            <p style={{ marginBottom: '16px' }}>The LinkedIn feels hollow. The website sounds like everyone else. And every time you pitch, you start from zero.</p>
-            <p style={{ fontWeight: '500', color: '#0A0A0A' }}>You don't need more content.<br />You need coherence.</p>
+            <p style={{ marginBottom: '16px', color: 'rgba(10, 10, 10, 0.8)' }}>But the story isn't landing.</p>
+            <p>The LinkedIn feels hollow. The website sounds like everyone else. And every time you pitch, you start from zero.</p>
+          </div>
+          
+          {/* Closer */}
+          <div 
+            className="transition-all duration-700"
+            style={{ 
+              fontSize: '20px',
+              lineHeight: '1.5',
+              marginTop: '40px',
+              opacity: heroVisible ? 1 : 0,
+              transitionDelay: '200ms'
+            }}
+          >
+            <p style={{ color: '#0A0A0A' }}>You don't need more content.</p>
+            <p style={{ color: '#0A0A0A', fontWeight: '600' }}>You need coherence.</p>
           </div>
         </div>
       </section>
@@ -57,8 +112,26 @@ const Pricing = () => {
           <p className="transition-all duration-700" style={{ fontSize: '16px', fontStyle: 'italic', color: 'rgba(10, 10, 10, 0.5)', marginTop: '32px', opacity: investmentVisible ? 1 : 0, transitionDelay: '300ms' }}>
             $1,800/month if content-only works better for where you are.
           </p>
-          <Link to="/book-call" className="inline-block transition-all duration-300 mt-12" style={{ backgroundColor: '#FF2E63', color: '#FFFFFF', padding: '20px 40px', fontSize: '16px', fontWeight: '600', borderRadius: '8px', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E0264F'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }}>
+          
+          {/* Square CTA Button */}
+          <Link 
+            to="/book-call" 
+            className="cta-button-pricing inline-flex items-center gap-3 mt-12 transition-all"
+            style={{ 
+              backgroundColor: '#0A0A0A', 
+              color: '#FFFFFF', 
+              padding: '18px 28px', 
+              fontSize: '15px', 
+              fontWeight: '500',
+              letterSpacing: '0.01em',
+              borderRadius: '0', 
+              textDecoration: 'none' 
+            }} 
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }} 
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
+          >
             Start a Conversation
+            <span style={{ fontSize: '18px' }}>→</span>
           </Link>
         </div>
       </section>
@@ -66,7 +139,7 @@ const Pricing = () => {
       {/* WHAT CHANGES */}
       <section ref={changesRef} style={{ backgroundColor: '#FFFFFF', padding: '120px 80px', borderTop: '1px solid rgba(10, 10, 10, 0.1)' }}>
         <div style={{ maxWidth: '700px' }}>
-          <p className="transition-all duration-700" style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: changesVisible ? 1 : 0 }}>What changes</p>
+          <p className="transition-all duration-700" style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: changesVisible ? 1 : 0 }}>What changes</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {changes.map((change, i) => (
               <p key={i} className="transition-all duration-700" style={{ fontSize: '24px', fontWeight: '400', color: '#0A0A0A', lineHeight: '1.6', opacity: changesVisible ? 1 : 0, transitionDelay: `${(i + 1) * 100}ms` }}>
@@ -80,11 +153,11 @@ const Pricing = () => {
       {/* HOW IT WORKS */}
       <section ref={howRef} style={{ backgroundColor: '#F5F1E8', padding: '120px 80px' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <p className="transition-all duration-700" style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: howVisible ? 1 : 0 }}>How it works</p>
+          <p className="transition-all duration-700" style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: howVisible ? 1 : 0 }}>How it works</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '48px' }} className="pricing-how-grid">
             {columns.map((col, i) => (
               <div key={i} className="transition-all duration-700" style={{ opacity: howVisible ? 1 : 0, transitionDelay: `${(i + 1) * 100}ms` }}>
-                <p style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)', marginBottom: '16px' }}>{col.label}</p>
+                <p style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)', marginBottom: '16px' }}>{col.label}</p>
                 <p style={{ fontSize: '22px', fontWeight: '600', color: '#0A0A0A', marginBottom: '16px' }}>{col.title}</p>
                 {col.body.map((p, j) => <p key={j} style={{ fontSize: '16px', fontWeight: '400', color: 'rgba(10, 10, 10, 0.7)', lineHeight: '1.6', marginBottom: '16px' }}>{p}</p>)}
               </div>
@@ -108,14 +181,30 @@ const Pricing = () => {
       {/* CTA */}
       <section ref={ctaRef} style={{ backgroundColor: '#FFFFFF', padding: '120px 80px' }}>
         <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
-          <h2 className="transition-all duration-700" style={{ fontSize: '44px', fontWeight: '600', color: '#0A0A0A', opacity: ctaVisible ? 1 : 0 }}>
+          <h2 className="transition-all duration-700 pricing-cta-headline" style={{ fontSize: '44px', fontWeight: '600', color: '#0A0A0A', opacity: ctaVisible ? 1 : 0 }}>
             Ready when <span style={{ color: '#FF2E63' }}>you are.</span>
           </h2>
           <p className="transition-all duration-700" style={{ fontSize: '20px', fontWeight: '400', color: 'rgba(10, 10, 10, 0.7)', marginTop: '24px', opacity: ctaVisible ? 1 : 0, transitionDelay: '100ms' }}>
             No pitch. No pressure.<br />Just a conversation about where you are and where you're going.
           </p>
-          <Link to="/book-call" className="inline-block transition-all duration-300 mt-10" style={{ backgroundColor: '#FF2E63', color: '#FFFFFF', padding: '20px 40px', fontSize: '16px', fontWeight: '600', borderRadius: '8px', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E0264F'; }} onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }}>
+          <Link 
+            to="/book-call" 
+            className="cta-button-final inline-flex items-center gap-3 mt-10 transition-all"
+            style={{ 
+              backgroundColor: '#0A0A0A', 
+              color: '#FFFFFF', 
+              padding: '18px 28px', 
+              fontSize: '15px', 
+              fontWeight: '500',
+              letterSpacing: '0.01em',
+              borderRadius: '0', 
+              textDecoration: 'none' 
+            }} 
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }} 
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
+          >
             Start a Conversation
+            <span style={{ fontSize: '18px' }}>→</span>
           </Link>
         </div>
       </section>
@@ -123,7 +212,10 @@ const Pricing = () => {
       <style>{`
         @media (max-width: 768px) {
           section { padding: 80px 24px !important; }
+          .pricing-hero { padding-top: 100px !important; }
+          .pricing-headline { font-size: 32px !important; }
           .pricing-how-grid { grid-template-columns: 1fr !important; }
+          .pricing-cta-headline { font-size: 32px !important; }
         }
       `}</style>
     </main>

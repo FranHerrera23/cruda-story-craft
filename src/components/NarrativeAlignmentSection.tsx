@@ -32,6 +32,7 @@ const FloatingWord = ({
   delay, 
   isVisible,
   scrollOffset,
+  fromRight,
 }: { 
   word: string; 
   top: string; 
@@ -39,8 +40,10 @@ const FloatingWord = ({
   delay: number; 
   isVisible: boolean;
   scrollOffset: number;
+  fromRight: boolean;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const initialX = fromRight ? 30 : -30;
   
   return (
     <span
@@ -60,8 +63,8 @@ const FloatingWord = ({
             : 'rgba(10, 10, 10, 0.25)' 
           : 'rgba(10, 10, 10, 0)',
         transform: isVisible 
-          ? `translateY(${scrollOffset}px)` 
-          : `translateY(${20 + scrollOffset}px)`,
+          ? `translate(0, ${scrollOffset}px)` 
+          : `translate(${initialX}px, ${scrollOffset}px)`,
         transition: isVisible 
           ? 'color 0.2s ease-out, transform 0.1s ease-out' 
           : `color 0.6s ease-out ${delay}s, transform 0.6s ease-out ${delay}s`,
@@ -121,19 +124,19 @@ const NarrativeAlignmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Diagonal drift pattern with more vertical spacing to prevent overlap
+  // Zigzag pattern with alternating entrance directions
   const row1Words = [
-    { word: 'synergy', top: '5%', left: '5%' },
-    { word: 'leverage', top: '30%', left: '35%' },
-    { word: 'best-in-class', top: '55%', left: '10%' },
-    { word: 'solutions', top: '80%', left: '50%' },
+    { word: 'synergy', top: '5%', left: '5%', fromRight: false },
+    { word: 'leverage', top: '30%', left: '45%', fromRight: true },
+    { word: 'best-in-class', top: '55%', left: '10%', fromRight: false },
+    { word: 'solutions', top: '80%', left: '55%', fromRight: true },
   ];
 
   const row2Words = [
-    { word: 'Forbes', top: '5%', left: '15%' },
-    { word: 'award-winning', top: '30%', left: '45%' },
-    { word: 'Inc 5000', top: '55%', left: '20%' },
-    { word: 'industry leader', top: '80%', left: '55%' },
+    { word: 'Forbes', top: '5%', left: '55%', fromRight: true },
+    { word: 'award-winning', top: '30%', left: '10%', fromRight: false },
+    { word: 'Inc 5000', top: '55%', left: '50%', fromRight: true },
+    { word: 'industry leader', top: '80%', left: '5%', fromRight: false },
   ];
 
   return (
@@ -186,6 +189,7 @@ const NarrativeAlignmentSection = () => {
                 delay={0.3 + 0.15 * index}
                 isVisible={row1.isVisible}
                 scrollOffset={scrollOffset}
+                fromRight={item.fromRight}
               />
             ))}
           </div>
@@ -227,6 +231,7 @@ const NarrativeAlignmentSection = () => {
                 delay={0.3 + 0.15 * index}
                 isVisible={row2.isVisible}
                 scrollOffset={scrollOffset}
+                fromRight={item.fromRight}
               />
             ))}
           </div>
@@ -297,40 +302,56 @@ const NarrativeAlignmentSection = () => {
               marginBottom: '40px',
             }}
           />
-          <p
+          <div
             style={{
-              fontSize: '20px',
-              fontWeight: 400,
-              color: 'rgba(10, 10, 10, 0.5)',
-              margin: 0,
               opacity: lineComplete ? 1 : 0,
               transition: 'opacity 0.5s ease-out',
             }}
           >
-            Most companies{' '}
-            <span
+            <p
               style={{
-                color: '#FF2E63',
-                fontWeight: 500,
-                position: 'relative',
-                display: 'inline-block',
+                fontSize: '20px',
+                fontWeight: 400,
+                color: 'rgba(10, 10, 10, 0.5)',
+                margin: 0,
               }}
             >
-              like yours
+              Most companies{' '}
               <span
                 style={{
-                  position: 'absolute',
-                  bottom: '-2px',
-                  left: 0,
-                  width: underlineComplete ? '100%' : '0%',
-                  height: '2px',
-                  backgroundColor: '#FF2E63',
-                  transition: 'width 0.6s ease-out',
+                  color: '#FF2E63',
+                  fontWeight: 500,
+                  position: 'relative',
+                  display: 'inline-block',
                 }}
-              />
-            </span>
-            {' '}only have the first.
-          </p>
+              >
+                like yours
+                <span
+                  style={{
+                    position: 'absolute',
+                    bottom: '-2px',
+                    left: 0,
+                    width: underlineComplete ? '100%' : '0%',
+                    height: '2px',
+                    backgroundColor: '#FF2E63',
+                    transition: 'width 0.6s ease-out',
+                  }}
+                />
+              </span>
+              {' '}only have the first.
+            </p>
+            <p
+              style={{
+                fontSize: '24px',
+                fontWeight: 600,
+                color: '#0A0A0A',
+                margin: 0,
+                marginTop: '16px',
+              }}
+            >
+              We close the gap.
+            </p>
+          </div>
         </div>
       </div>
 

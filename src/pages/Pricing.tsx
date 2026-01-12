@@ -8,6 +8,7 @@ const Pricing = () => {
   const { elementRef: investmentRef, isVisible: investmentVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -88,48 +89,75 @@ const Pricing = () => {
             }}
           />
 
-          {/* Price Block */}
+          {/* Price Block - Dark Card */}
           <div 
             ref={investmentRef}
             className="transition-all duration-700"
             style={{
+              backgroundColor: '#0A0A0A',
+              padding: '64px 48px',
+              textAlign: 'center',
+              margin: '48px 0 64px 0',
               opacity: investmentVisible ? 1 : 0,
               transform: investmentVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
             <p style={{
-              fontSize: '48px',
-              fontWeight: '600',
-              color: '#0A0A0A',
-              letterSpacing: '-0.02em',
+              fontSize: '96px',
+              fontWeight: '700',
+              color: '#FFFFFF',
+              letterSpacing: '-0.03em',
               lineHeight: '1',
               margin: 0
             }}>
-              $2,600<span style={{ fontSize: '24px', fontWeight: '400', color: 'rgba(10, 10, 10, 0.5)' }}>/month</span>
+              $2,600
+            </p>
+            <p style={{
+              fontSize: '28px',
+              fontWeight: '400',
+              color: 'rgba(255, 255, 255, 0.6)',
+              marginTop: '8px'
+            }}>
+              /month
             </p>
             <p style={{
               fontSize: '16px',
               fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.5)',
-              marginTop: '12px',
+              color: 'rgba(255, 255, 255, 0.5)',
+              marginTop: '24px',
               lineHeight: '1.5'
             }}>
               6-month minimum. Most clients stay 1-3 years.
             </p>
           </div>
 
-          {/* Divider 2 */}
+          {/* Red Accent Line */}
           <div 
             className="transition-all duration-700"
             style={{
-              width: '100%',
-              height: '1px',
-              backgroundColor: 'rgba(10, 10, 10, 0.08)',
-              margin: '48px 0',
+              width: '64px',
+              height: '4px',
+              backgroundColor: '#FF2E63',
+              marginBottom: '32px',
               opacity: investmentVisible ? 1 : 0,
               transitionDelay: '100ms'
             }}
           />
+
+          {/* Section Headline */}
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '24px',
+              fontWeight: '500',
+              color: '#0A0A0A',
+              marginBottom: '48px',
+              opacity: investmentVisible ? 1 : 0,
+              transitionDelay: '150ms'
+            }}
+          >
+            A narrative system built around you.
+          </p>
 
           {/* Phases */}
           <div 
@@ -137,21 +165,21 @@ const Pricing = () => {
             style={{ 
               display: 'flex', 
               flexDirection: 'column', 
-              gap: '32px',
+              gap: '40px',
               opacity: investmentVisible ? 1 : 0,
               transform: investmentVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '200ms'
             }}
           >
             {phases.map((phase, index) => (
-              <div key={index}>
+              <div key={index} style={{ marginBottom: '0' }}>
                 <p style={{
-                  fontSize: '14px',
+                  fontSize: '13px',
                   fontWeight: '600',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: 'rgba(10, 10, 10, 0.4)',
-                  marginBottom: '8px'
+                  letterSpacing: '0.1em',
+                  color: '#FF2E63',
+                  marginBottom: '12px'
                 }}>
                   {phase.label}
                 </p>
@@ -336,6 +364,71 @@ const Pricing = () => {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA SECTION */}
+      <section 
+        ref={ctaRef}
+        style={{ 
+          backgroundColor: '#FFFFFF', 
+          padding: '120px 80px' 
+        }}
+      >
+        <div style={{ maxWidth: '600px' }}>
+          <h2 
+            className="transition-all duration-700"
+            style={{ 
+              fontSize: '32px', 
+              fontWeight: '600', 
+              color: '#0A0A0A',
+              marginBottom: '24px',
+              opacity: ctaVisible ? 1 : 0,
+              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
+            Start a conversation
+          </h2>
+          
+          <div 
+            className="transition-all duration-700"
+            style={{ 
+              fontSize: '18px', 
+              fontWeight: '400', 
+              lineHeight: '1.8',
+              color: 'rgba(10, 10, 10, 0.6)',
+              marginBottom: '40px',
+              opacity: ctaVisible ? 1 : 0,
+              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '100ms'
+            }}
+          >
+            <p style={{ marginBottom: '16px' }}>45 minutes. No pitch. No pressure.</p>
+            <p style={{ marginBottom: '16px' }}>If we see the pattern, we'll say so.</p>
+            <p>If we can't help, we'll say that too.</p>
+          </div>
+          
+          <Link 
+            to="/contact"
+            className="cta-button-final inline-flex items-center gap-3 transition-all duration-700"
+            style={{ 
+              backgroundColor: '#0A0A0A', 
+              color: '#FFFFFF', 
+              padding: '18px 28px', 
+              fontSize: '15px', 
+              fontWeight: '500',
+              borderRadius: '0', 
+              textDecoration: 'none',
+              opacity: ctaVisible ? 1 : 0,
+              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '200ms'
+            }} 
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }} 
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
+          >
+            Start a Conversation
+            <span style={{ fontSize: '18px' }}>→</span>
+          </Link>
         </div>
       </section>
 

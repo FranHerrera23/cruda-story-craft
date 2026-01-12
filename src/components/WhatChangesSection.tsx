@@ -4,6 +4,7 @@ interface StatementConfig {
   line1: string;
   line2?: string;
   line2Muted?: boolean;
+  highlightWord?: string;
 }
 
 const statements: StatementConfig[] = [
@@ -23,7 +24,8 @@ const statements: StatementConfig[] = [
   },
   { 
     line1: "You stop competing on price", 
-    line2: "and start competing on trust." 
+    line2: "and start competing on trust.",
+    highlightWord: "trust"
   },
 ];
 
@@ -96,7 +98,15 @@ const AnimatedStatement = ({
                 fontWeight: config.line2Muted ? 400 : 500,
               }}
             >
-              {config.line2}
+              {config.highlightWord ? (
+                <>
+                  {config.line2.split(config.highlightWord)[0]}
+                  <span style={{ color: '#FF2E63' }}>{config.highlightWord}</span>
+                  {config.line2.split(config.highlightWord)[1]}
+                </>
+              ) : (
+                config.line2
+              )}
             </span>
           </>
         )}

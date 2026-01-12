@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 const WhoThisIsForSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   const [bulletsVisible, setBulletsVisible] = useState(false);
+  const [leftHovered, setLeftHovered] = useState(false);
+  const [rightHovered, setRightHovered] = useState(false);
 
   useEffect(() => {
     if (isVisible) {
@@ -46,15 +48,22 @@ const WhoThisIsForSection = () => {
       >
         {/* Left Card - Primary (Elevated) */}
         <div
-          className="who-for-card transition-all duration-700"
+          className="who-for-card transition-all duration-300"
+          onMouseEnter={() => setLeftHovered(true)}
+          onMouseLeave={() => setLeftHovered(false)}
           style={{
             background: '#FFFFFF',
             padding: '48px',
             borderRadius: '2px',
             border: '1px solid rgba(10, 10, 10, 0.08)',
-            boxShadow: '0 2px 16px rgba(0, 0, 0, 0.04)',
+            boxShadow: leftHovered 
+              ? '0 16px 40px rgba(0, 0, 0, 0.08)' 
+              : '0 2px 16px rgba(0, 0, 0, 0.04)',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+            transform: isVisible 
+              ? (leftHovered ? 'translateY(-4px)' : 'translateY(0)') 
+              : 'translateY(20px)',
+            cursor: 'default',
           }}
         >
           {/* Label */}
@@ -124,17 +133,22 @@ const WhoThisIsForSection = () => {
 
         {/* Right Card - Ghost (V6 fix: auto-height, align to top) */}
         <div
-          className="who-not-card transition-all duration-700"
+          className="who-not-card transition-all duration-300"
+          onMouseEnter={() => setRightHovered(true)}
+          onMouseLeave={() => setRightHovered(false)}
           style={{
             background: 'transparent',
             padding: '48px',
-            border: '1px solid rgba(10, 10, 10, 0.08)',
+            border: `1px solid ${rightHovered ? 'rgba(10, 10, 10, 0.15)' : 'rgba(10, 10, 10, 0.08)'}`,
             borderRadius: '2px',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '150ms',
+            transform: isVisible 
+              ? (rightHovered ? 'translateY(-4px)' : 'translateY(0)') 
+              : 'translateY(20px)',
+            transitionDelay: isVisible ? '0ms' : '150ms',
             alignSelf: 'start', // V6 fix: don't stretch to match left card
             minHeight: 'auto',
+            cursor: 'default',
           }}
         >
           {/* Label */}

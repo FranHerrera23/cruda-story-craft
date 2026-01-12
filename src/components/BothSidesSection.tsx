@@ -84,7 +84,7 @@ const BothSidesSection = () => {
           }}
         >
           <p style={{ marginBottom: '24px' }}>
-            We know what gets diluted in handoffs. What gets lost in translation. What never makes it out of the meeting room.
+            Over a decade inside TikTok, Nestlé, Amazon, GSK, the United Nations, and a dozen startups. We know what gets diluted in handoffs. What gets lost in translation. What never makes it out of the meeting room.
           </p>
           <p>
             That's why we sit in the gap — not to interpret for you, but to make your story impossible to misunderstand.

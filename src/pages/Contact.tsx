@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contact = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
@@ -13,6 +14,7 @@ const Contact = () => {
     readyToInvest: null as boolean | null
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const promptOptions = [
     "Expanding into a new market",
@@ -23,14 +25,37 @@ const Contact = () => {
     "Other"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For now, show confirmation and redirect to Calendly
-    setIsSubmitted(true);
-    // After 2 seconds, redirect to Calendly
-    setTimeout(() => {
-      window.open('https://calendly.com/cruda-intro/narrative-sparring-live-1', '_blank');
-    }, 2000);
+    setIsSubmitting(true);
+    
+    try {
+      // Save form data to database
+      await supabase.from('contact_submissions').insert({
+        name: formData.name,
+        email: formData.email,
+        company_name: formData.companyName,
+        company_website: formData.companyWebsite,
+        gap: formData.gap,
+        prompt: formData.prompt,
+        investment_ready: formData.readyToInvest ? 'yes' : 'no'
+      });
+      
+      setIsSubmitted(true);
+      // After 2 seconds, redirect to Calendly
+      setTimeout(() => {
+        window.open('https://calendly.com/cruda-intro/narrative-sparring-live-1', '_blank');
+      }, 2000);
+    } catch (error) {
+      console.error('Error saving submission:', error);
+      // Still redirect even if save fails
+      setIsSubmitted(true);
+      setTimeout(() => {
+        window.open('https://calendly.com/cruda-intro/narrative-sparring-live-1', '_blank');
+      }, 2000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (field: string, value: string | boolean) => {
@@ -277,17 +302,17 @@ const Contact = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={formData.readyToInvest === null}
+              disabled={formData.readyToInvest === null || isSubmitting}
               style={{
                 width: '100%',
                 padding: '20px 28px',
                 fontSize: '16px',
                 fontWeight: '500',
-                backgroundColor: formData.readyToInvest !== null ? '#0A0A0A' : 'rgba(10, 10, 10, 0.2)',
+                backgroundColor: formData.readyToInvest !== null && !isSubmitting ? '#0A0A0A' : 'rgba(10, 10, 10, 0.2)',
                 color: '#FFFFFF',
                 border: 'none',
                 borderRadius: '0',
-                cursor: formData.readyToInvest !== null ? 'pointer' : 'not-allowed',
+                cursor: formData.readyToInvest !== null && !isSubmitting ? 'pointer' : 'not-allowed',
                 transition: 'background-color 0.2s ease',
                 display: 'flex',
                 alignItems: 'center',
@@ -296,18 +321,18 @@ const Contact = () => {
                 marginTop: '16px'
               }}
               onMouseEnter={(e) => {
-                if (formData.readyToInvest !== null) {
+                if (formData.readyToInvest !== null && !isSubmitting) {
                   e.currentTarget.style.backgroundColor = '#FF2E63';
                 }
               }}
               onMouseLeave={(e) => {
-                if (formData.readyToInvest !== null) {
+                if (formData.readyToInvest !== null && !isSubmitting) {
                   e.currentTarget.style.backgroundColor = '#0A0A0A';
                 }
               }}
             >
-              Book my call
-              <span style={{ fontSize: '18px' }}>→</span>
+              {isSubmitting ? 'Submitting...' : 'Book my call'}
+              {!isSubmitting && <span style={{ fontSize: '18px' }}>→</span>}
             </button>
           </div>
         </form>

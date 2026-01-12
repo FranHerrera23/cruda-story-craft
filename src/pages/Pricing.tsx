@@ -207,7 +207,7 @@ const Pricing = () => {
 
           {/* CTA */}
           <div 
-            className="transition-all duration-700"
+            className="transition-all duration-700 flex justify-center"
             style={{ 
               marginTop: '48px',
               opacity: investmentVisible ? 1 : 0,

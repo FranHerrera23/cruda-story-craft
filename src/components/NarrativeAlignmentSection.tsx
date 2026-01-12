@@ -1,12 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
-interface RowAnimationState {
-  isVisible: boolean;
-}
-
-const useRowAnimation = (threshold = 0.5) => {
+const useRowAnimation = (threshold = 0.3) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState<RowAnimationState>({ isVisible: false });
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const element = ref.current;
@@ -15,7 +11,7 @@ const useRowAnimation = (threshold = 0.5) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setState({ isVisible: true });
+          setIsVisible(true);
           observer.unobserve(element);
         }
       },
@@ -26,7 +22,7 @@ const useRowAnimation = (threshold = 0.5) => {
     return () => observer.disconnect();
   }, [threshold]);
 
-  return { ref, ...state };
+  return { ref, isVisible };
 };
 
 const FloatingWord = ({ 
@@ -35,30 +31,30 @@ const FloatingWord = ({
   left, 
   delay, 
   isVisible,
-  scrollY,
+  scrollOffset,
 }: { 
   word: string; 
   top: string; 
   left: string; 
   delay: number; 
   isVisible: boolean;
-  scrollY: number;
+  scrollOffset: number;
 }) => (
   <span
     style={{
       position: 'absolute',
       top,
       left,
-      fontSize: '13px',
+      fontSize: '14px',
       fontWeight: 400,
       textTransform: 'uppercase',
       letterSpacing: '0.08em',
-      color: 'rgba(10, 10, 10, 0.15)',
-      opacity: isVisible ? 1 : 0,
+      color: isVisible ? 'rgba(10, 10, 10, 0.25)' : 'rgba(10, 10, 10, 0)',
       transform: isVisible 
-        ? `translateY(${scrollY * 0.3}px)` 
-        : `translateY(${30 + scrollY * 0.3}px)`,
-      transition: `opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s, transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) ${delay}s`,
+        ? `translateY(${scrollOffset}px)` 
+        : `translateY(${20 + scrollOffset}px)`,
+      transition: `color 0.6s ease-out ${delay}s, transform 0.6s ease-out ${delay}s`,
+      whiteSpace: 'nowrap',
     }}
   >
     {word}
@@ -73,20 +69,21 @@ const NarrativeAlignmentSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [closerVisible, setCloserVisible] = useState(false);
   const [lineComplete, setLineComplete] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
+  const [underlineComplete, setUnderlineComplete] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   // Parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        const sectionTop = rect.top;
-        // Calculate relative scroll position within section
-        setScrollY(-sectionTop * 0.1);
+        const relativeScroll = -rect.top * 0.15;
+        setScrollOffset(relativeScroll);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial call
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -99,10 +96,11 @@ const NarrativeAlignmentSection = () => {
         if (entry.isIntersecting) {
           setCloserVisible(true);
           setTimeout(() => setLineComplete(true), 400);
+          setTimeout(() => setUnderlineComplete(true), 900);
           observer.unobserve(element);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     observer.observe(element);
@@ -111,17 +109,17 @@ const NarrativeAlignmentSection = () => {
 
   // Diagonal drift pattern: top-left → bottom-right
   const row1Words = [
-    { word: 'synergy', top: '5%', left: '5%' },
-    { word: 'leverage', top: '30%', left: '30%' },
-    { word: 'best-in-class', top: '55%', left: '50%' },
-    { word: 'solutions', top: '75%', left: '70%' },
+    { word: 'synergy', top: '10%', left: '5%' },
+    { word: 'leverage', top: '35%', left: '25%' },
+    { word: 'best-in-class', top: '55%', left: '45%' },
+    { word: 'solutions', top: '75%', left: '65%' },
   ];
 
   const row2Words = [
-    { word: 'Forbes', top: '5%', left: '10%' },
-    { word: 'award-winning', top: '30%', left: '35%' },
-    { word: 'Inc 5000', top: '55%', left: '55%' },
-    { word: 'industry leader', top: '75%', left: '65%' },
+    { word: 'Forbes', top: '10%', left: '10%' },
+    { word: 'award-winning', top: '35%', left: '30%' },
+    { word: 'Inc 5000', top: '55%', left: '50%' },
+    { word: 'industry leader', top: '75%', left: '60%' },
   ];
 
   return (
@@ -158,22 +156,22 @@ const NarrativeAlignmentSection = () => {
               letterSpacing: '-0.02em',
               margin: 0,
               opacity: row1.isVisible ? 1 : 0,
-              transform: row1.isVisible ? 'translateX(0)' : 'translateX(-20px)',
-              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+              transform: row1.isVisible ? 'translateX(0)' : 'translateX(-30px)',
+              transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             }}
           >
             What you do.
           </h2>
-          <div style={{ position: 'relative', height: '180px' }}>
+          <div style={{ position: 'relative', height: '180px', overflow: 'visible' }}>
             {row1Words.map((item, index) => (
               <FloatingWord
                 key={item.word}
                 word={item.word}
                 top={item.top}
                 left={item.left}
-                delay={0.1 * index}
+                delay={0.3 + 0.15 * index}
                 isVisible={row1.isVisible}
-                scrollY={scrollY}
+                scrollOffset={scrollOffset}
               />
             ))}
           </div>
@@ -199,22 +197,22 @@ const NarrativeAlignmentSection = () => {
               letterSpacing: '-0.02em',
               margin: 0,
               opacity: row2.isVisible ? 1 : 0,
-              transform: row2.isVisible ? 'translateX(0)' : 'translateX(-20px)',
-              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+              transform: row2.isVisible ? 'translateX(0)' : 'translateX(-30px)',
+              transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             }}
           >
             Why it matters.
           </h2>
-          <div style={{ position: 'relative', height: '180px' }}>
+          <div style={{ position: 'relative', height: '180px', overflow: 'visible' }}>
             {row2Words.map((item, index) => (
               <FloatingWord
                 key={item.word}
                 word={item.word}
                 top={item.top}
                 left={item.left}
-                delay={0.1 * index}
+                delay={0.3 + 0.15 * index}
                 isVisible={row2.isVisible}
-                scrollY={scrollY}
+                scrollOffset={scrollOffset}
               />
             ))}
           </div>
@@ -240,8 +238,8 @@ const NarrativeAlignmentSection = () => {
               letterSpacing: '-0.02em',
               margin: 0,
               opacity: row3.isVisible ? 1 : 0,
-              transform: row3.isVisible ? 'translateX(0)' : 'translateX(-20px)',
-              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
+              transform: row3.isVisible ? 'translateX(0)' : 'translateX(-30px)',
+              transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             }}
           >
             Why they should care.
@@ -259,7 +257,7 @@ const NarrativeAlignmentSection = () => {
                 fontSize: '24px',
                 color: 'rgba(10, 10, 10, 0.25)',
                 opacity: row3.isVisible ? 1 : 0,
-                transition: 'opacity 0.8s ease-out 1s',
+                transition: 'opacity 0.8s ease-out 0.8s',
               }}
             >
               ...
@@ -295,7 +293,29 @@ const NarrativeAlignmentSection = () => {
               transition: 'opacity 0.5s ease-out',
             }}
           >
-            Most companies like yours only have the first.
+            Most companies{' '}
+            <span
+              style={{
+                color: '#FF2E63',
+                fontWeight: 500,
+                position: 'relative',
+                display: 'inline-block',
+              }}
+            >
+              like yours
+              <span
+                style={{
+                  position: 'absolute',
+                  bottom: '-2px',
+                  left: 0,
+                  width: underlineComplete ? '100%' : '0%',
+                  height: '2px',
+                  backgroundColor: '#FF2E63',
+                  transition: 'width 0.6s ease-out',
+                }}
+              />
+            </span>
+            {' '}only have the first.
           </p>
         </div>
       </div>
@@ -313,7 +333,7 @@ const NarrativeAlignmentSection = () => {
             margin-bottom: 48px !important;
           }
           section h2 {
-            font-size: 36px !important;
+            font-size: 32px !important;
           }
           section > div > div > div[style*="position: relative"] {
             display: none !important;

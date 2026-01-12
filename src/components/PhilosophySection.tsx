@@ -8,7 +8,7 @@ const PhilosophySection = () => {
       ref={elementRef} 
       className="philosophy-section"
       style={{ 
-        backgroundColor: '#F5F1E8',
+        backgroundColor: '#FFFFFF',
         padding: '140px 80px',
         display: 'flex',
         flexDirection: 'column',
@@ -16,7 +16,7 @@ const PhilosophySection = () => {
       }}
     >
       <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
-        {/* Line 1 - Large */}
+        {/* Headline */}
         <h2
           className="transition-all duration-700 philosophy-headline"
           style={{
@@ -30,10 +30,10 @@ const PhilosophySection = () => {
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          The Bible. The Odyssey. Every satisfying movie.
+          The Bible. The Godfather. Marcus Aurelius.
         </h2>
 
-        {/* Lines 2-3 - Medium */}
+        {/* Body */}
         <div
           className="transition-all duration-700"
           style={{
@@ -41,19 +41,19 @@ const PhilosophySection = () => {
             fontWeight: '400',
             lineHeight: '1.5',
             color: 'rgba(10, 10, 10, 0.6)',
-            marginBottom: '40px',
+            marginBottom: '32px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transitionDelay: '100ms'
           }}
         >
           <p style={{ marginBottom: '0' }}>
-            Humanity doesn't organize around facts.<br />
+            Humans don't organize around facts.<br />
             We organize around stories.
           </p>
         </div>
 
-        {/* Line 4 - Punch */}
+        {/* Closer */}
         <div
           className="transition-all duration-700"
           style={{
@@ -65,7 +65,7 @@ const PhilosophySection = () => {
             transitionDelay: '200ms'
           }}
         >
-          Yours is next.
+          Your company is no different.
         </div>
       </div>
 

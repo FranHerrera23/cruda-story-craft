@@ -184,17 +184,48 @@ const TeamMember = ({ label, name, bio, image, initial, flipped, isLast }: TeamM
             style={{
               width: '100%',
               aspectRatio: '4 / 5',
-              background: '#F5F1E8',
+              background: 'linear-gradient(135deg, #E8E4DC 0%, #D8D4CC 50%, #E0DCD4 100%)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              position: 'relative',
+              overflow: 'hidden'
             }}
           >
+            {/* Abstract silhouette placeholder */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '0',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '70%',
+                height: '75%',
+                background: 'linear-gradient(180deg, rgba(10,10,10,0.06) 0%, rgba(10,10,10,0.12) 100%)',
+                borderRadius: '50% 50% 0 0',
+              }}
+            />
+            {/* Head shape */}
+            <div
+              style={{
+                position: 'absolute',
+                bottom: '55%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                width: '28%',
+                height: '22%',
+                background: 'linear-gradient(180deg, rgba(10,10,10,0.06) 0%, rgba(10,10,10,0.1) 100%)',
+                borderRadius: '50%',
+              }}
+            />
+            {/* Initial overlay */}
             <span 
               style={{
-                fontSize: '160px',
+                fontSize: '120px',
                 fontWeight: '600',
-                color: 'rgba(10, 10, 10, 0.04)'
+                color: 'rgba(10, 10, 10, 0.03)',
+                position: 'relative',
+                zIndex: 1
               }}
             >
               {initial}

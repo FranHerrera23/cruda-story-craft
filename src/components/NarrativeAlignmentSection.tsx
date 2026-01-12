@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 
 const useRowAnimation = (threshold = 0.3) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -25,54 +25,94 @@ const useRowAnimation = (threshold = 0.3) => {
   return { ref, isVisible };
 };
 
+interface WordConfig {
+  word: string;
+  top: string;
+  left: string;
+  fromRight: boolean;
+  // Pro animation config
+  entranceDuration: number;
+  entranceEasing: string;
+  floatAmplitude: number;
+  floatSpeed: number;
+  floatPhase: number;
+  blurStart: number;
+  scaleStart: number;
+}
+
 const FloatingWord = ({ 
-  word, 
-  top, 
-  left, 
+  config,
   delay, 
   isVisible,
   scrollOffset,
-  fromRight,
+  time,
 }: { 
-  word: string; 
-  top: string; 
-  left: string; 
+  config: WordConfig;
   delay: number; 
   isVisible: boolean;
   scrollOffset: number;
-  fromRight: boolean;
+  time: number;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const initialX = fromRight ? 30 : -30;
+  const [hasEntered, setHasEntered] = useState(false);
   
+  // Track when entrance animation completes
+  useEffect(() => {
+    if (isVisible) {
+      const timeout = setTimeout(() => {
+        setHasEntered(true);
+      }, (delay + config.entranceDuration) * 1000);
+      return () => clearTimeout(timeout);
+    }
+  }, [isVisible, delay, config.entranceDuration]);
+
+  const initialX = config.fromRight ? 60 : -60;
+  
+  // Organic floating motion after entrance
+  const floatY = hasEntered 
+    ? Math.sin((time * config.floatSpeed) + config.floatPhase) * config.floatAmplitude
+    : 0;
+  const floatX = hasEntered 
+    ? Math.cos((time * config.floatSpeed * 0.7) + config.floatPhase) * (config.floatAmplitude * 0.5)
+    : 0;
+
+  // Entrance values
+  const opacity = isVisible 
+    ? isHovered ? 0.5 : 0.28
+    : 0;
+  const blur = isVisible ? 0 : config.blurStart;
+  const scale = isVisible ? 1 : config.scaleStart;
+  const translateX = isVisible ? floatX : initialX;
+  const translateY = scrollOffset + (isVisible ? floatY : 25);
+
   return (
     <span
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
         position: 'absolute',
-        top,
-        left,
+        top: config.top,
+        left: config.left,
         fontSize: '14px',
         fontWeight: 400,
         textTransform: 'uppercase',
         letterSpacing: '0.08em',
-        color: isVisible 
-          ? isHovered 
-            ? 'rgba(10, 10, 10, 0.45)' 
-            : 'rgba(10, 10, 10, 0.25)' 
-          : 'rgba(10, 10, 10, 0)',
-        transform: isVisible 
-          ? `translate(0, ${scrollOffset}px)` 
-          : `translate(${initialX}px, ${scrollOffset}px)`,
-        transition: isVisible 
-          ? 'color 0.2s ease-out, transform 0.1s ease-out' 
-          : `color 0.6s ease-out ${delay}s, transform 0.6s ease-out ${delay}s`,
+        color: `rgba(10, 10, 10, ${opacity})`,
+        transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
+        filter: `blur(${blur}px)`,
+        transition: hasEntered 
+          ? 'color 0.3s ease-out' 
+          : `
+            color ${config.entranceDuration}s ${config.entranceEasing} ${delay}s,
+            transform ${config.entranceDuration}s ${config.entranceEasing} ${delay}s,
+            filter ${config.entranceDuration * 0.8}s ${config.entranceEasing} ${delay}s
+          `,
         whiteSpace: 'nowrap',
         cursor: 'default',
+        willChange: 'transform, opacity, filter',
       }}
     >
-      {word}
+      {config.word}
     </span>
   );
 };
@@ -87,20 +127,31 @@ const NarrativeAlignmentSection = () => {
   const [lineComplete, setLineComplete] = useState(false);
   const [underlineComplete, setUnderlineComplete] = useState(false);
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [time, setTime] = useState(0);
+
+  // Continuous animation loop for floating effect
+  useEffect(() => {
+    let animationId: number;
+    const animate = () => {
+      setTime(Date.now() / 1000);
+      animationId = requestAnimationFrame(animate);
+    };
+    animationId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationId);
+  }, []);
 
   // Parallax scroll effect
   useEffect(() => {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        // Reduced parallax intensity to prevent overlapping
-        const relativeScroll = Math.max(-30, Math.min(30, -rect.top * 0.05));
+        const relativeScroll = Math.max(-25, Math.min(25, -rect.top * 0.04));
         setScrollOffset(relativeScroll);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -124,20 +175,116 @@ const NarrativeAlignmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Zigzag pattern with alternating entrance directions
-  const row1Words = [
-    { word: 'synergy', top: '5%', left: '5%', fromRight: false },
-    { word: 'leverage', top: '30%', left: '45%', fromRight: true },
-    { word: 'best-in-class', top: '55%', left: '10%', fromRight: false },
-    { word: 'solutions', top: '80%', left: '55%', fromRight: true },
-  ];
+  // Pro-level word configurations with unique animation properties
+  const row1Words: WordConfig[] = useMemo(() => [
+    { 
+      word: 'synergy', 
+      top: '5%', 
+      left: '5%', 
+      fromRight: false,
+      entranceDuration: 0.9,
+      entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      floatAmplitude: 3,
+      floatSpeed: 0.8,
+      floatPhase: 0,
+      blurStart: 8,
+      scaleStart: 0.85,
+    },
+    { 
+      word: 'leverage', 
+      top: '28%', 
+      left: '48%', 
+      fromRight: true,
+      entranceDuration: 1.1,
+      entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      floatAmplitude: 4,
+      floatSpeed: 0.6,
+      floatPhase: Math.PI / 3,
+      blurStart: 6,
+      scaleStart: 0.9,
+    },
+    { 
+      word: 'best-in-class', 
+      top: '52%', 
+      left: '12%', 
+      fromRight: false,
+      entranceDuration: 1.0,
+      entranceEasing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+      floatAmplitude: 2.5,
+      floatSpeed: 0.9,
+      floatPhase: Math.PI / 2,
+      blurStart: 10,
+      scaleStart: 0.88,
+    },
+    { 
+      word: 'solutions', 
+      top: '78%', 
+      left: '52%', 
+      fromRight: true,
+      entranceDuration: 1.2,
+      entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      floatAmplitude: 3.5,
+      floatSpeed: 0.7,
+      floatPhase: Math.PI,
+      blurStart: 5,
+      scaleStart: 0.92,
+    },
+  ], []);
 
-  const row2Words = [
-    { word: 'Forbes', top: '5%', left: '55%', fromRight: true },
-    { word: 'award-winning', top: '30%', left: '10%', fromRight: false },
-    { word: 'Inc 5000', top: '55%', left: '50%', fromRight: true },
-    { word: 'industry leader', top: '80%', left: '5%', fromRight: false },
-  ];
+  const row2Words: WordConfig[] = useMemo(() => [
+    { 
+      word: 'Forbes', 
+      top: '8%', 
+      left: '52%', 
+      fromRight: true,
+      entranceDuration: 1.0,
+      entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      floatAmplitude: 3,
+      floatSpeed: 0.75,
+      floatPhase: Math.PI / 4,
+      blurStart: 7,
+      scaleStart: 0.87,
+    },
+    { 
+      word: 'award-winning', 
+      top: '32%', 
+      left: '8%', 
+      fromRight: false,
+      entranceDuration: 1.15,
+      entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
+      floatAmplitude: 4,
+      floatSpeed: 0.65,
+      floatPhase: Math.PI * 0.75,
+      blurStart: 9,
+      scaleStart: 0.9,
+    },
+    { 
+      word: 'Inc 5000', 
+      top: '56%', 
+      left: '55%', 
+      fromRight: true,
+      entranceDuration: 0.95,
+      entranceEasing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+      floatAmplitude: 2.8,
+      floatSpeed: 0.85,
+      floatPhase: Math.PI * 1.25,
+      blurStart: 6,
+      scaleStart: 0.88,
+    },
+    { 
+      word: 'industry leader', 
+      top: '80%', 
+      left: '5%', 
+      fromRight: false,
+      entranceDuration: 1.25,
+      entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+      floatAmplitude: 3.2,
+      floatSpeed: 0.55,
+      floatPhase: Math.PI * 1.5,
+      blurStart: 8,
+      scaleStart: 0.85,
+    },
+  ], []);
 
   return (
     <section
@@ -180,16 +327,14 @@ const NarrativeAlignmentSection = () => {
             What you do.
           </h2>
           <div style={{ position: 'relative', height: '180px', overflow: 'visible' }}>
-            {row1Words.map((item, index) => (
+            {row1Words.map((config, index) => (
               <FloatingWord
-                key={item.word}
-                word={item.word}
-                top={item.top}
-                left={item.left}
-                delay={0.3 + 0.15 * index}
+                key={config.word}
+                config={config}
+                delay={0.2 + 0.18 * index}
                 isVisible={row1.isVisible}
                 scrollOffset={scrollOffset}
-                fromRight={item.fromRight}
+                time={time}
               />
             ))}
           </div>
@@ -222,16 +367,14 @@ const NarrativeAlignmentSection = () => {
             Why it matters.
           </h2>
           <div style={{ position: 'relative', height: '180px', overflow: 'visible' }}>
-            {row2Words.map((item, index) => (
+            {row2Words.map((config, index) => (
               <FloatingWord
-                key={item.word}
-                word={item.word}
-                top={item.top}
-                left={item.left}
-                delay={0.3 + 0.15 * index}
+                key={config.word}
+                config={config}
+                delay={0.2 + 0.18 * index}
                 isVisible={row2.isVisible}
                 scrollOffset={scrollOffset}
-                fromRight={item.fromRight}
+                time={time}
               />
             ))}
           </div>
@@ -276,7 +419,8 @@ const NarrativeAlignmentSection = () => {
                 fontSize: '24px',
                 color: 'rgba(10, 10, 10, 0.25)',
                 opacity: row3.isVisible ? 1 : 0,
-                transition: 'opacity 0.8s ease-out 0.8s',
+                transform: row3.isVisible ? 'scale(1)' : 'scale(0.8)',
+                transition: 'opacity 1s ease-out 0.6s, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s',
               }}
             >
               ...
@@ -298,14 +442,15 @@ const NarrativeAlignmentSection = () => {
               width: closerVisible ? '64px' : '0',
               height: '3px',
               backgroundColor: '#FF2E63',
-              transition: 'width 0.4s ease-out',
+              transition: 'width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
               marginBottom: '40px',
             }}
           />
           <div
             style={{
               opacity: lineComplete ? 1 : 0,
-              transition: 'opacity 0.5s ease-out',
+              transform: lineComplete ? 'translateY(0)' : 'translateY(10px)',
+              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
             }}
           >
             <p
@@ -334,7 +479,7 @@ const NarrativeAlignmentSection = () => {
                     width: underlineComplete ? '100%' : '0%',
                     height: '2px',
                     backgroundColor: '#FF2E63',
-                    transition: 'width 0.6s ease-out',
+                    transition: 'width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
                   }}
                 />
               </span>
@@ -347,6 +492,9 @@ const NarrativeAlignmentSection = () => {
                 color: '#0A0A0A',
                 margin: 0,
                 marginTop: '16px',
+                opacity: underlineComplete ? 1 : 0,
+                transform: underlineComplete ? 'translateY(0)' : 'translateY(8px)',
+                transition: 'opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s',
               }}
             >
               We close the gap.

@@ -39,7 +39,8 @@ const WhoThisIsForSection = () => {
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: '55% 45%',
-          gap: '32px'
+          gap: '32px',
+          alignItems: 'start', // V6 fix: align to top, not stretch
         }}
         className="who-grid"
       >
@@ -121,7 +122,7 @@ const WhoThisIsForSection = () => {
           </p>
         </div>
 
-        {/* Right Card - Ghost */}
+        {/* Right Card - Ghost (V6 fix: auto-height, align to top) */}
         <div
           className="who-not-card transition-all duration-700"
           style={{
@@ -131,7 +132,9 @@ const WhoThisIsForSection = () => {
             borderRadius: '2px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '150ms'
+            transitionDelay: '150ms',
+            alignSelf: 'start', // V6 fix: don't stretch to match left card
+            minHeight: 'auto',
           }}
         >
           {/* Label */}

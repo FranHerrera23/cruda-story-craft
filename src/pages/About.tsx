@@ -1,155 +1,98 @@
-import { useEffect, useRef, useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import franPortrait from '@/assets/fran-portrait-new.png';
+import { Link } from 'react-router-dom';
 
-const People = () => {
+const About = () => {
   return (
-    <main className="people-page">
-      <OpeningStatement />
-      <TheFounder />
-      {/* HIDDEN UNTIL CONTENT READY */}
-      {/* <TheCollaborators /> */}
-      <ThePhilosophy />
-      <ClosingStatement />
+    <main className="about-page">
+      <HeroSection />
+      <TeamMemberFran />
+      <TeamMemberMichael />
+      <TeamMemberNatalia />
+      <TeamMemberAbril />
+      <HowWeWorkSection />
+      <FinalCTA />
     </main>
   );
 };
 
-// SECTION 1: Opening Statement
-const OpeningStatement = () => {
+// SECTION 1: Hero
+const HeroSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      className="min-h-screen flex items-center justify-center px-6 py-20"
+      className="bg-white py-[120px] px-6 md:px-20"
     >
-      <div className="max-w-[600px] mx-auto text-center">
-        <h1 className={`text-7xl md:text-[72px] font-light text-foreground mb-8 transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-            style={{ transitionDelay: '0ms' }}
+      <div className="max-w-[900px] mx-auto text-center">
+        <h1 
+          className={`text-4xl md:text-[52px] font-semibold text-[#0A0A0A] leading-[1.1] tracking-[-0.02em] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
         >
-          The People
+          Lean by design.<br />
+          Senior by default.
         </h1>
         
-        <div className="space-y-4 text-[28px] leading-[1.6] tracking-[0.02em]">
-          <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-             style={{ transitionDelay: '200ms' }}
-          >
-            We're translators.
+        <div 
+          className={`mt-8 max-w-[550px] mx-auto transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+        >
+          <p className="text-xl leading-[1.7] text-[rgba(10,10,10,0.7)]">
+            No junior teams. No account managers. No handoffs.
           </p>
-          <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-             style={{ transitionDelay: '400ms' }}
-          >
-            Cultural bridges.
+          <p className="text-xl leading-[1.7] text-[rgba(10,10,10,0.7)] mt-4">
+            The people who find your story are the people who write it.
           </p>
-          <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-             style={{ transitionDelay: '600ms' }}
-          >
-            Pattern finders.
-          </p>
-          
-          <div className="pt-6">
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-               style={{ transitionDelay: '800ms' }}
-            >
-              We see what builders have built
-            </p>
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
-               style={{ transitionDelay: '1000ms' }}
-            >
-              and help the world see it too.
-            </p>
-          </div>
         </div>
       </div>
     </section>
   );
 };
 
-// SECTION 2: The Founder
-const TheFounder = () => {
+// SECTION 2: Fran - Photo LEFT, Text RIGHT
+const TeamMemberFran = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      className="max-w-[1200px] mx-auto px-6 py-24 md:py-32"
+      className="bg-[#0A0A0A] min-h-[600px]"
     >
-      <div className="grid md:grid-cols-2 gap-20">
-        {/* Left Column: Portrait */}
-        <div className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="aspect-[4/5] rounded-lg overflow-hidden grayscale hover:grayscale-0 transition-all duration-600">
-            <img 
-              src={franPortrait} 
-              alt="Fran, Founder of CRUDA"
-              className="w-full h-full object-cover"
-            />
-          </div>
+      <div className="grid md:grid-cols-[45%_55%]">
+        {/* Photo Left */}
+        <div className={`h-[400px] md:h-auto transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <img 
+            src={franPortrait}
+            alt="Fran, Founder of CRUDA"
+            className="w-full h-full object-cover"
+          />
         </div>
         
-        {/* Right Column: Story */}
-        <div className="space-y-6">
-          <div className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '100ms' }}
+        {/* Content Right */}
+        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center">
+          <h2 
+            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
           >
-            <h2 className="text-5xl font-semibold text-foreground mb-2">Fran</h2>
-            <p className="text-xl text-muted-foreground">Founder</p>
-          </div>
+            Fran
+          </h2>
+          <p 
+            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Founder
+          </p>
           
-          <div className="space-y-6 text-xl leading-[1.8]">
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '200ms' }}
-            >
-              I've built bridges my whole life.
+          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Eight years inside TikTok, Mondelez, Nestlé, the United Nations, DeliveryHero. Three continents. Ten nationalities.
             </p>
-            
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '300ms' }}
-            >
-              Between languages. Between cultures. Between what founders build and what the world understands.
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              The gap between mastery and articulation isn't theory. It's lived experience.
             </p>
-            
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '400ms' }}
-            >
-              Eight years. Ten nationalities. Three continents. From TikTok to the UN. From Miami to Dubai.
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Every immigrant knows this gap intimately. You know exactly who you are — but the words don't travel.
             </p>
-            
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '500ms' }}
-            >
-              The gap between mastery and articulation isn't theory for me. It's lived experience.
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Now I help founders close that gap.
             </p>
-            
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '600ms' }}
-            >
-              Every immigrant knows this gap intimately. We translate ourselves daily. We code-switch between worlds. We build bridges others can't see.
-            </p>
-            
-            <p className={`transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-               style={{ transitionDelay: '700ms' }}
-            >
-              Now I build them for founders.
-            </p>
-            
-            <div className="pt-4 space-y-2">
-              <p className={`text-2xl font-medium text-primary transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                 style={{ transitionDelay: '800ms' }}
-              >
-                The personal is universal.
-              </p>
-              <p className={`text-2xl font-medium text-primary transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                 style={{ transitionDelay: '900ms' }}
-              >
-                The specific is memorable.
-              </p>
-              <p className={`text-2xl font-medium text-primary transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                 style={{ transitionDelay: '1000ms' }}
-              >
-                The truth travels.
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -157,126 +100,225 @@ const TheFounder = () => {
   );
 };
 
-// SECTION 3: The Collaborators - HIDDEN UNTIL CONTENT READY
-/* 
-const TheCollaborators = () => {
+// SECTION 3: Michael - Text LEFT, Photo RIGHT (flipped)
+const TeamMemberMichael = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      className="max-w-[1000px] mx-auto px-6 py-24 md:py-32"
+      className="bg-[#0A0A0A] min-h-[600px] border-t border-[rgba(255,255,255,0.1)]"
     >
-      <div className={`bg-background rounded-2xl p-12 md:p-20 text-center transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <h2 className="text-4xl md:text-5xl font-medium text-foreground mb-8">
-          The Collaborators
-        </h2>
-        
-        <div className="space-y-6 text-xl leading-[1.8] max-w-[700px] mx-auto">
-          <p>
-            CRUDA isn't a solo practice. It's a constellation of specialists who appear when their expertise is needed.
+      <div className="grid md:grid-cols-[55%_45%]">
+        {/* Content Left */}
+        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center order-2 md:order-1">
+          <h2 
+            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Michael
+          </h2>
+          <p 
+            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Creative Director
           </p>
           
-          <p>
-            Designers who think in systems. Writers who think in voices. Strategists who think in decades.
-          </p>
-          
-          <p>
-            No org charts. No hierarchy. Just the right people for the right story.
-          </p>
+          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              A decade of brand and creative leadership in tech and gaming. Amazon. Twitch. Electronic Arts. Facebook. Oculus. Marvel. Universal.
+            </p>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              In-house and agency side. Content that ships, not decks that sit.
+            </p>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Michael builds brand stories that create affinity — the kind that lasts longer than a campaign.
+            </p>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          {[1, 2, 3].map((i) => (
-            <div 
-              key={i}
-              className="aspect-square bg-card border border-border rounded-lg"
-              aria-label="Future team member placeholder"
-            />
-          ))}
+        {/* Photo Right - Placeholder */}
+        <div className={`h-[400px] md:h-auto order-1 md:order-2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center">
+            <span className="text-[64px] font-semibold text-[rgba(255,255,255,0.1)]">M</span>
+          </div>
         </div>
       </div>
     </section>
   );
 };
-*/
 
-// SECTION 4: The Philosophy
-const ThePhilosophy = () => {
+// SECTION 4: Natalia - Photo LEFT, Text RIGHT
+const TeamMemberNatalia = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  
+  return (
+    <section 
+      ref={elementRef}
+      className="bg-[#0A0A0A] min-h-[600px] border-t border-[rgba(255,255,255,0.1)]"
+    >
+      <div className="grid md:grid-cols-[45%_55%]">
+        {/* Photo Left - Placeholder */}
+        <div className={`h-[400px] md:h-auto transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center">
+            <span className="text-[64px] font-semibold text-[rgba(255,255,255,0.1)]">N</span>
+          </div>
+        </div>
+        
+        {/* Content Right */}
+        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center">
+          <h2 
+            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Natalia
+          </h2>
+          <p 
+            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Operations
+          </p>
+          
+          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Enterprise account management at GSK, Dr. Reddy's, Lundbeck. Then she quit the corporate ladder.
+            </p>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.
+            </p>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Natalia knows how to run complex operations across borders and cultures. She keeps the work moving so the story can land.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// SECTION 5: Abril - Text LEFT, Photo RIGHT (flipped)
+const TeamMemberAbril = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  
+  return (
+    <section 
+      ref={elementRef}
+      className="bg-[#0A0A0A] min-h-[600px] border-t border-[rgba(255,255,255,0.1)]"
+    >
+      <div className="grid md:grid-cols-[55%_45%]">
+        {/* Content Left */}
+        <div className="px-6 py-12 md:px-[60px] md:py-20 flex flex-col justify-center order-2 md:order-1">
+          <h2 
+            className={`text-[32px] md:text-[44px] font-semibold text-white mb-2 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Abril
+          </h2>
+          <p 
+            className={`text-base text-[rgba(255,255,255,0.5)] mb-8 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          >
+            Narrative Strategist
+          </p>
+          
+          <div className={`max-w-[500px] space-y-6 transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Marketing degree. Buenos Aires → Bangkok → Mexico City.
+            </p>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Built Aftertaste — a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.
+            </p>
+            <p className="text-xl leading-[1.7] text-[rgba(255,255,255,0.8)]">
+              Abril doesn't want you to nod along. She wants you to leave with something stuck in your head.
+            </p>
+          </div>
+        </div>
+        
+        {/* Photo Right - Placeholder */}
+        <div className={`h-[400px] md:h-auto order-1 md:order-2 transition-all duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+          <div className="w-full h-full bg-[#1A1A1A] flex items-center justify-center">
+            <span className="text-[64px] font-semibold text-[rgba(255,255,255,0.1)]">A</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// SECTION 6: How We Work
+const HowWeWorkSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   const principles = [
     {
-      title: "Look Inward",
-      description: "Start with the truth only you know. The specific. The lived. The real."
+      bold: "We don't do handoffs.",
+      supporting: "The person who discovers your story is the person who writes it."
     },
     {
-      title: "Find the Essence",
-      description: "Strip away performance. What remains is what travels."
+      bold: "We don't do templates.",
+      supporting: "Every narrative is built from scratch. From conversations. From the truth only you know."
     },
     {
-      title: "Honor the Intention",
-      description: "Every story serves something larger. Name it. Protect it. Let it guide."
-    },
-    {
-      title: "Stay True",
-      description: "Consistency isn't repetition. It's recognition across time."
+      bold: "We don't do busywork.",
+      supporting: "If it doesn't move the needle on your reputation, we don't do it."
     }
   ];
   
   return (
     <section 
       ref={elementRef}
-      className="max-w-[1200px] mx-auto px-6 py-24 md:py-32"
+      className="bg-[#0A0A0A] py-[120px] px-6 md:px-20 border-t border-[rgba(255,255,255,0.1)]"
     >
-      <div className="grid md:grid-cols-2 gap-10">
-        {principles.map((principle, index) => (
-          <div
-            key={principle.title}
-            className={`bg-card p-12 md:p-16 rounded-xl border border-border hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-            style={{ transitionDelay: `${index * 150}ms` }}
-          >
-            <h3 className="text-3xl font-semibold text-foreground mb-4">
-              {principle.title}
-            </h3>
-            <p className="text-lg leading-[1.6] text-muted-foreground">
-              {principle.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-// SECTION 5: Closing Statement
-const ClosingStatement = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
-  
-  return (
-    <section 
-      ref={elementRef}
-      className="min-h-[60vh] flex items-center justify-center px-6 py-24 bg-[#3D3835] text-[#F5F1E8]"
-    >
-      <div className={`text-center space-y-8 transition-all duration-800 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        <h2 className="text-4xl md:text-5xl font-light">
-          Ready to be understood?
-        </h2>
+      <div className="max-w-[700px]">
+        <p 
+          className={`text-[13px] font-semibold tracking-[0.1em] uppercase text-[#FF2E63] mb-12 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+        >
+          How we work
+        </p>
         
-        <div className="space-y-4">
-          <p className="text-2xl font-medium text-primary">
-            Let's talk
-          </p>
-          <a 
-            href="mailto:hello@thecruda.com"
-            className="text-xl inline-block hover:underline transition-all duration-300 hover:opacity-80"
-          >
-            hello@thecruda.com
-          </a>
+        <div className="space-y-10">
+          {principles.map((principle, index) => (
+            <div 
+              key={index}
+              className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+              style={{ transitionDelay: `${(index + 1) * 150}ms` }}
+            >
+              <p className="text-[22px] font-semibold text-white">
+                {principle.bold}
+              </p>
+              <p className="text-base text-[rgba(255,255,255,0.6)] mt-2">
+                {principle.supporting}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
 
-export default People;
+// SECTION 7: Final CTA
+const FinalCTA = () => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  
+  return (
+    <section 
+      ref={elementRef}
+      className="bg-white py-[120px] px-6 md:px-20"
+    >
+      <div className="max-w-[900px] mx-auto text-center">
+        <h2 
+          className={`text-[32px] md:text-[44px] font-semibold text-[#0A0A0A] transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+        >
+          Ready when <span className="text-[#FF2E63]">you are.</span>
+        </h2>
+        
+        <Link
+          to="/book-call"
+          className={`inline-block mt-10 px-10 py-5 bg-[#FF2E63] text-white text-base font-semibold rounded-lg hover:bg-[#E0264F] transition-all duration-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+          style={{ transitionDelay: '200ms' }}
+        >
+          Start a Conversation
+        </Link>
+      </div>
+    </section>
+  );
+};
+
+export default About;

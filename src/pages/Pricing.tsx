@@ -18,26 +18,33 @@ const Pricing = () => {
   ];
 
   const columns = [
-    { label: "Month 1", title: "We listen.", body: ["Weekly conversations. Your projects, your milestones, your way of seeing the world.", "We're not writing yet. We're finding the pattern."] },
-    { label: "Months 2–6", title: "We build.", body: ["Your narrative — across LinkedIn, website, pitch decks, talking points.", "Not content for content's sake. A system that holds."] },
-    { label: "Month 7+", title: "Most clients stay.", body: ["Because the work evolves. New markets. New projects. New rooms to walk into."] }
+    { number: "01", label: "Month 1", title: "We listen.", body: ["Weekly conversations. Your projects, your milestones, your way of seeing the world.", "We're not writing yet. We're finding the pattern."] },
+    { number: "02", label: "Months 2–6", title: "We build.", body: ["Your narrative — across LinkedIn, website, pitch decks, talking points.", "Not content for content's sake. A system that holds."] },
+    { number: "03", label: "Month 7+", title: "Most clients stay.", body: ["Because the work evolves. New markets. New projects. New rooms to walk into."] }
   ];
 
   return (
     <main className="min-h-screen">
-      {/* HERO - Fixed per design brief */}
-      <section ref={heroRef} className="pricing-hero" style={{ backgroundColor: '#FFFFFF', padding: '140px 80px 120px' }}>
-        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
-          {/* Headline */}
+      {/* HERO - Pentagram-level clean */}
+      <section 
+        ref={heroRef} 
+        className="pricing-hero" 
+        style={{ 
+          backgroundColor: '#FFFFFF', 
+          padding: '160px 80px 120px'
+        }}
+      >
+        <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
+          {/* Headline - 48px */}
           <h1 
             className="transition-all duration-700 pricing-headline"
             style={{ 
-              fontSize: '44px', 
+              fontSize: '48px', 
               fontWeight: '600', 
               lineHeight: '1.15', 
               letterSpacing: '-0.02em', 
               color: '#0A0A0A',
-              marginBottom: '32px',
+              marginBottom: '40px',
               opacity: heroVisible ? 1 : 0, 
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)' 
             }}
@@ -45,52 +52,86 @@ const Pricing = () => {
             You're here because<br />something isn't working.
           </h1>
           
-          {/* Accent Divider */}
+          {/* Accent Divider - 32px */}
           <div 
             className="transition-all duration-700"
             style={{
-              width: '40px',
+              width: '32px',
               height: '2px',
               background: '#FF2E63',
-              margin: '0 auto 40px auto',
+              margin: '0 auto 48px auto',
               opacity: heroVisible ? 1 : 0,
               transitionDelay: '100ms'
             }}
           />
           
-          {/* Body Copy */}
+          {/* Intro - softest */}
           <div 
             className="transition-all duration-700" 
             style={{ 
               fontSize: '18px', 
               fontWeight: '400', 
               lineHeight: '1.7', 
-              color: 'rgba(10, 10, 10, 0.6)', 
-              maxWidth: '500px',
-              margin: '0 auto',
+              color: 'rgba(10, 10, 10, 0.5)', 
+              marginBottom: '24px',
               opacity: heroVisible ? 1 : 0, 
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)', 
               transitionDelay: '150ms' 
             }}
           >
-            <p style={{ marginBottom: '16px' }}>You've done the work. Built the portfolio. Won the projects.</p>
-            <p style={{ marginBottom: '16px', color: 'rgba(10, 10, 10, 0.8)' }}>But the story isn't landing.</p>
-            <p>The LinkedIn feels hollow. The website sounds like everyone else. And every time you pitch, you start from zero.</p>
+            <p>You've done the work.</p>
+            <p>Built the portfolio.</p>
+            <p>Won the projects.</p>
           </div>
           
-          {/* Closer */}
+          {/* Problem - slightly darker */}
+          <p 
+            className="transition-all duration-700"
+            style={{ 
+              fontSize: '18px', 
+              fontWeight: '400', 
+              lineHeight: '1.7', 
+              color: 'rgba(10, 10, 10, 0.6)', 
+              marginBottom: '24px',
+              opacity: heroVisible ? 1 : 0, 
+              transitionDelay: '200ms' 
+            }}
+          >
+            But the story isn't landing.
+          </p>
+          
+          {/* Pain points */}
+          <div 
+            className="transition-all duration-700"
+            style={{ 
+              fontSize: '18px', 
+              fontWeight: '400', 
+              lineHeight: '1.7', 
+              color: 'rgba(10, 10, 10, 0.5)', 
+              marginBottom: '48px',
+              opacity: heroVisible ? 1 : 0, 
+              transitionDelay: '250ms' 
+            }}
+          >
+            <p>The LinkedIn feels hollow.</p>
+            <p>The website sounds like everyone else.</p>
+            <p>And every time you pitch, you start from zero.</p>
+          </div>
+          
+          {/* Solution - strong */}
           <div 
             className="transition-all duration-700"
             style={{ 
               fontSize: '20px',
+              fontWeight: '500',
               lineHeight: '1.5',
-              marginTop: '40px',
+              color: '#0A0A0A',
               opacity: heroVisible ? 1 : 0,
-              transitionDelay: '200ms'
+              transitionDelay: '300ms'
             }}
           >
-            <p style={{ color: '#0A0A0A' }}>You don't need more content.</p>
-            <p style={{ color: '#0A0A0A', fontWeight: '600' }}>You need coherence.</p>
+            <p>You don't need more content.</p>
+            <p style={{ fontWeight: '600' }}>You need coherence.</p>
           </div>
         </div>
       </section>
@@ -123,7 +164,6 @@ const Pricing = () => {
               padding: '18px 28px', 
               fontSize: '15px', 
               fontWeight: '500',
-              letterSpacing: '0.01em',
               borderRadius: '0', 
               textDecoration: 'none' 
             }} 
@@ -139,7 +179,7 @@ const Pricing = () => {
       {/* WHAT CHANGES */}
       <section ref={changesRef} style={{ backgroundColor: '#FFFFFF', padding: '120px 80px', borderTop: '1px solid rgba(10, 10, 10, 0.1)' }}>
         <div style={{ maxWidth: '700px' }}>
-          <p className="transition-all duration-700" style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: changesVisible ? 1 : 0 }}>What changes</p>
+          <p className="transition-all duration-700" style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: changesVisible ? 1 : 0 }}>What changes</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {changes.map((change, i) => (
               <p key={i} className="transition-all duration-700" style={{ fontSize: '24px', fontWeight: '400', color: '#0A0A0A', lineHeight: '1.6', opacity: changesVisible ? 1 : 0, transitionDelay: `${(i + 1) * 100}ms` }}>
@@ -150,16 +190,18 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
+      {/* HOW IT WORKS - Clean grid */}
       <section ref={howRef} style={{ backgroundColor: '#F5F1E8', padding: '120px 80px' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <p className="transition-all duration-700" style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '48px', opacity: howVisible ? 1 : 0 }}>How it works</p>
+          <p className="transition-all duration-700" style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#FF2E63', marginBottom: '64px', opacity: howVisible ? 1 : 0 }}>How it works</p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '48px' }} className="pricing-how-grid">
             {columns.map((col, i) => (
               <div key={i} className="transition-all duration-700" style={{ opacity: howVisible ? 1 : 0, transitionDelay: `${(i + 1) * 100}ms` }}>
-                <p style={{ fontSize: '12px', fontWeight: '600', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)', marginBottom: '16px' }}>{col.label}</p>
+                <p style={{ fontSize: '14px', fontWeight: '600', color: 'rgba(10, 10, 10, 0.2)', marginBottom: '12px' }}>{col.number}</p>
+                <p style={{ fontSize: '13px', fontWeight: '600', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'rgba(10, 10, 10, 0.4)', marginBottom: '20px' }}>{col.label}</p>
+                <div style={{ width: '32px', height: '2px', background: 'rgba(10, 10, 10, 0.1)', marginBottom: '24px' }} />
                 <p style={{ fontSize: '22px', fontWeight: '600', color: '#0A0A0A', marginBottom: '16px' }}>{col.title}</p>
-                {col.body.map((p, j) => <p key={j} style={{ fontSize: '16px', fontWeight: '400', color: 'rgba(10, 10, 10, 0.7)', lineHeight: '1.6', marginBottom: '16px' }}>{p}</p>)}
+                {col.body.map((p, j) => <p key={j} style={{ fontSize: '17px', fontWeight: '400', color: 'rgba(10, 10, 10, 0.6)', lineHeight: '1.65', marginBottom: j < col.body.length - 1 ? '16px' : 0 }}>{p}</p>)}
               </div>
             ))}
           </div>
@@ -196,7 +238,6 @@ const Pricing = () => {
               padding: '18px 28px', 
               fontSize: '15px', 
               fontWeight: '500',
-              letterSpacing: '0.01em',
               borderRadius: '0', 
               textDecoration: 'none' 
             }} 
@@ -213,7 +254,7 @@ const Pricing = () => {
         @media (max-width: 768px) {
           section { padding: 80px 24px !important; }
           .pricing-hero { padding-top: 100px !important; }
-          .pricing-headline { font-size: 32px !important; }
+          .pricing-headline { font-size: 36px !important; }
           .pricing-how-grid { grid-template-columns: 1fr !important; }
           .pricing-cta-headline { font-size: 32px !important; }
         }

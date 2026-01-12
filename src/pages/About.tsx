@@ -4,34 +4,84 @@ import { Link } from 'react-router-dom';
 
 const About = () => {
   return (
-    <main className="about-page">
+    <main className="about-page" style={{ backgroundColor: '#FFFFFF' }}>
       <HeroSection />
-      <TeamSection />
+      <TeamMember 
+        label="FOUNDER"
+        name="FRAN"
+        bio={[
+          "Eight years inside TikTok, Mondelez, Nestlé, the United Nations, DeliveryHero. Three continents. Ten nationalities.",
+          "The gap between mastery and articulation isn't theory. It's lived experience.",
+          "Every immigrant knows this gap intimately. You know exactly who you are — but the words don't travel.",
+          "Now I help founders close that gap."
+        ]}
+        image={franPortrait}
+        flipped={false}
+      />
+      <TeamMember 
+        label="CREATIVE DIRECTOR"
+        name="MICHAEL"
+        bio={[
+          "A decade of brand and creative leadership in tech and gaming. Amazon. Twitch. Electronic Arts. Facebook. Oculus. LucasArts. Marvel. Universal. Hasbro.",
+          "In-house and agency side. Content that ships, not decks that sit.",
+          "Michael builds brand stories that create affinity — the kind that lasts longer than a campaign."
+        ]}
+        initial="M"
+        flipped={true}
+      />
+      <TeamMember 
+        label="OPERATIONS"
+        name="NATALIA"
+        bio={[
+          "Enterprise account management at GSK, Dr. Reddy's, Lundbeck — one of the only pharmaceutical companies in the world focusing exclusively on brain diseases. Then she quit the corporate ladder.",
+          "Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.",
+          "Natalia knows how to run complex operations across borders and cultures. She keeps the work moving so the story can land."
+        ]}
+        initial="N"
+        flipped={false}
+      />
+      <TeamMember 
+        label="NARRATIVE STRATEGIST"
+        name="ABRIL"
+        bio={[
+          "Marketing degree. Buenos Aires → Bangkok → Mexico City.",
+          "Built Aftertaste — a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.",
+          "Abril doesn't want you to nod along. She wants you to leave with something stuck in your head."
+        ]}
+        initial="A"
+        flipped={true}
+        isLast={true}
+      />
       <HowWeWorkSection />
       <FinalCTA />
     </main>
   );
 };
 
-// SECTION 1: Hero (White)
+// HERO SECTION
 const HeroSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      style={{ backgroundColor: '#FFFFFF', padding: '120px 80px' }}
       className="about-hero"
+      style={{ 
+        backgroundColor: '#FFFFFF', 
+        padding: '160px 80px 120px',
+        textAlign: 'center'
+      }}
     >
-      <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
         <h1 
           className="transition-all duration-700 about-headline"
           style={{ 
-            fontSize: '44px',
+            fontSize: '56px',
             fontWeight: '600',
-            lineHeight: '1.15',
-            letterSpacing: '-0.02em',
+            lineHeight: '1.1',
+            letterSpacing: '-0.025em',
             color: '#0A0A0A',
+            marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -41,19 +91,25 @@ const HeroSection = () => {
         </h1>
         
         <div 
-          className="transition-all duration-700"
+          className="transition-all duration-700 about-hero-body"
           style={{ 
-            marginTop: '40px',
+            fontSize: '20px',
+            fontWeight: '400',
+            lineHeight: '1.7',
+            color: 'rgba(10, 10, 10, 0.6)',
+            maxWidth: '400px',
+            margin: '0 auto',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transitionDelay: '100ms'
           }}
         >
-          <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'rgba(10, 10, 10, 0.6)' }}>
-            No junior teams. No account managers. No handoffs.
-          </p>
-          <p style={{ fontSize: '18px', lineHeight: '1.7', color: 'rgba(10, 10, 10, 0.6)', marginTop: '16px' }}>
-            The people who find your story are the people who write it.
+          <p>No junior teams.</p>
+          <p>No account managers.</p>
+          <p>No handoffs.</p>
+          <p style={{ marginTop: '24px', color: 'rgba(10, 10, 10, 0.8)' }}>
+            The people who find your story<br />
+            are the people who write it.
           </p>
         </div>
       </div>
@@ -61,10 +117,10 @@ const HeroSection = () => {
       <style>{`
         @media (max-width: 768px) {
           .about-hero {
-            padding: 80px 24px !important;
+            padding: 100px 24px 80px !important;
           }
           .about-headline {
-            font-size: 32px !important;
+            font-size: 40px !important;
           }
         }
       `}</style>
@@ -72,113 +128,153 @@ const HeroSection = () => {
   );
 };
 
-// SECTION 2: Team Cards (Dark)
-const TeamSection = () => {
-  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
-  
-  const teamMembers = [
-    {
-      name: "Fran",
-      title: "Founder",
-      bio: "Eight years inside TikTok, Mondelez, Nestlé, the United Nations, DeliveryHero. Three continents. The gap between mastery and articulation isn't theory — it's lived experience.",
-      image: franPortrait,
-      hasPhoto: true
-    },
-    {
-      name: "Michael",
-      title: "Creative Director",
-      bio: "A decade of brand and creative leadership. Amazon. Twitch. Electronic Arts. Facebook. Oculus. Marvel. Universal. In-house and agency side. Content that ships, not decks that sit.",
-      initial: "M",
-      hasPhoto: false
-    },
-    {
-      name: "Natalia",
-      title: "Operations",
-      bio: "Enterprise account management at GSK, Dr. Reddy's, Lundbeck. Eight years in Spain. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.",
-      initial: "N",
-      hasPhoto: false
-    }
-  ];
+// TEAM MEMBER - EDITORIAL SPREAD
+interface TeamMemberProps {
+  label: string;
+  name: string;
+  bio: string[];
+  image?: string;
+  initial?: string;
+  flipped: boolean;
+  isLast?: boolean;
+}
 
-  const abrilMember = {
-    name: "Abril",
-    title: "Narrative Strategist",
-    bio: "Marketing degree. Buenos Aires → Bangkok → Mexico City. Built Aftertaste — a newsletter dissecting culture, fashion, art. 500K+ views. Not by explaining. By provoking.",
-    initial: "A",
-    hasPhoto: false
-  };
+const TeamMember = ({ label, name, bio, image, initial, flipped, isLast }: TeamMemberProps) => {
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      style={{ backgroundColor: '#0A0A0A', padding: '120px 80px' }}
-      className="team-section"
+      className="team-member"
+      style={{ 
+        display: 'grid',
+        gridTemplateColumns: flipped ? '55% 45%' : '45% 55%',
+        gap: '80px',
+        padding: '100px 80px',
+        borderBottom: isLast ? 'none' : '1px solid rgba(10, 10, 10, 0.08)',
+        alignItems: 'start',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}
     >
-      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-        {/* Label */}
-        <p 
-          className="transition-all duration-700"
-          style={{
-            fontSize: '12px',
-            fontWeight: '600',
-            letterSpacing: '0.12em',
-            textTransform: 'uppercase',
-            color: '#FF2E63',
-            marginBottom: '48px',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
-          }}
-        >
-          The team
-        </p>
-
-        {/* First Row - 3 Cards */}
-        <div 
-          className="team-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '24px',
-            marginBottom: '24px'
-          }}
-        >
-          {teamMembers.map((member, index) => (
-            <TeamCard 
-              key={member.name} 
-              member={member} 
-              isVisible={isVisible}
-              delay={index * 100}
-            />
-          ))}
-        </div>
-
-        {/* Second Row - Abril Centered */}
-        <div 
-          style={{
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-        >
-          <div style={{ width: 'calc(33.333% - 16px)' }} className="abril-card-container">
-            <TeamCard 
-              member={abrilMember} 
-              isVisible={isVisible}
-              delay={300}
-            />
+      {/* Photo */}
+      <div 
+        className="team-photo transition-all duration-700"
+        style={{ 
+          order: flipped ? 2 : 1,
+          maxWidth: '480px',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
+        }}
+      >
+        {image ? (
+          <img 
+            src={image}
+            alt={name}
+            style={{
+              width: '100%',
+              height: 'auto',
+              aspectRatio: '4 / 5',
+              objectFit: 'cover',
+              objectPosition: 'center top'
+            }}
+          />
+        ) : (
+          <div 
+            style={{
+              width: '100%',
+              aspectRatio: '4 / 5',
+              background: '#F5F1E8',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <span 
+              style={{
+                fontSize: '160px',
+                fontWeight: '600',
+                color: 'rgba(10, 10, 10, 0.04)'
+              }}
+            >
+              {initial}
+            </span>
           </div>
+        )}
+      </div>
+      
+      {/* Content */}
+      <div 
+        className="team-content transition-all duration-700"
+        style={{ 
+          order: flipped ? 1 : 2,
+          paddingTop: '20px',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transitionDelay: '100ms'
+        }}
+      >
+        {/* Label */}
+        <p style={{
+          fontSize: '13px',
+          fontWeight: '600',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: 'rgba(10, 10, 10, 0.4)',
+          marginBottom: '4px'
+        }}>
+          {label}
+        </p>
+        
+        {/* Name */}
+        <p style={{
+          fontSize: '13px',
+          fontWeight: '600',
+          letterSpacing: '0.1em',
+          textTransform: 'uppercase',
+          color: '#FF2E63',
+          marginBottom: '32px'
+        }}>
+          {name}
+        </p>
+        
+        {/* Divider */}
+        <div style={{
+          width: '40px',
+          height: '2px',
+          background: '#FF2E63',
+          marginBottom: '32px'
+        }} />
+        
+        {/* Bio */}
+        <div style={{
+          fontSize: '20px',
+          fontWeight: '400',
+          lineHeight: '1.7',
+          color: 'rgba(10, 10, 10, 0.7)',
+          maxWidth: '480px'
+        }}>
+          {bio.map((paragraph, index) => (
+            <p key={index} style={{ marginBottom: index < bio.length - 1 ? '24px' : 0 }}>
+              {paragraph}
+            </p>
+          ))}
         </div>
       </div>
       
       <style>{`
         @media (max-width: 768px) {
-          .team-section {
-            padding: 80px 24px !important;
-          }
-          .team-grid {
+          .team-member {
             grid-template-columns: 1fr !important;
+            gap: 40px !important;
+            padding: 60px 24px !important;
           }
-          .abril-card-container {
-            width: 100% !important;
+          .team-photo {
+            order: 1 !important;
+            max-width: 100% !important;
+          }
+          .team-content {
+            order: 2 !important;
           }
         }
       `}</style>
@@ -186,131 +282,44 @@ const TeamSection = () => {
   );
 };
 
-// Team Card Component
-interface TeamMember {
-  name: string;
-  title: string;
-  bio: string;
-  image?: string;
-  initial?: string;
-  hasPhoto: boolean;
-}
-
-const TeamCard = ({ member, isVisible, delay }: { member: TeamMember; isVisible: boolean; delay: number }) => {
-  return (
-    <div
-      className="team-card transition-all duration-700"
-      style={{
-        background: 'rgba(255, 255, 255, 0.03)',
-        border: '1px solid rgba(255, 255, 255, 0.08)',
-        borderRadius: '2px',
-        overflow: 'hidden',
-        opacity: isVisible ? 1 : 0,
-        transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-        transitionDelay: `${delay}ms`
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-        e.currentTarget.style.transform = 'translateY(-4px)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-        e.currentTarget.style.transform = 'translateY(0)';
-      }}
-    >
-      {/* Photo or Placeholder */}
-      {member.hasPhoto ? (
-        <img 
-          src={member.image}
-          alt={member.name}
-          style={{
-            width: '100%',
-            aspectRatio: '4 / 5',
-            objectFit: 'cover',
-            filter: 'grayscale(20%)',
-            transition: 'filter 0.3s ease'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.filter = 'grayscale(0%)'}
-          onMouseLeave={(e) => e.currentTarget.style.filter = 'grayscale(20%)'}
-        />
-      ) : (
-        <div 
-          style={{
-            width: '100%',
-            aspectRatio: '4 / 5',
-            background: 'rgba(255, 255, 255, 0.02)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <span 
-            style={{
-              fontSize: '80px',
-              fontWeight: '600',
-              color: 'rgba(255, 255, 255, 0.05)'
-            }}
-          >
-            {member.initial}
-          </span>
-        </div>
-      )}
-      
-      {/* Content */}
-      <div style={{ padding: '24px' }}>
-        <h3 style={{ fontSize: '20px', fontWeight: '600', color: '#FFFFFF', marginBottom: '4px' }}>
-          {member.name}
-        </h3>
-        <p style={{ fontSize: '14px', fontWeight: '400', color: 'rgba(255, 255, 255, 0.4)', marginBottom: '16px' }}>
-          {member.title}
-        </p>
-        <p style={{ fontSize: '15px', fontWeight: '400', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.6)' }}>
-          {member.bio}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-// SECTION 3: How We Work (Dark continued)
+// HOW WE WORK SECTION
 const HowWeWorkSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   const principles = [
     {
-      bold: "We don't do handoffs.",
-      supporting: "The person who discovers your story is the person who writes it."
+      title: "We don't do handoffs.",
+      body: "The person who discovers your story is the person who writes it."
     },
     {
-      bold: "We don't do templates.",
-      supporting: "Every narrative is built from scratch. From conversations. From the truth only you know."
+      title: "We don't do templates.",
+      body: "Every narrative is built from scratch. From conversations. From the truth only you know."
     },
     {
-      bold: "We don't do busywork.",
-      supporting: "If it doesn't move the needle on your reputation, we don't do it."
+      title: "We don't do busywork.",
+      body: "If it doesn't move the needle on your reputation, we don't do it."
     }
   ];
   
   return (
     <section 
       ref={elementRef}
+      className="how-we-work-section"
       style={{ 
-        backgroundColor: '#0A0A0A', 
-        padding: '120px 80px',
-        borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+        backgroundColor: '#F5F1E8', 
+        padding: '120px 80px'
       }}
-      className="how-work-section"
     >
-      <div style={{ maxWidth: '700px' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         <p 
           className="transition-all duration-700"
           style={{
-            fontSize: '12px',
+            fontSize: '13px',
             fontWeight: '600',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: '#FF2E63',
-            marginBottom: '48px',
+            marginBottom: '64px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -318,7 +327,14 @@ const HowWeWorkSection = () => {
           How we work
         </p>
         
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+        <div 
+          className="how-grid"
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '48px' 
+          }}
+        >
           {principles.map((principle, index) => (
             <div 
               key={index}
@@ -326,14 +342,25 @@ const HowWeWorkSection = () => {
               style={{ 
                 opacity: isVisible ? 1 : 0, 
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 150}ms`
+                transitionDelay: `${(index + 1) * 100}ms`
               }}
             >
-              <p style={{ fontSize: '22px', fontWeight: '600', color: '#FFFFFF' }}>
-                {principle.bold}
-              </p>
-              <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)', marginTop: '8px' }}>
-                {principle.supporting}
+              <h3 style={{ 
+                fontSize: '22px', 
+                fontWeight: '600', 
+                color: '#0A0A0A', 
+                marginBottom: '16px',
+                lineHeight: '1.3'
+              }}>
+                {principle.title}
+              </h3>
+              <p style={{ 
+                fontSize: '17px', 
+                fontWeight: '400',
+                lineHeight: '1.6',
+                color: 'rgba(10, 10, 10, 0.6)' 
+              }}>
+                {principle.body}
               </p>
             </div>
           ))}
@@ -342,8 +369,12 @@ const HowWeWorkSection = () => {
       
       <style>{`
         @media (max-width: 768px) {
-          .how-work-section {
+          .how-we-work-section {
             padding: 80px 24px !important;
+          }
+          .how-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
           }
         }
       `}</style>
@@ -351,23 +382,27 @@ const HowWeWorkSection = () => {
   );
 };
 
-// SECTION 4: Final CTA (White)
+// FINAL CTA
 const FinalCTA = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   
   return (
     <section 
       ref={elementRef}
-      style={{ backgroundColor: '#FFFFFF', padding: '120px 80px' }}
-      className="final-cta-section"
+      className="final-cta"
+      style={{ 
+        backgroundColor: '#0A0A0A', 
+        padding: '120px 80px',
+        textAlign: 'center'
+      }}
     >
-      <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
+      <div style={{ maxWidth: '700px', margin: '0 auto' }}>
         <h2 
           className="transition-all duration-700"
           style={{ 
             fontSize: '44px',
             fontWeight: '600',
-            color: '#0A0A0A',
+            color: '#FFFFFF',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -383,11 +418,10 @@ const FinalCTA = () => {
             alignItems: 'center',
             gap: '12px',
             marginTop: '40px',
-            background: '#0A0A0A',
+            background: '#FF2E63',
             color: '#FFFFFF',
             fontSize: '15px',
             fontWeight: '500',
-            letterSpacing: '0.01em',
             padding: '18px 28px',
             borderRadius: '0',
             textDecoration: 'none',
@@ -397,10 +431,12 @@ const FinalCTA = () => {
             transitionDelay: '200ms'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#FF2E63';
+            e.currentTarget.style.background = '#FFFFFF';
+            e.currentTarget.style.color = '#0A0A0A';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = '#0A0A0A';
+            e.currentTarget.style.background = '#FF2E63';
+            e.currentTarget.style.color = '#FFFFFF';
           }}
         >
           Start a Conversation
@@ -413,7 +449,7 @@ const FinalCTA = () => {
           transform: translateX(4px);
         }
         @media (max-width: 768px) {
-          .final-cta-section {
+          .final-cta {
             padding: 80px 24px !important;
           }
         }

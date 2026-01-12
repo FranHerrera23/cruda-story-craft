@@ -38,6 +38,9 @@ interface WordConfig {
   floatPhase: number;
   blurStart: number;
   scaleStart: number;
+  // Breathing config
+  breatheSpeed: number;
+  breatheAmplitude: number;
 }
 
 const FloatingWord = ({ 
@@ -76,10 +79,14 @@ const FloatingWord = ({
     ? Math.cos((time * config.floatSpeed * 0.7) + config.floatPhase) * (config.floatAmplitude * 0.5)
     : 0;
 
+  // Subtle opacity breathing
+  const breatheOpacity = hasEntered
+    ? 0.28 + Math.sin((time * config.breatheSpeed) + config.floatPhase) * config.breatheAmplitude
+    : 0.28;
+
   // Entrance values
-  const opacity = isVisible 
-    ? isHovered ? 0.5 : 0.28
-    : 0;
+  const baseOpacity = isHovered ? 0.5 : breatheOpacity;
+  const opacity = isVisible ? baseOpacity : 0;
   const blur = isVisible ? 0 : config.blurStart;
   const scale = isVisible ? 1 : config.scaleStart;
   const translateX = isVisible ? floatX : initialX;
@@ -189,6 +196,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: 0,
       blurStart: 8,
       scaleStart: 0.85,
+      breatheSpeed: 0.4,
+      breatheAmplitude: 0.06,
     },
     { 
       word: 'leverage', 
@@ -202,6 +211,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI / 3,
       blurStart: 6,
       scaleStart: 0.9,
+      breatheSpeed: 0.35,
+      breatheAmplitude: 0.05,
     },
     { 
       word: 'best-in-class', 
@@ -215,6 +226,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI / 2,
       blurStart: 10,
       scaleStart: 0.88,
+      breatheSpeed: 0.45,
+      breatheAmplitude: 0.07,
     },
     { 
       word: 'solutions', 
@@ -228,6 +241,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI,
       blurStart: 5,
       scaleStart: 0.92,
+      breatheSpeed: 0.3,
+      breatheAmplitude: 0.05,
     },
   ], []);
 
@@ -244,6 +259,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI / 4,
       blurStart: 7,
       scaleStart: 0.87,
+      breatheSpeed: 0.38,
+      breatheAmplitude: 0.06,
     },
     { 
       word: 'award-winning', 
@@ -257,6 +274,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI * 0.75,
       blurStart: 9,
       scaleStart: 0.9,
+      breatheSpeed: 0.42,
+      breatheAmplitude: 0.055,
     },
     { 
       word: 'Inc 5000', 
@@ -270,6 +289,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI * 1.25,
       blurStart: 6,
       scaleStart: 0.88,
+      breatheSpeed: 0.33,
+      breatheAmplitude: 0.065,
     },
     { 
       word: 'industry leader', 
@@ -283,6 +304,8 @@ const NarrativeAlignmentSection = () => {
       floatPhase: Math.PI * 1.5,
       blurStart: 8,
       scaleStart: 0.85,
+      breatheSpeed: 0.28,
+      breatheAmplitude: 0.05,
     },
   ], []);
 

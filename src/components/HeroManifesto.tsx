@@ -22,16 +22,26 @@ const HeroManifesto = () => {
       className="hero-section"
       style={{ 
         backgroundColor: '#FFFFFF',
-        display: 'grid',
-        gridTemplateColumns: '1fr 420px',
-        gap: '80px',
+        display: 'flex',
         alignItems: 'center',
-        padding: '80px 80px 120px 80px',
-        minHeight: '85vh',
+        justifyContent: 'center',
+        padding: '80px',
+        paddingTop: '140px',
+        minHeight: '90vh',
         maxWidth: '1400px',
         margin: '0 auto'
       }}
     >
+      <div 
+        className="hero-grid"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 480px',
+          gap: '80px',
+          alignItems: 'center',
+          width: '100%'
+        }}
+      >
       {/* Left Column - Text Content */}
       <div>
         {/* Headline */}
@@ -49,13 +59,14 @@ const HeroManifesto = () => {
           }}
         >
           <span style={{ display: 'block' }}>You've built something</span>
-          <span style={{ display: 'block', marginBottom: '8px' }}>extraordinary.</span>
+          <span style={{ display: 'block' }}>extraordinary.</span>
           <span style={{ display: 'block', color: '#FF2E63' }}>Explaining it shouldn't</span>
-          <span style={{ display: 'block', color: '#FF2E63', marginBottom: '40px' }}>be this hard.</span>
+          <span style={{ display: 'block', color: '#FF2E63' }}>be this hard.</span>
         </h1>
         
-        {/* Descriptor (V6: letter-spacing 0.01em for refinement) */}
+        {/* Descriptor */}
         <p
+          className="hero-descriptor"
           style={{
             fontSize: '18px',
             fontWeight: '400',
@@ -64,8 +75,8 @@ const HeroManifesto = () => {
             letterSpacing: '0.01em',
             color: 'rgba(10, 10, 10, 0.5)',
             maxWidth: '400px',
-            marginTop: '28px',
-            marginBottom: '36px',
+            marginTop: '24px',
+            marginBottom: '32px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
             transition: 'all 0.6s ease',
@@ -119,9 +130,9 @@ const HeroManifesto = () => {
           src={franCallImage}
           alt="Fran Herrera, Founder of CRUDA"
           style={{
-            width: '420px',
+            width: '480px',
             maxWidth: '100%',
-            height: '580px',
+            height: '600px',
             objectFit: 'cover',
             objectPosition: '50% 0%',
             borderRadius: '2px',
@@ -129,6 +140,7 @@ const HeroManifesto = () => {
             filter: 'saturate(0.9) contrast(1.02)',
           }}
         />
+      </div>
       </div>
       
       {/* Styles */}
@@ -145,33 +157,50 @@ const HeroManifesto = () => {
           .hero-headline {
             font-size: 56px !important;
           }
+          .hero-grid {
+            grid-template-columns: 1fr 400px !important;
+            gap: 60px !important;
+          }
+          .hero-photo img {
+            width: 400px !important;
+            height: 520px !important;
+          }
+        }
+        
+        @media (max-width: 900px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
+          }
+          .hero-section {
+            padding: 100px 40px 80px 40px !important;
+            min-height: auto !important;
+          }
+          .hero-headline {
+            font-size: 48px !important;
+          }
+          .hero-photo {
+            order: 2;
+            display: flex;
+            justify-content: center;
+          }
+          .hero-photo img {
+            width: 100% !important;
+            max-width: 400px !important;
+            height: 500px !important;
+          }
         }
         
         @media (max-width: 768px) {
           .hero-section {
-            grid-template-columns: 1fr !important;
-            gap: 48px !important;
-            padding: 60px 24px 80px 24px !important;
-            min-height: auto !important;
+            padding: 100px 24px 60px 24px !important;
           }
           .hero-headline {
             font-size: 42px !important;
           }
-          .hero-photo {
-            order: 2;
-          }
           .hero-photo img {
-            width: 100% !important;
             max-width: 320px !important;
             height: 400px !important;
-            margin: 0 auto !important;
-          }
-        }
-          .hero-photo img {
-            width: 100% !important;
-            max-width: 320px !important;
-            height: 400px !important;
-            margin: 0 auto !important;
           }
         }
       `}</style>

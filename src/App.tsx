@@ -7,7 +7,7 @@ import { Navigation } from "@/components/Navigation";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import Work from "./pages/Work";
-import People from "./pages/People";
+import About from "./pages/About";
 import ClientDetail from "./pages/ClientDetail";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
 import BookCall from "./pages/BookCall";
@@ -41,7 +41,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/work" element={<Work />} />
             <Route path="/pricing" element={<Pricing />} />
-            <Route path="/people" element={<People />} />
+            <Route path="/about" element={<About />} />
             <Route path="/clients/karen-mannheim" element={<KarenMannheimCaseStudy />} />
             <Route path="/clients/mike-kaeding" element={<MikeKaedingCaseStudy />} />
             <Route path="/clients/juan-pablo-romero" element={<JuanPabloRomeroCaseStudy />} />

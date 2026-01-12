@@ -39,27 +39,40 @@ const FloatingWord = ({
   delay: number; 
   isVisible: boolean;
   scrollOffset: number;
-}) => (
-  <span
-    style={{
-      position: 'absolute',
-      top,
-      left,
-      fontSize: '14px',
-      fontWeight: 400,
-      textTransform: 'uppercase',
-      letterSpacing: '0.08em',
-      color: isVisible ? 'rgba(10, 10, 10, 0.25)' : 'rgba(10, 10, 10, 0)',
-      transform: isVisible 
-        ? `translateY(${scrollOffset}px)` 
-        : `translateY(${20 + scrollOffset}px)`,
-      transition: `color 0.6s ease-out ${delay}s, transform 0.6s ease-out ${delay}s`,
-      whiteSpace: 'nowrap',
-    }}
-  >
-    {word}
-  </span>
-);
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  return (
+    <span
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        position: 'absolute',
+        top,
+        left,
+        fontSize: '14px',
+        fontWeight: 400,
+        textTransform: 'uppercase',
+        letterSpacing: '0.08em',
+        color: isVisible 
+          ? isHovered 
+            ? 'rgba(10, 10, 10, 0.45)' 
+            : 'rgba(10, 10, 10, 0.25)' 
+          : 'rgba(10, 10, 10, 0)',
+        transform: isVisible 
+          ? `translateY(${scrollOffset}px)` 
+          : `translateY(${20 + scrollOffset}px)`,
+        transition: isVisible 
+          ? 'color 0.2s ease-out, transform 0.1s ease-out' 
+          : `color 0.6s ease-out ${delay}s, transform 0.6s ease-out ${delay}s`,
+        whiteSpace: 'nowrap',
+        cursor: 'default',
+      }}
+    >
+      {word}
+    </span>
+  );
+};
 
 const NarrativeAlignmentSection = () => {
   const row1 = useRowAnimation();
@@ -77,7 +90,8 @@ const NarrativeAlignmentSection = () => {
     const handleScroll = () => {
       if (sectionRef.current) {
         const rect = sectionRef.current.getBoundingClientRect();
-        const relativeScroll = -rect.top * 0.15;
+        // Reduced parallax intensity to prevent overlapping
+        const relativeScroll = Math.max(-30, Math.min(30, -rect.top * 0.05));
         setScrollOffset(relativeScroll);
       }
     };
@@ -107,19 +121,19 @@ const NarrativeAlignmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Diagonal drift pattern: top-left → bottom-right
+  // Diagonal drift pattern with more vertical spacing to prevent overlap
   const row1Words = [
-    { word: 'synergy', top: '10%', left: '5%' },
-    { word: 'leverage', top: '35%', left: '25%' },
-    { word: 'best-in-class', top: '55%', left: '45%' },
-    { word: 'solutions', top: '75%', left: '65%' },
+    { word: 'synergy', top: '5%', left: '5%' },
+    { word: 'leverage', top: '30%', left: '35%' },
+    { word: 'best-in-class', top: '55%', left: '10%' },
+    { word: 'solutions', top: '80%', left: '50%' },
   ];
 
   const row2Words = [
-    { word: 'Forbes', top: '10%', left: '10%' },
-    { word: 'award-winning', top: '35%', left: '30%' },
-    { word: 'Inc 5000', top: '55%', left: '50%' },
-    { word: 'industry leader', top: '75%', left: '60%' },
+    { word: 'Forbes', top: '5%', left: '15%' },
+    { word: 'award-winning', top: '30%', left: '45%' },
+    { word: 'Inc 5000', top: '55%', left: '20%' },
+    { word: 'industry leader', top: '80%', left: '55%' },
   ];
 
   return (

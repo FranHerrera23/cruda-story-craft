@@ -53,13 +53,14 @@ const HeroManifesto = () => {
           <span style={{ display: 'block', color: '#FF2E63', marginBottom: '40px' }}>be this hard.</span>
         </h1>
         
-        {/* Descriptor */}
+        {/* Descriptor (V6: letter-spacing 0.01em for refinement) */}
         <p
           style={{
             fontSize: '18px',
             fontWeight: '400',
             fontStyle: 'italic',
             lineHeight: '1.6',
+            letterSpacing: '0.01em', // V6: Typography micro-adjustment
             color: 'rgba(10, 10, 10, 0.5)',
             maxWidth: '400px',
             marginBottom: '40px',
@@ -110,7 +111,7 @@ const HeroManifesto = () => {
         </Link>
       </div>
       
-      {/* Right Column - Photo */}
+      {/* Right Column - Photo (V6: Crop tighter, eliminate laptop) */}
       <div className="hero-photo">
         <img
           src={franCallImage}
@@ -118,11 +119,12 @@ const HeroManifesto = () => {
           style={{
             width: '380px',
             maxWidth: '100%',
-            height: '520px',
+            height: '480px', // V6: Tighter crop
             objectFit: 'cover',
-            objectPosition: 'center top',
+            objectPosition: '50% 15%', // V6: Crop from chin up, eliminate laptop
             borderRadius: '2px',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)'
+            boxShadow: '0 24px 48px rgba(0, 0, 0, 0.12)', // V6: More depth
+            filter: 'saturate(0.9) contrast(1.02)', // V6: Editorial feel
           }}
         />
       </div>

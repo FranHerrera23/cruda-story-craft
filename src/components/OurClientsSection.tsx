@@ -99,18 +99,21 @@ const OurClientsSection = () => {
             <Link
               key={index}
               to={`/clients/${client.slug}`}
-              className="group transition-all duration-300"
+              className="client-card group transition-all duration-300"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: `${(index + 1) * 100}ms`,
-                textDecoration: 'none'
+                textDecoration: 'none',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
               }}
             >
               {/* Photo */}

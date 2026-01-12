@@ -100,14 +100,17 @@ const Pricing = () => {
               transform: investmentVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            <p style={{
-              fontSize: '64px',
-              fontWeight: '700',
-              color: '#0A0A0A',
-              letterSpacing: '-0.02em',
-              lineHeight: '1',
-              margin: 0
-            }}>
+            <p 
+              className="price-block"
+              style={{
+                fontSize: '64px',
+                fontWeight: '700',
+                color: '#0A0A0A',
+                letterSpacing: '-0.02em',
+                lineHeight: '1',
+                margin: 0
+              }}
+            >
               $2,600<span style={{
                 fontSize: '24px',
                 fontWeight: '400',
@@ -447,6 +450,12 @@ const Pricing = () => {
           }
           .pricing-headline { 
             font-size: 36px !important; 
+          }
+          .price-block {
+            font-size: 44px !important;
+          }
+          .price-block span {
+            font-size: 18px !important;
           }
           .investment-section {
             padding: 60px 24px !important;

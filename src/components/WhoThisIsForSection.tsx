@@ -1,11 +1,33 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { useState, useEffect } from "react";
 
 const WhoThisIsForSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const [bulletsVisible, setBulletsVisible] = useState(false);
+
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => setBulletsVisible(true), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
+  const forPoints = [
+    "You're the one pitching but keep losing to firms with louder marketing",
+    "Your track record is strong but your LinkedIn doesn't show it",
+    "You've grown through referrals but need to be discoverable now"
+  ];
+
+  const notForPoints = [
+    "You need leads by Friday",
+    "You want to go viral",
+    "You're not ready to invest in the long game"
+  ];
 
   return (
     <section 
       ref={elementRef} 
+      className="who-section"
       style={{ 
         backgroundColor: '#F5F1E8',
         padding: '120px 80px'
@@ -13,128 +35,151 @@ const WhoThisIsForSection = () => {
     >
       <div 
         style={{ 
-          maxWidth: '1100px', 
+          maxWidth: '1200px', 
           margin: '0 auto',
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '24px'
+          gridTemplateColumns: '55% 45%',
+          gap: '32px'
         }}
         className="who-grid"
       >
-        {/* Left Card - Who this is for */}
+        {/* Left Card - Primary (Elevated) */}
         <div
-          className="transition-all duration-700"
+          className="who-for-card transition-all duration-700"
           style={{
-            background: 'rgba(255, 255, 255, 0.85)',
-            padding: '32px',
-            borderRadius: '8px',
+            background: '#FFFFFF',
+            padding: '48px',
+            borderRadius: '2px',
+            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
+            position: 'relative',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          {/* Label */}
-          <p
+          {/* Accent bar at top */}
+          <div 
             style={{
-              fontSize: '13px',
-              fontWeight: '600',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#FF2E63',
-              marginBottom: '24px'
+              position: 'absolute',
+              top: 0,
+              left: '48px',
+              right: '48px',
+              height: '2px',
+              background: '#FF2E63'
             }}
-          >
+          />
+          
+          {/* Label */}
+          <p style={{
+            fontSize: '12px',
+            fontWeight: '600',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: '#FF2E63',
+            marginBottom: '24px'
+          }}>
             Who this is for
           </p>
-
-          {/* Body */}
-          <div
-            style={{
-              fontSize: '20px',
-              fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.8)',
-              lineHeight: '1.7'
-            }}
-          >
-            <p style={{ marginBottom: '24px' }}>
-              Construction, real estate, and built environment companies doing $20M+ that are:
-            </p>
-
-            <p style={{ marginBottom: '16px' }}>
-              <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
-              Winning more work than your team can handle — but still invisible outside your network
-            </p>
-
-            <p style={{ marginBottom: '16px' }}>
-              <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
-              Entering new markets where reputation doesn't travel with you
-            </p>
-
-            <p style={{ marginBottom: '24px' }}>
-              <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
-              Raising capital, attracting partners, or recruiting senior talent — and need the story to land before you walk in
-            </p>
-
-            <p
-              style={{
-                fontStyle: 'italic',
-                color: 'rgba(10, 10, 10, 0.6)',
-                marginTop: '24px'
-              }}
-            >
-              This includes M&A and PE firms acquiring in the space — where the founder's credibility affects deal flow and valuation.
-            </p>
+          
+          {/* Intro text */}
+          <p style={{
+            fontSize: '18px',
+            fontWeight: '400',
+            lineHeight: '1.6',
+            color: '#0A0A0A',
+            marginBottom: '28px'
+          }}>
+            Construction, real estate, architecture, and design firms doing $20M+ who've outgrown their story.
+          </p>
+          
+          {/* Bullet points */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {forPoints.map((point, index) => (
+              <p 
+                key={index}
+                className="bullet transition-all duration-500"
+                style={{
+                  fontSize: '17px',
+                  fontWeight: '400',
+                  lineHeight: '1.6',
+                  color: 'rgba(10, 10, 10, 0.8)',
+                  paddingLeft: '24px',
+                  position: 'relative',
+                  opacity: bulletsVisible ? 1 : 0,
+                  transform: bulletsVisible ? 'translateX(0)' : 'translateX(-12px)',
+                  transitionDelay: `${(index + 1) * 100}ms`
+                }}
+              >
+                <span style={{
+                  position: 'absolute',
+                  left: 0,
+                  color: '#FF2E63',
+                  fontWeight: '500'
+                }}>→</span>
+                {point}
+              </p>
+            ))}
           </div>
+          
+          {/* M&A note */}
+          <p style={{
+            fontSize: '16px',
+            fontStyle: 'italic',
+            color: 'rgba(10, 10, 10, 0.5)',
+            marginTop: '28px',
+            paddingTop: '20px',
+            borderTop: '1px solid rgba(10, 10, 10, 0.08)'
+          }}>
+            Also: if you're preparing for M&A, succession, or a rebrand.
+          </p>
         </div>
 
-        {/* Right Card - Who this isn't for */}
+        {/* Right Card - Ghost */}
         <div
-          className="transition-all duration-700"
+          className="who-not-card transition-all duration-700"
           style={{
-            background: 'rgba(255, 255, 255, 0.5)',
-            padding: '32px',
-            borderRadius: '8px',
+            background: 'transparent',
+            padding: '48px',
+            border: '1px solid rgba(10, 10, 10, 0.08)',
+            borderRadius: '2px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '100ms'
+            transitionDelay: '150ms'
           }}
         >
           {/* Label */}
-          <p
-            style={{
-              fontSize: '13px',
-              fontWeight: '600',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: '#FF2E63',
-              marginBottom: '24px'
-            }}
-          >
+          <p style={{
+            fontSize: '12px',
+            fontWeight: '600',
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: 'rgba(10, 10, 10, 0.4)',
+            marginBottom: '24px'
+          }}>
             Who this isn't for
           </p>
-
-          {/* Body */}
-          <div
-            style={{
-              fontSize: '20px',
-              fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.6)',
-              lineHeight: '1.8'
-            }}
-          >
-            <p style={{ marginBottom: '16px' }}>
-              <span style={{ color: 'rgba(10, 10, 10, 0.3)', marginRight: '12px' }}>✗</span>
-              You need leads, not reputation
-            </p>
-
-            <p style={{ marginBottom: '16px' }}>
-              <span style={{ color: 'rgba(10, 10, 10, 0.3)', marginRight: '12px' }}>✗</span>
-              You want to go viral, not be understood
-            </p>
-
-            <p>
-              <span style={{ color: 'rgba(10, 10, 10, 0.3)', marginRight: '12px' }}>✗</span>
-              You're not ready to be the face of your work
-            </p>
+          
+          {/* Bullet points */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+            {notForPoints.map((point, index) => (
+              <p 
+                key={index}
+                style={{
+                  fontSize: '17px',
+                  fontWeight: '400',
+                  lineHeight: '1.6',
+                  color: 'rgba(10, 10, 10, 0.5)',
+                  paddingLeft: '24px',
+                  position: 'relative'
+                }}
+              >
+                <span style={{
+                  position: 'absolute',
+                  left: 0,
+                  color: 'rgba(10, 10, 10, 0.3)'
+                }}>✗</span>
+                {point}
+              </p>
+            ))}
           </div>
         </div>
       </div>
@@ -142,12 +187,15 @@ const WhoThisIsForSection = () => {
       {/* Mobile Styles */}
       <style>{`
         @media (max-width: 768px) {
-          section {
+          .who-section {
             padding: 80px 24px !important;
           }
           .who-grid {
             grid-template-columns: 1fr !important;
-            gap: 24px !important;
+          }
+          .who-for-card,
+          .who-not-card {
+            padding: 32px !important;
           }
         }
       `}</style>

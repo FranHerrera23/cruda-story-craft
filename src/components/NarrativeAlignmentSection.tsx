@@ -30,6 +30,7 @@ interface WordConfig {
   top: string;
   left: string;
   fromRight: boolean;
+  rotation: number; // Subtle rotation for organic feel
   // Pro animation config
   entranceDuration: number;
   entranceEasing: string;
@@ -91,6 +92,12 @@ const FloatingWord = ({
   const scale = isVisible ? 1 : config.scaleStart;
   const translateX = isVisible ? floatX : initialX;
   const translateY = scrollOffset + (isVisible ? floatY : 25);
+  
+  // Subtle rotation that drifts with time
+  const rotationDrift = hasEntered 
+    ? Math.sin((time * 0.3) + config.floatPhase) * 0.5 
+    : 0;
+  const rotation = config.rotation + rotationDrift;
 
   return (
     <span
@@ -105,7 +112,7 @@ const FloatingWord = ({
         textTransform: 'uppercase',
         letterSpacing: '0.08em',
         color: `rgba(10, 10, 10, ${opacity})`,
-        transform: `translate(${translateX}px, ${translateY}px) scale(${scale})`,
+        transform: `translate(${translateX}px, ${translateY}px) scale(${scale}) rotate(${rotation}deg)`,
         filter: `blur(${blur}px)`,
         transition: hasEntered 
           ? 'color 0.3s ease-out' 
@@ -182,13 +189,15 @@ const NarrativeAlignmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Pro-level word configurations with unique animation properties
+  // Pro-level word configurations with organic chaos positioning
+  // Per V6 brief: clustered, uneven, not grid-like
   const row1Words: WordConfig[] = useMemo(() => [
     { 
       word: 'synergy', 
-      top: '5%', 
+      top: '8%', 
       left: '5%', 
       fromRight: false,
+      rotation: -2,
       entranceDuration: 0.9,
       entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
       floatAmplitude: 3,
@@ -201,9 +210,10 @@ const NarrativeAlignmentSection = () => {
     },
     { 
       word: 'leverage', 
-      top: '28%', 
-      left: '48%', 
+      top: '15%', 
+      left: '35%', 
       fromRight: true,
+      rotation: 1,
       entranceDuration: 1.1,
       entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
       floatAmplitude: 4,
@@ -216,9 +226,10 @@ const NarrativeAlignmentSection = () => {
     },
     { 
       word: 'best-in-class', 
-      top: '52%', 
-      left: '12%', 
+      top: '55%', 
+      left: '8%', 
       fromRight: false,
+      rotation: -1,
       entranceDuration: 1.0,
       entranceEasing: 'cubic-bezier(0.25, 1, 0.5, 1)',
       floatAmplitude: 2.5,
@@ -231,9 +242,10 @@ const NarrativeAlignmentSection = () => {
     },
     { 
       word: 'solutions', 
-      top: '78%', 
-      left: '52%', 
+      top: '70%', 
+      left: '50%', 
       fromRight: true,
+      rotation: 2,
       entranceDuration: 1.2,
       entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       floatAmplitude: 3.5,
@@ -249,9 +261,10 @@ const NarrativeAlignmentSection = () => {
   const row2Words: WordConfig[] = useMemo(() => [
     { 
       word: 'Forbes', 
-      top: '8%', 
-      left: '52%', 
+      top: '5%', 
+      left: '45%', 
       fromRight: true,
+      rotation: 1,
       entranceDuration: 1.0,
       entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
       floatAmplitude: 3,
@@ -264,9 +277,10 @@ const NarrativeAlignmentSection = () => {
     },
     { 
       word: 'award-winning', 
-      top: '32%', 
-      left: '8%', 
+      top: '25%', 
+      left: '12%', 
       fromRight: false,
+      rotation: -2,
       entranceDuration: 1.15,
       entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
       floatAmplitude: 4,
@@ -279,9 +293,10 @@ const NarrativeAlignmentSection = () => {
     },
     { 
       word: 'Inc 5000', 
-      top: '56%', 
+      top: '48%', 
       left: '55%', 
       fromRight: true,
+      rotation: 0,
       entranceDuration: 0.95,
       entranceEasing: 'cubic-bezier(0.25, 1, 0.5, 1)',
       floatAmplitude: 2.8,
@@ -294,9 +309,10 @@ const NarrativeAlignmentSection = () => {
     },
     { 
       word: 'industry leader', 
-      top: '80%', 
-      left: '5%', 
+      top: '75%', 
+      left: '25%', 
       fromRight: false,
+      rotation: 1.5,
       entranceDuration: 1.25,
       entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       floatAmplitude: 3.2,
@@ -429,26 +445,12 @@ const NarrativeAlignmentSection = () => {
           >
             Why they should care.
           </h2>
+          {/* Per V6 brief: Empty space is the point — silence is the critique */}
           <div 
             style={{ 
-              display: 'flex', 
-              justifyContent: 'center', 
-              alignItems: 'center',
               height: '180px',
             }}
-          >
-            <span
-              style={{
-                fontSize: '24px',
-                color: 'rgba(10, 10, 10, 0.25)',
-                opacity: row3.isVisible ? 1 : 0,
-                transform: row3.isVisible ? 'scale(1)' : 'scale(0.8)',
-                transition: 'opacity 1s ease-out 0.6s, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s',
-              }}
-            >
-              ...
-            </span>
-          </div>
+          />
         </div>
 
         {/* Closer */}

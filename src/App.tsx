@@ -10,7 +10,6 @@ import Work from "./pages/Work";
 import About from "./pages/About";
 import ClientDetail from "./pages/ClientDetail";
 import CaseStudyDetail from "./pages/CaseStudyDetail";
-import BookCall from "./pages/BookCall";
 import KarenMannheimCaseStudy from "./pages/KarenMannheimCaseStudy";
 import MikeKaedingCaseStudy from "./pages/MikeKaedingCaseStudy";
 import JuanPabloRomeroCaseStudy from "./pages/JuanPabloRomeroCaseStudy";
@@ -51,7 +50,6 @@ const App = () => (
             <Route path="/clients/nitin-passi" element={<NitinPassiCaseStudy />} />
             <Route path="/clients/:clientSlug" element={<ClientDetail />} />
             <Route path="/work/:projectSlug" element={<CaseStudyDetail />} />
-            <Route path="/book-call" element={<BookCall />} />
             {/* Karen Mannheim Project Pages */}
             <Route path="/projects/karen-mannheim/pezet" element={<KarenPezetProject />} />
             <Route path="/projects/karen-mannheim/four-seasons-penthouse" element={<KarenFourSeasonsProject />} />

@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 
 const Pricing = () => {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: investmentRef, isVisible: investmentVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: investmentRef, isVisible: investmentVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
@@ -58,16 +58,17 @@ const Pricing = () => {
 
   return (
     <main className="min-h-screen">
-      {/* SECTION 1: HERO — The Direct Ask */}
+      {/* UNIFIED HERO + INVESTMENT — Left-aligned editorial flow */}
       <section 
         ref={heroRef} 
         className="pricing-hero" 
         style={{ 
           backgroundColor: '#FFFFFF', 
-          padding: '120px 80px 80px'
+          padding: '120px 80px 100px'
         }}
       >
-        <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ maxWidth: '700px' }}>
+          {/* Headline */}
           <h1 
             className="transition-all duration-700 pricing-headline"
             style={{ 
@@ -76,6 +77,7 @@ const Pricing = () => {
               lineHeight: '1.15', 
               letterSpacing: '-0.02em', 
               color: '#0A0A0A',
+              marginBottom: '0',
               opacity: heroVisible ? 1 : 0, 
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)' 
             }}
@@ -83,129 +85,114 @@ const Pricing = () => {
             <span style={{ display: 'block' }}>You've seen the work.</span>
             <span style={{ display: 'block' }}>Here's what it costs.</span>
           </h1>
-        </div>
-      </section>
 
-      {/* SECTION 2: THE INVESTMENT */}
-      <section 
-        ref={investmentRef} 
-        className="investment-section"
-        style={{ 
-          backgroundColor: '#FFFFFF', 
-          padding: '80px' 
-        }}
-      >
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          {/* Grid with top/bottom dividers */}
+          {/* Divider 1 */}
           <div 
-            className="investment-grid transition-all duration-700"
+            className="transition-all duration-700"
             style={{
-              display: 'grid',
-              gridTemplateColumns: '60% 40%',
-              gap: '80px',
-              borderTop: '1px solid rgba(10, 10, 10, 0.08)',
-              borderBottom: '1px solid rgba(10, 10, 10, 0.08)',
-              padding: '80px 0',
+              width: '100%',
+              height: '1px',
+              backgroundColor: 'rgba(10, 10, 10, 0.08)',
+              margin: '48px 0',
+              opacity: heroVisible ? 1 : 0,
+              transitionDelay: '100ms'
+            }}
+          />
+
+          {/* Price Block */}
+          <div 
+            ref={investmentRef}
+            className="transition-all duration-700"
+            style={{
               opacity: investmentVisible ? 1 : 0,
               transform: investmentVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            {/* Left Column - The Offer */}
-            <div>
-              <h2 
-                style={{
-                  fontSize: '32px',
+            <p style={{
+              fontSize: '48px',
+              fontWeight: '600',
+              color: '#0A0A0A',
+              letterSpacing: '-0.02em',
+              lineHeight: '1',
+              margin: 0
+            }}>
+              $2,600<span style={{ fontSize: '24px', fontWeight: '400', color: 'rgba(10, 10, 10, 0.5)' }}>/month</span>
+            </p>
+            <p style={{
+              fontSize: '16px',
+              fontWeight: '400',
+              color: 'rgba(10, 10, 10, 0.5)',
+              marginTop: '12px',
+              lineHeight: '1.5'
+            }}>
+              6-month minimum. Most clients stay 1-3 years.
+            </p>
+          </div>
+
+          {/* Divider 2 */}
+          <div 
+            className="transition-all duration-700"
+            style={{
+              width: '100%',
+              height: '1px',
+              backgroundColor: 'rgba(10, 10, 10, 0.08)',
+              margin: '48px 0',
+              opacity: investmentVisible ? 1 : 0,
+              transitionDelay: '100ms'
+            }}
+          />
+
+          {/* Phases */}
+          <div 
+            className="transition-all duration-700"
+            style={{ 
+              display: 'flex', 
+              flexDirection: 'column', 
+              gap: '32px',
+              opacity: investmentVisible ? 1 : 0,
+              transform: investmentVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '200ms'
+            }}
+          >
+            {phases.map((phase, index) => (
+              <div key={index}>
+                <p style={{
+                  fontSize: '14px',
                   fontWeight: '600',
-                  color: '#0A0A0A',
-                  marginBottom: '48px',
-                  letterSpacing: '-0.01em'
-                }}
-              >
-                A narrative system built around you.
-              </h2>
-
-              {/* Phases */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-                {phases.map((phase, index) => (
-                  <div key={index}>
-                    <p style={{
-                      fontSize: '14px',
-                      fontWeight: '600',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      color: 'rgba(10, 10, 10, 0.4)',
-                      marginBottom: '8px'
-                    }}>
-                      {phase.label}
-                    </p>
-                    <p style={{
-                      fontSize: '18px',
-                      fontWeight: '400',
-                      lineHeight: '1.6',
-                      color: 'rgba(10, 10, 10, 0.7)'
-                    }}>
-                      {phase.body}
-                    </p>
-                  </div>
-                ))}
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: 'rgba(10, 10, 10, 0.4)',
+                  marginBottom: '8px'
+                }}>
+                  {phase.label}
+                </p>
+                <p style={{
+                  fontSize: '18px',
+                  fontWeight: '400',
+                  lineHeight: '1.6',
+                  color: 'rgba(10, 10, 10, 0.7)'
+                }}>
+                  {phase.body}
+                </p>
               </div>
-            </div>
-
-            {/* Right Column - The Price */}
-            <div style={{ textAlign: 'right' }}>
-              <p style={{
-                fontSize: '72px',
-                fontWeight: '600',
-                color: '#0A0A0A',
-                letterSpacing: '-0.03em',
-                lineHeight: '1',
-                margin: 0
-              }}>
-                $2,600
-              </p>
-              <p style={{
-                fontSize: '24px',
-                fontWeight: '400',
-                color: 'rgba(10, 10, 10, 0.5)',
-                marginTop: '4px'
-              }}>
-                /month
-              </p>
-              
-              <div style={{
-                width: '48px',
-                height: '1px',
-                backgroundColor: 'rgba(10, 10, 10, 0.15)',
-                marginLeft: 'auto',
-                marginTop: '24px',
-                marginBottom: '24px'
-              }} />
-              
-              <p style={{
-                fontSize: '16px',
-                fontWeight: '400',
-                color: 'rgba(10, 10, 10, 0.5)',
-                lineHeight: '1.5'
-              }}>
-                6-month minimum.<br />
-                Most clients stay 1-3 years.
-              </p>
-            </div>
+            ))}
           </div>
 
           {/* Footnote + CTA */}
-          <div style={{ marginTop: '48px', textAlign: 'center' }}>
-            <p 
-              className="transition-all duration-700"
-              style={{
-                fontSize: '16px',
-                fontStyle: 'italic',
-                color: 'rgba(10, 10, 10, 0.4)',
-                marginBottom: '40px',
-                opacity: investmentVisible ? 1 : 0,
-                transitionDelay: '200ms'
-              }}
-            >
+          <div 
+            className="transition-all duration-700"
+            style={{ 
+              marginTop: '48px',
+              opacity: investmentVisible ? 1 : 0,
+              transitionDelay: '300ms'
+            }}
+          >
+            <p style={{
+              fontSize: '16px',
+              fontStyle: 'italic',
+              color: 'rgba(10, 10, 10, 0.4)',
+              marginBottom: '32px'
+            }}>
               Need content-only? $1,800/month. Same quality. No strategy layer.
             </p>
 

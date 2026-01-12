@@ -377,7 +377,7 @@ const Pricing = () => {
           padding: '120px 80px' 
         }}
       >
-        <div style={{ maxWidth: '600px' }}>
+        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
           <h2 
             className="transition-all duration-700"
             style={{ 

@@ -1,54 +1,53 @@
-import { useStaggerAnimation, useScrollProgress } from "@/hooks/useStaggerAnimation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const steps = [
+const columns = [
   {
-    number: "01",
-    title: "We talk.",
-    description: "Weekly conversations about how you think, what you've built, what you'd never compromise on."
+    label: "Month 1",
+    title: "We listen.",
+    body: [
+      "Weekly conversations. Your projects, your milestones, your way of seeing the world.",
+      "We're not writing yet. We're finding the pattern."
+    ]
   },
   {
-    number: "02",
-    title: "We find the pattern.",
-    description: "The milestones, projects, and proof points that were never communicated — or communicated badly. We find what makes your work yours."
+    label: "Months 2–6",
+    title: "We build.",
+    body: [
+      "Your narrative — across LinkedIn, website, pitch decks, talking points.",
+      "Not content for content's sake. A system that holds."
+    ]
   },
   {
-    number: "03",
-    title: "We put it to work.",
-    description: "Your narrative — alive across LinkedIn, Instagram, website, pitch decks. Reputation in motion."
+    label: "Month 7+",
+    title: "Most clients stay.",
+    body: [
+      "Because the work evolves. New markets. New projects. New rooms to walk into."
+    ]
   }
 ];
 
-const deliverables = [
-  "Your story in one sentence",
-  "A narrative document your team can use",
-  "LinkedIn presence that sounds like you",
-  "Pitch deck language",
-  "Talking points for any room"
-];
-
 const HowWeWorkSection = () => {
-  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(steps.length + 3, 150);
-  const { elementRef: timelineRef, progress } = useScrollProgress();
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
     <section 
-      ref={containerRef} 
+      ref={elementRef} 
       style={{ 
-        backgroundColor: '#F7F7F7',
-        padding: '160px 80px'
+        backgroundColor: '#FFFFFF',
+        padding: '120px 80px'
       }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        {/* Section header */}
+      <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+        {/* Section Label */}
         <p
           className="transition-all duration-700"
           style={{
             fontSize: '13px',
             fontWeight: '600',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: 'rgba(10, 10, 10, 0.4)',
-            marginBottom: '80px',
+            color: '#FF2E63',
+            marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -56,247 +55,68 @@ const HowWeWorkSection = () => {
           How it works
         </p>
 
-        {/* Three columns with staggered animation */}
+        {/* Three Columns */}
         <div 
-          className="grid grid-cols-1 md:grid-cols-3"
-          style={{ gap: '48px', maxWidth: '1100px' }}
+          style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '48px' 
+          }}
+          className="how-grid"
         >
-          {steps.map((step, index) => (
+          {columns.map((col, index) => (
             <div
               key={index}
-              className="hover-breathe"
+              className="transition-all duration-700"
               style={{
-                opacity: visibleItems[index] ? 1 : 0,
-                transform: visibleItems[index] ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1)'
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${(index + 1) * 100}ms`
               }}
             >
-              {/* Number */}
+              {/* Time Label */}
               <p
                 style={{
-                  fontSize: '100px',
-                  fontWeight: '700',
-                  color: 'rgba(10, 10, 10, 0.06)',
-                  lineHeight: '1',
-                  marginBottom: '24px',
-                  fontFeatureSettings: '"tnum"'
+                  fontSize: '13px',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: 'rgba(10, 10, 10, 0.4)',
+                  marginBottom: '16px'
                 }}
               >
-                {step.number}
+                {col.label}
               </p>
 
               {/* Title */}
               <p
                 style={{
-                  fontSize: '26px',
+                  fontSize: '22px',
                   fontWeight: '600',
                   color: '#0A0A0A',
-                  lineHeight: '1.3',
                   marginBottom: '16px'
                 }}
               >
-                {step.title}
+                {col.title}
               </p>
 
-              {/* Description */}
-              <p
-                style={{
-                  fontSize: '17px',
-                  fontWeight: '400',
-                  color: 'rgba(10, 10, 10, 0.6)',
-                  lineHeight: '1.7'
-                }}
-              >
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Timeline Bar with scroll progress */}
-        <div
-          ref={timelineRef}
-          className="transition-all duration-700"
-          style={{
-            marginTop: '80px',
-            position: 'relative',
-            maxWidth: '1100px',
-            opacity: visibleItems[steps.length] ? 1 : 0
-          }}
-        >
-          {/* Bar with dots */}
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div
-              style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
-                backgroundColor: progress > 0.1 ? '#FF2E63' : 'rgba(10, 10, 10, 0.25)',
-                flexShrink: 0,
-                transition: 'background-color 300ms ease'
-              }}
-            />
-            <div
-              style={{
-                flex: 1,
-                height: '2px',
-                backgroundColor: 'rgba(10, 10, 10, 0.15)',
-                position: 'relative',
-                overflow: 'hidden'
-              }}
-            >
-              {/* Progress fill */}
-              <div
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  height: '100%',
-                  width: '100%',
-                  backgroundColor: '#FF2E63',
-                  transformOrigin: 'left',
-                  transform: `scaleX(${Math.min(progress * 1.5, 1)})`,
-                  transition: 'transform 100ms linear'
-                }}
-              />
-            </div>
-            <div
-              style={{
-                width: '10px',
-                height: '10px',
-                borderRadius: '50%',
-                backgroundColor: progress > 0.6 ? '#FF2E63' : 'rgba(10, 10, 10, 0.25)',
-                flexShrink: 0,
-                transition: 'background-color 300ms ease'
-              }}
-            />
-          </div>
-
-          {/* Labels */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
-            <div>
-              <span
-                style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: progress > 0.1 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
-                  transition: 'color 300ms ease',
-                  display: 'block'
-                }}
-              >
-                Month 1
-              </span>
-              <span
-                style={{
-                  fontSize: '13px',
-                  color: 'rgba(10, 10, 10, 0.4)',
-                  marginTop: '4px',
-                  display: 'block'
-                }}
-              >
-                Discovery
-              </span>
-            </div>
-            <div style={{ textAlign: 'right' }}>
-              <span
-                style={{
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  color: progress > 0.6 ? '#0A0A0A' : 'rgba(10, 10, 10, 0.5)',
-                  transition: 'color 300ms ease',
-                  display: 'block'
-                }}
-              >
-                Month 4
-              </span>
-              <span
-                style={{
-                  fontSize: '13px',
-                  color: 'rgba(10, 10, 10, 0.4)',
-                  marginTop: '4px',
-                  display: 'block'
-                }}
-              >
-                Deployment
-              </span>
-            </div>
-          </div>
-        </div>
-
-        {/* Two-column bottom section */}
-        <div
-          className="hover-lift grid grid-cols-1 md:grid-cols-2"
-          style={{
-            marginTop: '60px',
-            backgroundColor: '#FFFFFF',
-            padding: '48px',
-            borderRadius: '8px',
-            gap: '60px',
-            maxWidth: '1100px',
-            opacity: visibleItems[steps.length + 1] ? 1 : 0,
-            transform: visibleItems[steps.length + 1] ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 300ms ease'
-          }}
-        >
-          {/* What We Need */}
-          <div>
-            <p
-              style={{
-                fontSize: '11px',
-                fontWeight: '600',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'rgba(10, 10, 10, 0.4)',
-                marginBottom: '20px'
-              }}
-            >
-              What we need from you
-            </p>
-            <p
-              style={{
-                fontSize: '20px',
-                fontWeight: '400',
-                color: '#0A0A0A',
-                lineHeight: '1.5'
-              }}
-            >
-              One hour a week. Feedback over WhatsApp. And guts.
-            </p>
-          </div>
-
-          {/* What You Walk Away With */}
-          <div>
-            <p
-              style={{
-                fontSize: '11px',
-                fontWeight: '600',
-                letterSpacing: '0.15em',
-                textTransform: 'uppercase',
-                color: 'rgba(10, 10, 10, 0.4)',
-                marginBottom: '20px'
-              }}
-            >
-              What you walk away with
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              {deliverables.map((item, index) => (
+              {/* Body */}
+              {col.body.map((paragraph, pIndex) => (
                 <p
-                  key={index}
+                  key={pIndex}
                   style={{
-                    fontSize: '17px',
+                    fontSize: '16px',
                     fontWeight: '400',
                     color: 'rgba(10, 10, 10, 0.7)',
-                    lineHeight: '1.8',
-                    display: 'flex',
-                    alignItems: 'center'
+                    lineHeight: '1.6',
+                    marginBottom: '16px'
                   }}
                 >
-                  <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
-                  {item}
+                  {paragraph}
                 </p>
               ))}
             </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -304,10 +124,11 @@ const HowWeWorkSection = () => {
       <style>{`
         @media (max-width: 768px) {
           section {
-            padding: 120px 24px !important;
+            padding: 80px 24px !important;
           }
-          section .grid > div > p:first-child {
-            font-size: 72px !important;
+          .how-grid {
+            grid-template-columns: 1fr !important;
+            gap: 48px !important;
           }
         }
       `}</style>

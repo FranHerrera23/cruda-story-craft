@@ -1,11 +1,12 @@
 import HeroManifesto from "@/components/HeroManifesto";
-import BeliefSection from "@/components/BeliefSection";
+import PhilosophySection from "@/components/PhilosophySection";
+import ProblemSection from "@/components/ProblemSection";
+import WhoThisIsForSection from "@/components/WhoThisIsForSection";
 import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
-import WhoTrustsUsSection from "@/components/WhoTrustsUsSection";
-import SeeTheWork from "@/components/SeeTheWork";
-import CredibilitySection from "@/components/CredibilitySection";
-import LogoMarquee from "@/components/LogoMarquee";
+import OurClientsSection from "@/components/OurClientsSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import BothSidesSection from "@/components/BothSidesSection";
 import CTASection from "@/components/CTASection";
 
 const Index = () => {
@@ -14,26 +15,31 @@ const Index = () => {
       {/* Section 1: Hero */}
       <HeroManifesto />
       
-      {/* Section 2: Belief (includes Before/After) */}
-      <BeliefSection />
+      {/* Section 2: Philosophy (cream background) */}
+      <PhilosophySection />
       
-      {/* Section 3: What Changes */}
+      {/* Section 3: Problem (white background) */}
+      <ProblemSection />
+      
+      {/* Section 4: Who This Is For (cream background) */}
+      <WhoThisIsForSection />
+      
+      {/* Section 5: What Changes (white background) */}
       <WhatChangesSection />
       
-      {/* Section 4: How It Works */}
+      {/* Section 6: How It Works (white background) */}
       <HowWeWorkSection />
       
-      {/* Section 5: Who Trusts Us (Clients) */}
-      <WhoTrustsUsSection />
+      {/* Section 7: Our Clients (white background) */}
+      <OurClientsSection />
       
-      {/* Section 6: See the Work (Projects - NEW) */}
-      <SeeTheWork />
+      {/* Section 8: Testimonials (dark background) */}
+      <TestimonialsSection />
       
-      {/* Section 7: Credibility + Logo Marquee */}
-      <CredibilitySection />
-      <LogoMarquee />
+      {/* Section 9: We've Been On Both Sides + Logo Marquee (white background) */}
+      <BothSidesSection />
       
-      {/* Section 8: CTA */}
+      {/* Section 10: Final CTA (dark background) */}
       <CTASection />
     </main>
   );

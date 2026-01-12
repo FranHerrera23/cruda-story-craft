@@ -1,35 +1,35 @@
-import { useStaggerAnimation } from "@/hooks/useStaggerAnimation";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const changes = [
-  "You walk into a room and they already know who you are",
-  "Your socials sound like you, not a press release",
-  "Your team explains what makes you different — without fumbling",
-  "Clients, partners — they get it before you say a word",
-  "You stop competing on price and start competing on trust"
+  "Your LinkedIn sounds like you wrote it. Because you did — with us.",
+  "Your website stops explaining and starts landing.",
+  "Your pitch deck tells one story, not twelve.",
+  "Your team can articulate what makes you different — without fumbling.",
+  "You stop competing on price and start competing on trust."
 ];
 
 const WhatChangesSection = () => {
-  const { containerRef, isVisible, visibleItems } = useStaggerAnimation<HTMLElement>(changes.length, 100);
+  const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
     <section 
-      ref={containerRef} 
+      ref={elementRef} 
       style={{ 
         backgroundColor: '#FFFFFF',
-        padding: '160px 80px'
+        padding: '120px 80px'
       }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        {/* Section header */}
+      <div style={{ maxWidth: '700px' }}>
+        {/* Section Label */}
         <p
           className="transition-all duration-700"
           style={{
             fontSize: '13px',
             fontWeight: '600',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: 'rgba(10, 10, 10, 0.4)',
-            marginBottom: '0',
+            color: '#FF2E63',
+            marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
@@ -37,97 +37,55 @@ const WhatChangesSection = () => {
           What changes
         </p>
 
-        {/* List container */}
-        <div style={{ maxWidth: '800px' }}>
-          {/* Initial divider */}
-          <div
-            className="transition-all duration-500"
-            style={{
-              height: '1px',
-              backgroundColor: 'rgba(10, 10, 10, 0.1)',
-              marginTop: '24px',
-              transform: isVisible ? 'scaleX(1)' : 'scaleX(0)',
-              transformOrigin: 'left'
-            }}
-          />
-
-          {/* List with staggered animation */}
+        {/* List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
           {changes.map((change, index) => (
-            <div
+            <p
               key={index}
-              className="stagger-item hover-glow"
+              className="transition-all duration-700"
               style={{
-                display: 'flex',
-                alignItems: 'flex-start',
-                padding: '32px 0',
-                borderBottom: '1px solid rgba(10, 10, 10, 0.1)',
-                opacity: visibleItems[index] ? 1 : 0,
-                transform: visibleItems[index] ? 'translateY(0)' : 'translateY(16px)',
-                transition: 'opacity 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1)',
-                cursor: 'default'
+                fontSize: '24px',
+                fontWeight: '400',
+                color: '#0A0A0A',
+                lineHeight: '1.6',
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(16px)',
+                transitionDelay: `${(index + 1) * 100}ms`
               }}
             >
-              {/* Arrow with hover animation */}
-              <span 
-                className="transition-transform duration-300"
-                style={{ 
-                  fontSize: '20px',
-                  color: '#FF2E63', 
-                  marginRight: '20px',
-                  flexShrink: 0,
-                  lineHeight: '1.4'
-                }}
-              >
-                →
-              </span>
-              
-              {/* Text */}
-              <p
-                style={{
-                  fontSize: '22px',
-                  fontWeight: '400',
-                  color: '#0A0A0A',
-                  lineHeight: '1.4'
-                }}
-              >
-                {change}
-              </p>
-            </div>
+              <span style={{ color: '#FF2E63', marginRight: '16px' }}>→</span>
+              {change}
+            </p>
           ))}
-
-          {/* Closer line */}
-          <p
-            className="transition-all duration-700"
-            style={{
-              fontSize: '24px',
-              fontWeight: '500',
-              color: '#0A0A0A',
-              textAlign: 'center',
-              marginTop: '60px',
-              fontStyle: 'italic',
-              opacity: visibleItems[changes.length - 1] ? 1 : 0,
-              transform: visibleItems[changes.length - 1] ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '500ms'
-            }}
-          >
-            Your story finally works as hard as you do.
-          </p>
         </div>
+
+        {/* Closing Line */}
+        <p
+          className="transition-all duration-700"
+          style={{
+            fontSize: '24px',
+            fontWeight: '500',
+            fontStyle: 'italic',
+            color: '#FF2E63',
+            marginTop: '48px',
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+            transitionDelay: '600ms'
+          }}
+        >
+          Your story finally works as hard as you do.
+        </p>
       </div>
 
       {/* Mobile Styles */}
       <style>{`
         @media (max-width: 768px) {
           section {
-            padding: 120px 24px !important;
+            padding: 80px 24px !important;
           }
           section p {
-            font-size: 18px !important;
+            font-size: 20px !important;
           }
-        }
-        
-        .stagger-item:hover span {
-          transform: translateX(4px);
         }
       `}</style>
     </section>

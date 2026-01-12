@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ChevronDown } from "lucide-react";
 
@@ -7,20 +8,8 @@ const Pricing = () => {
   const { elementRef: investmentRef, isVisible: investmentVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  // Load Calendly script
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
 
   const faqs = [
     {
@@ -196,8 +185,8 @@ const Pricing = () => {
               Need content-only? $1,800/month. Same quality. No strategy layer.
             </p>
 
-            <a 
-              href="#book"
+            <Link 
+              to="/contact"
               className="cta-button-pricing inline-flex items-center gap-3 transition-all"
               style={{ 
                 backgroundColor: '#0A0A0A', 
@@ -213,7 +202,7 @@ const Pricing = () => {
             >
               Start a Conversation
               <span style={{ fontSize: '18px' }}>→</span>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -346,79 +335,6 @@ const Pricing = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: FINAL CTA — Book the call (Calendly embed) */}
-      <section 
-        id="book"
-        ref={ctaRef}
-        style={{ 
-          backgroundColor: '#FFFFFF', 
-          padding: '120px 80px',
-          borderTop: '1px solid rgba(10, 10, 10, 0.08)'
-        }}
-      >
-        <div 
-          className="final-cta-grid"
-          style={{ 
-            maxWidth: '1100px', 
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '80px',
-            alignItems: 'start'
-          }}
-        >
-          {/* Left Column - Copy */}
-          <div 
-            className="transition-all duration-700"
-            style={{
-              opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)'
-            }}
-          >
-            <h2 style={{
-              fontSize: '36px',
-              fontWeight: '600',
-              color: '#0A0A0A',
-              marginBottom: '32px',
-              letterSpacing: '-0.01em'
-            }}>
-              Start a conversation
-            </h2>
-            
-            <div style={{
-              fontSize: '18px',
-              fontWeight: '400',
-              lineHeight: '1.7',
-              color: 'rgba(10, 10, 10, 0.6)'
-            }}>
-              <p style={{ marginBottom: '24px' }}>
-                45 minutes. No pitch. No pressure.
-              </p>
-              <p style={{ marginBottom: '24px' }}>
-                If we see the pattern, we'll say so.<br />
-                If we can't help, we'll say that too.
-              </p>
-            </div>
-          </div>
-
-          {/* Right Column - Calendly */}
-          <div 
-            className="transition-all duration-700"
-            style={{
-              opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms'
-            }}
-          >
-            <div 
-              className="calendly-inline-widget" 
-              data-url="https://calendly.com/cruda-intro/30min"
-              style={{ minWidth: '320px', height: '650px' }}
-            />
           </div>
         </div>
       </section>

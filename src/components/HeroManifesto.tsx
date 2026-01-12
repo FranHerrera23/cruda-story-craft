@@ -77,7 +77,7 @@ const HeroManifesto = () => {
         
         {/* CTA Button - Square with Arrow */}
         <Link 
-          to="/pricing#book"
+          to="/contact"
           className="cta-button-hero"
           style={{ 
             display: 'inline-flex',

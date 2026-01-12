@@ -89,45 +89,54 @@ const Pricing = () => {
             }}
           />
 
-          {/* Price Block - Red on White */}
+          {/* Price Block - Left-aligned, black */}
           <div 
             ref={investmentRef}
             className="transition-all duration-700"
             style={{
-              textAlign: 'center',
-              margin: '48px 0 64px 0',
+              textAlign: 'left',
+              margin: '0 0 48px 0',
               opacity: investmentVisible ? 1 : 0,
               transform: investmentVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
             <p style={{
-              fontSize: '96px',
+              fontSize: '64px',
               fontWeight: '700',
-              color: '#FF2E63',
-              letterSpacing: '-0.03em',
+              color: '#0A0A0A',
+              letterSpacing: '-0.02em',
               lineHeight: '1',
               margin: 0
             }}>
-              $2,600
+              $2,600<span style={{
+                fontSize: '24px',
+                fontWeight: '400',
+                color: 'rgba(10, 10, 10, 0.5)'
+              }}>/month</span>
             </p>
             <p style={{
-              fontSize: '28px',
-              fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.4)',
-              marginTop: '8px'
-            }}>
-              /month
-            </p>
-            <p style={{
-              fontSize: '16px',
+              fontSize: '17px',
               fontWeight: '400',
               color: 'rgba(10, 10, 10, 0.5)',
-              marginTop: '24px',
+              marginTop: '12px',
               lineHeight: '1.5'
             }}>
               6-month minimum. Most clients stay 1-3 years.
             </p>
           </div>
+
+          {/* Divider 2 */}
+          <div 
+            className="transition-all duration-700"
+            style={{
+              width: '100%',
+              height: '1px',
+              backgroundColor: 'rgba(10, 10, 10, 0.08)',
+              margin: '0 0 48px 0',
+              opacity: investmentVisible ? 1 : 0,
+              transitionDelay: '50ms'
+            }}
+          />
 
           {/* Red Accent Line */}
           <div 

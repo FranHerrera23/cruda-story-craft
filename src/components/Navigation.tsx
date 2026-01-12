@@ -60,7 +60,7 @@ export const Navigation = () => {
             Pricing
           </Link>
           <Link 
-            to="/book-call" 
+            to="/pricing#book" 
             className="nav-cta-button"
           >
             Start a Conversation

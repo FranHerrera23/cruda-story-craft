@@ -442,7 +442,7 @@ const FinalCTA = () => {
         </h2>
         
         <Link
-          to="/book-call"
+          to="/pricing#book"
           className="cta-button-about transition-all"
           style={{
             display: 'inline-flex',

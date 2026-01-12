@@ -13,15 +13,15 @@ const WhoThisIsForSection = () => {
   }, [isVisible]);
 
   const forPoints = [
-    "You're the one pitching but keep losing to firms with louder marketing",
-    "Your track record is strong but your LinkedIn doesn't show it",
-    "You've grown through referrals but need to be discoverable now"
+    "Winning work but invisible outside your network",
+    "Pitching against firms with louder marketing and weaker portfolios",
+    "Ready to stop explaining from scratch every time you walk into a room"
   ];
 
   const notForPoints = [
     "You need leads by Friday",
-    "You want to go viral",
-    "You're not ready to invest in the long game"
+    "You want impressions, not understanding",
+    "You're not ready to be the face of your work"
   ];
 
   return (
@@ -29,7 +29,7 @@ const WhoThisIsForSection = () => {
       ref={elementRef} 
       className="who-section"
       style={{ 
-        backgroundColor: '#F5F1E8',
+        backgroundColor: '#FFFFFF',
         padding: '120px 80px'
       }}
     >
@@ -50,29 +50,17 @@ const WhoThisIsForSection = () => {
             background: '#FFFFFF',
             padding: '48px',
             borderRadius: '2px',
-            boxShadow: '0 4px 24px rgba(0, 0, 0, 0.06)',
-            position: 'relative',
+            border: '1px solid rgba(10, 10, 10, 0.08)',
+            boxShadow: '0 2px 16px rgba(0, 0, 0, 0.04)',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          {/* Accent bar at top */}
-          <div 
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: '48px',
-              right: '48px',
-              height: '2px',
-              background: '#FF2E63'
-            }}
-          />
-          
           {/* Label */}
           <p style={{
             fontSize: '12px',
             fontWeight: '600',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: '#FF2E63',
             marginBottom: '24px'
@@ -84,11 +72,11 @@ const WhoThisIsForSection = () => {
           <p style={{
             fontSize: '18px',
             fontWeight: '400',
-            lineHeight: '1.6',
+            lineHeight: '1.5',
             color: '#0A0A0A',
             marginBottom: '28px'
           }}>
-            Construction, real estate, architecture, and design firms doing $20M+ who've outgrown their story.
+            Construction, real estate, architecture, and design firms doing $20M+ who are:
           </p>
           
           {/* Bullet points */}
@@ -101,7 +89,7 @@ const WhoThisIsForSection = () => {
                   fontSize: '17px',
                   fontWeight: '400',
                   lineHeight: '1.6',
-                  color: 'rgba(10, 10, 10, 0.8)',
+                  color: 'rgba(10, 10, 10, 0.7)',
                   paddingLeft: '24px',
                   position: 'relative',
                   opacity: bulletsVisible ? 1 : 0,
@@ -126,10 +114,10 @@ const WhoThisIsForSection = () => {
             fontStyle: 'italic',
             color: 'rgba(10, 10, 10, 0.5)',
             marginTop: '28px',
-            paddingTop: '20px',
+            paddingTop: '24px',
             borderTop: '1px solid rgba(10, 10, 10, 0.08)'
           }}>
-            Also: if you're preparing for M&A, succession, or a rebrand.
+            Also: M&A, succession, expansion into new markets — any moment where reputation needs to arrive before you do.
           </p>
         </div>
 
@@ -150,7 +138,7 @@ const WhoThisIsForSection = () => {
           <p style={{
             fontSize: '12px',
             fontWeight: '600',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             textTransform: 'uppercase',
             color: 'rgba(10, 10, 10, 0.4)',
             marginBottom: '24px'

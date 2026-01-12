@@ -205,7 +205,7 @@ const Pricing = () => {
             ))}
           </div>
 
-          {/* Footnote + CTA */}
+          {/* CTA */}
           <div 
             className="transition-all duration-700"
             style={{ 
@@ -214,14 +214,6 @@ const Pricing = () => {
               transitionDelay: '300ms'
             }}
           >
-            <p style={{
-              fontSize: '16px',
-              fontStyle: 'italic',
-              color: 'rgba(10, 10, 10, 0.4)',
-              marginBottom: '32px'
-            }}>
-              Need content-only? $1,800/month. Same quality. No strategy layer.
-            </p>
 
             <Link 
               to="/contact"

@@ -379,21 +379,21 @@ const Pricing = () => {
       >
         <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
           <h2 
-            className="transition-all duration-700"
+            className="transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{ 
               fontSize: '32px', 
               fontWeight: '600', 
               color: '#0A0A0A',
               marginBottom: '24px',
               opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)'
+              transform: ctaVisible ? 'translateY(0) scale(1)' : 'translateY(24px) scale(0.98)'
             }}
           >
             Start a conversation
           </h2>
           
           <div 
-            className="transition-all duration-700"
+            className="transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{ 
               fontSize: '18px', 
               fontWeight: '400', 
@@ -402,7 +402,7 @@ const Pricing = () => {
               marginBottom: '40px',
               opacity: ctaVisible ? 1 : 0,
               transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms'
+              transitionDelay: '150ms'
             }}
           >
             <p style={{ marginBottom: '16px' }}>45 minutes. No pitch. No pressure.</p>
@@ -412,7 +412,7 @@ const Pricing = () => {
           
           <Link 
             to="/contact"
-            className="cta-button-final inline-flex items-center gap-3 transition-all duration-700"
+            className="cta-button-final inline-flex items-center gap-3 transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{ 
               backgroundColor: '#0A0A0A', 
               color: '#FFFFFF', 
@@ -422,9 +422,9 @@ const Pricing = () => {
               borderRadius: '0', 
               textDecoration: 'none',
               opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '200ms'
-            }} 
+              transform: ctaVisible ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.97)',
+              transitionDelay: '300ms'
+            }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }} 
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
           >

@@ -157,18 +157,21 @@ const WhoTrustsUsSection = () => {
             <Link
               key={index}
               to={`/clients/${client.slug}`}
-              className="group block transition-all duration-300 flex-shrink-0"
+              className="client-card group block transition-all duration-300 flex-shrink-0"
               style={{
                 width: '320px',
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 100}ms`
+                transitionDelay: `${(index + 1) * 100}ms`,
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.08)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
               }}
             >
               {/* Photo or confidential placeholder */}

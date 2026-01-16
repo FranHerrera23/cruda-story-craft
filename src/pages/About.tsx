@@ -1,6 +1,6 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import franPortrait from '@/assets/fran-portrait-new.png';
-import michaelPortrait from '@/assets/michael-choi-pugliano.jpg';
+import franPortrait from '@/assets/fran-herrera-new.png';
+import michaelPortrait from '@/assets/michael-choi-pugliano-new.png';
 import nataliaPortrait from '@/assets/natalia-dmitrieva.jpg';
 import abrilPortrait from '@/assets/abril-lovasolo.jpg';
 import isabellaPortrait from '@/assets/isabella-marinelli.png';

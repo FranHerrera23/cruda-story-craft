@@ -9,7 +9,6 @@ const Pricing = () => {
   const { elementRef: systemRef, isVisible: systemVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: faqRef, isVisible: faqVisible } = useScrollAnimation<HTMLElement>();
-  const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
@@ -91,7 +90,7 @@ const Pricing = () => {
             Just a narrative system that works —
           </h1>
           <p 
-            className="transition-all duration-700"
+            className="transition-all duration-700 pricing-price"
             style={{ 
               fontSize: '64px', 
               fontWeight: '700', 
@@ -472,6 +471,9 @@ const Pricing = () => {
           }
           .pricing-headline { 
             font-size: 36px !important; 
+          }
+          .pricing-price {
+            font-size: 42px !important;
           }
           .comparison-section {
             padding: 80px 24px !important;

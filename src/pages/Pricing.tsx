@@ -78,7 +78,7 @@ const Pricing = () => {
           <h1 
             className="transition-all duration-700 pricing-headline"
             style={{ 
-              fontSize: '56px', 
+              fontSize: '52px', 
               fontWeight: '600', 
               lineHeight: '1.2', 
               letterSpacing: '-0.02em', 
@@ -89,9 +89,22 @@ const Pricing = () => {
             }}
           >
             No discovery decks. No quarterly reviews.<br />
-            Just a narrative system that works —<br />
-            for <span style={{ color: '#0A0A0A' }}>$2,600/month.</span>
+            Just a narrative system that works —
           </h1>
+          <p 
+            className="transition-all duration-700"
+            style={{ 
+              fontSize: '64px', 
+              fontWeight: '700', 
+              color: '#FF2E63',
+              marginTop: '32px',
+              opacity: heroVisible ? 1 : 0, 
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '50ms'
+            }}
+          >
+            $2,600/month.
+          </p>
 
           <p 
             className="transition-all duration-700"
@@ -223,7 +236,7 @@ const Pricing = () => {
           padding: '160px 80px'
         }}
       >
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
+        <div style={{ maxWidth: '800px' }}>
           {/* Red accent line */}
           <div 
             className="transition-all duration-700"
@@ -244,7 +257,7 @@ const Pricing = () => {
               fontWeight: '600',
               color: '#0A0A0A',
               letterSpacing: '-0.01em',
-              marginBottom: '100px',
+              marginBottom: '80px',
               opacity: systemVisible ? 1 : 0,
               transform: systemVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '100ms'
@@ -297,35 +310,6 @@ const Pricing = () => {
             </div>
           ))}
 
-          {/* CTA */}
-          <div 
-            className="transition-all duration-700"
-            style={{ 
-              marginTop: '80px',
-              textAlign: 'center',
-              opacity: systemVisible ? 1 : 0,
-              transitionDelay: '500ms'
-            }}
-          >
-            <Link 
-              to="/contact"
-              className="cta-button-system inline-flex items-center gap-3 transition-all"
-              style={{ 
-                backgroundColor: '#0A0A0A', 
-                color: '#FFFFFF', 
-                padding: '18px 28px', 
-                fontSize: '15px', 
-                fontWeight: '500',
-                borderRadius: '0', 
-                textDecoration: 'none' 
-              }} 
-              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }} 
-              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
-            >
-              Start a Conversation
-              <span style={{ fontSize: '18px' }}>→</span>
-            </Link>
-          </div>
         </div>
       </section>
 
@@ -470,7 +454,7 @@ const Pricing = () => {
           padding: '120px 80px' 
         }}
       >
-        <div style={{ maxWidth: '600px', margin: '0 auto', textAlign: 'center' }}>
+        <div style={{ maxWidth: '600px' }}>
           <h2 
             className="transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{ 

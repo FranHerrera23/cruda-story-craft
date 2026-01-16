@@ -72,7 +72,7 @@ const Pricing = () => {
           padding: '120px 80px'
         }}
       >
-        <div style={{ maxWidth: '800px' }}>
+        <div style={{ maxWidth: '900px' }}>
           <h1 
             className="transition-all duration-700 pricing-headline"
             style={{ 
@@ -86,8 +86,8 @@ const Pricing = () => {
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)' 
             }}
           >
-            No discovery decks. No quarterly reviews.<br />
-            Just a narrative system that works —
+            <span style={{ whiteSpace: 'nowrap' }}>No discovery decks. No quarterly reviews.</span><br />
+            <span style={{ whiteSpace: 'nowrap' }}>Just a narrative system that works —</span>
           </h1>
           <p 
             className="transition-all duration-700 pricing-price"

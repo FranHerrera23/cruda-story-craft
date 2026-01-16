@@ -206,9 +206,23 @@ export default function ContactContent() {
               <input
                 type="url"
                 value={formData.companyWebsite}
-                onChange={(e) => handleInputChange('companyWebsite', e.target.value)}
+                onChange={(e) => {
+                  let value = e.target.value;
+                  // Auto-add https:// if user enters a URL without protocol
+                  if (value && !value.match(/^https?:\/\//i) && (value.includes('.') || value.startsWith('www'))) {
+                    value = 'https://' + value;
+                  }
+                  handleInputChange('companyWebsite', value);
+                }}
+                onBlur={(e) => {
+                  // Also fix on blur in case they tab away
+                  let value = e.target.value;
+                  if (value && !value.match(/^https?:\/\//i) && (value.includes('.') || value.startsWith('www'))) {
+                    handleInputChange('companyWebsite', 'https://' + value);
+                  }
+                }}
                 style={inputStyle}
-                placeholder="https://"
+                placeholder="www.yourcompany.com"
               />
             </div>
 

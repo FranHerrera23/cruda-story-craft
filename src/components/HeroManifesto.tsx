@@ -1,6 +1,8 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import franCallImage from "@/assets/fran-portrait-hero.png";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const HeroManifesto = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -87,8 +89,8 @@ const HeroManifesto = () => {
         </p>
         
         {/* CTA Button - Square with Arrow */}
-        <Link 
-          to="/contact"
+        <Link
+          href="/contact"
           className="cta-button-hero"
           style={{ 
             display: 'inline-flex',
@@ -127,7 +129,7 @@ const HeroManifesto = () => {
       {/* Right Column - Photo */}
       <div className="hero-photo">
         <img
-          src={franCallImage}
+          src={franCallImage.src}
           alt="Fran Herrera, Founder of CRUDA"
           style={{
             width: '480px',

@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef, useState, useMemo } from "react";
 
 const useRowAnimation = (threshold = 0.3) => {

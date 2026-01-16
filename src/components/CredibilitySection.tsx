@@ -1,3 +1,5 @@
+'use client';
+
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 // Dot Grid Icon Component (white version)

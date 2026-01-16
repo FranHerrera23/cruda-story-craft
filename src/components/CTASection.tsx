@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Linkedin, Instagram } from "lucide-react";
 import crudaLogo from "@/assets/cruda-logo.png";
@@ -41,7 +43,7 @@ const CTASection = () => {
 
         {/* CTA Button - Square with Arrow (On Dark Variant) */}
         <Link
-          to="/contact"
+          href="/contact"
           className="cta-button-dark"
           style={{
             display: 'inline-flex',
@@ -89,9 +91,9 @@ const CTASection = () => {
           textAlign: 'center'
         }}
       >
-        <Link to="/" className="inline-block mb-8">
+        <Link href="/" className="inline-block mb-8">
           <img 
-            src={crudaLogo} 
+            src={crudaLogo.src} 
             alt="CRUDA" 
             className="h-24 md:h-40 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
             style={{ filter: 'brightness(0) invert(1)' }}
@@ -100,9 +102,9 @@ const CTASection = () => {
         
         {/* Social Media Links */}
         <div className="flex items-center justify-center gap-6 mb-6">
-          <a 
-            href="https://www.linkedin.com/company/cruda-agency" 
-            target="_blank" 
+          <a
+            href="https://www.linkedin.com/company/thecrudaspace/?viewAsMember=true"
+            target="_blank"
             rel="noopener noreferrer"
             className="transition-all duration-300"
             style={{ color: 'rgba(255, 255, 255, 0.4)' }}
@@ -111,9 +113,9 @@ const CTASection = () => {
           >
             <Linkedin size={20} />
           </a>
-          <a 
-            href="https://www.instagram.com/cruda.agency" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/thecruda/"
+            target="_blank"
             rel="noopener noreferrer"
             className="transition-all duration-300"
             style={{ color: 'rgba(255, 255, 255, 0.4)' }}

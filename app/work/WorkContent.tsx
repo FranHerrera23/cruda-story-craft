@@ -1,10 +1,12 @@
-import { Link } from 'react-router-dom';
+'use client';
+
+import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import karenImage from '@/assets/karen-mannheim-casestudy.jpg';
 import mikeImage from '@/assets/mike-kaeding.webp';
 import girishImage from '@/assets/girish-sehgal.jpeg';
 
-const Work = () => {
+export default function WorkContent() {
   const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
@@ -14,7 +16,7 @@ const Work = () => {
       name: "Karen Mannheim",
       title: "Founder, TRAZZO Lighting",
       description: "Luxury architectural lighting designer working with Robert A.M. Stern, Porsche, and global hospitality brands.",
-      image: karenImage,
+      image: karenImage.src,
       link: "/clients/karen-mannheim",
       status: "live"
     },
@@ -22,7 +24,7 @@ const Work = () => {
       name: "Mike Kaeding",
       title: "CEO, Norhart",
       description: "Leading a $200M housing innovation company transforming how apartments are built in America.",
-      image: mikeImage,
+      image: mikeImage.src,
       link: "/clients/mike-kaeding",
       status: "live"
     },
@@ -30,7 +32,7 @@ const Work = () => {
       name: "Girish Sehgal",
       title: "Chief Patient Experience Officer, SSMC",
       description: "Three decades of leadership across Four Seasons, Taj, JW Marriott, and Grand Hyatt properties.",
-      image: girishImage,
+      image: girishImage.src,
       link: "/clients/girish-sehgal",
       status: "live"
     },
@@ -98,7 +100,7 @@ const Work = () => {
           {clients.map((client, index) => (
             <Link
               key={index}
-              to={client.link}
+              href={client.link}
               className={`block group ${client.status === 'coming-soon' ? 'cursor-default' : ''}`}
               onClick={(e) => client.status === 'coming-soon' && e.preventDefault()}
               style={{
@@ -225,7 +227,7 @@ const Work = () => {
           </h2>
           
           <Link
-            to="/book-call"
+            href="/contact"
             className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-300"
             style={{ 
               backgroundColor: '#FF2E63',
@@ -248,6 +250,4 @@ const Work = () => {
       </section>
     </main>
   );
-};
-
-export default Work;
+}

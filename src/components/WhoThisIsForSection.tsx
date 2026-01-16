@@ -1,3 +1,5 @@
+'use client';
+
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { useState, useEffect } from "react";
 

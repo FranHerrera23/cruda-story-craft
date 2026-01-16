@@ -1,5 +1,7 @@
+'use client';
+
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -23,7 +25,7 @@ const clients: Client[] = [
     slug: "karen-mannheim",
     name: "Karen Mannheim",
     title: "Architectural Lighting Designer · TRAZZO",
-    photo: karenPhoto,
+    photo: karenPhoto.src,
     photoPosition: "center 25%",
     quote: "Fran helped us articulate what made our work different in a way our clients finally understood."
   },
@@ -31,7 +33,7 @@ const clients: Client[] = [
     slug: "mike-kaeding",
     name: "Mike Kaeding",
     title: "CEO · Norhart",
-    photo: mikePhoto,
+    photo: mikePhoto.src,
     photoPosition: "center 20%",
     quote: "The narrative system we built together works whether I'm on stage, on a podcast, or in a pitch meeting."
   },
@@ -39,7 +41,7 @@ const clients: Client[] = [
     slug: "girish-sehgal",
     name: "Girish Sehgal",
     title: "Chief Patient Experience Officer · SSMC Abu Dhabi",
-    photo: girishPhoto,
+    photo: girishPhoto.src,
     photoPosition: "center 30%",
     quote: "CRUDA helped me translate twenty-five years of hospitality leadership into a voice that travels."
   },
@@ -47,7 +49,7 @@ const clients: Client[] = [
     slug: "juan-pablo-romero",
     name: "Juan Pablo Romero",
     title: "Regional Sales Manager, US & Caribbean · UNIK Parquet",
-    photo: juanPabloPhoto,
+    photo: juanPabloPhoto.src,
     photoPosition: "center 25%",
     quote: "CRUDA helped me position a brand nobody knew into the choice for architects who care about quality."
   },
@@ -156,7 +158,7 @@ const WhoTrustsUsSection = () => {
           {clients.map((client, index) => (
             <Link
               key={index}
-              to={`/clients/${client.slug}`}
+              href={`/clients/${client.slug}`}
               className="client-card group block transition-all duration-300 flex-shrink-0"
               style={{
                 width: '320px',

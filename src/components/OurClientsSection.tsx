@@ -1,5 +1,7 @@
+'use client';
+
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import karenPhoto from "@/assets/karen-mannheim-new.jpg";
 import mikePhoto from "@/assets/mike-kaeding.webp";
 import girishPhoto from "@/assets/girish-sehgal.jpeg";
@@ -21,7 +23,7 @@ const clients: Client[] = [
     name: "Karen Mannheim",
     title: "Co-founder, TRAZZO Lighting",
     context: "Lima · Miami · Madrid\n80+ employees, $10M+ revenue",
-    photo: karenPhoto,
+    photo: karenPhoto.src,
     photoPosition: "center 25%"
   },
   {
@@ -29,7 +31,7 @@ const clients: Client[] = [
     name: "Mike Kaeding",
     title: "CEO, Norhart",
     context: "High-end residential construction, made affordable.\n$200M in assets · Minnesota",
-    photo: mikePhoto,
+    photo: mikePhoto.src,
     photoPosition: "center 20%"
   },
   {
@@ -37,7 +39,7 @@ const clients: Client[] = [
     name: "Girish Sehgal",
     title: "C-Suite Executive, Hospitality & Healthcare",
     context: "Four Seasons · JW Marriott · Taj · Cleveland Clinic · SSMC",
-    photo: girishPhoto,
+    photo: girishPhoto.src,
     photoPosition: "center 30%"
   },
   {
@@ -45,7 +47,7 @@ const clients: Client[] = [
     name: "Juan Pablo Romero",
     title: "Founder & CEO, JURA PLANK",
     context: "Luxury flooring for high-end residential & commercial\nFlorida",
-    photo: juanPabloPhoto,
+    photo: juanPabloPhoto.src,
     photoPosition: "center 25%"
   },
   {
@@ -98,7 +100,7 @@ const OurClientsSection = () => {
           {clients.map((client, index) => (
             <Link
               key={index}
-              to={`/clients/${client.slug}`}
+              href={`/clients/${client.slug}`}
               className="client-card group transition-all duration-300"
               style={{
                 opacity: isVisible ? 1 : 0,

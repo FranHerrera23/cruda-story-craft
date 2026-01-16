@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const PricingSection = () => {
@@ -85,7 +87,7 @@ const PricingSection = () => {
           
           {/* Link to Pricing Page */}
           <Link
-            to="/pricing"
+            href="/pricing"
             className="inline-block text-[15px] font-medium transition-all duration-300 hover:underline"
             style={{ color: '#FF2E63' }}
           >
@@ -130,9 +132,9 @@ const PricingSection = () => {
           
           {/* CTA Button */}
           <Link
-            to="/book-call"
+            href="/book-call"
             className="inline-block px-12 py-5 rounded-lg font-semibold text-[18px] mb-6 transition-all duration-300 hover:opacity-90"
-            style={{ 
+            style={{
               backgroundColor: '#FF2E63',
               color: '#FFFFFF'
             }}

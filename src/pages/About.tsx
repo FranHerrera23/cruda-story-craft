@@ -34,12 +34,13 @@ const About = () => {
         flipped={true}
       />
       <TeamMember 
-        label="OPERATIONS"
+        label="BUSINESS STRATEGIST"
         name="NATALIA"
         bio={[
-          "Enterprise account management at GSK, Dr. Reddy's, Lundbeck — one of the only pharmaceutical companies in the world focusing exclusively on brain diseases. Then she quit the corporate ladder.",
-          "Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.",
-          "Natalia knows how to run complex operations across borders and cultures. She keeps the work moving so the story can land."
+          "Graduated in medicine. Then spent years as a medical representative at GSK, Dr. Reddy's, Lundbeck.",
+          "Then she quit.",
+          "Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 26 countries. Three languages fluent.",
+          "Natalia knows what it means to start over. She keeps the work moving so the story can land."
         ]}
         image={nataliaPortrait}
         flipped={false}
@@ -59,7 +60,7 @@ const About = () => {
         label="DIGITAL STRATEGIST"
         name="ISABELLA"
         bio={[
-          "40+ tech startups across Dubai, Hong Kong, New York, London, Buenos Aires. Multimedia communications background. MBA candidate at SDA Bocconi.",
+          "40+ tech startups across Dubai, Hong Kong, New York, London, Buenos Aires. Multimedia communications background. Master's candidate at SDA Bocconi.",
           "Now based in Puglia, teaching AI and digital marketing strategy when she's not helping founders translate complexity into clarity.",
           "Isabella finds the signal in the noise — then makes sure it travels."
         ]}

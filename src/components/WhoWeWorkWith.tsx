@@ -1,3 +1,5 @@
+'use client';
+
 import verticalArchitecture from "@/assets/karen-project-construction.jpg";
 import verticalHospitality from "@/assets/vertical-hospitality.jpg";
 import verticalAthletes from "@/assets/vertical-athletes.jpg";
@@ -7,7 +9,7 @@ const verticals = [
   {
     id: "construction",
     title: "Construction, Architecture, Design & Materials",
-    image: verticalArchitecture,
+    image: verticalArchitecture.src,
     description: (
       <>
         You shape spaces that outlive you. Every material, dimension, light—decades of impact. That responsibility deserves a narrative that matches.
@@ -17,7 +19,7 @@ const verticals = [
   {
     id: "hospitality",
     title: "Hospitality & Healthcare Leaders",
-    image: verticalHospitality,
+    image: verticalHospitality.src,
     description: (
       <>
         You hold space for people during <span style={{ color: '#FF2E63', fontWeight: 600 }}>vulnerable moments</span>—rest, healing, celebration. Your work shapes how people feel when most present. That deserves more than metrics.
@@ -27,7 +29,7 @@ const verticals = [
   {
     id: "athletes",
     title: "Professional Athletes & Sports Executives",
-    image: verticalAthletes,
+    image: verticalAthletes.src,
     description: (
       <>
         Your career is public. Your discipline, visible. But the story behind the performance—the decisions, sacrifices, evolution—that <span style={{ color: '#FF2E63', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.

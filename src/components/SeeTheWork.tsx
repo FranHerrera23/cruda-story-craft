@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+'use client';
+
+import Link from "next/link";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import pezetHero from "@/assets/pezet-hero.jpg";
 import saadiyatHero from "@/assets/saadiyat-hero-new.jpg";
@@ -13,7 +15,7 @@ const workItems = [
     location: "Lima, Peru",
     tag: "World-class partnerships",
     tagline: "Robert A.M. Stern Architects",
-    image: pezetHero,
+    image: pezetHero.src,
   },
   {
     id: 2,
@@ -22,7 +24,7 @@ const workItems = [
     location: "Abu Dhabi, UAE",
     tag: "International expansion",
     tagline: "Jennifer Lopez · Christina Aguilera",
-    image: saadiyatHero,
+    image: saadiyatHero.src,
   },
   {
     id: 3,
@@ -31,7 +33,7 @@ const workItems = [
     location: "Minneapolis, USA",
     tag: "Construction → thought leadership",
     tagline: "$200M multifamily development",
-    image: mikeKaeding,
+    image: mikeKaeding.src,
   },
   {
     id: 4,
@@ -40,7 +42,7 @@ const workItems = [
     location: "Girish Sehgal · SSMC Abu Dhabi",
     tag: "Executive content strategy",
     tagline: "184 reactions · 23 comments",
-    image: girishLinkedin,
+    image: girishLinkedin.src,
   },
 ];
 
@@ -77,7 +79,7 @@ const SeeTheWork = () => {
           {workItems.map((item, index) => (
             <Link
               key={item.id}
-              to={item.slug}
+              href={item.slug}
               className="group relative flex flex-col transition-all duration-300"
               style={{
                 opacity: isVisible ? 1 : 0,

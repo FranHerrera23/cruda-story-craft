@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 const ContactForm = () => {
   return (
@@ -9,7 +9,7 @@ const ContactForm = () => {
         </h2>
         
         <Link
-          to="/book-call"
+          href="/book-call"
           className="inline-flex items-center justify-center font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
           style={{ 
             backgroundColor: '#FF2E63',

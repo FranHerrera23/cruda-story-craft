@@ -1,13 +1,17 @@
+'use client';
+
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import './Navigation.css';
 import crudaLogo from '@/assets/cruda-logo.png';
+import Image from 'next/image';
 
 export const Navigation = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-  const isHomepage = location.pathname === '/';
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
 
   useEffect(() => {
     // Always show navigation
@@ -29,40 +33,40 @@ export const Navigation = () => {
       className={`main-navigation ${isVisible ? 'visible' : 'hidden'} ${isScrolled ? 'scrolled' : ''}`}
     >
       <div className="nav-container">
-        <Link to="/" className="nav-logo">
-          <img 
-            src={crudaLogo} 
-            alt="CRUDA" 
-            className="h-16 md:h-24 w-auto" 
+        <Link href="/" className="nav-logo">
+          <img
+            src={crudaLogo.src}
+            alt="CRUDA"
+            className="h-16 md:h-24 w-auto"
           />
         </Link>
         <div className="nav-menu">
-          <Link 
-            to="/" 
-            className={`nav-menu-item ${location.pathname === '/' ? 'active' : ''}`}
+          <Link
+            href="/"
+            className={`nav-menu-item ${pathname === '/' ? 'active' : ''}`}
           >
             Home
           </Link>
-          <Link 
-            to="/work" 
-            className={`nav-menu-item ${location.pathname === '/work' ? 'active' : ''}`}
+          <Link
+            href="/work"
+            className={`nav-menu-item ${pathname === '/work' ? 'active' : ''}`}
           >
             Work
           </Link>
-          <Link 
-            to="/about" 
-            className={`nav-menu-item ${location.pathname === '/about' ? 'active' : ''}`}
+          <Link
+            href="/about"
+            className={`nav-menu-item ${pathname === '/about' ? 'active' : ''}`}
           >
             About
           </Link>
-          <Link 
-            to="/pricing" 
-            className={`nav-menu-item ${location.pathname === '/pricing' ? 'active' : ''}`}
+          <Link
+            href="/pricing"
+            className={`nav-menu-item ${pathname === '/pricing' ? 'active' : ''}`}
           >
             Pricing
           </Link>
-          <Link 
-            to="/contact" 
+          <Link
+            href="/contact"
             className="nav-cta-button"
           >
             Start a Conversation

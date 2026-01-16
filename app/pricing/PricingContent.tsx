@@ -1,9 +1,11 @@
+'use client';
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { ChevronDown } from "lucide-react";
 
-const Pricing = () => {
+export default function PricingContent() {
   const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: investmentRef, isVisible: investmentVisible } = useScrollAnimation<HTMLDivElement>();
   const { elementRef: testimonialRef, isVisible: testimonialVisible } = useScrollAnimation<HTMLElement>();
@@ -215,8 +217,8 @@ const Pricing = () => {
             }}
           >
 
-            <Link 
-              to="/contact"
+            <Link
+              href="/contact"
               className="cta-button-pricing inline-flex items-center gap-3 transition-all"
               style={{ 
                 backgroundColor: '#0A0A0A', 
@@ -410,8 +412,8 @@ const Pricing = () => {
             <p>If we can't help, we'll say that too.</p>
           </div>
           
-          <Link 
-            to="/contact"
+          <Link
+            href="/contact"
             className="cta-button-final inline-flex items-center gap-3 transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
             style={{ 
               backgroundColor: '#0A0A0A', 
@@ -477,6 +479,4 @@ const Pricing = () => {
       `}</style>
     </main>
   );
-};
-
-export default Pricing;
+}

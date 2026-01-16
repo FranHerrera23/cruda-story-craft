@@ -1,5 +1,7 @@
+'use client';
+
 import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { usePathname } from 'next/navigation';
 
 /**
  * ScrollToTop Component
@@ -7,7 +9,7 @@ import { useLocation } from 'react-router-dom';
  * Prevents page jumping behavior
  */
 export const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     // Smooth scroll to top on route change

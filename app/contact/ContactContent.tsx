@@ -1,8 +1,10 @@
+'use client';
+
 import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { supabase } from "@/integrations/supabase/client";
 
-const Contact = () => {
+export default function ContactContent() {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
   const [formData, setFormData] = useState({
     name: '',
@@ -371,4 +373,3 @@ const inputStyle: React.CSSProperties = {
   transition: 'border-color 0.2s ease'
 };
 
-export default Contact;

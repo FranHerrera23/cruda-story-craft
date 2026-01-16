@@ -1,12 +1,14 @@
+'use client';
+
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import franPortrait from '@/assets/fran-portrait-new.png';
 import michaelPortrait from '@/assets/michael-choi-pugliano.jpg';
 import nataliaPortrait from '@/assets/natalia-dmitrieva.jpg';
 import abrilPortrait from '@/assets/abril-lovasolo.jpg';
 import isabellaPortrait from '@/assets/isabella-marinelli.png';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-const About = () => {
+export default function AboutContent() {
   return (
     <main className="about-page" style={{ backgroundColor: '#FFFFFF' }}>
       <HeroSection />
@@ -19,7 +21,7 @@ const About = () => {
           "Every immigrant knows this gap intimately. You know exactly who you are — but the words don't travel.",
           "Now I help founders close that gap."
         ]}
-        image={franPortrait}
+        image={franPortrait.src}
         flipped={false}
       />
       <TeamMember 
@@ -30,7 +32,7 @@ const About = () => {
           "In-house and agency side. Content that ships, not decks that sit.",
           "Michael builds brand stories that create affinity — the kind that lasts longer than a campaign."
         ]}
-        image={michaelPortrait}
+        image={michaelPortrait.src}
         flipped={true}
       />
       <TeamMember 
@@ -41,7 +43,7 @@ const About = () => {
           "Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.",
           "Natalia knows how to run complex operations across borders and cultures. She keeps the work moving so the story can land."
         ]}
-        image={nataliaPortrait}
+        image={nataliaPortrait.src}
         flipped={false}
       />
       <TeamMember 
@@ -52,7 +54,7 @@ const About = () => {
           "Built Aftertaste — a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.",
           "Abril doesn't want you to nod along. She wants you to leave with something stuck in your head."
         ]}
-        image={abrilPortrait}
+        image={abrilPortrait.src}
         flipped={true}
       />
       <TeamMember 
@@ -63,7 +65,7 @@ const About = () => {
           "Now based in Puglia, teaching AI and digital marketing strategy when she's not helping founders translate complexity into clarity.",
           "Isabella finds the signal in the noise — then makes sure it travels."
         ]}
-        image={isabellaPortrait}
+        image={isabellaPortrait.src}
         flipped={false}
         isLast={true}
       />
@@ -457,7 +459,7 @@ const FinalCTA = () => {
         </h2>
         
         <Link
-          to="/contact"
+          href="/contact"
           className="cta-button-about transition-all"
           style={{
             display: 'inline-flex',
@@ -504,4 +506,3 @@ const FinalCTA = () => {
   );
 };
 
-export default About;

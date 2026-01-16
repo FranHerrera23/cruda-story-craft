@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import franCallImage from "@/assets/fran-portrait-hero.png";
+import franCallImage from "@/assets/fran-herrera-new.png";
 import { Link } from "react-router-dom";
 
 const HeroManifesto = () => {

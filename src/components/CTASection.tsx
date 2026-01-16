@@ -102,9 +102,9 @@ const CTASection = () => {
         
         {/* Social Media Links */}
         <div className="flex items-center justify-center gap-6 mb-6">
-          <a 
-            href="https://www.linkedin.com/company/cruda-agency" 
-            target="_blank" 
+          <a
+            href="https://www.linkedin.com/company/thecrudaspace/?viewAsMember=true"
+            target="_blank"
             rel="noopener noreferrer"
             className="transition-all duration-300"
             style={{ color: 'rgba(255, 255, 255, 0.4)' }}
@@ -113,9 +113,9 @@ const CTASection = () => {
           >
             <Linkedin size={20} />
           </a>
-          <a 
-            href="https://www.instagram.com/cruda.agency" 
-            target="_blank" 
+          <a
+            href="https://www.instagram.com/thecruda/"
+            target="_blank"
             rel="noopener noreferrer"
             className="transition-all duration-300"
             style={{ color: 'rgba(255, 255, 255, 0.4)' }}

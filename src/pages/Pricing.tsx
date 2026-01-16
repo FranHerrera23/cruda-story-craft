@@ -35,7 +35,6 @@ const Pricing = () => {
   const comparisonRows = [
     { cruda: "$2,600/month", agency: "$8,000 - $25,000/month" },
     { cruda: "Senior team only", agency: "Junior account managers" },
-    { cruda: "One client at a time", agency: "Dozens of clients" },
     { cruda: "Weekly calls + WhatsApp", agency: "Monthly check-ins" },
     { cruda: "Strategy + execution", agency: "Strategy OR execution" },
     { cruda: "Built around your voice", agency: "Template-driven content" }

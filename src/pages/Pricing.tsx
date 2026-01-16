@@ -33,11 +33,11 @@ const Pricing = () => {
   ];
 
   const comparisonRows = [
-    { cruda: "$2,600/month", agency: "$8,000 - $25,000/month" },
-    { cruda: "Senior team only", agency: "Junior account managers" },
-    { cruda: "Weekly calls + WhatsApp", agency: "Monthly check-ins" },
-    { cruda: "Strategy + execution", agency: "Strategy OR execution" },
-    { cruda: "Built around your voice", agency: "Template-driven content" }
+    { cruda: "$2,600/month", agency: "$15,000+ retainers or $50k strategy decks" },
+    { cruda: "Narrative that builds trust", agency: "PR agencies think in press hits. Social agencies optimize for likes." },
+    { cruda: "Strategy AND execution", agency: "Consultants deliver decks. Agencies execute without thinking." },
+    { cruda: "Built around your voice", agency: "Templates. Trends. Whatever worked for someone else." },
+    { cruda: "Fortune 500 experience, founder attention", agency: "Senior pitch, junior delivery" }
   ];
 
   const phases = [
@@ -175,7 +175,7 @@ const Pricing = () => {
                 transitionDelay: '50ms'
               }}
             >
-              TRADITIONAL AGENCY
+              THE ALTERNATIVES
             </div>
           </div>
 
@@ -262,7 +262,7 @@ const Pricing = () => {
               transitionDelay: '100ms'
             }}
           >
-            A narrative system built around you.
+            A narrative system built around <span style={{ color: '#FF2E63' }}>you</span>.
           </h2>
 
           {/* Phases */}
@@ -308,6 +308,24 @@ const Pricing = () => {
               </p>
             </div>
           ))}
+
+          {/* Scarcity line */}
+          <p 
+            className="transition-all duration-700"
+            style={{
+              fontSize: '16px',
+              fontStyle: 'italic',
+              color: 'rgba(10, 10, 10, 0.4)',
+              textAlign: 'center',
+              marginTop: '60px',
+              marginBottom: '60px',
+              opacity: systemVisible ? 1 : 0,
+              transitionDelay: '500ms'
+            }}
+          >
+            We onboard one company per month.<br />
+            Limited capacity, intentionally.
+          </p>
 
         </div>
       </section>
@@ -444,71 +462,6 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* SECTION 6: FINAL CTA */}
-      <section 
-        ref={ctaRef}
-        style={{ 
-          backgroundColor: '#FFFFFF', 
-          borderTop: '1px solid rgba(10, 10, 10, 0.08)',
-          padding: '120px 80px' 
-        }}
-      >
-        <div style={{ maxWidth: '600px' }}>
-          <h2 
-            className="transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ 
-              fontSize: '36px', 
-              fontWeight: '600', 
-              color: '#0A0A0A',
-              marginBottom: '24px',
-              opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0) scale(1)' : 'translateY(24px) scale(0.98)'
-            }}
-          >
-            Start a conversation
-          </h2>
-          
-          <div 
-            className="transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ 
-              fontSize: '18px', 
-              fontWeight: '400', 
-              lineHeight: '1.8',
-              color: 'rgba(10, 10, 10, 0.6)',
-              marginBottom: '40px',
-              opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '150ms'
-            }}
-          >
-            <p style={{ marginBottom: '16px' }}>45 minutes. No pitch. No pressure.</p>
-            <p style={{ marginBottom: '16px' }}>If we see the pattern, we'll say so.</p>
-            <p>If we can't help, we'll say that too.</p>
-          </div>
-          
-          <Link 
-            to="/contact"
-            className="cta-button-final inline-flex items-center gap-3 transition-all duration-[800ms] ease-[cubic-bezier(0.4,0,0.2,1)]"
-            style={{ 
-              backgroundColor: '#0A0A0A', 
-              color: '#FFFFFF', 
-              padding: '18px 28px', 
-              fontSize: '15px', 
-              fontWeight: '500',
-              borderRadius: '0', 
-              textDecoration: 'none',
-              opacity: ctaVisible ? 1 : 0,
-              transform: ctaVisible ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.97)',
-              transitionDelay: '300ms'
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }} 
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
-          >
-            Start a Conversation
-            <span style={{ fontSize: '18px' }}>→</span>
-          </Link>
-        </div>
-      </section>
 
       {/* Mobile Styles */}
       <style>{`

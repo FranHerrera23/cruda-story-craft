@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ContactContent from './ContactContent';
+import CTASection from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Contact',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
-  return <ContactContent />;
+  return (
+    <>
+      <ContactContent />
+      <CTASection />
+    </>
+  );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import PricingContent from './PricingContent';
+import CTASection from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Pricing',
@@ -16,5 +17,10 @@ export const metadata: Metadata = {
 };
 
 export default function PricingPage() {
-  return <PricingContent />;
+  return (
+    <>
+      <PricingContent />
+      <CTASection />
+    </>
+  );
 }

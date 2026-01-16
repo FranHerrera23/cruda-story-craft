@@ -38,7 +38,7 @@ const About = () => {
         name="NATALIA"
         bio={[
           "Medical degree. Pharma sales across GSK, Dr. Reddy's, Lundbeck.",
-          "Spain. Real estate. 26 countries. Three languages.",
+          "Spain for eight years. Real Estate investor in Russia & Dubai. 26 countries traveled. Three languages fluent.",
           "Natalia's gift isn't strategy in the traditional sense. It's intuition — the ability to feel what people need before they say it. She knows when something's working. And when it isn't."
         ]}
         image={nataliaPortrait}

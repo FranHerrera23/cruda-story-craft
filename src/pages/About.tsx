@@ -37,10 +37,9 @@ const About = () => {
         label="BUSINESS STRATEGIST"
         name="NATALIA"
         bio={[
-          "Graduated in medicine. Then spent years as a medical representative at GSK, Dr. Reddy's, Lundbeck.",
-          "Then she quit.",
-          "Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 26 countries. Three languages fluent.",
-          "Natalia knows what it means to start over. She keeps the work moving so the story can land."
+          "Medical degree. Pharma sales across GSK, Dr. Reddy's, Lundbeck.",
+          "Spain. Real estate. 26 countries. Three languages.",
+          "Natalia's gift isn't strategy in the traditional sense. It's intuition — the ability to feel what people need before they say it. She knows when something's working. And when it isn't."
         ]}
         image={nataliaPortrait}
         flipped={false}

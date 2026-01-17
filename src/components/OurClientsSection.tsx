@@ -101,11 +101,12 @@ const OurClientsSection = () => {
             <Link
               key={index}
               href={`/clients/${client.slug}`}
-              className="client-card group transition-all duration-300"
+              className="client-card group"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: `${(index + 1) * 100}ms`,
+                transition: 'opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease',
+                transitionDelay: `${index * 150}ms`,
                 textDecoration: 'none',
                 boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
               }}
@@ -114,7 +115,7 @@ const OurClientsSection = () => {
                 e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.08)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.transform = isVisible ? 'translateY(0)' : 'translateY(20px)';
                 e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
               }}
             >

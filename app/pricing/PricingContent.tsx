@@ -117,7 +117,7 @@ export default function PricingContent() {
               style={{
                 fontSize: '64px',
                 fontWeight: '700',
-                color: '#0A0A0A',
+                color: '#FF2E63',
                 letterSpacing: '-0.02em',
                 lineHeight: '1',
                 margin: 0

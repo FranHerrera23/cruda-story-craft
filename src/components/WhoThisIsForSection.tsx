@@ -159,22 +159,22 @@ const WhoThisIsForSection = () => {
             fontWeight: '600',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: 'rgba(10, 10, 10, 0.4)',
+            color: 'rgba(10, 10, 10, 0.35)',
             marginBottom: '24px'
           }}>
             Who this isn't for
           </p>
-          
+
           {/* Bullet points */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {notForPoints.map((point, index) => (
-              <p 
+              <p
                 key={index}
                 style={{
                   fontSize: '17px',
                   fontWeight: '400',
                   lineHeight: '1.6',
-                  color: 'rgba(10, 10, 10, 0.5)',
+                  color: 'rgba(10, 10, 10, 0.4)',
                   paddingLeft: '24px',
                   position: 'relative'
                 }}
@@ -182,7 +182,7 @@ const WhoThisIsForSection = () => {
                 <span style={{
                   position: 'absolute',
                   left: 0,
-                  color: 'rgba(10, 10, 10, 0.3)'
+                  color: 'rgba(10, 10, 10, 0.2)'
                 }}>✗</span>
                 {point}
               </p>

@@ -3,16 +3,20 @@ import ContactContent from './ContactContent';
 import CTASection from '@/components/CTASection';
 
 export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Start a conversation. 45 minutes. No pitch. No pressure.',
+  title: 'Start a Conversation',
+  description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
   openGraph: {
-    title: 'Contact — CRUDA',
-    description: 'Start a conversation. 45 minutes. No pitch. No pressure.',
+    title: 'Start a Conversation — CRUDA',
+    description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
+    url: 'https://cruda.co/contact',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact — CRUDA',
-    description: 'Start a conversation. 45 minutes. No pitch. No pressure.',
+    title: 'Start a Conversation — CRUDA',
+    description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
+  },
+  alternates: {
+    canonical: 'https://cruda.co/contact',
   },
 };
 

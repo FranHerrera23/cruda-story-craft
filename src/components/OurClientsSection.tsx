@@ -63,31 +63,14 @@ const OurClientsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section 
-      ref={elementRef} 
-      style={{ 
+    <section
+      ref={elementRef}
+      style={{
         backgroundColor: '#FFFFFF',
         padding: '120px 80px'
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-        {/* Section Label */}
-        <p
-          className="transition-all duration-700"
-          style={{
-            fontSize: '13px',
-            fontWeight: '600',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: '#FF2E63',
-            marginBottom: '48px',
-            opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
-          }}
-        >
-          Our clients
-        </p>
-
         {/* Client Grid */}
         <div 
           style={{ 
@@ -120,30 +103,31 @@ const OurClientsSection = () => {
               }}
             >
               {/* Photo */}
-              <div 
-                style={{ 
-                  aspectRatio: '1 / 1', 
+              <div
+                style={{
+                  aspectRatio: '4 / 5',
                   overflow: 'hidden',
                   marginBottom: '16px',
-                  borderRadius: '0'
+                  borderRadius: '0',
+                  border: '1px solid rgba(10, 10, 10, 0.06)'
                 }}
               >
                 {client.isConfidential ? (
-                  <div 
+                  <div
                     style={{
                       width: '100%',
                       height: '100%',
-                      backgroundColor: '#F5F1E8',
+                      backgroundColor: 'rgba(10, 10, 10, 0.03)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center'
                     }}
                   >
-                    <span 
-                      style={{ 
-                        fontSize: '48px', 
-                        fontWeight: '600', 
-                        color: 'rgba(10, 10, 10, 0.1)' 
+                    <span
+                      style={{
+                        fontSize: '48px',
+                        fontWeight: '600',
+                        color: 'rgba(10, 10, 10, 0.1)'
                       }}
                     >
                       [C]
@@ -153,12 +137,13 @@ const OurClientsSection = () => {
                   <img
                     src={client.photo}
                     alt={client.name}
-                    className="transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="client-photo transition-all duration-500 group-hover:scale-[1.03]"
                     style={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      objectPosition: client.photoPosition
+                      objectPosition: client.photoPosition,
+                      filter: 'grayscale(100%) contrast(1.05)'
                     }}
                   />
                 )}
@@ -205,8 +190,17 @@ const OurClientsSection = () => {
         </div>
       </div>
 
-      {/* Mobile Styles */}
+      {/* Styles */}
       <style>{`
+        .client-photo {
+          filter: grayscale(100%) contrast(1.05);
+          transition: filter 0.4s ease, transform 0.5s ease;
+        }
+
+        .client-card:hover .client-photo {
+          filter: grayscale(0%) contrast(1);
+        }
+
         @media (max-width: 768px) {
           section {
             padding: 80px 24px !important;

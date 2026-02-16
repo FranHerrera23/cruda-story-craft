@@ -4,15 +4,19 @@ import CTASection from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Work',
-  description: 'People who trusted us with their story.',
+  description: 'Narrative systems for construction, architecture, and design firms doing $20M–$500M.',
   openGraph: {
     title: 'Work — CRUDA',
-    description: 'People who trusted us with their story.',
+    description: 'Narrative systems for construction, architecture, and design firms doing $20M–$500M.',
+    url: 'https://cruda.co/work',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Work — CRUDA',
-    description: 'People who trusted us with their story.',
+    description: 'Narrative systems for construction, architecture, and design firms doing $20M–$500M.',
+  },
+  alternates: {
+    canonical: 'https://cruda.co/work',
   },
 };
 

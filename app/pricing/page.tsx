@@ -4,15 +4,19 @@ import CTASection from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Pricing',
-  description: '$2,600/month with a 6-month minimum commitment. Most clients stay 1-3 years.',
+  description: 'No discovery decks. No quarterly reviews. Just a narrative system that works. $2,600/month.',
   openGraph: {
     title: 'Pricing — CRUDA',
-    description: '$2,600/month with a 6-month minimum commitment. Most clients stay 1-3 years.',
+    description: 'No discovery decks. No quarterly reviews. Just a narrative system that works. $2,600/month.',
+    url: 'https://cruda.co/pricing',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pricing — CRUDA',
-    description: '$2,600/month with a 6-month minimum commitment. Most clients stay 1-3 years.',
+    description: 'No discovery decks. No quarterly reviews. Just a narrative system that works. $2,600/month.',
+  },
+  alternates: {
+    canonical: 'https://cruda.co/pricing',
   },
 };
 

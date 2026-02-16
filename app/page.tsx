@@ -3,7 +3,6 @@ import HeroManifesto from "@/components/HeroManifesto";
 import PhilosophySection from "@/components/PhilosophySection";
 import NarrativeAlignmentSection from "@/components/NarrativeAlignmentSection";
 import WhoThisIsForSection from "@/components/WhoThisIsForSection";
-import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import OurClientsSection from "@/components/OurClientsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -16,11 +15,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
     description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+    url: 'https://cruda.co',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
     description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+  },
+  alternates: {
+    canonical: 'https://cruda.co',
   },
 };
 
@@ -43,7 +46,6 @@ export default function HomePage() {
       <WhoThisIsForSection />
 
       {/* Section 6: What Changes / Outcome (white background) */}
-      <WhatChangesSection />
 
       {/* Section 7: Our Clients (white background) */}
       <OurClientsSection />

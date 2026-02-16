@@ -1,3 +1,6 @@
+/* Import Satoshi font from Fontshare */
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,55 +41,47 @@ img {
 
 @layer base {
   :root {
-    /* CRUDA Simplified - White-forward, breathing */
+    /* CRUDA Design System - Master Brief Requirements */
     --pure-white: 0 0% 100%;         /* #FFFFFF - Primary background */
-    --subtle-gray: 0 0% 98%;         /* #FAFAFA - Alternate sections */
-    --near-black: 0 0% 10%;          /* #1A1A1A - Primary text */
-    --signal-red: 347 100% 59%;      /* #FF2E63 - Accent (unchanged) */
+    --dark: 0 0% 4%;                 /* #0A0A0A - Dark backgrounds & primary text */
+    --signal-red: 347 100% 59%;      /* #FF2E63 - Accent */
 
-    /* Text opacity variants (using near-black base) */
-    --text-primary: var(--near-black);
-    --text-secondary: 0 0% 10% / 0.6;   /* rgba(26, 26, 26, 0.6) */
-    --text-tertiary: 0 0% 10% / 0.4;    /* rgba(26, 26, 26, 0.4) */
-
-    /* Legacy support */
-    --charcoal: var(--near-black);
-    --bone: var(--pure-white);
-    --warm-cream: var(--pure-white);
-    --soft-clay: var(--subtle-gray);
-    --warm-charcoal: var(--near-black);
-    --natural-linen: var(--pure-white);
+    /* Text opacity variants (using #0A0A0A base) */
+    --text-primary: var(--dark);
+    --text-secondary: 0 0% 4% / 0.6;   /* rgba(10, 10, 10, 0.6) */
+    --text-tertiary: 0 0% 4% / 0.5;    /* rgba(10, 10, 10, 0.5) */
+    --text-quaternary: 0 0% 4% / 0.4;  /* rgba(10, 10, 10, 0.4) */
 
     /* Semantic Tokens */
     --background: var(--pure-white);
-    --foreground: var(--near-black);
+    --foreground: var(--dark);
 
     --card: var(--pure-white);
-    --card-foreground: var(--near-black);
+    --card-foreground: var(--dark);
 
     --popover: var(--pure-white);
-    --popover-foreground: var(--near-black);
+    --popover-foreground: var(--dark);
 
-    --primary: var(--near-black);
+    --primary: var(--dark);
     --primary-foreground: var(--pure-white);
 
-    --secondary: var(--subtle-gray);
-    --secondary-foreground: var(--near-black);
+    --secondary: 0 0% 98%;
+    --secondary-foreground: var(--dark);
 
-    --muted: var(--subtle-gray);
+    --muted: 0 0% 98%;
     --muted-foreground: var(--text-secondary);
 
     --accent: var(--signal-red);
-    --accent-foreground: var(--near-black);
+    --accent-foreground: var(--dark);
 
     --destructive: var(--signal-red);
     --destructive-foreground: var(--pure-white);
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 0 0% 4% / 0.08;     /* rgba(10, 10, 10, 0.08) */
+    --input: 0 0% 4% / 0.08;
     --ring: var(--signal-red);
 
-    --radius: 0.125rem; /* 2px - sharp, not rounded */
+    --radius: 0rem; /* CRITICAL: Zero border radius per brief */
   }
 
   * {
@@ -95,39 +90,54 @@ img {
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    color: #0A0A0A;
   }
 
-  /* Typography Hierarchy */
+  /* Typography Hierarchy - Master Brief Typography Scale */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Satoshi', 'DM Sans', sans-serif;
     font-weight: 600;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
 
+  /* Hero headlines */
   h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
     line-height: 1.05;
   }
 
+  /* Section headlines */
   h2 {
-    font-size: clamp(2rem, 4vw, 3rem);
-    letter-spacing: -0.01em;
-    line-height: 1.15;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
   }
 
-  h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
+  /* Sub-headlines */
+  h3 {
+    font-size: clamp(22px, 2.5vw, 28px);
+    font-weight: 600;
+  }
 
+  /* Body text */
   p {
-    line-height: 1.6;
+    font-size: clamp(17px, 1.8vw, 20px);
+    line-height: 1.65;
     max-width: 75ch;
+  }
+
+  /* Ensure all transitions use the luxury easing */
+  * {
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
 
@@ -1193,4 +1203,55 @@ body {
   .team-member:hover img {
     filter: grayscale(0%) contrast(1);
   }
+}
+
+/* ================================ */
+/* PHASE 8: LUXURY POLISH DETAILS  */
+/* ================================ */
+
+/* Text selection */
+::selection {
+  background: #FF2E63;
+  color: #FFFFFF;
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid #FF2E63;
+  outline-offset: 4px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(10, 10, 10, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(10, 10, 10, 0.3);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Section dividers - gradient fades */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right,
+    transparent 0%,
+    rgba(10,10,10,0.08) 20%,
+    rgba(10,10,10,0.08) 80%,
+    transparent 100%
+  );
 }

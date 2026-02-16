@@ -9,12 +9,12 @@ const CTASection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
-    <section 
-      ref={elementRef} 
+    <section
+      ref={elementRef}
       className="cta-section"
-      style={{ 
+      style={{
         backgroundColor: '#0A0A0A',
-        padding: '120px 80px',
+        padding: '100px 80px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -28,7 +28,7 @@ const CTASection = () => {
         <h2
           className="transition-all duration-700 cta-headline"
           style={{
-            fontSize: '52px',
+            fontSize: '48px',
             fontWeight: '600',
             lineHeight: '1.1',
             letterSpacing: '-0.02em',
@@ -38,7 +38,7 @@ const CTASection = () => {
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          Ready when <span style={{ color: '#FF2E63' }}>you are.</span>
+          Ready when you are.
         </h2>
 
         {/* CTA Button - Square with Arrow (On Dark Variant) */}

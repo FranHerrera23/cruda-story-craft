@@ -51,11 +51,13 @@ const TestimonialsSection = () => {
             {/* Quote */}
             <p
               style={{
-                fontSize: '32px',
+                fontSize: '22px',
                 fontWeight: '400',
                 fontStyle: 'italic',
-                color: '#FFFFFF',
-                lineHeight: '1.4'
+                color: 'rgba(255, 255, 255, 0.9)',
+                lineHeight: '1.5',
+                maxWidth: '600px',
+                margin: '0 auto'
               }}
               className="quote-text"
             >
@@ -65,8 +67,8 @@ const TestimonialsSection = () => {
             {/* Attribution */}
             <p
               style={{
-                fontSize: '16px',
-                fontWeight: '400',
+                fontSize: '14px',
+                fontWeight: '500',
                 color: '#FF2E63',
                 marginTop: '24px'
               }}

@@ -62,9 +62,9 @@ export default {
         "signal-red": "hsl(var(--signal-red))",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'Inter', 'sans-serif'],
-        grotesk: ['Space Grotesk', 'sans-serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['DM Sans', 'sans-serif'],
+        grotesk: ['DM Sans', 'sans-serif'],
       },
       fontSize: {
         'hero': ['clamp(2.25rem, 5.4vw, 4.05rem)', { lineHeight: '1.05', letterSpacing: '-0.02em' }],

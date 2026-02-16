@@ -5,74 +5,130 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './Navigation.css';
 import crudaLogo from '@/assets/cruda-logo.png';
-import Image from 'next/image';
 
 export const Navigation = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const isHomepage = pathname === '/';
 
   useEffect(() => {
-    // Always show navigation
-    setIsVisible(true);
+    let ticking = false;
 
-    // Track scroll for styling
     const handleScroll = () => {
-      const scrolled = window.pageYOffset > 100;
-      setIsScrolled(scrolled);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const scrolled = window.scrollY > 80;
+          setIsScrolled(scrolled);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     handleScroll();
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+
   return (
-    <nav 
-      className={`main-navigation ${isVisible ? 'visible' : 'hidden'} ${isScrolled ? 'scrolled' : ''}`}
-    >
-      <div className="nav-container">
-        <Link href="/" className="nav-logo">
-          <img
-            src={crudaLogo.src}
-            alt="CRUDA"
-            className="h-16 md:h-24 w-auto"
-          />
-        </Link>
-        <div className="nav-menu">
-          <Link
-            href="/"
-            className={`nav-menu-item ${pathname === '/' ? 'active' : ''}`}
-          >
-            Home
+    <>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+        <div className="nav-container">
+          <Link href="/" className="nav-logo">
+            <img
+              src={crudaLogo.src}
+              alt="CRUDA"
+              className="logo-image"
+            />
           </Link>
-          <Link
-            href="/work"
-            className={`nav-menu-item ${pathname === '/work' ? 'active' : ''}`}
+
+          {/* Desktop Navigation */}
+          <div className="nav-menu desktop-only">
+            <Link
+              href="/work"
+              className={`nav-link ${pathname === '/work' ? 'active' : ''}`}
+            >
+              Work
+            </Link>
+            <Link
+              href="/about"
+              className={`nav-link ${pathname === '/about' ? 'active' : ''}`}
+            >
+              About
+            </Link>
+            <Link
+              href="/pricing"
+              className={`nav-link ${pathname === '/pricing' ? 'active' : ''}`}
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/contact"
+              className="nav-cta"
+            >
+              <span>Start a Conversation</span>
+              <span className="arrow">→</span>
+            </Link>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button
+            className={`hamburger mobile-only ${mobileMenuOpen ? 'open' : ''}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
           >
-            Work
-          </Link>
-          <Link
-            href="/about"
-            className={`nav-menu-item ${pathname === '/about' ? 'active' : ''}`}
-          >
-            About
-          </Link>
-          <Link
-            href="/pricing"
-            className={`nav-menu-item ${pathname === '/pricing' ? 'active' : ''}`}
-          >
-            Pricing
-          </Link>
-          <Link
-            href="/contact"
-            className="nav-cta-button"
-          >
-            Start a Conversation
-          </Link>
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
+      </nav>
+
+      {/* Mobile Menu Slide Panel */}
+      <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
+        <Link
+          href="/work"
+          className={`mobile-nav-link ${pathname === '/work' ? 'active' : ''}`}
+          onClick={closeMobileMenu}
+        >
+          Work
+        </Link>
+        <Link
+          href="/about"
+          className={`mobile-nav-link ${pathname === '/about' ? 'active' : ''}`}
+          onClick={closeMobileMenu}
+        >
+          About
+        </Link>
+        <Link
+          href="/pricing"
+          className={`mobile-nav-link ${pathname === '/pricing' ? 'active' : ''}`}
+          onClick={closeMobileMenu}
+        >
+          Pricing
+        </Link>
+        <Link
+          href="/contact"
+          className="mobile-nav-link mobile-nav-cta"
+          onClick={closeMobileMenu}
+        >
+          Start a Conversation
+        </Link>
       </div>
-    </nav>
+    </>
   );
 };

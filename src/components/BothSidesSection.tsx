@@ -70,7 +70,7 @@ const BothSidesSection = () => {
         </div>
 
         {/* Body Copy */}
-        <div 
+        <div
           className="transition-all duration-700"
           style={{
             fontSize: '20px',
@@ -84,13 +84,16 @@ const BothSidesSection = () => {
             transitionDelay: '200ms'
           }}
         >
-          <p style={{ marginBottom: '24px' }}>
-            Over a decade inside TikTok, Nestlé, Amazon, Twitch, the United Nations — and a dozen startups nobody's heard of yet.
+          <p style={{ marginBottom: '16px' }}>
+            We know what gets diluted in handoffs.
           </p>
-          <p style={{ marginBottom: '24px' }}>
-            We know what gets diluted in handoffs. What gets lost in translation. What never makes it out of the meeting room.
+          <p style={{ marginBottom: '16px' }}>
+            What gets lost in translation.
           </p>
-          <p>
+          <p style={{ marginBottom: '16px' }}>
+            What never makes it out of the meeting room.
+          </p>
+          <p style={{ marginTop: '32px' }}>
             That's why we sit in the gap — not to interpret for you, but to make your story impossible to misunderstand.
           </p>
         </div>

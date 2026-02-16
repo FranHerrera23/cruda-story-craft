@@ -3,7 +3,6 @@ import HeroManifesto from "@/components/HeroManifesto";
 import PhilosophySection from "@/components/PhilosophySection";
 import NarrativeAlignmentSection from "@/components/NarrativeAlignmentSection";
 import WhoThisIsForSection from "@/components/WhoThisIsForSection";
-import WhatChangesSection from "@/components/WhatChangesSection";
 import HowWeWorkSection from "@/components/HowWeWorkSection";
 import OurClientsSection from "@/components/OurClientsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -47,7 +46,6 @@ export default function HomePage() {
       <WhoThisIsForSection />
 
       {/* Section 6: What Changes / Outcome (white background) */}
-      <WhatChangesSection />
 
       {/* Section 7: Our Clients (white background) */}
       <OurClientsSection />

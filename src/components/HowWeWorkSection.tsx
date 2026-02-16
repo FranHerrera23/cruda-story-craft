@@ -82,14 +82,14 @@ const HowWeWorkSection = () => {
             >
               {/* Step Number */}
               <p style={{
-                fontSize: '14px',
+                fontSize: '24px',
                 fontWeight: '600',
-                color: 'rgba(10, 10, 10, 0.2)',
+                color: 'rgba(10, 10, 10, 0.15)',
                 marginBottom: '12px'
               }}>
                 {step.number}
               </p>
-              
+
               {/* Time Label */}
               <p style={{
                 fontSize: '13px',
@@ -101,12 +101,12 @@ const HowWeWorkSection = () => {
               }}>
                 {step.time}
               </p>
-              
-              {/* Divider */}
+
+              {/* Divider - Red accent, larger for step 3 */}
               <div style={{
-                width: '32px',
+                width: index === 2 ? '48px' : '32px',
                 height: '2px',
-                background: 'rgba(10, 10, 10, 0.1)',
+                background: '#FF2E63',
                 marginBottom: '24px'
               }} />
               

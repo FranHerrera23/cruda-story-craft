@@ -80,7 +80,7 @@ export default function PricingContent() {
         className="pricing-hero"
         style={{
           backgroundColor: '#FFFFFF',
-          padding: '120px 80px 100px'
+          padding: '160px 80px 80px'
         }}
       >
         <div style={{ maxWidth: '700px' }}>
@@ -88,18 +88,30 @@ export default function PricingContent() {
           <h1
             className="transition-all duration-700 pricing-headline"
             style={{
-              fontSize: '52px',
+              fontSize: 'clamp(36px, 4vw, 56px)',
               fontWeight: '600',
               lineHeight: '1.15',
               letterSpacing: '-0.02em',
               color: '#0A0A0A',
-              marginBottom: '48px',
+              marginBottom: '32px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
             No discovery decks. No quarterly reviews. Just a narrative system that works —
           </h1>
+
+          {/* Red accent line */}
+          <div
+            className="transition-all duration-500"
+            style={{
+              width: heroVisible ? '48px' : '0px',
+              height: '3px',
+              background: '#FF2E63',
+              marginBottom: '48px',
+              transitionDelay: '100ms'
+            }}
+          />
 
           {/* Price Block - Left-aligned, black */}
           <div
@@ -109,13 +121,13 @@ export default function PricingContent() {
               margin: '0',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms'
+              transitionDelay: '200ms'
             }}
           >
             <p
               className="price-block"
               style={{
-                fontSize: '64px',
+                fontSize: 'clamp(54px, 6vw, 72px)',
                 fontWeight: '700',
                 color: '#FF2E63',
                 letterSpacing: '-0.02em',
@@ -126,19 +138,36 @@ export default function PricingContent() {
               $2,600<span style={{
                 fontSize: '24px',
                 fontWeight: '400',
-                color: 'rgba(10, 10, 10, 0.5)'
+                color: 'rgba(10, 10, 10, 0.4)'
               }}>/month</span>
             </p>
             <p style={{
               fontSize: '17px',
               fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.5)',
+              color: 'rgba(10, 10, 10, 0.45)',
               marginTop: '12px',
               lineHeight: '1.5'
             }}>
               6-month minimum. Most clients stay 1-3 years.
             </p>
           </div>
+
+          {/* Content-Only Option */}
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '18px',
+              fontStyle: 'italic',
+              fontWeight: '400',
+              color: 'rgba(10, 10, 10, 0.5)',
+              marginTop: '40px',
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '300ms'
+            }}
+          >
+            $1,800/month if content-only works better for where you are.
+          </p>
         </div>
       </section>
 

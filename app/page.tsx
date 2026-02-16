@@ -16,11 +16,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
     description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+    url: 'https://cruda.co',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
     description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+  },
+  alternates: {
+    canonical: 'https://cruda.co',
   },
 };
 

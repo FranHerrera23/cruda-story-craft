@@ -3,15 +3,19 @@ import BookCallContent from './BookCallContent';
 
 export const metadata: Metadata = {
   title: 'Book a Call',
-  description: '45 minutes. No pitch. No pressure. Let\'s talk about your story.',
+  description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
   openGraph: {
     title: 'Book a Call — CRUDA',
-    description: '45 minutes. No pitch. No pressure. Let\'s talk about your story.',
+    description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
+    url: 'https://cruda.co/book-call',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Book a Call — CRUDA',
-    description: '45 minutes. No pitch. No pressure. Let\'s talk about your story.',
+    description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
+  },
+  alternates: {
+    canonical: 'https://cruda.co/book-call',
   },
 };
 

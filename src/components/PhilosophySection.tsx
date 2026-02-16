@@ -49,12 +49,12 @@ const PhilosophySection = () => {
         }
 
         .zeitgeist-headline {
-          font-size: clamp(40px, 4.5vw, 64px);
+          font-size: clamp(36px, 4vw, 56px);
           font-weight: 600;
           color: #0A0A0A;
           letter-spacing: -0.02em;
           margin-bottom: 48px;
-          line-height: 1.15;
+          line-height: 1.1;
           opacity: 0;
           transform: translateY(24px);
           transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
@@ -67,10 +67,10 @@ const PhilosophySection = () => {
         }
 
         .zeitgeist-body {
-          font-size: clamp(20px, 2vw, 26px);
+          font-size: 24px;
           font-weight: 400;
-          color: rgba(10, 10, 10, 0.5);
-          line-height: 1.5;
+          color: rgba(10, 10, 10, 0.55);
+          line-height: 1.6;
           margin-bottom: 48px;
           opacity: 0;
           transform: translateY(24px);
@@ -89,9 +89,10 @@ const PhilosophySection = () => {
         }
 
         .zeitgeist-closer {
-          font-size: clamp(20px, 2vw, 26px);
+          font-size: 24px;
           font-weight: 500;
           color: #0A0A0A;
+          line-height: 1.6;
           opacity: 0;
           transform: translateY(24px);
           transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),

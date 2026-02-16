@@ -87,7 +87,7 @@ const NarrativeAlignmentSection = () => {
 
         {/* Row 2 - Why it matters */}
         <div ref={row2.ref} className="solution-row">
-          <h2 className={`solution-title ${row2.isVisible ? 'animate' : ''}`}>
+          <h2 className={`solution-title red ${row2.isVisible ? 'animate' : ''}`}>
             Why it matters.
           </h2>
           <div className="floating-words">

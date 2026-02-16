@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const useRowAnimation = (threshold = 0.3) => {
+const useRowAnimation = (threshold = 0.15) => {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -27,149 +27,14 @@ const useRowAnimation = (threshold = 0.3) => {
   return { ref, isVisible };
 };
 
-interface WordConfig {
-  word: string;
-  top: string;
-  left: string;
-  fromRight: boolean;
-  rotation: number; // Subtle rotation for organic feel
-  // Pro animation config
-  entranceDuration: number;
-  entranceEasing: string;
-  floatAmplitude: number;
-  floatSpeed: number;
-  floatPhase: number;
-  blurStart: number;
-  scaleStart: number;
-  // Breathing config
-  breatheSpeed: number;
-  breatheAmplitude: number;
-}
-
-const FloatingWord = ({ 
-  config,
-  delay, 
-  isVisible,
-  scrollOffset,
-  time,
-}: { 
-  config: WordConfig;
-  delay: number; 
-  isVisible: boolean;
-  scrollOffset: number;
-  time: number;
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [hasEntered, setHasEntered] = useState(false);
-  
-  // Track when entrance animation completes
-  useEffect(() => {
-    if (isVisible) {
-      const timeout = setTimeout(() => {
-        setHasEntered(true);
-      }, (delay + config.entranceDuration) * 1000);
-      return () => clearTimeout(timeout);
-    }
-  }, [isVisible, delay, config.entranceDuration]);
-
-  const initialX = config.fromRight ? 60 : -60;
-  
-  // Organic floating motion after entrance
-  const floatY = hasEntered 
-    ? Math.sin((time * config.floatSpeed) + config.floatPhase) * config.floatAmplitude
-    : 0;
-  const floatX = hasEntered 
-    ? Math.cos((time * config.floatSpeed * 0.7) + config.floatPhase) * (config.floatAmplitude * 0.5)
-    : 0;
-
-  // Subtle opacity breathing
-  const breatheOpacity = hasEntered
-    ? 0.28 + Math.sin((time * config.breatheSpeed) + config.floatPhase) * config.breatheAmplitude
-    : 0.28;
-
-  // Entrance values
-  const baseOpacity = isHovered ? 0.5 : breatheOpacity;
-  const opacity = isVisible ? baseOpacity : 0;
-  const blur = isVisible ? 0 : config.blurStart;
-  const scale = isVisible ? 1 : config.scaleStart;
-  const translateX = isVisible ? floatX : initialX;
-  const translateY = scrollOffset + (isVisible ? floatY : 25);
-  
-  // Subtle rotation that drifts with time
-  const rotationDrift = hasEntered 
-    ? Math.sin((time * 0.3) + config.floatPhase) * 0.5 
-    : 0;
-  const rotation = config.rotation + rotationDrift;
-
-  return (
-    <span
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{
-        position: 'absolute',
-        top: config.top,
-        left: config.left,
-        fontSize: '14px',
-        fontWeight: 400,
-        textTransform: 'uppercase',
-        letterSpacing: '0.08em',
-        color: `rgba(10, 10, 10, ${opacity})`,
-        transform: `translate(${translateX}px, ${translateY}px) scale(${scale}) rotate(${rotation}deg)`,
-        filter: `blur(${blur}px)`,
-        transition: hasEntered 
-          ? 'color 0.3s ease-out' 
-          : `
-            color ${config.entranceDuration}s ${config.entranceEasing} ${delay}s,
-            transform ${config.entranceDuration}s ${config.entranceEasing} ${delay}s,
-            filter ${config.entranceDuration * 0.8}s ${config.entranceEasing} ${delay}s
-          `,
-        whiteSpace: 'nowrap',
-        cursor: 'default',
-        willChange: 'transform, opacity, filter',
-      }}
-    >
-      {config.word}
-    </span>
-  );
-};
-
 const NarrativeAlignmentSection = () => {
   const row1 = useRowAnimation();
   const row2 = useRowAnimation();
   const row3 = useRowAnimation();
   const closerRef = useRef<HTMLDivElement>(null);
-  const sectionRef = useRef<HTMLElement>(null);
   const [closerVisible, setCloserVisible] = useState(false);
   const [lineComplete, setLineComplete] = useState(false);
   const [underlineComplete, setUnderlineComplete] = useState(false);
-  const [scrollOffset, setScrollOffset] = useState(0);
-  const [time, setTime] = useState(0);
-
-  // Continuous animation loop for floating effect
-  useEffect(() => {
-    let animationId: number;
-    const animate = () => {
-      setTime(Date.now() / 1000);
-      animationId = requestAnimationFrame(animate);
-    };
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, []);
-
-  // Parallax scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const relativeScroll = Math.max(-25, Math.min(25, -rect.top * 0.04));
-        setScrollOffset(relativeScroll);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const element = closerRef.current;
@@ -191,463 +56,276 @@ const NarrativeAlignmentSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Pro-level word configurations with organic chaos positioning
-  // Per V6 brief: clustered, uneven, not grid-like
-  const row1Words: WordConfig[] = useMemo(() => [
-    { 
-      word: 'synergy', 
-      top: '8%', 
-      left: '5%', 
-      fromRight: false,
-      rotation: -2,
-      entranceDuration: 0.9,
-      entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      floatAmplitude: 3,
-      floatSpeed: 0.8,
-      floatPhase: 0,
-      blurStart: 8,
-      scaleStart: 0.85,
-      breatheSpeed: 0.4,
-      breatheAmplitude: 0.06,
-    },
-    { 
-      word: 'leverage', 
-      top: '15%', 
-      left: '35%', 
-      fromRight: true,
-      rotation: 1,
-      entranceDuration: 1.1,
-      entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      floatAmplitude: 4,
-      floatSpeed: 0.6,
-      floatPhase: Math.PI / 3,
-      blurStart: 6,
-      scaleStart: 0.9,
-      breatheSpeed: 0.35,
-      breatheAmplitude: 0.05,
-    },
-    { 
-      word: 'best-in-class', 
-      top: '55%', 
-      left: '8%', 
-      fromRight: false,
-      rotation: -1,
-      entranceDuration: 1.0,
-      entranceEasing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-      floatAmplitude: 2.5,
-      floatSpeed: 0.9,
-      floatPhase: Math.PI / 2,
-      blurStart: 10,
-      scaleStart: 0.88,
-      breatheSpeed: 0.45,
-      breatheAmplitude: 0.07,
-    },
-    { 
-      word: 'solutions', 
-      top: '70%', 
-      left: '50%', 
-      fromRight: true,
-      rotation: 2,
-      entranceDuration: 1.2,
-      entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-      floatAmplitude: 3.5,
-      floatSpeed: 0.7,
-      floatPhase: Math.PI,
-      blurStart: 5,
-      scaleStart: 0.92,
-      breatheSpeed: 0.3,
-      breatheAmplitude: 0.05,
-    },
-    // NEW BUZZWORDS
-    { 
-      word: 'scalable', 
-      top: '32%', 
-      left: '58%', 
-      fromRight: true,
-      rotation: -1.5,
-      entranceDuration: 1.0,
-      entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      floatAmplitude: 3.2,
-      floatSpeed: 0.75,
-      floatPhase: Math.PI * 0.4,
-      blurStart: 7,
-      scaleStart: 0.87,
-      breatheSpeed: 0.38,
-      breatheAmplitude: 0.055,
-    },
-    { 
-      word: 'disruptive', 
-      top: '42%', 
-      left: '22%', 
-      fromRight: false,
-      rotation: 1.5,
-      entranceDuration: 1.15,
-      entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      floatAmplitude: 2.8,
-      floatSpeed: 0.85,
-      floatPhase: Math.PI * 1.2,
-      blurStart: 8,
-      scaleStart: 0.89,
-      breatheSpeed: 0.32,
-      breatheAmplitude: 0.06,
-    },
-    { 
-      word: 'ecosystem', 
-      top: '85%', 
-      left: '30%', 
-      fromRight: false,
-      rotation: -0.5,
-      entranceDuration: 1.25,
-      entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-      floatAmplitude: 3.8,
-      floatSpeed: 0.65,
-      floatPhase: Math.PI * 1.7,
-      blurStart: 9,
-      scaleStart: 0.86,
-      breatheSpeed: 0.28,
-      breatheAmplitude: 0.05,
-    },
-  ], []);
-
-  const row2Words: WordConfig[] = useMemo(() => [
-    { 
-      word: 'Forbes', 
-      top: '5%', 
-      left: '45%', 
-      fromRight: true,
-      rotation: 1,
-      entranceDuration: 1.0,
-      entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      floatAmplitude: 3,
-      floatSpeed: 0.75,
-      floatPhase: Math.PI / 4,
-      blurStart: 7,
-      scaleStart: 0.87,
-      breatheSpeed: 0.38,
-      breatheAmplitude: 0.06,
-    },
-    { 
-      word: 'award-winning', 
-      top: '25%', 
-      left: '12%', 
-      fromRight: false,
-      rotation: -2,
-      entranceDuration: 1.15,
-      entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      floatAmplitude: 4,
-      floatSpeed: 0.65,
-      floatPhase: Math.PI * 0.75,
-      blurStart: 9,
-      scaleStart: 0.9,
-      breatheSpeed: 0.42,
-      breatheAmplitude: 0.055,
-    },
-    { 
-      word: 'Inc 5000', 
-      top: '48%', 
-      left: '55%', 
-      fromRight: true,
-      rotation: 0,
-      entranceDuration: 0.95,
-      entranceEasing: 'cubic-bezier(0.25, 1, 0.5, 1)',
-      floatAmplitude: 2.8,
-      floatSpeed: 0.85,
-      floatPhase: Math.PI * 1.25,
-      blurStart: 6,
-      scaleStart: 0.88,
-      breatheSpeed: 0.33,
-      breatheAmplitude: 0.065,
-    },
-    { 
-      word: 'industry leader', 
-      top: '75%', 
-      left: '25%', 
-      fromRight: false,
-      rotation: 1.5,
-      entranceDuration: 1.25,
-      entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-      floatAmplitude: 3.2,
-      floatSpeed: 0.55,
-      floatPhase: Math.PI * 1.5,
-      blurStart: 8,
-      scaleStart: 0.85,
-      breatheSpeed: 0.28,
-      breatheAmplitude: 0.05,
-    },
-    // NEW BUZZWORDS
-    { 
-      word: 'Top 100', 
-      top: '18%', 
-      left: '62%', 
-      fromRight: true,
-      rotation: -1,
-      entranceDuration: 1.05,
-      entranceEasing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      floatAmplitude: 3.5,
-      floatSpeed: 0.7,
-      floatPhase: Math.PI * 0.5,
-      blurStart: 7,
-      scaleStart: 0.88,
-      breatheSpeed: 0.36,
-      breatheAmplitude: 0.058,
-    },
-    { 
-      word: 'As Seen In', 
-      top: '62%', 
-      left: '8%', 
-      fromRight: false,
-      rotation: 2,
-      entranceDuration: 1.2,
-      entranceEasing: 'cubic-bezier(0.16, 1, 0.3, 1)',
-      floatAmplitude: 2.5,
-      floatSpeed: 0.8,
-      floatPhase: Math.PI * 1.1,
-      blurStart: 8,
-      scaleStart: 0.86,
-      breatheSpeed: 0.4,
-      breatheAmplitude: 0.055,
-    },
-    { 
-      word: 'Thought Leader', 
-      top: '88%', 
-      left: '48%', 
-      fromRight: true,
-      rotation: -0.5,
-      entranceDuration: 1.3,
-      entranceEasing: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
-      floatAmplitude: 3.8,
-      floatSpeed: 0.6,
-      floatPhase: Math.PI * 1.8,
-      blurStart: 9,
-      scaleStart: 0.85,
-      breatheSpeed: 0.25,
-      breatheAmplitude: 0.05,
-    },
-  ], []);
+  // Only 4 buzzwords per row as per V6 brief
+  const row1Buzzwords = ['synergy', 'leverage', 'best-in-class', 'solutions'];
+  const row2Buzzwords = ['Forbes', 'award-winning', 'Inc 5000', 'industry leader'];
 
   return (
-    <section
-      ref={sectionRef}
-      style={{
-        backgroundColor: '#FFFFFF',
-        padding: '160px 80px',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-        }}
-      >
+    <section className="solution-section">
+      <div className="solution-container">
         {/* Row 1 - What you do */}
-        <div
-          ref={row1.ref}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '64px',
-            alignItems: 'center',
-            minHeight: '180px',
-            marginBottom: '80px',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '52px',
-              fontWeight: 600,
-              color: '#0A0A0A',
-              letterSpacing: '-0.02em',
-              margin: 0,
-              opacity: row1.isVisible ? 1 : 0,
-              transform: row1.isVisible ? 'translateX(0)' : 'translateX(-30px)',
-              transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            }}
-          >
+        <div ref={row1.ref} className="solution-row">
+          <h2 className={`solution-title ${row1.isVisible ? 'animate' : ''}`}>
             What you do.
           </h2>
-          <div style={{ position: 'relative', height: '180px', overflow: 'visible' }}>
-            {row1Words.map((config, index) => (
-              <FloatingWord
-                key={config.word}
-                config={config}
-                delay={0.2 + 0.18 * index}
-                isVisible={row1.isVisible}
-                scrollOffset={scrollOffset}
-                time={time}
-              />
+          <div className="floating-words">
+            {row1Buzzwords.map((word, index) => (
+              <span
+                key={word}
+                className={`floating-word ${row1.isVisible ? 'animate' : ''}`}
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                  top: ['5%', '30%', '55%', '80%'][index],
+                  left: ['15%', '50%', '25%', '60%'][index]
+                }}
+              >
+                {word}
+              </span>
             ))}
           </div>
         </div>
 
         {/* Row 2 - Why it matters */}
-        <div
-          ref={row2.ref}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '64px',
-            alignItems: 'center',
-            minHeight: '180px',
-            marginBottom: '80px',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '52px',
-              fontWeight: 600,
-              color: '#0A0A0A',
-              letterSpacing: '-0.02em',
-              margin: 0,
-              opacity: row2.isVisible ? 1 : 0,
-              transform: row2.isVisible ? 'translateX(0)' : 'translateX(-30px)',
-              transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            }}
-          >
+        <div ref={row2.ref} className="solution-row">
+          <h2 className={`solution-title ${row2.isVisible ? 'animate' : ''}`}>
             Why it matters.
           </h2>
-          <div style={{ position: 'relative', height: '180px', overflow: 'visible' }}>
-            {row2Words.map((config, index) => (
-              <FloatingWord
-                key={config.word}
-                config={config}
-                delay={0.2 + 0.18 * index}
-                isVisible={row2.isVisible}
-                scrollOffset={scrollOffset}
-                time={time}
-              />
+          <div className="floating-words">
+            {row2Buzzwords.map((word, index) => (
+              <span
+                key={word}
+                className={`floating-word ${row2.isVisible ? 'animate' : ''}`}
+                style={{
+                  transitionDelay: `${index * 100}ms`,
+                  top: ['5%', '30%', '55%', '80%'][index],
+                  left: ['15%', '50%', '25%', '60%'][index]
+                }}
+              >
+                {word}
+              </span>
             ))}
           </div>
         </div>
 
         {/* Row 3 - Why they should care */}
-        <div
-          ref={row3.ref}
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '64px',
-            alignItems: 'center',
-            minHeight: '180px',
-            marginBottom: '120px',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: '52px',
-              fontWeight: 600,
-              color: '#FF2E63',
-              letterSpacing: '-0.02em',
-              margin: 0,
-              opacity: row3.isVisible ? 1 : 0,
-              transform: row3.isVisible ? 'translateX(0)' : 'translateX(-30px)',
-              transition: 'opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            }}
-          >
+        <div ref={row3.ref} className="solution-row">
+          <h2 className={`solution-title red ${row3.isVisible ? 'animate' : ''}`}>
             Why they should care.
           </h2>
-          {/* Per V6 brief: Empty space is the point — silence is the critique */}
-          <div 
-            style={{ 
-              height: '180px',
-            }}
-          />
+          <div className="floating-words">
+            {/* Just ellipsis - silence makes the point */}
+            <span
+              className={`floating-word ellipsis ${row3.isVisible ? 'animate' : ''}`}
+              style={{ top: '45%', left: '40%' }}
+            >
+              ...
+            </span>
+          </div>
         </div>
 
         {/* Closer */}
-        <div
-          ref={closerRef}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-          }}
-        >
-          <div
-            style={{
-              width: closerVisible ? '64px' : '0',
-              height: '3px',
-              backgroundColor: '#FF2E63',
-              transition: 'width 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-              marginBottom: '40px',
-            }}
-          />
-          <div
-            style={{
-              opacity: lineComplete ? 1 : 0,
-              transform: lineComplete ? 'translateY(0)' : 'translateY(10px)',
-              transition: 'opacity 0.6s ease-out, transform 0.6s ease-out',
-            }}
-          >
-            <p
-              style={{
-                fontSize: '20px',
-                fontWeight: 400,
-                color: 'rgba(10, 10, 10, 0.5)',
-                margin: 0,
-              }}
-            >
+        <div ref={closerRef} className="solution-closer">
+          <div className={`solution-line ${closerVisible ? 'animate' : ''}`} />
+          <div className="closer-text">
+            <p className={`closer-intro ${lineComplete ? 'animate' : ''}`}>
               Most companies{' '}
-              <span
-                style={{
-                  color: '#FF2E63',
-                  fontWeight: 500,
-                  position: 'relative',
-                  display: 'inline-block',
-                }}
-              >
+              <span className="highlight-red">
                 like yours
-                <span
-                  style={{
-                    position: 'absolute',
-                    bottom: '-2px',
-                    left: 0,
-                    width: underlineComplete ? '100%' : '0%',
-                    height: '2px',
-                    backgroundColor: '#FF2E63',
-                    transition: 'width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  }}
-                />
+                <span className={`highlight-underline ${underlineComplete ? 'animate' : ''}`} />
               </span>
               {' '}only have the first.
             </p>
-            <p
-              style={{
-                fontSize: '24px',
-                fontWeight: 600,
-                color: '#0A0A0A',
-                margin: 0,
-                marginTop: '16px',
-                opacity: underlineComplete ? 1 : 0,
-                transform: underlineComplete ? 'translateY(0)' : 'translateY(8px)',
-                transition: 'opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s',
-              }}
-            >
+            <p className={`closer-final ${underlineComplete ? 'animate' : ''}`}>
               We close the gap.
             </p>
           </div>
         </div>
       </div>
 
-      {/* Mobile Styles */}
-      <style>{`
+      {/* Styles */}
+      <style jsx>{`
+        .solution-section {
+          background: #FFFFFF;
+          padding: 160px 80px;
+        }
+
+        .solution-container {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+
+        .solution-row {
+          display: grid;
+          grid-template-columns: 45% 55%;
+          gap: 0;
+          margin-bottom: 100px;
+          align-items: center;
+          min-height: 180px;
+          border-bottom: 1px solid rgba(10, 10, 10, 0.06);
+          padding-bottom: 100px;
+        }
+
+        .solution-title {
+          font-size: clamp(40px, 4.5vw, 56px);
+          font-weight: 600;
+          color: #0A0A0A;
+          letter-spacing: -0.02em;
+          opacity: 0;
+          transform: translateX(-30px);
+          transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          margin: 0;
+        }
+
+        .solution-title.red {
+          color: #FF2E63;
+        }
+
+        .solution-title.animate {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .floating-words {
+          position: relative;
+          height: 100%;
+          min-height: 160px;
+        }
+
+        .floating-word {
+          position: absolute;
+          font-size: 13px;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          color: rgba(10, 10, 10, 0.18);
+          white-space: nowrap;
+          opacity: 0;
+          transform: translateY(15px);
+          transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .floating-word.ellipsis {
+          font-size: 24px;
+          letter-spacing: 0.2em;
+        }
+
+        .floating-word.animate {
+          opacity: 0.18;
+          transform: translateY(0);
+        }
+
+        .solution-closer {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .solution-line {
+          width: 0;
+          height: 3px;
+          background: #FF2E63;
+          margin-bottom: 40px;
+          transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .solution-line.animate {
+          width: 64px;
+        }
+
+        .closer-text {
+          max-width: 600px;
+        }
+
+        .closer-intro {
+          font-size: 20px;
+          font-weight: 400;
+          color: rgba(10, 10, 10, 0.5);
+          margin: 0 0 16px 0;
+          opacity: 0;
+          transform: translateY(10px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .closer-intro.animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .highlight-red {
+          color: #FF2E63;
+          font-weight: 500;
+          position: relative;
+        }
+
+        .highlight-underline {
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: #FF2E63;
+          transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .highlight-underline.animate {
+          width: 100%;
+        }
+
+        .closer-final {
+          font-size: 24px;
+          font-weight: 600;
+          color: #0A0A0A;
+          margin: 0;
+          opacity: 0;
+          transform: translateY(8px);
+          transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
+        }
+
+        .closer-final.animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+          .solution-section {
+            padding: 100px 40px;
+          }
+
+          .solution-row {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            margin-bottom: 64px;
+            padding-bottom: 64px;
+          }
+
+          .solution-title {
+            font-size: clamp(32px, 6vw, 40px);
+          }
+
+          .floating-words {
+            display: none;
+          }
+        }
+
         @media (max-width: 768px) {
-          section {
-            padding: 80px 24px !important;
+          .solution-section {
+            padding: 80px 24px;
           }
-          section > div > div {
-            grid-template-columns: 1fr !important;
-            gap: 32px !important;
-            min-height: auto !important;
-            margin-bottom: 48px !important;
+
+          .solution-row {
+            margin-bottom: 48px;
+            padding-bottom: 48px;
           }
-          section h2 {
-            font-size: 32px !important;
+
+          .closer-intro {
+            font-size: 18px;
           }
-          section > div > div > div[style*="position: relative"] {
-            display: none !important;
-          }
-          section > div > div > div[style*="display: flex"] {
-            display: none !important;
+
+          .closer-final {
+            font-size: 20px;
           }
         }
       `}</style>

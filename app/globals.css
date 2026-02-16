@@ -1173,4 +1173,24 @@ body {
   img:not([src]) {
     opacity: 0;
   }
+
+  /* ================================ */
+  /* B&W PHOTO FILTER                */
+  /* ================================ */
+
+  /* Apply B&W filter to all client and team photos for visual cohesion */
+  .client-photo,
+  .team-photo,
+  .client-card img,
+  .team-member img {
+    filter: grayscale(100%) contrast(1.1);
+    transition: filter 0.4s ease;
+  }
+
+  .client-photo:hover,
+  .team-photo:hover,
+  .client-card:hover img,
+  .team-member:hover img {
+    filter: grayscale(0%) contrast(1);
+  }
 }

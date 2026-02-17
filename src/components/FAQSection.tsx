@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "What's the investment?",
-    answer: "$1,800/month for a 4-month commitment ($7,200 total). This is the foundational phase where we build your strategic narrative and execute across key channels. Most clients continue into ongoing positioning work after seeing the impact."
+    answer: "$2,600/month with a 6-month minimum. Most clients stay 1-3 years. This isn't a campaign—it's a positioning system that compounds over time."
   },
   {
     question: "What are your credentials?",

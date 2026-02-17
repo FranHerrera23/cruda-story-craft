@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navigation } from "@/components/Navigation";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import ScrollRevealInit from "@/components/ScrollRevealInit";
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -75,6 +76,7 @@ export default function RootLayout({
             <Toaster />
             <Sonner />
             <ScrollToTop />
+            <ScrollRevealInit />
             <Navigation />
             <main className="route-transition-wrapper">
               {children}

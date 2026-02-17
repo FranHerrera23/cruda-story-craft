@@ -1255,3 +1255,232 @@ html {
     transparent 100%
   );
 }
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+/* Fade up — default reveal */
+[data-reveal="fade-up"] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-reveal="fade-up"].in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Slide from left — for section headlines */
+[data-reveal="slide-left"] {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-reveal="slide-left"].in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade in (no movement) — for subtle elements */
+[data-reveal="fade"] {
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-reveal="fade"].in-view {
+  opacity: 1;
+}
+
+/* Stagger children — add to parent container */
+[data-reveal-stagger] > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-reveal-stagger].in-view > *:nth-child(1) { transition-delay: 0s; }
+[data-reveal-stagger].in-view > *:nth-child(2) { transition-delay: 0.08s; }
+[data-reveal-stagger].in-view > *:nth-child(3) { transition-delay: 0.16s; }
+[data-reveal-stagger].in-view > *:nth-child(4) { transition-delay: 0.24s; }
+[data-reveal-stagger].in-view > *:nth-child(5) { transition-delay: 0.32s; }
+[data-reveal-stagger].in-view > *:nth-child(6) { transition-delay: 0.40s; }
+
+[data-reveal-stagger].in-view > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Width reveal — for red accent lines */
+[data-reveal="line"] {
+  width: 0;
+  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+[data-reveal="line"].in-view {
+  width: 48px;
+}
+
+/* ============================================
+   GLOBAL BUTTON SYSTEM — SWEEP-FILL
+   ============================================ */
+
+/* Universal CTA button styles */
+.btn-primary,
+a[class*="cta"]:not(.nav-cta),
+button[class*="conversation"],
+button[class*="book"],
+a[class*="button"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #0A0A0A;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 18px 32px;
+  border: none;
+  border-radius: 0 !important;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Hover sweep-fill from left */
+.btn-primary::before,
+a[class*="cta"]:not(.nav-cta)::before,
+button[class*="conversation"]::before,
+button[class*="book"]::before,
+a[class*="button"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #FF2E63;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 0;
+}
+
+.btn-primary:hover::before,
+a[class*="cta"]:not(.nav-cta):hover::before,
+button[class*="conversation"]:hover::before,
+button[class*="book"]:hover::before,
+a[class*="button"]:hover::before {
+  width: 100%;
+}
+
+/* Ensure child elements are above sweep fill */
+.btn-primary > *,
+a[class*="cta"]:not(.nav-cta) > *,
+button[class*="conversation"] > *,
+button[class*="book"] > *,
+a[class*="button"] > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Arrow nudge on hover */
+.btn-primary .arrow,
+.btn-primary svg,
+a[class*="cta"] .arrow,
+button[class*="conversation"] .arrow,
+button[class*="book"] .arrow {
+  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-primary:hover .arrow,
+.btn-primary:hover svg,
+a[class*="cta"]:hover .arrow,
+button[class*="conversation"]:hover .arrow,
+button[class*="book"]:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Click feedback */
+.btn-primary:active,
+a[class*="cta"]:active,
+button[class*="conversation"]:active,
+button[class*="book"]:active {
+  transform: scale(0.98);
+}
+
+/* Dark section variant - white text on red bg */
+[class*="dark"] .btn-primary,
+[class*="cta-dark"],
+section[style*="0A0A0A"] .btn-primary {
+  background: #FF2E63;
+}
+
+[class*="dark"] .btn-primary::before,
+[class*="cta-dark"]::before,
+section[style*="0A0A0A"] .btn-primary::before {
+  background: #FFFFFF;
+}
+
+[class*="dark"] .btn-primary:hover,
+[class*="cta-dark"]:hover,
+section[style*="0A0A0A"] .btn-primary:hover {
+  color: #0A0A0A;
+}
+
+/* ============================================
+   CLIENT CARD PHOTO TREATMENT — B&W WITH COLOR REVEAL
+   ============================================ */
+
+/* Apply to all client card images */
+.client-card img,
+.client-card picture img,
+[class*="client"] img,
+.our-clients-section img {
+  filter: grayscale(100%) contrast(1.05);
+  transition: filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Color reveal on hover */
+.client-card:hover img,
+.client-card:hover picture img,
+[class*="client"]:hover img,
+.our-clients-section .client-card:hover img {
+  filter: grayscale(0%) contrast(1);
+}
+
+/* Ensure consistent aspect ratio */
+.client-card-image,
+.client-photo {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.client-card-image img,
+.client-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   FORCE SQUARE CORNERS GLOBALLY
+   ============================================ */
+
+/* Square is the brand - no rounded corners anywhere */
+button,
+a,
+input,
+textarea,
+select,
+.btn-primary,
+[class*="btn"],
+[class*="cta"],
+[class*="card"],
+[class*="button"] {
+  border-radius: 0 !important;
+}

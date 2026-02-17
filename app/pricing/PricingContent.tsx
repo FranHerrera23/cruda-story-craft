@@ -151,23 +151,6 @@ export default function PricingContent() {
               6-month minimum. Most clients stay 1-3 years.
             </p>
           </div>
-
-          {/* Content-Only Option */}
-          <p
-            className="transition-all duration-700"
-            style={{
-              fontSize: '18px',
-              fontStyle: 'italic',
-              fontWeight: '400',
-              color: 'rgba(10, 10, 10, 0.5)',
-              marginTop: '40px',
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '300ms'
-            }}
-          >
-            $1,800/month if content-only works better for where you are.
-          </p>
         </div>
       </section>
 

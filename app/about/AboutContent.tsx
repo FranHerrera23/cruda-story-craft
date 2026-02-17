@@ -168,11 +168,10 @@ const PhilosophySection = () => {
       style={{
         backgroundColor: '#FFFFFF',
         padding: '100px 80px',
-        maxWidth: '800px',
-        margin: '0 auto'
+        textAlign: 'left'
       }}
     >
-      <div style={{ maxWidth: '640px' }}>
+      <div style={{ maxWidth: '640px', textAlign: 'left' }}>
         {/* Red line */}
         <div
           className="transition-all duration-500"

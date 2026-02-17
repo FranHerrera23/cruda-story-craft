@@ -7,7 +7,6 @@ import pezetPoster from "@/assets/pezet-hero.jpg";
 import fourSeasonsHero from "@/assets/four-seasons-hero.jpg";
 import saadiyatHeroNew from "@/assets/saadiyat-hero-new.jpg";
 import porscheCover from "@/assets/porsche-cover-new.png";
-import franPortrait from "@/assets/fran-portrait-hero.png";
 import karenMannheim from "@/assets/karen-mannheim-new.jpg";
 import karenProjectConstruction from "@/assets/karen-project-construction.jpg";
 
@@ -350,20 +349,7 @@ const KarenMannheimCaseStudy = () => {
       </section>
 
       {/* =========================================
-          SECTION 5: FULL-BLEED IMAGE DIVIDER #2
-      ========================================= */}
-      <section
-        className="w-full"
-        style={{
-          height: '60vh',
-          backgroundImage: `url(${franPortrait.src})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center 20%'
-        }}
-      />
-
-      {/* =========================================
-          SECTION 6: THE CHALLENGE + THE TRANSLATION
+          SECTION 5: THE CHALLENGE + THE TRANSLATION
           Condensed narrative — punchy
       ========================================= */}
       <section

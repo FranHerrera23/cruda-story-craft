@@ -23,27 +23,39 @@ const HeroManifesto = () => {
       <div className="hero-content">
         {/* Headline - Staggered Line Reveal */}
         <h1 className="hero-headline">
-          <span className="hero-line" style={{ transitionDelay: '0ms' }}>
+          <span
+            className={`hero-line ${isVisible ? 'visible' : ''}`}
+            style={{ transitionDelay: '0ms' }}
+          >
             You've built something
           </span>
-          <span className="hero-line" style={{ transitionDelay: '150ms' }}>
+          <span
+            className={`hero-line ${isVisible ? 'visible' : ''}`}
+            style={{ transitionDelay: '150ms' }}
+          >
             extraordinary.
           </span>
-          <span className="hero-line hero-line-red" style={{ transitionDelay: '300ms' }}>
+          <span
+            className={`hero-line hero-line-red ${isVisible ? 'visible' : ''}`}
+            style={{ transitionDelay: '300ms' }}
+          >
             Explaining it shouldn't
           </span>
-          <span className="hero-line hero-line-red" style={{ transitionDelay: '450ms' }}>
+          <span
+            className={`hero-line hero-line-red ${isVisible ? 'visible' : ''}`}
+            style={{ transitionDelay: '450ms' }}
+          >
             be this hard.
           </span>
         </h1>
 
         {/* Descriptor */}
-        <p className="hero-descriptor">
+        <p className={`hero-descriptor ${isVisible ? 'visible' : ''}`}>
           Narrative strategy for real estate, construction, and architecture leaders.
         </p>
 
         {/* CTA Button */}
-        <Link href="/contact" className="btn-primary">
+        <Link href="/contact" className={`btn-primary ${isVisible ? 'visible' : ''}`}>
           <span>Start a Conversation</span>
           <span className="arrow">→</span>
         </Link>
@@ -77,10 +89,15 @@ const HeroManifesto = () => {
 
         .hero-line {
           display: block;
-          opacity: ${isVisible ? 1 : 0};
-          transform: ${isVisible ? 'translateY(0)' : 'translateY(20px)'};
+          opacity: 0;
+          transform: translateY(20px);
           transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                       transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hero-line.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .hero-line-red {
@@ -94,11 +111,16 @@ const HeroManifesto = () => {
           max-width: 440px;
           margin-bottom: 48px;
           line-height: 1.5;
-          opacity: ${isVisible ? 1 : 0};
-          transform: ${isVisible ? 'translateY(0)' : 'translateY(20px)'};
+          opacity: 0;
+          transform: translateY(20px);
           transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                       transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           transition-delay: 600ms;
+        }
+
+        .hero-descriptor.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .btn-primary {
@@ -117,12 +139,17 @@ const HeroManifesto = () => {
           overflow: hidden;
           text-decoration: none;
           letter-spacing: 0.01em;
-          opacity: ${isVisible ? 1 : 0};
-          transform: ${isVisible ? 'translateY(0)' : 'translateY(20px)'};
+          opacity: 0;
+          transform: translateY(20px);
           transition: color 0.3s ease,
                       opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                       transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           transition-delay: 800ms;
+        }
+
+        .btn-primary.visible {
+          opacity: 1;
+          transform: translateY(0);
         }
 
         .btn-primary::before {
@@ -141,7 +168,7 @@ const HeroManifesto = () => {
           width: 100%;
         }
 
-        .btn-primary > * {
+        .btn-primary > :global(*) {
           position: relative;
           z-index: 1;
         }

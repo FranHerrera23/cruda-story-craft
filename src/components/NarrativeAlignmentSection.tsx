@@ -75,6 +75,7 @@ const NarrativeAlignmentSection = () => {
                 className={`floating-word ${row1.isVisible ? 'animate' : ''}`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
+                  animationDelay: `${index * 1.5}s`,
                   top: ['5%', '30%', '55%', '80%'][index],
                   left: ['15%', '50%', '25%', '60%'][index]
                 }}
@@ -97,6 +98,7 @@ const NarrativeAlignmentSection = () => {
                 className={`floating-word ${row2.isVisible ? 'animate' : ''}`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
+                  animationDelay: `${index * 1.5}s`,
                   top: ['5%', '30%', '55%', '80%'][index],
                   left: ['15%', '50%', '25%', '60%'][index]
                 }}
@@ -194,16 +196,16 @@ const NarrativeAlignmentSection = () => {
 
         .floating-word {
           position: absolute;
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.1em;
-          color: rgba(10, 10, 10, 0.18);
+          color: rgba(10, 10, 10, 0.25);
           white-space: nowrap;
           opacity: 0;
           transform: translateY(15px);
-          transition: opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                      transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                      transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .floating-word.ellipsis {
@@ -212,8 +214,14 @@ const NarrativeAlignmentSection = () => {
         }
 
         .floating-word.animate {
-          opacity: 0.18;
+          opacity: 1;
           transform: translateY(0);
+          animation: drift 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift {
+          0% { transform: translate(0, 0); }
+          100% { transform: translate(5px, -5px); }
         }
 
         .solution-closer {

@@ -322,10 +322,10 @@ const TeamSection = () => {
           label="FOUNDER"
           name="FRAN HERRERA"
           bio={[
-            "Eight years inside TikTok, Mondelez, Nestlé, the United Nations, DeliveryHero. Three continents. Ten nationalities.",
-            "The gap between mastery and articulation isn't theory. It's lived experience.",
-            "Every immigrant knows this gap intimately. You know exactly who you are — but the words don't travel.",
-            "Now I help founders close that gap."
+            "Argentine. Lived in Russia for a decade. Worked across three continents with ten nationalities — TikTok, Nestlé, the United Nations, DeliveryHero.",
+            "Every immigrant knows the same gap: you know exactly who you are, but the words don't travel.",
+            "That's not theory. That's Tuesday morning.",
+            "Now I sit with founders who have the same problem — and we find the words together."
           ]}
           image={franPortrait.src}
           flipped={false}
@@ -335,9 +335,9 @@ const TeamSection = () => {
           label="CREATIVE DIRECTOR"
           name="MICHAEL"
           bio={[
-            "A decade of brand and creative leadership in tech and gaming. Amazon. Twitch. Electronic Arts. Facebook. Oculus. LucasArts. Marvel. Universal. Hasbro.",
-            "In-house and agency side. Content that ships, not decks that sit.",
-            "Michael builds brand stories that create affinity — the kind that lasts longer than a campaign."
+            "Grew up making things — then spent a decade making things at Amazon, Twitch, EA, LucasArts, Marvel, Facebook.",
+            "In-house and agency side. Every seat at the table. The thing he kept noticing: the best brands aren't the loudest. They're the ones people feel before they can explain why.",
+            "That's what he builds here."
           ]}
           image={michaelPortrait.src}
           flipped={true}
@@ -347,9 +347,9 @@ const TeamSection = () => {
           label="BUSINESS STRATEGIST"
           name="NATALIA"
           bio={[
-            "Enterprise account management at GSK, Dr. Reddy's, Lundbeck — one of the only pharmaceutical companies in the world focusing exclusively on brain diseases. Then she quit the corporate ladder.",
-            "Eight years in Spain. Certified Spanish teacher. Real estate portfolio across Russia and UAE. 35 countries. Three languages fluent.",
-            "Natalia knows how to run complex operations across borders and cultures. She keeps the work moving so the story can land."
+            "Spent years in pharma running accounts across borders — GSK, Lundbeck, Dr. Reddy's. Then she left.",
+            "Eight years in Spain. Thirty-five countries. Three languages. A life built around art, cats, and the belief that you don't have to stay on the path someone else drew for you.",
+            "She keeps everything running so the rest of us can think."
           ]}
           image={nataliaPortrait.src}
           flipped={false}
@@ -359,9 +359,9 @@ const TeamSection = () => {
           label="DIGITAL STRATEGIST"
           name="ISABELLA"
           bio={[
-            "40+ tech startups across Dubai, Hong Kong, New York, London, Buenos Aires. Multimedia communications background. Master's candidate at SDA Bocconi.",
-            "Now based in Puglia, teaching AI and digital marketing strategy when she's not helping founders translate complexity into clarity.",
-            "Isabella finds the signal in the noise — then makes sure it travels."
+            "Forty-something startups across five cities — Dubai, Hong Kong, New York, London, Buenos Aires. Somewhere along the way she ended up in Puglia.",
+            "Now she teaches AI and digital strategy, studies at Bocconi, and helps founders say clearly what they've been circling around for years.",
+            "She's the one who looks at everything you've built and asks the question you've been avoiding."
           ]}
           image={isabellaPortrait.src}
           flipped={true}
@@ -371,9 +371,9 @@ const TeamSection = () => {
           label="NARRATIVE STRATEGIST"
           name="ABRIL"
           bio={[
-            "Marketing degree. Buenos Aires → Bangkok → Mexico City.",
-            "Built Aftertaste — a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.",
-            "Abril doesn't want you to nod along. She wants you to leave with something stuck in your head."
+            "Buenos Aires → Bangkok → Mexico City. She keeps moving.",
+            "Built Aftertaste — a newsletter about culture, fashion, and the things that stay with you after you close the tab. Half a million people read it.",
+            "Abril writes the pieces you send to someone with no context and just say: \"read this.\""
           ]}
           image={abrilPortrait.src}
           flipped={false}

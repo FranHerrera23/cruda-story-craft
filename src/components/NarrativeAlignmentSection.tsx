@@ -60,6 +60,14 @@ const NarrativeAlignmentSection = () => {
   const row1Buzzwords = ['synergy', 'leverage', 'best-in-class', 'solutions'];
   const row2Buzzwords = ['Forbes', 'award-winning', 'Inc 5000', 'industry leader'];
 
+  // Different duration and delay for each word for organic floating feel
+  const floatTimings = [
+    { duration: '7s', delay: '0s' },
+    { duration: '9s', delay: '-2s' },
+    { duration: '6.5s', delay: '-4s' },
+    { duration: '8.5s', delay: '-1s' }
+  ];
+
   return (
     <section className="solution-section">
       <div className="solution-container">
@@ -75,10 +83,11 @@ const NarrativeAlignmentSection = () => {
                 className={`floating-word ${row1.isVisible ? 'animate' : ''}`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
-                  animationDelay: `${index * 1.5}s`,
                   top: ['5%', '30%', '55%', '80%'][index],
-                  left: ['15%', '50%', '25%', '60%'][index]
-                }}
+                  left: ['15%', '50%', '25%', '60%'][index],
+                  '--float-duration': floatTimings[index].duration,
+                  '--float-delay': floatTimings[index].delay
+                } as React.CSSProperties}
               >
                 {word}
               </span>
@@ -98,10 +107,11 @@ const NarrativeAlignmentSection = () => {
                 className={`floating-word ${row2.isVisible ? 'animate' : ''}`}
                 style={{
                   transitionDelay: `${index * 100}ms`,
-                  animationDelay: `${index * 1.5}s`,
                   top: ['5%', '30%', '55%', '80%'][index],
-                  left: ['15%', '50%', '25%', '60%'][index]
-                }}
+                  left: ['15%', '50%', '25%', '60%'][index],
+                  '--float-duration': floatTimings[index].duration,
+                  '--float-delay': floatTimings[index].delay
+                } as React.CSSProperties}
               >
                 {word}
               </span>
@@ -206,6 +216,7 @@ const NarrativeAlignmentSection = () => {
           transform: translateY(15px);
           transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                       transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          will-change: transform;
         }
 
         .floating-word.ellipsis {
@@ -216,12 +227,32 @@ const NarrativeAlignmentSection = () => {
         .floating-word.animate {
           opacity: 1;
           transform: translateY(0);
-          animation: drift 6s ease-in-out infinite alternate;
+          animation: buzzword-float var(--float-duration, 8s) ease-in-out infinite;
+          animation-delay: var(--float-delay, 0s);
         }
 
-        @keyframes drift {
-          0% { transform: translate(0, 0); }
-          100% { transform: translate(5px, -5px); }
+        @keyframes buzzword-float {
+          0% {
+            transform: translate(0, 0);
+          }
+          25% {
+            transform: translate(6px, -8px);
+          }
+          50% {
+            transform: translate(-4px, -14px);
+          }
+          75% {
+            transform: translate(8px, -6px);
+          }
+          100% {
+            transform: translate(0, 0);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .floating-word.animate {
+            animation: none;
+          }
         }
 
         .solution-closer {

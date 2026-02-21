@@ -12,6 +12,7 @@ interface Client {
   name: string;
   title: string;
   context: string;
+  transformation: string;
   photo?: string;
   photoPosition?: string;
   isConfidential?: boolean;
@@ -23,6 +24,7 @@ const clients: Client[] = [
     name: "Karen Mannheim",
     title: "Co-founder, TRAZZO Lighting",
     context: "Lima · Miami · Madrid\n80+ employees, $10M+ revenue",
+    transformation: "30 years of architectural lighting excellence — now opening doors across three continents.",
     photo: karenPhoto.src,
     photoPosition: "center 25%"
   },
@@ -30,7 +32,8 @@ const clients: Client[] = [
     slug: "mike-kaeding",
     name: "Mike Kaeding",
     title: "CEO, Norhart",
-    context: "High-end residential construction, made affordable.\n$200M in assets · Minnesota",
+    context: "$200M in assets · Minnesota",
+    transformation: "The voice challenging a broken housing industry — to the people who needed to hear it.",
     photo: mikePhoto.src,
     photoPosition: "center 20%"
   },
@@ -38,15 +41,17 @@ const clients: Client[] = [
     slug: "girish-sehgal",
     name: "Girish Sehgal",
     title: "C-Suite Executive, Hospitality & Healthcare",
-    context: "Four Seasons · JW Marriott · Taj · Cleveland Clinic · SSMC",
+    context: "Four Seasons · Taj · Cleveland Clinic · SSMC",
+    transformation: "Hospitality is a mindset, not an industry — now reaching 7,000+ senior leaders worldwide.",
     photo: girishPhoto.src,
     photoPosition: "center 30%"
   },
   {
     slug: "juan-pablo-romero",
     name: "Juan Pablo Romero",
-    title: "Founder & CEO, JURA PLANK",
-    context: "Luxury flooring for high-end residential & commercial\nFlorida",
+    title: "Founder & CEO, Connecting the Dots",
+    context: "Boutique consulting · CTD Podcast",
+    transformation: "Bridging international luxury brands with Florida's top architects and developers — 80K listeners per season and growing.",
     photo: juanPabloPhoto.src,
     photoPosition: "center 25%"
   },
@@ -55,6 +60,7 @@ const clients: Client[] = [
     name: "[Confidential]",
     title: "Founder & CEO, Retail Holding",
     context: "$500M+ revenue",
+    transformation: "",
     isConfidential: true
   }
 ];
@@ -72,11 +78,11 @@ const OurClientsSection = () => {
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         {/* Client Grid */}
-        <div 
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(5, 1fr)', 
-            gap: '24px' 
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(5, 1fr)',
+            gap: '24px'
           }}
           className="clients-grid"
         >
@@ -185,6 +191,21 @@ const OurClientsSection = () => {
               >
                 {client.context}
               </p>
+
+              {/* Transformation Line */}
+              {client.transformation && (
+                <p
+                  style={{
+                    fontSize: '15px',
+                    fontStyle: 'italic',
+                    color: 'rgba(10, 10, 10, 0.5)',
+                    lineHeight: '1.5',
+                    marginTop: '12px'
+                  }}
+                >
+                  {client.transformation}
+                </p>
+              )}
             </Link>
           ))}
         </div>

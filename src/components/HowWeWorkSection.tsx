@@ -9,43 +9,46 @@ const HowWeWorkSection = () => {
     {
       number: "01",
       time: "Month 1",
-      title: "We listen.",
+      title: "Why you got into this in the first place.",
       body: [
-        "Weekly conversations. Your projects, your milestones, your way of seeing the world.",
-        "We're not writing yet. We're finding the pattern."
+        "Before the company. Before the titles. There was a reason you chose this work — something about the craft, the material, the problem you wanted to solve.",
+        "That's where your story lives. Not in your resume. In the thing you still care about when nobody's watching.",
+        "We start there."
       ]
     },
     {
       number: "02",
       time: "Months 2–6",
-      title: "We build.",
+      title: "Your expertise starts reaching the right people.",
       body: [
-        "Your narrative — across LinkedIn, website, pitch decks, talking points.",
-        "Not content for content's sake. A system that holds."
+        "LinkedIn. Instagram. Pitch decks. Talking points — your thinking, showing up where your next clients, partners, and peers are already looking.",
+        "But also: introductions. Warm conversations with the people you've been wanting to reach. Meetings that happen because someone already knows your work, your name, your point of view.",
+        "Not content for content's sake. A system that opens doors."
       ]
     },
     {
       number: "03",
       time: "Month 7+",
-      title: "Most clients stay.",
+      title: "New rooms. Already warm.",
       body: [
-        "Because the work evolves. New markets. New projects. New rooms to walk into."
+        "New markets. New geographies. New conversations that start from recognition, not explanation.",
+        "Most clients stay here. Not because they're locked in — because the work keeps compounding."
       ]
     }
   ];
 
   return (
-    <section 
-      ref={elementRef} 
+    <section
+      ref={elementRef}
       className="timeline-section"
-      style={{ 
+      style={{
         backgroundColor: '#FFFFFF',
         padding: '120px 80px'
       }}
     >
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
         {/* Section Label */}
-        <p 
+        <p
           className="transition-all duration-700"
           style={{
             fontSize: '13px',
@@ -62,7 +65,7 @@ const HowWeWorkSection = () => {
         </p>
 
         {/* Clean 3-Column Grid */}
-        <div 
+        <div
           className="timeline-grid"
           style={{
             display: 'grid',
@@ -71,7 +74,7 @@ const HowWeWorkSection = () => {
           }}
         >
           {steps.map((step, index) => (
-            <div 
+            <div
               key={index}
               className="transition-all duration-700"
               style={{
@@ -82,9 +85,9 @@ const HowWeWorkSection = () => {
             >
               {/* Step Number */}
               <p style={{
-                fontSize: '24px',
+                fontSize: '14px',
                 fontWeight: '600',
-                color: 'rgba(10, 10, 10, 0.15)',
+                color: 'rgba(10, 10, 10, 0.2)',
                 marginBottom: '12px'
               }}>
                 {step.number}
@@ -102,14 +105,14 @@ const HowWeWorkSection = () => {
                 {step.time}
               </p>
 
-              {/* Divider - Red accent, larger for step 3 */}
+              {/* Divider */}
               <div style={{
-                width: index === 2 ? '48px' : '32px',
+                width: '32px',
                 height: '2px',
-                background: '#FF2E63',
+                background: 'rgba(10, 10, 10, 0.1)',
                 marginBottom: '24px'
               }} />
-              
+
               {/* Title */}
               <h4 style={{
                 fontSize: '22px',
@@ -119,7 +122,7 @@ const HowWeWorkSection = () => {
               }}>
                 {step.title}
               </h4>
-              
+
               {/* Body */}
               <div style={{
                 fontSize: '17px',

@@ -97,7 +97,7 @@ const NarrativeAlignmentSection = () => {
 
         {/* Row 2 - Why it matters */}
         <div ref={row2.ref} className="solution-row">
-          <h2 className={`solution-title red ${row2.isVisible ? 'animate' : ''}`}>
+          <h2 className={`solution-title ${row2.isVisible ? 'animate' : ''}`}>
             Why it matters.
           </h2>
           <div className="floating-words">
@@ -147,8 +147,8 @@ const NarrativeAlignmentSection = () => {
               </span>
               {' '}only have the first.
             </p>
-            <p className={`closer-final ${underlineComplete ? 'animate' : ''}`}>
-              We close the gap.
+            <p className={`closer-rest ${underlineComplete ? 'animate' : ''}`}>
+              The rest is where trust gets built — before you ever walk into the room.
             </p>
           </div>
         </div>
@@ -312,17 +312,17 @@ const NarrativeAlignmentSection = () => {
           width: 100%;
         }
 
-        .closer-final {
-          font-size: 24px;
-          font-weight: 600;
-          color: #0A0A0A;
+        .closer-rest {
+          font-size: 20px;
+          font-weight: 400;
+          color: rgba(10, 10, 10, 0.5);
           margin: 0;
           opacity: 0;
           transform: translateY(8px);
           transition: opacity 0.5s ease-out 0.2s, transform 0.5s ease-out 0.2s;
         }
 
-        .closer-final.animate {
+        .closer-rest.animate {
           opacity: 1;
           transform: translateY(0);
         }

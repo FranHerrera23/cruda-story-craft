@@ -17,9 +17,9 @@ const WhoThisIsForSection = () => {
   }, [isVisible]);
 
   const forPoints = [
-    "Winning work but invisible outside your network",
+    "Built on referrals and key relationships — ready to be known beyond them",
     "Pitching against firms with louder marketing and weaker portfolios",
-    "Ready to stop explaining from scratch every time you walk into a room"
+    "Ready for your reputation to arrive before you do"
   ];
 
   const notForPoints = [
@@ -29,22 +29,22 @@ const WhoThisIsForSection = () => {
   ];
 
   return (
-    <section 
-      ref={elementRef} 
+    <section
+      ref={elementRef}
       className="who-section"
-      style={{ 
+      style={{
         backgroundColor: '#FFFFFF',
         padding: '120px 80px'
       }}
     >
-      <div 
-        style={{ 
-          maxWidth: '1200px', 
+      <div
+        style={{
+          maxWidth: '1200px',
           margin: '0 auto',
           display: 'grid',
           gridTemplateColumns: '55% 45%',
           gap: '32px',
-          alignItems: 'start', // V6 fix: align to top, not stretch
+          alignItems: 'start',
         }}
         className="who-grid"
       >
@@ -58,12 +58,12 @@ const WhoThisIsForSection = () => {
             padding: '48px',
             borderRadius: '2px',
             border: '1px solid rgba(10, 10, 10, 0.08)',
-            boxShadow: leftHovered 
-              ? '0 16px 40px rgba(0, 0, 0, 0.08)' 
+            boxShadow: leftHovered
+              ? '0 16px 40px rgba(0, 0, 0, 0.08)'
               : '0 2px 16px rgba(0, 0, 0, 0.04)',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible 
-              ? (leftHovered ? 'translateY(-4px)' : 'translateY(0)') 
+            transform: isVisible
+              ? (leftHovered ? 'translateY(-4px)' : 'translateY(0)')
               : 'translateY(20px)',
             cursor: 'default',
           }}
@@ -79,7 +79,7 @@ const WhoThisIsForSection = () => {
           }}>
             Who this is for
           </p>
-          
+
           {/* Intro text */}
           <p style={{
             fontSize: '18px',
@@ -88,13 +88,13 @@ const WhoThisIsForSection = () => {
             color: '#0A0A0A',
             marginBottom: '28px'
           }}>
-            Construction, real estate, architecture, and design firms doing $20M+ who are:
+            Construction, architecture, and design firms who've earned their reputation through work, not marketing.
           </p>
-          
+
           {/* Bullet points */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {forPoints.map((point, index) => (
-              <p 
+              <p
                 key={index}
                 className="bullet transition-all duration-500"
                 style={{
@@ -119,7 +119,7 @@ const WhoThisIsForSection = () => {
               </p>
             ))}
           </div>
-          
+
           {/* M&A note */}
           <p style={{
             fontSize: '16px',
@@ -133,7 +133,7 @@ const WhoThisIsForSection = () => {
           </p>
         </div>
 
-        {/* Right Card - Ghost (V6 fix: auto-height, align to top) */}
+        {/* Right Card - Ghost */}
         <div
           className="who-not-card transition-all duration-300"
           onMouseEnter={() => setRightHovered(true)}
@@ -144,11 +144,11 @@ const WhoThisIsForSection = () => {
             border: `1px solid ${rightHovered ? 'rgba(10, 10, 10, 0.15)' : 'rgba(10, 10, 10, 0.08)'}`,
             borderRadius: '2px',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible 
-              ? (rightHovered ? 'translateY(-4px)' : 'translateY(0)') 
+            transform: isVisible
+              ? (rightHovered ? 'translateY(-4px)' : 'translateY(0)')
               : 'translateY(20px)',
             transitionDelay: isVisible ? '0ms' : '150ms',
-            alignSelf: 'start', // V6 fix: don't stretch to match left card
+            alignSelf: 'start',
             minHeight: 'auto',
             cursor: 'default',
           }}

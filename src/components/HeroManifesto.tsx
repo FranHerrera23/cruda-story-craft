@@ -51,7 +51,7 @@ const HeroManifesto = () => {
 
         {/* Descriptor */}
         <p className={`hero-descriptor ${isVisible ? 'visible' : ''}`}>
-          Narrative strategy for real estate, construction, and architecture leaders.
+          We help leaders in construction, architecture, and design sound like who they actually are.
         </p>
 
         {/* CTA Button */}

@@ -11,16 +11,16 @@ import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
   title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-  description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+  description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
   openGraph: {
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+    description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
     url: 'https://cruda.co',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
+    description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
   },
   alternates: {
     canonical: 'https://cruda.co',

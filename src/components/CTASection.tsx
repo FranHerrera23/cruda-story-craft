@@ -5,7 +5,12 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Linkedin, Instagram } from "lucide-react";
 import crudaLogo from "@/assets/cruda-logo.png";
 
-const CTASection = () => {
+interface CTASectionProps {
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: CTASectionProps) => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
 
   return (
@@ -14,7 +19,7 @@ const CTASection = () => {
       className="cta-section"
       style={{
         backgroundColor: '#0A0A0A',
-        padding: '100px 80px',
+        padding: '160px 80px 100px',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -28,22 +33,23 @@ const CTASection = () => {
         <h2
           className="transition-all duration-700 cta-headline"
           style={{
-            fontSize: '48px',
+            fontSize: 'clamp(32px, 4vw, 48px)',
             fontWeight: '600',
-            lineHeight: '1.1',
+            lineHeight: '1.2',
             letterSpacing: '-0.02em',
             color: '#FFFFFF',
-            marginBottom: '40px',
+            marginBottom: '48px',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          Ready when you are.
+          The work speaks for itself.<br />
+          <span style={{ color: '#FF2E63' }}>Let&apos;s make sure it travels.</span>
         </h2>
 
-        {/* CTA Button - Square with Arrow (On Dark Variant) */}
+        {/* CTA Button */}
         <Link
-          href="/contact"
+          href={ctaHref}
           className="cta-button-dark"
           style={{
             display: 'inline-flex',
@@ -71,8 +77,8 @@ const CTASection = () => {
             e.currentTarget.style.color = '#FFFFFF';
           }}
         >
-          Start a Conversation
-          <span 
+          {ctaText}
+          <span
             className="cta-arrow"
             style={{ fontSize: '18px', transition: 'transform 0.25s ease' }}
           >
@@ -82,8 +88,8 @@ const CTASection = () => {
       </div>
 
       {/* Footer */}
-      <footer 
-        style={{ 
+      <footer
+        style={{
           marginTop: '80px',
           paddingTop: '40px',
           borderTop: '1px solid rgba(255, 255, 255, 0.1)',
@@ -92,14 +98,14 @@ const CTASection = () => {
         }}
       >
         <Link href="/" className="inline-block mb-8">
-          <img 
-            src={crudaLogo.src} 
-            alt="CRUDA" 
+          <img
+            src={crudaLogo.src}
+            alt="CRUDA"
             className="h-24 md:h-40 w-auto mx-auto opacity-70 hover:opacity-100 transition-opacity duration-300"
             style={{ filter: 'brightness(0) invert(1)' }}
           />
         </Link>
-        
+
         {/* Social Media Links */}
         <div className="flex items-center justify-center gap-6 mb-6">
           <a
@@ -126,9 +132,9 @@ const CTASection = () => {
           </a>
         </div>
 
-        <p 
-          style={{ 
-            fontSize: '13px', 
+        <p
+          style={{
+            fontSize: '13px',
             color: 'rgba(255, 255, 255, 0.4)',
             letterSpacing: '0.02em'
           }}
@@ -142,13 +148,13 @@ const CTASection = () => {
         .cta-button-dark:hover .cta-arrow {
           transform: translateX(4px);
         }
-        
+
         @media (max-width: 768px) {
           .cta-section {
             padding: 80px 24px !important;
           }
           .cta-headline {
-            font-size: 36px !important;
+            font-size: 32px !important;
           }
         }
       `}</style>

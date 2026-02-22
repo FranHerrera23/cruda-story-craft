@@ -1,6 +1,11 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import franPhoto from '@/assets/fran-portrait-new.png';
+import michaelPhoto from '@/assets/michael-choi-pugliano-new.png';
+import nataliaPhoto from '@/assets/natalia-dmitrieva.jpg';
+import isabellaPhoto from '@/assets/isabella-marinelli.png';
+import abrilPhoto from '@/assets/abril-lovasolo.jpg';
 
 // ─── TEAM DATA ───
 interface TeamMemberData {
@@ -11,6 +16,7 @@ interface TeamMemberData {
   flipped: boolean;
   logoTags?: string[];
   photoNote: string;
+  photo?: string;
 }
 
 const teamMembers: TeamMemberData[] = [
@@ -25,7 +31,8 @@ const teamMembers: TeamMemberData[] = [
       "That gap isn\u2019t theory. It\u2019s the story of every immigrant, every founder, every builder who knows exactly who they are \u2014 but the words don\u2019t travel. Now I help close it."
     ],
     logoTags: ['TikTok', 'Mondelez', 'Nestl\u00e9', 'United Nations', 'DeliveryHero', 'AB InBev'],
-    photoNote: 'New photo needed \u2014 strategist, not YouTuber'
+    photoNote: 'New photo needed \u2014 strategist, not YouTuber',
+    photo: franPhoto.src
   },
   {
     number: '02',
@@ -37,7 +44,8 @@ const teamMembers: TeamMemberData[] = [
       "Content that creates affinity \u2014 the kind that lasts longer than a campaign. Michael doesn\u2019t decorate brands. He gives them a voice worth listening to."
     ],
     logoTags: ['Amazon', 'Twitch', 'EA', 'Facebook', 'Oculus', 'LucasArts', 'Marvel'],
-    photoNote: 'New photo needed'
+    photoNote: 'New photo needed',
+    photo: michaelPhoto.src
   },
   {
     number: '03',
@@ -48,7 +56,8 @@ const teamMembers: TeamMemberData[] = [
       "A surfer who found his way behind the camera. Over a decade directing stories for retail brands \u2014 leading marketing teams at O\u2019Neill Peru, bridging film, e-commerce, and the kind of content that makes people stop scrolling and actually feel something.",
       "Bryan doesn\u2019t shoot content. He captures the work the way it deserves to be seen \u2014 with the patience of someone who\u2019s spent years waiting for the right wave."
     ],
-    photoNote: 'Bryan photo'
+    photoNote: 'Bryan photo',
+    photo: undefined
   },
   {
     number: '04',
@@ -60,7 +69,8 @@ const teamMembers: TeamMemberData[] = [
       "Cat lover. Compulsive traveler. The kind of person who reads a room before anyone speaks. Her core skill is intuition \u2014 she\u2019s the coach who helps the team show up at their best.",
       "Natalia keeps the work moving so the story can land."
     ],
-    photoNote: 'Natalia photo'
+    photoNote: 'Natalia photo',
+    photo: nataliaPhoto.src
   },
   {
     number: '05',
@@ -70,7 +80,8 @@ const teamMembers: TeamMemberData[] = [
     bio: [
       "Platform-native thinking across LinkedIn, Instagram, and emerging channels. Isabella translates narrative strategy into content systems that compound \u2014 not campaigns that expire."
     ],
-    photoNote: 'Isabella photo'
+    photoNote: 'Isabella photo',
+    photo: isabellaPhoto.src
   },
   {
     number: '06',
@@ -81,7 +92,8 @@ const teamMembers: TeamMemberData[] = [
       "Marketing degree. Buenos Aires \u2192 Bangkok \u2192 Mexico City. Built Aftertaste \u2014 a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.",
       "Abril doesn\u2019t want you to nod along. She wants you to leave with something stuck in your head."
     ],
-    photoNote: 'Abril photo'
+    photoNote: 'Abril photo',
+    photo: abrilPhoto.src
   }
 ];
 
@@ -223,7 +235,14 @@ function TeamMemberSpread({ member }: { member: TeamMemberData }) {
   return (
     <section className={`about-team-member ${member.flipped ? 'flipped' : ''}`}>
       <div className="about-team-photo">
-        <div className="about-team-photo-placeholder">[ {member.photoNote} ]</div>
+        {member.photo ? (
+          <img src={member.photo} alt={member.name} />
+        ) : (
+          <div className="about-team-photo-placeholder">
+            <span className="placeholder-initial">{member.name.charAt(0)}</span>
+            <span className="placeholder-label">Photo coming soon</span>
+          </div>
+        )}
       </div>
       <div className="about-team-bio">
         <div className="about-team-number">{member.number}</div>
@@ -564,13 +583,27 @@ const aboutStyles = `
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
-    font-size: 14px;
-    color: rgba(10,10,10,0.3);
-    letter-spacing: 0.05em;
+    background: linear-gradient(160deg, #1a1a1a 0%, #0A0A0A 100%);
+    gap: 16px;
+  }
+  .placeholder-initial {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 120px;
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.06);
+    line-height: 1;
+    user-select: none;
+  }
+  .placeholder-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    color: rgba(255,255,255,0.2);
   }
   .about-team-bio {
     padding: 80px 64px;

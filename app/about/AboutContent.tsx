@@ -6,6 +6,7 @@ import michaelPhoto from '@/assets/michael-choi-pugliano-new.png';
 import nataliaPhoto from '@/assets/natalia-dmitrieva.jpg';
 import isabellaPhoto from '@/assets/isabella-marinelli.png';
 import abrilPhoto from '@/assets/abril-lovasolo.jpg';
+import bryanPhoto from '@/assets/bryan-surfer.jpg';
 
 // ─── TEAM DATA ───
 interface TeamMemberData {
@@ -57,7 +58,7 @@ const teamMembers: TeamMemberData[] = [
       "Bryan doesn\u2019t shoot content. He captures the work the way it deserves to be seen \u2014 with the patience of someone who\u2019s spent years waiting for the right wave."
     ],
     photoNote: 'Bryan photo',
-    photo: undefined
+    photo: bryanPhoto.src
   },
   {
     number: '04',

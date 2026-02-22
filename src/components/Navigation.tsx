@@ -76,15 +76,13 @@ export const Navigation = () => {
             >
               Pricing
             </Link>
-            <a
-              href="https://calendly.com/cruda"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/contact"
               className="nav-cta"
             >
               <span>Start a Conversation</span>
               <span className="arrow">→</span>
-            </a>
+            </Link>
           </div>
 
           {/* Mobile Hamburger */}
@@ -123,15 +121,13 @@ export const Navigation = () => {
         >
           Pricing
         </Link>
-        <a
-          href="https://calendly.com/cruda"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/contact"
           className="mobile-nav-link mobile-nav-cta"
           onClick={closeMobileMenu}
         >
           Start a Conversation
-        </a>
+        </Link>
       </div>
     </>
   );

@@ -57,15 +57,15 @@ export default function WorkContent() {
   return (
     <main className="min-h-screen">
       {/* SECTION 1: Hero */}
-      <section 
+      <section
         ref={headerRef}
         className="pt-[120px] pb-[80px] px-6 md:px-[60px]"
-        style={{ backgroundColor: '#FAFAFA' }}
+        style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid rgba(10, 10, 10, 0.08)' }}
       >
         <div className="max-w-[600px] mx-auto text-center">
-          <h1 
+          <h1
             className="text-[36px] md:text-[48px] font-semibold mb-4 transition-all duration-700"
-            style={{ 
+            style={{
               color: '#1A1A1A',
               letterSpacing: '-0.02em',
               opacity: headerVisible ? 1 : 0,
@@ -74,10 +74,10 @@ export default function WorkContent() {
           >
             Work
           </h1>
-          
-          <p 
+
+          <p
             className="text-[20px] transition-all duration-700"
-            style={{ 
+            style={{
               color: 'rgba(26, 26, 26, 0.6)',
               lineHeight: '1.6',
               opacity: headerVisible ? 1 : 0,
@@ -116,20 +116,20 @@ export default function WorkContent() {
                 }}
               >
                 {/* Image Area */}
-                <div 
+                <div
                   className="relative w-full overflow-hidden"
-                  style={{ 
-                    aspectRatio: '1/1',
-                    backgroundColor: '#FAFAFA',
+                  style={{
+                    aspectRatio: '3/2',
+                    backgroundColor: '#f5f5f5',
                     borderRadius: '8px'
                   }}
                 >
                   {client.image ? (
-                    <img 
-                      src={client.image} 
+                    <img
+                      src={client.image}
                       alt={client.name}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      style={{ borderRadius: '8px' }}
+                      style={{ borderRadius: '8px', objectPosition: 'center' }}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">

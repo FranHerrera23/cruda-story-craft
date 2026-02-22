@@ -33,8 +33,8 @@ const teamMembers: TeamMemberData[] = [
     role: 'Creative Director',
     flipped: true,
     bio: [
-      "A decade of brand and creative leadership in tech and gaming. In-house and agency side. Content that ships, not decks that sit.",
-      "Michael builds brand stories that create affinity \u2014 the kind that lasts longer than a campaign."
+      "A decade of brand and creative leadership in tech and gaming. In-house and agency side. The person who\u2019s been in the room when the brief arrives and still there when the work ships.",
+      "Content that creates affinity \u2014 the kind that lasts longer than a campaign. Michael doesn\u2019t decorate brands. He gives them a voice worth listening to."
     ],
     logoTags: ['Amazon', 'Twitch', 'EA', 'Facebook', 'Oculus', 'LucasArts', 'Marvel'],
     photoNote: 'New photo needed'
@@ -281,9 +281,7 @@ function CTASection() {
         Book a discovery call. We&apos;ll figure out if there&apos;s a fit.
       </p>
       <a
-        href="https://calendly.com/cruda"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/contact"
         className="about-btn-cta reveal reveal-delay-2"
       >
         Book a Discovery Call <span>&rarr;</span>
@@ -549,6 +547,7 @@ const aboutStyles = `
     overflow: hidden;
     background: #f0f0f0;
     min-height: 600px;
+    max-height: 700px;
   }
   .about-team-photo img {
     width: 100%;
@@ -804,7 +803,7 @@ const aboutStyles = `
     }
     .about-team-member.flipped .about-team-photo { order: 1; }
     .about-team-member.flipped .about-team-bio { order: 2; }
-    .about-team-photo { min-height: 400px; }
+    .about-team-photo { min-height: 350px; max-height: 450px; }
     .about-team-bio { padding: 48px 32px; }
     .about-values {
       grid-template-columns: 1fr;

@@ -287,20 +287,31 @@ export default function PricingContent() {
           />
 
           {/* Price */}
-          <p
+          <div
             className="transition-all duration-700"
             style={{
-              fontSize: '36px',
-              fontWeight: '600',
-              color: '#FF2E63',
               marginBottom: '24px',
               opacity: engagementVisible ? 1 : 0,
               transform: engagementVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '200ms'
             }}
           >
-            $15,600
-          </p>
+            <p style={{
+              fontSize: '36px',
+              fontWeight: '600',
+              color: '#FF2E63',
+              marginBottom: '4px'
+            }}>
+              $15,600
+            </p>
+            <p style={{
+              fontSize: '15px',
+              fontWeight: '400',
+              color: 'rgba(10, 10, 10, 0.4)'
+            }}>
+              $2,600/month &times; 6 months
+            </p>
+          </div>
 
           {/* Description */}
           <div
@@ -350,7 +361,7 @@ export default function PricingContent() {
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
           >
-            Apply to Work With Us
+            Book a Discovery Call
             <span style={{ fontSize: '18px' }}>→</span>
           </Link>
         </div>

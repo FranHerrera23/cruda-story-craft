@@ -148,7 +148,7 @@ const OurClientsSection = () => {
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
-                      objectPosition: client.photoPosition,
+                      objectPosition: 'center top',
                       filter: 'grayscale(100%) contrast(1.05)'
                     }}
                   />

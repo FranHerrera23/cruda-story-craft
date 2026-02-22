@@ -2,17 +2,17 @@ import type { Metadata } from 'next';
 import ContactContent from './ContactContent';
 
 export const metadata: Metadata = {
-  title: 'Tell Us About Your Work — CRUDA',
-  description: 'We work with a small number of clients at any given time. Tell us about your work.',
+  title: 'Book a Discovery Call — CRUDA',
+  description: 'We work with a small number of clients at any given time. Book a discovery call to figure out if there\'s a fit.',
   openGraph: {
-    title: 'Tell Us About Your Work — CRUDA',
-    description: 'We work with a small number of clients at any given time. Tell us about your work.',
+    title: 'Book a Discovery Call — CRUDA',
+    description: 'We work with a small number of clients at any given time. Book a discovery call to figure out if there\'s a fit.',
     url: 'https://cruda.co/contact',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Tell Us About Your Work — CRUDA',
-    description: 'We work with a small number of clients at any given time. Tell us about your work.',
+    title: 'Book a Discovery Call — CRUDA',
+    description: 'We work with a small number of clients at any given time. Book a discovery call to figure out if there\'s a fit.',
   },
   alternates: {
     canonical: 'https://cruda.co/contact',

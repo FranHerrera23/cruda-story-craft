@@ -9,30 +9,27 @@ const HowWeWorkSection = () => {
     {
       number: "01",
       time: "Month 1",
-      title: "Why you got into this in the first place.",
+      title: "We listen.",
       body: [
-        "Before the company. Before the titles. There was a reason you chose this work — something about the craft, the material, the problem you wanted to solve.",
-        "That's where your story lives. Not in your resume. In the thing you still care about when nobody's watching.",
-        "We start there."
+        "Weekly conversations. Your projects, your milestones, your way of seeing the world.",
+        "We're not writing yet. We're finding the pattern."
       ]
     },
     {
       number: "02",
       time: "Months 2–6",
-      title: "Your expertise starts reaching the right people.",
+      title: "We build.",
       body: [
-        "LinkedIn. Instagram. Pitch decks. Talking points — your thinking, showing up where your next clients, partners, and peers are already looking.",
-        "But also: introductions. Warm conversations with the people you've been wanting to reach. Meetings that happen because someone already knows your work, your name, your point of view.",
+        "Your narrative — across LinkedIn, website, pitch decks, talking points.",
         "Not content for content's sake. A system that opens doors."
       ]
     },
     {
       number: "03",
       time: "Month 7+",
-      title: "New rooms. Already warm.",
+      title: "Most clients stay.",
       body: [
-        "New markets. New geographies. New conversations that start from recognition, not explanation.",
-        "Most clients stay here. Not because they're locked in — because the work keeps compounding."
+        "Because the work evolves. New markets. New projects. New rooms to walk into."
       ]
     }
   ];

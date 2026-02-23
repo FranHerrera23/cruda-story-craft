@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import franPhoto from '@/assets/fran-portrait-new.png';
+import franPhoto from '@/assets/fran-herrera-new.png';
 import michaelPhoto from '@/assets/michael-choi-pugliano-new.png';
 import nataliaPhoto from '@/assets/natalia-dmitrieva.jpg';
 import isabellaPhoto from '@/assets/isabella-marinelli.png';
@@ -555,6 +555,7 @@ const aboutStyles = `
     grid-template-columns: 45% 55%;
     gap: 0;
     min-height: 80vh;
+    align-items: center;
     border-top: 1px solid rgba(10,10,10,0.08);
   }
   .about-team-member.flipped {

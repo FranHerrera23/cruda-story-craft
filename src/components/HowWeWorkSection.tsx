@@ -12,16 +12,16 @@ const HowWeWorkSection = () => {
       title: "Why you got into this in the first place.",
       body: [
         "Before the company. Before the titles. There was a reason you chose this work — something about the craft, the material, the problem you wanted to solve.",
-        "We start there."
+        "That's where your story lives."
       ]
     },
     {
       number: "02",
       time: "Months 2–6",
-      title: "Your expertise starts reaching the right people.",
+      title: "Your name starts arriving before you do.",
       body: [
-        "LinkedIn. Instagram. Pitch decks. Talking points — your thinking, showing up where your next clients, partners, and peers are already looking.",
-        "Not content for content's sake. A system that opens doors."
+        "The pitch deck that doesn't need explaining. The LinkedIn that makes architects call you. The talking points your team uses when you're not in the room.",
+        "Not content. Coherence."
       ]
     },
     {
@@ -29,8 +29,8 @@ const HowWeWorkSection = () => {
       time: "Month 7+",
       title: "New rooms. Already warm.",
       body: [
-        "New markets. New geographies. New conversations that start from recognition, not explanation.",
-        "Most clients stay here. Not because they're locked in — because the work keeps compounding."
+        "New markets. New conversations that start from recognition, not explanation.",
+        "Most clients stay here. Not because they're locked in — because it keeps compounding."
       ]
     }
   ];

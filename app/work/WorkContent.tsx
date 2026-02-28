@@ -57,8 +57,7 @@ export default function WorkContent() {
       <section
         ref={karenRef}
         style={{
-          padding: '120px 80px',
-          borderTop: '1px solid rgba(10, 10, 10, 0.08)'
+          padding: '120px 80px'
         }}
       >
         <div style={{ maxWidth: '900px' }}>
@@ -141,14 +140,16 @@ export default function WorkContent() {
 
           {/* Metrics */}
           <div
+            className="karen-metrics-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '48px',
               marginBottom: '64px'
             }}
           >
             {[
+              { value: '+4 years', label: 'Client since 2022' },
               { value: '+300%', label: 'LinkedIn growth' },
               { value: '500K', label: 'IG views / 90 days' },
               { value: 'RAMSA · Four Seasons · Porsche', label: 'Key partnerships' }
@@ -165,7 +166,7 @@ export default function WorkContent() {
                 }}
               >
                 <p style={{
-                  fontSize: index === 2 ? '16px' : '32px',
+                  fontSize: index === 3 ? '16px' : '32px',
                   fontWeight: 600,
                   color: '#0A0A0A',
                   letterSpacing: '-0.02em',
@@ -341,8 +342,8 @@ export default function WorkContent() {
             }}
           >
             {[
+              { value: '+2 years', label: 'Engagement duration' },
               { value: '$200M', label: 'In assets' },
-              { value: '18 months', label: 'Engagement duration' },
               { value: 'Industry thought leadership', label: 'Positioning achieved' }
             ].map((metric, index) => (
               <div
@@ -461,9 +462,9 @@ export default function WorkContent() {
               linkText: "See Girish's Work"
             },
             {
-              label: "UNIK PARQUET — FLOORING",
-              headline: "Canadian hardwood. American architects who'd never heard of them.",
-              description: "Luxury flooring manufacturer entering the US market. From referral-only to proactive specification by architects across Florida.",
+              label: "JURA PLANK — LUXURY FLOORING",
+              headline: "From family craft to architect specification.",
+              description: "Luxury Canadian hardwood manufacturer entering the US market. We built the narrative, brand, and website for JURA Plank and Connecting the Dots — his US market consulting practice.",
               link: "/clients/juan-pablo-romero",
               linkText: "See Juan Pablo's Work"
             },
@@ -581,7 +582,7 @@ export default function WorkContent() {
             href="/contact"
             className="inline-block transition-all duration-300"
             style={{
-              padding: '18px 32px',
+              padding: '18px 28px',
               backgroundColor: '#FFFFFF',
               color: '#0A0A0A',
               fontSize: '16px',
@@ -614,6 +615,10 @@ export default function WorkContent() {
           }
           h1 {
             font-size: 48px !important;
+          }
+          .karen-metrics-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 24px !important;
           }
           .client-compact:nth-child(1),
           .client-compact:nth-child(2),

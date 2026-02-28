@@ -48,7 +48,7 @@ const clients: Client[] = [
   {
     slug: "juan-pablo-romero",
     name: "Juan Pablo Romero",
-    title: "Regional Sales Manager, US & Caribbean · UNIK Parquet",
+    title: "Founder · JURA Plank & Connecting the Dots",
     photo: juanPabloPhoto.src,
     photoPosition: "center 25%",
     quote: "CRUDA helped me position a brand nobody knew into the choice for architects who care about quality."

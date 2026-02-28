@@ -2,252 +2,629 @@
 
 import Link from 'next/link';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import karenImage from '@/assets/karen-mannheim-casestudy.jpg';
-import mikeImage from '@/assets/mike-kaeding.webp';
-import girishImage from '@/assets/girish-sehgal.jpeg';
 
 export default function WorkContent() {
-  const { elementRef: headerRef, isVisible: headerVisible } = useScrollAnimation<HTMLDivElement>();
-  const { elementRef: gridRef, isVisible: gridVisible } = useScrollAnimation<HTMLDivElement>();
+  const { elementRef: heroRef, isVisible: heroVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: karenRef, isVisible: karenVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: mikeRef, isVisible: mikeVisible } = useScrollAnimation<HTMLElement>();
+  const { elementRef: compactRef, isVisible: compactVisible } = useScrollAnimation<HTMLElement>();
   const { elementRef: ctaRef, isVisible: ctaVisible } = useScrollAnimation<HTMLElement>();
 
-  const clients = [
-    {
-      name: "Karen Mannheim",
-      title: "Founder, TRAZZO Lighting",
-      description: "Luxury architectural lighting designer working with Robert A.M. Stern, Porsche, and global hospitality brands.",
-      image: karenImage.src,
-      link: "/clients/karen-mannheim",
-      status: "live"
-    },
-    {
-      name: "Mike Kaeding",
-      title: "CEO, Norhart",
-      description: "Leading a $200M housing innovation company transforming how apartments are built in America.",
-      image: mikeImage.src,
-      link: "/clients/mike-kaeding",
-      status: "live"
-    },
-    {
-      name: "Girish Sehgal",
-      title: "Chief Patient Experience Officer, SSMC",
-      description: "Three decades of leadership across Four Seasons, Taj, JW Marriott, and Grand Hyatt properties.",
-      image: girishImage.src,
-      link: "/clients/girish-sehgal",
-      status: "live"
-    },
-    {
-      name: "Juan Pablo Romero",
-      title: "Regional Sales Manager, US & Caribbean, UNIK Parquet",
-      description: "High-end flooring manufacturer serving luxury residential & commercial across US.",
-      image: null,
-      link: "/clients/juan-pablo-romero",
-      status: "live"
-    },
-    {
-      name: "[Name Redacted]",
-      title: "Retail CEO & Founder, Dubai",
-      description: "Confidential case study. Strategic positioning under NDAs for a second-time founder.",
-      image: null,
-      link: "/clients/nitin-passi",
-      status: "live"
-    }
-  ];
-
   return (
-    <main className="min-h-screen">
-      {/* SECTION 1: Hero */}
+    <main className="min-h-screen" style={{ backgroundColor: '#FFFFFF' }}>
+      {/* SECTION 1: HERO */}
       <section
-        ref={headerRef}
-        className="pt-[120px] pb-[80px] px-6 md:px-[60px]"
-        style={{ backgroundColor: '#FFFFFF', borderBottom: '1px solid rgba(10, 10, 10, 0.08)' }}
+        ref={heroRef}
+        style={{
+          padding: '160px 80px 80px',
+          backgroundColor: '#FFFFFF'
+        }}
       >
-        <div className="max-w-[600px] mx-auto text-center">
+        <div style={{ maxWidth: '900px' }}>
           <h1
-            className="text-[36px] md:text-[48px] font-semibold mb-4 transition-all duration-700"
+            className="transition-all duration-700"
             style={{
-              color: '#1A1A1A',
-              letterSpacing: '-0.02em',
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? 'translateY(0)' : 'translateY(20px)'
+              fontSize: 'clamp(48px, 5vw, 72px)',
+              fontWeight: 600,
+              color: '#0A0A0A',
+              letterSpacing: '-0.03em',
+              marginBottom: '24px',
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(30px)'
             }}
           >
-            Work
+            The work speaks.
           </h1>
-
           <p
-            className="text-[20px] transition-all duration-700"
+            className="transition-all duration-700"
             style={{
-              color: 'rgba(26, 26, 26, 0.6)',
+              fontSize: '20px',
+              fontStyle: 'italic',
+              color: 'rgba(10, 10, 10, 0.45)',
+              maxWidth: '500px',
               lineHeight: '1.6',
-              opacity: headerVisible ? 1 : 0,
-              transform: headerVisible ? 'translateY(0)' : 'translateY(20px)',
+              opacity: heroVisible ? 1 : 0,
+              transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
               transitionDelay: '100ms'
             }}
           >
-            People who trusted us with their story.
+            Narrative systems for construction, architecture, and design firms doing $20M–$500M.
           </p>
         </div>
       </section>
 
-      {/* SECTION 2: Client Cards */}
-      <section 
-        ref={gridRef}
-        className="py-[100px] px-6 md:px-[60px]"
-        style={{ backgroundColor: '#FFFFFF' }}
+      {/* SECTION 2: FEATURED CASE STUDY — KAREN MANNHEIM */}
+      <section
+        ref={karenRef}
+        style={{
+          padding: '120px 80px',
+          borderTop: '1px solid rgba(10, 10, 10, 0.08)'
+        }}
       >
-        <div className="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-          {clients.map((client, index) => (
-            <Link
-              key={index}
-              href={client.link}
-              className={`block group ${client.status === 'coming-soon' ? 'cursor-default' : ''}`}
-              onClick={(e) => client.status === 'coming-soon' && e.preventDefault()}
-              style={{
-                opacity: gridVisible ? 1 : 0,
-                transform: gridVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: `all 0.7s cubic-bezier(0.4, 0, 0.2, 1) ${index * 100}ms`
-              }}
-            >
-              <div 
-                className={`overflow-hidden transition-all duration-300 ${client.status === 'live' ? 'hover:-translate-y-1 hover:shadow-lg' : ''}`}
-                style={{ 
-                  borderRadius: '8px'
+        <div style={{ maxWidth: '900px' }}>
+          {/* Label + Number */}
+          <div
+            className="transition-all duration-700"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '16px',
+              opacity: karenVisible ? 1 : 0,
+              transform: karenVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
+            <p style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'rgba(10, 10, 10, 0.4)'
+            }}>
+              TRAZZO LIGHTING
+            </p>
+            <p style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'rgba(10, 10, 10, 0.2)'
+            }}>
+              01
+            </p>
+          </div>
+
+          {/* Red line */}
+          <div
+            className="transition-all duration-500"
+            style={{
+              width: karenVisible ? '48px' : '0px',
+              height: '3px',
+              backgroundColor: '#FF2E63',
+              marginBottom: '40px',
+              transitionDelay: '100ms'
+            }}
+          />
+
+          {/* Headline */}
+          <h2
+            className="transition-all duration-700"
+            style={{
+              fontSize: 'clamp(28px, 3vw, 36px)',
+              fontWeight: 600,
+              color: '#0A0A0A',
+              marginBottom: '32px',
+              lineHeight: '1.3',
+              opacity: karenVisible ? 1 : 0,
+              transform: karenVisible ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '200ms'
+            }}
+          >
+            30 years of expertise.<br />Zero presence outside Peru.
+          </h2>
+
+          {/* Body */}
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '18px',
+              fontWeight: 400,
+              color: 'rgba(10, 10, 10, 0.6)',
+              lineHeight: '1.65',
+              maxWidth: '700px',
+              marginBottom: '64px',
+              opacity: karenVisible ? 1 : 0,
+              transform: karenVisible ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '400ms'
+            }}
+          >
+            Karen Mannheim built Lima's most respected architectural lighting firm. Porsche. Four Seasons. Robert A.M. Stern Architects. But Miami didn't know she existed. We built the narrative system that changed that.
+          </p>
+
+          {/* Metrics */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '48px',
+              marginBottom: '64px'
+            }}
+          >
+            {[
+              { value: '+300%', label: 'LinkedIn growth' },
+              { value: '500K', label: 'IG views / 90 days' },
+              { value: 'RAMSA · Four Seasons · Porsche', label: 'Key partnerships' }
+            ].map((metric, index) => (
+              <div
+                key={index}
+                className="transition-all duration-700"
+                style={{
+                  borderTop: '1px solid rgba(10, 10, 10, 0.06)',
+                  paddingTop: '20px',
+                  opacity: karenVisible ? 1 : 0,
+                  transform: karenVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transitionDelay: `${600 + index * 100}ms`
                 }}
               >
-                {/* Image Area */}
-                <div
-                  className="relative w-full overflow-hidden"
-                  style={{
-                    aspectRatio: '3/2',
-                    backgroundColor: '#f5f5f5',
-                    borderRadius: '8px'
-                  }}
-                >
-                  {client.image ? (
-                    <img
-                      src={client.image}
-                      alt={client.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      style={{ borderRadius: '8px', objectPosition: 'center' }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <span 
-                        className="text-[14px] font-medium"
-                        style={{ color: 'rgba(26, 26, 26, 0.3)' }}
-                      >
-                        Photo coming soon
-                      </span>
-                    </div>
-                  )}
-                  
-                  {/* Coming Soon Badge */}
-                  {client.status === 'coming-soon' && (
-                    <div 
-                      className="absolute top-4 right-4 px-3 py-1.5 text-[10px] font-medium uppercase"
-                      style={{ 
-                        backgroundColor: 'rgba(26, 26, 26, 0.8)',
-                        color: '#FFFFFF',
-                        letterSpacing: '1.5px',
-                        borderRadius: '4px'
-                      }}
-                    >
-                      Coming Soon
-                    </div>
-                  )}
-                </div>
-
-                {/* Content Area */}
-                <div className="pt-6">
-                  {/* Client Name */}
-                  <h3 
-                    className="text-[24px] font-semibold mb-1"
-                    style={{ 
-                      color: '#1A1A1A',
-                      letterSpacing: '-0.01em'
-                    }}
-                  >
-                    {client.name}
-                  </h3>
-                  
-                  {/* Title/Company */}
-                  <p 
-                    className="text-[16px] mb-3"
-                    style={{ color: 'rgba(26, 26, 26, 0.6)' }}
-                  >
-                    {client.title}
-                  </p>
-                  
-                  {/* Description */}
-                  <p 
-                    className="text-[15px] mb-4"
-                    style={{ 
-                      color: 'rgba(26, 26, 26, 0.5)',
-                      lineHeight: '1.6'
-                    }}
-                  >
-                    {client.description}
-                  </p>
-                  
-                  {/* View Case Study Link */}
-                  {client.status === 'live' && (
-                    <span 
-                      className="text-[14px] font-medium inline-flex items-center gap-1 transition-all duration-300 group-hover:gap-2"
-                      style={{ color: '#FF2E63' }}
-                    >
-                      View case study 
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
-                    </span>
-                  )}
-                </div>
+                <p style={{
+                  fontSize: index === 2 ? '16px' : '32px',
+                  fontWeight: 600,
+                  color: '#0A0A0A',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '8px'
+                }}>
+                  {metric.value}
+                </p>
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: 'rgba(10, 10, 10, 0.4)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
+                }}>
+                  {metric.label}
+                </p>
               </div>
-            </Link>
+            ))}
+          </div>
+
+          {/* Quote */}
+          <div
+            className="transition-all duration-700"
+            style={{
+              marginBottom: '40px',
+              opacity: karenVisible ? 1 : 0,
+              transform: karenVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '900ms'
+            }}
+          >
+            <p style={{
+              fontSize: '22px',
+              fontStyle: 'italic',
+              color: '#0A0A0A',
+              maxWidth: '500px',
+              marginBottom: '12px',
+              lineHeight: '1.5'
+            }}>
+              "We finally sound like who we actually are."
+            </p>
+            <p style={{
+              fontSize: '14px',
+              fontWeight: 500,
+              color: '#FF2E63'
+            }}>
+              — Karen Mannheim, Co-founder, TRAZZO Lighting
+            </p>
+          </div>
+
+          {/* Link */}
+          <Link
+            href="/clients/karen-mannheim"
+            className="link-cta transition-all duration-300"
+            style={{
+              fontSize: '15px',
+              fontWeight: 500,
+              color: '#0A0A0A',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              borderBottom: '1px solid rgba(10, 10, 10, 0.15)',
+              paddingBottom: '4px'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderBottomColor = '#FF2E63';
+              e.currentTarget.style.color = '#FF2E63';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderBottomColor = 'rgba(10, 10, 10, 0.15)';
+              e.currentTarget.style.color = '#0A0A0A';
+            }}
+          >
+            See Karen's Work
+            <span style={{ fontSize: '18px' }}>→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* SECTION 3: FEATURED CASE STUDY — MIKE KAEDING */}
+      <section
+        ref={mikeRef}
+        style={{
+          padding: '120px 80px',
+          borderTop: '1px solid rgba(10, 10, 10, 0.08)'
+        }}
+      >
+        <div style={{ maxWidth: '900px' }}>
+          {/* Label + Number */}
+          <div
+            className="transition-all duration-700"
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '16px',
+              opacity: mikeVisible ? 1 : 0,
+              transform: mikeVisible ? 'translateY(0)' : 'translateY(20px)'
+            }}
+          >
+            <p style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'rgba(10, 10, 10, 0.4)'
+            }}>
+              NORHART
+            </p>
+            <p style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: 'rgba(10, 10, 10, 0.2)'
+            }}>
+              02
+            </p>
+          </div>
+
+          {/* Red line */}
+          <div
+            className="transition-all duration-500"
+            style={{
+              width: mikeVisible ? '48px' : '0px',
+              height: '3px',
+              backgroundColor: '#FF2E63',
+              marginBottom: '40px',
+              transitionDelay: '100ms'
+            }}
+          />
+
+          {/* Headline */}
+          <h2
+            className="transition-all duration-700"
+            style={{
+              fontSize: 'clamp(28px, 3vw, 36px)',
+              fontWeight: 600,
+              color: '#0A0A0A',
+              marginBottom: '32px',
+              lineHeight: '1.3',
+              opacity: mikeVisible ? 1 : 0,
+              transform: mikeVisible ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '200ms'
+            }}
+          >
+            $200M in assets.<br />No one outside Minneapolis had heard of him.
+          </h2>
+
+          {/* Body */}
+          <p
+            className="transition-all duration-700"
+            style={{
+              fontSize: '18px',
+              fontWeight: 400,
+              color: 'rgba(10, 10, 10, 0.6)',
+              lineHeight: '1.65',
+              maxWidth: '700px',
+              marginBottom: '64px',
+              opacity: mikeVisible ? 1 : 0,
+              transform: mikeVisible ? 'translateY(0)' : 'translateY(30px)',
+              transitionDelay: '400ms'
+            }}
+          >
+            Mike Kaeding is building apartments 50% faster at 30% lower cost. Vertically integrated. Manufacturing-minded. But the construction industry thought he was just another local builder. We built the narrative that positioned him as the voice challenging a broken housing industry.
+          </p>
+
+          {/* Metrics */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: '48px',
+              marginBottom: '64px'
+            }}
+          >
+            {[
+              { value: '$200M', label: 'In assets' },
+              { value: '18 months', label: 'Engagement duration' },
+              { value: 'Industry thought leadership', label: 'Positioning achieved' }
+            ].map((metric, index) => (
+              <div
+                key={index}
+                className="transition-all duration-700"
+                style={{
+                  borderTop: '1px solid rgba(10, 10, 10, 0.06)',
+                  paddingTop: '20px',
+                  opacity: mikeVisible ? 1 : 0,
+                  transform: mikeVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transitionDelay: `${600 + index * 100}ms`
+                }}
+              >
+                <p style={{
+                  fontSize: index === 2 ? '16px' : '32px',
+                  fontWeight: 600,
+                  color: '#0A0A0A',
+                  letterSpacing: '-0.02em',
+                  marginBottom: '8px'
+                }}>
+                  {metric.value}
+                </p>
+                <p style={{
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  color: 'rgba(10, 10, 10, 0.4)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em'
+                }}>
+                  {metric.label}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* Quote */}
+          <div
+            className="transition-all duration-700"
+            style={{
+              marginBottom: '40px',
+              opacity: mikeVisible ? 1 : 0,
+              transform: mikeVisible ? 'translateY(0)' : 'translateY(20px)',
+              transitionDelay: '900ms'
+            }}
+          >
+            <p style={{
+              fontSize: '22px',
+              fontStyle: 'italic',
+              color: '#0A0A0A',
+              maxWidth: '500px',
+              marginBottom: '12px',
+              lineHeight: '1.5'
+            }}>
+              "I used to dread the 'so what do you do?' question. Now I look forward to it."
+            </p>
+            <p style={{
+              fontSize: '14px',
+              fontWeight: 500,
+              color: '#FF2E63'
+            }}>
+              — Mike Kaeding, CEO, Norhart
+            </p>
+          </div>
+
+          {/* Link */}
+          <Link
+            href="/clients/mike-kaeding"
+            className="link-cta transition-all duration-300"
+            style={{
+              fontSize: '15px',
+              fontWeight: 500,
+              color: '#0A0A0A',
+              textDecoration: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              borderBottom: '1px solid rgba(10, 10, 10, 0.15)',
+              paddingBottom: '4px'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderBottomColor = '#FF2E63';
+              e.currentTarget.style.color = '#FF2E63';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderBottomColor = 'rgba(10, 10, 10, 0.15)';
+              e.currentTarget.style.color = '#0A0A0A';
+            }}
+          >
+            See Mike's Work
+            <span style={{ fontSize: '18px' }}>→</span>
+          </Link>
+        </div>
+      </section>
+
+      {/* SECTION 4: COMPACT CLIENT GRID */}
+      <section
+        ref={compactRef}
+        style={{
+          padding: '80px',
+          borderTop: '1px solid rgba(10, 10, 10, 0.08)'
+        }}
+      >
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '32px'
+          }}
+        >
+          {[
+            {
+              label: "SSMC — HEALTHCARE",
+              headline: "Hospitality is a mindset, not an industry.",
+              description: "25 years across Four Seasons, Taj, and Grand Hyatt. Now translating world-class hospitality into healthcare. 7,000+ senior leaders reached.",
+              link: "/clients/girish-sehgal",
+              linkText: "See Girish's Work"
+            },
+            {
+              label: "UNIK PARQUET — FLOORING",
+              headline: "Canadian hardwood. American architects who'd never heard of them.",
+              description: "Luxury flooring manufacturer entering the US market. From referral-only to proactive specification by architects across Florida.",
+              link: "/clients/juan-pablo-romero",
+              linkText: "See Juan Pablo's Work"
+            },
+            {
+              label: "RETAIL — DUBAI",
+              headline: "Strategic positioning under NDA.",
+              description: "Second-time founder. $500M+ revenue. Narrative strategy for a retail holding company across the Middle East.",
+              link: "/clients/nitin-passi",
+              linkText: "View Case Study"
+            }
+          ].map((client, index) => (
+            <div
+              key={index}
+              className="client-compact transition-all duration-700"
+              style={{
+                padding: '40px',
+                border: '1px solid rgba(10, 10, 10, 0.06)',
+                opacity: compactVisible ? 1 : 0,
+                transform: compactVisible ? 'translateY(0)' : 'translateY(20px)',
+                transitionDelay: `${index * 150}ms`
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(10, 10, 10, 0.15)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(10, 10, 10, 0.06)';
+                e.currentTarget.style.transform = 'translateY(0)';
+              }}
+            >
+              <p style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                color: 'rgba(10, 10, 10, 0.4)',
+                marginBottom: '16px'
+              }}>
+                {client.label}
+              </p>
+              <h3 style={{
+                fontSize: '20px',
+                fontWeight: 600,
+                color: '#0A0A0A',
+                marginBottom: '16px',
+                lineHeight: '1.4'
+              }}>
+                {client.headline}
+              </h3>
+              <p style={{
+                fontSize: '16px',
+                fontWeight: 400,
+                color: 'rgba(10, 10, 10, 0.5)',
+                lineHeight: '1.6',
+                marginBottom: '24px'
+              }}>
+                {client.description}
+              </p>
+              <Link
+                href={client.link}
+                className="transition-all duration-300"
+                style={{
+                  fontSize: '14px',
+                  fontWeight: 500,
+                  color: '#0A0A0A',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  borderBottom: '1px solid rgba(10, 10, 10, 0.15)',
+                  paddingBottom: '2px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderBottomColor = '#FF2E63';
+                  e.currentTarget.style.color = '#FF2E63';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderBottomColor = 'rgba(10, 10, 10, 0.15)';
+                  e.currentTarget.style.color = '#0A0A0A';
+                }}
+              >
+                {client.linkText}
+                <span style={{ fontSize: '16px' }}>→</span>
+              </Link>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* SECTION 4: CTA */}
-      <section 
+      {/* SECTION 5: CTA */}
+      <section
         ref={ctaRef}
-        className="py-[120px] px-6 md:px-[60px]"
-        style={{ backgroundColor: '#1A1A1A' }}
+        style={{
+          padding: '120px 80px',
+          backgroundColor: '#0A0A0A',
+          textAlign: 'center'
+        }}
       >
-        <div className="max-w-[500px] mx-auto text-center">
-          <h2 
-            className="text-[36px] font-semibold mb-8 transition-all duration-700"
-            style={{ 
+        <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+          <h2
+            className="transition-all duration-700"
+            style={{
+              fontSize: 'clamp(36px, 4vw, 48px)',
+              fontWeight: 600,
               color: '#FFFFFF',
-              letterSpacing: '-0.01em',
+              marginBottom: '40px',
+              letterSpacing: '-0.02em',
               opacity: ctaVisible ? 1 : 0,
               transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)'
             }}
           >
-            Your story could be next.
+            Ready when you are.
           </h2>
-          
           <Link
             href="/contact"
-            className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-300"
-            style={{ 
-              backgroundColor: '#FF2E63',
-              color: '#FFFFFF'
+            className="inline-block transition-all duration-300"
+            style={{
+              padding: '18px 32px',
+              backgroundColor: '#FFFFFF',
+              color: '#0A0A0A',
+              fontSize: '16px',
+              fontWeight: 600,
+              textDecoration: 'none',
+              borderRadius: '0'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#E62958';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(255, 46, 99, 0.25)';
+              e.currentTarget.style.backgroundColor = '#FF2E63';
+              e.currentTarget.style.color = '#FFFFFF';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#FF2E63';
-              e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.backgroundColor = '#FFFFFF';
+              e.currentTarget.style.color = '#0A0A0A';
             }}
           >
-            Start a Conversation
+            Book a Discovery Call →
           </Link>
         </div>
       </section>
+
+      {/* Mobile Styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          section:first-of-type {
+            padding: 120px 24px 60px !important;
+          }
+          section:not(:first-of-type) {
+            padding: 80px 24px !important;
+          }
+          h1 {
+            font-size: 48px !important;
+          }
+          .client-compact:nth-child(1),
+          .client-compact:nth-child(2),
+          .client-compact:nth-child(3) {
+            grid-column: 1 / -1;
+          }
+          section:nth-of-type(4) > div {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
     </main>
   );
 }

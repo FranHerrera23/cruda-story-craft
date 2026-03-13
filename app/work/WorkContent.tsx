@@ -98,7 +98,7 @@ const WorkContent = () => {
           className="client-photo transition-all duration-800"
           style={{
             width: '100%',
-            aspectRatio: '3 / 4',
+            aspectRatio: '4 / 5',
             overflow: 'hidden',
             opacity: isVisible(1) ? 1 : 0,
             transform: isVisible(1) ? 'scale(1)' : 'scale(1.03)'
@@ -113,7 +113,7 @@ const WorkContent = () => {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center 20%',
-              filter: 'grayscale(100%)',
+              filter: 'grayscale(100%) contrast(1.05)',
               transition: 'filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}
           />
@@ -190,7 +190,7 @@ const WorkContent = () => {
             className="client-metrics"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: 'repeat(4, 1fr)',
               gap: '24px',
               marginBottom: '40px'
             }}
@@ -198,7 +198,8 @@ const WorkContent = () => {
             {[
               { value: '+4 years', label: 'Client since 2022' },
               { value: '+300%', label: 'LinkedIn growth' },
-              { value: '500K', label: 'IG views / 90 days' }
+              { value: '500K', label: 'IG views / 90 days' },
+              { value: 'RAMSA · Four Seasons · Porsche', label: 'Key partnerships' }
             ].map((metric, idx) => (
               <div
                 key={idx}
@@ -211,7 +212,7 @@ const WorkContent = () => {
                 }}
               >
                 <p className="metric-value" style={{
-                  fontSize: '28px',
+                  fontSize: idx === 3 ? '16px' : '28px',
                   fontWeight: 600,
                   color: '#0A0A0A',
                   letterSpacing: '-0.02em',
@@ -460,7 +461,7 @@ const WorkContent = () => {
           className="client-photo transition-all duration-800"
           style={{
             width: '100%',
-            aspectRatio: '3 / 4',
+            aspectRatio: '4 / 5',
             overflow: 'hidden',
             backgroundColor: '#0A0A0A',
             display: 'flex',
@@ -500,7 +501,7 @@ const WorkContent = () => {
           className="client-photo transition-all duration-800"
           style={{
             width: '100%',
-            aspectRatio: '3 / 4',
+            aspectRatio: '4 / 5',
             overflow: 'hidden',
             opacity: isVisible(3) ? 1 : 0,
             transform: isVisible(3) ? 'scale(1)' : 'scale(1.03)'
@@ -515,7 +516,7 @@ const WorkContent = () => {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center 15%',
-              filter: 'grayscale(100%)',
+              filter: 'grayscale(100%) contrast(1.05)',
               transition: 'filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}
           />
@@ -568,7 +569,7 @@ const WorkContent = () => {
               transitionDelay: '300ms'
             }}
           >
-            Hospitality is a mindset, not an industry.
+            25 years of world-class hospitality. Zero digital presence.
           </h2>
 
           <p
@@ -584,7 +585,7 @@ const WorkContent = () => {
               transitionDelay: '500ms'
             }}
           >
-            25 years across Four Seasons, Taj, JW Marriott, and Grand Hyatt. 14 cities. 6 countries. Girish didn't just manage hotels — he built cultures. Now he's translating that same standard into healthcare at Abu Dhabi's largest medical city.
+            Girish Sehgal led Four Seasons Maldives to #1 worldwide. Taj. Grand Hyatt. JW Marriott. Now he's translating hospitality excellence into healthcare at Sheikh Shakhbout Medical City in Abu Dhabi. We built the executive voice that let 7,000+ senior leaders see what he sees.
           </p>
 
           {/* Metrics */}
@@ -598,9 +599,9 @@ const WorkContent = () => {
             }}
           >
             {[
-              { value: '25 years', label: 'Four Seasons to healthcare' },
+              { value: '25 years', label: 'Four Seasons · Taj · Grand Hyatt' },
               { value: '7,000+', label: 'Senior leaders reached' },
-              { value: '#1 worldwide', label: 'Condé Nast (Taj Exotica)' }
+              { value: '#1 worldwide', label: 'Condé Nast (Taj Maldives)' }
             ].map((metric, idx) => (
               <div
                 key={idx}
@@ -767,15 +768,14 @@ const WorkContent = () => {
             className="client-metrics"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: 'repeat(2, 1fr)',
               gap: '24px',
               marginBottom: '40px'
             }}
           >
             {[
-              { value: '2 brands', label: 'Built from scratch' },
-              { value: 'US market', label: 'Entry strategy' },
-              { value: 'Architect spec', label: 'Discovery to specification' }
+              { value: 'Brand + website', label: 'Built from zero' },
+              { value: 'US market entry', label: 'Strategic positioning' }
             ].map((metric, idx) => (
               <div
                 key={idx}
@@ -833,7 +833,7 @@ const WorkContent = () => {
           className="client-photo transition-all duration-800"
           style={{
             width: '100%',
-            aspectRatio: '3 / 4',
+            aspectRatio: '4 / 5',
             overflow: 'hidden',
             order: 2,
             opacity: isVisible(4) ? 1 : 0,
@@ -849,7 +849,7 @@ const WorkContent = () => {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center 20%',
-              filter: 'grayscale(100%)',
+              filter: 'grayscale(100%) contrast(1.05)',
               transition: 'filter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}
           />
@@ -930,7 +930,7 @@ const WorkContent = () => {
         </p>
 
         <Link
-          href="/clients/nitin-passi"
+          href="/contact"
           className="client-link"
           style={{
             fontSize: '16px',
@@ -942,7 +942,7 @@ const WorkContent = () => {
             display: 'inline-block'
           }}
         >
-          View Case Study →
+          Request introduction →
         </Link>
       </section>
 
@@ -1030,7 +1030,7 @@ const WorkContent = () => {
           .client-spread .client-photo,
           .client-spread--flipped .client-photo {
             order: -1 !important;
-            aspect-ratio: 4 / 3 !important;
+            aspect-ratio: 4 / 5 !important;
           }
 
           .client-spread .client-content,

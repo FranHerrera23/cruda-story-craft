@@ -27,9 +27,10 @@ const teamMembers: TeamMemberData[] = [
     role: 'Founder',
     flipped: false,
     bio: [
-      "Small town in northern Argentina. No degree. First real job at 17 producing events for 600 people \u2014 pure conviction and street. By 19, sleeping on couches in Buenos Aires, betting everything on being in the right room at the right time.",
-      "Then came the corporations \u2014 Fortune 500, startups, venture capital, hospitality, construction, architecture. Latin America, the US, Europe, the Middle East. Every world had its own rules. And in every one, the lesson was the same: the people who build the most struggle the hardest to explain why it matters.",
-      "That gap isn\u2019t theory. It\u2019s the story of every immigrant, every founder, every builder who knows exactly who they are \u2014 but the words don\u2019t travel. Now I help close it."
+      "Argentine. Lived in Russia for a decade. Worked across three continents with ten nationalities — TikTok, Nestlé, the United Nations, DeliveryHero.",
+      "Every immigrant knows the same gap: you know exactly who you are, but the words don't travel.",
+      "That's not theory. That's Tuesday morning.",
+      "Now I sit with founders who have the same problem — and we find the words together."
     ],
     logoTags: ['TikTok', 'Mondelez', 'Nestl\u00e9', 'United Nations', 'DeliveryHero', 'AB InBev'],
     photoNote: 'New photo needed \u2014 strategist, not YouTuber',
@@ -41,8 +42,9 @@ const teamMembers: TeamMemberData[] = [
     role: 'Creative Director',
     flipped: true,
     bio: [
-      "A decade of brand and creative leadership in tech and gaming. In-house and agency side. The person who\u2019s been in the room when the brief arrives and still there when the work ships.",
-      "Content that creates affinity \u2014 the kind that lasts longer than a campaign. Michael doesn\u2019t decorate brands. He gives them a voice worth listening to."
+      "Grew up making things — then spent a decade making things at Amazon, Twitch, EA, LucasArts, Marvel, Facebook.",
+      "In-house and agency side. Every seat at the table. The thing he kept noticing: the best brands aren't the loudest. They're the ones people feel before they can explain why.",
+      "That's what he builds here."
     ],
     logoTags: ['Amazon', 'Twitch', 'EA', 'Facebook', 'Oculus', 'LucasArts', 'Marvel'],
     photoNote: 'New photo needed',
@@ -66,9 +68,9 @@ const teamMembers: TeamMemberData[] = [
     role: 'Business Strategist',
     flipped: true,
     bio: [
-      "Enterprise pharma. Eight years in Spain. Real estate across Russia and UAE. 35 countries. Three languages fluent. Then she quit the corporate ladder.",
-      "Cat lover. Compulsive traveler. The kind of person who reads a room before anyone speaks. Her core skill is intuition \u2014 she\u2019s the coach who helps the team show up at their best.",
-      "Natalia keeps the work moving so the story can land."
+      "Spent years in pharma running accounts across borders — GSK, Lundbeck, Dr. Reddy's. Then she left.",
+      "Eight years in Spain. Thirty-five countries. Three languages. A life built around art, cats, and the belief that you don't have to stay on the path someone else drew for you.",
+      "She keeps everything running so the rest of us can think."
     ],
     photoNote: 'Natalia photo',
     photo: nataliaPhoto.src
@@ -79,7 +81,9 @@ const teamMembers: TeamMemberData[] = [
     role: 'Digital Strategist',
     flipped: false,
     bio: [
-      "Platform-native thinking across LinkedIn, Instagram, and emerging channels. Isabella translates narrative strategy into content systems that compound \u2014 not campaigns that expire."
+      "Forty-something startups across five cities — Dubai, Hong Kong, New York, London, Buenos Aires. Somewhere along the way she ended up in Puglia.",
+      "Now she teaches AI and digital strategy, studies at Bocconi, and helps founders say clearly what they've been circling around for years.",
+      "She's the one who looks at everything you've built and asks the question you've been avoiding."
     ],
     photoNote: 'Isabella photo',
     photo: isabellaPhoto.src
@@ -90,11 +94,12 @@ const teamMembers: TeamMemberData[] = [
     role: 'Narrative Strategist',
     flipped: true,
     bio: [
-      "Marketing degree. Buenos Aires \u2192 Bangkok \u2192 Mexico City. Built Aftertaste \u2014 a newsletter dissecting culture, fashion, art, and the content that lingers. 500K+ views. Not by explaining. By provoking.",
-      "Abril doesn\u2019t want you to nod along. She wants you to leave with something stuck in your head."
+      "Buenos Aires → Bangkok → Mexico City. She keeps moving.",
+      "Built Aftertaste — a newsletter about culture, fashion, and the things that stay with you after you close the tab. Half a million people read it.",
+      "Abril writes the pieces you send to someone with no context and just say: 'read this.'"
     ],
-    photoNote: 'Abril photo',
-    photo: abrilPhoto.src
+    photoNote: 'Dark placeholder - AI photo removed',
+    photo: undefined
   }
 ];
 
@@ -238,6 +243,29 @@ function TeamMemberSpread({ member }: { member: TeamMemberData }) {
       <div className="about-team-photo">
         {member.photo ? (
           <img src={member.photo} alt={member.name} />
+        ) : member.name === 'Abril' ? (
+          <div style={{
+            width: '100%',
+            aspectRatio: '4/5',
+            background: '#0A0A0A',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '48px',
+          }}>
+            <span style={{
+              color: 'rgba(255,255,255,0.15)',
+              fontSize: '14px',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              lineHeight: 1.6
+            }}>
+              Buenos Aires → Bangkok → Mexico City.<br/>
+              She keeps moving.
+            </span>
+          </div>
         ) : (
           <div className="about-team-photo-placeholder">
             <span className="placeholder-initial">{member.name.charAt(0)}</span>

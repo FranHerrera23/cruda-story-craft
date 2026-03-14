@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import WorkContent from './WorkContent';
-import CTASection from '@/components/CTASection';
 
 export const metadata: Metadata = {
   title: 'Work',
@@ -21,10 +20,5 @@ export const metadata: Metadata = {
 };
 
 export default function WorkPage() {
-  return (
-    <>
-      <WorkContent />
-      <CTASection />
-    </>
-  );
+  return <WorkContent />;
 }

@@ -5,7 +5,6 @@ import Link from 'next/link';
 
 export default function DeckContent() {
   const [counter, setCounter] = useState('01 / 09');
-  const [scrollHintHidden, setScrollHintHidden] = useState(false);
 
   useEffect(() => {
     // Reveal animations
@@ -43,17 +42,6 @@ export default function DeckContent() {
       revealObserver.disconnect();
       counterObserver.disconnect();
     };
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setScrollHintHidden(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
@@ -170,30 +158,30 @@ export default function DeckContent() {
         /* ANIMATIONS */
         .deck-wrapper .reveal {
           opacity: 0;
-          transform: translateY(28px);
-          transition: opacity 1s var(--ease), transform 1s var(--ease);
+          transform: translateY(16px);
+          transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
         }
         .deck-wrapper .reveal.visible {
           opacity: 1;
           transform: translateY(0);
         }
         .deck-wrapper .d-1 {
-          transition-delay: 0.08s;
+          transition-delay: 0.06s;
         }
         .deck-wrapper .d-2 {
-          transition-delay: 0.2s;
+          transition-delay: 0.16s;
         }
         .deck-wrapper .d-3 {
-          transition-delay: 0.32s;
+          transition-delay: 0.26s;
         }
         .deck-wrapper .d-4 {
-          transition-delay: 0.44s;
+          transition-delay: 0.36s;
         }
         .deck-wrapper .d-5 {
-          transition-delay: 0.56s;
+          transition-delay: 0.46s;
         }
         .deck-wrapper .d-6 {
-          transition-delay: 0.68s;
+          transition-delay: 0.56s;
         }
 
         /* TYPOGRAPHY */
@@ -353,8 +341,6 @@ export default function DeckContent() {
           color: var(--cruda-dark);
           max-width: 50ch;
           letter-spacing: -0.015em;
-          border-left: 2px solid var(--cruda-red);
-          padding-left: 24px;
         }
 
         /* SLIDE 03 — ARCHITECTURE */
@@ -367,7 +353,7 @@ export default function DeckContent() {
           gap: 64px 80px;
         }
         .deck-wrapper .vertical-item {
-          border-top: 2px solid var(--cruda-dark);
+          border-top: 1px solid var(--cruda-dark);
           padding-top: 32px;
         }
         .deck-wrapper .vertical-tag {
@@ -460,7 +446,7 @@ export default function DeckContent() {
           margin-bottom: 56px;
         }
         .deck-wrapper .what-bucket {
-          border-top: 2px solid var(--cruda-dark);
+          border-top: 1px solid var(--cruda-dark);
           padding-top: 32px;
           max-width: 72ch;
         }
@@ -501,7 +487,6 @@ export default function DeckContent() {
           color: var(--cruda-dark);
           max-width: 64ch;
           letter-spacing: -0.005em;
-          font-style: italic;
         }
 
         /* SLIDES 06 & 07 — SELECTED WORK MOSAIC */
@@ -511,26 +496,23 @@ export default function DeckContent() {
         .deck-wrapper .work-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 40px;
+          gap: 80px 64px;
         }
         .deck-wrapper .work-card {
-          border: 1px solid var(--gray-line);
-          padding: 40px;
+          padding: 0;
           display: flex;
           flex-direction: column;
           gap: 24px;
-          transition: all 0.4s var(--ease);
+          transition: opacity 0.4s var(--ease);
           text-decoration: none;
           color: inherit;
           position: relative;
-          background: var(--cruda-white);
         }
         .deck-wrapper .work-card.has-link {
           cursor: pointer;
         }
         .deck-wrapper .work-card.has-link:hover {
-          border-color: var(--cruda-dark);
-          transform: translateY(-2px);
+          opacity: 0.65;
         }
         .deck-wrapper .work-card-tag {
           font-family: var(--font-mono);
@@ -583,8 +565,6 @@ export default function DeckContent() {
           font-size: 17px;
           line-height: 1.5;
           color: var(--cruda-dark);
-          border-left: 2px solid var(--cruda-red);
-          padding-left: 16px;
           letter-spacing: -0.005em;
         }
         .deck-wrapper .work-card-quote-author {
@@ -595,7 +575,6 @@ export default function DeckContent() {
           color: var(--gray-mute);
           text-transform: uppercase;
           margin-top: -12px;
-          padding-left: 16px;
         }
         .deck-wrapper .work-card-scope {
           font-family: var(--font-body);
@@ -686,7 +665,7 @@ export default function DeckContent() {
           align-items: start;
         }
         .deck-wrapper .bio-left {
-          border-top: 2px solid var(--cruda-dark);
+          border-top: 1px solid var(--cruda-dark);
           padding-top: 28px;
         }
         .deck-wrapper .bio-cat {
@@ -745,19 +724,24 @@ export default function DeckContent() {
           margin-top: 48px;
           padding-top: 28px;
           border-top: 1px solid var(--gray-line);
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-        }
-        .deck-wrapper .bio-logo {
+          display: block;
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 600;
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--gray-soft);
-          padding: 8px 14px;
-          border: 1px solid var(--gray-line);
+          line-height: 1.9;
+        }
+        .deck-wrapper .bio-logo {
+        }
+        .deck-wrapper .bio-logo::after {
+          content: ' · ';
+          color: var(--gray-light);
+          margin: 0 6px;
+        }
+        .deck-wrapper .bio-logo:last-child::after {
+          content: '';
         }
         .deck-wrapper .bio-industries {
           margin-top: 28px;
@@ -838,7 +822,6 @@ export default function DeckContent() {
         .deck-wrapper .cta-button:hover {
           background: var(--cruda-red);
           border-color: var(--cruda-red);
-          transform: translateY(-2px);
         }
         .deck-wrapper .cta-button .arrow {
           transition: transform 0.4s var(--ease);
@@ -887,7 +870,7 @@ export default function DeckContent() {
           }
           .deck-wrapper .work-grid {
             grid-template-columns: 1fr;
-            gap: 24px;
+            gap: 48px;
           }
           .deck-wrapper .bio-grid {
             grid-template-columns: 1fr;
@@ -900,39 +883,6 @@ export default function DeckContent() {
           .deck-wrapper .h-display {
             font-size: clamp(44px, 12vw, 80px);
           }
-          .deck-wrapper .work-card {
-            padding: 24px;
-          }
-        }
-
-        /* SCROLL HINT */
-        .deck-wrapper .scroll-hint {
-          position: fixed;
-          bottom: 28px;
-          left: 50%;
-          transform: translateX(-50%);
-          font-family: var(--font-mono);
-          font-size: 10px;
-          letter-spacing: 0.3em;
-          color: var(--gray-mute);
-          text-transform: uppercase;
-          opacity: 0.7;
-          animation: bounce 2.5s var(--ease) infinite;
-          pointer-events: none;
-          z-index: 50;
-          transition: opacity 0.5s ease;
-        }
-        @keyframes bounce {
-          0%,
-          100% {
-            transform: translateX(-50%) translateY(0);
-          }
-          50% {
-            transform: translateX(-50%) translateY(-6px);
-          }
-        }
-        .deck-wrapper .scroll-hint.hidden {
-          opacity: 0;
         }
       `}</style>
 
@@ -942,13 +892,11 @@ export default function DeckContent() {
           <div className="nav-counter">{counter}</div>
         </nav>
 
-        <div className={`scroll-hint ${scrollHintHidden ? 'hidden' : ''}`}>Scroll ↓</div>
-
         {/* 01 — HERO */}
         <section className="slide s-hero" data-counter="01 / 09">
           <div className="slide-inner">
             <h1 className="h-display reveal d-1">Everything is a narrative.</h1>
-            <h1 className="h-display red reveal d-3" style={{ marginTop: '16px' }}>
+            <h1 className="h-display reveal d-3" style={{ marginTop: '16px' }}>
               Companies, too.
             </h1>
             <p className="body-xl reveal d-5" style={{ marginTop: '64px', maxWidth: '56ch', color: 'var(--gray-text)' }}>

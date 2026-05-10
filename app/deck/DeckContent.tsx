@@ -50,8 +50,8 @@ export default function DeckContent() {
         :root {
           --cruda-red: #ff2e63;
           --cruda-dark: #0a0a0a;
-          --cruda-white: #faf7f2;
-          --cruda-pearl: #faf7f2;
+          --cruda-white: #ffffff;
+          --cruda-pearl: #ffffff;
           --gray-text: #4a4a4a;
           --gray-soft: #6b6b6b;
           --gray-mute: #999999;
@@ -344,44 +344,77 @@ export default function DeckContent() {
         }
 
         /* SLIDE 03 — ARCHITECTURE */
-        .deck-wrapper .architecture-headline {
-          margin-bottom: 80px;
+        .deck-wrapper .s-architecture {
         }
-        .deck-wrapper .verticals-grid {
+        .deck-wrapper .arch-headline {
+          font-family: var(--font-display);
+          font-size: clamp(56px, 7.5vw, 104px);
+          line-height: 1.0;
+          letter-spacing: -0.04em;
+          font-weight: 600;
+          color: var(--cruda-dark);
+          max-width: 22ch;
+          margin-top: 32px;
+          margin-bottom: 120px;
+        }
+        .deck-wrapper .verticals-stack {
+          display: flex;
+          flex-direction: column;
+          gap: 80px;
+          max-width: 1200px;
+        }
+        .deck-wrapper .vertical-row {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 64px 80px;
-        }
-        .deck-wrapper .vertical-item {
-          border-top: 1px solid var(--cruda-dark);
+          grid-template-columns: 220px 1fr;
+          gap: 64px;
+          align-items: start;
           padding-top: 32px;
+          border-top: 1px solid var(--cruda-dark);
         }
-        .deck-wrapper .vertical-tag {
+        .deck-wrapper .vertical-meta {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        .deck-wrapper .vertical-num {
           font-family: var(--font-mono);
           font-size: 13px;
-          font-weight: 700;
+          font-weight: 600;
+          letter-spacing: 0.2em;
+          color: var(--cruda-red);
+        }
+        .deck-wrapper .vertical-name {
+          font-family: var(--font-mono);
+          font-size: 13px;
+          font-weight: 600;
           letter-spacing: 0.26em;
           color: var(--cruda-red);
-          margin-bottom: 24px;
+          text-transform: uppercase;
+        }
+        .deck-wrapper .vertical-content {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
         }
         .deck-wrapper .vertical-tagline {
           font-family: var(--font-display);
-          font-weight: 600;
-          font-size: clamp(26px, 2.8vw, 36px);
+          font-size: clamp(28px, 3vw, 44px);
           line-height: 1.15;
-          letter-spacing: -0.025em;
-          margin-bottom: 24px;
+          letter-spacing: -0.01em;
+          font-weight: 500;
           color: var(--cruda-dark);
-          max-width: 28ch;
+          margin: 0;
+          max-width: 24ch;
         }
         .deck-wrapper .vertical-sectors {
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: var(--gray-soft);
-          line-height: 1.8;
+          color: var(--gray-mute);
+          line-height: 1.9;
+          margin: 0;
         }
 
         /* SLIDE 04 — WHY CRUDA */
@@ -496,23 +529,55 @@ export default function DeckContent() {
         .deck-wrapper .work-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 80px 64px;
+          gap: 64px 56px;
         }
         .deck-wrapper .work-card {
+          background: #f5f2ed;
+          border: none;
           padding: 0;
           display: flex;
           flex-direction: column;
-          gap: 24px;
-          transition: opacity 0.4s var(--ease);
           text-decoration: none;
           color: inherit;
-          position: relative;
+          overflow: hidden;
+          transition: opacity 0.4s var(--ease);
         }
         .deck-wrapper .work-card.has-link {
           cursor: pointer;
         }
         .deck-wrapper .work-card.has-link:hover {
-          opacity: 0.65;
+          opacity: 0.85;
+        }
+        .deck-wrapper .work-card-photo-placeholder {
+          aspect-ratio: 4 / 5;
+          width: 100%;
+          background: #e8e4dd;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--gray-mute);
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+        }
+        .deck-wrapper .work-card-photo-placeholder::before {
+          content: 'Photo · ' attr(data-name);
+        }
+        .deck-wrapper .work-card-photo {
+          aspect-ratio: 4 / 5;
+          width: 100%;
+          object-fit: cover;
+          display: block;
+          filter: grayscale(100%) contrast(1.05);
+        }
+        .deck-wrapper .work-card-content {
+          padding: 32px;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          flex: 1;
         }
         .deck-wrapper .work-card-tag {
           font-family: var(--font-mono);
@@ -667,32 +732,62 @@ export default function DeckContent() {
         .deck-wrapper .bio-left {
           border-top: 1px solid var(--cruda-dark);
           padding-top: 28px;
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+        }
+        .deck-wrapper .bio-photo-placeholder {
+          aspect-ratio: 4 / 5;
+          width: 100%;
+          background: #e8e4dd;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--gray-mute);
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+        }
+        .deck-wrapper .bio-photo-placeholder::before {
+          content: 'Photo · ' attr(data-name);
+        }
+        .deck-wrapper .bio-photo {
+          aspect-ratio: 4 / 5;
+          width: 100%;
+          object-fit: cover;
+          display: block;
+          filter: grayscale(100%) contrast(1.05);
+        }
+        .deck-wrapper .bio-caption {
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
         }
         .deck-wrapper .bio-cat {
           font-family: var(--font-mono);
-          font-size: 11px;
+          font-size: 13px;
           font-weight: 600;
-          letter-spacing: 0.22em;
+          letter-spacing: 0.2em;
           color: var(--cruda-red);
-          margin-bottom: 24px;
         }
         .deck-wrapper .bio-name {
           font-family: var(--font-display);
-          font-weight: 700;
-          font-size: clamp(56px, 7vw, 96px);
-          line-height: 1;
-          letter-spacing: -0.04em;
+          font-size: clamp(28px, 3vw, 40px);
+          line-height: 1.05;
+          letter-spacing: -0.02em;
+          font-weight: 600;
           color: var(--cruda-dark);
-          margin-bottom: 16px;
+          margin: 0;
         }
         .deck-wrapper .bio-role {
           font-family: var(--font-mono);
           font-size: 12px;
           font-weight: 600;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
+          letter-spacing: 0.26em;
           color: var(--cruda-red);
-          margin-bottom: 32px;
+          text-transform: uppercase;
         }
         .deck-wrapper .bio-body p {
           font-family: var(--font-body);
@@ -864,13 +959,22 @@ export default function DeckContent() {
             right: 24px;
             bottom: 32px;
           }
-          .deck-wrapper .verticals-grid {
+          .deck-wrapper .verticals-stack {
+            gap: 56px;
+          }
+          .deck-wrapper .vertical-row {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 16px;
+          }
+          .deck-wrapper .arch-headline {
+            margin-bottom: 64px;
           }
           .deck-wrapper .work-grid {
             grid-template-columns: 1fr;
-            gap: 48px;
+            gap: 40px;
+          }
+          .deck-wrapper .work-card-content {
+            padding: 24px;
           }
           .deck-wrapper .bio-grid {
             grid-template-columns: 1fr;
@@ -931,35 +1035,63 @@ export default function DeckContent() {
         </section>
 
         {/* 03 — ARCHITECTURE */}
-        <section className="slide" data-counter="03 / 09">
+        <section className="slide s-architecture" data-counter="03 / 09">
           <div className="slide-inner">
-            <div className="slide-label reveal">Architecture</div>
-            <div className="architecture-headline reveal d-1">
-              <h2 className="h-lg">We work with founder-led companies across four worlds.</h2>
+            <div className="slide-label reveal d-1">
+              <span></span>
+              <p>WHAT WE COVER</p>
             </div>
-            <div className="verticals-grid reveal d-3">
-              <div className="vertical-item">
-                <div className="vertical-tag">CRUDA BUILD</div>
-                <div className="vertical-tagline">They build the spaces we live in.</div>
-                <div className="vertical-sectors">
-                  Architecture · Design · Real Estate · Construction · Building Materials
+
+            <h2 className="h-display reveal d-2 arch-headline">
+              We work with founder-led companies<br />across four worlds.
+            </h2>
+
+            <div className="verticals-stack">
+              <div className="vertical-row reveal d-3">
+                <div className="vertical-meta">
+                  <span className="vertical-num">01</span>
+                  <span className="vertical-name">CRUDA BUILD</span>
+                </div>
+                <div className="vertical-content">
+                  <p className="vertical-tagline">They build the spaces we live in.</p>
+                  <p className="vertical-sectors">
+                    Architecture · Design · Real Estate · Construction · Building Materials
+                  </p>
                 </div>
               </div>
-              <div className="vertical-item">
-                <div className="vertical-tag">CRUDA DEMAND</div>
-                <div className="vertical-tagline">They earn the choice, every day.</div>
-                <div className="vertical-sectors">CPG · Fashion · Hospitality · Healthcare brands</div>
+
+              <div className="vertical-row reveal d-4">
+                <div className="vertical-meta">
+                  <span className="vertical-num">02</span>
+                  <span className="vertical-name">CRUDA DEMAND</span>
+                </div>
+                <div className="vertical-content">
+                  <p className="vertical-tagline">They earn the choice, every day.</p>
+                  <p className="vertical-sectors">CPG · Fashion · Hospitality · Healthcare Brands</p>
+                </div>
               </div>
-              <div className="vertical-item">
-                <div className="vertical-tag">CRUDA SPORTS</div>
-                <div className="vertical-tagline">They earn the truth in public.</div>
-                <div className="vertical-sectors">Tournaments · Athletes · Leagues · Sports brands</div>
+
+              <div className="vertical-row reveal d-5">
+                <div className="vertical-meta">
+                  <span className="vertical-num">03</span>
+                  <span className="vertical-name">CRUDA SPORTS</span>
+                </div>
+                <div className="vertical-content">
+                  <p className="vertical-tagline">They earn the truth in public.</p>
+                  <p className="vertical-sectors">Tournaments · Athletes · Leagues · Sports Brands</p>
+                </div>
               </div>
-              <div className="vertical-item">
-                <div className="vertical-tag">CRUDA CAPITAL</div>
-                <div className="vertical-tagline">They move what trust built.</div>
-                <div className="vertical-sectors">
-                  Family Offices · Wealth Management · PE · Financial Advisors
+
+              <div className="vertical-row reveal d-6">
+                <div className="vertical-meta">
+                  <span className="vertical-num">04</span>
+                  <span className="vertical-name">CRUDA CAPITAL</span>
+                </div>
+                <div className="vertical-content">
+                  <p className="vertical-tagline">They move what trust built.</p>
+                  <p className="vertical-sectors">
+                    Family Offices · Wealth Management · PE · Financial Advisors
+                  </p>
                 </div>
               </div>
             </div>
@@ -1047,117 +1179,129 @@ export default function DeckContent() {
             <div className="work-grid reveal d-3">
               {/* Card 01 — Karen */}
               <Link href="/clients/karen-mannheim" className="work-card has-link">
-                <div className="work-card-tag">
-                  <span>CRUDA BUILD · 01</span>
-                </div>
-                <div>
-                  <div className="work-card-name">Karen Mannheim</div>
-                  <div className="work-card-sub">Trazzo Global · Architectural Lighting</div>
-                </div>
-                <div className="work-card-meta">Peru · USA · Spain</div>
-                <div className="work-card-quote">&ldquo;They already know me before the call.&rdquo;</div>
-                <div className="work-card-quote-author">— Karen Mannheim</div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">+300%</span>
-                    <span className="stat-label">visibility · 3 years</span>
+                <div className="work-card-photo-placeholder" data-name="Karen Mannheim"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA BUILD · 01</span>
                   </div>
                   <div>
-                    <span className="stat-num">$150K</span>
-                    <span className="stat-label">Pezet 3 · sourced from one video</span>
+                    <div className="work-card-name">Karen Mannheim</div>
+                    <div className="work-card-sub">Trazzo Global · Architectural Lighting</div>
                   </div>
-                </div>
-                <div className="work-card-link">
-                  <span>thecruda.com/clients/karen-mannheim</span>
-                  <span className="arrow">→</span>
+                  <div className="work-card-meta">Peru · USA · Spain</div>
+                  <div className="work-card-quote">&ldquo;They already know me before the call.&rdquo;</div>
+                  <div className="work-card-quote-author">— Karen Mannheim</div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">+300%</span>
+                      <span className="stat-label">visibility · 3 years</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">$150K</span>
+                      <span className="stat-label">Pezet 3 · sourced from one video</span>
+                    </div>
+                  </div>
+                  <div className="work-card-link">
+                    <span>thecruda.com/clients/karen-mannheim</span>
+                    <span className="arrow">→</span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 02 — Mike */}
               <Link href="/clients/mike-kaeding" className="work-card has-link">
-                <div className="work-card-tag">
-                  <span>CRUDA BUILD · 02</span>
-                </div>
-                <div>
-                  <div className="work-card-name">Mike Kaeding</div>
-                  <div className="work-card-sub">Norhart · Residential Real Estate</div>
-                </div>
-                <div className="work-card-meta">Minnesota · USA</div>
-                <div className="work-card-quote">
-                  &ldquo;I used to dread &lsquo;so what do you do?&rsquo; Now I look forward to it.&rdquo;
-                </div>
-                <div className="work-card-quote-author">— Mike Kaeding, CEO</div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">$230M+</span>
-                    <span className="stat-label">in assets · 80 → 1,000+ units</span>
+                <div className="work-card-photo-placeholder" data-name="Mike Kaeding"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA BUILD · 02</span>
                   </div>
                   <div>
-                    <span className="stat-num">+1M</span>
-                    <span className="stat-label">LinkedIn impressions / year</span>
+                    <div className="work-card-name">Mike Kaeding</div>
+                    <div className="work-card-sub">Norhart · Residential Real Estate</div>
                   </div>
-                </div>
-                <div className="work-card-link">
-                  <span>thecruda.com/clients/mike-kaeding</span>
-                  <span className="arrow">→</span>
+                  <div className="work-card-meta">Minnesota · USA</div>
+                  <div className="work-card-quote">
+                    &ldquo;I used to dread &lsquo;so what do you do?&rsquo; Now I look forward to it.&rdquo;
+                  </div>
+                  <div className="work-card-quote-author">— Mike Kaeding, CEO</div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">$230M+</span>
+                      <span className="stat-label">in assets · 80 → 1,000+ units</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">+1M</span>
+                      <span className="stat-label">LinkedIn impressions / year</span>
+                    </div>
+                  </div>
+                  <div className="work-card-link">
+                    <span>thecruda.com/clients/mike-kaeding</span>
+                    <span className="arrow">→</span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 03 — JP */}
               <Link href="/clients/juan-pablo-romero" className="work-card has-link">
-                <div className="work-card-tag">
-                  <span>CRUDA BUILD · 03</span>
-                </div>
-                <div>
-                  <div className="work-card-name">Juan Pablo Romero</div>
-                  <div className="work-card-sub">JURA Plank · Connecting the Dots</div>
-                </div>
-                <div className="work-card-meta">Florida · US Market Entry</div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">3</span>
-                    <span className="stat-label">Florida clients onboarded</span>
+                <div className="work-card-photo-placeholder" data-name="Juan Pablo Romero"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA BUILD · 03</span>
                   </div>
                   <div>
-                    <span className="stat-num">2</span>
-                    <span className="stat-label">brands built · 5-language site</span>
+                    <div className="work-card-name">Juan Pablo Romero</div>
+                    <div className="work-card-sub">JURA Plank · Connecting the Dots</div>
                   </div>
-                </div>
-                <div className="work-card-link">
-                  <span>thecruda.com/clients/juan-pablo-romero</span>
-                  <span className="arrow">→</span>
+                  <div className="work-card-meta">Florida · US Market Entry</div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">3</span>
+                      <span className="stat-label">Florida clients onboarded</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">2</span>
+                      <span className="stat-label">brands built · 5-language site</span>
+                    </div>
+                  </div>
+                  <div className="work-card-link">
+                    <span>thecruda.com/clients/juan-pablo-romero</span>
+                    <span className="arrow">→</span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 04 — SH! Energy + Marcos */}
               <div className="work-card">
-                <div className="work-card-tag">
-                  <span>CRUDA DEMAND · 04</span>
-                  <span className="work-card-status">In progress</span>
-                </div>
-                <div>
-                  <div className="work-card-name">SH! Energy</div>
-                  <div className="work-card-sub">Marcos Guevara Lynch · Co-founder & CEO</div>
-                </div>
-                <div className="work-card-meta">Pre-seed CPG · Co-founded with Rodrigo De Paul · Argentina</div>
-                <div className="work-card-quote">&ldquo;I want to tell my truth and build my tribe.&rdquo;</div>
-                <div className="work-card-quote-author">— Marcos Guevara Lynch</div>
-                <div className="work-card-scope">
-                  <div>Founder narrative system</div>
-                  <div>Investor deck</div>
-                  <div>Senior marketing hires</div>
-                </div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">$2M</span>
-                    <span className="stat-label">closed of $4M raise</span>
+                <div className="work-card-photo-placeholder" data-name="Marcos Guevara Lynch"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA DEMAND · 04</span>
+                    <span className="work-card-status">In progress</span>
                   </div>
                   <div>
-                    <span className="stat-num">2</span>
-                    <span className="stat-label">senior hires (Marketing + Martech)</span>
+                    <div className="work-card-name">SH! Energy</div>
+                    <div className="work-card-sub">Marcos Guevara Lynch · Co-founder & CEO</div>
                   </div>
+                  <div className="work-card-meta">Pre-seed CPG · Co-founded with Rodrigo De Paul · Argentina</div>
+                  <div className="work-card-quote">&ldquo;I want to tell my truth and build my tribe.&rdquo;</div>
+                  <div className="work-card-quote-author">— Marcos Guevara Lynch</div>
+                  <div className="work-card-scope">
+                    <div>Founder narrative system</div>
+                    <div>Investor deck</div>
+                    <div>Senior marketing hires</div>
+                  </div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">$2M</span>
+                      <span className="stat-label">closed of $4M raise</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">2</span>
+                      <span className="stat-label">senior hires (Marketing + Martech)</span>
+                    </div>
+                  </div>
+                  <div className="work-card-no-link">Case in build</div>
                 </div>
-                <div className="work-card-no-link">Case in build</div>
               </div>
             </div>
           </div>
@@ -1171,116 +1315,128 @@ export default function DeckContent() {
             <div className="work-grid reveal d-1">
               {/* Card 05 — Nitin */}
               <div className="work-card">
-                <div className="work-card-tag">
-                  <span>CRUDA DEMAND · 05</span>
-                </div>
-                <div>
-                  <div className="work-card-name">Nitin Passi</div>
-                  <div className="work-card-sub">SUMWON Studios · Fashion</div>
-                </div>
-                <div className="work-card-meta">Dubai · Manchester</div>
-                <div className="work-card-scope">
-                  <div>Comeback story from Missguided UK</div>
-                  <div>Founder narrative strategy</div>
-                  <div>On-demand business model education</div>
-                </div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">$300M</span>
-                    <span className="stat-label">SUMWON annual revenue</span>
+                <div className="work-card-photo-placeholder" data-name="Nitin Passi"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA DEMAND · 05</span>
                   </div>
                   <div>
-                    <span className="stat-num">+1K</span>
-                    <span className="stat-label">CVs from one LinkedIn post</span>
+                    <div className="work-card-name">Nitin Passi</div>
+                    <div className="work-card-sub">SUMWON Studios · Fashion</div>
                   </div>
+                  <div className="work-card-meta">Dubai · Manchester</div>
+                  <div className="work-card-scope">
+                    <div>Comeback story from Missguided UK</div>
+                    <div>Founder narrative strategy</div>
+                    <div>On-demand business model education</div>
+                  </div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">$300M</span>
+                      <span className="stat-label">SUMWON annual revenue</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">+1K</span>
+                      <span className="stat-label">CVs from one LinkedIn post</span>
+                    </div>
+                  </div>
+                  <div className="work-card-no-link">Confidential engagement</div>
                 </div>
-                <div className="work-card-no-link">Confidential engagement</div>
               </div>
 
               {/* Card 06 — Girish */}
               <Link href="/clients/girish-sehgal" className="work-card has-link">
-                <div className="work-card-tag">
-                  <span>CRUDA DEMAND · 06</span>
-                </div>
-                <div>
-                  <div className="work-card-name">Girish Sehgal</div>
-                  <div className="work-card-sub">SSMC · Patient Experience</div>
-                </div>
-                <div className="work-card-meta">Abu Dhabi · Four Seasons US · Taj · Cleveland Clinic</div>
-                <div className="work-card-quote">
-                  &ldquo;Hospitality is not an industry. It&rsquo;s a mindset.&rdquo;
-                </div>
-                <div className="work-card-quote-author">— Girish Sehgal</div>
-                <div className="work-card-scope">
-                  <div>LinkedIn strategy</div>
-                  <div>Founder voice · Twice a week</div>
-                </div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">7,000+</span>
-                    <span className="stat-label">senior leaders reached organically</span>
+                <div className="work-card-photo-placeholder" data-name="Girish Sehgal"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA DEMAND · 06</span>
                   </div>
                   <div>
-                    <span className="stat-num">25+</span>
-                    <span className="stat-label">years · 14 cities · 6 countries</span>
+                    <div className="work-card-name">Girish Sehgal</div>
+                    <div className="work-card-sub">SSMC · Patient Experience</div>
                   </div>
-                </div>
-                <div className="work-card-link">
-                  <span>thecruda.com/clients/girish-sehgal</span>
-                  <span className="arrow">→</span>
+                  <div className="work-card-meta">Abu Dhabi · Four Seasons US · Taj · Cleveland Clinic</div>
+                  <div className="work-card-quote">
+                    &ldquo;Hospitality is not an industry. It&rsquo;s a mindset.&rdquo;
+                  </div>
+                  <div className="work-card-quote-author">— Girish Sehgal</div>
+                  <div className="work-card-scope">
+                    <div>LinkedIn strategy</div>
+                    <div>Founder voice · Twice a week</div>
+                  </div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">7,000+</span>
+                      <span className="stat-label">senior leaders reached organically</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">25+</span>
+                      <span className="stat-label">years · 14 cities · 6 countries</span>
+                    </div>
+                  </div>
+                  <div className="work-card-link">
+                    <span>thecruda.com/clients/girish-sehgal</span>
+                    <span className="arrow">→</span>
+                  </div>
                 </div>
               </Link>
 
               {/* Card 07 — Samurai */}
               <div className="work-card">
-                <div className="work-card-tag">
-                  <span>CRUDA SPORTS · 07</span>
-                  <span className="work-card-status">In progress · Marketing partner & investor</span>
-                </div>
-                <div>
-                  <div className="work-card-name">Samurai Fight House</div>
-                  <div className="work-card-sub">MMA Tournament · Athletes · LATAM</div>
-                </div>
-                <div className="work-card-meta">Argentina · Brazil · LATAM</div>
-                <div className="work-card-quote">
-                  &ldquo;#1 MMA house in LATAM. Not for the money. To change lives.&rdquo;
-                </div>
-                <div className="work-card-quote-author">— Martin Pakciarz, President</div>
-                <div className="work-card-scope">
-                  <div>Marketing strategy</div>
-                  <div>Digital infrastructure</div>
-                  <div>Personal brand · CEO + athletes</div>
-                  <div>Brand · Sponsorship · Transmission deals</div>
-                </div>
-                <div className="work-card-stats">
-                  <div>
-                    <span className="stat-num">6/10</span>
-                    <span className="stat-label">Argentinians in UFC fight from SFH</span>
+                <div className="work-card-photo-placeholder" data-name="Martin Pakciarz"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA SPORTS · 07</span>
+                    <span className="work-card-status">In progress · Marketing partner & investor</span>
                   </div>
                   <div>
-                    <span className="stat-num">Top 10</span>
-                    <span className="stat-label">Chino Vallejos · UFC featherweight</span>
+                    <div className="work-card-name">Samurai Fight House</div>
+                    <div className="work-card-sub">MMA Tournament · Athletes · LATAM</div>
                   </div>
+                  <div className="work-card-meta">Argentina · Brazil · LATAM</div>
+                  <div className="work-card-quote">
+                    &ldquo;#1 MMA house in LATAM. Not for the money. To change lives.&rdquo;
+                  </div>
+                  <div className="work-card-quote-author">— Martin Pakciarz, President</div>
+                  <div className="work-card-scope">
+                    <div>Marketing strategy</div>
+                    <div>Digital infrastructure</div>
+                    <div>Personal brand · CEO + athletes</div>
+                    <div>Brand · Sponsorship · Transmission deals</div>
+                  </div>
+                  <div className="work-card-stats">
+                    <div>
+                      <span className="stat-num">6/10</span>
+                      <span className="stat-label">Argentinians in UFC fight from SFH</span>
+                    </div>
+                    <div>
+                      <span className="stat-num">Top 10</span>
+                      <span className="stat-label">Chino Vallejos · UFC featherweight</span>
+                    </div>
+                  </div>
+                  <div className="work-card-no-link">Case in build · CRUDA Sports</div>
                 </div>
-                <div className="work-card-no-link">Case in build · CRUDA Sports</div>
               </div>
 
               {/* Card 08 — Alex */}
               <div className="work-card">
-                <div className="work-card-tag">
-                  <span>CRUDA CAPITAL · 08</span>
-                  <span className="work-card-status">Advisory engagement</span>
+                <div className="work-card-photo-placeholder" data-name="Alex Dmitriev"></div>
+                <div className="work-card-content">
+                  <div className="work-card-tag">
+                    <span>CRUDA CAPITAL · 08</span>
+                    <span className="work-card-status">Advisory engagement</span>
+                  </div>
+                  <div>
+                    <div className="work-card-name">Alex Dmitriev</div>
+                    <div className="work-card-sub">Cross-border M&A</div>
+                  </div>
+                  <div className="work-card-meta">McKinsey · BCG · Kearney</div>
+                  <div className="work-card-scope">
+                    <div>Personal narrative strategy</div>
+                    <div>Career pivot</div>
+                  </div>
+                  <div className="work-card-no-link">Advisory · Dubai</div>
                 </div>
-                <div>
-                  <div className="work-card-name">Alex Dmitriev</div>
-                  <div className="work-card-sub">Cross-border M&A</div>
-                </div>
-                <div className="work-card-meta">McKinsey · BCG · Kearney</div>
-                <div className="work-card-scope">
-                  <div>Personal narrative strategy</div>
-                  <div>Career pivot</div>
-                </div>
-                <div className="work-card-no-link">Advisory · Dubai</div>
               </div>
             </div>
           </div>
@@ -1292,9 +1448,12 @@ export default function DeckContent() {
             <div className="slide-label reveal">Who&rsquo;s writing this</div>
             <div className="bio-grid">
               <div className="bio-left reveal d-1">
-                <div className="bio-cat">01</div>
-                <div className="bio-name">Fran</div>
-                <div className="bio-role">Founder</div>
+                <div className="bio-photo-placeholder" data-name="Fran Herrera"></div>
+                <div className="bio-caption">
+                  <span className="bio-cat">01</span>
+                  <h3 className="bio-name">Fran Herrera</h3>
+                  <span className="bio-role">FOUNDER</span>
+                </div>
               </div>
               <div className="bio-right reveal d-2">
                 <div className="bio-body">

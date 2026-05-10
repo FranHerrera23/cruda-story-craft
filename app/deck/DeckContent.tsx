@@ -50,16 +50,16 @@ export default function DeckContent() {
           --cruda-white: #FFFFFF;
           --cruda-cream: #F5F1E8;
 
-          /* Greys */
+          /* Greyscale */
           --gray-text: #4A4A4A;
           --gray-mute: #8A8A8A;
           --gray-line: #E5E5E5;
           --gray-faint: #F5F5F5;
 
-          /* Fonts */
-          --font-display: var(--font-fraunces), 'Neue Haas Grotesk Display Pro', 'Inter', sans-serif;
-          --font-body: var(--font-inter), 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-          --font-mono: var(--font-jetbrains), 'JetBrains Mono', 'IBM Plex Mono', monospace;
+          /* Fonts (Söhne preferred, fallback to Neue Haas / Inter) */
+          --font-display: var(--font-fraunces), 'Söhne', 'Neue Haas Grotesk Display Pro', 'Inter', sans-serif;
+          --font-body: var(--font-inter), 'Söhne', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+          --font-mono: var(--font-jetbrains), 'Söhne Mono', 'JetBrains Mono', 'IBM Plex Mono', monospace;
           --ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -80,12 +80,13 @@ export default function DeckContent() {
           font-feature-settings: 'kern' 1, 'liga' 1;
         }
 
-        /* Pentagram-level: no shadows, no gradients, no border-radius */
+        /* Pentagram-level: kill shadows, radius, gradients globally */
         .deck-wrapper *,
         .deck-wrapper *::before,
         .deck-wrapper *::after {
           box-shadow: none !important;
           text-shadow: none !important;
+          border-radius: 0 !important;
         }
 
         .deck-wrapper ::selection {
@@ -121,15 +122,16 @@ export default function DeckContent() {
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 500;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           color: var(--gray-mute);
           text-transform: uppercase;
+          font-variant-numeric: tabular-nums;
         }
 
-        /* SLIDE BASE */
+        /* SLIDE BASE — section padding 200/160 vertical, 80 horizontal */
         .deck-wrapper .slide {
           min-height: 100vh;
-          padding: 160px 80px 120px;
+          padding: 200px 80px 160px;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -138,12 +140,12 @@ export default function DeckContent() {
           border-bottom: 1px solid var(--gray-line);
         }
         .deck-wrapper .slide-inner {
-          max-width: 1240px;
+          max-width: 1280px;
           margin: 0 auto;
           width: 100%;
         }
 
-        /* Section labels — em-dash red + label dark */
+        /* Slide labels — em-dash red on every slide */
         .deck-wrapper .slide-label {
           font-family: var(--font-mono);
           font-size: 12px;
@@ -151,7 +153,7 @@ export default function DeckContent() {
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin-bottom: 80px;
+          margin-bottom: 96px;
           display: flex;
           align-items: center;
           gap: 16px;
@@ -161,6 +163,7 @@ export default function DeckContent() {
           color: var(--cruda-red);
           font-weight: 400;
           font-size: 14px;
+          line-height: 1;
         }
 
         /* ANIMATIONS */
@@ -182,73 +185,78 @@ export default function DeckContent() {
         .deck-wrapper .d-beat-3 { transition-delay: 0.66s; }
         .deck-wrapper .d-beat-4 { transition-delay: 0.78s; }
 
-        /* SLIDE 01 — HERO */
+        /* SLIDE 01 — HERO (max 96px, max-width 1100px) */
         .deck-wrapper .s-hero {
-          padding: 200px 80px 120px;
+          padding: 240px 80px 120px;
+          max-width: 1440px;
+          margin: 0 auto;
         }
         .deck-wrapper .hero-h1 {
           font-family: var(--font-display);
-          font-size: clamp(72px, 9vw, 144px);
+          font-size: clamp(56px, 6.5vw, 96px);
           font-weight: 600;
           line-height: 1.02;
           letter-spacing: -0.03em;
           color: var(--cruda-dark);
-          max-width: 1200px;
+          max-width: 1100px;
+          margin: 0;
         }
         .deck-wrapper .hero-lead {
           font-family: var(--font-body);
-          font-size: clamp(20px, 1.6vw, 26px);
+          font-size: clamp(18px, 1.4vw, 22px);
           font-weight: 400;
           line-height: 1.5;
+          letter-spacing: -0.005em;
           color: var(--gray-text);
-          max-width: 720px;
-          margin-top: 80px;
+          max-width: 620px;
+          margin-top: 64px;
         }
         .deck-wrapper .hero-stamp {
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 500;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gray-mute);
-          margin-top: 160px;
+          margin-top: 200px;
         }
 
         /* SLIDE 02 — PHILOSOPHY */
-        .deck-wrapper .philosophy-word {
+        .deck-wrapper .philosophy-watermark {
           font-family: var(--font-display);
           font-style: italic;
-          font-size: clamp(160px, 18vw, 280px);
+          font-size: clamp(180px, 20vw, 320px);
           font-weight: 400;
           color: var(--gray-line);
-          letter-spacing: -0.04em;
-          line-height: 1;
-          margin-bottom: 80px;
+          letter-spacing: -0.045em;
+          line-height: 0.95;
+          margin-bottom: 120px;
           user-select: none;
         }
-        .deck-wrapper .philosophy-definition-row {
+        .deck-wrapper .philosophy-row {
           display: grid;
           grid-template-columns: 120px 1fr;
-          gap: 48px;
+          gap: 64px;
           align-items: start;
-          margin-bottom: 120px;
+          max-width: 1100px;
+          margin-bottom: 160px;
         }
         .deck-wrapper .philosophy-tag {
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--cruda-red);
-          padding-top: 6px;
+          padding-top: 12px;
         }
         .deck-wrapper .philosophy-definition {
           font-family: var(--font-body);
-          font-size: clamp(22px, 1.8vw, 32px);
+          font-size: clamp(22px, 1.8vw, 30px);
           font-weight: 400;
-          line-height: 1.45;
+          line-height: 1.4;
+          letter-spacing: -0.01em;
           color: var(--cruda-dark);
-          max-width: 880px;
         }
         .deck-wrapper .philosophy-definition .pos {
           color: var(--gray-mute);
@@ -257,15 +265,16 @@ export default function DeckContent() {
         }
         .deck-wrapper .philosophy-bridge {
           font-family: var(--font-body);
-          font-size: clamp(18px, 1.4vw, 22px);
+          font-size: clamp(17px, 1.3vw, 20px);
           color: var(--gray-text);
-          max-width: 720px;
-          margin-bottom: 80px;
+          max-width: 680px;
+          margin-bottom: 96px;
+          line-height: 1.55;
         }
         .deck-wrapper .philosophy-manifesto {
           font-family: var(--font-display);
           font-style: italic;
-          font-size: clamp(28px, 2.6vw, 44px);
+          font-size: clamp(28px, 2.4vw, 42px);
           font-weight: 400;
           line-height: 1.25;
           letter-spacing: -0.02em;
@@ -273,7 +282,7 @@ export default function DeckContent() {
           max-width: 1100px;
         }
 
-        /* SLIDE 03 — FOUR WORLDS (2+2 hierarchy) */
+        /* SLIDE 03 — FOUR WORLDS (4 same size, hierarchy by whitespace + 1 divider) */
         .deck-wrapper .worlds-h1 {
           font-family: var(--font-display);
           font-size: clamp(48px, 5vw, 72px);
@@ -281,89 +290,70 @@ export default function DeckContent() {
           line-height: 1.05;
           letter-spacing: -0.025em;
           color: var(--cruda-dark);
-          margin-bottom: 96px;
+          margin-bottom: 120px;
           max-width: 1100px;
         }
-        .deck-wrapper .world-row-major {
+        .deck-wrapper .world-row {
           display: grid;
-          grid-template-columns: 80px 1fr;
+          grid-template-columns: 80px 240px 1fr;
           gap: 48px;
-          padding: 64px 0;
-          border-bottom: 1px solid var(--cruda-dark);
+          padding: 56px 0;
+          border-top: 1px solid var(--gray-line);
           align-items: start;
         }
-        .deck-wrapper .world-row-major .number {
-          font-family: var(--font-mono);
-          font-size: 13px;
-          color: var(--gray-mute);
-          letter-spacing: 0.1em;
+        .deck-wrapper .world-row:last-child {
+          border-bottom: 1px solid var(--gray-line);
         }
-        .deck-wrapper .world-row-major .vertical-name {
+        /* Major divider — the only typographic-hierarchy signal between groups 2+2 */
+        .deck-wrapper .world-row.divider-major {
+          border-top: 1px solid var(--cruda-dark);
+        }
+        .deck-wrapper .world-row .number {
           font-family: var(--font-mono);
-          font-size: 13px;
-          font-weight: 600;
+          font-size: 12px;
           letter-spacing: 0.12em;
+          color: var(--gray-mute);
+          padding-top: 4px;
+          font-variant-numeric: tabular-nums;
+        }
+        .deck-wrapper .world-row .vertical-name {
+          font-family: var(--font-mono);
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin-bottom: 32px;
-          display: block;
+          padding-top: 4px;
         }
-        .deck-wrapper .world-row-major h3 {
+        .deck-wrapper .world-row .description h3 {
           font-family: var(--font-display);
-          font-size: clamp(36px, 3.2vw, 52px);
+          font-size: clamp(28px, 2.4vw, 40px);
           font-weight: 500;
           line-height: 1.15;
           letter-spacing: -0.02em;
           color: var(--cruda-dark);
-          margin-bottom: 24px;
+          margin-bottom: 16px;
           max-width: 24ch;
         }
-        .deck-wrapper .world-row-major .industries {
+        .deck-wrapper .world-row .description .industries {
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.1em;
+          letter-spacing: 0.12em;
           text-transform: uppercase;
           color: var(--gray-mute);
           line-height: 1.6;
         }
-        .deck-wrapper .world-row-minor {
-          display: grid;
-          grid-template-columns: 80px 200px 1fr;
-          gap: 48px;
-          padding: 32px 0;
-          border-bottom: 1px solid var(--gray-line);
-          align-items: start;
-        }
-        .deck-wrapper .world-row-minor .number,
-        .deck-wrapper .world-row-minor .vertical-name {
-          font-family: var(--font-mono);
-          font-size: 12px;
-          letter-spacing: 0.1em;
-        }
-        .deck-wrapper .world-row-minor .vertical-name {
-          font-weight: 600;
-          text-transform: uppercase;
-          color: var(--cruda-dark);
-        }
-        .deck-wrapper .world-row-minor .description {
-          font-family: var(--font-body);
-          font-size: 18px;
-          line-height: 1.4;
-          color: var(--cruda-dark);
-        }
-        .deck-wrapper .world-row-minor .description small {
-          display: block;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--gray-mute);
-          margin-top: 8px;
-        }
 
-        /* SLIDE 04 — WHY CRUDA */
+        /* SLIDE 04 — WHY CRUDA (parent override + ancho controlado) */
+        .deck-wrapper .s-why {
+          padding: 200px 80px 160px;
+          max-width: 1440px;
+          margin: 0 auto;
+        }
+        .deck-wrapper .s-why > * {
+          max-width: none;
+        }
         .deck-wrapper .why-h1 {
           font-family: var(--font-display);
           font-size: clamp(56px, 6vw, 96px);
@@ -371,8 +361,8 @@ export default function DeckContent() {
           line-height: 1.05;
           letter-spacing: -0.025em;
           color: var(--cruda-dark);
-          margin-bottom: 24px;
-          max-width: 22ch;
+          margin-bottom: 16px;
+          max-width: 1200px;
         }
         .deck-wrapper .why-h1-italic {
           font-family: var(--font-display);
@@ -383,37 +373,40 @@ export default function DeckContent() {
           letter-spacing: -0.025em;
           color: var(--cruda-red);
           margin-bottom: 96px;
-          max-width: 22ch;
+          max-width: 1200px;
         }
         .deck-wrapper .why-list-intro {
           font-family: var(--font-body);
-          font-size: 20px;
+          font-size: clamp(17px, 1.3vw, 20px);
           color: var(--gray-text);
-          margin-bottom: 48px;
+          margin-bottom: 32px;
+          max-width: 800px;
         }
         .deck-wrapper .why-list {
           list-style: none;
           padding: 0;
           margin: 0 0 96px 0;
-          max-width: 60ch;
+          max-width: 900px;
+          width: 100%;
         }
         .deck-wrapper .why-list li {
           display: grid;
           grid-template-columns: 32px 1fr;
           gap: 16px;
-          padding: 28px 0;
+          padding: 24px 0;
           border-bottom: 1px solid var(--gray-line);
           font-family: var(--font-body);
-          font-size: clamp(18px, 1.5vw, 22px);
+          font-size: clamp(17px, 1.4vw, 22px);
+          font-weight: 400;
+          line-height: 1.4;
           color: var(--cruda-dark);
-        }
-        .deck-wrapper .why-list li:last-child {
-          border-bottom: 1px solid var(--gray-line);
+          align-items: baseline;
         }
         .deck-wrapper .why-list li::before {
           content: '—';
           color: var(--cruda-red);
           font-weight: 400;
+          display: inline-block;
         }
         .deck-wrapper .why-closing {
           border-left: 3px solid var(--cruda-red);
@@ -426,7 +419,7 @@ export default function DeckContent() {
           max-width: 720px;
         }
 
-        /* SLIDE 05 — WHAT WE ACTUALLY DO */
+        /* SLIDE 05 — WHAT WE DO (3-col grid: number / label / content) */
         .deck-wrapper .do-h1 {
           font-family: var(--font-display);
           font-size: clamp(56px, 6vw, 96px);
@@ -439,9 +432,9 @@ export default function DeckContent() {
         }
         .deck-wrapper .bucket {
           border-top: 1px solid var(--cruda-dark);
-          padding: 64px 0;
+          padding: 80px 0;
           display: grid;
-          grid-template-columns: 80px 1fr;
+          grid-template-columns: 80px 240px 1fr;
           gap: 48px;
           align-items: start;
         }
@@ -450,22 +443,24 @@ export default function DeckContent() {
         }
         .deck-wrapper .bucket .number {
           font-family: var(--font-mono);
-          font-size: 13px;
+          font-size: 12px;
+          letter-spacing: 0.12em;
           color: var(--gray-mute);
-          letter-spacing: 0.1em;
+          padding-top: 8px;
+          font-variant-numeric: tabular-nums;
         }
         .deck-wrapper .bucket .label {
           font-family: var(--font-mono);
-          font-size: 12px;
+          font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gray-mute);
-          margin-bottom: 32px;
+          padding-top: 8px;
         }
         .deck-wrapper .bucket h3 {
           font-family: var(--font-display);
-          font-size: clamp(32px, 2.8vw, 48px);
+          font-size: clamp(32px, 2.6vw, 44px);
           font-weight: 500;
           line-height: 1.1;
           letter-spacing: -0.02em;
@@ -475,10 +470,12 @@ export default function DeckContent() {
         }
         .deck-wrapper .bucket p {
           font-family: var(--font-body);
-          font-size: clamp(17px, 1.4vw, 20px);
+          font-size: clamp(16px, 1.25vw, 19px);
+          font-weight: 400;
           line-height: 1.6;
+          letter-spacing: -0.005em;
           color: var(--gray-text);
-          max-width: 720px;
+          max-width: 680px;
         }
 
         /* SLIDES 06 & 07 — SELECTED WORK */
@@ -531,7 +528,7 @@ export default function DeckContent() {
           font-size: 11px;
           font-weight: 600;
           color: var(--gray-mute);
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
         }
         .deck-wrapper .card-photo img {
@@ -548,7 +545,7 @@ export default function DeckContent() {
           font-family: var(--font-mono);
           font-size: 10px;
           font-weight: 600;
-          letter-spacing: 0.14em;
+          letter-spacing: 0.16em;
           text-transform: uppercase;
           color: var(--cruda-dark);
           margin-bottom: 16px;
@@ -556,10 +553,10 @@ export default function DeckContent() {
         }
         .deck-wrapper .card-name {
           font-family: var(--font-display);
-          font-size: clamp(22px, 2vw, 28px);
+          font-size: clamp(22px, 1.9vw, 28px);
           font-weight: 600;
           line-height: 1.1;
-          letter-spacing: -0.015em;
+          letter-spacing: -0.018em;
           color: var(--cruda-dark);
           margin-bottom: 6px;
         }
@@ -567,6 +564,7 @@ export default function DeckContent() {
           font-family: var(--font-body);
           font-style: italic;
           font-size: 13px;
+          letter-spacing: -0.005em;
           color: var(--gray-text);
           margin-bottom: 16px;
         }
@@ -574,7 +572,7 @@ export default function DeckContent() {
           font-family: var(--font-mono);
           font-size: 10px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gray-mute);
         }
@@ -591,13 +589,15 @@ export default function DeckContent() {
           font-size: clamp(24px, 2vw, 32px);
           font-weight: 600;
           line-height: 1;
+          letter-spacing: -0.015em;
           color: var(--cruda-dark);
+          font-variant-numeric: tabular-nums;
         }
         .deck-wrapper .card-stat-label {
           font-family: var(--font-mono);
           font-size: 10px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gray-mute);
           line-height: 1.3;
@@ -623,16 +623,17 @@ export default function DeckContent() {
           color: var(--cruda-red);
         }
 
-        /* SLIDE 08 — BIO */
+        /* SLIDE 08 — BIO (Block A only, Block B eliminated) */
         .deck-wrapper .bio-section {
           display: grid;
-          grid-template-columns: 1fr 1.5fr;
+          grid-template-columns: 1.5fr 2fr;
           gap: 96px;
           align-items: start;
         }
         .deck-wrapper .bio-photo-col {
           display: flex;
           flex-direction: column;
+          height: 100%;
         }
         .deck-wrapper .bio-photo {
           background: var(--cruda-cream);
@@ -645,7 +646,7 @@ export default function DeckContent() {
           font-size: 11px;
           font-weight: 600;
           color: var(--gray-mute);
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           margin-bottom: 32px;
         }
@@ -656,6 +657,7 @@ export default function DeckContent() {
           filter: grayscale(100%) contrast(0.95);
         }
         .deck-wrapper .bio-photo-caption {
+          margin-top: auto;
           display: flex;
           flex-direction: column;
           gap: 8px;
@@ -664,22 +666,24 @@ export default function DeckContent() {
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           color: var(--cruda-red);
+          margin-bottom: 8px;
         }
         .deck-wrapper .bio-photo-caption .name {
           font-family: var(--font-display);
           font-size: 32px;
           font-weight: 600;
           letter-spacing: -0.02em;
+          line-height: 1;
           color: var(--cruda-dark);
-          margin: 0;
+          margin: 0 0 6px 0;
         }
         .deck-wrapper .bio-photo-caption .role {
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           color: var(--cruda-red);
           text-transform: uppercase;
         }
@@ -687,18 +691,19 @@ export default function DeckContent() {
           display: flex;
           flex-direction: column;
         }
+        .deck-wrapper .bio-section-label {
+          margin-bottom: 48px;
+        }
         .deck-wrapper .bio-divider {
           border: 0;
-          border-top: 1px solid var(--cruda-dark);
-          margin: 48px 0;
-        }
-        .deck-wrapper .bio-divider.thin {
           border-top: 1px solid var(--gray-line);
+          margin: 64px 0;
         }
         .deck-wrapper .bio-block-a p {
           font-family: var(--font-body);
-          font-size: clamp(17px, 1.4vw, 20px);
-          line-height: 1.6;
+          font-size: clamp(17px, 1.4vw, 21px);
+          line-height: 1.55;
+          letter-spacing: -0.005em;
           color: var(--cruda-dark);
           margin-bottom: 28px;
           max-width: 680px;
@@ -709,33 +714,20 @@ export default function DeckContent() {
         .deck-wrapper .bio-block-a p.italic-pull {
           font-family: var(--font-display);
           font-style: italic;
-          font-size: clamp(20px, 1.7vw, 24px);
-          line-height: 1.4;
+          font-size: clamp(22px, 1.8vw, 28px);
+          line-height: 1.35;
+          letter-spacing: -0.015em;
           color: var(--cruda-dark);
-        }
-        .deck-wrapper .bio-block-b p {
-          font-family: var(--font-body);
-          font-size: clamp(16px, 1.3vw, 18px);
-          line-height: 1.65;
-          color: var(--cruda-dark);
-          margin-bottom: 28px;
-          max-width: 680px;
-        }
-        .deck-wrapper .bio-block-b p:last-child {
-          margin-bottom: 0;
-        }
-        .deck-wrapper .bio-block-b em {
-          font-style: italic;
-          font-weight: 500;
+          font-weight: 400;
         }
         .deck-wrapper .bio-brands {
           font-family: var(--font-mono);
           font-size: 11px;
           font-weight: 600;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gray-mute);
-          line-height: 1.8;
+          line-height: 1.9;
         }
         .deck-wrapper .bio-industries-label {
           font-family: var(--font-mono);
@@ -744,11 +736,12 @@ export default function DeckContent() {
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin-bottom: 12px;
+          margin-bottom: 16px;
         }
         .deck-wrapper .bio-industries {
           font-family: var(--font-body);
           font-size: 16px;
+          letter-spacing: -0.005em;
           color: var(--gray-text);
         }
 
@@ -822,6 +815,9 @@ export default function DeckContent() {
           font-family: var(--font-body);
           font-size: 16px;
           color: var(--gray-text);
+          background: transparent;
+          padding: 0;
+          border: 0;
         }
         .deck-wrapper .cta-domain a {
           color: inherit;
@@ -841,20 +837,22 @@ export default function DeckContent() {
             padding: 20px 24px;
           }
           .deck-wrapper .slide {
-            padding: 100px 24px 60px;
+            padding: 120px 32px 80px;
           }
           .deck-wrapper .s-hero {
-            padding: 140px 24px 80px;
+            padding: 160px 32px 80px;
+          }
+          .deck-wrapper .s-why {
+            padding: 120px 32px 80px;
           }
           .deck-wrapper .hero-stamp {
             margin-top: 96px;
           }
-          .deck-wrapper .philosophy-definition-row {
+          .deck-wrapper .philosophy-row {
             grid-template-columns: 1fr;
             gap: 16px;
           }
-          .deck-wrapper .world-row-major,
-          .deck-wrapper .world-row-minor {
+          .deck-wrapper .world-row {
             grid-template-columns: 1fr;
             gap: 16px;
           }
@@ -907,8 +905,8 @@ export default function DeckContent() {
         <section className="slide" data-counter="02 / 09">
           <div className="slide-inner">
             <div className="slide-label reveal">Philosophy</div>
-            <div className="philosophy-word reveal d-1">Cruda.</div>
-            <div className="philosophy-definition-row reveal d-2">
+            <div className="philosophy-watermark reveal d-1">Cruda.</div>
+            <div className="philosophy-row reveal d-2">
               <div className="philosophy-tag">Spanish</div>
               <div className="philosophy-definition">
                 <span className="pos">adj.</span>Raw. Unfiltered. The version before it became something else.
@@ -923,7 +921,7 @@ export default function DeckContent() {
           </div>
         </section>
 
-        {/* 03 — FOUR WORLDS */}
+        {/* 03 — FOUR WORLDS (4 same size, 1 major divider between 02 and 03) */}
         <section className="slide" data-counter="03 / 09">
           <div className="slide-inner">
             <div className="slide-label reveal d-1">What we cover</div>
@@ -932,11 +930,10 @@ export default function DeckContent() {
               We work with founder-led companies across four worlds.
             </h2>
 
-            {/* MAJOR — Build */}
-            <div className="world-row-major reveal d-3">
+            <div className="world-row reveal d-3">
               <div className="number">01</div>
-              <div>
-                <span className="vertical-name">CRUDA BUILD</span>
+              <div className="vertical-name">CRUDA BUILD</div>
+              <div className="description">
                 <h3>They build the spaces we live in.</h3>
                 <div className="industries">
                   Architecture · Design · Real Estate · Construction · Building Materials
@@ -944,40 +941,38 @@ export default function DeckContent() {
               </div>
             </div>
 
-            {/* MAJOR — Demand */}
-            <div className="world-row-major reveal d-4">
+            <div className="world-row reveal d-4">
               <div className="number">02</div>
-              <div>
-                <span className="vertical-name">CRUDA DEMAND</span>
+              <div className="vertical-name">CRUDA DEMAND</div>
+              <div className="description">
                 <h3>They earn the choice, every day.</h3>
                 <div className="industries">CPG · Fashion · Hospitality · Healthcare Brands</div>
               </div>
             </div>
 
-            {/* MINOR — Sports */}
-            <div className="world-row-minor reveal d-beat-3">
+            {/* Major divider — only visual signal of 2+2 split */}
+            <div className="world-row divider-major reveal d-beat-3">
               <div className="number">03</div>
               <div className="vertical-name">CRUDA SPORTS</div>
               <div className="description">
-                They earn the truth in public.
-                <small>Tournaments · Athletes · Leagues · Sports Brands</small>
+                <h3>They earn the truth in public.</h3>
+                <div className="industries">Tournaments · Athletes · Leagues · Sports Brands</div>
               </div>
             </div>
 
-            {/* MINOR — Capital */}
-            <div className="world-row-minor reveal d-beat-4">
+            <div className="world-row reveal d-beat-4">
               <div className="number">04</div>
               <div className="vertical-name">CRUDA CAPITAL</div>
               <div className="description">
-                They move what trust built.
-                <small>Family Offices · Wealth Management · PE · Financial Advisors</small>
+                <h3>They move what trust built.</h3>
+                <div className="industries">Family Offices · Wealth Management · PE · Financial Advisors</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* 04 — WHY CRUDA */}
-        <section className="slide" data-counter="04 / 09">
+        <section className="slide s-why" data-counter="04 / 09">
           <div className="slide-inner">
             <div className="slide-label reveal">Why CRUDA</div>
             <h2 className="why-h1 reveal d-1">Your narrative will be written.</h2>
@@ -1005,7 +1000,7 @@ export default function DeckContent() {
           </div>
         </section>
 
-        {/* 05 — WHAT WE ACTUALLY DO */}
+        {/* 05 — WHAT WE DO */}
         <section className="slide" data-counter="05 / 09">
           <div className="slide-inner">
             <div className="slide-label reveal">What we do</div>
@@ -1013,8 +1008,8 @@ export default function DeckContent() {
 
             <div className="bucket reveal d-2">
               <div className="number">01</div>
+              <div className="label">Narrative Foundation</div>
               <div>
-                <div className="label">01 — Narrative Foundation</div>
                 <h3>Your company, written down.</h3>
                 <p>
                   Most companies have never actually been written down — not the version that&rsquo;s true. You
@@ -1027,8 +1022,8 @@ export default function DeckContent() {
 
             <div className="bucket reveal d-3">
               <div className="number">02</div>
+              <div className="label">Content Engine</div>
               <div>
-                <div className="label">02 — Content Engine</div>
                 <h3>Your work, in motion.</h3>
                 <p>
                   Once it&rsquo;s seen, it has to move. LinkedIn for the conversations that matter. Instagram for
@@ -1040,8 +1035,8 @@ export default function DeckContent() {
 
             <div className="bucket reveal d-4">
               <div className="number">03</div>
+              <div className="label">Relationships</div>
               <div>
-                <div className="label">03 — Relationships</div>
                 <h3>Doors that open before you knock.</h3>
                 <p>
                   The right rooms don&rsquo;t open because you posted more. They open because someone you respect
@@ -1192,7 +1187,7 @@ export default function DeckContent() {
                 </div>
               </Link>
 
-              {/* Card 07 — Martin (Samurai) */}
+              {/* Card 07 — Martin */}
               <Link href="/clients/martin-pakciarz" className="card has-link reveal d-3">
                 <div className="card-photo">PHOTO · MARTIN PAKCIARZ</div>
                 <div className="card-header">
@@ -1235,7 +1230,7 @@ export default function DeckContent() {
           </div>
         </section>
 
-        {/* 08 — BIO */}
+        {/* 08 — BIO (Block A only) */}
         <section className="slide" data-counter="08 / 09">
           <div className="slide-inner">
             <div className="bio-section">
@@ -1249,8 +1244,7 @@ export default function DeckContent() {
               </div>
 
               <div className="bio-copy-col reveal d-2">
-                <div className="slide-label">Who&rsquo;s writing this</div>
-                <hr className="bio-divider" />
+                <div className="slide-label bio-section-label">Who&rsquo;s writing this</div>
 
                 <div className="bio-block-a">
                   <p>
@@ -1265,37 +1259,13 @@ export default function DeckContent() {
                   <p>Now I sit with founders who have the same problem — and we find the words together.</p>
                 </div>
 
-                <hr className="bio-divider thin" />
-
-                <div className="bio-block-b">
-                  <p>
-                    I spent a decade inside ByteDance, Nestlé, the United Nations, and DeliveryHero. Twelve
-                    nationalities, three continents, every brief filtered through a different culture. I was the
-                    person in the room when a campaign built for São Paulo had to land in Riyadh, and the words that
-                    built <em>trust</em> in one place collapsed in the next.
-                  </p>
-                  <p>
-                    Immigration teaches the same skill, only earlier. You learn to listen for what travels. What
-                    survives translation isn&rsquo;t the language — it&rsquo;s the human underneath. Religion,
-                    nationality, class — those don&rsquo;t dissolve. But the <em>founder</em> building real expertise
-                    in Lima recognizes the founder building real expertise in Minneapolis faster than either
-                    recognizes most of their neighbors.
-                  </p>
-                  <p>
-                    That&rsquo;s the work now. Founders who&rsquo;ve earned authority through what they do, ready to
-                    be known the way their rooms already know them: Karen Mannheim, Mike Kaeding, Juan Pablo Romero,
-                    Marcos Guevara Lynch, Nitin Passi, Girish Sehgal, Martin Pakciarz, Alex Dmitriev. Different
-                    industries, same problem.
-                  </p>
-                </div>
-
-                <hr className="bio-divider thin" />
+                <hr className="bio-divider" />
 
                 <div className="bio-brands">
                   BYTEDANCE · NESTLÉ · UNITED NATIONS · DELIVERYHERO · MONDELEZ · AB INBEV · MARY KAY
                 </div>
 
-                <hr className="bio-divider thin" />
+                <hr className="bio-divider" />
 
                 <div>
                   <div className="bio-industries-label">Industries</div>

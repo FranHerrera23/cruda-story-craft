@@ -48,16 +48,28 @@ export default function DeckContent() {
     <>
       <style jsx global>{`
         :root {
-          --cruda-red: #ff2e63;
-          --cruda-dark: #0a0a0a;
-          --cruda-white: #ffffff;
-          --cruda-pearl: #ffffff;
-          --gray-text: #4a4a4a;
-          --gray-soft: #6b6b6b;
+          /* Backgrounds */
+          --cruda-pearl: #FFFFFF;
+          --cruda-white: #FFFFFF;
+          --cruda-dark: #0A0A0A;
+
+          /* Accent — Rick Rubin punk yellow (replaces --cruda-red) */
+          --cruda-yellow: #FFD200;
+
+          /* Vertical colors — saturated earth tones */
+          --vertical-build: #B8722C;     /* terracotta — spaces, materia */
+          --vertical-demand: #D14B5C;    /* dry coral — desire, CPG */
+          --vertical-sports: #6B8E23;    /* olive — field, athletes */
+          --vertical-capital: #1E4D6B;   /* petrol blue — trust, money */
+
+          /* Grays unchanged */
+          --gray-text: #4A4A4A;
+          --gray-soft: #6B6B6B;
           --gray-mute: #999999;
-          --gray-light: #c8c8c8;
+          --gray-light: #CCCCCC;
           --gray-line: rgba(10, 10, 10, 0.08);
-          --gray-line-soft: rgba(10, 10, 10, 0.04);
+
+          /* Fonts unchanged */
           --font-display: var(--font-fraunces), Georgia, serif;
           --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
           --font-mono: var(--font-jetbrains), monospace;
@@ -82,8 +94,8 @@ export default function DeckContent() {
         }
 
         .deck-wrapper ::selection {
-          background: var(--cruda-red);
-          color: var(--cruda-white);
+          background: var(--cruda-yellow);
+          color: var(--cruda-dark);
         }
 
         /* NAV */
@@ -142,7 +154,7 @@ export default function DeckContent() {
           font-weight: 700;
           letter-spacing: 0.24em;
           text-transform: uppercase;
-          color: var(--cruda-red);
+          color: var(--cruda-dark);
           margin-bottom: 56px;
           display: flex;
           align-items: center;
@@ -152,7 +164,7 @@ export default function DeckContent() {
           content: '';
           width: 32px;
           height: 1px;
-          background: var(--cruda-red);
+          background: var(--cruda-yellow);
         }
 
         /* ANIMATIONS */
@@ -183,6 +195,12 @@ export default function DeckContent() {
         .deck-wrapper .d-6 {
           transition-delay: 0.56s;
         }
+        .deck-wrapper .d-beat-3 {
+          transition-delay: 0.66s;
+        }
+        .deck-wrapper .d-beat-4 {
+          transition-delay: 0.78s;
+        }
 
         /* TYPOGRAPHY */
         .deck-wrapper .h-display {
@@ -195,7 +213,7 @@ export default function DeckContent() {
           max-width: 18ch;
         }
         .deck-wrapper .h-display .red {
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
           font-style: italic;
           font-weight: 500;
         }
@@ -227,7 +245,7 @@ export default function DeckContent() {
         .deck-wrapper .h-italic {
           font-style: italic;
           font-weight: 400;
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
         }
 
         .deck-wrapper .body-xl {
@@ -305,7 +323,7 @@ export default function DeckContent() {
           font-weight: 600;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
           white-space: nowrap;
           padding-top: 4px;
         }
@@ -355,57 +373,101 @@ export default function DeckContent() {
           color: var(--cruda-dark);
           max-width: 22ch;
           margin-top: 32px;
-          margin-bottom: 120px;
+          margin-bottom: 140px;
         }
         .deck-wrapper .verticals-stack {
           display: flex;
           flex-direction: column;
-          gap: 80px;
+          gap: 100px;
           max-width: 1200px;
         }
+
         .deck-wrapper .vertical-row {
           display: grid;
-          grid-template-columns: 220px 1fr;
-          gap: 64px;
           align-items: start;
           padding-top: 32px;
           border-top: 1px solid var(--cruda-dark);
         }
+
+        /* Dominant tier — Build + Demand */
+        .deck-wrapper .vertical-row-dominant {
+          grid-template-columns: 240px 1fr;
+          gap: 64px;
+        }
+
+        .deck-wrapper .vertical-row-dominant .vertical-num,
+        .deck-wrapper .vertical-row-dominant .vertical-name {
+          font-size: 14px;
+          letter-spacing: 0.24em;
+        }
+
+        .deck-wrapper .vertical-row-dominant .vertical-tagline {
+          font-size: clamp(34px, 3.6vw, 52px);
+          line-height: 1.1;
+        }
+
+        /* Emerging tier — Sports + Capital */
+        .deck-wrapper .vertical-row-emerging {
+          grid-template-columns: 240px 1fr;
+          gap: 64px;
+          padding-top: 24px;
+        }
+
+        .deck-wrapper .vertical-row-emerging .vertical-num,
+        .deck-wrapper .vertical-row-emerging .vertical-name {
+          font-size: 12px;
+          letter-spacing: 0.22em;
+        }
+
+        .deck-wrapper .vertical-row-emerging .vertical-tagline {
+          font-size: clamp(22px, 2.2vw, 30px);
+          line-height: 1.15;
+          color: var(--gray-text);
+        }
+
+        .deck-wrapper .vertical-row-emerging .vertical-sectors {
+          color: var(--gray-mute);
+        }
+
+        /* Vertical name colors — shared across both tiers */
         .deck-wrapper .vertical-meta {
           display: flex;
           flex-direction: column;
           gap: 8px;
         }
+
         .deck-wrapper .vertical-num {
           font-family: var(--font-mono);
-          font-size: 13px;
           font-weight: 600;
-          letter-spacing: 0.2em;
-          color: var(--cruda-red);
+          color: var(--gray-mute);
         }
+
         .deck-wrapper .vertical-name {
           font-family: var(--font-mono);
-          font-size: 13px;
           font-weight: 600;
-          letter-spacing: 0.26em;
-          color: var(--cruda-red);
           text-transform: uppercase;
         }
+
+        .deck-wrapper .vertical-name-build    { color: var(--vertical-build); }
+        .deck-wrapper .vertical-name-demand   { color: var(--vertical-demand); }
+        .deck-wrapper .vertical-name-sports   { color: var(--vertical-sports); }
+        .deck-wrapper .vertical-name-capital  { color: var(--vertical-capital); }
+
         .deck-wrapper .vertical-content {
           display: flex;
           flex-direction: column;
           gap: 24px;
         }
+
         .deck-wrapper .vertical-tagline {
           font-family: var(--font-display);
-          font-size: clamp(28px, 3vw, 44px);
-          line-height: 1.15;
           letter-spacing: -0.01em;
           font-weight: 500;
           color: var(--cruda-dark);
           margin: 0;
-          max-width: 24ch;
+          max-width: 28ch;
         }
+
         .deck-wrapper .vertical-sectors {
           font-family: var(--font-mono);
           font-size: 11px;
@@ -441,7 +503,7 @@ export default function DeckContent() {
         }
         .deck-wrapper .why-list li::before {
           content: '— ';
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
           font-weight: 600;
         }
         .deck-wrapper .why-intro {
@@ -454,6 +516,12 @@ export default function DeckContent() {
           max-width: 56ch;
           letter-spacing: -0.005em;
         }
+        .deck-wrapper .why-punchline {
+          color: var(--cruda-yellow);
+          font-style: italic;
+          font-weight: 500;
+          margin-top: 8px;
+        }
         .deck-wrapper .why-closing {
           font-family: var(--font-display);
           font-style: italic;
@@ -462,7 +530,7 @@ export default function DeckContent() {
           line-height: 1.45;
           color: var(--cruda-dark);
           max-width: 48ch;
-          border-left: 2px solid var(--cruda-red);
+          border-left: 2px solid var(--cruda-yellow);
           padding-left: 24px;
           margin-top: 32px;
           letter-spacing: -0.01em;
@@ -488,7 +556,7 @@ export default function DeckContent() {
           font-size: 12px;
           font-weight: 700;
           letter-spacing: 0.24em;
-          color: var(--cruda-red);
+          color: var(--gray-soft);
           margin-bottom: 16px;
           text-transform: uppercase;
         }
@@ -549,7 +617,7 @@ export default function DeckContent() {
           opacity: 0.85;
         }
         .deck-wrapper .work-card-photo-placeholder {
-          aspect-ratio: 4 / 5;
+          aspect-ratio: 5 / 4;
           width: 100%;
           background: #e8e4dd;
           display: flex;
@@ -566,7 +634,7 @@ export default function DeckContent() {
           content: 'Photo · ' attr(data-name);
         }
         .deck-wrapper .work-card-photo {
-          aspect-ratio: 4 / 5;
+          aspect-ratio: 5 / 4;
           width: 100%;
           object-fit: cover;
           display: block;
@@ -584,7 +652,6 @@ export default function DeckContent() {
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.22em;
-          color: var(--cruda-red);
           text-transform: uppercase;
           display: flex;
           align-items: center;
@@ -592,6 +659,10 @@ export default function DeckContent() {
           gap: 12px;
           flex-wrap: wrap;
         }
+        .deck-wrapper .work-card-tag.tag-build    { color: var(--vertical-build); }
+        .deck-wrapper .work-card-tag.tag-demand   { color: var(--vertical-demand); }
+        .deck-wrapper .work-card-tag.tag-sports   { color: var(--vertical-sports); }
+        .deck-wrapper .work-card-tag.tag-capital  { color: var(--vertical-capital); }
         .deck-wrapper .work-card-status {
           color: var(--gray-mute);
           font-weight: 500;
@@ -623,6 +694,18 @@ export default function DeckContent() {
           line-height: 1.7;
           text-transform: uppercase;
         }
+        .deck-wrapper .work-card-projects {
+          font-family: var(--font-mono);
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--gray-mute);
+          line-height: 1.7;
+          margin: 0;
+          padding-bottom: 8px;
+          border-bottom: 1px solid var(--gray-line);
+        }
         .deck-wrapper .work-card-quote {
           font-family: var(--font-display);
           font-style: italic;
@@ -651,7 +734,7 @@ export default function DeckContent() {
         }
         .deck-wrapper .work-card-scope div::before {
           content: '— ';
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
           margin-right: 6px;
           font-weight: 600;
         }
@@ -676,7 +759,7 @@ export default function DeckContent() {
           font-family: var(--font-display);
           font-weight: 700;
           font-size: 24px;
-          color: var(--cruda-red);
+          color: var(--cruda-dark);
           letter-spacing: -0.025em;
           min-width: 90px;
           line-height: 1;
@@ -693,7 +776,7 @@ export default function DeckContent() {
           font-size: 10px;
           font-weight: 600;
           letter-spacing: 0.2em;
-          color: var(--cruda-red);
+          color: var(--gray-soft);
           text-transform: uppercase;
           margin-top: auto;
           padding-top: 16px;
@@ -770,7 +853,7 @@ export default function DeckContent() {
           font-size: 13px;
           font-weight: 600;
           letter-spacing: 0.2em;
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
         }
         .deck-wrapper .bio-name {
           font-family: var(--font-display);
@@ -786,7 +869,7 @@ export default function DeckContent() {
           font-size: 12px;
           font-weight: 600;
           letter-spacing: 0.26em;
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
           text-transform: uppercase;
         }
         .deck-wrapper .bio-body p {
@@ -878,7 +961,7 @@ export default function DeckContent() {
           max-width: 18ch;
         }
         .deck-wrapper .call-headline em {
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
           font-style: italic;
           font-weight: 500;
         }
@@ -915,8 +998,9 @@ export default function DeckContent() {
           border: 2px solid var(--cruda-dark);
         }
         .deck-wrapper .cta-button:hover {
-          background: var(--cruda-red);
-          border-color: var(--cruda-red);
+          background: var(--cruda-yellow);
+          border-color: var(--cruda-yellow);
+          color: var(--cruda-dark);
         }
         .deck-wrapper .cta-button .arrow {
           transition: transform 0.4s var(--ease);
@@ -943,7 +1027,7 @@ export default function DeckContent() {
           margin-top: 4px;
         }
         .deck-wrapper .cta-url:hover {
-          color: var(--cruda-red);
+          color: var(--cruda-yellow);
         }
 
         /* RESPONSIVE */
@@ -960,14 +1044,21 @@ export default function DeckContent() {
             bottom: 32px;
           }
           .deck-wrapper .verticals-stack {
-            gap: 56px;
+            gap: 64px;
           }
-          .deck-wrapper .vertical-row {
+          .deck-wrapper .vertical-row-dominant,
+          .deck-wrapper .vertical-row-emerging {
             grid-template-columns: 1fr;
             gap: 16px;
           }
           .deck-wrapper .arch-headline {
             margin-bottom: 64px;
+          }
+          .deck-wrapper .vertical-row-dominant .vertical-tagline {
+            font-size: clamp(28px, 6vw, 40px);
+          }
+          .deck-wrapper .vertical-row-emerging .vertical-tagline {
+            font-size: clamp(20px, 4.5vw, 26px);
           }
           .deck-wrapper .work-grid {
             grid-template-columns: 1fr;
@@ -1047,10 +1138,11 @@ export default function DeckContent() {
             </h2>
 
             <div className="verticals-stack">
-              <div className="vertical-row reveal d-3">
+              {/* DOMINANT TIER — Build + Demand */}
+              <div className="vertical-row vertical-row-dominant reveal d-3">
                 <div className="vertical-meta">
                   <span className="vertical-num">01</span>
-                  <span className="vertical-name">CRUDA BUILD</span>
+                  <span className="vertical-name vertical-name-build">CRUDA BUILD</span>
                 </div>
                 <div className="vertical-content">
                   <p className="vertical-tagline">They build the spaces we live in.</p>
@@ -1060,10 +1152,10 @@ export default function DeckContent() {
                 </div>
               </div>
 
-              <div className="vertical-row reveal d-4">
+              <div className="vertical-row vertical-row-dominant reveal d-4">
                 <div className="vertical-meta">
                   <span className="vertical-num">02</span>
-                  <span className="vertical-name">CRUDA DEMAND</span>
+                  <span className="vertical-name vertical-name-demand">CRUDA DEMAND</span>
                 </div>
                 <div className="vertical-content">
                   <p className="vertical-tagline">They earn the choice, every day.</p>
@@ -1071,10 +1163,11 @@ export default function DeckContent() {
                 </div>
               </div>
 
-              <div className="vertical-row reveal d-5">
+              {/* EMERGING TIER — Sports + Capital */}
+              <div className="vertical-row vertical-row-emerging reveal d-beat-3">
                 <div className="vertical-meta">
                   <span className="vertical-num">03</span>
-                  <span className="vertical-name">CRUDA SPORTS</span>
+                  <span className="vertical-name vertical-name-sports">CRUDA SPORTS</span>
                 </div>
                 <div className="vertical-content">
                   <p className="vertical-tagline">They earn the truth in public.</p>
@@ -1082,10 +1175,10 @@ export default function DeckContent() {
                 </div>
               </div>
 
-              <div className="vertical-row reveal d-6">
+              <div className="vertical-row vertical-row-emerging reveal d-beat-4">
                 <div className="vertical-meta">
                   <span className="vertical-num">04</span>
-                  <span className="vertical-name">CRUDA CAPITAL</span>
+                  <span className="vertical-name vertical-name-capital">CRUDA CAPITAL</span>
                 </div>
                 <div className="vertical-content">
                   <p className="vertical-tagline">They move what trust built.</p>
@@ -1104,10 +1197,7 @@ export default function DeckContent() {
             <div className="slide-label reveal">Why CRUDA</div>
             <div className="why-headline reveal d-1">
               <h2 className="h-lg">Your narrative will be written.</h2>
-              <h2
-                className="h-lg"
-                style={{ color: 'var(--cruda-red)', fontStyle: 'italic', fontWeight: 500, marginTop: '8px' }}
-              >
+              <h2 className="h-lg why-punchline">
                 The only question is by whom.
               </h2>
             </div>
@@ -1132,18 +1222,16 @@ export default function DeckContent() {
             <div className="what-buckets">
               <div className="what-bucket reveal d-2">
                 <div className="what-bucket-label">01 — Narrative Foundation</div>
-                <h3 className="what-bucket-title">Who you actually are, written down.</h3>
+                <h3 className="what-bucket-title">Your company, written down.</h3>
                 <p className="what-bucket-body">
-                  We sit with you and write down who you actually are — what your company believes, who it serves, why
-                  it exists. Then we build the language that ties everything together. Without this, nothing else
-                  compounds.
+                  Most companies have never actually been written down — not the version that&rsquo;s true. You explain it one way in a board meeting, another way to a client, a third way on the website. The story is already in you — what you do, why it matters, why you. Our job is helping you see it, and find the words that don&rsquo;t betray it.
                 </p>
               </div>
               <div className="what-bucket reveal d-3">
                 <div className="what-bucket-label">02 — Content Engine</div>
-                <h3 className="what-bucket-title">The work that travels.</h3>
+                <h3 className="what-bucket-title">Your work, in motion.</h3>
                 <p className="what-bucket-body">
-                  We turn that foundation into the work that travels. LinkedIn for the conversations that matter.
+                  Once it&rsquo;s seen, it has to move. LinkedIn for the conversations that matter.
                   Instagram for the texture of what you do. Pitch decks that don&rsquo;t need explaining. Talking
                   points your team uses when you&rsquo;re not in the room. Every piece earns its place.
                 </p>
@@ -1181,14 +1269,13 @@ export default function DeckContent() {
               <Link href="/clients/karen-mannheim" className="work-card has-link">
                 <div className="work-card-photo-placeholder" data-name="Karen Mannheim"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
-                    <span>CRUDA BUILD · 01</span>
-                  </div>
+                  <span className="work-card-tag tag-build">CRUDA BUILD · 01</span>
                   <div>
                     <div className="work-card-name">Karen Mannheim</div>
                     <div className="work-card-sub">Trazzo Global · Architectural Lighting</div>
                   </div>
                   <div className="work-card-meta">Peru · USA · Spain</div>
+                  <p className="work-card-projects">PEZET / RAMSA · FOUR SEASONS MIAMI · PORSCHE LIMA · SAADIYAT ABU DHABI</p>
                   <div className="work-card-quote">&ldquo;They already know me before the call.&rdquo;</div>
                   <div className="work-card-quote-author">— Karen Mannheim</div>
                   <div className="work-card-stats">
@@ -1212,9 +1299,7 @@ export default function DeckContent() {
               <Link href="/clients/mike-kaeding" className="work-card has-link">
                 <div className="work-card-photo-placeholder" data-name="Mike Kaeding"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
-                    <span>CRUDA BUILD · 02</span>
-                  </div>
+                  <span className="work-card-tag tag-build">CRUDA BUILD · 02</span>
                   <div>
                     <div className="work-card-name">Mike Kaeding</div>
                     <div className="work-card-sub">Norhart · Residential Real Estate</div>
@@ -1245,9 +1330,7 @@ export default function DeckContent() {
               <Link href="/clients/juan-pablo-romero" className="work-card has-link">
                 <div className="work-card-photo-placeholder" data-name="Juan Pablo Romero"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
-                    <span>CRUDA BUILD · 03</span>
-                  </div>
+                  <span className="work-card-tag tag-build">CRUDA BUILD · 03</span>
                   <div>
                     <div className="work-card-name">Juan Pablo Romero</div>
                     <div className="work-card-sub">JURA Plank · Connecting the Dots</div>
@@ -1274,7 +1357,7 @@ export default function DeckContent() {
               <div className="work-card">
                 <div className="work-card-photo-placeholder" data-name="Marcos Guevara Lynch"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
+                  <div className="work-card-tag tag-demand">
                     <span>CRUDA DEMAND · 04</span>
                     <span className="work-card-status">In progress</span>
                   </div>
@@ -1317,9 +1400,7 @@ export default function DeckContent() {
               <div className="work-card">
                 <div className="work-card-photo-placeholder" data-name="Nitin Passi"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
-                    <span>CRUDA DEMAND · 05</span>
-                  </div>
+                  <span className="work-card-tag tag-demand">CRUDA DEMAND · 05</span>
                   <div>
                     <div className="work-card-name">Nitin Passi</div>
                     <div className="work-card-sub">SUMWON Studios · Fashion</div>
@@ -1348,9 +1429,7 @@ export default function DeckContent() {
               <Link href="/clients/girish-sehgal" className="work-card has-link">
                 <div className="work-card-photo-placeholder" data-name="Girish Sehgal"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
-                    <span>CRUDA DEMAND · 06</span>
-                  </div>
+                  <span className="work-card-tag tag-demand">CRUDA DEMAND · 06</span>
                   <div>
                     <div className="work-card-name">Girish Sehgal</div>
                     <div className="work-card-sub">SSMC · Patient Experience</div>
@@ -1385,7 +1464,7 @@ export default function DeckContent() {
               <div className="work-card">
                 <div className="work-card-photo-placeholder" data-name="Martin Pakciarz"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
+                  <div className="work-card-tag tag-sports">
                     <span>CRUDA SPORTS · 07</span>
                     <span className="work-card-status">In progress · Marketing partner & investor</span>
                   </div>
@@ -1422,7 +1501,7 @@ export default function DeckContent() {
               <div className="work-card">
                 <div className="work-card-photo-placeholder" data-name="Alex Dmitriev"></div>
                 <div className="work-card-content">
-                  <div className="work-card-tag">
+                  <div className="work-card-tag tag-capital">
                     <span>CRUDA CAPITAL · 08</span>
                     <span className="work-card-status">Advisory engagement</span>
                   </div>

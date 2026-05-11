@@ -401,6 +401,10 @@ export default function DeckContent() {
           line-height: 1.4;
           color: var(--cruda-dark);
           align-items: baseline;
+          white-space: normal;
+          word-break: normal;
+          overflow-wrap: break-word;
+          max-width: none;
         }
         .deck-wrapper .why-list li::before {
           content: '—';
@@ -478,7 +482,7 @@ export default function DeckContent() {
           max-width: 680px;
         }
 
-        /* SLIDES 06 & 07 — SELECTED WORK */
+        /* SLIDES 06 & 07 — SELECTED WORK (v6: editorial micro-narratives) */
         .deck-wrapper .work-headline {
           margin-bottom: 96px;
         }
@@ -496,130 +500,109 @@ export default function DeckContent() {
           font-size: clamp(17px, 1.4vw, 20px);
           line-height: 1.6;
           color: var(--gray-text);
+          font-style: italic;
           margin-top: 24px;
           max-width: 56ch;
         }
         .deck-wrapper .cards-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 64px;
+          gap: 80px 64px;
+          max-width: 1280px;
+          margin: 0 auto;
+        }
+        /* Slide 7 only: 3 columns on large screens */
+        @media (min-width: 1440px) {
+          .deck-wrapper .cards-grid-slide-7 {
+            grid-template-columns: repeat(3, 1fr);
+          }
         }
         .deck-wrapper .card {
-          background: var(--cruda-white);
           display: flex;
           flex-direction: column;
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          box-shadow: none;
           text-decoration: none;
           color: inherit;
-          transition: opacity 0.2s var(--ease);
         }
-        .deck-wrapper .card.has-link {
-          cursor: pointer;
-        }
-        .deck-wrapper .card.has-link:hover {
-          opacity: 0.85;
-        }
+        /* Square photo 1:1 aspect ratio */
         .deck-wrapper .card-photo {
-          height: 200px;
-          background: var(--gray-faint);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          color: var(--gray-mute);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover;
+          object-position: center center;
+          background: var(--cruda-cream);
+          display: block;
+          filter: grayscale(100%);
         }
         .deck-wrapper .card-photo img {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: grayscale(100%) contrast(0.95);
+          filter: grayscale(100%);
         }
-        .deck-wrapper .card-header {
-          border-top: 1px solid var(--cruda-dark);
-          padding: 32px 32px 24px 32px;
+        /* Hairline under photo */
+        .deck-wrapper .card-photo-divider {
+          width: 100%;
+          height: 1px;
+          background: var(--gray-line);
+          margin: 0;
+        }
+        /* Content block */
+        .deck-wrapper .card-content {
+          padding: 24px 0 0 0;
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
         }
         .deck-wrapper .card-tag {
           font-family: var(--font-mono);
           font-size: 10px;
-          font-weight: 600;
           letter-spacing: 0.16em;
+          font-weight: 600;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin-bottom: 16px;
-          display: block;
+          margin: 0;
         }
-        .deck-wrapper .card-name {
+        .deck-wrapper .card-headline {
           font-family: var(--font-display);
           font-size: clamp(22px, 1.9vw, 28px);
           font-weight: 600;
-          line-height: 1.1;
+          line-height: 1.15;
           letter-spacing: -0.018em;
           color: var(--cruda-dark);
-          margin-bottom: 6px;
+          margin: 0;
         }
-        .deck-wrapper .card-sub {
+        .deck-wrapper .card-subcopy {
           font-family: var(--font-body);
-          font-style: italic;
-          font-size: 13px;
+          font-size: clamp(14px, 1.05vw, 16px);
+          font-weight: 400;
+          line-height: 1.55;
           letter-spacing: -0.005em;
           color: var(--gray-text);
-          margin-bottom: 16px;
+          margin: 0;
         }
-        .deck-wrapper .card-geo {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--gray-mute);
-        }
-        .deck-wrapper .card-stats {
-          border-top: 1px solid var(--gray-line);
-          padding: 24px 32px;
-          display: grid;
-          grid-template-columns: 120px 1fr;
-          gap: 16px 24px;
-          align-items: baseline;
-        }
-        .deck-wrapper .card-stat-value {
-          font-family: var(--font-display);
-          font-size: clamp(24px, 2vw, 32px);
-          font-weight: 600;
-          line-height: 1;
-          letter-spacing: -0.015em;
-          color: var(--cruda-dark);
-          font-variant-numeric: tabular-nums;
-        }
-        .deck-wrapper .card-stat-label {
-          font-family: var(--font-mono);
-          font-size: 10px;
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--gray-mute);
-          line-height: 1.3;
+        /* Hairline before footer */
+        .deck-wrapper .card-footer-divider {
+          width: 100%;
+          height: 1px;
+          background: var(--gray-line);
+          margin-top: 24px;
         }
         .deck-wrapper .card-footer {
-          border-top: 1px solid var(--gray-line);
-          padding: 20px 32px;
-          margin-top: auto;
+          padding-top: 16px;
         }
-        .deck-wrapper .card-footer-link {
+        .deck-wrapper .card-footer a {
+          color: var(--gray-text) !important;
           font-family: var(--font-mono);
           font-size: 11px;
-          font-weight: 500;
           letter-spacing: 0.05em;
-          color: var(--gray-text);
           text-decoration: none;
           transition: color 0.2s;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
         }
-        .deck-wrapper .card.has-link:hover .card-footer-link {
+        .deck-wrapper .card-footer a:hover {
           color: var(--cruda-red);
         }
 
@@ -1058,83 +1041,71 @@ export default function DeckContent() {
             </div>
 
             <div className="cards-grid">
-              {/* Card 01 — Karen */}
-              <Link href="/clients/karen-mannheim" className="card has-link reveal d-2">
+              {/* Card 01 — Karen Mannheim */}
+              <Link href="/clients/karen-mannheim" className="card reveal d-2">
                 <div className="card-photo">PHOTO · KAREN MANNHEIM</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA BUILD · 01</span>
-                  <h3 className="card-name">Karen Mannheim</h3>
-                  <p className="card-sub">Trazzo Global · Architectural Lighting</p>
-                  <div className="card-geo">PERU · USA · SPAIN</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA BUILD · 01</div>
+                  <h3 className="card-headline">30 years of expertise. Zero presence outside Peru.</h3>
+                  <p className="card-subcopy">
+                    Karen Mannheim lights Porsche and Maserati flagships in Lima. Four Seasons Residences in Brickell. Private villas in Fisher Island. Neymar&rsquo;s new home in Miami. A $200M mansion in Golden Beach by Oppenheim Architecture. Her clients don&rsquo;t find her on Google.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">+300%</span>
-                  <span className="card-stat-label">Visibility · 3 years</span>
-                  <span className="card-stat-value">$150K</span>
-                  <span className="card-stat-label">Pezet 3 · From one video</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/karen-mannheim →</span>
+                  <a href="/clients/karen-mannheim">thecruda.com/clients/karen-mannheim →</a>
                 </div>
               </Link>
 
-              {/* Card 02 — Mike */}
-              <Link href="/clients/mike-kaeding" className="card has-link reveal d-3">
+              {/* Card 02 — Mike Kaeding */}
+              <Link href="/clients/mike-kaeding" className="card reveal d-3">
                 <div className="card-photo">PHOTO · MIKE KAEDING</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA BUILD · 02</span>
-                  <h3 className="card-name">Mike Kaeding</h3>
-                  <p className="card-sub">Norhart · Residential Real Estate</p>
-                  <div className="card-geo">MINNESOTA · USA</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA BUILD · 02</div>
+                  <h3 className="card-headline">$200M in assets. No one outside Minneapolis had heard of him.</h3>
+                  <p className="card-subcopy">
+                    Mike Kaeding&rsquo;s company owns over $230M in residential real estate in Minnesota. Norhart went from 80 units to more than a thousand. He writes about it on LinkedIn — a million impressions a year. The capital follows the writing.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">$230M+</span>
-                  <span className="card-stat-label">In assets · 80 → 1,000+ units</span>
-                  <span className="card-stat-value">+1M</span>
-                  <span className="card-stat-label">LinkedIn impressions / year</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/mike-kaeding →</span>
+                  <a href="/clients/mike-kaeding">thecruda.com/clients/mike-kaeding →</a>
                 </div>
               </Link>
 
-              {/* Card 03 — JP */}
-              <Link href="/clients/juan-pablo-romero" className="card has-link reveal d-4">
+              {/* Card 03 — Juan Pablo Romero */}
+              <Link href="/clients/juan-pablo-romero" className="card reveal d-4">
                 <div className="card-photo">PHOTO · JUAN PABLO ROMERO</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA BUILD · 03</span>
-                  <h3 className="card-name">Juan Pablo Romero</h3>
-                  <p className="card-sub">CTD · A&amp;D US Expansion</p>
-                  <div className="card-geo">FLORIDA · USA</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA BUILD · 03</div>
+                  <h3 className="card-headline">From family craft to architect specification.</h3>
+                  <p className="card-subcopy">
+                    Juan Pablo Romero built CTD to land luxury A&amp;D brands in the US. CRUDA built the firm with him — five-language site, two brand identities. Three Florida clients signed in the first year: Konkretus, CB Hali Rugs, Sierra Furniture.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">3</span>
-                  <span className="card-stat-label">Florida clients onboarded</span>
-                  <span className="card-stat-value">2</span>
-                  <span className="card-stat-label">Brands built · 5-language site</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/juan-pablo-romero →</span>
+                  <a href="/clients/juan-pablo-romero">thecruda.com/clients/juan-pablo-romero →</a>
                 </div>
               </Link>
 
-              {/* Card 04 — Marcos */}
-              <Link href="/clients/marcos-guevara-lynch" className="card has-link reveal d-5">
-                <div className="card-photo">PHOTO · MARCOS GUEVARA LYNCH</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA DEMAND · 04</span>
-                  <h3 className="card-name">Marcos Guevara Lynch</h3>
-                  <p className="card-sub">SH! Energy · Co-founder &amp; CEO</p>
-                  <div className="card-geo">ARGENTINA · LATAM</div>
+              {/* Card 04 — SH! Energy */}
+              <Link href="/clients/sh-energy" className="card reveal d-5">
+                <div className="card-photo">PHOTO · SH! ENERGY</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA DEMAND · 04</div>
+                  <h3 className="card-headline">$2M raised. A million cans sold. On the shelves of Carrefour and Cencosud.</h3>
+                  <p className="card-subcopy">
+                    SH! Energy is the CPG startup co-founded by football star Rodrigo De Paul. Just raised $2M at a $30M valuation. A million cans sold. The first energy drink to land mass shelf in LATAM through a founder narrative, not a marketing budget.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">$2M</span>
-                  <span className="card-stat-label">Closed of $4M raise</span>
-                  <span className="card-stat-value">2</span>
-                  <span className="card-stat-label">Senior hires · Marketing + Martech</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/marcos-guevara-lynch →</span>
+                  <a href="/clients/sh-energy">thecruda.com/clients/sh-energy →</a>
                 </div>
               </Link>
             </div>
@@ -1146,84 +1117,89 @@ export default function DeckContent() {
           <div className="slide-inner">
             <div className="slide-label reveal">Selected work · continued</div>
 
-            <div className="cards-grid">
-              {/* Card 05 — Nitin */}
-              <Link href="/clients/nitin-passi" className="card has-link reveal d-1">
+            <div className="cards-grid cards-grid-slide-7">
+              {/* Card 05 — Marcos Guevara Lynch */}
+              <Link href="/clients/marcos-guevara-lynch" className="card reveal d-1">
+                <div className="card-photo">PHOTO · MARCOS GUEVARA LYNCH</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA DEMAND · 05</div>
+                  <h3 className="card-headline">The company and the founder, both made on purpose.</h3>
+                  <p className="card-subcopy">
+                    Marcos Guevara Lynch co-founded SH! Energy. He&rsquo;s also building his own narrative system — newsletter, social presence, and a tribe of entrepreneurs gathering in person across LATAM. Most founders build a company and let the personal brand happen. Marcos is building both with intention. Case in build.
+                  </p>
+                </div>
+                <div className="card-footer-divider"></div>
+                <div className="card-footer">
+                  <a href="/clients/marcos-guevara-lynch">thecruda.com/clients/marcos-guevara-lynch →</a>
+                </div>
+              </Link>
+
+              {/* Card 06 — Nitin Passi */}
+              <Link href="/clients/nitin-passi" className="card reveal d-2">
                 <div className="card-photo">PHOTO · NITIN PASSI</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA DEMAND · 05</span>
-                  <h3 className="card-name">Nitin Passi</h3>
-                  <p className="card-sub">SUMWON Studios · Fashion</p>
-                  <div className="card-geo">DUBAI · MANCHESTER</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA DEMAND · 06</div>
+                  <h3 className="card-headline">$300M in revenue. The comeback that wasn&rsquo;t supposed to happen.</h3>
+                  <p className="card-subcopy">
+                    Nitin Passi&rsquo;s comeback in fashion is rare. SUMWON Studios — $300M in revenue between Dubai and Manchester. One LinkedIn post about the rebuild brought 1,000+ CVs.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">$300M</span>
-                  <span className="card-stat-label">SUMWON annual revenue</span>
-                  <span className="card-stat-value">+1K</span>
-                  <span className="card-stat-label">CVs from one LinkedIn post</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/nitin-passi →</span>
+                  <a href="/clients/nitin-passi">thecruda.com/clients/nitin-passi →</a>
                 </div>
               </Link>
 
-              {/* Card 06 — Girish */}
-              <Link href="/clients/girish-sehgal" className="card has-link reveal d-2">
+              {/* Card 07 — Girish Sehgal */}
+              <Link href="/clients/girish-sehgal" className="card reveal d-3">
                 <div className="card-photo">PHOTO · GIRISH SEHGAL</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA DEMAND · 06</span>
-                  <h3 className="card-name">Girish Sehgal</h3>
-                  <p className="card-sub">SSMC · Patient Experience</p>
-                  <div className="card-geo">ABU DHABI · CROSS-BORDER</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA DEMAND · 07</div>
+                  <h3 className="card-headline">25 years of world-class hospitality. Zero digital presence.</h3>
+                  <p className="card-subcopy">
+                    Girish Sehgal has built or run hospitals across 14 cities in 6 countries over 25 years. He leads patient experience at SSMC in Abu Dhabi. The credentials were there. The voice wasn&rsquo;t. CRUDA built it — 7,000+ senior healthcare leaders found him through it.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">7,000+</span>
-                  <span className="card-stat-label">Senior leaders reached organically</span>
-                  <span className="card-stat-value">25+</span>
-                  <span className="card-stat-label">Years · 14 cities · 6 countries</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/girish-sehgal →</span>
+                  <a href="/clients/girish-sehgal">thecruda.com/clients/girish-sehgal →</a>
                 </div>
               </Link>
 
-              {/* Card 07 — Martin */}
-              <Link href="/clients/martin-pakciarz" className="card has-link reveal d-3">
+              {/* Card 08 — Martin Pakciarz */}
+              <Link href="/clients/martin-pakciarz" className="card reveal d-4">
                 <div className="card-photo">PHOTO · MARTIN PAKCIARZ</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA SPORTS · 07</span>
-                  <h3 className="card-name">Martin Pakciarz</h3>
-                  <p className="card-sub">Samurai Fight House · MMA Tournament</p>
-                  <div className="card-geo">ARGENTINA · BRAZIL · LATAM</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA SPORTS · 08</div>
+                  <h3 className="card-headline">Six of the ten Argentinians in the UFC came through one fight house.</h3>
+                  <p className="card-subcopy">
+                    Martin Pakciarz runs Samurai Fight House. Their featherweight Chino Vallejos sits in the global top ten — and just won a $100K UFC bonus in Vegas.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">6/10</span>
-                  <span className="card-stat-label">Argentinians in UFC from SFH</span>
-                  <span className="card-stat-value">Top 10</span>
-                  <span className="card-stat-label">Chino Vallejos · UFC featherweight</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/martin-pakciarz →</span>
+                  <a href="/clients/martin-pakciarz">thecruda.com/clients/martin-pakciarz →</a>
                 </div>
               </Link>
 
-              {/* Card 08 — Alex */}
-              <Link href="/clients/alex-dmitriev" className="card has-link reveal d-4">
+              {/* Card 09 — Alex Dmitriev */}
+              <Link href="/clients/alex-dmitriev" className="card reveal d-5">
                 <div className="card-photo">PHOTO · ALEX DMITRIEV</div>
-                <div className="card-header">
-                  <span className="card-tag">CRUDA CAPITAL · 08</span>
-                  <h3 className="card-name">Alex Dmitriev</h3>
-                  <p className="card-sub">Cross-border M&amp;A</p>
-                  <div className="card-geo">DUBAI · CROSS-BORDER</div>
+                <div className="card-photo-divider"></div>
+                <div className="card-content">
+                  <div className="card-tag">CRUDA CAPITAL · 09</div>
+                  <h3 className="card-headline">Case in build.</h3>
+                  <p className="card-subcopy">
+                    Alex Dmitriev advises on cross-border M&amp;A from Dubai. McKinsey. BCG. Kearney. Two-hour advisory engagements that close eight-figure deals. The narrative system is in build.
+                  </p>
                 </div>
-                <div className="card-stats">
-                  <span className="card-stat-value">McKinsey</span>
-                  <span className="card-stat-label">BCG · Kearney</span>
-                  <span className="card-stat-value">2hr</span>
-                  <span className="card-stat-label">Dubai advisory engagement</span>
-                </div>
+                <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <span className="card-footer-link">thecruda.com/clients/alex-dmitriev →</span>
+                  <a href="/clients/alex-dmitriev">thecruda.com/clients/alex-dmitriev →</a>
                 </div>
               </Link>
             </div>

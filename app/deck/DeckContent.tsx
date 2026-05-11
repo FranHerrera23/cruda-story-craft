@@ -351,6 +351,13 @@ export default function DeckContent() {
           max-width: 1440px;
           margin: 0 auto;
         }
+        .deck-wrapper .s-why > *,
+        .deck-wrapper .s-why * {
+          writing-mode: horizontal-tb;
+          word-break: normal;
+          overflow-wrap: break-word;
+          white-space: normal;
+        }
         .deck-wrapper .s-why > * {
           max-width: none;
         }
@@ -383,6 +390,9 @@ export default function DeckContent() {
           max-width: 800px;
         }
         .deck-wrapper .why-list {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
           list-style: none;
           padding: 0;
           margin: 0 0 96px 0;
@@ -390,27 +400,29 @@ export default function DeckContent() {
           width: 100%;
         }
         .deck-wrapper .why-list li {
-          display: grid;
-          grid-template-columns: 32px 1fr;
-          gap: 16px;
+          display: block;
+          width: 100%;
+          max-width: 900px;
           padding: 24px 0;
           border-bottom: 1px solid var(--gray-line);
           font-family: var(--font-body);
           font-size: clamp(17px, 1.4vw, 22px);
           font-weight: 400;
           line-height: 1.4;
+          letter-spacing: -0.005em;
           color: var(--cruda-dark);
-          align-items: baseline;
-          white-space: normal;
-          word-break: normal;
-          overflow-wrap: break-word;
-          max-width: none;
+          margin: 0;
         }
-        .deck-wrapper .why-list li::before {
-          content: '—';
+        .deck-wrapper .why-list li span:first-child {
+          display: inline;
           color: var(--cruda-red);
-          font-weight: 400;
-          display: inline-block;
+          margin-right: 12px;
+        }
+        .deck-wrapper .why-list li span:first-child::before {
+          content: '—';
+        }
+        .deck-wrapper .why-list li span:last-child {
+          display: inline;
         }
         .deck-wrapper .why-closing {
           border-left: 3px solid var(--cruda-red);
@@ -555,7 +567,7 @@ export default function DeckContent() {
           padding: 24px 0 0 0;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 0;
         }
         .deck-wrapper .card-tag {
           font-family: var(--font-mono);
@@ -564,9 +576,20 @@ export default function DeckContent() {
           font-weight: 600;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin: 0;
+          margin: 0 0 8px 0;
+        }
+        .deck-wrapper .card-name {
+          font-family: var(--font-mono);
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: var(--cruda-dark);
+          margin: 0 0 20px 0;
+          line-height: 1.3;
         }
         .deck-wrapper .card-headline {
+          margin-bottom: 16px;
           font-family: var(--font-display);
           font-size: clamp(22px, 1.9vw, 28px);
           font-weight: 600;
@@ -1047,6 +1070,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 01</div>
+                  <p className="card-name">KAREN MANNHEIM — TRAZZO LIGHTING</p>
                   <h3 className="card-headline">30 years of expertise. Zero presence outside Peru.</h3>
                   <p className="card-subcopy">
                     Karen Mannheim lights Porsche and Maserati flagships in Lima. Four Seasons Residences in Brickell. Private villas in Fisher Island. Neymar&rsquo;s new home in Miami. A $200M mansion in Golden Beach by Oppenheim Architecture. Her clients don&rsquo;t find her on Google.
@@ -1064,6 +1088,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 02</div>
+                  <p className="card-name">MIKE KAEDING — NORHART</p>
                   <h3 className="card-headline">$200M in assets. No one outside Minneapolis had heard of him.</h3>
                   <p className="card-subcopy">
                     Mike Kaeding&rsquo;s company owns over $230M in residential real estate in Minnesota. Norhart went from 80 units to more than a thousand. He writes about it on LinkedIn — a million impressions a year. The capital follows the writing.
@@ -1081,6 +1106,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 03</div>
+                  <p className="card-name">JUAN PABLO ROMERO — CTD</p>
                   <h3 className="card-headline">From family craft to architect specification.</h3>
                   <p className="card-subcopy">
                     Juan Pablo Romero built CTD to land luxury A&amp;D brands in the US. CRUDA built the firm with him — five-language site, two brand identities. Three Florida clients signed in the first year: Konkretus, CB Hali Rugs, Sierra Furniture.
@@ -1098,6 +1124,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 04</div>
+                  <p className="card-name">SH! ENERGY</p>
                   <h3 className="card-headline">$2M raised. A million cans sold. On the shelves of Carrefour and Cencosud.</h3>
                   <p className="card-subcopy">
                     SH! Energy is the CPG startup co-founded by football star Rodrigo De Paul. Just raised $2M at a $30M valuation. A million cans sold. The first energy drink to land mass shelf in LATAM through a founder narrative, not a marketing budget.
@@ -1124,6 +1151,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 05</div>
+                  <p className="card-name">MARCOS GUEVARA LYNCH</p>
                   <h3 className="card-headline">The company and the founder, both made on purpose.</h3>
                   <p className="card-subcopy">
                     Marcos Guevara Lynch co-founded SH! Energy. He&rsquo;s also building his own narrative system — newsletter, social presence, and a tribe of entrepreneurs gathering in person across LATAM. Most founders build a company and let the personal brand happen. Marcos is building both with intention. Case in build.
@@ -1141,6 +1169,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 06</div>
+                  <p className="card-name">NITIN PASSI — SUMWON STUDIOS</p>
                   <h3 className="card-headline">$300M in revenue. The comeback that wasn&rsquo;t supposed to happen.</h3>
                   <p className="card-subcopy">
                     Nitin Passi&rsquo;s comeback in fashion is rare. SUMWON Studios — $300M in revenue between Dubai and Manchester. One LinkedIn post about the rebuild brought 1,000+ CVs.
@@ -1158,6 +1187,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 07</div>
+                  <p className="card-name">GIRISH SEHGAL — SSMC</p>
                   <h3 className="card-headline">25 years of world-class hospitality. Zero digital presence.</h3>
                   <p className="card-subcopy">
                     Girish Sehgal has built or run hospitals across 14 cities in 6 countries over 25 years. He leads patient experience at SSMC in Abu Dhabi. The credentials were there. The voice wasn&rsquo;t. CRUDA built it — 7,000+ senior healthcare leaders found him through it.
@@ -1175,6 +1205,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA SPORTS · 08</div>
+                  <p className="card-name">MARTIN PAKCIARZ — SAMURAI FIGHT HOUSE</p>
                   <h3 className="card-headline">Six of the ten Argentinians in the UFC came through one fight house.</h3>
                   <p className="card-subcopy">
                     Martin Pakciarz runs Samurai Fight House. Their featherweight Chino Vallejos sits in the global top ten — and just won a $100K UFC bonus in Vegas.
@@ -1192,6 +1223,7 @@ export default function DeckContent() {
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA CAPITAL · 09</div>
+                  <p className="card-name">ALEX DMITRIEV</p>
                   <h3 className="card-headline">Case in build.</h3>
                   <p className="card-subcopy">
                     Alex Dmitriev advises on cross-border M&amp;A from Dubai. McKinsey. BCG. Kearney. Two-hour advisory engagements that close eight-figure deals. The narrative system is in build.

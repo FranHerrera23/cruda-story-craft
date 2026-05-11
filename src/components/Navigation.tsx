@@ -71,12 +71,6 @@ export const Navigation = () => {
               About
             </Link>
             <Link
-              href="/pricing"
-              className={`nav-link ${pathname === '/pricing' ? 'active' : ''}`}
-            >
-              Pricing
-            </Link>
-            <Link
               href="/contact"
               className="nav-cta"
             >
@@ -113,13 +107,6 @@ export const Navigation = () => {
           onClick={closeMobileMenu}
         >
           About
-        </Link>
-        <Link
-          href="/pricing"
-          className={`mobile-nav-link ${pathname === '/pricing' ? 'active' : ''}`}
-          onClick={closeMobileMenu}
-        >
-          Pricing
         </Link>
         <Link
           href="/contact"

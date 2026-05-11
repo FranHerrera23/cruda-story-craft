@@ -85,13 +85,13 @@ const PricingSection = () => {
             4 months · Founder-led · Narrative system
           </p>
           
-          {/* Link to Pricing Page */}
+          {/* Link to Contact */}
           <Link
-            href="/pricing"
+            href="/contact"
             className="inline-block text-[15px] font-medium transition-all duration-300 hover:underline"
             style={{ color: '#FF2E63' }}
           >
-            See what's included →
+            Start a Conversation →
           </Link>
         </div>
 
@@ -132,7 +132,7 @@ const PricingSection = () => {
           
           {/* CTA Button */}
           <Link
-            href="/book-call"
+            href="/contact"
             className="inline-block px-12 py-5 rounded-lg font-semibold text-[18px] mb-6 transition-all duration-300 hover:opacity-90"
             style={{
               backgroundColor: '#FF2E63',

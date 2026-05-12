@@ -1151,7 +1151,7 @@ export default function DeckContent() {
                   <p className="card-name">GIRISH SEHGAL · SSMC</p>
                   <h3 className="card-headline">25 years of world-class hospitality. Zero digital presence.</h3>
                   <p className="card-subcopy">
-                    Girish Sehgal has built or run hospitals across 14 cities in 6 countries over 25 years. He leads patient experience at SSMC in Abu Dhabi. The credentials were there. The voice wasn&rsquo;t. CRUDA built it. <span className="accent-red">7,000+ senior healthcare leaders</span> found him through it.
+                    Girish Sehgal led hospitality operations at Four Seasons Toronto, Four Seasons Chicago, Taj, and JW Marriott across 25 years and 14 cities in 6 countries. Now he leads patient experience at SSMC in Abu Dhabi. The credentials were there. The voice wasn&rsquo;t. CRUDA built it. <span className="accent-red">7,000+ senior healthcare leaders</span> found him through it.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1185,9 +1185,9 @@ export default function DeckContent() {
                 <div className="card-content">
                   <div className="card-tag">CRUDA CAPITAL · 09</div>
                   <p className="card-name">ALEX DMITRIEV</p>
-                  <h3 className="card-headline">Case in build.</h3>
+                  <h3 className="card-headline">One engagement. One outcome.</h3>
                   <p className="card-subcopy">
-                    Alex Dmitriev advises on cross-border M&amp;A from Dubai. McKinsey. BCG. Kearney. <span className="accent-red">Case in build.</span>
+                    Alex Dmitriev advises on cross-border M&amp;A at Horizon Capital, from Dubai. McKinsey. BCG. Kearney. CRUDA was brought in once. <span className="accent-red">Sometimes the right answer is one conversation, not a system.</span>
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>

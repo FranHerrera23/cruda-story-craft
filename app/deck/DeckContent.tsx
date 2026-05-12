@@ -512,20 +512,25 @@ export default function DeckContent() {
           text-decoration: none;
           color: inherit;
         }
-        /* Square photo 1:1, edge-to-edge of card column (v6.4: equal heights, face-anchored crop) */
+        /* Square photo 1:1, edge-to-edge of card column (v6.4.1: bulletproof padding-bottom + absolute img) */
         .deck-wrapper .card-photo {
+          position: relative;
           width: 100%;
+          padding-bottom: 100%;
           aspect-ratio: 1 / 1;
           overflow: hidden;
           background: var(--cruda-cream);
           display: block;
         }
         .deck-wrapper .card-photo img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
           object-position: center 30%;
           filter: grayscale(100%);
+          max-width: none;
         }
         /* Hairline under photo */
         .deck-wrapper .card-photo-divider {

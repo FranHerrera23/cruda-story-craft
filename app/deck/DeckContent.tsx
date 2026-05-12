@@ -512,21 +512,19 @@ export default function DeckContent() {
           text-decoration: none;
           color: inherit;
         }
-        /* Square photo 1:1 aspect ratio, 90% width centered (v6.2) */
+        /* Square photo 1:1, edge-to-edge of card column (v6.4: equal heights, face-anchored crop) */
         .deck-wrapper .card-photo {
-          width: 90%;
+          width: 100%;
           aspect-ratio: 1 / 1;
-          margin: 0 auto;
-          object-fit: cover;
-          object-position: center center;
+          overflow: hidden;
           background: var(--cruda-cream);
           display: block;
-          filter: grayscale(100%);
         }
         .deck-wrapper .card-photo img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center 30%;
           filter: grayscale(100%);
         }
         /* Hairline under photo */

@@ -660,7 +660,8 @@ export default function DeckContent() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: grayscale(100%) contrast(0.95);
+          object-position: center top;
+          display: block;
         }
         .deck-wrapper .bio-photo-caption {
           margin-top: auto;
@@ -1066,7 +1067,7 @@ export default function DeckContent() {
             <div className="cards-grid">
               {/* Card 01 — Karen Mannheim */}
               <Link href="/clients/karen-mannheim" className="card reveal d-2">
-                <div className="card-photo">PHOTO · KAREN MANNHEIM</div>
+                <div className="card-photo"><img src="/karen-mannheim.webp" alt="Karen Mannheim — Trazzo Lighting" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 01</div>
@@ -1084,7 +1085,7 @@ export default function DeckContent() {
 
               {/* Card 02 — Mike Kaeding */}
               <Link href="/clients/mike-kaeding" className="card reveal d-3">
-                <div className="card-photo">PHOTO · MIKE KAEDING</div>
+                <div className="card-photo"><img src="/mike-kaeding.webp" alt="Mike Kaeding — Norhart" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 02</div>
@@ -1102,7 +1103,7 @@ export default function DeckContent() {
 
               {/* Card 03 — Juan Pablo Romero */}
               <Link href="/clients/juan-pablo-romero" className="card reveal d-4">
-                <div className="card-photo">PHOTO · JUAN PABLO ROMERO</div>
+                <div className="card-photo"><img src="/juan-pablo-romero.webp" alt="Juan Pablo Romero — CTD" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 03</div>
@@ -1120,7 +1121,7 @@ export default function DeckContent() {
 
               {/* Card 04 — SH! Energy */}
               <Link href="/clients/sh-energy" className="card reveal d-5">
-                <div className="card-photo">PHOTO · SH! ENERGY</div>
+                <div className="card-photo"><img src="/sh-energy.webp" alt="SH! Energy" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 04</div>
@@ -1147,7 +1148,7 @@ export default function DeckContent() {
             <div className="cards-grid cards-grid-slide-7">
               {/* Card 05 — Marcos Guevara Lynch */}
               <Link href="/clients/marcos-guevara-lynch" className="card reveal d-1">
-                <div className="card-photo">PHOTO · MARCOS GUEVARA LYNCH</div>
+                <div className="card-photo"><img src="/marcos-guevara-lynch.webp" alt="Marcos Guevara Lynch" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 05</div>
@@ -1165,7 +1166,7 @@ export default function DeckContent() {
 
               {/* Card 06 — Nitin Passi */}
               <Link href="/clients/nitin-passi" className="card reveal d-2">
-                <div className="card-photo">PHOTO · NITIN PASSI</div>
+                <div className="card-photo"><img src="/nitin-passi.webp" alt="Nitin Passi — Sumwon Studios" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 06</div>
@@ -1183,7 +1184,7 @@ export default function DeckContent() {
 
               {/* Card 07 — Girish Sehgal */}
               <Link href="/clients/girish-sehgal" className="card reveal d-3">
-                <div className="card-photo">PHOTO · GIRISH SEHGAL</div>
+                <div className="card-photo"><img src="/girish-sehgal.webp" alt="Girish Sehgal — SSMC" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 07</div>
@@ -1201,7 +1202,7 @@ export default function DeckContent() {
 
               {/* Card 08 — Martin Pakciarz */}
               <Link href="/clients/martin-pakciarz" className="card reveal d-4">
-                <div className="card-photo">PHOTO · MARTIN PAKCIARZ</div>
+                <div className="card-photo"><img src="/martin-pakciarz.webp" alt="Martin Pakciarz — Samurai Fight House" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA SPORTS · 08</div>
@@ -1219,7 +1220,7 @@ export default function DeckContent() {
 
               {/* Card 09 — Alex Dmitriev */}
               <Link href="/clients/alex-dmitriev" className="card reveal d-5">
-                <div className="card-photo">PHOTO · ALEX DMITRIEV</div>
+                <div className="card-photo"><img src="/alex-dmitriev.webp" alt="Alex Dmitriev" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA CAPITAL · 09</div>
@@ -1243,7 +1244,7 @@ export default function DeckContent() {
           <div className="slide-inner">
             <div className="bio-section">
               <div className="bio-photo-col reveal d-1">
-                <div className="bio-photo">PHOTO · FRAN HERRERA</div>
+                <div className="bio-photo"><img src="/fran-herrera.webp" alt="Fran Herrera" /></div>
                 <div className="bio-photo-caption">
                   <span className="number">01</span>
                   <h3 className="name">Fran Herrera</h3>

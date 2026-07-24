@@ -400,9 +400,9 @@ export default function DeckContent() {
           width: 100%;
         }
         .deck-wrapper .why-list li {
-          display: block;
-          width: 100%;
-          max-width: 900px;
+          display: block !important;
+          width: 100% !important;
+          max-width: 900px !important;
           padding: 24px 0;
           border-bottom: 1px solid var(--gray-line);
           font-family: var(--font-body);
@@ -412,17 +412,29 @@ export default function DeckContent() {
           letter-spacing: -0.005em;
           color: var(--cruda-dark);
           margin: 0;
+          writing-mode: horizontal-tb !important;
+          text-orientation: mixed !important;
+          white-space: normal !important;
+          word-break: normal !important;
+          overflow-wrap: break-word !important;
+          text-align: left !important;
         }
         .deck-wrapper .why-list li span:first-child {
-          display: inline;
+          display: inline !important;
           color: var(--cruda-red);
           margin-right: 12px;
+          writing-mode: horizontal-tb !important;
+          white-space: nowrap !important;
         }
         .deck-wrapper .why-list li span:first-child::before {
           content: '—';
         }
         .deck-wrapper .why-list li span:last-child {
-          display: inline;
+          display: inline !important;
+          writing-mode: horizontal-tb !important;
+          white-space: normal !important;
+          word-break: normal !important;
+          overflow-wrap: break-word !important;
         }
         .deck-wrapper .why-closing {
           border-left: 3px solid var(--cruda-red);
@@ -1120,7 +1132,7 @@ export default function DeckContent() {
 
               {/* Card 04 — SH! Energy */}
               <Link href="/clients/sh-energy" className="card reveal d-5">
-                <div className="card-photo">PHOTO · SH! ENERGY</div>
+                <div className="card-photo sh-energy-placeholder">SH! ENERGY</div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 04</div>
@@ -1147,7 +1159,7 @@ export default function DeckContent() {
             <div className="cards-grid cards-grid-slide-7">
               {/* Card 05 — Marcos Guevara Lynch */}
               <Link href="/clients/marcos-guevara-lynch" className="card reveal d-1">
-                <div className="card-photo">PHOTO · MARCOS GUEVARA LYNCH</div>
+                <div className="card-photo marcos-placeholder">MARCOS GUEVARA LYNCH</div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 05</div>
@@ -1165,7 +1177,7 @@ export default function DeckContent() {
 
               {/* Card 06 — Nitin Passi */}
               <Link href="/clients/nitin-passi" className="card reveal d-2">
-                <div className="card-photo">PHOTO · NITIN PASSI</div>
+                <div className="card-photo nitin-placeholder">NITIN PASSI</div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 06</div>
@@ -1201,7 +1213,7 @@ export default function DeckContent() {
 
               {/* Card 08 — Martin Pakciarz */}
               <Link href="/clients/martin-pakciarz" className="card reveal d-4">
-                <div className="card-photo">PHOTO · MARTIN PAKCIARZ</div>
+                <div className="card-photo martin-placeholder">MARTIN PAKCIARZ</div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA SPORTS · 08</div>
@@ -1219,7 +1231,7 @@ export default function DeckContent() {
 
               {/* Card 09 — Alex Dmitriev */}
               <Link href="/clients/alex-dmitriev" className="card reveal d-5">
-                <div className="card-photo">PHOTO · ALEX DMITRIEV</div>
+                <div className="card-photo alex-placeholder">ALEX DMITRIEV</div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA CAPITAL · 09</div>

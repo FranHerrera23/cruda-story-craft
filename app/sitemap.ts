@@ -39,15 +39,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    // Essays index + individual essays (etapa 5)
+    // Thinking index + individual pieces (etapa 5 — renamed from /essays)
     {
-      url: `${BASE}/essays`,
+      url: `${BASE}/thinking`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     ...allEssays.map((e) => ({
-      url: `${BASE}/essays/${e.slug}`,
+      url: `${BASE}/thinking/${e.slug}`,
       lastModified: e.updatedAt.startsWith('[FRAN')
         ? new Date(e.publishedAt)
         : new Date(e.updatedAt),

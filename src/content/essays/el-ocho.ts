@@ -8,6 +8,8 @@ import type { Essay } from '@/components/EssayLayout'
 export const elOcho: Essay = {
   slug: 'el-ocho',
   category: 'Trust',
+  tags: ['Brand'],
+  contentType: 'Essay',
   readingMinutes: 3,
   publishedAt: '2025-04-06',
   updatedAt: '2026-07-26',

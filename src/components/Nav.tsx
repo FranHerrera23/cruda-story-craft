@@ -121,11 +121,11 @@ export default function Nav() {
           </div>
 
           <Link
-            href="/essays"
-            style={linkStyle('/essays')}
-            aria-current={pathname === '/essays' ? 'page' : undefined}
+            href="/thinking"
+            style={linkStyle('/thinking')}
+            aria-current={pathname === '/thinking' ? 'page' : undefined}
           >
-            Essays
+            Thinking
           </Link>
         </div>
 
@@ -192,12 +192,12 @@ export default function Nav() {
             </ul>
           </details>
           <Link
-            href="/essays"
-            style={linkStyle('/essays')}
-            aria-current={pathname === '/essays' ? 'page' : undefined}
+            href="/thinking"
+            style={linkStyle('/thinking')}
+            aria-current={pathname === '/thinking' ? 'page' : undefined}
             onClick={() => setMobileOpen(false)}
           >
-            Essays
+            Thinking
           </Link>
         </div>
       )}

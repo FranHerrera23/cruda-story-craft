@@ -1,11 +1,11 @@
-# Essays canonical policy
+# Thinking canonical policy
 
 **Owner:** Fran. This is a task in Substack, not a code change.
 
 ## Rule
 
-Every essay lives at `https://www.thecruda.com/essays/[slug]` as its canonical
-URL. Substack becomes distribution — the same essay is re-published there,
+Every piece lives at `https://www.thecruda.com/thinking/[slug]` as its canonical
+URL. Substack becomes distribution — the same piece is re-published there,
 but with a `<link rel="canonical">` pointing back to thecruda.com.
 
 That way the audience stays where it already is, and the domain equity comes
@@ -18,7 +18,7 @@ For each published essay:
 1. Open the Substack post editor.
 2. Post → **Settings** → **Canonical URL** (or the equivalent field
    labelled "Original URL" in the Substack UI).
-3. Paste `https://www.thecruda.com/essays/<slug>` for the matching essay.
+3. Paste `https://www.thecruda.com/thinking/<slug>` for the matching piece.
 4. Save.
 
 ## Applies going forward

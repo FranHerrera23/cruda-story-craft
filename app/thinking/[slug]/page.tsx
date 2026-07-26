@@ -17,13 +17,13 @@ export async function generateMetadata(
   if (!es) return {}
   const modified = es.updatedAt.startsWith('[FRAN') ? es.publishedAt : es.updatedAt
   return {
-    title: `${es.title} | CRUDA Essays`,
+    title: `${es.title} | CRUDA`,
     description: es.answerCapsule.slice(0, 155),
-    alternates: { canonical: `${BASE}/essays/${es.slug}` },
+    alternates: { canonical: `${BASE}/thinking/${es.slug}` },
     openGraph: {
       title: es.title,
       description: es.answerCapsule,
-      url: `${BASE}/essays/${es.slug}`,
+      url: `${BASE}/thinking/${es.slug}`,
       type: 'article',
       publishedTime: es.publishedAt,
       modifiedTime: modified,

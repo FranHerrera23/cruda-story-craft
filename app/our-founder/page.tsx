@@ -94,7 +94,11 @@ const AT_A_GLANCE: Row[] = [
     value:
       'Comedy, music, nightlife and entertainment. 20+ shows produced for 12,000+ people.',
   },
-  { kind: 'simple', label: 'Writes', value: '[FRAN — nombre de la publicación]' },
+  {
+    kind: 'simple',
+    label: 'Writes',
+    value: 'Everything is a narrative, companies too.',
+  },
 ]
 
 function rowHasPlaceholder(row: Row): boolean {

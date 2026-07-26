@@ -14,6 +14,8 @@ import type { Essay } from '@/components/EssayLayout'
 export const founderWorth70Million: Essay = {
   slug: 'founder-worth-70-million',
   category: 'Business',
+  tags: ['Freedom'],
+  contentType: 'Essay',
   readingMinutes: 4,
   publishedAt: '2025-04-03',
   updatedAt: '[FRAN — fecha de republicación]',

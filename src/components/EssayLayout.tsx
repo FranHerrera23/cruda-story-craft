@@ -5,8 +5,8 @@ import './essay.css'
 
 /* ------------------------------------------------------------------
    CRUDA — EssayLayout
-   AEO discipline adapted to essay. The skeleton serves the machine;
-   the prose inside serves the human. No bullets — essays flow.
+   AEO discipline adapted to essays and conversations.
+   The skeleton serves the machine; the prose serves the human.
 ------------------------------------------------------------------- */
 
 export type EssayBlock =
@@ -24,6 +24,8 @@ export type Essay = {
   updatedAt: string
   answerCapsule: string
   category: string
+  tags?: string[]
+  contentType?: 'Essay' | 'Conversation'
   readingMinutes: number
   heroImage?: string
   heroAlt?: string
@@ -52,12 +54,13 @@ function schema(es: Essay) {
   const graph: unknown[] = [
     {
       '@type': 'Article',
-      '@id': `${base}/essays/${es.slug}#article`,
+      '@id': `${base}/thinking/${es.slug}#article`,
       headline: es.title,
       description: es.answerCapsule,
       datePublished: es.publishedAt,
       dateModified: modified,
       articleSection: es.category,
+      keywords: es.tags && es.tags.length > 0 ? es.tags.join(', ') : undefined,
       image: es.heroImage ? `${base}${es.heroImage}` : undefined,
       author: {
         '@type': 'Person',
@@ -74,7 +77,7 @@ function schema(es: Essay) {
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${base}/essays/${es.slug}`,
+        '@id': `${base}/thinking/${es.slug}`,
       },
     },
     {
@@ -90,7 +93,7 @@ function schema(es: Essay) {
   if (es.faqs && es.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${base}/essays/${es.slug}#faq`,
+      '@id': `${base}/thinking/${es.slug}#faq`,
       mainEntity: es.faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,
@@ -104,6 +107,8 @@ function schema(es: Essay) {
 export default function EssayLayout({ es }: { es: Essay }) {
   const showUpdated =
     es.updatedAt !== es.publishedAt && !es.updatedAt.startsWith('[FRAN')
+  const contentType = es.contentType ?? 'Essay'
+  const metaTags = [es.category, ...(es.tags ?? [])].filter(Boolean)
 
   return (
     <div className="essay-root essay">
@@ -116,11 +121,14 @@ export default function EssayLayout({ es }: { es: Essay }) {
 
       <article>
         <header className="e-head">
-          <Link href="/essays" className="mono e-back">
-            ← Essays
+          <Link href="/thinking" className="mono e-back">
+            ← Thinking
           </Link>
-          <p className="mono e-meta">
-            {es.category} · {es.readingMinutes} min read
+          <p className="e-meta">
+            <span className="e-type">{contentType}</span>
+            <span className="mono">
+              {metaTags.join(' · ')} · {es.readingMinutes} min read
+            </span>
           </p>
 
           <h1>{es.title}</h1>
@@ -176,7 +184,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
                 </p>
               )
             }
-            // quote — attributed to someone else
+            // quote — attributed
             return (
               <div key={i} className="e-quote">
                 <p>{block.text}</p>
@@ -200,7 +208,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
 
         {/* Subscribe */}
         <section className="e-sub" aria-label="Subscribe">
-          <h3>[FRAN — nombre de la publicación]</h3>
+          <h3>Everything is a narrative, companies too.</h3>
           <p>[FRAN — 1 frase sobre qué recibe quien se suscribe]</p>
           <form className="e-form" action="[FRAN — proveedor de email]" method="post">
             <input
@@ -212,6 +220,9 @@ export default function EssayLayout({ es }: { es: Essay }) {
             />
             <button type="submit">Subscribe</button>
           </form>
+          <p className="e-legal">
+            By subscribing you agree to receive emails from CRUDA. Unsubscribe any time.
+          </p>
         </section>
       </article>
     </div>

@@ -44,6 +44,12 @@ export const Navigation = () => {
 
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
+  // Etapa 2+: these routes render their own global nav (components/Nav.tsx)
+  const HIDE_ON = ['/ai-concierge', '/our-founder', '/essays', '/architecture-design', '/sports'];
+  if (HIDE_ON.some((r) => pathname === r || pathname.startsWith(r + '/'))) {
+    return null;
+  }
+
   return (
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>

@@ -58,6 +58,11 @@ const AT_A_GLANCE: Row[] = [
   { kind: 'simple', label: 'Building', value: 'CRUDA, a holding company' },
   {
     kind: 'simple',
+    label: 'Verticals',
+    value: 'Architecture & Design · Sports · AI Concierge',
+  },
+  {
+    kind: 'simple',
     label: 'Started as',
     value:
       'College dropout at 17, producing events for 600 people in northern Argentina',

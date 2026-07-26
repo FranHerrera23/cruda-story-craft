@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Work — CRUDA',
     description: 'Narrative systems for construction, architecture, and design firms doing $20M–$500M.',
-    url: 'https://cruda.co/work',
+    url: 'https://www.thecruda.com/work',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Narrative systems for construction, architecture, and design firms doing $20M–$500M.',
   },
   alternates: {
-    canonical: 'https://cruda.co/work',
+    canonical: 'https://www.thecruda.com/work',
   },
 };
 

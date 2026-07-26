@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Book a Call — CRUDA',
     description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
-    url: 'https://cruda.co/book-call',
+    url: 'https://www.thecruda.com/book-call',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Book a discovery call with CRUDA. Narrative strategy for construction and architecture leaders.',
   },
   alternates: {
-    canonical: 'https://cruda.co/book-call',
+    canonical: 'https://www.thecruda.com/book-call',
   },
 };
 

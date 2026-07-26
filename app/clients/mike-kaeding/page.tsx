@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Mike Kaeding, Norhart — CRUDA',
     description: 'Narrative strategy for a $200M multifamily construction CEO.',
-    url: 'https://cruda.co/clients/mike-kaeding',
+    url: 'https://www.thecruda.com/clients/mike-kaeding',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Narrative strategy for a $200M multifamily construction CEO.',
   },
   alternates: {
-    canonical: 'https://cruda.co/clients/mike-kaeding',
+    canonical: 'https://www.thecruda.com/clients/mike-kaeding',
   },
 };
 

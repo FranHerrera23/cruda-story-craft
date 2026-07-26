@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Porsche Flagship — TRAZZO Lighting — CRUDA',
     description: 'Porsche showroom in Lima, Peru. Design approved by Porsche Germany.',
-    url: 'https://cruda.co/projects/karen-mannheim/porsche-flagship',
+    url: 'https://www.thecruda.com/projects/karen-mannheim/porsche-flagship',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Porsche showroom in Lima, Peru. Design approved by Porsche Germany.',
   },
   alternates: {
-    canonical: 'https://cruda.co/projects/karen-mannheim/porsche-flagship',
+    canonical: 'https://www.thecruda.com/projects/karen-mannheim/porsche-flagship',
   },
 };
 

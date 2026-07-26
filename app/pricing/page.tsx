@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Pricing — CRUDA',
     description: 'By month six. Everything compounds. $15,600 for a six-month engagement.',
-    url: 'https://cruda.co/pricing',
+    url: 'https://www.thecruda.com/pricing',
   },
   twitter: {
     card: 'summary_large_image',
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     description: 'By month six. Everything compounds. $15,600 for a six-month engagement.',
   },
   alternates: {
-    canonical: 'https://cruda.co/pricing',
+    canonical: 'https://www.thecruda.com/pricing',
   },
 };
 

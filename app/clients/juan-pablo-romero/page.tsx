@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Juan Pablo Romero — CRUDA',
     description: 'Narrative development for a Latin American construction and real estate executive.',
-    url: 'https://cruda.co/clients/juan-pablo-romero',
+    url: 'https://www.thecruda.com/clients/juan-pablo-romero',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Narrative development for a Latin American construction and real estate executive.',
   },
   alternates: {
-    canonical: 'https://cruda.co/clients/juan-pablo-romero',
+    canonical: 'https://www.thecruda.com/clients/juan-pablo-romero',
   },
 };
 

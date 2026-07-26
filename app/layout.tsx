@@ -10,7 +10,7 @@ import ScrollRevealInit from "@/components/ScrollRevealInit";
 import Providers from './providers';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://cruda.co'),
+  metadataBase: new URL('https://www.thecruda.com'),
   title: {
     default: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
     template: '%s — CRUDA',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://cruda.co',
+    url: 'https://www.thecruda.com',
     title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
     description: 'We build narrative systems for real estate, construction, and architecture companies. $2,600/month.',
     siteName: 'CRUDA',

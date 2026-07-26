@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Girish Sehgal — CRUDA',
     description: 'Executive positioning for a 25-year hospitality leader moving into healthcare.',
-    url: 'https://cruda.co/clients/girish-sehgal',
+    url: 'https://www.thecruda.com/clients/girish-sehgal',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Executive positioning for a 25-year hospitality leader moving into healthcare.',
   },
   alternates: {
-    canonical: 'https://cruda.co/clients/girish-sehgal',
+    canonical: 'https://www.thecruda.com/clients/girish-sehgal',
   },
 };
 

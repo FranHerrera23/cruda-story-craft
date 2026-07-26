@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Four Seasons Penthouse — TRAZZO Lighting — CRUDA',
     description: 'Four Seasons Residences Miami, floor 66.',
-    url: 'https://cruda.co/projects/karen-mannheim/four-seasons-penthouse',
+    url: 'https://www.thecruda.com/projects/karen-mannheim/four-seasons-penthouse',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Four Seasons Residences Miami, floor 66.',
   },
   alternates: {
-    canonical: 'https://cruda.co/projects/karen-mannheim/four-seasons-penthouse',
+    canonical: 'https://www.thecruda.com/projects/karen-mannheim/four-seasons-penthouse',
   },
 };
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Saadiyat Music Festival — TRAZZO Lighting — CRUDA',
     description: 'The festival that proved TRAZZO\'s international reach in Abu Dhabi.',
-    url: 'https://cruda.co/projects/karen-mannheim/saadiyat-music-festival',
+    url: 'https://www.thecruda.com/projects/karen-mannheim/saadiyat-music-festival',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'The festival that proved TRAZZO\'s international reach in Abu Dhabi.',
   },
   alternates: {
-    canonical: 'https://cruda.co/projects/karen-mannheim/saadiyat-music-festival',
+    canonical: 'https://www.thecruda.com/projects/karen-mannheim/saadiyat-music-festival',
   },
 };
 

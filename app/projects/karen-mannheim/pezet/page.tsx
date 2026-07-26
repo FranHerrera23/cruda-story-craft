@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'PEZET — TRAZZO Lighting — CRUDA',
     description: 'Three towers by Robert A.M. Stern Architects.',
-    url: 'https://cruda.co/projects/karen-mannheim/pezet',
+    url: 'https://www.thecruda.com/projects/karen-mannheim/pezet',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Three towers by Robert A.M. Stern Architects.',
   },
   alternates: {
-    canonical: 'https://cruda.co/projects/karen-mannheim/pezet',
+    canonical: 'https://www.thecruda.com/projects/karen-mannheim/pezet',
   },
 };
 

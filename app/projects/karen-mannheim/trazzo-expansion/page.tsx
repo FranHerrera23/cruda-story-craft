@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'TRAZZO Expansion — TRAZZO Lighting — CRUDA',
     description: 'International expansion strategy for TRAZZO Lighting.',
-    url: 'https://cruda.co/projects/karen-mannheim/trazzo-expansion',
+    url: 'https://www.thecruda.com/projects/karen-mannheim/trazzo-expansion',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'International expansion strategy for TRAZZO Lighting.',
   },
   alternates: {
-    canonical: 'https://cruda.co/projects/karen-mannheim/trazzo-expansion',
+    canonical: 'https://www.thecruda.com/projects/karen-mannheim/trazzo-expansion',
   },
 };
 

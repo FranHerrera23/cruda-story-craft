@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Confidential Client — CRUDA',
     description: 'Executive narrative development for a confidential construction and real estate leader.',
-    url: 'https://cruda.co/clients/nitin-passi',
+    url: 'https://www.thecruda.com/clients/nitin-passi',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Executive narrative development for a confidential construction and real estate leader.',
   },
   alternates: {
-    canonical: 'https://cruda.co/clients/nitin-passi',
+    canonical: 'https://www.thecruda.com/clients/nitin-passi',
   },
   robots: {
     index: false,

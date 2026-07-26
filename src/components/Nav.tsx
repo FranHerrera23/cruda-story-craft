@@ -5,9 +5,10 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
 
 /* ------------------------------------------------------------------
-   CRUDA — Nav (global, etapa 2+)
-   CRUDA    Our Founder · Our Companies ▾ · Essays
-   Reusable across /ai-concierge, /our-founder, /essays, /architecture-design, /sports.
+   CRUDA — Nav (global)
+   CRUDA    Our Founder · Our Companies ▾ · Thinking
+   Reusable across /ai-concierge, /our-founder, /thinking,
+   /architecture-design, /sports. Click-driven dropdown (no hover).
 ------------------------------------------------------------------- */
 
 const COMPANIES = [
@@ -24,6 +25,7 @@ export default function Nav() {
 
   const companiesActive = COMPANIES.some((c) => pathname === c.href)
 
+  // Close on click outside + Escape
   useEffect(() => {
     if (!open) return
     function onDown(e: MouseEvent) {
@@ -41,6 +43,12 @@ export default function Nav() {
       document.removeEventListener('keydown', onKey)
     }
   }, [open])
+
+  // Close on route change
+  useEffect(() => {
+    setOpen(false)
+    setMobileOpen(false)
+  }, [pathname])
 
   const linkStyle = (href: string): React.CSSProperties => ({
     color: pathname === href ? 'var(--red)' : 'var(--ink)',
@@ -72,52 +80,39 @@ export default function Nav() {
           <div className="cruda-global-nav-dropdown" ref={dropdownRef}>
             <button
               type="button"
-              className="cruda-global-nav-dropdown-btn"
+              className={`cruda-global-nav-dropdown-btn${open ? ' open' : ''}`}
               aria-haspopup="true"
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
               style={{
                 color: companiesActive ? 'var(--red)' : 'var(--ink)',
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                padding: 0,
-                fontFamily: 'var(--mono)',
-                fontWeight: 500,
-                fontSize: '12px',
-                letterSpacing: '.14em',
-                textTransform: 'uppercase',
               }}
             >
-              Our Companies <span aria-hidden="true">▾</span>
+              Our Companies
+              <span className="cruda-global-nav-dropdown-arrow" aria-hidden="true">▾</span>
             </button>
-            {open && (
-              <ul className="cruda-global-nav-dropdown-menu" role="menu">
-                {COMPANIES.map((c) => (
-                  <li key={c.href} role="none">
-                    <Link
-                      href={c.href}
-                      role="menuitem"
-                      aria-current={pathname === c.href ? 'page' : undefined}
-                      style={{
-                        display: 'block',
-                        padding: '10px 16px',
-                        color: pathname === c.href ? 'var(--red)' : 'var(--ink)',
-                        textDecoration: 'none',
-                        fontFamily: 'var(--mono)',
-                        fontSize: '12px',
-                        letterSpacing: '.14em',
-                        textTransform: 'uppercase',
-                        whiteSpace: 'nowrap',
-                      }}
-                      onClick={() => setOpen(false)}
-                    >
-                      {c.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
+            <ul
+              className={`cruda-global-nav-dropdown-menu${open ? ' open' : ''}`}
+              role="menu"
+              aria-hidden={!open}
+            >
+              {COMPANIES.map((c) => (
+                <li key={c.href} role="none">
+                  <Link
+                    href={c.href}
+                    role="menuitem"
+                    tabIndex={open ? 0 : -1}
+                    aria-current={pathname === c.href ? 'page' : undefined}
+                    style={{
+                      color: pathname === c.href ? 'var(--red)' : 'var(--ink)',
+                    }}
+                    onClick={() => setOpen(false)}
+                  >
+                    {c.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <Link
@@ -143,7 +138,7 @@ export default function Nav() {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu — untouched behavior: <details> stays expanded inline */}
       {mobileOpen && (
         <div className="cruda-global-nav-mobile">
           <Link
@@ -234,21 +229,81 @@ export default function Nav() {
           align-items: center;
           gap: 32px;
         }
+
+        /* Dropdown wrapper: relative for the absolute panel */
         .cruda-global-nav-dropdown {
           position: relative;
         }
+
+        /* Trigger button — matches nav link typography */
+        .cruda-global-nav-dropdown-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          font-family: var(--mono);
+          font-weight: 500;
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--ink, #0A0A0A);
+        }
+
+        /* Arrow: rotates 180° when open */
+        .cruda-global-nav-dropdown-arrow {
+          display: inline-block;
+          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .cruda-global-nav-dropdown-btn.open .cruda-global-nav-dropdown-arrow {
+          transform: rotate(180deg);
+        }
+
+        /* Panel — always rendered, animated in/out via class */
         .cruda-global-nav-dropdown-menu {
           position: absolute;
           top: 100%;
           right: 0;
           margin-top: 8px;
+          min-width: 236px;
           background: rgba(255, 255, 255, 0.98);
           backdrop-filter: blur(16px);
-          border: 1px solid var(--rule-2, #EFEDE8);
-          padding: 6px 0;
+          border: 1px solid var(--rule, #E2E0DA);
+          box-shadow: 0 12px 40px rgba(10, 10, 10, 0.07);
+          padding: 10px 0;
           list-style: none;
-          min-width: 220px;
+          opacity: 0;
+          visibility: hidden;
+          transform: translateY(-8px);
+          transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                      visibility 0.3s;
+          z-index: 30;
         }
+        .cruda-global-nav-dropdown-menu.open {
+          opacity: 1;
+          visibility: visible;
+          transform: translateY(0);
+        }
+        .cruda-global-nav-dropdown-menu li a {
+          display: block;
+          padding: 14px 22px;
+          white-space: nowrap;
+          text-decoration: none;
+          font-family: var(--mono);
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          transition: color 0.2s, background 0.2s;
+        }
+        .cruda-global-nav-dropdown-menu li a:hover {
+          color: var(--red);
+          background: #FAFAF8;
+        }
+
+        /* Mobile toggle (hamburger) */
         .cruda-global-nav-mobile-toggle {
           display: none;
           background: none;

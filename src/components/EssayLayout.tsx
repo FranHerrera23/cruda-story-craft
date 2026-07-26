@@ -36,7 +36,7 @@ export type Essay = {
 const AUTHOR = {
   name: 'Francisco Herrera',
   role: 'Founder, CRUDA',
-  photo: '/team/fran.jpg',
+  photo: '/fran-herrera.png',
   url: 'https://www.thecruda.com/our-founder',
 }
 

@@ -31,7 +31,7 @@ const PERSON_SCHEMA = {
   name: 'Francisco Herrera',
   jobTitle: 'Founder',
   url: 'https://www.thecruda.com/our-founder',
-  image: 'https://www.thecruda.com/team/fran.jpg',
+  image: 'https://www.thecruda.com/fran-herrera.png',
   worksFor: {
     '@type': 'Organization',
     name: 'CRUDA',
@@ -195,10 +195,19 @@ export default function OurFounderPage() {
                     My first campaign was for Mary Kay: twenty creators, a summer line launch, and a
                     closing event with their global CMO in the room.
                   </p>
-                  <p className="todo">
-                    [FRAN — 1 párrafo: Buenos Aires. El boliche de 20.000 personas, las campañas
-                    para las marcas de la lista. Material en el CV. Regla: los hechos como prueba de
-                    una capacidad, no en orden cronológico.]
+                  <p>Buenos Aires taught me scale.</p>
+                  <p>
+                    I ran PR for the largest nightclub in Latin America — twenty thousand capacity —
+                    and one night we sold ten thousand tickets online. I produced TikTok&apos;s launch
+                    event in Argentina, negotiating with twenty creators before most people knew what
+                    TikTok was. I coordinated five creators with over a million followers each for a
+                    national tourism campaign that reached three million.
+                  </p>
+                  <p>
+                    Then I crossed to the other side of the table. At an agency I helped build fifteen
+                    brands from zero and grew the business forty percent. For the first time I
+                    wasn&apos;t producing someone else&apos;s moment — I was building the thing that
+                    made the moment possible.
                   </p>
                   <p>
                     Then Dubai. Clients and teammates from more than twenty countries. I built the
@@ -215,7 +224,7 @@ export default function OurFounderPage() {
               </div>
               <figure>
                 <Image
-                  src="/team/fran.jpg"
+                  src="/fran-herrera.png"
                   alt="Francisco Herrera, founder of CRUDA"
                   width={800}
                   height={1000}

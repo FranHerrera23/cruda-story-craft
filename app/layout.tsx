@@ -50,9 +50,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-  },
+  // Icons come from app/icon.svg (Next.js auto-detects) — no manual declaration.
 };
 
 export default function RootLayout({

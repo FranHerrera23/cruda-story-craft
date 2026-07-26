@@ -221,65 +221,47 @@ export default function DeckContent() {
           margin-top: 200px;
         }
 
-        /* SLIDE 02 — PHILOSOPHY */
-        .deck-wrapper .philosophy-watermark {
+        /* SLIDE 02 — PHILOSOPHY (v6.2: unified single-column composition) */
+        .deck-wrapper .philosophy-word {
           font-family: var(--font-display);
           font-style: italic;
-          font-size: clamp(180px, 20vw, 320px);
+          font-size: clamp(96px, 12vw, 160px);
           font-weight: 400;
-          color: var(--gray-line);
-          letter-spacing: -0.045em;
-          line-height: 0.95;
-          margin-bottom: 120px;
-          user-select: none;
-        }
-        .deck-wrapper .philosophy-row {
-          display: grid;
-          grid-template-columns: 120px 1fr;
-          gap: 64px;
-          align-items: start;
-          max-width: 1100px;
-          margin-bottom: 160px;
-        }
-        .deck-wrapper .philosophy-tag {
-          font-family: var(--font-mono);
-          font-size: 11px;
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--cruda-red);
-          padding-top: 12px;
+          line-height: 1.0;
+          letter-spacing: -0.025em;
+          color: var(--cruda-dark);
+          margin: 0 0 12px 0;
         }
         .deck-wrapper .philosophy-definition {
           font-family: var(--font-body);
-          font-size: clamp(22px, 1.8vw, 30px);
-          font-weight: 400;
+          font-size: clamp(18px, 1.4vw, 22px);
           line-height: 1.4;
-          letter-spacing: -0.01em;
-          color: var(--cruda-dark);
-        }
-        .deck-wrapper .philosophy-definition .pos {
-          color: var(--gray-mute);
-          font-style: italic;
-          margin-right: 8px;
-        }
-        .deck-wrapper .philosophy-bridge {
-          font-family: var(--font-body);
-          font-size: clamp(17px, 1.3vw, 20px);
+          font-weight: 400;
           color: var(--gray-text);
-          max-width: 680px;
-          margin-bottom: 96px;
-          line-height: 1.55;
+          margin: 0 0 80px 0;
+          max-width: 1000px;
+        }
+        .deck-wrapper .philosophy-definition em {
+          font-style: italic;
+        }
+        .deck-wrapper .philosophy-editorial {
+          font-family: var(--font-body);
+          font-style: italic;
+          font-size: clamp(24px, 2vw, 32px);
+          line-height: 1.4;
+          font-weight: 400;
+          color: var(--cruda-dark);
+          max-width: 1000px;
+          margin: 0 0 64px 0;
         }
         .deck-wrapper .philosophy-manifesto {
-          font-family: var(--font-display);
-          font-style: italic;
-          font-size: clamp(28px, 2.4vw, 42px);
-          font-weight: 400;
-          line-height: 1.25;
-          letter-spacing: -0.02em;
+          font-family: var(--font-body);
+          font-size: clamp(24px, 2vw, 32px);
+          line-height: 1.4;
+          font-weight: 500;
           color: var(--cruda-dark);
-          max-width: 1100px;
+          max-width: 1000px;
+          margin: 0;
         }
 
         /* SLIDE 03 — FOUR WORLDS (4 same size, hierarchy by whitespace + 1 divider) */
@@ -400,9 +382,9 @@ export default function DeckContent() {
           width: 100%;
         }
         .deck-wrapper .why-list li {
-          display: block !important;
-          width: 100% !important;
-          max-width: 900px !important;
+          display: block;
+          width: 100%;
+          max-width: 900px;
           padding: 24px 0;
           border-bottom: 1px solid var(--gray-line);
           font-family: var(--font-body);
@@ -412,29 +394,6 @@ export default function DeckContent() {
           letter-spacing: -0.005em;
           color: var(--cruda-dark);
           margin: 0;
-          writing-mode: horizontal-tb !important;
-          text-orientation: mixed !important;
-          white-space: normal !important;
-          word-break: normal !important;
-          overflow-wrap: break-word !important;
-          text-align: left !important;
-        }
-        .deck-wrapper .why-list li span:first-child {
-          display: inline !important;
-          color: var(--cruda-red);
-          margin-right: 12px;
-          writing-mode: horizontal-tb !important;
-          white-space: nowrap !important;
-        }
-        .deck-wrapper .why-list li span:first-child::before {
-          content: '—';
-        }
-        .deck-wrapper .why-list li span:last-child {
-          display: inline !important;
-          writing-mode: horizontal-tb !important;
-          white-space: normal !important;
-          word-break: normal !important;
-          overflow-wrap: break-word !important;
         }
         .deck-wrapper .why-closing {
           border-left: 3px solid var(--cruda-red);
@@ -531,6 +490,7 @@ export default function DeckContent() {
         .deck-wrapper .cards-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
+          grid-auto-rows: 1fr;
           gap: 80px 64px;
           max-width: 1280px;
           margin: 0 auto;
@@ -544,6 +504,7 @@ export default function DeckContent() {
         .deck-wrapper .card {
           display: flex;
           flex-direction: column;
+          height: 100%;
           background: transparent;
           border: none;
           border-radius: 0;
@@ -551,21 +512,25 @@ export default function DeckContent() {
           text-decoration: none;
           color: inherit;
         }
-        /* Square photo 1:1 aspect ratio */
+        /* Square photo 1:1, edge-to-edge of card column (v6.4.1: bulletproof padding-bottom + absolute img) */
         .deck-wrapper .card-photo {
+          position: relative;
           width: 100%;
+          padding-bottom: 100%;
           aspect-ratio: 1 / 1;
-          object-fit: cover;
-          object-position: center center;
+          overflow: hidden;
           background: var(--cruda-cream);
           display: block;
-          filter: grayscale(100%);
         }
         .deck-wrapper .card-photo img {
+          position: absolute;
+          inset: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
+          object-position: center 30%;
           filter: grayscale(100%);
+          max-width: none;
         }
         /* Hairline under photo */
         .deck-wrapper .card-photo-divider {
@@ -574,11 +539,12 @@ export default function DeckContent() {
           background: var(--gray-line);
           margin: 0;
         }
-        /* Content block */
+        /* Content block (v6.2: flex:1 pushes footer to bottom for equal heights) */
         .deck-wrapper .card-content {
           padding: 24px 0 0 0;
           display: flex;
           flex-direction: column;
+          flex: 1;
           gap: 0;
         }
         .deck-wrapper .card-tag {
@@ -588,7 +554,7 @@ export default function DeckContent() {
           font-weight: 600;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin: 0 0 8px 0;
+          margin: 0 0 6px 0;
         }
         .deck-wrapper .card-name {
           font-family: var(--font-mono);
@@ -597,18 +563,17 @@ export default function DeckContent() {
           font-weight: 600;
           text-transform: uppercase;
           color: var(--cruda-dark);
-          margin: 0 0 20px 0;
+          margin: 0 0 24px 0;
           line-height: 1.3;
         }
         .deck-wrapper .card-headline {
-          margin-bottom: 16px;
           font-family: var(--font-display);
           font-size: clamp(22px, 1.9vw, 28px);
           font-weight: 600;
           line-height: 1.15;
           letter-spacing: -0.018em;
           color: var(--cruda-dark);
-          margin: 0;
+          margin: 0 0 16px 0;
         }
         .deck-wrapper .card-subcopy {
           font-family: var(--font-body);
@@ -619,12 +584,16 @@ export default function DeckContent() {
           color: var(--gray-text);
           margin: 0;
         }
-        /* Hairline before footer */
+        /* v6.2: single red proof point per card, same weight/size as surrounding */
+        .deck-wrapper .accent-red {
+          color: var(--cruda-red);
+        }
+        /* Hairline before footer (v6.2: 32px gap below card-content which has flex:1) */
         .deck-wrapper .card-footer-divider {
           width: 100%;
           height: 1px;
           background: var(--gray-line);
-          margin-top: 24px;
+          margin-top: 32px;
         }
         .deck-wrapper .card-footer {
           padding-top: 16px;
@@ -672,7 +641,8 @@ export default function DeckContent() {
           width: 100%;
           height: 100%;
           object-fit: cover;
-          filter: grayscale(100%) contrast(0.95);
+          object-position: center top;
+          display: block;
         }
         .deck-wrapper .bio-photo-caption {
           margin-top: auto;
@@ -866,10 +836,6 @@ export default function DeckContent() {
           .deck-wrapper .hero-stamp {
             margin-top: 96px;
           }
-          .deck-wrapper .philosophy-row {
-            grid-template-columns: 1fr;
-            gap: 16px;
-          }
           .deck-wrapper .world-row {
             grid-template-columns: 1fr;
             gap: 16px;
@@ -913,7 +879,7 @@ export default function DeckContent() {
               Companies, too.
             </h1>
             <p className="hero-lead reveal d-3">
-              We help founder-led companies build theirs intentionally — and the systems that scale it.
+              We help founder-led companies build theirs intentionally, and the systems that scale it.
             </p>
             <div className="hero-stamp reveal d-5">CRUDA — MAY 2026</div>
           </div>
@@ -923,19 +889,17 @@ export default function DeckContent() {
         <section className="slide" data-counter="02 / 09">
           <div className="slide-inner">
             <div className="slide-label reveal">Philosophy</div>
-            <div className="philosophy-watermark reveal d-1">Cruda.</div>
-            <div className="philosophy-row reveal d-2">
-              <div className="philosophy-tag">Spanish</div>
-              <div className="philosophy-definition">
-                <span className="pos">adj.</span>Raw. Unfiltered. The version before it became something else.
-              </div>
-            </div>
-            <p className="philosophy-bridge reveal d-3">
+            <h1 className="philosophy-word reveal d-1">Cruda</h1>
+            <p className="philosophy-definition reveal d-2">
+              <em>adj. (Spanish)</em>&nbsp;&nbsp;Raw. Unfiltered. The version before it became something else.
+            </p>
+            <p className="philosophy-editorial reveal d-3">
               The story your company carries before anyone tries to &ldquo;tell&rdquo; it for you.
             </p>
-            <div className="philosophy-manifesto reveal d-4">
-              The best work doesn&rsquo;t come from adding. It comes from stripping away.
-            </div>
+            <p className="philosophy-manifesto reveal d-4">
+              The best work doesn&rsquo;t come from adding.<br />
+              It comes from stripping away.
+            </p>
           </div>
         </section>
 
@@ -995,24 +959,12 @@ export default function DeckContent() {
             <div className="slide-label reveal">Why CRUDA</div>
             <h2 className="why-h1 reveal d-1">Your narrative will be written.</h2>
             <h2 className="why-h1-italic reveal d-2">The only question is by whom.</h2>
-            <p className="why-list-intro reveal d-3">By default, your narrative is written by:</p>
+            <p className="why-list-intro reveal d-3">By default, it&rsquo;s written by:</p>
             <ul className="why-list reveal d-4">
-              <li>
-                <span></span>
-                <span>The competitor with louder marketing.</span>
-              </li>
-              <li>
-                <span></span>
-                <span>The press covering the last crisis.</span>
-              </li>
-              <li>
-                <span></span>
-                <span>The client you lost (and never asked why).</span>
-              </li>
-              <li>
-                <span></span>
-                <span>The algorithm that decides what people find first.</span>
-              </li>
+              <li>The press, when something breaks.</li>
+              <li>The market, through what gets repeated.</li>
+              <li>The algorithm, picking what surfaces first.</li>
+              <li>Silence, when none of those bother.</li>
             </ul>
             <div className="why-closing reveal d-5">Or you write it. On purpose. With us.</div>
           </div>
@@ -1078,14 +1030,14 @@ export default function DeckContent() {
             <div className="cards-grid">
               {/* Card 01 — Karen Mannheim */}
               <Link href="/clients/karen-mannheim" className="card reveal d-2">
-                <div className="card-photo">PHOTO · KAREN MANNHEIM</div>
+                <div className="card-photo"><img src="/karen-mannheim.webp" alt="Karen Mannheim · Trazzo Lighting" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 01</div>
-                  <p className="card-name">KAREN MANNHEIM — TRAZZO LIGHTING</p>
+                  <p className="card-name">KAREN MANNHEIM · TRAZZO LIGHTING</p>
                   <h3 className="card-headline">30 years of expertise. Zero presence outside Peru.</h3>
                   <p className="card-subcopy">
-                    Karen Mannheim lights Porsche and Maserati flagships in Lima. Four Seasons Residences in Brickell. Private villas in Fisher Island. Neymar&rsquo;s new home in Miami. A $200M mansion in Golden Beach by Oppenheim Architecture. Her clients don&rsquo;t find her on Google.
+                    Karen Mannheim lights Porsche and Maserati flagships in Lima. Four Seasons Residences in Brickell. Private villas in Fisher Island. Neymar&rsquo;s new home in Miami. A <span className="accent-red">$200M mansion in Golden Beach by Oppenheim Architecture</span>. Her clients don&rsquo;t find her on Google.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1096,14 +1048,14 @@ export default function DeckContent() {
 
               {/* Card 02 — Mike Kaeding */}
               <Link href="/clients/mike-kaeding" className="card reveal d-3">
-                <div className="card-photo">PHOTO · MIKE KAEDING</div>
+                <div className="card-photo"><img src="/mike-kaeding.webp" alt="Mike Kaeding · Norhart" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 02</div>
-                  <p className="card-name">MIKE KAEDING — NORHART</p>
+                  <p className="card-name">MIKE KAEDING · NORHART</p>
                   <h3 className="card-headline">$200M in assets. No one outside Minneapolis had heard of him.</h3>
                   <p className="card-subcopy">
-                    Mike Kaeding&rsquo;s company owns over $230M in residential real estate in Minnesota. Norhart went from 80 units to more than a thousand. He writes about it on LinkedIn — a million impressions a year. The capital follows the writing.
+                    Mike Kaeding&rsquo;s company owns over $230M in residential real estate in Minnesota. Norhart went from 80 units to more than a thousand. He writes about it on LinkedIn. A million impressions a year. <span className="accent-red">The capital follows the writing.</span>
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1114,14 +1066,14 @@ export default function DeckContent() {
 
               {/* Card 03 — Juan Pablo Romero */}
               <Link href="/clients/juan-pablo-romero" className="card reveal d-4">
-                <div className="card-photo">PHOTO · JUAN PABLO ROMERO</div>
+                <div className="card-photo"><img src="/juan-pablo-romero.webp" alt="Juan Pablo Romero · CTD" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA BUILD · 03</div>
-                  <p className="card-name">JUAN PABLO ROMERO — CTD</p>
+                  <p className="card-name">JUAN PABLO ROMERO · CTD</p>
                   <h3 className="card-headline">From family craft to architect specification.</h3>
                   <p className="card-subcopy">
-                    Juan Pablo Romero built CTD to land luxury A&amp;D brands in the US. CRUDA built the firm with him — five-language site, two brand identities. Three Florida clients signed in the first year: Konkretus, CB Hali Rugs, Sierra Furniture.
+                    Juan Pablo Romero built CTD to land luxury A&amp;D brands in the US. CRUDA built the firm with him: five-language site, two brand identities. <span className="accent-red">Three Florida clients signed in the first year</span>. Konkretus. CB Hali Rugs. Sierra Furniture.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1132,14 +1084,14 @@ export default function DeckContent() {
 
               {/* Card 04 — SH! Energy */}
               <Link href="/clients/sh-energy" className="card reveal d-5">
-                <div className="card-photo sh-energy-placeholder">SH! ENERGY</div>
+                <div className="card-photo"><img src="/sh-energy.webp" alt="SH! Energy" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 04</div>
                   <p className="card-name">SH! ENERGY</p>
                   <h3 className="card-headline">$2M raised. A million cans sold. On the shelves of Carrefour and Cencosud.</h3>
                   <p className="card-subcopy">
-                    SH! Energy is the CPG startup co-founded by football star Rodrigo De Paul. Just raised $2M at a $30M valuation. A million cans sold. The first energy drink to land mass shelf in LATAM through a founder narrative, not a marketing budget.
+                    SH! Energy is the CPG startup co-founded by football star Rodrigo De Paul. Just raised <span className="accent-red">$2M at a $30M valuation</span>. A million cans sold. The first energy drink to land mass shelf in LATAM through a founder narrative, not a marketing budget.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1159,14 +1111,14 @@ export default function DeckContent() {
             <div className="cards-grid cards-grid-slide-7">
               {/* Card 05 — Marcos Guevara Lynch */}
               <Link href="/clients/marcos-guevara-lynch" className="card reveal d-1">
-                <div className="card-photo marcos-placeholder">MARCOS GUEVARA LYNCH</div>
+                <div className="card-photo"><img src="/marcos-guevara-lynch.webp" alt="Marcos Guevara Lynch" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 05</div>
                   <p className="card-name">MARCOS GUEVARA LYNCH</p>
                   <h3 className="card-headline">The company and the founder, both made on purpose.</h3>
                   <p className="card-subcopy">
-                    Marcos Guevara Lynch co-founded SH! Energy. He&rsquo;s also building his own narrative system — newsletter, social presence, and a tribe of entrepreneurs gathering in person across LATAM. Most founders build a company and let the personal brand happen. Marcos is building both with intention. Case in build.
+                    Marcos Guevara Lynch co-founded SH! Energy. He&rsquo;s also building his own narrative system: newsletter, social presence, and a tribe of entrepreneurs gathering in person across LATAM. Most founders build a company and let the personal brand happen. Marcos is building both with intention. <span className="accent-red">Case in build.</span>
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1177,14 +1129,14 @@ export default function DeckContent() {
 
               {/* Card 06 — Nitin Passi */}
               <Link href="/clients/nitin-passi" className="card reveal d-2">
-                <div className="card-photo nitin-placeholder">NITIN PASSI</div>
+                <div className="card-photo"><img src="/nitin-passi.webp" alt="Nitin Passi · Sumwon Studios" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 06</div>
-                  <p className="card-name">NITIN PASSI — SUMWON STUDIOS</p>
+                  <p className="card-name">NITIN PASSI · SUMWON STUDIOS</p>
                   <h3 className="card-headline">$300M in revenue. The comeback that wasn&rsquo;t supposed to happen.</h3>
                   <p className="card-subcopy">
-                    Nitin Passi&rsquo;s comeback in fashion is rare. SUMWON Studios — $300M in revenue between Dubai and Manchester. One LinkedIn post about the rebuild brought 1,000+ CVs.
+                    Nitin Passi&rsquo;s comeback in fashion is rare. SUMWON Studios. <span className="accent-red">$300M in revenue</span> between Dubai and Manchester. One LinkedIn post about the rebuild brought 1,000+ CVs.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1195,14 +1147,14 @@ export default function DeckContent() {
 
               {/* Card 07 — Girish Sehgal */}
               <Link href="/clients/girish-sehgal" className="card reveal d-3">
-                <div className="card-photo">PHOTO · GIRISH SEHGAL</div>
+                <div className="card-photo"><img src="/girish-sehgal.webp" alt="Girish Sehgal · SSMC" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 07</div>
-                  <p className="card-name">GIRISH SEHGAL — SSMC</p>
+                  <p className="card-name">GIRISH SEHGAL · SSMC</p>
                   <h3 className="card-headline">25 years of world-class hospitality. Zero digital presence.</h3>
                   <p className="card-subcopy">
-                    Girish Sehgal has built or run hospitals across 14 cities in 6 countries over 25 years. He leads patient experience at SSMC in Abu Dhabi. The credentials were there. The voice wasn&rsquo;t. CRUDA built it — 7,000+ senior healthcare leaders found him through it.
+                    Girish Sehgal led hospitality operations at Four Seasons Toronto, Four Seasons Chicago, Taj, and JW Marriott across 25 years and 14 cities in 6 countries. Now he leads patient experience at SSMC in Abu Dhabi. The credentials were there. The voice wasn&rsquo;t. CRUDA built it. <span className="accent-red">7,000+ senior healthcare leaders</span> found him through it.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1213,14 +1165,14 @@ export default function DeckContent() {
 
               {/* Card 08 — Martin Pakciarz */}
               <Link href="/clients/martin-pakciarz" className="card reveal d-4">
-                <div className="card-photo martin-placeholder">MARTIN PAKCIARZ</div>
+                <div className="card-photo"><img src="/martin-pakciarz.webp" alt="Martin Pakciarz · Samurai Fight House" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA SPORTS · 08</div>
-                  <p className="card-name">MARTIN PAKCIARZ — SAMURAI FIGHT HOUSE</p>
+                  <p className="card-name">MARTIN PAKCIARZ · SAMURAI FIGHT HOUSE</p>
                   <h3 className="card-headline">Six of the ten Argentinians in the UFC came through one fight house.</h3>
                   <p className="card-subcopy">
-                    Martin Pakciarz runs Samurai Fight House. Their featherweight Chino Vallejos sits in the global top ten — and just won a $100K UFC bonus in Vegas.
+                    Martin Pakciarz runs Samurai Fight House. Their featherweight Chino Vallejos sits in the global top ten. Just won a <span className="accent-red">$100K UFC bonus in Vegas</span>.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1231,14 +1183,14 @@ export default function DeckContent() {
 
               {/* Card 09 — Alex Dmitriev */}
               <Link href="/clients/alex-dmitriev" className="card reveal d-5">
-                <div className="card-photo alex-placeholder">ALEX DMITRIEV</div>
+                <div className="card-photo"><img src="/alex-dmitriev.webp" alt="Alex Dmitriev" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA CAPITAL · 09</div>
                   <p className="card-name">ALEX DMITRIEV</p>
-                  <h3 className="card-headline">Case in build.</h3>
+                  <h3 className="card-headline">One engagement. One outcome.</h3>
                   <p className="card-subcopy">
-                    Alex Dmitriev advises on cross-border M&amp;A from Dubai. McKinsey. BCG. Kearney. Two-hour advisory engagements that close eight-figure deals. The narrative system is in build.
+                    Alex Dmitriev advises on cross-border M&amp;A at Horizon Capital, from Dubai. McKinsey. BCG. Kearney. CRUDA was brought in once. <span className="accent-red">Sometimes the right answer is one conversation, not a system.</span>
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
@@ -1255,7 +1207,7 @@ export default function DeckContent() {
           <div className="slide-inner">
             <div className="bio-section">
               <div className="bio-photo-col reveal d-1">
-                <div className="bio-photo">PHOTO · FRAN HERRERA</div>
+                <div className="bio-photo"><img src="/fran-herrera.webp" alt="Fran Herrera" /></div>
                 <div className="bio-photo-caption">
                   <span className="number">01</span>
                   <h3 className="name">Fran Herrera</h3>
@@ -1269,14 +1221,14 @@ export default function DeckContent() {
                 <div className="bio-block-a">
                   <p>
                     Argentine. Lived in Dubai &amp; Russia. Worked for a decade across three continents with +12
-                    nationalities — TikTok, Nestlé, the United Nations, DeliveryHero.
+                    nationalities. ByteDance. Nestlé. United Nations. DeliveryHero.
                   </p>
                   <p className="italic-pull">
                     Every immigrant knows the same gap: you know exactly who you are, but the words don&rsquo;t
                     travel.
                   </p>
                   <p>That&rsquo;s not theory. That&rsquo;s Tuesday morning.</p>
-                  <p>Now I sit with founders who have the same problem — and we find the words together.</p>
+                  <p>Now I sit with founders who have the same problem. We find the words together.</p>
                 </div>
 
                 <hr className="bio-divider" />

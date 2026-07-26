@@ -17,6 +17,16 @@ const nextConfig = {
   swcMinify: true,
   // Support for Framer Motion and other animations
   transpilePackages: ['framer-motion'],
+  // 301: /work → /clients (Etapa 1 AEO)
+  async redirects() {
+    return [
+      {
+        source: '/work',
+        destination: '/clients',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;

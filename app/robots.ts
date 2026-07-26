@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/pricing'],
     },
-    sitemap: 'https://cruda.co/sitemap.xml',
+    sitemap: 'https://www.thecruda.com/sitemap.xml',
   };
 }

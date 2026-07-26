@@ -59,10 +59,10 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="nav-menu desktop-only">
             <Link
-              href="/work"
-              className={`nav-link ${pathname === '/work' ? 'active' : ''}`}
+              href="/clients"
+              className={`nav-link ${pathname === '/clients' ? 'active' : ''}`}
             >
-              Work
+              Clients
             </Link>
             <Link
               href="/about"
@@ -95,11 +95,11 @@ export const Navigation = () => {
       {/* Mobile Menu Slide Panel */}
       <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
         <Link
-          href="/work"
-          className={`mobile-nav-link ${pathname === '/work' ? 'active' : ''}`}
+          href="/clients"
+          className={`mobile-nav-link ${pathname === '/clients' ? 'active' : ''}`}
           onClick={closeMobileMenu}
         >
-          Work
+          Clients
         </Link>
         <Link
           href="/about"

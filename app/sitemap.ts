@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
+import { allEssays } from '@/content/essays';
 
 const BASE = 'https://www.thecruda.com';
 
@@ -37,6 +38,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    // Essays index + individual essays (etapa 5)
+    {
+      url: `${BASE}/essays`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...allEssays.map((e) => ({
+      url: `${BASE}/essays/${e.slug}`,
+      lastModified: e.updatedAt.startsWith('[FRAN')
+        ? new Date(e.publishedAt)
+        : new Date(e.updatedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    // Sports placeholder (etapa 5)
+    {
+      url: `${BASE}/sports`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
     // Clients (global)
     {

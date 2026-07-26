@@ -1,6 +1,6 @@
 /* CRUDA — Essay + essays index styles.
    Global tokens (--white, --ink, --ink-2, --red, --cream, --rule, --rule-2)
-   come from src/components/case-study.css (etapa 1). Local vars only here. */
+   come from src/components/case-study.css (etapa 1). Local vars only. */
 
 .essay-root {
   --sans: 'Archivo', -apple-system, sans-serif;
@@ -13,14 +13,12 @@
   font-size: 17px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 .essay-root *, .essay-root *::before, .essay-root *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.essay-root .w { max-width: 1280px; margin: 0 auto; padding: 0 var(--gut); }
 .essay-root .mono {
   font-family: var(--mono);
   font-weight: 500;
@@ -28,133 +26,159 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
+.essay-root html { scroll-behavior: smooth; }
 
-/* ---------- Essay page ---------- */
-.essay .es-head { padding: calc(72px + 12vh) 0 clamp(48px, 8vw, 88px); }
-.essay .es-eyebrow {
-  color: var(--red);
-  margin-bottom: 24px;
+/* ---------- Reading progress bar ---------- */
+.essay .essay-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--red);
+  width: var(--p, 0%);
+  z-index: 200;
+  transition: width 0.1s linear;
 }
-.essay .es-eyebrow .divider {
-  color: var(--ink-2);
-  margin: 0 10px;
+
+/* ---------- Essay page: 760px reading column ---------- */
+.essay article {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--gut) 120px;
 }
-.essay h1 {
-  font-size: clamp(38px, 6.2vw, 88px);
-  font-weight: 700;
-  line-height: 1.02;
-  letter-spacing: -0.024em;
-  max-width: 22ch;
+
+.essay .e-head { padding: calc(72px + 11vh) 0 0; }
+.essay .e-back {
+  display: inline-block;
   margin-bottom: 40px;
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color 0.2s;
 }
-.essay .es-byline {
+.essay .e-back:hover { color: var(--red); }
+.essay .e-meta { color: var(--red); margin-bottom: 26px; }
+.essay h1 {
+  font-size: clamp(32px, 4.6vw, 54px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.024em;
+  margin-bottom: 36px;
+}
+
+.essay .e-by {
   display: flex;
   align-items: center;
   gap: 14px;
   flex-wrap: wrap;
-  padding: 24px 0;
+  padding: 22px 0;
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
-.essay .es-avatar { border-radius: 50%; }
-.essay .es-author {
+.essay .e-av {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(1);
+}
+.essay .e-name {
   display: block;
   font-weight: 600;
   font-size: 15px;
 }
-.essay .es-role {
+.essay .e-role {
   display: block;
-  font-size: 14px;
+  font-size: 13.5px;
   color: var(--ink-2);
 }
-.essay .es-dates {
+.essay .e-dates {
   margin-left: auto;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11.5px;
   color: var(--ink-2);
+  letter-spacing: 0.04em;
+  text-align: right;
 }
 
-/* Answer capsule — sits above prose, bigger, weight 500 */
-.essay .es-capsule {
-  font-size: clamp(20px, 2.2vw, 27px);
-  line-height: 1.42;
-  font-weight: 500;
-  max-width: 72ch;
-  margin: 56px 0 48px;
-  letter-spacing: -0.008em;
-}
-
-.essay .es-hero { margin: 0 0 72px; }
-.essay .es-hero img { width: 100%; height: auto; display: block; }
-
-/* Body: prose only, no bullets */
-.essay .es-body { padding-bottom: 96px; }
-.essay .es-body p {
-  font-size: 18.5px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  max-width: 68ch;
-  margin-bottom: 22px;
-}
-.essay .es-body p:last-child { margin-bottom: 0; }
-.essay .es-body h2 {
-  font-size: clamp(24px, 2.8vw, 36px);
-  font-weight: 700;
-  line-height: 1.14;
-  letter-spacing: -0.018em;
-  color: var(--ink);
-  max-width: 24ch;
-  margin: 48px 0 24px;
-}
-/* Pull quote — sentence from the essay itself */
-.essay .es-pull {
-  margin: 40px 0;
-  padding-left: 28px;
+/* ANSWER CAPSULE — el bloque que la IA levanta */
+.essay .e-capsule {
+  margin: 48px 0 56px;
+  padding-left: 26px;
   border-left: 2px solid var(--red);
-  font-family: var(--serif);
-  font-size: clamp(24px, 2.6vw, 34px);
-  line-height: 1.24;
-  color: var(--ink);
-  font-weight: 400;
-  max-width: 30ch;
-}
-/* Attributed quote — from someone else */
-.essay .es-quote {
-  margin: 40px 0;
-  padding: 24px 32px;
-  background: var(--cream);
-  max-width: 68ch;
-}
-.essay .es-quote blockquote {
-  font-size: 20px;
-  line-height: 1.45;
-  color: var(--ink);
+  font-size: clamp(19px, 2vw, 23px);
+  line-height: 1.5;
   font-weight: 500;
-  margin: 0 0 14px;
+  letter-spacing: -0.008em;
+  color: var(--ink);
 }
-.essay .es-quote cite {
-  font-family: var(--mono);
+
+.essay .e-hero { margin: 32px 0 40px; }
+.essay .e-hero img { width: 100%; height: auto; display: block; }
+
+/* body */
+.essay .e-body p {
+  font-size: clamp(18px, 1.7vw, 20px);
+  line-height: 1.72;
+  color: #25252A;
+  margin-bottom: 28px;
+}
+.essay .e-body p.lead {
+  font-size: clamp(19px, 1.8vw, 21px);
+}
+.essay .e-body h2 {
+  font-size: clamp(24px, 2.6vw, 32px);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: -0.018em;
+  margin: 56px 0 24px;
+}
+
+/* pull quote — frase del propio texto */
+.essay .e-body p.e-pull {
+  margin: 52px 0;
+  font-family: var(--serif);
+  font-size: clamp(26px, 3.4vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -0.014em;
+  color: var(--ink);
+  max-width: 18ch;
+}
+
+/* cita atribuida */
+.essay .e-quote {
+  margin: 44px 0;
+  padding: 28px 32px;
+  background: var(--cream);
+}
+.essay .e-quote p {
+  font-size: clamp(18px, 1.8vw, 21px);
+  line-height: 1.5;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+.essay .e-quote cite {
   font-style: normal;
-  font-size: 12px;
+  font-family: var(--mono);
+  font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-2);
 }
 
-/* FAQ (same treatment as case study) */
-.essay .es-faq {
+/* FAQ */
+.essay .e-faq {
   border-top: 1px solid var(--ink);
   padding-top: 48px;
-  margin-bottom: 80px;
+  margin: 64px 0 32px;
 }
-.essay .es-faq h2 {
-  font-size: clamp(24px, 2.8vw, 36px);
+.essay .e-faq h2 {
+  font-size: clamp(24px, 2.8vw, 34px);
   font-weight: 700;
   letter-spacing: -0.018em;
   margin-bottom: 32px;
 }
-.essay .es-faq details { border-bottom: 1px solid var(--rule-2); }
-.essay .es-faq summary {
+.essay .e-faq details { border-bottom: 1px solid var(--rule-2); }
+.essay .e-faq summary {
   cursor: pointer;
   list-style: none;
   padding: 26px 44px 26px 0;
@@ -163,8 +187,8 @@
   font-size: 19px;
   letter-spacing: -0.006em;
 }
-.essay .es-faq summary::-webkit-details-marker { display: none; }
-.essay .es-faq summary::after {
+.essay .e-faq summary::-webkit-details-marker { display: none; }
+.essay .e-faq summary::after {
   content: '+';
   position: absolute;
   right: 6px;
@@ -174,163 +198,219 @@
   font-size: 20px;
   color: var(--red);
 }
-.essay .es-faq details[open] summary::after { content: '–'; }
-.essay .es-faq details p {
+.essay .e-faq details[open] summary::after { content: '–'; }
+.essay .e-faq details p {
   padding: 0 0 30px;
   font-size: 17.5px;
   line-height: 1.6;
   color: var(--ink-2);
-  max-width: 68ch;
 }
 
-/* Email capture — only surface of the holding that captures */
-.essay .es-capture,
-.essay-idx .es-capture {
-  margin-top: 72px;
-  padding: 40px 0 64px;
-  border-top: 1px solid var(--rule);
-  max-width: 720px;
+/* subscribe (essay page) */
+.essay .e-sub {
+  margin-top: 88px;
+  padding-top: 48px;
+  border-top: 1px solid var(--ink);
 }
-.essay .es-capture .es-capture-note,
-.essay-idx .es-capture .es-capture-note {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+.essay .e-sub h3 {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.016em;
+  margin-bottom: 14px;
+  max-width: 20ch;
+}
+.essay .e-sub p {
   color: var(--ink-2);
-  margin-bottom: 16px;
+  margin-bottom: 28px;
+  max-width: 44ch;
+  font-size: 17px;
 }
-.essay .es-capture .es-capture-line,
-.essay-idx .es-capture .es-capture-line {
-  font-size: clamp(18px, 1.6vw, 21px);
-  color: var(--ink);
-  margin-bottom: 24px;
-  max-width: 56ch;
-}
-.essay .es-capture form,
-.essay-idx .es-capture form {
+.essay .e-form {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
-  align-items: stretch;
+  max-width: 480px;
 }
-.essay .es-capture input[type="email"],
-.essay-idx .es-capture input[type="email"] {
-  flex: 1 1 260px;
-  min-width: 0;
-  padding: 14px 16px;
+.essay .e-form input {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid var(--rule);
+  padding: 16px 18px;
   font-family: var(--sans);
   font-size: 16px;
-  color: var(--ink);
   background: var(--white);
-  border: 1px solid var(--rule);
-  border-radius: 0;
 }
-.essay .es-capture input[type="email"]:focus,
-.essay-idx .es-capture input[type="email"]:focus {
-  outline: 2px solid var(--red);
-  outline-offset: 2px;
+.essay .e-form input:focus {
+  outline: none;
+  border-color: var(--ink);
 }
-.essay .es-capture button,
-.essay-idx .es-capture button {
+.essay .e-form button {
   font-family: var(--mono);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   background: var(--ink);
   color: var(--white);
-  padding: 14px 32px;
   border: none;
+  padding: 17px 30px;
   cursor: pointer;
   transition: background 0.2s;
 }
-.essay .es-capture button:hover,
-.essay-idx .es-capture button:hover { background: var(--red); }
-.essay .es-capture-todo,
-.essay-idx .es-capture-todo {
-  margin-top: 12px;
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--red);
-  letter-spacing: 0.08em;
-}
+.essay .e-form button:hover { background: var(--red); }
 
 /* ---------- Essays index ---------- */
-.essay-idx { padding: clamp(96px, 14vh, 160px) 0 96px; }
-.essay-idx .idx-eyebrow {
+.essay-idx {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+.essay-idx-header {
+  padding: calc(72px + 13vh) 0 clamp(56px, 7vw, 88px);
+}
+.essay-idx .eyebrow {
   color: var(--red);
-  margin-bottom: 24px;
+  margin-bottom: 30px;
 }
 .essay-idx h1 {
-  font-size: clamp(36px, 5.2vw, 68px);
-  font-weight: 700;
-  line-height: 1.04;
-  letter-spacing: -0.026em;
-  max-width: 20ch;
-  margin-bottom: 24px;
+  font-family: var(--serif);
+  font-size: clamp(40px, 6.2vw, 88px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.016em;
+  margin-bottom: 28px;
 }
-.essay-idx .idx-sub {
-  font-size: clamp(18px, 1.6vw, 21px);
+.essay-idx .intro {
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.5;
   color: var(--ink-2);
-  max-width: 56ch;
-  margin-bottom: 64px;
+  max-width: 46ch;
 }
-.essay-idx .es-list {
+
+.essay-idx .list {
   border-top: 1px solid var(--ink);
   list-style: none;
   padding: 0;
-  margin: 0 0 32px;
+  margin: 0;
 }
-.essay-idx .es-list li { border-bottom: 1px solid var(--rule-2); }
-.essay-idx .es-list a {
+.essay-idx .item {
   display: grid;
-  grid-template-columns: 64px 1fr auto;
-  gap: clamp(20px, 3vw, 40px);
-  align-items: start;
-  padding: 28px 0;
-  color: inherit;
+  grid-template-columns: 64px 1fr 40px;
+  gap: clamp(16px, 3vw, 40px);
+  align-items: baseline;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--rule-2);
   text-decoration: none;
-  transition: color 0.2s;
+  color: inherit;
+  transition: padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.essay-idx .es-list a:hover .es-idx-title { color: var(--red); }
-.essay-idx .es-idx-n {
+.essay-idx .item:hover { padding-left: 12px; }
+.essay-idx .n {
   font-family: var(--mono);
+  font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.16em;
   color: var(--ink-2);
-  padding-top: 6px;
+  transition: color 0.3s;
 }
-.essay-idx .es-idx-title {
-  font-size: clamp(22px, 2.2vw, 30px);
+.essay-idx .item:hover .n { color: var(--red); }
+.essay-idx .t {
+  font-size: clamp(22px, 2.6vw, 34px);
   font-weight: 700;
   line-height: 1.16;
-  letter-spacing: -0.014em;
-  color: var(--ink);
-  max-width: 24ch;
-  margin-bottom: 10px;
-  transition: color 0.2s;
+  letter-spacing: -0.018em;
+  max-width: 26ch;
+  margin-bottom: 14px;
+  transition: color 0.3s;
 }
-.essay-idx .es-idx-meta {
+.essay-idx .item:hover .t { color: var(--red); }
+.essay-idx .m {
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.14em;
-  color: var(--ink-2);
   text-transform: uppercase;
+  color: var(--ink-2);
 }
-.essay-idx .es-idx-arrow {
+.essay-idx .a {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.14em;
+  font-size: 16px;
+  color: var(--ink-2);
+  justify-self: end;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+}
+.essay-idx .item:hover .a {
   color: var(--red);
-  padding-top: 8px;
+  transform: translateX(6px);
 }
 
+/* subscribe (index) */
+.essay-idx .sub {
+  margin-top: 96px;
+  padding: clamp(44px, 6vw, 72px) 0;
+  border-top: 1px solid var(--ink);
+}
+.essay-idx .sub h2 {
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+  margin-bottom: 18px;
+}
+.essay-idx .sub p {
+  color: var(--ink-2);
+  max-width: 46ch;
+  margin-bottom: 34px;
+  font-size: clamp(17px, 1.6vw, 19px);
+}
+.essay-idx .form {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  max-width: 520px;
+}
+.essay-idx .form input {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid var(--rule);
+  padding: 17px 20px;
+  font-family: var(--sans);
+  font-size: 16px;
+  background: var(--white);
+}
+.essay-idx .form input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+.essay-idx .form button {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--white);
+  border: none;
+  padding: 18px 32px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.essay-idx .form button:hover { background: var(--red); }
+
 @media (max-width: 860px) {
-  .essay .es-dates { margin-left: 0; width: 100%; }
-  .essay-idx .es-list a {
-    grid-template-columns: 40px 1fr;
-    row-gap: 8px;
+  .essay .e-head { padding-top: 130px; }
+  .essay .e-dates { margin-left: 0; width: 100%; text-align: left; }
+  .essay-idx-header { padding-top: 130px; padding-bottom: 56px; }
+  .essay-idx .item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 28px 0;
   }
-  .essay-idx .es-idx-arrow { display: none; }
+  .essay-idx .a { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .essay-root *, .essay-root *::before, .essay-root *::after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

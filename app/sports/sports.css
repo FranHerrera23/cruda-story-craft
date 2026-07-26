@@ -51,15 +51,16 @@
 .sports h1 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(40px, 7vw, 108px);
+  font-size: clamp(38px, 7vw, 104px);
   line-height: 0.98;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.018em;
   color: var(--ink);
-  max-width: 18ch;
-  margin-bottom: clamp(24px, 3.6vh, 48px);
+  max-width: 16ch;
+  margin-bottom: clamp(24px, 4vh, 44px);
 }
 .sports .soon {
   font-family: var(--mono);
+  font-weight: 500;
   color: var(--ink-2);
   font-size: 12px;
   letter-spacing: 0.2em;

@@ -54,7 +54,7 @@ type Row =
   | { kind: 'wide-headline'; label: string; headline: string; list: string }
 
 const AT_A_GLANCE: Row[] = [
-  { kind: 'simple', label: 'Based in', value: '[FRAN]' },
+  { kind: 'simple', label: 'Based in', value: 'Russia' },
   { kind: 'simple', label: 'Building', value: 'CRUDA, a holding company' },
   {
     kind: 'simple',
@@ -72,9 +72,9 @@ const AT_A_GLANCE: Row[] = [
   {
     kind: 'wide-headline',
     label: 'Clients and teams from',
-    headline: '24 countries across 4 continents',
+    headline: '26 countries across 4 continents',
     list:
-      'Argentina · Peru · Brazil · United States · Spain · UK · Germany · Czech Republic · Ukraine · Russia · Kazakhstan · Saudi Arabia · UAE · Lebanon · Israel · India · Pakistan · China · Indonesia · Malaysia · Philippines',
+      'Argentina · Peru · Brazil · United States · Spain · France · Italy · UK · Germany · Czech Republic · Ukraine · Russia · Kazakhstan · Saudi Arabia · UAE · Lebanon · Israel · India · Pakistan · China · Indonesia · Malaysia · Philippines',
   },
   {
     kind: 'wide-headline',
@@ -86,7 +86,8 @@ const AT_A_GLANCE: Row[] = [
   {
     kind: 'simple',
     label: 'Before that',
-    value: 'Comedy, music, nightlife and entertainment. 20,000+ tickets sold.',
+    value:
+      'Comedy, music, nightlife and entertainment. 20+ shows produced for 12,000+ people.',
   },
   { kind: 'simple', label: 'Writes', value: '[FRAN — nombre de la publicación]' },
 ]
@@ -191,8 +192,8 @@ export default function OurFounderPage() {
                     una capacidad, no en orden cronológico.]
                   </p>
                   <p>
-                    Then Dubai. Clients and teammates from twenty-four countries. I built the PR
-                    strategy for a side event at the White House during the US-Africa Summit —
+                    Then Dubai. Clients and teammates from more than twenty countries. I built the
+                    PR strategy for a side event at the White House during the US-Africa Summit —
                     Fortune 1000 CEOs and members of the Ghanaian royal family in the room. It ended
                     up in Associated Press.
                   </p>
@@ -223,7 +224,7 @@ export default function OurFounderPage() {
             <div className="prose">
               <p className="lead">I read rooms I don&apos;t come from.</p>
               <p>
-                Twenty-four countries and fourteen industries is not a list of places I&apos;ve
+                Twenty-six countries and fourteen industries is not a list of places I&apos;ve
                 been. It&apos;s the reason I can sit with a lighting designer in Lima, a founder in
                 Riyadh and a manufacturer in Shanghai, and speak at the same level in all three —
                 because merit is measured differently in each room, and I learned to read the code

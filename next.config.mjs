@@ -17,12 +17,19 @@ const nextConfig = {
   swcMinify: true,
   // Support for Framer Motion and other animations
   transpilePackages: ['framer-motion'],
-  // 301: /work → /clients (Etapa 1 AEO)
+  // 301: legacy → new routes
   async redirects() {
     return [
       {
+        // Etapa 1: Work → Clients (AEO case study system)
         source: '/work',
         destination: '/clients',
+        permanent: true,
+      },
+      {
+        // Etapa 3: /about is now the A&D vertical about
+        source: '/about',
+        destination: '/architecture-design/about',
         permanent: true,
       },
     ]

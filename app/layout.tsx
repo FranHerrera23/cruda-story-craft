@@ -3,7 +3,8 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Navigation } from "@/components/Navigation";
+import Nav from "@/components/Nav";
+import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
 import Providers from './providers';
@@ -79,7 +80,7 @@ export default function RootLayout({
             <Sonner />
             <ScrollToTop />
             <ScrollRevealInit />
-            <Navigation />
+            <Nav />
             <main className="route-transition-wrapper">
               {children}
             </main>

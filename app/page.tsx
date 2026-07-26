@@ -1,63 +1,96 @@
 import type { Metadata } from 'next';
-import HeroManifesto from "@/components/HeroManifesto";
-import PhilosophySection from "@/components/PhilosophySection";
-import NarrativeAlignmentSection from "@/components/NarrativeAlignmentSection";
-import WhoThisIsForSection from "@/components/WhoThisIsForSection";
-import HowWeWorkSection from "@/components/HowWeWorkSection";
-import OurClientsSection from "@/components/OurClientsSection";
-import TestimonialsSection from "@/components/TestimonialsSection";
-import BothSidesSection from "@/components/BothSidesSection";
-import CTASection from "@/components/CTASection";
+import './home.css';
+
+/* ------------------------------------------------------------------
+   CRUDA — Home (`/`). Etapa 3.
+   Copy locked from thecruda-home.html — 52 words, do not modify.
+   La madre no captura nada: no form, no CTA button. Declares.
+------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
-  title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-  description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
+  title: 'CRUDA — Find the essence. Strip the bullshit.',
+  description:
+    'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you. Architecture & Design, Sports, AI Concierge.',
+  alternates: { canonical: 'https://www.thecruda.com' },
   openGraph: {
-    title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
-    url: 'https://cruda.co',
+    title: 'CRUDA — Find the essence. Strip the bullshit.',
+    description:
+      'We create, scale and invest in people who know that nobody buys the company. They buy you.',
+    url: 'https://www.thecruda.com',
+    type: 'website',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
+};
+
+const ORG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'CRUDA',
+  url: 'https://www.thecruda.com',
+  slogan: 'Find the essence. Strip the bullshit.',
+  description:
+    'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
+  founder: {
+    '@type': 'Person',
+    name: 'Francisco Herrera',
+    jobTitle: 'Founder',
   },
-  alternates: {
-    canonical: 'https://cruda.co',
-  },
+  subOrganization: [
+    {
+      '@type': 'Organization',
+      name: 'CRUDA Architecture & Design',
+      url: 'https://www.thecruda.com/architecture-design',
+    },
+    {
+      '@type': 'Organization',
+      name: 'CRUDA Sports',
+      url: 'https://www.thecruda.com/sports',
+    },
+    {
+      '@type': 'Organization',
+      name: 'CRUDA AI Concierge',
+      url: 'https://www.thecruda.com/ai-concierge',
+    },
+  ],
 };
 
 export default function HomePage() {
   return (
-    <main className="overflow-x-hidden">
-      {/* Section 1: Hero */}
-      <HeroManifesto />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
+      />
+      <div className="cruda-home-root cruda-home">
+        <div className="shell">
+          <main className="mid">
+            <p className="mono etym">
+              Cruda &middot; <em>raw, in Spanish</em>
+            </p>
 
-      {/* Section 2: Zeitgeist / Philosophy (white background) */}
-      <PhilosophySection />
+            <h1 className="manifesto">
+              <span>Find the essence.</span>
+              <span>Strip the bullshit.</span>
+            </h1>
 
-      {/* Section 3: Solution / Narrative Alignment (white background) */}
-      <NarrativeAlignmentSection />
+            <div className="say">
+              <p>The best work doesn&apos;t come from adding. It comes from taking away.</p>
+              <p>
+                We create, scale and invest in people who know that nobody buys the company.
+              </p>
+              <p className="punch">They buy you.</p>
+            </div>
+          </main>
 
-      {/* Section 4: How It Works (white background) — MOVED UP per V6 */}
-      <HowWeWorkSection />
-
-      {/* Section 5: Who This Is For (white background) */}
-      <WhoThisIsForSection />
-
-      {/* Section 6: What Changes / Outcome (white background) */}
-
-      {/* Section 7: Our Clients (white background) */}
-      <OurClientsSection />
-
-      {/* Section 8: We've Been On Both Sides + Logo Marquee (white background) */}
-      <BothSidesSection />
-
-      {/* Section 9: Testimonials (dark background) */}
-      <TestimonialsSection />
-
-      {/* Section 10: Final CTA (dark background) */}
-      <CTASection />
-    </main>
+          <footer className="foot">
+            <div className="cos mono">
+              <span>We find stories, we don&apos;t invent them</span>
+              <span>No urgency, no bullshit, ever</span>
+              <span>Raw over polished. Slow is fine</span>
+            </div>
+            <span className="mono yr">CRUDA &copy; 2026</span>
+          </footer>
+        </div>
+      </div>
+    </>
   );
 }

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'About — CRUDA',
     description: 'Trust moved. We followed. Lean by design. Senior by default. Fortune 500 experience, boutique execution.',
-    url: 'https://cruda.co/about',
+    url: 'https://www.thecruda.com/architecture-design/about',
   },
   twitter: {
     card: 'summary_large_image',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     description: 'Trust moved. We followed. Lean by design. Senior by default. Fortune 500 experience, boutique execution.',
   },
   alternates: {
-    canonical: 'https://cruda.co/about',
+    canonical: 'https://www.thecruda.com/architecture-design/about',
   },
 };
 

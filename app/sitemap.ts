@@ -31,6 +31,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // Founder (etapa 4)
+    {
+      url: `${BASE}/our-founder`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Clients (global)
     {
       url: `${BASE}/clients`,

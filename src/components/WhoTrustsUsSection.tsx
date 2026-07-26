@@ -53,14 +53,9 @@ const clients: Client[] = [
     photoPosition: "center 25%",
     quote: "CRUDA helped me position a brand nobody knew into the choice for architects who care about quality."
   },
-  {
-    slug: "nitin-passi",
-    name: "[Name Protected]",
-    title: "Founder & Creative Director · Global Fashion House",
-    isConfidential: true,
-    quote: "They understood what we couldn't say publicly was just as important as what we could."
-  }
 ];
+// Nitin removed from A&D portfolio (etapa 3 debt): retail breaks the vertical thread.
+// The case study remains at /clients/nitin-passi — it just no longer leads A&D.
 
 const WhoTrustsUsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();

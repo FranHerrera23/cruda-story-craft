@@ -55,15 +55,9 @@ const clients: Client[] = [
     photo: juanPabloPhoto.src,
     photoPosition: "center 25%"
   },
-  {
-    slug: "nitin-passi",
-    name: "[Confidential]",
-    title: "Founder & CEO, Retail Holding",
-    context: "$500M+ revenue",
-    transformation: "",
-    isConfidential: true
-  }
 ];
+// Nitin removed from A&D portfolio (etapa 3 debt): retail breaks the vertical thread.
+// The case study remains at /clients/nitin-passi — it just no longer leads A&D.
 
 const OurClientsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();

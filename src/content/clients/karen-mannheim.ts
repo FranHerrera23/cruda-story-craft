@@ -19,7 +19,7 @@ export const karenMannheim: CaseStudy = {
     role: 'Founder',
     company: 'TRAZZO Lighting',
     location: 'Lima, Peru → Miami, Florida',
-    photo: '/clients/karen-mannheim/portrait.jpg',
+    photo: '/clients/karen-mannheim.jpg',
     photoAlt: 'Karen Mannheim, founder of TRAZZO Lighting',
   },
 
@@ -44,7 +44,7 @@ export const karenMannheim: CaseStudy = {
     { value: '33 years', label: 'Of practice, made legible' },
   ],
 
-  heroImage: '/clients/karen-mannheim/hero.jpg',
+  heroImage: '/clients/karen-mannheim-hero.jpg',
   heroAlt: 'Karen Mannheim, founder of TRAZZO Lighting, Lima',
 
   sections: [

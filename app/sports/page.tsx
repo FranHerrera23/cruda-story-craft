@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import './sports.css'
 
 /* ------------------------------------------------------------------
-   CRUDA Sports — placeholder. Etapa 5.
-   One screen, no scroll. No form, no CTA, no date.
-   No Service schema — no service exists yet.
+   CRUDA Sports — placeholder (part 6 rewrite).
+   Full black. Headline in Instrument Serif via .display. One mono
+   line at the foot with a contact address. No form. No CTA. No date.
+   No Service schema — the service does not exist yet.
 ------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
@@ -20,14 +21,15 @@ export default function SportsPage() {
       <div className="shell">
         <main className="mid">
           <p className="mono eyebrow">CRUDA Sports</p>
-          <h1>
+          <h1 className="display headline">
             A media and marketing company investing in athletes.
           </h1>
-          <p className="soon">Coming soon</p>
         </main>
         <footer className="foot">
-          <span className="mono yr">CRUDA &copy; 2026</span>
-          <span className="mono yr">thecruda.com</span>
+          <p className="mono soon">Coming soon</p>
+          <p className="mono contact">
+            <a href="mailto:hello@thecruda.com">hello@thecruda.com</a>
+          </p>
         </footer>
       </div>
     </div>

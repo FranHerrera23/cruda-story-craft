@@ -2,48 +2,64 @@
 
 import { useEffect } from 'react'
 
-/* Site-wide reveal — brief v2 Parte 2.1.
+/* Site-wide reveal — hardened against anchor-scroll invisibility.
 
    Contract with the CSS:
-   - Default state on .reveal is visible (opacity 1, transform none).
+   - .reveal is visible by default (opacity 1, transform none).
    - Only when <html> carries .js-ready AND user is not in
      reduced-motion does the CSS hide any .reveal that lacks
-     .is-visible. If JS fails, .js-ready never lands and everything
-     stays visible. That is the failsafe.
+     .is-visible.
 
-   What this hook does, in order:
-   1. Stamp .js-ready on <html>. This is the ONLY thing that turns the
-      hidden-then-fade behavior on.
-   2. For each .reveal element inside a .reveal-group, compute
-      --reveal-delay = siblingIndex * 80ms.
-   3. Observe every .reveal. threshold 0 + rootMargin -12% bottom.
-      Unobserve after fire.
-   4. Safety timeout at 3 s: re-query the document for every .reveal
-      that is still not .is-visible and stamp it. Re-query so that any
-      .reveal added after mount is not missed.
+   Ordering that this hook guarantees before .js-ready is added:
+   1. For every .reveal already in view (rect.top < innerHeight),
+      stamp .is-visible up front. That way the CSS gate never hides
+      an above-fold block — including blocks scrolled to via a URL
+      fragment like /our-founder#proof.
+   2. Only then flip .js-ready and set up the observer for blocks
+      below the fold.
 
-   Reduced-motion: nothing to do — the CSS gate already skips the
-   hidden state, so .reveal is already visible. We still stamp
-   .js-ready so downstream selectors that key off it behave
-   consistently. */
+   Safety timeout: re-query the DOM for any .reveal still not
+   .is-visible after 3 s and stamp it. This catches late-mounted
+   .reveal elements the observer never saw.
+
+   Under reduced-motion, the CSS gate is inert; we still stamp
+   .js-ready and .is-visible so downstream selectors are consistent. */
 
 const STAGGER_MS = 80
 const SAFETY_TIMEOUT_MS = 3000
 
+function isInViewport(el: HTMLElement): boolean {
+  const rect = el.getBoundingClientRect()
+  // Any part visible or already scrolled past. Anything above the
+  // current viewport bottom counts as "already there".
+  return rect.top < window.innerHeight
+}
+
 export default function RevealOnScroll() {
   useEffect(() => {
-    // 1. Flag JS as ready. This is the switch that turns on the
-    // hidden-until-observed behavior via the CSS gate.
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
+
+    // Step 1 — mark everything already in view visible BEFORE turning
+    // on the CSS hide gate. Prevents anchor-scrolled blocks from ever
+    // painting invisible.
+    nodes.forEach((el) => {
+      if (isInViewport(el)) el.classList.add('is-visible')
+    })
+
+    // Step 2 — flip the CSS gate.
     document.documentElement.classList.add('js-ready')
 
-    // Under reduced-motion the CSS never hides, so we can stop here.
+    // Under reduced-motion, the CSS never hides — sweep any remaining
+    // .reveal to visible and stop.
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) return
+    if (reduce) {
+      nodes.forEach((el) => el.classList.add('is-visible'))
+      return
+    }
 
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
     if (nodes.length === 0) return
 
-    // 2. Per-element stagger inside .reveal-group.
+    // Per-element --reveal-delay inside a .reveal-group.
     nodes.forEach((el) => {
       const group = el.closest<HTMLElement>('.reveal-group')
       if (!group) return
@@ -52,7 +68,7 @@ export default function RevealOnScroll() {
       if (i > 0) el.style.setProperty('--reveal-delay', `${i * STAGGER_MS}ms`)
     })
 
-    // 3. Observe.
+    // Observer for blocks below the fold (or that came into being late).
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
@@ -63,10 +79,13 @@ export default function RevealOnScroll() {
       },
       { rootMargin: '0px 0px -12% 0px', threshold: 0 }
     )
-    nodes.forEach((el) => io.observe(el))
+    // Only observe nodes that haven't already been marked visible.
+    nodes.forEach((el) => {
+      if (!el.classList.contains('is-visible')) io.observe(el)
+    })
 
-    // 4. Safety timeout — re-query at fire time so late-mounted
-    // .reveal elements get swept in too.
+    // Safety timeout — re-query at fire time so late-mounted .reveal
+    // elements the observer never saw still land visible.
     const safety = window.setTimeout(() => {
       document
         .querySelectorAll<HTMLElement>('.reveal:not(.is-visible)')

@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Nav from "@/components/Nav";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import RevealOnScroll from "@/components/RevealOnScroll";
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -76,11 +75,6 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* EB Garamond + Instrument Sans for About page redesign */}
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        {/* Reveal safety net — .reveal is the single site-wide selector.
-            If JS never runs, the resting state is painted immediately. */}
-        <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
-        </noscript>
       </head>
       <body>
         <Providers>
@@ -88,7 +82,6 @@ export default function RootLayout({
             <Toaster />
             <Sonner />
             <ScrollToTop />
-            <RevealOnScroll />
             <Nav />
             <main className="route-transition-wrapper" data-page>
               {children}

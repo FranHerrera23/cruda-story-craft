@@ -45,7 +45,7 @@ export default function DeckContent() {
       <style jsx global>{`
         :root {
           /* Brand */
-          --cruda-red: #FF2E63;
+          --cruda-red: #E8623A;
           --cruda-dark: #0A0A0A;
           --cruda-white: #FFFFFF;
           --cruda-cream: #F5F1E8;

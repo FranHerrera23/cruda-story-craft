@@ -1,5 +1,5 @@
 /* CRUDA — /our-founder (part 3 rewrite).
-   Global tokens (--white, --ink, --ink-2, --red, --cream, --rule, --rule-2,
+   Global tokens (--white, --ink, --ink-2, --accent, --cream, --rule, --rule-2,
    plus part 9 tokens for tracking / lh / measure / ease) come from
    src/components/case-study.css. Scoped under .of. */
 
@@ -50,11 +50,11 @@
 
 /* ---------- Eyebrow ---------- */
 .of .of-eyebrow {
-  color: var(--red);
+  color: var(--accent);
   margin-bottom: 28px;
 }
 .of .of-eyebrow--on-ink {
-  color: var(--red); /* red pops on ink too */
+  color: var(--accent); /* red pops on ink too */
 }
 
 /* ---------- Measures ---------- */
@@ -197,7 +197,7 @@
 
 /* ---------- 04 — Proof ----------
    Punto 4: left-aligned, H2 shared with Block 02, arrow slides right
-   on hover. Underline in --red stays. */
+   on hover. Underline in --accent stays. */
 .of .of-proof-sub {
   color: var(--ink-2);
   font-size: var(--fs-lead);
@@ -211,11 +211,11 @@
   gap: 10px;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--red);
+  border-bottom: 1px solid var(--accent);
   padding-bottom: 5px;
   transition: color 0.2s;
 }
-.of .of-proof-link:hover { color: var(--red); }
+.of .of-proof-link:hover { color: var(--accent); }
 .of .of-proof-arrow {
   display: inline-block;
   transition: transform 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
@@ -223,14 +223,14 @@
 .of .of-proof-link:hover .of-proof-arrow { transform: translateX(8px); }
 
 /* ---------- 05 — Contact ---------- */
-.of .of-block--ink .of-eyebrow { color: var(--red); }
+.of .of-block--ink .of-eyebrow { color: var(--accent); }
 .of .of-close-line {
   color: var(--white);
   max-width: 18ch;
   margin: 24px 0 56px;
 }
 /* Punto 5: proper button, not floating text. Explicit padding, mono
-   letter-spacing 0.12em, hover inverts to --red in 300ms. */
+   letter-spacing 0.12em, hover inverts to --accent in 300ms. */
 .of .of-cta {
   display: inline-block;
   font-family: var(--mono);
@@ -246,7 +246,7 @@
               color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
 .of .of-cta:hover {
-  background-color: var(--red);
+  background-color: var(--accent);
   color: var(--white);
 }
 
@@ -283,7 +283,7 @@
   padding: 4px 0;
 }
 .of .of-sticky-idx a:hover { color: var(--ink); }
-.of .of-sticky-idx a.is-active { color: var(--red); }
+.of .of-sticky-idx a.is-active { color: var(--accent); }
 
 @media (min-width: 1024px) {
   .of .of-sticky-idx { display: block; }

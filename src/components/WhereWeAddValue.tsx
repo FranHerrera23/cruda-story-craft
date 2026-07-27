@@ -92,7 +92,7 @@ const WhereWeAddValue = () => {
               style={{ 
                 fontSize: 'clamp(20px, 2vw, 24px)',
                 color: '#3D3835',
-                borderBottom: '2px solid #FF2E63'
+                borderBottom: '2px solid #E8623A'
               }}
             >
               You're building for:

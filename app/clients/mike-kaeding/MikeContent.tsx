@@ -237,7 +237,7 @@ const MikeKaedingCaseStudy = () => {
                   <div style={{ padding: '24px' }}>
                     <p style={{
                       fontSize: '12px',
-                      color: '#FF2E63',
+                      color: '#E8623A',
                       fontWeight: 600,
                       letterSpacing: '0.05em',
                       textTransform: 'uppercase',

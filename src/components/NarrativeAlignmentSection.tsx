@@ -190,7 +190,7 @@ const NarrativeAlignmentSection = () => {
         }
 
         .solution-title.red {
-          color: #FF2E63;
+          color: #E8623A;
         }
 
         .solution-title.animate {
@@ -264,7 +264,7 @@ const NarrativeAlignmentSection = () => {
         .solution-line {
           width: 0;
           height: 3px;
-          background: #FF2E63;
+          background: #E8623A;
           margin-bottom: 40px;
           transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -293,7 +293,7 @@ const NarrativeAlignmentSection = () => {
         }
 
         .highlight-red {
-          color: #FF2E63;
+          color: #E8623A;
           font-weight: 500;
           position: relative;
         }
@@ -304,7 +304,7 @@ const NarrativeAlignmentSection = () => {
           left: 0;
           width: 0;
           height: 2px;
-          background: #FF2E63;
+          background: #E8623A;
           transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 

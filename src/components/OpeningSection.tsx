@@ -91,7 +91,7 @@ const OpeningSection = () => {
           <h2 
             className="text-[42px] md:text-[64px] font-bold leading-[1.2] mb-8 transition-all duration-[800ms]"
             style={{ 
-              color: '#FF2E63',
+              color: '#E8623A',
               opacity: moment2Visible ? 1 : 0,
               transform: moment2Visible ? 'scale(1)' : 'scale(0.95)',
               willChange: 'transform'
@@ -132,7 +132,7 @@ const OpeningSection = () => {
                 willChange: 'transform'
               }}
             >
-              <div className="text-[72px] font-bold leading-[1] mb-6" style={{ color: '#FF2E63' }}>
+              <div className="text-[72px] font-bold leading-[1] mb-6" style={{ color: '#E8623A' }}>
                 01
               </div>
               <h3 className="text-[22px] md:text-[24px] font-bold leading-[1.3] mb-3" style={{ color: '#3D3835' }}>
@@ -153,7 +153,7 @@ const OpeningSection = () => {
                 willChange: 'transform'
               }}
             >
-              <div className="text-[72px] font-bold leading-[1] mb-6" style={{ color: '#FF2E63' }}>
+              <div className="text-[72px] font-bold leading-[1] mb-6" style={{ color: '#E8623A' }}>
                 02
               </div>
               <h3 className="text-[22px] md:text-[24px] font-bold leading-[1.3] mb-3" style={{ color: '#3D3835' }}>
@@ -174,7 +174,7 @@ const OpeningSection = () => {
                 willChange: 'transform'
               }}
             >
-              <div className="text-[72px] font-bold leading-[1] mb-6" style={{ color: '#FF2E63' }}>
+              <div className="text-[72px] font-bold leading-[1] mb-6" style={{ color: '#E8623A' }}>
                 03
               </div>
               <h3 className="text-[22px] md:text-[24px] font-bold leading-[1.3] mb-3" style={{ color: '#3D3835' }}>
@@ -199,7 +199,7 @@ const OpeningSection = () => {
                 className="text-[20px] md:text-[24px] font-normal leading-[1.5] px-6 py-3 border-t-2 border-b-2"
                 style={{ 
                   color: '#3D3835',
-                  borderColor: '#FF2E63'
+                  borderColor: '#E8623A'
                 }}
               >
                 CRUDA turns expertise into narratives that create belief, not just attention.

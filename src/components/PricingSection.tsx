@@ -29,7 +29,7 @@ const PricingSection = () => {
             lineHeight: '1.8'
           }}
         >
-          We work with <span style={{ color: '#FF2E63', fontWeight: 700 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed.
+          We work with <span style={{ color: '#E8623A', fontWeight: 700 }}>one new client per month</span> because the work we do—finding the story beneath the expertise, shaping it into something people feel—can't be rushed.
         </p>
 
         {/* Philosophy Statement */}
@@ -40,7 +40,7 @@ const PricingSection = () => {
             lineHeight: '1.6'
           }}
         >
-          It requires <span style={{ color: '#FF2E63', fontWeight: 700 }}>presence, not productivity. Focus, not volume.</span>
+          It requires <span style={{ color: '#E8623A', fontWeight: 700 }}>presence, not productivity. Focus, not volume.</span>
         </p>
 
         {/* Simplified Pricing Card - Teaser */}
@@ -89,7 +89,7 @@ const PricingSection = () => {
           <Link
             href="/contact"
             className="inline-block text-[15px] font-medium transition-all duration-300 hover:underline"
-            style={{ color: '#FF2E63' }}
+            style={{ color: '#E8623A' }}
           >
             Start a Conversation →
           </Link>
@@ -101,7 +101,7 @@ const PricingSection = () => {
           <div 
             className="inline-block px-8 py-3 rounded-full mb-8"
             style={{ 
-              backgroundColor: '#FF2E63',
+              backgroundColor: '#E8623A',
               color: '#FFFFFF',
               fontSize: '12px',
               letterSpacing: '1.5px',
@@ -135,7 +135,7 @@ const PricingSection = () => {
             href="/contact"
             className="inline-block px-12 py-5 rounded-lg font-semibold text-[18px] mb-6 transition-all duration-300 hover:opacity-90"
             style={{
-              backgroundColor: '#FF2E63',
+              backgroundColor: '#E8623A',
               color: '#FFFFFF'
             }}
           >

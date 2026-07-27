@@ -131,7 +131,7 @@ const SeeTheWork = () => {
               <p 
                 style={{ 
                   fontSize: '14px',
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   fontWeight: 500
                 }}
               >

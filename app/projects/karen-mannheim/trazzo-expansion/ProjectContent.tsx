@@ -25,8 +25,8 @@ const KarenTrazzoExpansionProject = () => {
       {/* BREADCRUMB */}
       <section className="py-6 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
         <Link href="/clients/karen-mannheim#projects" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '14px', color: '#3D3835' }}>
-          <ArrowLeft className="w-4 h-4 group-hover:text-[#FF2E63]" />
-          <span className="group-hover:text-[#FF2E63]">Back to Karen's Story</span>
+          <ArrowLeft className="w-4 h-4 group-hover:text-[#E8623A]" />
+          <span className="group-hover:text-[#E8623A]">Back to Karen's Story</span>
         </Link>
       </section>
 
@@ -91,7 +91,7 @@ const KarenTrazzoExpansionProject = () => {
       {/* HOW WE COMMUNICATED */}
       <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#E8DED1' }}>
         <div className="max-w-[800px] mx-auto">
-          <p className="mb-6" style={{ fontSize: '12px', color: '#FF2E63', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
+          <p className="mb-6" style={{ fontSize: '12px', color: '#E8623A', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 700 }}>
             How we told this story
           </p>
 
@@ -134,8 +134,8 @@ const KarenTrazzoExpansionProject = () => {
       {/* BACK LINK */}
       <section className="py-20 px-10 md:px-20 text-center" style={{ backgroundColor: '#E8DED1' }}>
         <Link href="/clients/karen-mannheim#metrics" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '18px', color: '#3D3835', fontWeight: 600 }}>
-          <ArrowLeft className="w-5 h-5 group-hover:text-[#FF2E63]" />
-          <span className="group-hover:text-[#FF2E63]">Back to Karen's Story</span>
+          <ArrowLeft className="w-5 h-5 group-hover:text-[#E8623A]" />
+          <span className="group-hover:text-[#E8623A]">Back to Karen's Story</span>
         </Link>
       </section>
     </div>

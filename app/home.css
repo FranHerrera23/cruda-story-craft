@@ -89,7 +89,7 @@
 .cruda-home .manifesto .line-2 {
   /* Punto 8.1: roman, not italic. Color alone carries the accent. */
   font-style: normal;
-  color: var(--red);
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------------
@@ -154,7 +154,7 @@
   top: 0.55em;
   width: 6px;
   height: 6px;
-  background: var(--red);
+  background: var(--accent);
   border-radius: 50%;
 }
 .cruda-home .yr {
@@ -255,6 +255,6 @@
 }
 
 .cruda-home :focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }

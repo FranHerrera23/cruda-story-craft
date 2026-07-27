@@ -42,7 +42,7 @@ img {
     --pure-white: 0 0% 100%;         /* #FFFFFF - Primary background */
     --subtle-gray: 0 0% 98%;         /* #FAFAFA - Alternate sections */
     --near-black: 0 0% 10%;          /* #1A1A1A - Primary text */
-    --signal-red: 347 100% 59%;      /* #FF2E63 - Accent (unchanged) */
+    --signal-red: 347 100% 59%;      /* #E8623A - Accent (unchanged) */
     
     /* Text opacity variants (using near-black base) */
     --text-primary: var(--near-black);
@@ -950,7 +950,7 @@ body {
     font-style: italic;
     margin: 0 0 80px 0;
     padding-left: 40px;
-    border-left: 4px solid #FF2E63;
+    border-left: 4px solid #E8623A;
   }
 
   /* Translation Section - Pillars Grid */
@@ -997,7 +997,7 @@ body {
   .pillar-number {
     font-size: 14px;
     font-weight: 700;
-    color: #FF2E63;
+    color: #E8623A;
     margin-bottom: 20px;
   }
 
@@ -1086,7 +1086,7 @@ body {
   .stat-value {
     font-size: clamp(42px, 6vw, 56px);
     font-weight: 700;
-    color: #FF2E63;
+    color: #E8623A;
     margin-bottom: 8px;
   }
 

@@ -34,9 +34,9 @@ export const RedDotDivider = () => {
       className={`py-16 flex justify-center items-center gap-3 animate-on-scroll animate-dots ${isVisible ? 'visible' : ''}`}
       style={{ backgroundColor: '#F5F1E8' }}
     >
-      <div className="dot" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      <div className="dot" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
-      <div className="dot" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#FF2E63' }} />
+      <div className="dot" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#E8623A' }} />
+      <div className="dot" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#E8623A' }} />
+      <div className="dot" style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#E8623A' }} />
     </section>
   );
 };

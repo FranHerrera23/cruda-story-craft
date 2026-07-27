@@ -104,7 +104,7 @@ const HeroManifesto = () => {
         }
 
         .hero-line-red {
-          color: #FF2E63;
+          color: #E8623A;
         }
 
         .hero-descriptor {
@@ -164,7 +164,7 @@ const HeroManifesto = () => {
           left: 0;
           width: 0;
           height: 100%;
-          background: #FF2E63;
+          background: #E8623A;
           transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
           z-index: 0;
         }

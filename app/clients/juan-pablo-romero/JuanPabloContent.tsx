@@ -91,15 +91,15 @@ const JuanPabloRomeroCaseStudy = () => {
       metricsCards={
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           <div>
-            <p style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#FF2E63', lineHeight: 1.1, marginBottom: '8px' }}>NARRATIVE</p>
+            <p style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#E8623A', lineHeight: 1.1, marginBottom: '8px' }}>NARRATIVE</p>
             <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.7)' }}>Foundation built</p>
           </div>
           <div>
-            <p style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#FF2E63', lineHeight: 1.1, marginBottom: '8px' }}>POSITIONING</p>
+            <p style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#E8623A', lineHeight: 1.1, marginBottom: '8px' }}>POSITIONING</p>
             <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.7)' }}>Clarified</p>
           </div>
           <div>
-            <p style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#FF2E63', lineHeight: 1.1, marginBottom: '8px' }}>EXPERTISE</p>
+            <p style={{ fontSize: 'clamp(32px, 4vw, 48px)', fontWeight: 700, color: '#E8623A', lineHeight: 1.1, marginBottom: '8px' }}>EXPERTISE</p>
             <p style={{ fontSize: '16px', lineHeight: 1.5, color: 'rgba(255, 255, 255, 0.7)' }}>Translated</p>
           </div>
         </div>

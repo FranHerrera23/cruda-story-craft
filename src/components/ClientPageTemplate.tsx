@@ -153,7 +153,7 @@ export const ClientPageTemplate = ({
                 className="mb-6"
                 style={{
                   fontSize: '13px',
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 600,
@@ -209,7 +209,7 @@ export const ClientPageTemplate = ({
                 className="mb-6"
                 style={{
                   fontSize: '13px',
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   fontWeight: 600,
@@ -272,7 +272,7 @@ export const ClientPageTemplate = ({
               <div
                 className="mb-12 pl-8"
                 style={{
-                  borderLeft: '4px solid #FF2E63',
+                  borderLeft: '4px solid #E8623A',
                 }}
               >
                 <AnimatedParagraph
@@ -332,7 +332,7 @@ export const ClientPageTemplate = ({
             className="mb-6"
             style={{
               fontSize: '13px',
-              color: '#FF2E63',
+              color: '#E8623A',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               fontWeight: 600,
@@ -380,7 +380,7 @@ export const ClientPageTemplate = ({
                 <p
                   style={{
                     fontSize: '13px',
-                    color: '#FF2E63',
+                    color: '#E8623A',
                     fontWeight: 600,
                     marginBottom: '16px',
                   }}
@@ -558,7 +558,7 @@ export const ClientPageTemplate = ({
                 >
                   <span
                     style={{
-                      color: '#FF2E63',
+                      color: '#E8623A',
                       fontSize: '18px',
                       fontWeight: 700,
                       lineHeight: 1.4,
@@ -592,7 +592,7 @@ export const ClientPageTemplate = ({
       >
         <div
           className="max-w-[800px] mx-auto pl-8 md:pl-10"
-          style={{ borderLeft: '4px solid #FF2E63' }}
+          style={{ borderLeft: '4px solid #E8623A' }}
         >
           <AnimatedParagraph
             className="mb-8"
@@ -654,7 +654,7 @@ export const ClientPageTemplate = ({
           >
             <span className="relative z-10">{ctaButtonText}</span>
             <span
-              className="absolute inset-0 bg-[#FF2E63] transition-transform duration-300 -translate-x-full group-hover:translate-x-0"
+              className="absolute inset-0 bg-[#E8623A] transition-transform duration-300 -translate-x-full group-hover:translate-x-0"
               style={{ zIndex: 0 }}
             />
           </Link>

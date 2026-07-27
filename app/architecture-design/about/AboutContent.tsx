@@ -385,7 +385,7 @@ const aboutStyles = `
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #FF2E63;
+    color: #E8623A;
     margin-bottom: 40px;
     opacity: 0;
     transform: translateY(12px);
@@ -405,7 +405,7 @@ const aboutStyles = `
   }
   .about-hero-headline em {
     font-style: italic;
-    color: #FF2E63;
+    color: #E8623A;
   }
   .about-hero-body {
     font-size: 18px;
@@ -433,7 +433,7 @@ const aboutStyles = `
     text-align: right;
     max-width: 400px;
     padding-right: 32px;
-    border-right: 3px solid #FF2E63;
+    border-right: 3px solid #E8623A;
     opacity: 0;
     transform: translateX(20px);
     animation: aboutFadeLeft 0.8s 0.6s forwards;
@@ -492,7 +492,7 @@ const aboutStyles = `
     color: #0A0A0A;
     margin-top: 56px;
     padding-left: 32px;
-    border-left: 3px solid #FF2E63;
+    border-left: 3px solid #E8623A;
   }
 
   /* ─── ETYMOLOGY ─── */
@@ -555,7 +555,7 @@ const aboutStyles = `
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #FF2E63;
+    color: #E8623A;
     padding-top: 8px;
   }
   .about-team-header-content {
@@ -662,7 +662,7 @@ const aboutStyles = `
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #FF2E63;
+    color: #E8623A;
     margin-bottom: 40px;
   }
   .about-team-bio-text {
@@ -745,7 +745,7 @@ const aboutStyles = `
     margin-bottom: 16px;
   }
   .about-cta-headline em {
-    color: #FF2E63;
+    color: #E8623A;
     font-style: italic;
   }
   .about-cta-sub {
@@ -758,7 +758,7 @@ const aboutStyles = `
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: #FF2E63;
+    background: #E8623A;
     color: #FFFFFF;
     font-size: 15px;
     font-weight: 600;
@@ -838,7 +838,7 @@ const aboutStyles = `
     .about-hero-pull-quote {
       text-align: left;
       border-right: none;
-      border-left: 3px solid #FF2E63;
+      border-left: 3px solid #E8623A;
       padding-right: 0;
       padding-left: 32px;
     }

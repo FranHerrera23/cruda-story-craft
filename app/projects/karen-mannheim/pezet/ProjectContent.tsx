@@ -86,7 +86,7 @@ const KarenPezetProject = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
             {/* Left: THE PROJECT */}
             <div>
-              <p className="mb-6" style={{ fontSize: '13px', color: '#FF2E63', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+              <p className="mb-6" style={{ fontSize: '13px', color: '#E8623A', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
                 The Project
               </p>
               <div className="space-y-4">
@@ -101,7 +101,7 @@ const KarenPezetProject = () => {
 
             {/* Right: THE CHALLENGE */}
             <div>
-              <p className="mb-6" style={{ fontSize: '13px', color: '#FF2E63', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+              <p className="mb-6" style={{ fontSize: '13px', color: '#E8623A', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
                 The Challenge
               </p>
               <div className="space-y-4">
@@ -158,7 +158,7 @@ const KarenPezetProject = () => {
                   loading="lazy"
                 />
                 <div className="p-6">
-                  <span className="text-sm font-medium" style={{ color: '#FF2E63' }}>
+                  <span className="text-sm font-medium" style={{ color: '#E8623A' }}>
                     View on LinkedIn →
                   </span>
                 </div>
@@ -171,7 +171,7 @@ const KarenPezetProject = () => {
       {/* SECTION 5: HOW WE TOLD THIS STORY - Strategy Cards */}
       <section className="py-20 md:py-28 px-6 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-[1000px] mx-auto">
-          <p className="mb-6" style={{ fontSize: '13px', color: '#FF2E63', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+          <p className="mb-6" style={{ fontSize: '13px', color: '#E8623A', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
             How we told this story
           </p>
 
@@ -190,7 +190,7 @@ const KarenPezetProject = () => {
                   borderRadius: '4px'
                 }}
               >
-                <p style={{ fontSize: '14px', color: '#FF2E63', fontWeight: 600, marginBottom: '16px' }}>
+                <p style={{ fontSize: '14px', color: '#E8623A', fontWeight: 600, marginBottom: '16px' }}>
                   {card.number}
                 </p>
                 <h3 style={{ fontSize: '22px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>

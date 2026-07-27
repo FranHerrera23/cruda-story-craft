@@ -81,7 +81,7 @@ const WhatWeDoSection = () => {
             className="text-center my-[60px]"
             style={{
               fontSize: '20px',
-              color: '#FF2E63',
+              color: '#E8623A',
               letterSpacing: '12px'
             }}
           >
@@ -123,7 +123,7 @@ const WhatWeDoSection = () => {
             className="text-center my-[60px]"
             style={{
               fontSize: '20px',
-              color: '#FF2E63',
+              color: '#E8623A',
               letterSpacing: '12px'
             }}
           >

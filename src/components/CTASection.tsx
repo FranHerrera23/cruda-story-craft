@@ -44,7 +44,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
           }}
         >
           The work speaks for itself.<br />
-          <span style={{ color: '#FF2E63' }}>Let&apos;s make sure it travels.</span>
+          <span style={{ color: '#E8623A' }}>Let&apos;s make sure it travels.</span>
         </h2>
 
         {/* CTA Button */}
@@ -55,7 +55,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
             display: 'inline-flex',
             alignItems: 'center',
             gap: '12px',
-            backgroundColor: '#FF2E63',
+            backgroundColor: '#E8623A',
             color: '#FFFFFF',
             fontSize: '15px',
             fontWeight: '500',
@@ -73,7 +73,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
             e.currentTarget.style.color = '#0A0A0A';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = '#FF2E63';
+            e.currentTarget.style.backgroundColor = '#E8623A';
             e.currentTarget.style.color = '#FFFFFF';
           }}
         >

@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 
 /* Reading progress bar (brief part 8).
-   Fixed-top 2px --red. Ratio driven by scaleX with transform-origin: left
+   Fixed-top 2px --accent. Ratio driven by scaleX with transform-origin: left
    so it never triggers layout on scroll. transform: scaleX() is
    compositor-only — width would force paint every frame.
 

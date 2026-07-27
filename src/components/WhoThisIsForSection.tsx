@@ -74,7 +74,7 @@ const WhoThisIsForSection = () => {
             fontWeight: '600',
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: '#FF2E63',
+            color: '#E8623A',
             marginBottom: '24px'
           }}>
             Who this is for
@@ -112,7 +112,7 @@ const WhoThisIsForSection = () => {
                 <span style={{
                   position: 'absolute',
                   left: 0,
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   fontWeight: '500'
                 }}>→</span>
                 {point}

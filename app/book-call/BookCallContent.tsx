@@ -162,7 +162,7 @@ export default function BookCallContent() {
         }
 
         .book-call-button:hover:not(:disabled) {
-          background-color: #FF2E63;
+          background-color: #E8623A;
         }
 
         .book-call-button:disabled {
@@ -193,7 +193,7 @@ export default function BookCallContent() {
         }
 
         .contact-link {
-          color: #FF2E63;
+          color: #E8623A;
           text-decoration: underline;
           transition: opacity 0.2s ease;
         }

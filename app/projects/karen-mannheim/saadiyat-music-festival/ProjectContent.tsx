@@ -68,7 +68,7 @@ const KarenSaadiyatProject = () => {
         <div className="max-w-[1100px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20">
             <div>
-              <p className="mb-6" style={{ fontSize: '13px', color: '#FF2E63', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+              <p className="mb-6" style={{ fontSize: '13px', color: '#E8623A', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
                 The Project
               </p>
               <div className="space-y-4">
@@ -82,7 +82,7 @@ const KarenSaadiyatProject = () => {
             </div>
 
             <div>
-              <p className="mb-6" style={{ fontSize: '13px', color: '#FF2E63', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+              <p className="mb-6" style={{ fontSize: '13px', color: '#E8623A', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
                 The Challenge
               </p>
               <div className="space-y-4">
@@ -138,7 +138,7 @@ const KarenSaadiyatProject = () => {
               <a key={index} href={post.url} target="_blank" rel="noopener noreferrer" className="group block transition-all duration-300 hover:-translate-y-1" style={{ backgroundColor: '#FFFFFF', borderRadius: '12px', boxShadow: '0 2px 16px rgba(0, 0, 0, 0.06)', overflow: 'hidden' }}>
                 <img src={post.image.src} alt={post.title} className="w-full" loading="lazy" />
                 <div className="p-6">
-                  <span className="text-sm font-medium" style={{ color: '#FF2E63' }}>View on LinkedIn →</span>
+                  <span className="text-sm font-medium" style={{ color: '#E8623A' }}>View on LinkedIn →</span>
                 </div>
               </a>
             ))}
@@ -149,7 +149,7 @@ const KarenSaadiyatProject = () => {
       {/* SECTION 5: HOW WE TOLD THIS STORY */}
       <section className="py-20 md:py-28 px-6 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-[1000px] mx-auto">
-          <p className="mb-6" style={{ fontSize: '13px', color: '#FF2E63', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+          <p className="mb-6" style={{ fontSize: '13px', color: '#E8623A', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
             How we told this story
           </p>
 
@@ -160,7 +160,7 @@ const KarenSaadiyatProject = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {strategyCards.map((card, index) => (
               <div key={index} style={{ backgroundColor: '#F5F1E8', padding: '32px', borderRadius: '4px' }}>
-                <p style={{ fontSize: '14px', color: '#FF2E63', fontWeight: 600, marginBottom: '16px' }}>{card.number}</p>
+                <p style={{ fontSize: '14px', color: '#E8623A', fontWeight: 600, marginBottom: '16px' }}>{card.number}</p>
                 <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>{card.title}</h3>
                 <p style={{ fontSize: '15px', lineHeight: 1.6, color: 'rgba(10, 10, 10, 0.6)' }}>{card.description}</p>
               </div>

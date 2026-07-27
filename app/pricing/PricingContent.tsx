@@ -104,7 +104,7 @@ export default function PricingContent() {
               fontWeight: '600',
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: '#FF2E63',
+              color: '#E8623A',
               marginBottom: '48px',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -136,7 +136,7 @@ export default function PricingContent() {
             style={{
               width: heroVisible ? '64px' : '0px',
               height: '3px',
-              background: '#FF2E63',
+              background: '#E8623A',
               marginBottom: '40px',
               transitionDelay: '200ms'
             }}
@@ -232,7 +232,7 @@ export default function PricingContent() {
                   fontWeight: '600',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
-                  color: '#FF2E63'
+                  color: '#E8623A'
                 }}>
                   {item.label}
                 </p>
@@ -280,7 +280,7 @@ export default function PricingContent() {
             style={{
               width: engagementVisible ? '48px' : '0px',
               height: '2px',
-              background: '#FF2E63',
+              background: '#E8623A',
               marginBottom: '32px',
               transitionDelay: '100ms'
             }}
@@ -299,7 +299,7 @@ export default function PricingContent() {
             <p style={{
               fontSize: '36px',
               fontWeight: '600',
-              color: '#FF2E63',
+              color: '#E8623A',
               marginBottom: '4px'
             }}>
               $15,600
@@ -358,7 +358,7 @@ export default function PricingContent() {
               transform: engagementVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '400ms'
             }}
-            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#FF2E63'; }}
+            onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E8623A'; }}
             onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
           >
             Book a Discovery Call
@@ -393,7 +393,7 @@ export default function PricingContent() {
               fontWeight: '600',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#FF2E63',
+              color: '#E8623A',
               paddingBottom: '32px'
             }}>
               CRUDA
@@ -432,7 +432,7 @@ export default function PricingContent() {
                 color: '#0A0A0A',
                 fontWeight: '500'
               }}>
-                <span style={{ color: '#FF2E63', marginRight: '12px' }}>→</span>
+                <span style={{ color: '#E8623A', marginRight: '12px' }}>→</span>
                 {row.cruda}
               </div>
               <div style={{
@@ -480,7 +480,7 @@ export default function PricingContent() {
             <p style={{
               fontSize: '14px',
               fontWeight: '500',
-              color: '#FF2E63',
+              color: '#E8623A',
               marginTop: '24px'
             }}>
               — Mike Kaeding, CEO, Norhart
@@ -509,7 +509,7 @@ export default function PricingContent() {
             <p style={{
               fontSize: '14px',
               fontWeight: '500',
-              color: '#FF2E63',
+              color: '#E8623A',
               marginTop: '24px'
             }}>
               — Karen Mannheim, Co-founder, TRAZZO Lighting
@@ -535,7 +535,7 @@ export default function PricingContent() {
               fontWeight: '600',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
-              color: '#FF2E63',
+              color: '#E8623A',
               marginBottom: '48px',
               opacity: faqVisible ? 1 : 0
             }}

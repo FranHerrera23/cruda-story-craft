@@ -119,7 +119,7 @@ const GirishSehgalCaseStudy = () => {
                   style={{
                     fontSize: '14px',
                     fontWeight: 500,
-                    color: '#FF2E63'
+                    color: '#E8623A'
                   }}
                 >
                   View on LinkedIn →
@@ -155,19 +155,19 @@ const GirishSehgalCaseStudy = () => {
 
             <div className="space-y-8">
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>#1 WORLDWIDE</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>#1 WORLDWIDE</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>Condé Nast Traveller</p>
               </div>
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>$24M YEAR 1</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>$24M YEAR 1</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>JW Marriott Pune</p>
               </div>
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>14 CITIES</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>14 CITIES</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>6 countries</p>
               </div>
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>25+ YEARS</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>25+ YEARS</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>Four Seasons, Taj, JW Marriott</p>
               </div>
             </div>
@@ -195,15 +195,15 @@ const GirishSehgalCaseStudy = () => {
 
             <div className="space-y-8">
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>576 REACTIONS</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>576 REACTIONS</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>Top post</p>
               </div>
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>55 COMMENTS</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>55 COMMENTS</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>Peer-level engagement</p>
               </div>
               <div>
-                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#FF2E63', fontWeight: 700 }}>EXECUTIVE VOICE</p>
+                <p style={{ fontSize: 'clamp(36px, 4vw, 48px)', color: '#E8623A', fontWeight: 700 }}>EXECUTIVE VOICE</p>
                 <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)' }}>Established</p>
               </div>
             </div>

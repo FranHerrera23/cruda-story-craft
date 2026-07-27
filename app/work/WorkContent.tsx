@@ -145,7 +145,7 @@ const WorkContent = () => {
             style={{
               width: '48px',
               height: '3px',
-              background: '#FF2E63',
+              background: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(1) ? 1 : 0,
               transitionDelay: '200ms'
@@ -254,7 +254,7 @@ const WorkContent = () => {
             style={{
               fontSize: '14px',
               fontWeight: 500,
-              color: '#FF2E63',
+              color: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(1) ? 1 : 0,
               transitionDelay: '800ms'
@@ -321,7 +321,7 @@ const WorkContent = () => {
             style={{
               width: '48px',
               height: '3px',
-              background: '#FF2E63',
+              background: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(2) ? 1 : 0,
               transitionDelay: '200ms'
@@ -429,7 +429,7 @@ const WorkContent = () => {
             style={{
               fontSize: '14px',
               fontWeight: 500,
-              color: '#FF2E63',
+              color: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(2) ? 1 : 0,
               transitionDelay: '800ms'
@@ -548,7 +548,7 @@ const WorkContent = () => {
             style={{
               width: '48px',
               height: '3px',
-              background: '#FF2E63',
+              background: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(3) ? 1 : 0,
               transitionDelay: '200ms'
@@ -656,7 +656,7 @@ const WorkContent = () => {
             style={{
               fontSize: '14px',
               fontWeight: 500,
-              color: '#FF2E63',
+              color: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(3) ? 1 : 0,
               transitionDelay: '800ms'
@@ -723,7 +723,7 @@ const WorkContent = () => {
             style={{
               width: '48px',
               height: '3px',
-              background: '#FF2E63',
+              background: '#E8623A',
               marginBottom: '32px',
               opacity: isVisible(4) ? 1 : 0,
               transitionDelay: '200ms'
@@ -890,7 +890,7 @@ const WorkContent = () => {
           style={{
             width: '48px',
             height: '3px',
-            background: '#FF2E63',
+            background: '#E8623A',
             marginBottom: '32px',
             opacity: isVisible(5) ? 1 : 0,
             transitionDelay: '200ms'
@@ -986,7 +986,7 @@ const WorkContent = () => {
             transitionDelay: '200ms'
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = '#FF2E63';
+            e.currentTarget.style.backgroundColor = '#E8623A';
             e.currentTarget.style.color = '#FFFFFF';
           }}
           onMouseLeave={(e) => {
@@ -1007,7 +1007,7 @@ const WorkContent = () => {
           left: 0;
           width: 0;
           height: 1.5px;
-          background: #FF2E63;
+          background: #E8623A;
           transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 

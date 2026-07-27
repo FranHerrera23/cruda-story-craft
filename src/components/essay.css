@@ -1,5 +1,5 @@
 /* CRUDA — Essay + essays index styles.
-   Global tokens (--white, --ink, --ink-2, --red, --cream, --rule, --rule-2)
+   Global tokens (--white, --ink, --ink-2, --accent, --cream, --rule, --rule-2)
    come from src/components/case-study.css (etapa 1). Local vars only. */
 
 .essay-root {
@@ -35,7 +35,7 @@
   left: 0;
   width: 100%;
   height: 2px;
-  background: var(--red);
+  background: var(--accent);
   z-index: 200;
   transform: scaleX(0);
   transform-origin: left;
@@ -57,7 +57,7 @@
   text-decoration: none;
   transition: color 0.2s;
 }
-.essay .e-back:hover { color: var(--red); }
+.essay .e-back:hover { color: var(--accent); }
 .essay .e-meta {
   margin-bottom: 26px;
   display: flex;
@@ -128,7 +128,7 @@
 .essay .e-capsule {
   margin: 48px 0 56px;
   padding-left: 26px;
-  border-left: 2px solid var(--red);
+  border-left: 2px solid var(--accent);
   font-size: var(--fs-capsule);
   line-height: 1.5;
   font-weight: 500;
@@ -224,7 +224,7 @@
   transform: translateY(-50%);
   font-family: var(--mono);
   font-size: 20px;
-  color: var(--red);
+  color: var(--accent);
 }
 .essay .e-faq details[open] summary::after { content: '–'; }
 .essay .e-faq details p {
@@ -285,7 +285,7 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-.essay .e-form button:hover { background: var(--red); }
+.essay .e-form button:hover { background: var(--accent); }
 .essay .e-legal {
   font-size: 13px;
   color: var(--ink-2);
@@ -304,7 +304,7 @@
   padding: calc(72px + 13vh) 0 clamp(56px, 7vw, 88px);
 }
 .essay-idx .eyebrow {
-  color: var(--red);
+  color: var(--accent);
   margin-bottom: 30px;
 }
 .essay-idx h1 {
@@ -343,7 +343,7 @@
   color: inherit;
 }
 .thinking-card:focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 6px;
 }
 
@@ -368,7 +368,7 @@
 }
 
 .thinking-cover-eyebrow {
-  color: var(--red);
+  color: var(--accent);
   font-size: var(--fs-meta);
   letter-spacing: var(--track-mono);
 }
@@ -404,7 +404,7 @@
   margin: 0 0 14px;
   transition: color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
-.thinking-card:hover .thinking-card-title { color: var(--red); }
+.thinking-card:hover .thinking-card-title { color: var(--accent); }
 .thinking-card-excerpt {
   font-size: var(--fs-excerpt);
   line-height: 1.55;
@@ -470,7 +470,7 @@
   cursor: pointer;
   transition: background 0.2s;
 }
-.essay-idx .form button:hover { background: var(--red); }
+.essay-idx .form button:hover { background: var(--accent); }
 .essay-idx .legal {
   font-size: 13px;
   color: var(--ink-2);

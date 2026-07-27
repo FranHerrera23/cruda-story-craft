@@ -22,7 +22,7 @@ const verticals = [
     image: verticalHospitality.src,
     description: (
       <>
-        You hold space for people during <span style={{ color: '#FF2E63', fontWeight: 600 }}>vulnerable moments</span>—rest, healing, celebration. Your work shapes how people feel when most present. That deserves more than metrics.
+        You hold space for people during <span style={{ color: '#E8623A', fontWeight: 600 }}>vulnerable moments</span>—rest, healing, celebration. Your work shapes how people feel when most present. That deserves more than metrics.
       </>
     )
   },
@@ -32,7 +32,7 @@ const verticals = [
     image: verticalAthletes.src,
     description: (
       <>
-        Your career is public. Your discipline, visible. But the story behind the performance—the decisions, sacrifices, evolution—that <span style={{ color: '#FF2E63', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
+        Your career is public. Your discipline, visible. But the story behind the performance—the decisions, sacrifices, evolution—that <span style={{ color: '#E8623A', fontWeight: 600 }}>creates legacy</span> beyond the highlight reel.
       </>
     )
   }
@@ -53,7 +53,7 @@ const WhoWeWorkWith = () => {
           <div 
             className="h-[3px] w-[60px] mx-auto"
             style={{ 
-              backgroundColor: '#FF2E63',
+              backgroundColor: '#E8623A',
               animation: 'scaleInX 0.4s cubic-bezier(0.33, 1, 0.68, 1) 0.3s forwards',
               transformOrigin: 'center',
               transform: 'scaleX(0)'
@@ -104,7 +104,7 @@ const WhoWeWorkWith = () => {
                   color: '#1A1A1A',
                   fontSize: '22px',
                   lineHeight: '1.3',
-                  textDecorationColor: '#FF2E63'
+                  textDecorationColor: '#E8623A'
                 }}>
                   {vertical.title}
                 </h3>

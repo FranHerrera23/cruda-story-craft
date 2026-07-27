@@ -69,7 +69,7 @@ const TestimonialsSection = () => {
               style={{
                 fontSize: '14px',
                 fontWeight: '500',
-                color: '#FF2E63',
+                color: '#E8623A',
                 marginTop: '24px'
               }}
             >

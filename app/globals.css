@@ -44,7 +44,7 @@ img {
     /* CRUDA Design System - Master Brief Requirements */
     --pure-white: 0 0% 100%;         /* #FFFFFF - Primary background */
     --dark: 0 0% 4%;                 /* #0A0A0A - Dark backgrounds & primary text */
-    --signal-red: 347 100% 59%;      /* #FF2E63 - Accent */
+    --signal-red: 347 100% 59%;      /* #E8623A - Accent */
 
     /* Text opacity variants (using #0A0A0A base) */
     --text-primary: var(--dark);
@@ -961,7 +961,7 @@ body {
     font-style: italic;
     margin: 0 0 80px 0;
     padding-left: 40px;
-    border-left: 4px solid #FF2E63;
+    border-left: 4px solid #E8623A;
   }
 
   /* Translation Section - Pillars Grid */
@@ -1008,7 +1008,7 @@ body {
   .pillar-number {
     font-size: 14px;
     font-weight: 700;
-    color: #FF2E63;
+    color: #E8623A;
     margin-bottom: 20px;
   }
 
@@ -1097,7 +1097,7 @@ body {
   .stat-value {
     font-size: clamp(42px, 6vw, 56px);
     font-weight: 700;
-    color: #FF2E63;
+    color: #E8623A;
     margin-bottom: 8px;
   }
 
@@ -1146,7 +1146,7 @@ body {
 
   /* Selection color */
   ::selection {
-    background: #FF2E63;
+    background: #E8623A;
     color: #FFFFFF;
   }
 
@@ -1170,7 +1170,7 @@ body {
 
   /* Beautiful focus states for accessibility */
   :focus-visible {
-    outline: 2px solid #FF2E63;
+    outline: 2px solid #E8623A;
     outline-offset: 4px;
   }
 
@@ -1211,13 +1211,13 @@ body {
 
 /* Text selection */
 ::selection {
-  background: #FF2E63;
+  background: #E8623A;
   color: #FFFFFF;
 }
 
 /* Focus states */
 :focus-visible {
-  outline: 2px solid #FF2E63;
+  outline: 2px solid #E8623A;
   outline-offset: 4px;
 }
 
@@ -1303,7 +1303,7 @@ a[class*="button"]::before {
   left: 0;
   width: 0;
   height: 100%;
-  background: #FF2E63;
+  background: #E8623A;
   transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 0;
 }
@@ -1355,7 +1355,7 @@ button[class*="book"]:active {
 [class*="dark"] .btn-primary,
 [class*="cta-dark"],
 section[style*="0A0A0A"] .btn-primary {
-  background: #FF2E63;
+  background: #E8623A;
 }
 
 [class*="dark"] .btn-primary::before,

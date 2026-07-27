@@ -67,7 +67,7 @@ export default function ContactContent() {
           text-transform: uppercase;
         }
         .contact-eyebrow {
-          color: var(--red);
+          color: var(--accent);
           margin-bottom: 28px;
         }
         .contact-h1 {
@@ -106,7 +106,7 @@ export default function ContactContent() {
           min-height: 220px;
         }
         .contact-primary:hover {
-          background-color: var(--red);
+          background-color: var(--accent);
         }
         .contact-primary-lede {
           grid-area: lede;
@@ -147,14 +147,14 @@ export default function ContactContent() {
           letter-spacing: -0.02em;
           color: var(--ink);
           text-decoration: none;
-          border-bottom: 1px solid var(--red);
+          border-bottom: 1px solid var(--accent);
           padding-bottom: 4px;
           align-self: flex-start;
           transition: color 0.2s, border-color 0.2s;
         }
         .contact-alt-mail:hover {
-          color: var(--red);
-          border-color: var(--red);
+          color: var(--accent);
+          border-color: var(--accent);
         }
         .contact-alt-note {
           font-size: 14px;
@@ -165,7 +165,7 @@ export default function ContactContent() {
         }
 
         :global(.contact-root) :focus-visible {
-          outline: 2px solid var(--red);
+          outline: 2px solid var(--accent);
           outline-offset: 4px;
         }
 

@@ -47,7 +47,7 @@
   min-height: 0;
 }
 .sports .eyebrow {
-  color: var(--red);
+  color: var(--accent);
   margin-bottom: clamp(28px, 4.5vh, 56px);
 }
 .sports .headline {
@@ -75,8 +75,8 @@
   transition: color 0.2s, border-color 0.2s;
 }
 .sports .contact a:hover {
-  color: var(--red);
-  border-color: var(--red);
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 @media (max-width: 860px) {
@@ -149,6 +149,6 @@
 }
 
 .sports :focus-visible {
-  outline: 2px solid var(--red);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }

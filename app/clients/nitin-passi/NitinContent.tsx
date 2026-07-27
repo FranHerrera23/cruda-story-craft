@@ -352,7 +352,7 @@ const NitinPassiCaseStudy = () => {
                 style={{
                   fontSize: '13px',
                   fontWeight: '600',
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   marginBottom: '16px'
                 }}
               >
@@ -396,7 +396,7 @@ const NitinPassiCaseStudy = () => {
                 style={{
                   fontSize: '13px',
                   fontWeight: '600',
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   marginBottom: '16px'
                 }}
               >
@@ -439,7 +439,7 @@ const NitinPassiCaseStudy = () => {
                 style={{
                   fontSize: '13px',
                   fontWeight: '600',
-                  color: '#FF2E63',
+                  color: '#E8623A',
                   marginBottom: '16px'
                 }}
               >
@@ -541,7 +541,7 @@ const NitinPassiCaseStudy = () => {
 
               <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#FF2E63', marginBottom: '8px' }}>
+                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#E8623A', marginBottom: '8px' }}>
                     600+
                   </p>
                   <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)' }}>
@@ -549,7 +549,7 @@ const NitinPassiCaseStudy = () => {
                   </p>
                 </div>
                 <div>
-                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#FF2E63', marginBottom: '8px' }}>
+                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#E8623A', marginBottom: '8px' }}>
                     60
                   </p>
                   <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)' }}>
@@ -557,7 +557,7 @@ const NitinPassiCaseStudy = () => {
                   </p>
                 </div>
                 <div>
-                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#FF2E63', marginBottom: '8px' }}>
+                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#E8623A', marginBottom: '8px' }}>
                     50K
                   </p>
                   <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)' }}>
@@ -565,7 +565,7 @@ const NitinPassiCaseStudy = () => {
                   </p>
                 </div>
                 <div>
-                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#FF2E63', marginBottom: '8px' }}>
+                  <p style={{ fontSize: '32px', fontWeight: '600', color: '#E8623A', marginBottom: '8px' }}>
                     1K
                   </p>
                   <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)' }}>
@@ -707,7 +707,7 @@ const NitinPassiCaseStudy = () => {
             href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener"
             className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-300"
             style={{
-              backgroundColor: '#FF2E63',
+              backgroundColor: '#E8623A',
               color: '#FFFFFF',
               opacity: ctaVisible ? 1 : 0,
               transform: ctaVisible ? 'translateY(0)' : 'translateY(20px)',
@@ -719,7 +719,7 @@ const NitinPassiCaseStudy = () => {
               e.currentTarget.style.boxShadow = '0 12px 32px rgba(255, 46, 99, 0.25)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#FF2E63';
+              e.currentTarget.style.backgroundColor = '#E8623A';
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.boxShadow = 'none';
             }}

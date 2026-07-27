@@ -43,7 +43,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
             transform: isVisible ? 'translateY(0)' : 'translateY(20px)'
           }}
         >
-          The work speaks for itself.<br />
+          The work was always the story.<br />
           <span style={{ color: '#E8623A' }}>Let&apos;s make sure it travels.</span>
         </h2>
 

@@ -322,7 +322,7 @@ function CTASection() {
   return (
     <section className="about-cta-section">
       <h2 className="about-cta-headline reveal">
-        The work speaks for itself.<br />
+        The work was always the story.<br />
         <em>Let&apos;s make sure it travels.</em>
       </h2>
       <p className="about-cta-sub reveal reveal-delay-1">

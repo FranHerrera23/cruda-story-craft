@@ -220,3 +220,12 @@
 @media (prefers-reduced-motion: reduce) {
   [data-page] { animation: none; }
 }
+
+/* Brief part 8 non-negotiable floor — visible keyboard focus everywhere.
+   Individual scopes (case-study, essay, of, sports) already declare their
+   own :focus-visible; this is the fallback for anything unscoped so no
+   route ever ends up with outline: none by accident. */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}

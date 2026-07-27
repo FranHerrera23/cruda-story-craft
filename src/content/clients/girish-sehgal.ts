@@ -7,6 +7,7 @@ import type { CaseStudy } from '@/components/CaseStudyLayout'
 export const girishSehgal: CaseStudy = {
   slug: 'girish-sehgal',
   vertical: 'Architecture & Design',
+  status: 'portfolio',
 
   title:
     "Translating twenty-five years of hospitality leadership into a healthcare voice that reaches 7,000+ senior leaders",

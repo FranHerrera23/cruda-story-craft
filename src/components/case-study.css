@@ -83,8 +83,12 @@ html { font-size: 17px; }
 .cs-head{padding:clamp(96px,14vh,160px) 0 0}
 .cs-eyebrow{font-family:var(--mono);font-weight:500;font-size:12px;
   letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px}
-.cs-title{font-size:clamp(34px,5.2vw,68px);font-weight:700;line-height:1.04;
-  letter-spacing:-.024em;max-width:20ch;margin-bottom:20px}
+/* Brief v5 T6 — H1 en --fs-h1 (no display).
+   El display se reserva para el hero de la home; un case study es
+   editorial, no portada. Si un H1 pasa de 4 líneas en desktop, el
+   arreglo es reescribir el copy, no bajar la fuente. */
+.cs-title{font-size:var(--fs-h1);font-weight:700;line-height:var(--lh-heading,1.05);
+  letter-spacing:var(--track-heading,-.02em);max-width:20ch;margin-bottom:20px}
 .cs-sub{font-size:clamp(18px,1.8vw,22px);color:var(--ink-2);margin-bottom:40px}
 
 /* BYLINE */
@@ -116,8 +120,9 @@ html { font-size: 17px; }
 
 /* CLIENT */
 .cs-client{padding-bottom:56px;border-bottom:1px solid var(--rule);margin-bottom:56px}
-.cs-client h2{font-size:clamp(28px,3.4vw,44px);font-weight:700;
-  letter-spacing:-.02em;margin-bottom:12px}
+/* T6 — H2 fijo en --fs-h2 (32px). Antes competía con el H1. */
+.cs-client h2{font-size:var(--fs-h2);font-weight:700;
+  letter-spacing:var(--track-heading,-.02em);margin-bottom:12px}
 .cs-client-meta{font-size:17.5px;color:var(--ink-2);line-height:1.6}
 
 /* STATS */
@@ -133,8 +138,11 @@ html { font-size: 17px; }
 
 /* BODY */
 .cs-section{margin-bottom:64px}
-.cs-section h2{font-size:clamp(24px,2.8vw,36px);font-weight:700;
-  line-height:1.14;letter-spacing:-.018em;max-width:24ch;margin-bottom:24px}
+/* T6 — H2 de sección en --fs-h2 (32px). Antes en clamp 24-36 competía
+   con la escala del H1. */
+.cs-section h2{font-size:var(--fs-h2);font-weight:700;
+  line-height:var(--lh-heading,1.14);letter-spacing:var(--track-heading,-.02em);
+  max-width:24ch;margin-bottom:24px}
 .cs-section p{font-size:18px;line-height:1.62;color:var(--ink-2);max-width:68ch}
 .cs-section p+p{margin-top:20px}
 .cs-pull{margin:40px 0 0;padding-left:28px;border-left:2px solid var(--accent);
@@ -151,8 +159,9 @@ html { font-size: 17px; }
 
 /* FAQ */
 .cs-faq{border-top:1px solid var(--ink);padding-top:48px;margin-bottom:80px}
-.cs-faq h2{font-size:clamp(24px,2.8vw,36px);font-weight:700;
-  letter-spacing:-.018em;margin-bottom:32px}
+/* T6 — H2 fijo en --fs-h2. */
+.cs-faq h2{font-size:var(--fs-h2);font-weight:700;
+  letter-spacing:var(--track-heading,-.02em);margin-bottom:32px}
 .cs-faq details{border-bottom:1px solid var(--rule-2)}
 .cs-faq summary{cursor:pointer;list-style:none;padding:26px 44px 26px 0;
   position:relative;font-weight:600;font-size:19px;letter-spacing:-.006em}
@@ -163,7 +172,8 @@ html { font-size: 17px; }
 .cs-faq details p{padding:0 0 30px;font-size:17.5px;line-height:1.6;
   color:var(--ink-2);max-width:68ch}
 
-/* CTA */
+/* CTA (legacy — reemplazado por ClosingBlock; se mantiene para no
+   romper páginas antiguas si alguna lo usa suelto). */
 .cs-cta{border-top:1px solid var(--rule);padding-top:48px}
 .cs-cta p{font-size:clamp(22px,2.4vw,30px);font-weight:600;
   letter-spacing:-.014em;margin-bottom:24px}
@@ -171,6 +181,24 @@ html { font-size: 17px; }
   letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--white);
   padding:19px 38px;text-decoration:none;transition:background .2s}
 .cs-btn:hover{background:var(--accent)}
+
+/* ClosingBlock — brief v5 T6. Va al final de todos los ensayos y
+   case studies. Sobre --cream. CTA sobre --ink que hace hover en
+   accent. */
+.cb{background:var(--cream);padding:clamp(56px,8vw,96px) clamp(32px,5vw,72px);
+  margin:80px 0 0}
+.cb-head{font-family:'Instrument Serif',Georgia,serif;
+  font-size:clamp(30px,3.2vw,44px);line-height:1.1;letter-spacing:-.02em;
+  color:var(--ink);max-width:22ch;margin:0 0 20px}
+.cb-body{font-size:var(--fs-body);line-height:var(--lh-body,1.7);color:var(--ink-2);
+  max-width:56ch;margin:0 0 32px}
+.cb-cta{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);
+  font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--ink);color:var(--white);padding:19px 32px;text-decoration:none;
+  transition:background .2s}
+.cb-cta:hover{background:var(--accent)}
+.cb-arrow{display:inline-block;transition:transform .3s var(--ease,cubic-bezier(.16,1,.3,1))}
+.cb-cta:hover .cb-arrow{transform:translateX(6px)}
 
 /* ÍNDICE */
 .idx{max-width:1280px;margin:0 auto;padding:clamp(96px,14vh,160px) clamp(24px,5vw,72px) 120px}

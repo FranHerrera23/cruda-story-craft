@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import './case-study.css'
+import ClosingBlock from './ClosingBlock'
 
 /* ------------------------------------------------------------------
    CRUDA — CaseStudyLayout
@@ -46,6 +47,9 @@ export type CaseStudy = {
   vertical: 'Architecture & Design' | 'Sports' | 'AI Concierge'
   heroImage?: string
   heroAlt?: string
+  /* Brief v5 T6 — portfolio (Mike, Girish) usan variante sin
+     "represent". Client actuales (Karen, JP) usan la variante estándar. */
+  status?: 'client' | 'portfolio'
 }
 
 const AUTHOR = {
@@ -217,10 +221,10 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
         </section>
       )}
 
-      <footer className="cs-cta">
-        <p>Want this for your studio?</p>
-        <a href="/contact" className="cs-btn">Start a conversation</a>
-      </footer>
+      <ClosingBlock
+        kind="case-study"
+        variant={cs.status === 'portfolio' ? 'portfolio' : 'client'}
+      />
     </article>
   )
 }

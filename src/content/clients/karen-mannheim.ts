@@ -2,7 +2,8 @@ import type { CaseStudy } from '@/components/CaseStudyLayout'
 
 /* ------------------------------------------------------------------
    Modelo de referencia. Cada caso nuevo copia esta forma.
-   [FRAN] marca lo que hay que verificar o reemplazar.
+   Campos sin valor verificado quedan vacíos; el layout salta el
+   render y el JSON-LD salta el emit.
 ------------------------------------------------------------------- */
 
 export const karenMannheim: CaseStudy = {

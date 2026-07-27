@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import EssayProgressBar from './EssayProgressBar'
+import ClosingBlock from './ClosingBlock'
 import './essay.css'
 
 /* ------------------------------------------------------------------
@@ -50,7 +51,7 @@ function fmt(iso: string) {
 
 function schema(es: Essay) {
   const base = 'https://www.thecruda.com'
-  const modified = es.updatedAt.startsWith('[FRAN') ? es.publishedAt : es.updatedAt
+  const modified = es.updatedAt || es.publishedAt
   const graph: unknown[] = [
     {
       '@type': 'Article',
@@ -105,8 +106,7 @@ function schema(es: Essay) {
 }
 
 export default function EssayLayout({ es }: { es: Essay }) {
-  const showUpdated =
-    es.updatedAt !== es.publishedAt && !es.updatedAt.startsWith('[FRAN')
+  const showUpdated = es.updatedAt !== '' && es.updatedAt !== es.publishedAt
   const contentType = es.contentType ?? 'Essay'
   const metaTags = [es.category, ...(es.tags ?? [])].filter(Boolean)
 
@@ -206,24 +206,9 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </section>
         )}
 
-        {/* Subscribe */}
-        <section className="e-sub" aria-label="Subscribe">
-          <h3>Everything is a narrative, companies too.</h3>
-          <p>Ensayos sobre narrativa y negocio. Uno o dos por mes. Nada más.</p>
-          <form className="e-form" action="[FRAN — proveedor de email]" method="post">
-            <input
-              type="email"
-              name="email"
-              placeholder="Your email"
-              aria-label="Email"
-              required
-            />
-            <button type="submit">Subscribe</button>
-          </form>
-          <p className="e-legal">
-            By subscribing you agree to receive emails from CRUDA. Unsubscribe any time.
-          </p>
-        </section>
+        {/* Closing block — brief v5 T6. Reemplazó al form de subscribe
+            (no hay proveedor de email; un form muerto es peor que nada). */}
+        <ClosingBlock kind="essay" />
       </article>
     </div>
   )

@@ -7,6 +7,7 @@ import type { CaseStudy } from '@/components/CaseStudyLayout'
 export const mikeKaeding: CaseStudy = {
   slug: 'mike-kaeding',
   vertical: 'Architecture & Design',
+  status: 'portfolio',
 
   title:
     "A construction CEO with $230M in assets and a mission to cut housing costs in half — turned from best-kept secret into a voice policymakers and industry leaders take calls from",

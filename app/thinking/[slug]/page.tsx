@@ -15,7 +15,7 @@ export async function generateMetadata(
   const { slug } = await params
   const es = allEssays.find((e) => e.slug === slug)
   if (!es) return {}
-  const modified = es.updatedAt.startsWith('[FRAN') ? es.publishedAt : es.updatedAt
+  const modified = es.updatedAt || es.publishedAt
   return {
     title: `${es.title} | CRUDA`,
     description: es.answerCapsule.slice(0, 155),

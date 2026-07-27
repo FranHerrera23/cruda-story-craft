@@ -48,9 +48,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...allEssays.map((e) => ({
       url: `${BASE}/thinking/${e.slug}`,
-      lastModified: e.updatedAt.startsWith('[FRAN')
-        ? new Date(e.publishedAt)
-        : new Date(e.updatedAt),
+      lastModified: new Date(e.updatedAt || e.publishedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

@@ -26,6 +26,7 @@ After migrating the four remaining case studies (Girish, Juan Pablo, Mike, Nitin
 
 ### Mike Kaeding
 - **`stats[].source`** — the three numbers ($230M / 1,000 units / $100M project) were on the old page as copy. Fran to add sources or dates so they read as attributable claims, not marketing.
+- **`title` (H1)** — brief v5 T6.4 flagged the current H1 as a 43-word paragraph rendered at H1 scale (10+ lines on desktop). The CSS token change (H1 → --fs-h1) helps the scale but does not fix line count — copy has to shrink. Proposed direction from brief: *"A construction CEO with $230M in assets, invisible to the people who needed him"*. **Awaiting Fran's confirmation before publishing.** Do not swap the copy automatically.
 
 ### Nitin Passi
 - **`client.location`** — omitted on the original page (confidential).

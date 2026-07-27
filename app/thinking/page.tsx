@@ -88,25 +88,6 @@ export default function ThinkingIndexPage() {
         </div>
       </section>
 
-      <section className="essay-sub-band reveal" aria-label="Subscribe">
-        <div className="essay-idx sub sub--cream">
-          <h2>One or two a month.</h2>
-          <p>Essays on narrative and business. Nothing else.</p>
-          <form className="form" action="[FRAN — proveedor de email]" method="post">
-            <input
-              type="email"
-              name="email"
-              placeholder="Your email"
-              aria-label="Email"
-              required
-            />
-            <button type="submit">Subscribe</button>
-          </form>
-          <p className="legal">
-            By subscribing you agree to receive emails from CRUDA. Unsubscribe any time.
-          </p>
-        </div>
-      </section>
     </div>
   )
 }

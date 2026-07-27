@@ -255,8 +255,8 @@ export default function AIConciergeContent() {
               </h2>
             </div>
           </div>
-          <div className="steps" id="steps" ref={stepsRef}>
-            <div className="st rv">
+          <div className="steps" id="steps" ref={stepsRef} data-reveal-group>
+            <div className="st rv" data-reveal>
               <div className="st-n">01</div>
               <div>
                 <h3 className="h3">The call</h3>
@@ -266,7 +266,7 @@ export default function AIConciergeContent() {
                 </p>
               </div>
             </div>
-            <div className="st rv">
+            <div className="st rv" data-reveal>
               <div className="st-n">02</div>
               <div>
                 <h3 className="h3">What you get back</h3>
@@ -280,7 +280,7 @@ export default function AIConciergeContent() {
                 </p>
               </div>
             </div>
-            <div className="st rv">
+            <div className="st rv" data-reveal>
               <div className="st-n">03</div>
               <div>
                 <h3 className="h3">If you want us to build it</h3>

@@ -17,7 +17,7 @@ export default function AIConciergeContent() {
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    // A. FAQ accordion
+    // A. FAQ accordion — click toggles .open on the .fi parent.
     const fqs = Array.from(document.querySelectorAll<HTMLButtonElement>('.aic .fq'))
     const onFqClick = (e: Event) => {
       const btn = e.currentTarget as HTMLElement
@@ -25,28 +25,13 @@ export default function AIConciergeContent() {
     }
     fqs.forEach((b) => b.addEventListener('click', onFqClick))
 
-    // B. Reveal on scroll
-    const rvs = Array.from(document.querySelectorAll<HTMLElement>('.aic .rv'))
-    let io: IntersectionObserver | null = null
-    if (!reduce) {
-      rvs.forEach((el, i) => {
-        el.style.transitionDelay = `${(i % 3) * 80}ms`
-      })
-      io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in')
-              io?.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-      )
-      rvs.forEach((el) => io!.observe(el))
-    }
+    // Reveal-on-scroll retired per brief v3 Parte 1 (resolution B).
+    // .aic .rv is now baseline visible via CSS. No observer here.
 
-    // C. How-it-works progress line
+    // How-it-works progress line — scroll-linked painting of --line
+    // and .on class on each step. Not a reveal — an ongoing state
+    // indicator scoped to a single container. If JS never runs, the
+    // line simply stays at 0 and the step markers stay hollow.
     const steps = stepsRef.current
     let onScroll: (() => void) | null = null
     let onResize: (() => void) | null = null
@@ -70,7 +55,6 @@ export default function AIConciergeContent() {
 
     return () => {
       fqs.forEach((b) => b.removeEventListener('click', onFqClick))
-      io?.disconnect()
       if (onScroll) window.removeEventListener('scroll', onScroll)
       if (onResize) window.removeEventListener('resize', onResize)
     }

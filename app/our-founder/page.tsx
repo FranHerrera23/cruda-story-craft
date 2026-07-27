@@ -1,12 +1,14 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
+import OurFounderStickyIndex from './StickyIndex'
 import './our-founder.css'
 
 /* ------------------------------------------------------------------
-   CRUDA — /our-founder. Etapa 4.
-   Copy locked from ourfounder.html + brief. Rows that start with [FRAN
-   are skipped entirely — placeholder ≠ render. Single <h1> = the hero.
-   Person schema below excludes any sameAs with placeholders.
+   CRUDA — /our-founder (editorial system, part 3 rewrite).
+   Five blocks. One open, one close. No "How I got here" section —
+   its verifiable content lives in the At-a-Glance table. Single <h1>
+   in Instrument Serif via .display.
 ------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
@@ -23,8 +25,7 @@ export const metadata: Metadata = {
   },
 }
 
-// sameAs is intentionally empty until Fran provides links.
-// A broken sameAs is worse than none — per brief PASO 4.
+// sameAs omitted intentionally — placeholders were dropped per etapa 4 brief.
 const PERSON_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -47,70 +48,32 @@ const PERSON_SCHEMA = {
   ],
 }
 
-// AT A GLANCE rows. Rows whose value begins with "[FRAN" are dropped at render.
-type Row =
-  | { kind: 'simple'; label: string; value: string }
-  | { kind: 'wide'; label: string; value: string }
-  | { kind: 'wide-headline'; label: string; headline: string; list: string }
-
-const AT_A_GLANCE: Row[] = [
-  { kind: 'simple', label: 'Based in', value: 'Russia' },
-  { kind: 'simple', label: 'Building', value: 'CRUDA, a holding company' },
+// Text rows for At-a-Glance — brief-strict: only the 6 listed.
+// 10 / 26 / 14 promote to hero-scale numbers above the table.
+const TEXT_ROWS: { label: string; value: string }[] = [
+  { label: 'Based in', value: 'Russia' },
+  { label: 'Building', value: 'CRUDA, a holding company' },
+  { label: 'Verticals', value: 'Architecture & Design · Sports · AI Concierge' },
   {
-    kind: 'simple',
-    label: 'Verticals',
-    value: 'Architecture & Design · Sports · AI Concierge',
-  },
-  {
-    kind: 'simple',
     label: 'Started as',
     value:
       'College dropout at 17, producing events for 600 people in northern Argentina',
   },
-  { kind: 'simple', label: 'Years building brands', value: '10' },
   {
-    kind: 'wide',
     label: 'Worked on',
     value:
       "TikTok · Oreo · DirecTV · FOX · Natura · Nestlé · Mary Kay · Brahma · PedidosYa · Smithfield · Lucciano's · Dean & Dennys · Flynn Paff · United Nations · Argentine Polo Association · National Tourism Board",
   },
-  {
-    kind: 'wide-headline',
-    label: 'Clients and teams from',
-    headline: '26 countries across 4 continents',
-    list:
-      'Argentina · Peru · Brazil · United States · Spain · France · Italy · UK · Germany · Czech Republic · Ukraine · Russia · Kazakhstan · Saudi Arabia · UAE · Lebanon · Israel · India · Pakistan · China · Indonesia · Malaysia · Philippines',
-  },
-  {
-    kind: 'wide-headline',
-    label: 'Industries',
-    headline: '14',
-    list:
-      'CPG · Real estate · Construction · Retail · Fintech · Private equity · Web3 · Hospitality · Architecture & lighting design · Sports · Entertainment · Tourism · Tech · Non-profit',
-  },
-  {
-    kind: 'simple',
-    label: 'Before that',
-    value:
-      'Comedy, music, nightlife and entertainment. 20+ shows produced for 12,000+ people.',
-  },
-  {
-    kind: 'simple',
-    label: 'Writes',
-    value: 'Everything is a narrative, companies too.',
-  },
+  { label: 'Writes', value: 'Everything is a narrative, companies too.' },
 ]
 
-function rowHasPlaceholder(row: Row): boolean {
-  if (row.kind === 'wide-headline') {
-    return row.headline.startsWith('[FRAN') || row.list.startsWith('[FRAN')
-  }
-  return row.value.startsWith('[FRAN')
-}
+const COUNTRIES =
+  'Argentina · Peru · Brazil · United States · Spain · France · Italy · UK · Germany · Czech Republic · Ukraine · Russia · Kazakhstan · Saudi Arabia · UAE · Lebanon · Israel · India · Pakistan · China · Indonesia · Malaysia · Philippines'
+
+const INDUSTRIES =
+  'CPG · Real estate · Construction · Retail · Fintech · Private equity · Web3 · Hospitality · Architecture & lighting design · Sports · Entertainment · Tourism · Tech · Non-profit'
 
 export default function OurFounderPage() {
-  const rows = AT_A_GLANCE.filter((r) => !rowHasPlaceholder(r))
-
   return (
     <>
       <script
@@ -118,166 +81,143 @@ export default function OurFounderPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
       />
       <div className="of">
-        {/* 1. HERO */}
-        <header className="of-header">
-          <div className="w">
-            <p className="mono eyebrow">Our Founder</p>
-            <h1>I believed the work spoke for itself.</h1>
-            <div className="hero-body">
+        <OurFounderStickyIndex />
+
+        {/* 01 — BELIEF — blanco */}
+        <section id="belief" className="of-block of-block--white">
+          <div className="of-inner">
+            <p className="mono of-eyebrow">Our Founder</p>
+            <h1 className="display of-h1">
+              I believed the work spoke for itself.
+            </h1>
+            <div className="of-reading of-body">
               <p>
-                For years I thought that if you were good enough, the world would find you. Then I
-                spent ten years inside agencies and brands watching the opposite — the best work in
-                the room losing to work that was simply told better.
+                For years I thought that if you were good enough, the world would find you.
+                Then I spent ten years inside agencies and brands watching the opposite —
+                the best work in the room losing to work that was simply told better.
               </p>
-              <p className="hit">
+              <p className="of-hit">
                 The world doesn&apos;t reward the best. It rewards the best told.
               </p>
               <p>CRUDA exists to change that.</p>
             </div>
           </div>
-        </header>
+        </section>
 
-        {/* 2. AT A GLANCE */}
-        <section>
-          <div className="w">
-            <p className="mono sec-label">At a glance</p>
-            <div className="gl">
-              {rows.map((row) => {
-                if (row.kind === 'wide-headline') {
-                  return (
-                    <div className="gl-row" key={row.label}>
-                      <span className="gl-k">{row.label}</span>
-                      <span className="gl-v wide">
-                        <span className="gl-n">{row.headline}</span>
-                        {row.list}
-                      </span>
-                    </div>
-                  )
-                }
-                if (row.kind === 'wide') {
-                  return (
-                    <div className="gl-row" key={row.label}>
-                      <span className="gl-k">{row.label}</span>
-                      <span className="gl-v wide">{row.value}</span>
-                    </div>
-                  )
-                }
-                return (
-                  <div className="gl-row" key={row.label}>
-                    <span className="gl-k">{row.label}</span>
-                    <span className="gl-v">{row.value}</span>
-                  </div>
-                )
-              })}
+        {/* 02 — METHOD — crema */}
+        <section id="method" className="of-block of-block--cream">
+          <div className="of-inner">
+            <p className="mono of-eyebrow">02 · Method</p>
+            <div className="of-two-col">
+              <div className="of-reading of-body">
+                <p className="of-lead">I read rooms I don&apos;t come from.</p>
+                <p>
+                  It&apos;s the reason I can sit with a lighting designer in Lima, a founder
+                  in Riyadh and a manufacturer in Shanghai, and speak at the same level in
+                  all three — because merit is measured differently in each room, and I
+                  learned to read the code before I opened my mouth.
+                </p>
+                <p>
+                  That is the whole job. Walk into a world you weren&apos;t raised in,
+                  understand how value gets recognised there, and build the way someone
+                  becomes visible in that code.
+                </p>
+                <p>CRUDA is that, made into a company.</p>
+              </div>
+              <aside className="of-note">
+                <p className="mono of-note-label">The evidence</p>
+                <p>
+                  <span className="of-note-n">26</span> countries
+                </p>
+                <p>
+                  <span className="of-note-n">14</span> industries
+                </p>
+              </aside>
             </div>
+
+            <p className="display--sm of-pull">
+              Every room taught me the same thing from a different angle: the tools of
+              business are real, but the message that actually moves people comes from
+              somewhere else. It isn&apos;t manufactured in a slide.
+            </p>
           </div>
         </section>
 
-        {/* 3. HOW I GOT HERE */}
-        <section>
-          <div className="w">
-            <div className="split">
-              <div>
-                <h2>How I got here</h2>
-                <div className="prose">
-                  <p>
-                    I was seventeen when I organised an event for six hundred people in a small city
-                    in northern Argentina. College dropout, no budget, no reason for anyone to say
-                    yes.
-                  </p>
-                  <p>
-                    Then came the theatres. Comedy tours across three provinces. Gerónimo Rauch
-                    singing Phantom of the Opera with an orchestra conducted by Gerardo Gardelin.
-                    Les Luthiers. Axel. Comedians who now fill the Gran Rex and have over a million
-                    followers — back when they were still filling small rooms.
-                  </p>
-                  <p>
-                    My first campaign was for Mary Kay: twenty creators, a summer line launch, and a
-                    closing event with their global CMO in the room.
-                  </p>
-                  <p>Buenos Aires taught me scale.</p>
-                  <p>
-                    I ran PR for the largest nightclub in Latin America — twenty thousand capacity —
-                    and one night we sold ten thousand tickets online. I produced TikTok&apos;s launch
-                    event in Argentina, negotiating with twenty creators before most people knew what
-                    TikTok was. I coordinated five creators with over a million followers each for a
-                    national tourism campaign that reached three million.
-                  </p>
-                  <p>
-                    Then I crossed to the other side of the table. At an agency I helped build fifteen
-                    brands from zero and grew the business forty percent. For the first time I
-                    wasn&apos;t producing someone else&apos;s moment — I was building the thing that
-                    made the moment possible.
-                  </p>
-                  <p>
-                    Then Dubai. Clients and teammates from more than twenty countries. I built the
-                    PR strategy for a side event at the White House during the US-Africa Summit —
-                    Fortune 1000 CEOs and members of the Ghanaian royal family in the room. It ended
-                    up in Associated Press.
-                  </p>
-                  <p>
-                    Every room taught me the same thing from a different angle: the tools of
-                    business are real, but the message that actually moves people comes from
-                    somewhere else. It isn&apos;t manufactured in a slide.
-                  </p>
-                </div>
+        {/* 03 — AT A GLANCE — blanco */}
+        <section id="at-a-glance" className="of-block of-block--white">
+          <div className="of-inner">
+            <p className="mono of-eyebrow">03 · At a glance</p>
+
+            <div className="of-hero-numbers">
+              <div className="of-hero-n">
+                <span className="display of-hero-n-v">10</span>
+                <p className="mono of-hero-n-l">years building brands</p>
               </div>
-              <figure>
+              <div className="of-hero-n">
+                <span className="display of-hero-n-v">26</span>
+                <p className="mono of-hero-n-l">countries across 4 continents</p>
+                <p className="mono of-hero-n-list">{COUNTRIES}</p>
+              </div>
+              <div className="of-hero-n">
+                <span className="display of-hero-n-v">14</span>
+                <p className="mono of-hero-n-l">industries</p>
+                <p className="mono of-hero-n-list">{INDUSTRIES}</p>
+              </div>
+            </div>
+
+            <div className="of-glance-split">
+              <div className="of-table" role="table">
+                {TEXT_ROWS.map((row) => (
+                  <div className="of-tr" role="row" key={row.label}>
+                    <span className="mono of-tk" role="rowheader">
+                      {row.label}
+                    </span>
+                    <span className="of-tv" role="cell">
+                      {row.value}
+                    </span>
+                  </div>
+                ))}
+              </div>
+              <figure className="of-photo">
                 <Image
                   src="/fran-herrera.png"
                   alt="Francisco Herrera, founder of CRUDA"
                   width={800}
                   height={1000}
                 />
-                <figcaption>Francisco Herrera</figcaption>
+                <figcaption className="mono">Francisco Herrera</figcaption>
               </figure>
             </div>
           </div>
         </section>
 
-        {/* 4. WHAT I ACTUALLY DO */}
-        <section>
-          <div className="w">
-            <h2>What I actually do</h2>
-            <div className="prose">
-              <p className="lead">I read rooms I don&apos;t come from.</p>
-              <p>
-                Twenty-six countries and fourteen industries is not a list of places I&apos;ve
-                been. It&apos;s the reason I can sit with a lighting designer in Lima, a founder in
-                Riyadh and a manufacturer in Shanghai, and speak at the same level in all three —
-                because merit is measured differently in each room, and I learned to read the code
-                before I opened my mouth.
+        {/* 04 — PROOF — crema, note aligned right */}
+        <section id="proof" className="of-block of-block--cream">
+          <div className="of-inner">
+            <aside className="of-note of-note--right">
+              <p className="mono of-eyebrow">04 · Proof</p>
+              <p className="display--sm of-proof-line">The proof isn&apos;t mine.</p>
+              <p className="of-proof-sub">
+                If the job is making other people visible, the proof has to be people you can
+                see.
               </p>
-              <p>
-                That is the whole job. Walk into a world you weren&apos;t raised in, understand how
-                value gets recognised there, and build the way someone becomes visible in that code.
-              </p>
-              <p>CRUDA is that, made into a company.</p>
-            </div>
+              <Link href="/clients" className="mono of-proof-link">
+                See the work →
+              </Link>
+            </aside>
           </div>
         </section>
 
-        {/* 5. THE PROOF */}
-        <section className="proof">
-          <div className="w">
-            <h2>The proof isn&apos;t mine</h2>
-            <p>
-              If the job is making other people visible, the proof has to be people you can see.
+        {/* 05 — CONTACT — negro */}
+        <section id="contact" className="of-block of-block--ink">
+          <div className="of-inner">
+            <p className="mono of-eyebrow of-eyebrow--on-ink">05 · Contact</p>
+            <p className="display of-close-line">
+              The work still doesn&apos;t speak. Now I do it for other people.
             </p>
-            <a href="/clients" className="link">
-              See the work →
-            </a>
-          </div>
-        </section>
-
-        {/* 6. CIERRE */}
-        <section className="close">
-          <div className="w">
-            <p>Ten years to understand that the work doesn&apos;t speak for itself.</p>
-            <p>Now I make sure it does.</p>
-            <a href="/contact" className="btn">
+            <Link href="/contact" className="of-cta">
               Start a conversation
-            </a>
+            </Link>
           </div>
         </section>
       </div>

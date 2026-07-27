@@ -45,6 +45,14 @@
   margin-left:-0.04em;
 }
 
+/* Archivo H2s bump to --track-heading (-0.02em) per brief part 2.
+   Existing headings that opt in via .heading or the section-scoped
+   layouts still keep their own tracking. This applies only where the
+   token wins over a hard-coded value. */
+.of h2, .essay h2, .aic h2, .cs-section h2 {
+  letter-spacing: var(--track-heading, -0.02em);
+}
+
 .cs{max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,72px) 120px}
 
 /* HEAD */

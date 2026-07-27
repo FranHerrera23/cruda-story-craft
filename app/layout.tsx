@@ -7,6 +7,7 @@ import Nav from "@/components/Nav";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import ScrollRevealInit from "@/components/ScrollRevealInit";
+import RevealOnScroll from "@/components/RevealOnScroll";
 import Providers from './providers';
 
 export const metadata: Metadata = {
@@ -78,6 +79,7 @@ export default function RootLayout({
             <Sonner />
             <ScrollToTop />
             <ScrollRevealInit />
+            <RevealOnScroll />
             <Nav />
             <main className="route-transition-wrapper">
               {children}

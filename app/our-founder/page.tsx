@@ -105,7 +105,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 02 — METHOD — crema */}
-        <section id="method" className="of-block of-block--cream">
+        <section id="method" className="of-block of-block--cream reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow">02 · Method</p>
             <div className="of-two-col">
@@ -144,7 +144,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 03 — AT A GLANCE — blanco */}
-        <section id="at-a-glance" className="of-block of-block--white">
+        <section id="at-a-glance" className="of-block of-block--white reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow">03 · At a glance</p>
 
@@ -192,7 +192,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 04 — PROOF — crema, note aligned right */}
-        <section id="proof" className="of-block of-block--cream">
+        <section id="proof" className="of-block of-block--cream reveal">
           <div className="of-inner">
             <aside className="of-note of-note--right">
               <p className="mono of-eyebrow">04 · Proof</p>
@@ -209,7 +209,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 05 — CONTACT — negro */}
-        <section id="contact" className="of-block of-block--ink">
+        <section id="contact" className="of-block of-block--ink reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow of-eyebrow--on-ink">05 · Contact</p>
             <p className="display of-close-line">

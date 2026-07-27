@@ -18,7 +18,7 @@ export default function ClientsIndex() {
     <main className="idx">
       <header className="idx-head">
         <p className="idx-eyebrow">Clients</p>
-        <h1>The work speaks. We make sure it carries.</h1>
+        <h1>They didn&apos;t get louder. They got legible.</h1>
         <p className="idx-sub">
           Founder-experts whose work is stronger than their reach. What we built, and what changed.
         </p>

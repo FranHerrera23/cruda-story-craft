@@ -53,7 +53,7 @@ export const karenMannheim: CaseStudy = {
       body: [
         'Karen Mannheim started designing light in a city where lighting design was not yet a profession. Architects treated it as the last step — something you added once the building was finished. She understood before almost anyone that light is not an accessory to architecture. It is one of its raw materials.',
         'Thirty-three years later: more than 2,500 projects. Lima\'s most important showrooms. An eighty-person team. Work inside RAMSA, Four Seasons and Oppenheim buildings. The Porsche flagship in Lima. Saadiyat Nights in Abu Dhabi.',
-        'For 28 of those 33 years she said the same thing: the work speaks for itself. It does — inside the circle that already knows you. Outside it, nobody had a way in.',
+        'For 28 of those 33 years the same pattern held: the work was always exceptional. It just never left Lima. Inside the circle that already knew her, it moved. Outside it, nobody had a way in.',
       ],
     },
     {

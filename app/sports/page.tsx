@@ -11,7 +11,7 @@ import './sports.css'
 export const metadata: Metadata = {
   title: 'CRUDA Sports — Coming soon',
   description:
-    'CRUDA Sports. A media and marketing company investing in athletes. Coming soon.',
+    'CRUDA Sports. A media and marketing company building athletes. Coming soon.',
   alternates: { canonical: 'https://www.thecruda.com/sports' },
 }
 
@@ -22,7 +22,7 @@ export default function SportsPage() {
         <main className="mid">
           <p className="mono eyebrow step-1">CRUDA Sports</p>
           <h1 className="display headline step-2">
-            A media and marketing company investing in athletes.
+            A media and marketing company building athletes.
           </h1>
         </main>
         <footer className="foot step-3">

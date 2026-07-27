@@ -97,32 +97,70 @@
 --------------------------------------------------------------------- */
 /* Punto 8.3: the position line is the only body copy on the home,
    so it can carry more weight and a controlled measure. */
-/* Position line — Parte 4.3 row 02: Archivo lead scale. */
-.cruda-home .say p {
+/* Two golpes — Item 4 v2.
+   Row 02: "We build people. Companies follow." — Archivo 600, lead
+   scale, --ink-2.
+   Row 03: "Nobody buys the company. They buy you." — Archivo 600,
+   own scale (clamp 28-44), tracking -0.02em, --ink. Does not use
+   --fs-card-title — --fs-card-title was retuned for /thinking. */
+.cruda-home .say-2 {
   max-width: 34rem;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 600;
   font-size: var(--fs-lead);
-  line-height: 1.4;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--ink-2);
   text-wrap: pretty;
+  margin: 0;
 }
-.cruda-home .say p + p { margin-top: 18px; }
-
-/* "They buy you." — Parte 4.3 row 03: Archivo 600 at card-title scale.
-   Not serif — serif would compete with the H1 instead of responding. */
 .cruda-home .say .punch {
   font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 600;
-  font-size: var(--fs-card-title);
+  font-size: clamp(28px, 3vw, 44px);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  margin-left: 0;
-  margin-top: clamp(20px, 3vh, 32px);
-  max-width: none;
   color: var(--ink);
+  margin: clamp(20px, 3vh, 32px) 0 0;
+  max-width: none;
+  text-wrap: balance;
+}
+
+/* Three principles moved into the manifesto body (item 4).
+   13px mono, --ink-2, air between lines, red dot as the marker. */
+.cruda-home .principles {
+  list-style: none;
+  margin: clamp(32px, 5vh, 56px) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 44ch;
+}
+.cruda-home .principles li {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  position: relative;
+  padding-left: 20px;
+}
+.cruda-home .principles li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  background: var(--ink-2);
+  border-radius: 50%;
 }
 
 /* -------------------------------------------------------------------
-   4. Footer — three principles, 13px, more air.
+   4. Footer — kept minimal after item 4: just the year mark.
 --------------------------------------------------------------------- */
 .cruda-home .foot {
   flex-shrink: 0;
@@ -130,32 +168,7 @@
   border-top: 1px solid var(--rule);
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.cruda-home .cos {
-  display: flex;
-  gap: clamp(24px, 3.6vw, 60px);
-  flex-wrap: wrap;
-}
-.cruda-home .cos span {
-  color: var(--ink);
-  position: relative;
-  padding-left: 18px;
-  font-size: 13px;
-  line-height: 1.5;
-  letter-spacing: 0.06em;
-}
-.cruda-home .cos span::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 6px;
-  height: 6px;
-  background: var(--ink-2);
-  border-radius: 50%;
+  justify-content: flex-start;
 }
 .cruda-home .yr {
   color: var(--ink-2);
@@ -174,6 +187,7 @@
   .cruda-home .manifesto .line-2,
   .cruda-home .say-2,
   .cruda-home .punch,
+  .cruda-home .principles,
   .cruda-home .foot {
     opacity: 0;
     animation-fill-mode: forwards;
@@ -185,37 +199,33 @@
     transform: translateY(16px);
   }
 
-  /* 0ms — eyebrow */
   .cruda-home .etym {
     animation-name: cruda-home-fade;
     animation-duration: 400ms;
     animation-delay: 0ms;
   }
-  /* 120ms — "Find the essence." */
   .cruda-home .manifesto .line-1 {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
     animation-delay: 120ms;
   }
-  /* 260ms — "Strip the bullshit." */
   .cruda-home .manifesto .line-2 {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
     animation-delay: 260ms;
   }
-  /* 520ms — position line */
   .cruda-home .say-2 {
     animation-name: cruda-home-fade;
     animation-duration: 600ms;
     animation-delay: 520ms;
   }
-  /* 700ms — "They buy you." */
   .cruda-home .punch {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
     animation-delay: 700ms;
   }
-  /* 900ms — rule + footer */
+  /* 900ms — principles + footer year, one fade together */
+  .cruda-home .principles,
   .cruda-home .foot {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;
@@ -243,11 +253,7 @@
   .cruda-home .foot {
     flex-direction: column;
     align-items: flex-start;
-    gap: 18px;
-  }
-  .cruda-home .cos {
-    flex-direction: column;
-    gap: 14px;
+    gap: 12px;
   }
 }
 @media (prefers-reduced-motion: reduce) {

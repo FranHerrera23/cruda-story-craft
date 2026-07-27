@@ -40,7 +40,7 @@ const WhoThisIsntFor = () => {
               <li className="flex items-start gap-4">
                 <span className="text-2xl mt-1" style={{ color: '#10B981' }}>✓</span>
                 <span className="text-lg leading-relaxed" style={{ color: 'rgba(61, 56, 53, 0.9)' }}>
-                  You're ready to invest in clarity, not just visibility
+                  You're ready to commit to clarity, not just visibility
                 </span>
               </li>
               <li className="flex items-start gap-4">

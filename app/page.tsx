@@ -10,12 +10,12 @@ import './home.css';
 export const metadata: Metadata = {
   title: 'CRUDA — Find the essence. Strip the bullshit.',
   description:
-    'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you. Architecture & Design, Sports, AI Concierge.',
+    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you. Architecture & Design, Sports, AI Concierge.',
   alternates: { canonical: 'https://www.thecruda.com' },
   openGraph: {
     title: 'CRUDA — Find the essence. Strip the bullshit.',
     description:
-      'We create, scale and invest in people who know that nobody buys the company. They buy you.',
+      'We build people. Companies follow. Nobody buys the company — they buy you.',
     url: 'https://www.thecruda.com',
     type: 'website',
   },
@@ -28,7 +28,7 @@ const ORG_SCHEMA = {
   url: 'https://www.thecruda.com',
   slogan: 'Find the essence. Strip the bullshit.',
   description:
-    'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
+    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
   founder: {
     '@type': 'Person',
     name: 'Francisco Herrera',
@@ -73,19 +73,18 @@ export default function HomePage() {
             </h1>
 
             <div className="say">
-              <p className="say-2">
-                We create, scale and invest in people who know that nobody buys the company.
-              </p>
-              <p className="punch">They buy you.</p>
+              <p className="say-2">We build people. Companies follow.</p>
+              <p className="punch">Nobody buys the company. They buy you.</p>
             </div>
+
+            <ul className="principles mono">
+              <li>We find stories, we don&apos;t invent them</li>
+              <li>No urgency, no bullshit, ever</li>
+              <li>Raw over polished. Slow is fine</li>
+            </ul>
           </main>
 
           <footer className="foot">
-            <div className="cos mono">
-              <span>We find stories, we don&apos;t invent them</span>
-              <span>No urgency, no bullshit, ever</span>
-              <span>Raw over polished. Slow is fine</span>
-            </div>
             <span className="mono yr">CRUDA &copy; 2026</span>
           </footer>
         </div>

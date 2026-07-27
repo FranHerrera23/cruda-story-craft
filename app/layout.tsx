@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     template: '%s',
   },
   description:
-    'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
+    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
   // meta-keywords removed per parche P4 — contradicts the holding thesis.
   authors: [{ name: 'CRUDA' }],
   creator: 'CRUDA',
@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     url: 'https://www.thecruda.com',
     title: 'CRUDA — Find the essence. Strip the bullshit.',
     description:
-      'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
+      'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
     siteName: 'CRUDA',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CRUDA — Find the essence. Strip the bullshit.',
     description:
-      'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
+      'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
     creator: '@cruda',
   },
   robots: {

@@ -81,12 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    {
-      url: `${BASE}/book-call`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
+    // /book-call no longer indexed — all CTAs point at Calendly now.
     // Karen Mannheim project detail pages (legacy, still live)
     {
       url: `${BASE}/projects/karen-mannheim/pezet`,

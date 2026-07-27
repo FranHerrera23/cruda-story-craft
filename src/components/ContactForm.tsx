@@ -9,7 +9,7 @@ const ContactForm = () => {
         </h2>
         
         <Link
-          href="/book-call"
+          href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener"
           className="inline-flex items-center justify-center font-display font-medium text-base px-14 py-5 rounded transition-all duration-300 hover:bg-transparent hover:border-2 hover:-translate-y-0.5 hover:shadow-[0_8px_16px_rgba(255,46,99,0.2)]"
           style={{ 
             backgroundColor: '#FF2E63',

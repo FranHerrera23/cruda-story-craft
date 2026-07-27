@@ -704,7 +704,7 @@ const NitinPassiCaseStudy = () => {
           </p>
 
           <Link
-            href="/book-call"
+            href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener"
             className="inline-block px-10 py-[18px] text-[16px] font-semibold rounded-[10px] transition-all duration-300"
             style={{
               backgroundColor: '#FF2E63',

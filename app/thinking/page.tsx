@@ -69,9 +69,7 @@ export default function ThinkingIndexPage() {
 
         <section className="sub" aria-label="Subscribe">
           <h2>Everything is a narrative, companies too.</h2>
-          <p>
-            [FRAN — 1 frase sobre qué recibe quien se suscribe y con qué frecuencia]
-          </p>
+          <p>Ensayos sobre narrativa y negocio. Uno o dos por mes. Nada más.</p>
           <form className="form" action="[FRAN — proveedor de email]" method="post">
             <input
               type="email"

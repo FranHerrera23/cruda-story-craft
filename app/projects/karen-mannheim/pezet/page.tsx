@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.thecruda.com/projects/karen-mannheim/pezet',
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function PezetPage() {

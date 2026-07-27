@@ -17,6 +17,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.thecruda.com/projects/karen-mannheim/four-seasons-penthouse',
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
 };
 
 export default function FourSeasonsPenthousePage() {

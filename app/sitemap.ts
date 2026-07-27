@@ -81,37 +81,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    // Pricing — brief v5 1.3: out of noindex, into the sitemap.
+    // "How much" is the second query after "what do you do."
+    {
+      url: `${BASE}/pricing`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    // /projects/karen-mannheim/* — brief v5 1.5: fuera del sitemap,
+    // noindex a nivel página (opción B). Las rutas siguen vivas para
+    // uso interno (SeeTheWork las linkea), pero no compiten por
+    // autoridad con /clients/karen-mannheim.
     // /book-call no longer indexed — all CTAs point at Calendly now.
-    // Karen Mannheim project detail pages (legacy, still live)
-    {
-      url: `${BASE}/projects/karen-mannheim/pezet`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE}/projects/karen-mannheim/four-seasons-penthouse`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE}/projects/karen-mannheim/porsche-flagship`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE}/projects/karen-mannheim/saadiyat-music-festival`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${BASE}/projects/karen-mannheim/trazzo-expansion`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
   ];
 }

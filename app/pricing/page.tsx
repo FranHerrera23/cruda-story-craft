@@ -5,15 +5,6 @@ import CTASection from '@/components/CTASection';
 export const metadata: Metadata = {
   title: 'Pricing — CRUDA',
   description: 'By month six. Everything compounds. $15,600 for a six-month engagement.',
-  robots: {
-    index: false,
-    follow: false,
-    nocache: true,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
   openGraph: {
     title: 'Pricing — CRUDA',
     description: 'By month six. Everything compounds. $15,600 for a six-month engagement.',

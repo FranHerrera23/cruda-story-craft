@@ -32,6 +32,15 @@ const nextConfig = {
         destination: '/architecture-design/about',
         permanent: true,
       },
+      {
+        // Brief v5 T7: /thinking (index) → /resources (biblioteca)
+        source: '/thinking',
+        destination: '/resources',
+        permanent: true,
+      },
+      // Nota: /thinking/[slug] queda vivo — el URL canonical de cada
+      // ensayo no cambia para no romper backlinks. Cuando migren a
+      // /resources/[slug] se agrega el 301 de cada slug.
     ]
   },
 };

@@ -39,9 +39,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    // Thinking index + individual pieces (etapa 5 — renamed from /essays)
+    // Resources — brief v5 T7 (reemplaza a /thinking; el 301 vive
+    // en next.config.mjs). Los ensayos siguen en /thinking/[slug].
     {
-      url: `${BASE}/thinking`,
+      url: `${BASE}/resources`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,

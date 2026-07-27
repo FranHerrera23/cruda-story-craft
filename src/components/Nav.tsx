@@ -169,7 +169,7 @@ export default function Nav() {
             </div>
 
             <Link
-              href="/thinking"
+              href="/resources"
               style={linkStyle(isResources)}
               aria-current={isResources ? 'page' : undefined}
             >
@@ -250,7 +250,7 @@ export default function Nav() {
               </ul>
             </details>
             <Link
-              href="/thinking"
+              href="/resources"
               style={linkStyle(isResources)}
               aria-current={isResources ? 'page' : undefined}
               onClick={() => setMobileOpen(false)}

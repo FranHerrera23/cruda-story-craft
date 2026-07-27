@@ -81,6 +81,10 @@ html { font-size: 17px; }
 
 /* HEAD */
 .cs-head{padding:clamp(96px,14vh,160px) 0 0}
+/* Brief v5 T7 — back-link a /resources. Ninguna pieza sin salida. */
+.cs-back{display:inline-block;color:var(--ink-2);text-decoration:none;
+  margin-bottom:32px;transition:color .2s}
+.cs-back:hover{color:var(--ink)}
 .cs-eyebrow{font-family:var(--mono);font-weight:500;font-size:12px;
   letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px}
 /* Brief v5 T6 — H1 en --fs-h1 (no display).

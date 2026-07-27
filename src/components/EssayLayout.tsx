@@ -121,8 +121,8 @@ export default function EssayLayout({ es }: { es: Essay }) {
 
       <article>
         <header className="e-head">
-          <Link href="/thinking" className="mono e-back">
-            ← Thinking
+          <Link href="/resources" className="mono e-back">
+            ← Resources
           </Link>
           <p className="e-meta">
             <span className="e-type">{contentType}</span>

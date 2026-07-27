@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import './case-study.css'
 import ClosingBlock from './ClosingBlock'
 
@@ -125,6 +126,9 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
 
       {/* ---------- HEAD ---------- */}
       <header className="cs-head">
+        <Link href="/resources" className="cs-back mono">
+          ← Resources
+        </Link>
         <p className="cs-eyebrow">{cs.vertical}</p>
         <h1 className="cs-title">{cs.title}</h1>
         {cs.subtitle && <p className="cs-sub">{cs.subtitle}</p>}

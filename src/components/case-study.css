@@ -190,7 +190,7 @@
    per-element by the script (index * 80ms).
 
    Failsafes:
-   - noscript rule in root layout covers both .reveal and [data-reveal]
+   - noscript rule in root layout paints resting state on .reveal
    - Observer uses threshold 0 (large blocks would fail 0.15)
    - Script forces is-visible after 3 s if IO never fires
 ------------------------------------------------------------------- */

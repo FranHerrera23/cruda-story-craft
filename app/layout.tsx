@@ -76,11 +76,10 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* EB Garamond + Instrument Sans for About page redesign */}
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        {/* Parche P0.1 safety net — reveal elements must never stay
-            invisible when JS fails. Covers both selectors during the
-            transition to the unified .reveal class. */}
+        {/* Reveal safety net — .reveal is the single site-wide selector.
+            If JS never runs, the resting state is painted immediately. */}
         <noscript>
-          <style>{`.reveal,[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
       <body>

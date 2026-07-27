@@ -2,38 +2,59 @@
 
 import { useEffect } from 'react'
 
-/* Site-wide reveal (brief part 8). Any element with class .reveal enters
-   the viewport, gets .is-visible, and lifts. Once only. Respects
-   prefers-reduced-motion via the CSS gate — this hook still stamps the
-   class so the resting state (opacity 1, transform none) is applied. */
+/* Brief part 8, single script for the whole site.
+
+   Rule:
+     [data-reveal] { opacity: 0; transform: translateY(24px);
+                     transition: opacity 700ms var(--ease),
+                                 transform 700ms var(--ease);
+                     transition-delay: var(--reveal-delay, 0ms); }
+     [data-reveal].is-in { opacity: 1; transform: none; }
+
+   Stagger only inside [data-reveal-group] — sibling index × 80ms.
+   Once-only: unobserve after fire. Nothing re-hides on scroll-up.
+
+   prefers-reduced-motion is handled by the CSS (transition: none) —
+   we still stamp .is-in so no element gets stuck invisible. */
+
+const STAGGER_MS = 80
 
 export default function RevealOnScroll() {
   useEffect(() => {
-    const els = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
-    if (els.length === 0) return
+    const nodes = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-reveal]')
+    )
+    if (nodes.length === 0) return
 
-    // prefers-reduced-motion: still mark visible so no element gets stuck
-    // hidden; the CSS gate at @media (prefers-reduced-motion: no-preference)
-    // means the transition itself is inert.
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reduce) {
-      els.forEach((el) => el.classList.add('is-visible'))
+      nodes.forEach((el) => el.classList.add('is-in'))
       return
     }
+
+    // Compute per-element --reveal-delay from position inside a group.
+    nodes.forEach((el) => {
+      const group = el.closest<HTMLElement>('[data-reveal-group]')
+      if (!group) return
+      const siblings = Array.from(
+        group.querySelectorAll<HTMLElement>('[data-reveal]')
+      )
+      const i = siblings.indexOf(el)
+      if (i > 0) el.style.setProperty('--reveal-delay', `${i * STAGGER_MS}ms`)
+    })
 
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            io.unobserve(entry.target)
-          }
+          if (!entry.isIntersecting) continue
+          entry.target.classList.add('is-in')
+          io.unobserve(entry.target)
         }
       },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.08 }
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.15 }
     )
 
-    els.forEach((el) => io.observe(el))
+    nodes.forEach((el) => io.observe(el))
     return () => io.disconnect()
   }, [])
 

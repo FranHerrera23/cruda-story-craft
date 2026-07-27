@@ -1,9 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-/* Left-side sticky index for /our-founder. Five anchors, mono 11px,
-   active in --red. Hidden below 1024px (CSS handles the hide). */
+/* Left-side sticky index for /our-founder (brief part 8).
+   Five anchors. Active state driven by IntersectionObserver on the
+   [data-section] marks — the section whose middle is inside the center
+   band of the viewport wins. Hidden below 1024px (CSS). */
 
 const ITEMS = [
   { id: 'belief', label: '01  BELIEF' },
@@ -14,26 +16,43 @@ const ITEMS = [
 ] as const
 
 export default function OurFounderStickyIndex() {
-  const [active, setActive] = useState<string>('belief')
-
   useEffect(() => {
-    const nodes = ITEMS.map((i) => document.getElementById(i.id)).filter(
-      (n): n is HTMLElement => !!n
+    const links = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-index-link]')
     )
-    if (nodes.length === 0) return
+    const marks = Array.from(
+      document.querySelectorAll<HTMLElement>('[data-section]')
+    )
+    if (links.length === 0 || marks.length === 0) return
 
-    const io = new IntersectionObserver(
+    const spy = new IntersectionObserver(
       (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
-        if (visible.length > 0) setActive(visible[0].target.id)
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          const id = (entry.target as HTMLElement).dataset.section
+          links.forEach((l) =>
+            l.classList.toggle('is-active', l.dataset.indexLink === id)
+          )
+        }
       },
-      { rootMargin: '-40% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+      { rootMargin: '-45% 0px -45% 0px' }
     )
-    nodes.forEach((n) => io.observe(n))
-    return () => io.disconnect()
+
+    marks.forEach((m) => spy.observe(m))
+    return () => spy.disconnect()
   }, [])
+
+  const handleClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string
+  ) => {
+    // Smooth scroll only on this click, not globally.
+    const target = document.getElementById(id)
+    if (!target) return
+    e.preventDefault()
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    history.replaceState(null, '', `#${id}`)
+  }
 
   return (
     <nav className="of-sticky-idx" aria-label="Page sections">
@@ -42,8 +61,8 @@ export default function OurFounderStickyIndex() {
           <li key={i.id}>
             <a
               href={`#${i.id}`}
-              className={active === i.id ? 'active' : ''}
-              aria-current={active === i.id ? 'true' : undefined}
+              data-index-link={i.id}
+              onClick={(e) => handleClick(e, i.id)}
             >
               {i.label}
             </a>

@@ -71,6 +71,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* EB Garamond + Instrument Sans for About page redesign */}
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        {/* Brief part 8 safety net — [data-reveal] elements must never
+            stay invisible when JS fails. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body>
         <Providers>
@@ -81,7 +86,7 @@ export default function RootLayout({
             <ScrollRevealInit />
             <RevealOnScroll />
             <Nav />
-            <main className="route-transition-wrapper">
+            <main className="route-transition-wrapper" data-page>
               {children}
             </main>
           </TooltipProvider>

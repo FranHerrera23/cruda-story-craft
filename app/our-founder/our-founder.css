@@ -273,10 +273,11 @@
   text-transform: uppercase;
   color: var(--ink-2);
   text-decoration: none;
-  transition: color 0.25s var(--ease, ease);
+  transition: color 300ms var(--ease, ease);
+  padding: 4px 0;
 }
 .of .of-sticky-idx a:hover { color: var(--ink); }
-.of .of-sticky-idx a.active { color: var(--red); }
+.of .of-sticky-idx a.is-active { color: var(--red); }
 
 @media (min-width: 1024px) {
   .of .of-sticky-idx { display: block; }

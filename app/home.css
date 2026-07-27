@@ -77,29 +77,34 @@
   font-family: var(--serif);
   font-weight: 400;
   font-size: clamp(46px, 8.6vw, 132px);
-  line-height: var(--lh-display, 0.92);
-  letter-spacing: var(--track-display, -0.03em);
-  margin-left: -0.045em; /* optical alignment */
+  line-height: 0.94;
+  letter-spacing: -0.03em;
+  margin-left: -0.04em; /* optical alignment */
   margin-bottom: clamp(24px, 4vh, 48px);
+  text-wrap: balance; /* no orphan words at the break */
 }
 .cruda-home .manifesto span {
   display: block;
 }
 .cruda-home .manifesto .line-2 {
-  font-style: italic;
+  /* Punto 8.1: roman, not italic. Color alone carries the accent. */
+  font-style: normal;
   color: var(--red);
 }
 
 /* -------------------------------------------------------------------
    3. Support paragraphs + "They buy you." on display.
 --------------------------------------------------------------------- */
+/* Punto 8.3: the position line is the only body copy on the home,
+   so it can carry more weight and a controlled measure. */
 .cruda-home .say p {
-  max-width: 56ch;
-  font-size: clamp(16.5px, 1.55vw, 20px);
-  line-height: 1.5;
+  max-width: 34rem;
+  font-size: clamp(19px, 1.7vw, 24px);
+  line-height: 1.4;
   color: var(--ink-2);
+  text-wrap: pretty;
 }
-.cruda-home .say p + p { margin-top: 10px; }
+.cruda-home .say p + p { margin-top: 18px; }
 
 /* They buy you. — parche P2.1: reverted to Archivo. Serif was
    competing with the H1 instead of responding to it. Voice that
@@ -161,11 +166,12 @@
    5. Load sequence — orchestrated, single-shot on mount.
    Home doesn't scroll: .reveal-based IO doesn't apply here.
 --------------------------------------------------------------------- */
+/* Punto 8.5: orchestrated one-shot entry. Three principles + footer
+   fade in at the end so the eye lands on the manifesto first. */
 @media (prefers-reduced-motion: no-preference) {
   .cruda-home .etym,
   .cruda-home .manifesto .line-1,
   .cruda-home .manifesto .line-2,
-  .cruda-home .say-1,
   .cruda-home .say-2,
   .cruda-home .punch,
   .cruda-home .foot {
@@ -179,38 +185,37 @@
     transform: translateY(16px);
   }
 
-  /* 0ms — eyebrow (400ms fade) */
+  /* 0ms — eyebrow */
   .cruda-home .etym {
     animation-name: cruda-home-fade;
     animation-duration: 400ms;
     animation-delay: 0ms;
   }
-  /* 120ms — "Find the essence." (700ms fade + rise) */
+  /* 120ms — "Find the essence." */
   .cruda-home .manifesto .line-1 {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
     animation-delay: 120ms;
   }
-  /* 260ms — "Strip the bullshit." (700ms fade + rise) */
+  /* 260ms — "Strip the bullshit." */
   .cruda-home .manifesto .line-2 {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
     animation-delay: 260ms;
   }
-  /* 520ms — the three .say paragraphs (600ms fade) */
-  .cruda-home .say-1,
+  /* 520ms — position line */
   .cruda-home .say-2 {
     animation-name: cruda-home-fade;
     animation-duration: 600ms;
     animation-delay: 520ms;
   }
-  /* 700ms — "They buy you." (700ms fade + rise) */
+  /* 700ms — "They buy you." */
   .cruda-home .punch {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
     animation-delay: 700ms;
   }
-  /* 900ms — rule + footer (500ms fade) */
+  /* 900ms — rule + footer */
   .cruda-home .foot {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;

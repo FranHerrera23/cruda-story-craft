@@ -73,9 +73,6 @@ export default function HomePage() {
             </h1>
 
             <div className="say">
-              <p className="say-1">
-                The best work doesn&apos;t come from adding. It comes from taking away.
-              </p>
               <p className="say-2">
                 We create, scale and invest in people who know that nobody buys the company.
               </p>

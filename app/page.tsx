@@ -77,6 +77,10 @@ export default function HomePage() {
               <p className="punch">Nobody buys the company. They buy you.</p>
             </div>
 
+            <p className="define">
+              Three companies. One method. Nobody&apos;s agency but yours.
+            </p>
+
             <ul className="principles mono">
               <li>We find stories, we don&apos;t invent them</li>
               <li>No urgency, no bullshit, ever</li>

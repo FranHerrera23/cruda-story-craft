@@ -126,6 +126,22 @@
   text-wrap: balance;
 }
 
+/* Definition line — brief v5 tarea 5.
+   Va debajo del manifiesto, antes de los principios. Archivo (voz
+   operativa, misma que "They buy you"), --fs-lead. Nunca display, no
+   compite con el titular. Sin acento porque está bajo 24px. */
+.cruda-home .define {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-lead);
+  line-height: 1.35;
+  letter-spacing: -0.005em;
+  color: var(--ink-2);
+  margin: clamp(20px, 3.4vh, 32px) 0 0;
+  max-width: 42rem;
+  text-wrap: pretty;
+}
+
 /* Three principles moved into the manifesto body (item 4).
    13px mono, --ink-2, air between lines, red dot as the marker. */
 .cruda-home .principles {
@@ -187,6 +203,7 @@
   .cruda-home .manifesto .line-2,
   .cruda-home .say-2,
   .cruda-home .punch,
+  .cruda-home .define,
   .cruda-home .principles,
   .cruda-home .foot {
     opacity: 0;
@@ -224,12 +241,17 @@
     animation-duration: 700ms;
     animation-delay: 700ms;
   }
-  /* 900ms — principles + footer year, one fade together */
+  .cruda-home .define {
+    animation-name: cruda-home-fade;
+    animation-duration: 500ms;
+    animation-delay: 900ms;
+  }
+  /* 1050ms — principles + footer year, one fade together */
   .cruda-home .principles,
   .cruda-home .foot {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;
-    animation-delay: 900ms;
+    animation-delay: 1050ms;
   }
 }
 

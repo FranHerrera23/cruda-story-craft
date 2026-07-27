@@ -529,7 +529,7 @@ export default function AIConciergeContent() {
             CRUDA
           </span>
           <div className="ft-links mono">
-            <a href="https://www.thecruda.com/architecturedesign">Architecture &amp; Design</a>
+            <a href="https://www.thecruda.com/architecture-design">Architecture &amp; Design</a>
             <a href="https://www.thecruda.com/sports">Sports</a>
             <a href="https://www.thecruda.com">thecruda.com</a>
           </div>

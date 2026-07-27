@@ -1,51 +1,62 @@
 'use client'
 
-/* /contact — parche P1.1.
-   Every CTA on the site ends up here. Two clear paths: the Calendly
-   for a 45-min call, or an email address for anything else. No dead
-   end. */
+import Script from 'next/script'
+
+/* /contact — brief v5, tarea 3.
+   Calendly embebido como primario. Email en texto con mailto.
+   Sin formulario. Sin urgencia, sin escasez. Voz de la casa.
+   Si el embed no carga (JS off, adblock), el link "Open in a new tab"
+   y el mailto siguen funcionando — cero dead end. */
 
 const CALENDLY = 'https://calendly.com/cruda-intro/narrative-sparring-live-1'
 const HELLO = 'hello@thecruda.com'
+
+// Calendly params — colores del sistema: --ink, --accent, --white.
+const CALENDLY_EMBED =
+  `${CALENDLY}?hide_gdpr_banner=1&background_color=ffffff&text_color=0a0a0a&primary_color=e8623a`
 
 export default function ContactContent() {
   return (
     <div className="contact-root">
       <main className="contact-shell">
-        <section className="contact-lede reveal">
+        <section className="contact-lede">
           <p className="mono contact-eyebrow">Contact</p>
           <h1 className="display--sm contact-h1">Let&apos;s talk about your story.</h1>
           <p className="contact-sub">
-            Forty-five minutes. No pitch. If it&apos;s a fit, we take it from there. If it
-            isn&apos;t, you leave with a map of what would be.
+            Forty-five minutes on the calendar. No pitch. Pick a slot below, or
+            write and we&apos;ll take it from there.
           </p>
         </section>
 
-        <section className="contact-actions reveal">
-          <a
-            href={CALENDLY}
-            target="_blank"
-            rel="noopener"
-            className="contact-primary"
-          >
-            <span className="contact-primary-lede mono">Book a call</span>
-            <span className="contact-primary-body">
-              45 minutes on the calendar. Pick a slot that works.
-            </span>
-            <span className="contact-primary-arrow mono" aria-hidden="true">→</span>
-          </a>
-
-          <div className="contact-alt">
-            <p className="mono contact-alt-label">Or write</p>
-            <a href={`mailto:${HELLO}`} className="contact-alt-mail">
-              {HELLO}
+        <section className="contact-calendly">
+          <div
+            className="calendly-inline-widget"
+            data-url={CALENDLY_EMBED}
+            style={{ minWidth: '320px', height: '720px' }}
+          />
+          <p className="contact-fallback mono">
+            Widget not loading?{' '}
+            <a href={CALENDLY} target="_blank" rel="noopener">
+              Open Calendly in a new tab →
             </a>
-            <p className="contact-alt-note">
-              For press, hiring, or anything that isn&apos;t a discovery call.
-            </p>
-          </div>
+          </p>
+        </section>
+
+        <section className="contact-email">
+          <p className="mono contact-alt-label">Or write</p>
+          <a href={`mailto:${HELLO}`} className="contact-alt-mail">
+            {HELLO}
+          </a>
+          <p className="contact-alt-note">
+            For press, hiring, or anything that isn&apos;t a discovery call.
+          </p>
         </section>
       </main>
+
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
 
       <style jsx>{`
         .contact-root {
@@ -57,7 +68,7 @@ export default function ContactContent() {
         .contact-shell {
           max-width: 1080px;
           margin: 0 auto;
-          padding: calc(96px + 12vh) clamp(24px, 5vw, 72px) 120px;
+          padding: calc(96px + 8vh) clamp(24px, 5vw, 72px) 120px;
         }
         .mono {
           font-family: 'IBM Plex Mono', monospace;
@@ -81,68 +92,40 @@ export default function ContactContent() {
           color: var(--ink-2);
           max-width: 56ch;
         }
-        .contact-actions {
+
+        .contact-calendly {
           margin-top: clamp(56px, 8vh, 96px);
-          display: grid;
-          grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-          gap: clamp(24px, 4vw, 56px);
-          align-items: stretch;
         }
-
-        .contact-primary {
-          display: grid;
-          grid-template-columns: 1fr auto;
-          grid-template-areas:
-            'lede arrow'
-            'body arrow';
-          gap: 12px 24px;
-          align-items: baseline;
+        .contact-fallback {
+          color: var(--ink-2);
+          margin-top: 16px;
+          text-align: center;
+        }
+        .contact-fallback a {
+          color: var(--ink);
           text-decoration: none;
-          background: var(--ink);
-          color: var(--white);
-          padding: 48px 56px;
-          transition: background-color 300ms
-            var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
-          min-height: 220px;
+          border-bottom: 1px solid var(--accent);
+          padding-bottom: 2px;
+          transition: color 0.2s;
         }
-        .contact-primary:hover {
-          background-color: var(--accent);
-        }
-        .contact-primary-lede {
-          grid-area: lede;
-          color: var(--white);
-        }
-        .contact-primary-body {
-          grid-area: body;
-          font-family: 'Instrument Serif', Georgia, serif;
-          font-size: clamp(24px, 2.8vw, 36px);
-          line-height: 1.05;
-          letter-spacing: -0.02em;
-          max-width: 18ch;
-        }
-        .contact-primary-arrow {
-          grid-area: arrow;
-          align-self: end;
-          color: var(--white);
-          font-size: 20px;
-          letter-spacing: 0;
-          text-transform: none;
+        .contact-fallback a:hover {
+          color: var(--accent);
         }
 
-        .contact-alt {
+        .contact-email {
+          margin-top: clamp(64px, 10vh, 120px);
           background: var(--cream);
-          padding: 40px 40px;
+          padding: clamp(32px, 5vw, 56px);
           display: flex;
           flex-direction: column;
-          justify-content: center;
+          gap: 16px;
         }
         .contact-alt-label {
           color: var(--ink-2);
-          margin-bottom: 16px;
         }
         .contact-alt-mail {
           font-family: 'Instrument Serif', Georgia, serif;
-          font-size: clamp(24px, 2.4vw, 32px);
+          font-size: clamp(28px, 3vw, 40px);
           line-height: 1.1;
           letter-spacing: -0.02em;
           color: var(--ink);
@@ -157,11 +140,10 @@ export default function ContactContent() {
           border-color: var(--accent);
         }
         .contact-alt-note {
-          font-size: 14px;
+          font-size: 15px;
           line-height: 1.55;
           color: var(--ink-2);
-          margin-top: 24px;
-          max-width: 32ch;
+          max-width: 40ch;
         }
 
         :global(.contact-root) :focus-visible {
@@ -172,14 +154,6 @@ export default function ContactContent() {
         @media (max-width: 900px) {
           .contact-shell {
             padding-top: 120px;
-          }
-          .contact-actions {
-            grid-template-columns: 1fr;
-            gap: 24px;
-          }
-          .contact-primary {
-            padding: 36px 32px;
-            min-height: 160px;
           }
         }
       `}</style>

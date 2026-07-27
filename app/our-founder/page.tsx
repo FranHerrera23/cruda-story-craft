@@ -105,7 +105,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 02 — METHOD — crema */}
-        <section id="method" data-section="method" data-reveal className="of-block of-block--cream">
+        <section id="method" data-section="method" className="of-block of-block--cream reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow">02 · Method</p>
             <div className="of-two-col">
@@ -144,21 +144,21 @@ export default function OurFounderPage() {
         </section>
 
         {/* 03 — AT A GLANCE — blanco */}
-        <section id="at-a-glance" data-section="at-a-glance" data-reveal className="of-block of-block--white">
+        <section id="at-a-glance" data-section="at-a-glance" className="of-block of-block--white reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow">03 · At a glance</p>
 
-            <div className="of-hero-numbers" data-reveal-group>
-              <div className="of-hero-n" data-reveal>
+            <div className="of-hero-numbers reveal-group">
+              <div className="of-hero-n reveal">
                 <span className="display of-hero-n-v">10</span>
                 <p className="mono of-hero-n-l">years building brands</p>
               </div>
-              <div className="of-hero-n" data-reveal>
+              <div className="of-hero-n reveal">
                 <span className="display of-hero-n-v">26</span>
                 <p className="mono of-hero-n-l">countries across 4 continents</p>
                 <p className="mono of-hero-n-list">{COUNTRIES}</p>
               </div>
-              <div className="of-hero-n" data-reveal>
+              <div className="of-hero-n reveal">
                 <span className="display of-hero-n-v">14</span>
                 <p className="mono of-hero-n-l">industries</p>
                 <p className="mono of-hero-n-list">{INDUSTRIES}</p>
@@ -166,9 +166,9 @@ export default function OurFounderPage() {
             </div>
 
             <div className="of-glance-split">
-              <div className="of-table" role="table" data-reveal-group>
+              <div className="of-table reveal-group" role="table">
                 {TEXT_ROWS.map((row) => (
-                  <div className="of-tr" role="row" key={row.label} data-reveal>
+                  <div className="of-tr reveal" role="row" key={row.label}>
                     <span className="mono of-tk" role="rowheader">
                       {row.label}
                     </span>
@@ -192,7 +192,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 04 — PROOF — crema, note aligned right */}
-        <section id="proof" data-section="proof" data-reveal className="of-block of-block--cream">
+        <section id="proof" data-section="proof" className="of-block of-block--cream reveal">
           <div className="of-inner">
             <aside className="of-note of-note--right">
               <p className="mono of-eyebrow">04 · Proof</p>
@@ -209,7 +209,7 @@ export default function OurFounderPage() {
         </section>
 
         {/* 05 — CONTACT — negro */}
-        <section id="contact" data-section="contact" data-reveal className="of-block of-block--ink">
+        <section id="contact" data-section="contact" className="of-block of-block--ink reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow of-eyebrow--on-ink">05 · Contact</p>
             <p className="display of-close-line">

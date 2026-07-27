@@ -6,7 +6,6 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Nav from "@/components/Nav";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import ScrollRevealInit from "@/components/ScrollRevealInit";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Providers from './providers';
 
@@ -71,10 +70,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* EB Garamond + Instrument Sans for About page redesign */}
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        {/* Brief part 8 safety net — [data-reveal] elements must never
-            stay invisible when JS fails. */}
+        {/* Parche P0.1 safety net — reveal elements must never stay
+            invisible when JS fails. Covers both selectors during the
+            transition to the unified .reveal class. */}
         <noscript>
-          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal,[data-reveal]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
       </head>
       <body>
@@ -83,7 +83,6 @@ export default function RootLayout({
             <Toaster />
             <Sonner />
             <ScrollToTop />
-            <ScrollRevealInit />
             <RevealOnScroll />
             <Nav />
             <main className="route-transition-wrapper" data-page>

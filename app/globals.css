@@ -1260,71 +1260,9 @@ html {
    SCROLL REVEAL ANIMATIONS
    ============================================ */
 
-/* Fade up — default reveal */
-[data-reveal="fade-up"] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-[data-reveal="fade-up"].in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Slide from left — for section headlines */
-[data-reveal="slide-left"] {
-  opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-[data-reveal="slide-left"].in-view {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* Fade in (no movement) — for subtle elements */
-[data-reveal="fade"] {
-  opacity: 0;
-  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-[data-reveal="fade"].in-view {
-  opacity: 1;
-}
-
-/* Stagger children — add to parent container */
-[data-reveal-stagger] > * {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-[data-reveal-stagger].in-view > *:nth-child(1) { transition-delay: 0s; }
-[data-reveal-stagger].in-view > *:nth-child(2) { transition-delay: 0.08s; }
-[data-reveal-stagger].in-view > *:nth-child(3) { transition-delay: 0.16s; }
-[data-reveal-stagger].in-view > *:nth-child(4) { transition-delay: 0.24s; }
-[data-reveal-stagger].in-view > *:nth-child(5) { transition-delay: 0.32s; }
-[data-reveal-stagger].in-view > *:nth-child(6) { transition-delay: 0.40s; }
-
-[data-reveal-stagger].in-view > * {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Width reveal — for red accent lines */
-[data-reveal="line"] {
-  width: 0;
-  transition: width 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-[data-reveal="line"].in-view {
-  width: 48px;
-}
+/* Legacy [data-reveal] / .in-view rules removed — no component consumes
+   them anymore, and the observer that stamped .in-view (ScrollRevealInit)
+   has been deleted per patch P0.1 (unify to .reveal / .is-visible). */
 
 /* ============================================
    GLOBAL BUTTON SYSTEM — SWEEP-FILL

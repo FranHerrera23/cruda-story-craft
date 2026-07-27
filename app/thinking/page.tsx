@@ -43,8 +43,7 @@ export default function ThinkingIndexPage() {
           <Link
             key={featured.slug}
             href={`/thinking/${featured.slug}`}
-            className="featured"
-            data-reveal
+            className="featured reveal"
             aria-label={`Featured: ${featured.title}`}
           >
             <span className="mono n-small">
@@ -67,7 +66,7 @@ export default function ThinkingIndexPage() {
 
         {/* Rest — compact list. */}
         {rest.length > 0 && (
-          <div className="list" role="list" data-reveal-group>
+          <div className="list reveal-group" role="list">
             {rest.map((es, i) => {
               const type = es.contentType ?? 'Essay'
               const tagsLine = [es.category, ...(es.tags ?? [])]
@@ -78,8 +77,7 @@ export default function ThinkingIndexPage() {
                 <Link
                   key={es.slug}
                   href={`/thinking/${es.slug}`}
-                  className="item"
-                  data-reveal
+                  className="item reveal"
                   role="listitem"
                 >
                   <span className="n">{String(index).padStart(2, '0')}</span>
@@ -105,7 +103,7 @@ export default function ThinkingIndexPage() {
 
       {/* Subscribe on --cream. Full-bleed band so the color reads as
           punctuation and not decoration. */}
-      <section className="essay-sub-band" data-reveal aria-label="Subscribe">
+      <section className="essay-sub-band reveal" aria-label="Subscribe">
         <div className="essay-idx sub sub--cream">
           <h2>Everything is a narrative, companies too.</h2>
           <p>Ensayos sobre narrativa y negocio. Uno o dos por mes. Nada más.</p>

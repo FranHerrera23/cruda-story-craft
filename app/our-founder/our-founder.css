@@ -249,14 +249,19 @@
   color: var(--white);
 }
 
-/* ---------- Sticky index ---------- */
+/* ---------- Sticky index ----------
+   Parche P0.2: the sticky nav lived at left: 32px while the content
+   inner started at the same edge, so it overlaid text on 5 sections.
+   Fix: at ≥1024px reserve the left column for the index (180px + gut)
+   and push .of-inner right by 260px so nothing collides. */
 .of .of-sticky-idx {
   position: fixed;
-  left: 32px;
+  left: 40px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 40;
   display: none;
+  width: 180px;
 }
 .of .of-sticky-idx ol {
   list-style: none;
@@ -281,6 +286,8 @@
 
 @media (min-width: 1024px) {
   .of .of-sticky-idx { display: block; }
+  /* Reserve left column for the index — 180px width + 80px air. */
+  .of .of-inner { padding-left: calc(var(--gut) + 260px); }
 }
 
 /* ---------- Mobile ---------- */

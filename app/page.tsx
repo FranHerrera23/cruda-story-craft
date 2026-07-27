@@ -64,17 +64,19 @@ export default function HomePage() {
         <div className="shell">
           <main className="mid">
             <p className="mono etym">
-              Cruda &middot; <em>raw, in Spanish</em>
+              Cruda &middot; <span className="etym-raw">raw, in Spanish</span>
             </p>
 
-            <h1 className="manifesto">
-              <span>Find the essence.</span>
-              <span>Strip the bullshit.</span>
+            <h1 className="manifesto display">
+              <span className="line-1">Find the essence.</span>
+              <span className="line-2">Strip the bullshit.</span>
             </h1>
 
             <div className="say">
-              <p>The best work doesn&apos;t come from adding. It comes from taking away.</p>
-              <p>
+              <p className="say-1">
+                The best work doesn&apos;t come from adding. It comes from taking away.
+              </p>
+              <p className="say-2">
                 We create, scale and invest in people who know that nobody buys the company.
               </p>
               <p className="punch">They buy you.</p>

@@ -1,6 +1,6 @@
-/* CRUDA — Home page styles. Scoped under .cruda-home.
-   Global tokens (--white, --ink, --ink-2, --red, --rule) come from
-   src/components/case-study.css (etapa 1). Local vars only here. */
+/* CRUDA — Home page styles (part 3-BIS rewrite).
+   Global tokens (colors + part 9 editorial tokens) come from
+   src/components/case-study.css. Scoped under .cruda-home. */
 
 .cruda-home-root {
   --sans: 'Archivo', -apple-system, sans-serif;
@@ -17,8 +17,9 @@
   height: 100dvh;
   min-height: 100dvh;
 }
-
-.cruda-home-root *, .cruda-home-root *::before, .cruda-home-root *::after {
+.cruda-home-root *,
+.cruda-home-root *::before,
+.cruda-home-root *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -38,7 +39,7 @@
   font-family: var(--mono);
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -50,43 +51,48 @@
   padding: clamp(16px, 3vh, 48px) 0;
   min-height: 0;
 }
+
+/* -------------------------------------------------------------------
+   1. Eyebrow — mono, no italic. "raw, in Spanish" in --ink-2.
+--------------------------------------------------------------------- */
 .cruda-home .etym {
-  color: var(--ink-2);
-  margin-bottom: clamp(20px, 3.4vh, 40px);
-  opacity: 0;
-  animation: cruda-home-fade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
-}
-.cruda-home .etym em {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  letter-spacing: 0;
-  text-transform: none;
   color: var(--ink);
+  margin-bottom: clamp(20px, 3.4vh, 40px);
 }
+.cruda-home .etym .etym-raw {
+  color: var(--ink-2);
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-style: normal; /* explicit override — no italics in copy */
+}
+
+/* -------------------------------------------------------------------
+   2. Manifesto H1 — .display treatment (part 2 tracking + optical).
+   Copy locked. Second line stays italic + red.
+--------------------------------------------------------------------- */
 .cruda-home .manifesto {
   font-family: var(--serif);
   font-weight: 400;
   font-size: clamp(46px, 8.6vw, 132px);
-  line-height: 0.94;
-  letter-spacing: -0.018em;
+  line-height: var(--lh-display, 0.92);
+  letter-spacing: var(--track-display, -0.03em);
+  margin-left: -0.045em; /* optical alignment */
   margin-bottom: clamp(24px, 4vh, 48px);
 }
 .cruda-home .manifesto span {
   display: block;
-  opacity: 0;
-  animation: cruda-home-rise 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-.cruda-home .manifesto span:nth-child(1) { animation-delay: 0.25s; }
-.cruda-home .manifesto span:nth-child(2) {
-  animation-delay: 0.4s;
+.cruda-home .manifesto .line-2 {
   font-style: italic;
   color: var(--red);
 }
-.cruda-home .say {
-  opacity: 0;
-  animation: cruda-home-fade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards;
-}
+
+/* -------------------------------------------------------------------
+   3. Support paragraphs + "They buy you." on display.
+--------------------------------------------------------------------- */
 .cruda-home .say p {
   max-width: 56ch;
   font-size: clamp(16.5px, 1.55vw, 20px);
@@ -94,13 +100,23 @@
   color: var(--ink-2);
 }
 .cruda-home .say p + p { margin-top: 10px; }
+
+/* They buy you. — was a paragraph, now a display beat. */
 .cruda-home .say .punch {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 0.96;
+  letter-spacing: -0.02em;
+  margin-left: -0.04em;
+  margin-top: clamp(28px, 4vh, 44px);
+  max-width: none;
   color: var(--ink);
-  font-weight: 500;
-  font-size: clamp(18px, 1.8vw, 23px);
-  margin-top: 14px;
 }
 
+/* -------------------------------------------------------------------
+   4. Footer — three principles, 13px, more air.
+--------------------------------------------------------------------- */
 .cruda-home .foot {
   flex-shrink: 0;
   padding: clamp(20px, 3vh, 32px) 0 clamp(24px, 3.4vh, 40px);
@@ -110,48 +126,112 @@
   justify-content: space-between;
   gap: 24px;
   flex-wrap: wrap;
-  opacity: 0;
-  animation: cruda-home-fade 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.9s forwards;
 }
 .cruda-home .cos {
   display: flex;
-  gap: clamp(20px, 3.4vw, 52px);
+  gap: clamp(24px, 3.6vw, 60px);
   flex-wrap: wrap;
 }
 .cruda-home .cos span {
   color: var(--ink);
   position: relative;
-  padding-left: 16px;
+  padding-left: 18px;
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
 }
 .cruda-home .cos span::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.52em;
-  width: 5px;
-  height: 5px;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
   background: var(--red);
   border-radius: 50%;
 }
-.cruda-home .yr { color: var(--ink-2); }
+.cruda-home .yr {
+  color: var(--ink-2);
+  font-size: 12px;
+}
+
+/* -------------------------------------------------------------------
+   5. Load sequence — orchestrated, single-shot on mount.
+   Home doesn't scroll: .reveal-based IO doesn't apply here.
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .cruda-home .etym,
+  .cruda-home .manifesto .line-1,
+  .cruda-home .manifesto .line-2,
+  .cruda-home .say-1,
+  .cruda-home .say-2,
+  .cruda-home .punch,
+  .cruda-home .foot {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: var(--ease, cubic-bezier(.16, 1, .3, 1));
+  }
+  .cruda-home .manifesto .line-1,
+  .cruda-home .manifesto .line-2,
+  .cruda-home .punch {
+    transform: translateY(16px);
+  }
+
+  /* 0ms — eyebrow (400ms fade) */
+  .cruda-home .etym {
+    animation-name: cruda-home-fade;
+    animation-duration: 400ms;
+    animation-delay: 0ms;
+  }
+  /* 120ms — "Find the essence." (700ms fade + rise) */
+  .cruda-home .manifesto .line-1 {
+    animation-name: cruda-home-rise;
+    animation-duration: 700ms;
+    animation-delay: 120ms;
+  }
+  /* 260ms — "Strip the bullshit." (700ms fade + rise) */
+  .cruda-home .manifesto .line-2 {
+    animation-name: cruda-home-rise;
+    animation-duration: 700ms;
+    animation-delay: 260ms;
+  }
+  /* 520ms — the three .say paragraphs (600ms fade) */
+  .cruda-home .say-1,
+  .cruda-home .say-2 {
+    animation-name: cruda-home-fade;
+    animation-duration: 600ms;
+    animation-delay: 520ms;
+  }
+  /* 700ms — "They buy you." (700ms fade + rise) */
+  .cruda-home .punch {
+    animation-name: cruda-home-rise;
+    animation-duration: 700ms;
+    animation-delay: 700ms;
+  }
+  /* 900ms — rule + footer (500ms fade) */
+  .cruda-home .foot {
+    animation-name: cruda-home-fade;
+    animation-duration: 500ms;
+    animation-delay: 900ms;
+  }
+}
 
 @keyframes cruda-home-rise {
-  from { opacity: 0; transform: translateY(26px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
 }
 @keyframes cruda-home-fade {
-  to { opacity: 1; }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @media (max-width: 860px) {
-  html.cruda-home-html, .cruda-home-root {
+  html.cruda-home-html,
+  .cruda-home-root {
     overflow: auto !important;
     height: auto !important;
   }
-  .cruda-home .shell {
-    height: auto;
-    min-height: 100dvh;
-  }
+  .cruda-home .shell { height: auto; min-height: 100dvh; }
   .cruda-home .mid { padding: clamp(40px, 8vh, 80px) 0; }
   .cruda-home .foot {
     flex-direction: column;
@@ -160,18 +240,11 @@
   }
   .cruda-home .cos {
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .cruda-home *, .cruda-home *::before, .cruda-home *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-  .cruda-home .manifesto span,
-  .cruda-home .etym,
-  .cruda-home .say,
-  .cruda-home .foot { opacity: 1; }
+  .cruda-home * { animation: none !important; transition: none !important; }
 }
 
 .cruda-home :focus-visible {

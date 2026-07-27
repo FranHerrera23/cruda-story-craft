@@ -520,19 +520,37 @@
 }
 .essay-idx .featured:hover .featured-arrow { transform: translateX(16px); }
 
-/* ---------- Subscribe band on cream (part 4) ---------- */
+/* ---------- Subscribe band on cream (part 4 + punto 6) ---------- */
 .essay-sub-band {
   background: var(--cream);
   margin-top: 96px;
   padding: clamp(56px, 8vw, 112px) 0 clamp(72px, 10vw, 128px);
 }
+/* Punto 6.1: the inner still needs the site gutter — override only
+   the border-top and vertical margin, keep the horizontal padding
+   the .essay-idx rule set. */
 .essay-sub-band .sub {
   margin-top: 0;
-  padding: 0;
+  padding-top: 0;
+  padding-bottom: 0;
   border-top: none;
 }
-.essay-sub-band .sub h2,
-.essay-sub-band .sub p,
+/* Punto 6.3: this is a subscribe form, not a declaration.
+   Bring the H2 back to Archivo scale. */
+.essay-sub-band .sub h2 {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  margin-bottom: 16px;
+}
+.essay-sub-band .sub p {
+  font-size: clamp(16px, 1.4vw, 19px);
+  max-width: 56ch;
+  margin-bottom: 28px;
+}
 .essay-sub-band .sub .legal {
   max-width: 46ch;
 }

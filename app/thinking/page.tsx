@@ -119,8 +119,8 @@ export default function ThinkingIndexPage() {
           punctuation and not decoration. */}
       <section className="essay-sub-band reveal" aria-label="Subscribe">
         <div className="essay-idx sub sub--cream">
-          <h2>Everything is a narrative, companies too.</h2>
-          <p>Ensayos sobre narrativa y negocio. Uno o dos por mes. Nada más.</p>
+          <h2>One or two a month.</h2>
+          <p>Essays on narrative and business. Nothing else.</p>
           <form className="form" action="[FRAN — proveedor de email]" method="post">
             <input
               type="email"

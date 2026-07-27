@@ -77,8 +77,8 @@
   max-width: 14ch;
 }
 .of .of-body p {
-  font-size: clamp(18px, 1.6vw, 21px);
-  line-height: 1.55;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   color: var(--ink-2);
 }
 .of .of-body p + p { margin-top: 20px; }
@@ -94,9 +94,9 @@
 .of .of-h2 {
   font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 600;
-  font-size: clamp(32px, 3.4vw, 52px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   color: var(--ink);
   max-width: 22ch;
   margin: 8px 0 32px;
@@ -104,12 +104,12 @@
 .of .of-pull {
   font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
-  font-size: clamp(28px, 2.6vw, 40px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   color: var(--ink);
-  max-width: 22rem;
-  margin: 56px 0 0 auto; /* offset right within the column */
+  max-width: var(--measure-note);
+  margin: 56px 0 0 auto;
 }
 
 /* ---------- 03 — At a glance ---------- */
@@ -171,7 +171,7 @@
 }
 .of .of-tk { color: var(--ink-2); }
 .of .of-tv {
-  font-size: 17px;
+  font-size: var(--fs-excerpt);
   line-height: 1.5;
   color: var(--ink);
 }
@@ -200,7 +200,7 @@
    on hover. Underline in --red stays. */
 .of .of-proof-sub {
   color: var(--ink-2);
-  font-size: clamp(17px, 1.4vw, 19px);
+  font-size: var(--fs-lead);
   line-height: 1.55;
   margin: 0 0 28px;
   max-width: 44ch;

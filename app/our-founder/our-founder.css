@@ -87,43 +87,29 @@
   font-weight: 600;
 }
 
-/* ---------- 02 — Method ---------- */
-.of .of-two-col {
-  display: grid;
-  grid-template-columns: var(--measure-reading, 42rem) minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 96px);
-  align-items: start;
-  margin-bottom: 64px;
-}
-.of .of-two-col > .of-note {
-  max-width: var(--measure-note, 22rem);
-}
-.of .of-lead {
+/* ---------- 02 — Method ----------
+   Punto 2.1 — H2 is the section headline, must weigh accordingly.
+   Punto 2.4 — pull quote sits below reading measure, offset right,
+   never larger than the H1. */
+.of .of-h2 {
+  font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 600;
-  color: var(--ink) !important;
-  font-size: clamp(19px, 1.7vw, 22px) !important;
-}
-.of .of-note-label {
-  color: var(--ink-2);
-  margin-bottom: 16px;
-}
-.of .of-note p {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-.of .of-note p + p { margin-top: 10px; }
-.of .of-note-n {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(28px, 2.4vw, 36px);
+  font-size: clamp(32px, 3.4vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
   color: var(--ink);
-  letter-spacing: var(--track-heading, -0.02em);
-  margin-right: 10px;
+  max-width: 22ch;
+  margin: 8px 0 32px;
 }
 .of .of-pull {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
   color: var(--ink);
-  max-width: 32ch;
+  max-width: 22rem;
+  margin: 56px 0 0 auto; /* offset right within the column */
 }
 
 /* ---------- 03 — At a glance ---------- */
@@ -166,7 +152,7 @@
 
 .of .of-glance-split {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
   gap: clamp(32px, 5vw, 80px);
   align-items: start;
 }
@@ -190,8 +176,14 @@
   color: var(--ink);
 }
 
-/* Photo — grayscale */
-.of .of-photo { margin: 0; }
+/* Photo — grayscale.
+   Punto 3: contained inside the grid, max 420px, no bleed. */
+.of .of-photo {
+  margin: 0;
+  max-width: 420px;
+  width: 100%;
+  justify-self: end;
+}
 .of .of-photo img {
   width: 100%;
   height: auto;
@@ -203,19 +195,20 @@
   margin-top: 12px;
 }
 
-/* ---------- 04 — Proof ---------- */
-.of .of-proof-line {
-  color: var(--ink);
-  margin-bottom: 16px;
-}
+/* ---------- 04 — Proof ----------
+   Punto 4: left-aligned, H2 shared with Block 02, arrow slides right
+   on hover. Underline in --red stays. */
 .of .of-proof-sub {
   color: var(--ink-2);
-  font-size: 17px;
+  font-size: clamp(17px, 1.4vw, 19px);
   line-height: 1.55;
-  margin-bottom: 20px;
+  margin: 0 0 28px;
+  max-width: 44ch;
 }
 .of .of-proof-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--red);
@@ -223,6 +216,11 @@
   transition: color 0.2s;
 }
 .of .of-proof-link:hover { color: var(--red); }
+.of .of-proof-arrow {
+  display: inline-block;
+  transition: transform 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+}
+.of .of-proof-link:hover .of-proof-arrow { transform: translateX(8px); }
 
 /* ---------- 05 — Contact ---------- */
 .of .of-block--ink .of-eyebrow { color: var(--red); }
@@ -231,32 +229,35 @@
   max-width: 18ch;
   margin: 24px 0 56px;
 }
+/* Punto 5: proper button, not floating text. Explicit padding, mono
+   letter-spacing 0.12em, hover inverts to --red in 300ms. */
 .of .of-cta {
   display: inline-block;
   font-family: var(--mono);
   font-weight: 500;
   font-size: 12px;
-  letter-spacing: var(--track-mono, 0.12em);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   background: var(--white);
   color: var(--ink);
-  padding: 19px 38px;
+  padding: 20px 32px;
   text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  transition: background-color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
+              color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
 .of .of-cta:hover {
-  background: var(--red);
+  background-color: var(--red);
   color: var(--white);
 }
 
 /* ---------- Sticky index ----------
-   Parche P0.2: the sticky nav lived at left: 32px while the content
-   inner started at the same edge, so it overlaid text on 5 sections.
-   Fix: at ≥1024px reserve the left column for the index (180px + gut)
-   and push .of-inner right by 260px so nothing collides. */
+   Punto 1: rail lives at left: 48px, width: 180px. Content starts
+   at padding-left: 300px so there is no dead gap between the two —
+   the reading column begins right where the rail ends, plus 72px of
+   air. Verified visually at 1280 / 1440 / 1680. */
 .of .of-sticky-idx {
   position: fixed;
-  left: 40px;
+  left: 48px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 40;
@@ -286,8 +287,15 @@
 
 @media (min-width: 1024px) {
   .of .of-sticky-idx { display: block; }
-  /* Reserve left column for the index — 180px width + 80px air. */
-  .of .of-inner { padding-left: calc(var(--gut) + 260px); }
+  /* Punto 1: reserve left column for the rail (48 + 180 = 228 + 72
+     of air = 300) and mirror the right edge to the rail's left
+     inset (48). No more 340px dead gap. */
+  .of .of-inner {
+    padding-left: 300px;
+    padding-right: 48px;
+    max-width: none;
+    margin: 0;
+  }
 }
 
 /* ---------- Mobile ---------- */

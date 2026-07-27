@@ -108,34 +108,24 @@ export default function OurFounderPage() {
         <section id="method" data-section="method" className="of-block of-block--cream reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow">02 · Method</p>
-            <div className="of-two-col">
-              <div className="of-reading of-body">
-                <p className="of-lead">I read rooms I don&apos;t come from.</p>
-                <p>
-                  It&apos;s the reason I can sit with a lighting designer in Lima, a founder
-                  in Riyadh and a manufacturer in Shanghai, and speak at the same level in
-                  all three — because merit is measured differently in each room, and I
-                  learned to read the code before I opened my mouth.
-                </p>
-                <p>
-                  That is the whole job. Walk into a world you weren&apos;t raised in,
-                  understand how value gets recognised there, and build the way someone
-                  becomes visible in that code.
-                </p>
-                <p>CRUDA is that, made into a company.</p>
-              </div>
-              <aside className="of-note">
-                <p className="mono of-note-label">The evidence</p>
-                <p>
-                  <span className="of-note-n">26</span> countries
-                </p>
-                <p>
-                  <span className="of-note-n">14</span> industries
-                </p>
-              </aside>
+            <h2 className="of-h2">I read rooms I don&apos;t come from.</h2>
+            <div className="of-reading of-body">
+              <p>
+                Twenty-six countries and fourteen industries is not a list of places
+                I&apos;ve been. It&apos;s the reason I can sit with a lighting designer
+                in Lima, a founder in Riyadh and a manufacturer in Shanghai, and speak at
+                the same level in all three — because merit is measured differently in
+                each room, and I learned to read the code before I opened my mouth.
+              </p>
+              <p>
+                That is the whole job. Walk into a world you weren&apos;t raised in,
+                understand how value gets recognised there, and build the way someone
+                becomes visible in that code.
+              </p>
+              <p>CRUDA is that, made into a company.</p>
             </div>
 
-            <p className="display--sm of-pull">
+            <p className="of-pull">
               Every room taught me the same thing from a different angle: the tools of
               business are real, but the message that actually moves people comes from
               somewhere else. It isn&apos;t manufactured in a slide.
@@ -191,20 +181,19 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 04 — PROOF — crema, note aligned right */}
+        {/* 04 — PROOF — crema, left-aligned per Punto 4 */}
         <section id="proof" data-section="proof" className="of-block of-block--cream reveal">
           <div className="of-inner">
-            <aside className="of-note of-note--right">
-              <p className="mono of-eyebrow">04 · Proof</p>
-              <p className="display--sm of-proof-line">The proof isn&apos;t mine.</p>
-              <p className="of-proof-sub">
-                If the job is making other people visible, the proof has to be people you can
-                see.
-              </p>
-              <Link href="/clients" className="mono of-proof-link">
-                See the work →
-              </Link>
-            </aside>
+            <p className="mono of-eyebrow">04 · Proof</p>
+            <h2 className="of-h2">The proof isn&apos;t mine.</h2>
+            <p className="of-proof-sub">
+              If the job is making other people visible, the proof has to be people you can
+              see.
+            </p>
+            <Link href="/clients" className="mono of-proof-link">
+              <span>See the work</span>
+              <span className="of-proof-arrow" aria-hidden="true">→</span>
+            </Link>
           </div>
         </section>
 

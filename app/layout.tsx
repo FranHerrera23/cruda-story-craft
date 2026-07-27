@@ -36,13 +36,21 @@ export const metadata: Metadata = {
     description:
       'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
     siteName: 'CRUDA',
+    images: [
+      {
+        url: 'https://www.thecruda.com/logo.png',
+        width: 1080,
+        height: 1080,
+        alt: 'CRUDA',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'CRUDA — Find the essence. Strip the bullshit.',
     description:
       'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
-    creator: '@cruda',
+    images: ['https://www.thecruda.com/logo.png'],
   },
   robots: {
     index: true,

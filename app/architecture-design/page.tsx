@@ -10,17 +10,20 @@ import BothSidesSection from "@/components/BothSidesSection";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-  description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
+  title: 'CRUDA for Architecture & Design',
+  description:
+    'Brand building for founders and studios in architecture, construction and design. The work still doesn\'t speak — now we do it for them.',
   openGraph: {
-    title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
+    title: 'CRUDA for Architecture & Design',
+    description:
+      'Brand building for founders and studios in architecture, construction and design.',
     url: 'https://www.thecruda.com/architecture-design',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We help leaders in construction, architecture, and design sound like who they actually are.',
+    title: 'CRUDA for Architecture & Design',
+    description:
+      'Brand building for founders and studios in architecture, construction and design.',
   },
   alternates: {
     canonical: 'https://www.thecruda.com/architecture-design',

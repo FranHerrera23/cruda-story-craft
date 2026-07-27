@@ -99,3 +99,56 @@
     gap: 12px;
   }
 }
+
+/* -------------------------------------------------------------------
+   Load sequence (brief part 8 + 3-BIS adapted).
+   Three steps: eyebrow → phrase → contact line. Delays 0/120/260ms.
+   /sports doesn't scroll — it doesn't participate in [data-reveal].
+--------------------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  .sports .step-1,
+  .sports .step-2,
+  .sports .step-3 {
+    opacity: 0;
+    animation-fill-mode: forwards;
+    animation-timing-function: var(--ease, cubic-bezier(.16, 1, .3, 1));
+  }
+  .sports .step-2,
+  .sports .step-3 { transform: translateY(16px); }
+
+  .sports .step-1 {
+    animation-name: sports-fade;
+    animation-duration: 400ms;
+    animation-delay: 0ms;
+  }
+  .sports .step-2 {
+    animation-name: sports-rise;
+    animation-duration: 700ms;
+    animation-delay: 120ms;
+  }
+  .sports .step-3 {
+    animation-name: sports-rise;
+    animation-duration: 700ms;
+    animation-delay: 260ms;
+  }
+}
+@keyframes sports-rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes sports-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sports .step-1, .sports .step-2, .sports .step-3 {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.sports :focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 4px;
+}

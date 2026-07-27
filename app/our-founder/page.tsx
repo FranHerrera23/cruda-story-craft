@@ -83,13 +83,19 @@ export default function OurFounderPage() {
       <div className="of">
         <OurFounderStickyIndex />
 
-        {/* 01 — BELIEF — blanco */}
-        <section id="belief" data-section="belief" className="of-block of-block--white">
+        {/* 01 — BELIEF · hero on ink, only H1 */}
+        <section id="belief" data-section="belief" className="of-hero-ink">
+          <div className="of-hero-inner">
+            <h1 className="display of-hero-h1">
+              <span className="of-typing">I believed the work spoke for itself.</span>
+            </h1>
+          </div>
+        </section>
+
+        {/* 01 body · reading on white */}
+        <section data-section="belief" className="of-block of-block--white of-belief-body">
           <div className="of-inner">
             <p className="mono of-eyebrow">Our Founder</p>
-            <h1 className="display of-h1">
-              I believed the work spoke for itself.
-            </h1>
             <div className="of-reading of-body">
               <p>
                 For years I thought that if you were good enough, the world would find you.

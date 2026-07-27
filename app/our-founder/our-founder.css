@@ -70,12 +70,68 @@
 }
 .of .of-note--right a { justify-self: end; }
 
-/* ---------- 01 — Belief ---------- */
-.of .of-h1 {
-  color: var(--ink);
-  margin-bottom: 56px;
-  max-width: 14ch;
+/* ---------- 01 — Belief ----------
+   v3 Parte 3: opens 100dvh on --ink. Only the H1 lives here — the
+   reading body moves to a separate white section below (.of-belief-body).
+   Typing animation via clip-path so the text stays in the DOM even if
+   the animation never runs. Baseline is fully visible: no observer,
+   no gate. Parallax on the H1 as the hero exits, CSS-only via
+   animation-timeline: view() with @supports guard. */
+.of .of-hero-ink {
+  background: var(--ink);
+  color: var(--white);
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: clamp(80px, 12vh, 160px) var(--gut);
+  overflow: hidden;
+  position: relative;
 }
+.of .of-hero-inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.of .of-hero-h1 {
+  color: var(--white);
+  max-width: 18ch;
+}
+/* Typing effect: text renders visible; clip-path pulls it in on load.
+   Baseline is inset(0 0 0 0) (fully shown), the animation just brings
+   it from inset(0 100% 0 0). If reduced-motion or animation refused,
+   the text is already there. Never depends on JS. */
+.of .of-typing {
+  display: inline-block;
+  clip-path: inset(0 0 0 0);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .of .of-typing {
+    animation: cruda-typing 1600ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)) 200ms both;
+  }
+}
+@keyframes cruda-typing {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+/* Parallax on the H1 as the hero exits the viewport.
+   Only where animation-timeline is supported; graceful degradation
+   otherwise (static). Respects reduced-motion. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .of .of-hero-h1 {
+      animation: cruda-hero-parallax linear both;
+      animation-timeline: view();
+      animation-range: exit 0% exit 100%;
+    }
+  }
+}
+@keyframes cruda-hero-parallax {
+  from { transform: translateY(0);      opacity: 1;   }
+  to   { transform: translateY(-64px);  opacity: 0.35; }
+}
+
+/* Belief body — white section directly under the black hero. */
+.of .of-belief-body { padding-top: clamp(80px, 14vh, 180px); }
 .of .of-body p {
   font-size: var(--fs-body);
   line-height: var(--lh-body);

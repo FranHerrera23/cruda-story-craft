@@ -81,10 +81,10 @@
   letter-spacing: 0.16em;
 }
 .essay h1 {
-  font-size: clamp(32px, 4.6vw, 54px);
+  font-size: var(--fs-h1);
   font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -0.024em;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   margin-bottom: 36px;
 }
 
@@ -123,12 +123,13 @@
   text-align: right;
 }
 
-/* ANSWER CAPSULE — el bloque que la IA levanta */
+/* ANSWER CAPSULE — el bloque que la IA levanta.
+   Parte 6.1: --fs-capsule. */
 .essay .e-capsule {
   margin: 48px 0 56px;
   padding-left: 26px;
   border-left: 2px solid var(--red);
-  font-size: clamp(19px, 2vw, 23px);
+  font-size: var(--fs-capsule);
   line-height: 1.5;
   font-weight: 500;
   letter-spacing: -0.008em;
@@ -138,35 +139,35 @@
 .essay .e-hero { margin: 32px 0 40px; }
 .essay .e-hero img { width: 100%; height: auto; display: block; }
 
-/* body */
+/* Body — Parte 6.1: --fs-body / --lh-body.
+   This is the single change with the biggest visible impact on the site. */
 .essay .e-body p {
-  font-size: clamp(18px, 1.7vw, 20px);
-  line-height: 1.72;
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   color: #25252A;
   margin-bottom: 28px;
 }
 .essay .e-body p.lead {
-  font-size: clamp(19px, 1.8vw, 21px);
+  font-size: var(--fs-lead);
 }
 .essay .e-body h2 {
-  font-size: clamp(24px, 2.6vw, 32px);
+  font-size: var(--fs-h2);
   font-weight: 700;
-  line-height: 1.16;
-  letter-spacing: -0.018em;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   margin: 56px 0 24px;
 }
 
-/* pull quote — frase del propio texto.
-   Part 5 tightening: use the .display--sm tracking + note measure and
-   offset right so it reads as marginalia, not body copy. */
+/* Pull quote — Parte 6.1: --fs-h3, note measure, offset right.
+   The rule from Parte 1.4: never larger than the H1 of its page. */
 .essay .e-body p.e-pull {
   margin: 56px 0 56px auto;
   font-family: var(--serif);
-  font-size: clamp(28px, 3.6vw, 44px);
-  line-height: var(--lh-heading, 0.96);
-  letter-spacing: var(--track-heading, -0.02em);
+  font-size: var(--fs-h3);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   color: var(--ink);
-  max-width: var(--measure-note, 22rem);
+  max-width: var(--measure-note);
   text-align: left;
 }
 
@@ -177,7 +178,7 @@
   background: var(--cream);
 }
 .essay .e-quote p {
-  font-size: clamp(18px, 1.8vw, 21px);
+  font-size: var(--fs-lead);
   line-height: 1.5;
   margin-bottom: 14px;
   color: var(--ink);
@@ -185,7 +186,7 @@
 .essay .e-quote cite {
   font-style: normal;
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: var(--fs-meta);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-2);
@@ -198,9 +199,10 @@
   margin: 64px 0 32px;
 }
 .essay .e-faq h2 {
-  font-size: clamp(24px, 2.8vw, 34px);
+  font-size: var(--fs-h2);
   font-weight: 700;
-  letter-spacing: -0.018em;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   margin-bottom: 32px;
 }
 .essay .e-faq details { border-bottom: 1px solid var(--rule-2); }
@@ -210,7 +212,7 @@
   padding: 26px 44px 26px 0;
   position: relative;
   font-weight: 600;
-  font-size: 19px;
+  font-size: var(--fs-body);
   letter-spacing: -0.006em;
 }
 .essay .e-faq summary::-webkit-details-marker { display: none; }
@@ -227,8 +229,8 @@
 .essay .e-faq details[open] summary::after { content: '–'; }
 .essay .e-faq details p {
   padding: 0 0 30px;
-  font-size: 17.5px;
-  line-height: 1.6;
+  font-size: var(--fs-excerpt);
+  line-height: var(--lh-body);
   color: var(--ink-2);
 }
 

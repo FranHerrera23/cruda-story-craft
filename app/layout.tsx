@@ -11,12 +11,16 @@ import Providers from './providers';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.thecruda.com'),
+  // No template — page-level titles are already qualified with " | CRUDA"
+  // where they need to be, and the old "%s — CRUDA" template was doubling
+  // brand on routes that already carried it.
   title: {
-    default: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    template: '%s — CRUDA',
+    default: 'CRUDA — Find the essence. Strip the bullshit.',
+    template: '%s',
   },
-  description: 'We build narrative systems for real estate, construction, and architecture companies.',
-  keywords: ['narrative strategy', 'construction marketing', 'architecture branding', 'real estate marketing', 'founder narrative'],
+  description:
+    'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
+  // meta-keywords removed per parche P4 — contradicts the holding thesis.
   authors: [{ name: 'CRUDA' }],
   creator: 'CRUDA',
   publisher: 'CRUDA',
@@ -29,14 +33,16 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.thecruda.com',
-    title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We build narrative systems for real estate, construction, and architecture companies.',
+    title: 'CRUDA — Find the essence. Strip the bullshit.',
+    description:
+      'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
     siteName: 'CRUDA',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CRUDA — Narrative Strategy for Construction & Architecture Leaders',
-    description: 'We build narrative systems for real estate, construction, and architecture companies.',
+    title: 'CRUDA — Find the essence. Strip the bullshit.',
+    description:
+      'CRUDA creates, scales and invests in people who know that nobody buys the company. They buy you.',
     creator: '@cruda',
   },
   robots: {

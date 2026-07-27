@@ -5,11 +5,25 @@ import '@/components/essay.css'
 
 const BASE = 'https://www.thecruda.com'
 
+const TITLE = 'Thinking | CRUDA'
+const DESCRIPTION =
+  'Essays and conversations on narrative, business and the stories that move people. From Francisco Herrera, founder of CRUDA.'
+
 export const metadata: Metadata = {
-  title: 'Thinking | CRUDA',
-  description:
-    'Essays and conversations on narrative, business and the stories that move people. From Francisco Herrera, founder of CRUDA.',
+  title: TITLE,
+  description: DESCRIPTION,
   alternates: { canonical: `${BASE}/thinking` },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: `${BASE}/thinking`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 }
 
 function fmt(iso: string) {

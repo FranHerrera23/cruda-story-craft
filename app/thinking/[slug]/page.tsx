@@ -29,6 +29,12 @@ export async function generateMetadata(
       modifiedTime: modified,
       images: es.heroImage ? [`${BASE}${es.heroImage}`] : undefined,
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: es.title,
+      description: es.answerCapsule.slice(0, 200),
+      images: es.heroImage ? [`${BASE}${es.heroImage}`] : undefined,
+    },
   }
 }
 

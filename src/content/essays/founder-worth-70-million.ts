@@ -15,6 +15,7 @@ export const founderWorth70Million: Essay = {
   updatedAt: '2025-04-03',
 
   title: 'What a founder worth $70 million told me about freedom',
+  coverLine: "Seventy million, and he can't take a month off.",
 
   answerCapsule:
     "A construction founder with a net worth of $70 million told me he couldn't take a one-month road trip with his family. He had built something most people would envy and was actively designing his way out of it. This is about what that conversation changed in how I think about building.",

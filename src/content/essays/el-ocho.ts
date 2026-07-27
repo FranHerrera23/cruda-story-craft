@@ -15,6 +15,7 @@ export const elOcho: Essay = {
   updatedAt: '2026-07-26',
 
   title: 'The best CRM I ever saw belonged to a man in an Adidas tracksuit',
+  coverLine: 'He extended credit off memory alone.',
 
   answerCapsule:
     "A cybercafé owner in northern Argentina extended credit to eight-year-olds off memory — no CRM, no funnel, no customer experience strategy. Twenty years later I still remember his name. This is about why the trust brands buy with software almost never lands.",

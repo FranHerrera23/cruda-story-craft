@@ -34,11 +34,16 @@ function fmt(iso: string) {
   })
 }
 
-export default function ThinkingIndexPage() {
-  const [featured, ...rest] = allEssays
+/* Excerpt: first sentence of the answerCapsule, capped at ~120 chars. */
+function excerpt(capsule: string): string {
+  const first = capsule.split(/\.\s/)[0]
+  return first.length > 120 ? first.slice(0, 118) + '…' : first + '.'
+}
 
+export default function ThinkingIndexPage() {
   return (
     <div className="essay-root">
+      {/* Hero on white */}
       <header className="essay-idx-header">
         <div className="essay-idx">
           <p className="mono eyebrow">Thinking</p>
@@ -50,73 +55,53 @@ export default function ThinkingIndexPage() {
         </div>
       </header>
 
-      <main className="essay-idx">
-        {/* Featured piece — 01. Full width, serif title. Fills the hole
-            that ~700px of dead space used to sit in. */}
-        {featured && (
-          <Link
-            key={featured.slug}
-            href={`/thinking/${featured.slug}`}
-            className="featured reveal"
-            aria-label={`Featured: ${featured.title}`}
-          >
-            <span className="mono n-small">
-              01 · {(featured.contentType ?? 'Essay').toUpperCase()}
-            </span>
-            <h2 className="display--sm featured-t">{featured.title}</h2>
-            <p className="featured-excerpt">
-              {featured.answerCapsule.split(' — ')[0]}.
-            </p>
-            <span className="mono featured-m">
-              Francisco Herrera ·{' '}
-              <time dateTime={featured.publishedAt}>{fmt(featured.publishedAt)}</time>
-              <span> · {[featured.category, ...(featured.tags ?? [])].join(' · ')} ·{' '}
-                {featured.readingMinutes} min
-              </span>
-            </span>
-            <span className="mono featured-arrow" aria-hidden="true">Read →</span>
-          </Link>
-        )}
+      {/* List on --ink so the typographic covers breathe */}
+      <section className="thinking-list-band" aria-label="Pieces">
+        <div className="essay-idx thinking-list">
+          {allEssays.map((es, i) => {
+            const number = i + 1
+            const type = (es.contentType ?? 'Essay').toUpperCase()
+            const tagsLine = [
+              es.category.toUpperCase(),
+              ...(es.tags ?? []).map((t) => t.toUpperCase()),
+            ]
+              .filter(Boolean)
+              .join(' · ')
+            const cover = es.coverLine ?? es.title
+            const parity = number % 2 === 1 ? 'odd' : 'even'
+            return (
+              <Link
+                key={es.slug}
+                href={`/thinking/${es.slug}`}
+                className={`thinking-card reveal parity-${parity}`}
+                role="listitem"
+                aria-label={es.title}
+              >
+                <div className="thinking-cover">
+                  <p className="mono thinking-cover-eyebrow">
+                    {String(number).padStart(2, '0')} · {type} · {tagsLine}
+                  </p>
+                  <p className="thinking-cover-line">{cover}</p>
+                </div>
+                <div className="thinking-card-body">
+                  <p className="mono thinking-card-meta">
+                    {String(number).padStart(2, '0')} · {type} · {tagsLine}
+                  </p>
+                  <h2 className="thinking-card-title">{es.title}</h2>
+                  <p className="thinking-card-excerpt">{excerpt(es.answerCapsule)}</p>
+                  <p className="mono thinking-card-byline">
+                    Francisco Herrera ·{' '}
+                    <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
+                    <span> · {es.readingMinutes} min</span>
+                  </p>
+                </div>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
 
-        {/* Rest — compact list. */}
-        {rest.length > 0 && (
-          <div className="list reveal-group" role="list">
-            {rest.map((es, i) => {
-              const type = es.contentType ?? 'Essay'
-              const tagsLine = [es.category, ...(es.tags ?? [])]
-                .filter(Boolean)
-                .join(' · ')
-              const index = i + 2 // continues after the featured 01
-              return (
-                <Link
-                  key={es.slug}
-                  href={`/thinking/${es.slug}`}
-                  className="item reveal"
-                  role="listitem"
-                >
-                  <span className="n">{String(index).padStart(2, '0')}</span>
-                  <div>
-                    <p className="cats">
-                      <span className="type">{type}</span>
-                      <span>{tagsLine}</span>
-                    </p>
-                    <h2 className="t">{es.title}</h2>
-                    <p className="m">
-                      Francisco Herrera ·{' '}
-                      <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
-                      <span> · {es.readingMinutes} min</span>
-                    </p>
-                  </div>
-                  <span className="a" aria-hidden="true">→</span>
-                </Link>
-              )
-            })}
-          </div>
-        )}
-      </main>
-
-      {/* Subscribe on --cream. Full-bleed band so the color reads as
-          punctuation and not decoration. */}
+      {/* Subscribe on --cream */}
       <section className="essay-sub-band reveal" aria-label="Subscribe">
         <div className="essay-idx sub sub--cream">
           <h2>One or two a month.</h2>

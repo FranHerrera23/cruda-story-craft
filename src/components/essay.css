@@ -309,97 +309,113 @@
 }
 .essay-idx h1 {
   font-family: var(--serif);
-  font-size: clamp(40px, 6.2vw, 88px);
+  font-size: var(--fs-display-sm);
   font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.016em;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   margin-bottom: 28px;
+  max-width: 20ch;
+  text-wrap: balance;
 }
 .essay-idx .intro {
-  font-size: clamp(18px, 1.8vw, 22px);
+  font-size: var(--fs-lead);
   line-height: 1.5;
   color: var(--ink-2);
   max-width: 46ch;
+  text-wrap: pretty;
 }
 
-.essay-idx .list {
-  border-top: 1px solid var(--ink);
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ---------- Thinking list on --ink (Parte 5) ---------- */
+.thinking-list-band {
+  background: var(--ink);
+  padding: clamp(72px, 10vw, 128px) 0 clamp(72px, 10vw, 128px);
 }
-.essay-idx .item {
-  display: grid;
-  grid-template-columns: 64px 1fr 40px;
-  gap: clamp(16px, 3vw, 40px);
-  align-items: baseline;
-  padding: 36px 0;
-  border-bottom: 1px solid var(--rule-2);
+.thinking-list {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 7vw, 96px);
+}
+
+/* Card — typographic cover + text body stacked underneath */
+.thinking-card {
+  display: block;
   text-decoration: none;
   color: inherit;
 }
-/* Hover: title slides 8px, arrow slides 16px. No padding-left twitch. */
-.essay-idx .item .t,
-.essay-idx .item .a {
-  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+.thinking-card:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 6px;
 }
-.essay-idx .item:hover .t { transform: translateX(8px); }
-.essay-idx .item:hover .a { transform: translateX(16px); }
-.essay-idx .n {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--ink-2);
-  transition: color 0.3s;
-}
-.essay-idx .item:hover .n { color: var(--red); }
-.essay-idx .cats {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  margin-bottom: 16px;
+
+/* Cover: 3:2, ink or cream by parity, eyebrow up left / line down left. */
+.thinking-cover {
+  aspect-ratio: 3 / 2;
+  padding: 40px;
   display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: opacity 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
-.essay-idx .type {
+.thinking-card:hover .thinking-cover { opacity: 0.85; }
+
+.thinking-card.parity-odd .thinking-cover {
   background: var(--ink);
   color: var(--white);
-  padding: 5px 10px;
-  letter-spacing: 0.14em;
 }
-.essay-idx .item:hover .type { background: var(--red); }
-.essay-idx .t {
-  font-size: clamp(22px, 2.6vw, 34px);
+.thinking-card.parity-even .thinking-cover {
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.thinking-cover-eyebrow {
+  color: var(--red);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+}
+.thinking-cover-line {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--fs-card-title);
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-display);
+  max-width: 22ch;
+  color: inherit;
+}
+
+/* Body meta beneath the cover */
+.thinking-card-body {
+  padding: 28px 0 0;
+  color: var(--white);
+}
+.thinking-card-meta {
+  color: var(--ink-2);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
+  margin-bottom: 14px;
+}
+.thinking-card-title {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--fs-card-title);
   font-weight: 700;
   line-height: 1.16;
-  letter-spacing: -0.018em;
+  letter-spacing: var(--track-heading);
+  color: var(--white);
   max-width: 26ch;
-  margin-bottom: 14px;
-  transition: color 0.3s;
+  margin: 0 0 14px;
+  transition: color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
-.essay-idx .item:hover .t { color: var(--red); }
-.essay-idx .m {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
+.thinking-card:hover .thinking-card-title { color: var(--red); }
+.thinking-card-excerpt {
+  font-size: var(--fs-excerpt);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 56ch;
+  margin: 0 0 20px;
 }
-.essay-idx .a {
-  font-family: var(--mono);
-  font-size: 16px;
-  color: var(--ink-2);
-  justify-self: end;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
-}
-.essay-idx .item:hover .a {
-  color: var(--red);
-  transform: translateX(6px);
+.thinking-card-byline {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--fs-meta);
+  letter-spacing: var(--track-mono);
 }
 
 /* subscribe (index) */
@@ -464,63 +480,8 @@
 }
 
 /* ---------- Featured piece (part 4) ---------- */
-.essay-idx .featured {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
-  padding: 44px 0 48px;
-  margin: 0 0 8px;
-}
-.essay-idx .featured .n-small {
-  display: block;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--ink-2);
-  margin-bottom: 24px;
-  transition: color 0.3s;
-}
-.essay-idx .featured:hover .n-small { color: var(--red); }
-.essay-idx .featured .featured-t {
-  color: var(--ink);
-  margin: 0 0 24px;
-  max-width: 22ch;
-  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.essay-idx .featured:hover .featured-t {
-  color: var(--red);
-  transform: translateX(8px);
-}
-.essay-idx .featured .featured-excerpt {
-  font-size: clamp(17px, 1.5vw, 20px);
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 56ch;
-  margin-bottom: 28px;
-}
-.essay-idx .featured .featured-m {
-  display: block;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--ink-2);
-  margin-bottom: 24px;
-}
-.essay-idx .featured .featured-arrow {
-  display: inline-block;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  color: var(--red);
-  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.essay-idx .featured:hover .featured-arrow { transform: translateX(16px); }
+/* Old .featured / .item rules deleted (Parte 5 rewrite) — the
+   stacked-card system with typographic covers replaced them. */
 
 /* ---------- Subscribe band on cream (part 4 + punto 6) ---------- */
 .essay-sub-band {
@@ -541,15 +502,15 @@
    Bring the H2 back to Archivo scale. */
 .essay-sub-band .sub h2 {
   font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: var(--fs-h2);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
   max-width: 22ch;
   margin-bottom: 16px;
 }
 .essay-sub-band .sub p {
-  font-size: clamp(16px, 1.4vw, 19px);
+  font-size: var(--fs-excerpt);
   max-width: 56ch;
   margin-bottom: 28px;
 }
@@ -561,12 +522,7 @@
   .essay .e-head { padding-top: 130px; }
   .essay .e-dates { margin-left: 0; width: 100%; text-align: left; }
   .essay-idx-header { padding-top: 130px; padding-bottom: 56px; }
-  .essay-idx .item {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    padding: 28px 0;
-  }
-  .essay-idx .a { display: none; }
+  .thinking-cover { padding: 28px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .essay-root *, .essay-root *::before, .essay-root *::after {

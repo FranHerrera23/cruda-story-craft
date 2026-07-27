@@ -34,7 +34,6 @@ function fmt(iso: string) {
   })
 }
 
-/* Excerpt: first sentence of the answerCapsule, capped at ~120 chars. */
 function excerpt(capsule: string): string {
   const first = capsule.split(/\.\s/)[0]
   return first.length > 120 ? first.slice(0, 118) + '…' : first + '.'
@@ -43,7 +42,6 @@ function excerpt(capsule: string): string {
 export default function ThinkingIndexPage() {
   return (
     <div className="essay-root">
-      {/* Hero on white */}
       <header className="essay-idx-header">
         <div className="essay-idx">
           <p className="mono eyebrow">Thinking</p>
@@ -55,8 +53,6 @@ export default function ThinkingIndexPage() {
         </div>
       </header>
 
-      {/* List on --ink so the typographic covers breathe.
-          reveal-group so each card enters 80ms after the previous. */}
       <section className="thinking-list-band" aria-label="Pieces">
         <div className="essay-idx thinking-list reveal-group">
           {allEssays.map((es, i) => {
@@ -68,41 +64,30 @@ export default function ThinkingIndexPage() {
             ]
               .filter(Boolean)
               .join(' · ')
-            const cover = es.coverLine ?? es.title
-            const parity = number % 2 === 1 ? 'odd' : 'even'
             return (
               <Link
                 key={es.slug}
                 href={`/thinking/${es.slug}`}
-                className={`thinking-card reveal parity-${parity}`}
+                className="thinking-card reveal"
                 role="listitem"
                 aria-label={es.title}
               >
-                <div className="thinking-cover">
-                  <p className="mono thinking-cover-eyebrow">
-                    {String(number).padStart(2, '0')} · {type} · {tagsLine}
-                  </p>
-                  <p className="thinking-cover-line">{cover}</p>
-                </div>
-                <div className="thinking-card-body">
-                  <p className="mono thinking-card-meta">
-                    {String(number).padStart(2, '0')} · {type} · {tagsLine}
-                  </p>
-                  <h2 className="thinking-card-title">{es.title}</h2>
-                  <p className="thinking-card-excerpt">{excerpt(es.answerCapsule)}</p>
-                  <p className="mono thinking-card-byline">
-                    Francisco Herrera ·{' '}
-                    <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
-                    <span> · {es.readingMinutes} min</span>
-                  </p>
-                </div>
+                <p className="mono thinking-card-meta">
+                  {String(number).padStart(2, '0')} · {type} · {tagsLine}
+                </p>
+                <h2 className="thinking-card-title">{es.title}</h2>
+                <p className="thinking-card-excerpt">{excerpt(es.answerCapsule)}</p>
+                <p className="mono thinking-card-byline">
+                  Francisco Herrera ·{' '}
+                  <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
+                  <span> · {es.readingMinutes} min</span>
+                </p>
               </Link>
             )
           })}
         </div>
       </section>
 
-      {/* Subscribe on --cream */}
       <section className="essay-sub-band reveal" aria-label="Subscribe">
         <div className="essay-idx sub sub--cream">
           <h2>One or two a month.</h2>

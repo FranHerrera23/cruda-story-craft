@@ -325,67 +325,30 @@
   text-wrap: pretty;
 }
 
-/* ---------- Thinking list on --ink (Parte 5) ---------- */
+/* ---------- Thinking list — white bg, no covers ---------- */
 .thinking-list-band {
-  background: var(--ink);
-  padding: clamp(72px, 10vw, 128px) 0 clamp(72px, 10vw, 128px);
+  background: var(--white);
+  padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 10vw, 128px);
 }
 .thinking-list {
   display: flex;
   flex-direction: column;
-  gap: clamp(56px, 7vw, 96px);
+  gap: clamp(40px, 5vw, 72px);
 }
 
-/* Card — typographic cover + text body stacked underneath */
+/* Card — whole card is the click target. No image, no cover.
+   Hover: title moves --accent + translateX(8px), 400ms. */
 .thinking-card {
   display: block;
   text-decoration: none;
   color: inherit;
+  padding: 32px 0;
+  border-top: 1px solid var(--rule-2);
 }
+.thinking-card:last-child { border-bottom: 1px solid var(--rule-2); }
 .thinking-card:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 6px;
-}
-
-/* Cover: 3:2, ink or cream by parity, eyebrow up left / line down left. */
-.thinking-cover {
-  aspect-ratio: 3 / 2;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: opacity 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
-}
-.thinking-card:hover .thinking-cover { opacity: 0.85; }
-
-.thinking-card.parity-odd .thinking-cover {
-  background: var(--ink);
-  color: var(--white);
-}
-.thinking-card.parity-even .thinking-cover {
-  background: var(--cream);
-  color: var(--ink);
-}
-
-.thinking-cover-eyebrow {
-  color: var(--accent);
-  font-size: var(--fs-meta);
-  letter-spacing: var(--track-mono);
-}
-.thinking-cover-line {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: var(--fs-card-title);
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-display);
-  max-width: 22ch;
-  color: inherit;
-}
-
-/* Body meta beneath the cover */
-.thinking-card-body {
-  padding: 28px 0 0;
-  color: var(--white);
 }
 .thinking-card-meta {
   color: var(--ink-2);
@@ -399,21 +362,25 @@
   font-weight: 700;
   line-height: 1.16;
   letter-spacing: var(--track-heading);
-  color: var(--white);
+  color: var(--ink);
   max-width: 26ch;
   margin: 0 0 14px;
-  transition: color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition: color 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
+              transform 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
-.thinking-card:hover .thinking-card-title { color: var(--accent); }
+.thinking-card:hover .thinking-card-title {
+  color: var(--accent);
+  transform: translateX(8px);
+}
 .thinking-card-excerpt {
   font-size: var(--fs-excerpt);
   line-height: 1.55;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--ink-2);
   max-width: 56ch;
-  margin: 0 0 20px;
+  margin: 0 0 16px;
 }
 .thinking-card-byline {
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--ink-2);
   font-size: var(--fs-meta);
   letter-spacing: var(--track-mono);
 }

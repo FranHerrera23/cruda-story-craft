@@ -27,9 +27,6 @@ export type Essay = {
   tags?: string[]
   contentType?: 'Essay' | 'Conversation'
   readingMinutes: number
-  /* Line pulled from the piece itself, used on the typographic cover.
-     Not the title, not a summary. If absent, cover falls back to title. */
-  coverLine?: string
   heroImage?: string
   heroAlt?: string
   body: EssayBlock[]

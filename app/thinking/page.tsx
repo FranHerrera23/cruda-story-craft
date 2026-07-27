@@ -21,6 +21,8 @@ function fmt(iso: string) {
 }
 
 export default function ThinkingIndexPage() {
+  const [featured, ...rest] = allEssays
+
   return (
     <div className="essay-root">
       <header className="essay-idx-header">
@@ -35,39 +37,74 @@ export default function ThinkingIndexPage() {
       </header>
 
       <main className="essay-idx">
-        <div className="list" role="list">
-          {allEssays.map((es, i) => {
-            const type = es.contentType ?? 'Essay'
-            const tagsLine = [es.category, ...(es.tags ?? [])].filter(Boolean).join(' · ')
-            return (
-              <Link
-                key={es.slug}
-                href={`/thinking/${es.slug}`}
-                className="item"
-                role="listitem"
-              >
-                <span className="n">{String(i + 1).padStart(2, '0')}</span>
-                <div>
-                  <p className="cats">
-                    <span className="type">{type}</span>
-                    <span>{tagsLine}</span>
-                  </p>
-                  <h2 className="t">{es.title}</h2>
-                  <p className="m">
-                    Francisco Herrera ·{' '}
-                    <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
-                    <span> · {es.readingMinutes} min</span>
-                  </p>
-                </div>
-                <span className="a" aria-hidden="true">
-                  →
-                </span>
-              </Link>
-            )
-          })}
-        </div>
+        {/* Featured piece — 01. Full width, serif title. Fills the hole
+            that ~700px of dead space used to sit in. */}
+        {featured && (
+          <Link
+            key={featured.slug}
+            href={`/thinking/${featured.slug}`}
+            className="featured"
+            aria-label={`Featured: ${featured.title}`}
+          >
+            <span className="mono n-small">
+              01 · {(featured.contentType ?? 'Essay').toUpperCase()}
+            </span>
+            <h2 className="display--sm featured-t">{featured.title}</h2>
+            <p className="featured-excerpt">
+              {featured.answerCapsule.split(' — ')[0]}.
+            </p>
+            <span className="mono featured-m">
+              Francisco Herrera ·{' '}
+              <time dateTime={featured.publishedAt}>{fmt(featured.publishedAt)}</time>
+              <span> · {[featured.category, ...(featured.tags ?? [])].join(' · ')} ·{' '}
+                {featured.readingMinutes} min
+              </span>
+            </span>
+            <span className="mono featured-arrow" aria-hidden="true">Read →</span>
+          </Link>
+        )}
 
-        <section className="sub" aria-label="Subscribe">
+        {/* Rest — compact list. */}
+        {rest.length > 0 && (
+          <div className="list" role="list">
+            {rest.map((es, i) => {
+              const type = es.contentType ?? 'Essay'
+              const tagsLine = [es.category, ...(es.tags ?? [])]
+                .filter(Boolean)
+                .join(' · ')
+              const index = i + 2 // continues after the featured 01
+              return (
+                <Link
+                  key={es.slug}
+                  href={`/thinking/${es.slug}`}
+                  className="item"
+                  role="listitem"
+                >
+                  <span className="n">{String(index).padStart(2, '0')}</span>
+                  <div>
+                    <p className="cats">
+                      <span className="type">{type}</span>
+                      <span>{tagsLine}</span>
+                    </p>
+                    <h2 className="t">{es.title}</h2>
+                    <p className="m">
+                      Francisco Herrera ·{' '}
+                      <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
+                      <span> · {es.readingMinutes} min</span>
+                    </p>
+                  </div>
+                  <span className="a" aria-hidden="true">→</span>
+                </Link>
+              )
+            })}
+          </div>
+        )}
+      </main>
+
+      {/* Subscribe on --cream. Full-bleed band so the color reads as
+          punctuation and not decoration. */}
+      <section className="essay-sub-band" aria-label="Subscribe">
+        <div className="essay-idx sub sub--cream">
           <h2>Everything is a narrative, companies too.</h2>
           <p>Ensayos sobre narrativa y negocio. Uno o dos por mes. Nada más.</p>
           <form className="form" action="[FRAN — proveedor de email]" method="post">
@@ -83,8 +120,8 @@ export default function ThinkingIndexPage() {
           <p className="legal">
             By subscribing you agree to receive emails from CRUDA. Unsubscribe any time.
           </p>
-        </section>
-      </main>
+        </div>
+      </section>
     </div>
   )
 }

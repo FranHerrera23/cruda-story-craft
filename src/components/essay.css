@@ -330,14 +330,19 @@
   border-bottom: 1px solid var(--rule-2);
   text-decoration: none;
   color: inherit;
-  transition: padding-left 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.essay-idx .item:hover { padding-left: 12px; }
+/* Hover: title slides 8px, arrow slides 16px. No padding-left twitch. */
+.essay-idx .item .t,
+.essay-idx .item .a {
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+}
+.essay-idx .item:hover .t { transform: translateX(8px); }
+.essay-idx .item:hover .a { transform: translateX(16px); }
 .essay-idx .n {
   font-family: var(--mono);
   font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   color: var(--ink-2);
   transition: color 0.3s;
 }
@@ -449,6 +454,82 @@
   margin-top: 18px;
   max-width: 44ch;
   line-height: 1.5;
+}
+
+/* ---------- Featured piece (part 4) ---------- */
+.essay-idx .featured {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 44px 0 48px;
+  margin: 0 0 8px;
+}
+.essay-idx .featured .n-small {
+  display: block;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+  transition: color 0.3s;
+}
+.essay-idx .featured:hover .n-small { color: var(--red); }
+.essay-idx .featured .featured-t {
+  color: var(--ink);
+  margin: 0 0 24px;
+  max-width: 22ch;
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.essay-idx .featured:hover .featured-t {
+  color: var(--red);
+  transform: translateX(8px);
+}
+.essay-idx .featured .featured-excerpt {
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 56ch;
+  margin-bottom: 28px;
+}
+.essay-idx .featured .featured-m {
+  display: block;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--ink-2);
+  margin-bottom: 24px;
+}
+.essay-idx .featured .featured-arrow {
+  display: inline-block;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--red);
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.essay-idx .featured:hover .featured-arrow { transform: translateX(16px); }
+
+/* ---------- Subscribe band on cream (part 4) ---------- */
+.essay-sub-band {
+  background: var(--cream);
+  margin-top: 96px;
+  padding: clamp(56px, 8vw, 112px) 0 clamp(72px, 10vw, 128px);
+}
+.essay-sub-band .sub {
+  margin-top: 0;
+  padding: 0;
+  border-top: none;
+}
+.essay-sub-band .sub h2,
+.essay-sub-band .sub p,
+.essay-sub-band .sub .legal {
+  max-width: 46ch;
 }
 
 @media (max-width: 860px) {

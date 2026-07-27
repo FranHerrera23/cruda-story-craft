@@ -97,22 +97,22 @@
 --------------------------------------------------------------------- */
 /* Punto 8.3: the position line is the only body copy on the home,
    so it can carry more weight and a controlled measure. */
+/* Position line — Parte 4.3 row 02: Archivo lead scale. */
 .cruda-home .say p {
   max-width: 34rem;
-  font-size: clamp(19px, 1.7vw, 24px);
+  font-size: var(--fs-lead);
   line-height: 1.4;
   color: var(--ink-2);
   text-wrap: pretty;
 }
 .cruda-home .say p + p { margin-top: 18px; }
 
-/* They buy you. — parche P2.1: reverted to Archivo. Serif was
-   competing with the H1 instead of responding to it. Voice that
-   sells goes in Archivo. Short beat, not a second title. */
+/* "They buy you." — Parte 4.3 row 03: Archivo 600 at card-title scale.
+   Not serif — serif would compete with the H1 instead of responding. */
 .cruda-home .say .punch {
   font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 600;
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: var(--fs-card-title);
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin-left: 0;

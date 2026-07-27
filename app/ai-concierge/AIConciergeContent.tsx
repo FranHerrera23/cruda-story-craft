@@ -228,7 +228,7 @@ export default function AIConciergeContent() {
       </section>
 
       {/* 03 How it works */}
-      <section>
+      <section id="how-it-works" style={{ scrollMarginTop: 80 }}>
         <div className="w">
           <div className="sec-head rv">
             <div className="sec-n">03</div>
@@ -279,7 +279,7 @@ export default function AIConciergeContent() {
       </section>
 
       {/* 04 What it costs */}
-      <section>
+      <section id="pricing" style={{ scrollMarginTop: 80 }}>
         <div className="w">
           <div className="sec-head rv">
             <div className="sec-n">04</div>

@@ -37,11 +37,13 @@ const HowWeWorkSection = () => {
 
   return (
     <section
+      id="how-it-works"
       ref={elementRef}
       className="timeline-section"
       style={{
         backgroundColor: '#FFFFFF',
-        padding: '120px 80px'
+        padding: '120px 80px',
+        scrollMarginTop: '80px'
       }}
     >
       <div style={{ maxWidth: '1100px', margin: '0 auto' }}>

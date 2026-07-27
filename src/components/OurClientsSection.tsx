@@ -64,10 +64,12 @@ const OurClientsSection = () => {
 
   return (
     <section
+      id="work"
       ref={elementRef}
       style={{
         backgroundColor: '#FFFFFF',
-        padding: '120px 80px'
+        padding: '120px 80px',
+        scrollMarginTop: '80px'
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>

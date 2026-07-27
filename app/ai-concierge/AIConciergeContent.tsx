@@ -9,7 +9,7 @@ import './ai-concierge.css'
    How-it-works progress line. All respect prefers-reduced-motion.
 ------------------------------------------------------------------- */
 
-const BOOK_HREF = '[FRAN — pegar link de agenda]' // [FRAN] literal, do not invent a URL
+const BOOK_HREF = 'https://calendly.com/cruda-intro/narrative-sparring-live-1'
 
 export default function AIConciergeContent() {
   const stepsRef = useRef<HTMLDivElement>(null)
@@ -91,7 +91,7 @@ export default function AIConciergeContent() {
               own.
             </p>
             <div>
-              <a href={BOOK_HREF} className="btn">
+              <a href={BOOK_HREF} target="_blank" rel="noopener" className="btn">
                 Book a call
               </a>
               <p className="btn-note">Free · 45 minutes · No pitch</p>
@@ -515,7 +515,7 @@ export default function AIConciergeContent() {
               CRUDA AI Concierge
             </p>
             <div className="rv">
-              <a href={BOOK_HREF} className="btn">
+              <a href={BOOK_HREF} target="_blank" rel="noopener" className="btn">
                 Book a call
               </a>
             </div>

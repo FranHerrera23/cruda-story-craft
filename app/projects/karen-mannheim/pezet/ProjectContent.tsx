@@ -247,7 +247,7 @@ const KarenPezetProject = () => {
               ← Back to Karen's Page
             </Link>
             <Link
-              href="/book-call"
+              href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener"
               className="inline-block px-10 py-4 font-semibold transition-all duration-300"
               style={{ backgroundColor: 'transparent', color: '#0A0A0A', borderRadius: '4px', fontSize: '16px', border: '2px solid #0A0A0A' }}
             >

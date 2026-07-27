@@ -55,9 +55,10 @@ export default function ThinkingIndexPage() {
         </div>
       </header>
 
-      {/* List on --ink so the typographic covers breathe */}
+      {/* List on --ink so the typographic covers breathe.
+          reveal-group so each card enters 80ms after the previous. */}
       <section className="thinking-list-band" aria-label="Pieces">
-        <div className="essay-idx thinking-list">
+        <div className="essay-idx thinking-list reveal-group">
           {allEssays.map((es, i) => {
             const number = i + 1
             const type = (es.contentType ?? 'Essay').toUpperCase()

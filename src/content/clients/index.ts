@@ -1,10 +1,15 @@
 import type { CaseStudy } from '@/components/CaseStudyLayout'
 import { karenMannheim } from './karen-mannheim'
+import { girishSehgal } from './girish-sehgal'
+import { juanPabloRomero } from './juan-pablo-romero'
+import { mikeKaeding } from './mike-kaeding'
+import { nitinPassi } from './nitin-passi'
 
-// Cada caso nuevo: crear el archivo y sumarlo acá. Nada más.
+// Every case study migrated to CaseStudyLayout / AEO mould.
 export const allClients: CaseStudy[] = [
   karenMannheim,
-  // jpRomero,
-  // jackMistiva,
-  // mikeKaeding,
+  girishSehgal,
+  juanPabloRomero,
+  mikeKaeding,
+  nitinPassi,
 ]

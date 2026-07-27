@@ -70,7 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     ...allClients.map((c) => ({
       url: `${BASE}/clients/${c.slug}`,
-      lastModified: new Date(c.updatedAt),
+      lastModified: c.updatedAt ? new Date(c.updatedAt) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),

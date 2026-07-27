@@ -57,7 +57,7 @@
   text-decoration: none;
   transition: color 0.2s;
 }
-.essay .e-back:hover { color: var(--accent); }
+.essay .e-back:hover { color: var(--ink); }
 .essay .e-meta {
   margin-bottom: 26px;
   display: flex;
@@ -224,7 +224,7 @@
   transform: translateY(-50%);
   font-family: var(--mono);
   font-size: 20px;
-  color: var(--accent);
+  color: var(--ink-2);
 }
 .essay .e-faq details[open] summary::after { content: '–'; }
 .essay .e-faq details p {
@@ -304,7 +304,7 @@
   padding: calc(72px + 13vh) 0 clamp(56px, 7vw, 88px);
 }
 .essay-idx .eyebrow {
-  color: var(--accent);
+  color: var(--ink-2);
   margin-bottom: 30px;
 }
 .essay-idx h1 {

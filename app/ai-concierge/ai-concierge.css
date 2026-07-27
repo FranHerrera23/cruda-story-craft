@@ -36,7 +36,7 @@
 
 /* ---------- hero ---------- */
 .aic .aic-header { padding: calc(72px + 14vh) 0 clamp(72px, 10vh, 140px); }
-.aic .hero-eye { color: var(--accent); margin-bottom: 40px; }
+.aic .hero-eye { color: var(--ink-2); margin-bottom: 40px; }
 .aic .h1 .accent { color: var(--accent); }
 .aic .hero-h { margin-bottom: 48px; max-width: 19ch; }
 .aic .hero-row { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: end; padding-top: 40px; border-top: 1px solid var(--rule); }
@@ -76,7 +76,7 @@
 .aic .prob-i p { font-size: 16.5px; line-height: 1.5; color: var(--ink-2); }
 
 /* ---------- builds ---------- */
-.aic .grp { color: var(--accent); margin: 0 0 20px; }
+.aic .grp { color: var(--ink-2); margin: 0 0 20px; }
 .aic .grp.second { margin-top: 64px; }
 .aic .builds { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
 .aic .b { padding: 32px 32px 40px 0; border-right: 1px solid var(--rule-2); }
@@ -136,7 +136,7 @@
 .aic .faq { border-top: 1px solid var(--ink); }
 .aic .fi { border-bottom: 1px solid var(--rule-2); }
 .aic .fq { width: 100%; background: none; border: none; cursor: pointer; text-align: left; padding: 28px 56px 28px 0; position: relative; font-family: var(--sans); font-weight: 600; font-size: clamp(18px, 1.7vw, 21px); letter-spacing: -.008em; color: var(--ink); transition: color .2s; }
-.aic .fq:hover { color: var(--accent); }
+.aic .fq:hover { color: var(--ink); }
 .aic .fq::after { content: ''; position: absolute; right: 6px; top: 50%; width: 13px; height: 1px; background: var(--accent); transition: transform .3s cubic-bezier(.16, 1, .3, 1); }
 .aic .fq::before { content: ''; position: absolute; right: 12px; top: 50%; width: 1px; height: 13px; margin-top: -6px; background: var(--accent); transition: transform .3s cubic-bezier(.16, 1, .3, 1), opacity .3s; }
 .aic .fi.open .fq::before { transform: rotate(90deg); opacity: 0; }
@@ -153,7 +153,7 @@
 .aic .aic-footer { padding: 40px 0 56px; border-top: 1px solid var(--rule); }
 .aic .ft { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; align-items: baseline; }
 .aic .ft a { color: var(--ink-2); text-decoration: none; transition: color .2s; }
-.aic .ft a:hover { color: var(--accent); }
+.aic .ft a:hover { color: var(--ink); }
 .aic .ft-links { display: flex; gap: 28px; flex-wrap: wrap; }
 
 @media (max-width: 900px) {

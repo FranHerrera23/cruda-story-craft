@@ -51,7 +51,7 @@ export default function Nav() {
   }, [pathname])
 
   const linkStyle = (href: string): React.CSSProperties => ({
-    color: pathname === href ? 'var(--accent)' : 'var(--ink)',
+    color: pathname === href ? 'var(--ink-2)' : 'var(--ink)',
     textDecoration: 'none',
     fontFamily: 'var(--mono)',
     fontWeight: 500,
@@ -85,7 +85,7 @@ export default function Nav() {
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
               style={{
-                color: companiesActive ? 'var(--accent)' : 'var(--ink)',
+                color: companiesActive ? 'var(--ink-2)' : 'var(--ink)',
               }}
             >
               Our Companies
@@ -104,7 +104,7 @@ export default function Nav() {
                     tabIndex={open ? 0 : -1}
                     aria-current={pathname === c.href ? 'page' : undefined}
                     style={{
-                      color: pathname === c.href ? 'var(--accent)' : 'var(--ink)',
+                      color: pathname === c.href ? 'var(--ink-2)' : 'var(--ink)',
                     }}
                     onClick={() => setOpen(false)}
                   >
@@ -152,7 +152,7 @@ export default function Nav() {
           <details>
             <summary
               style={{
-                color: companiesActive ? 'var(--accent)' : 'var(--ink)',
+                color: companiesActive ? 'var(--ink-2)' : 'var(--ink)',
                 fontFamily: 'var(--mono)',
                 fontWeight: 500,
                 fontSize: '12px',
@@ -171,7 +171,7 @@ export default function Nav() {
                     href={c.href}
                     aria-current={pathname === c.href ? 'page' : undefined}
                     style={{
-                      color: pathname === c.href ? 'var(--accent)' : 'var(--ink)',
+                      color: pathname === c.href ? 'var(--ink-2)' : 'var(--ink)',
                       textDecoration: 'none',
                       fontFamily: 'var(--mono)',
                       fontSize: '12px',

@@ -47,7 +47,7 @@
   min-height: 0;
 }
 .sports .eyebrow {
-  color: var(--accent);
+  color: rgba(255, 255, 255, 0.6);
   margin-bottom: clamp(28px, 4.5vh, 56px);
 }
 .sports .headline {

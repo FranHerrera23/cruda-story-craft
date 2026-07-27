@@ -50,11 +50,11 @@
 
 /* ---------- Eyebrow ---------- */
 .of .of-eyebrow {
-  color: var(--accent);
+  color: var(--ink-2);
   margin-bottom: 28px;
 }
 .of .of-eyebrow--on-ink {
-  color: var(--accent); /* red pops on ink too */
+  color: rgba(255, 255, 255, 0.6);
 }
 
 /* ---------- Measures ---------- */
@@ -223,7 +223,7 @@
 .of .of-proof-link:hover .of-proof-arrow { transform: translateX(8px); }
 
 /* ---------- 05 — Contact ---------- */
-.of .of-block--ink .of-eyebrow { color: var(--accent); }
+.of .of-block--ink .of-eyebrow { color: rgba(255, 255, 255, 0.6); }
 .of .of-close-line {
   color: var(--white);
   max-width: 18ch;
@@ -283,7 +283,7 @@
   padding: 4px 0;
 }
 .of .of-sticky-idx a:hover { color: var(--ink); }
-.of .of-sticky-idx a.is-active { color: var(--accent); }
+.of .of-sticky-idx a.is-active { color: var(--ink-2); font-weight: 700; }
 
 @media (min-width: 1024px) {
   .of .of-sticky-idx { display: block; }

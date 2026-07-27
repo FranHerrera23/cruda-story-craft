@@ -82,7 +82,7 @@ html { font-size: 17px; }
 /* HEAD */
 .cs-head{padding:clamp(96px,14vh,160px) 0 0}
 .cs-eyebrow{font-family:var(--mono);font-weight:500;font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px}
 .cs-title{font-size:clamp(34px,5.2vw,68px);font-weight:700;line-height:1.04;
   letter-spacing:-.024em;max-width:20ch;margin-bottom:20px}
 .cs-sub{font-size:clamp(18px,1.8vw,22px);color:var(--ink-2);margin-bottom:40px}
@@ -147,7 +147,7 @@ html { font-size: 17px; }
 .cs-testimonial blockquote{font-size:clamp(26px,3.6vw,46px);font-weight:500;
   line-height:1.16;letter-spacing:-.02em;max-width:20ch;margin-bottom:28px}
 .cs-testimonial cite{font-style:normal;font-family:var(--mono);font-size:12px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
 
 /* FAQ */
 .cs-faq{border-top:1px solid var(--ink);padding-top:48px;margin-bottom:80px}
@@ -158,7 +158,7 @@ html { font-size: 17px; }
   position:relative;font-weight:600;font-size:19px;letter-spacing:-.006em}
 .cs-faq summary::-webkit-details-marker{display:none}
 .cs-faq summary::after{content:'+';position:absolute;right:6px;top:50%;
-  transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--accent)}
+  transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--ink-2)}
 .cs-faq details[open] summary::after{content:'–'}
 .cs-faq details p{padding:0 0 30px;font-size:17.5px;line-height:1.6;
   color:var(--ink-2);max-width:68ch}
@@ -175,7 +175,7 @@ html { font-size: 17px; }
 /* ÍNDICE */
 .idx{max-width:1280px;margin:0 auto;padding:clamp(96px,14vh,160px) clamp(24px,5vw,72px) 120px}
 .idx-eyebrow{font-family:var(--mono);font-weight:500;font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px}
 .idx-head h1{font-size:clamp(36px,5.6vw,76px);font-weight:700;line-height:1.02;
   letter-spacing:-.026em;max-width:18ch;margin-bottom:24px}
 .idx-sub{font-size:clamp(18px,1.9vw,23px);color:var(--ink-2);
@@ -196,7 +196,7 @@ html { font-size: 17px; }
 .idx-card p{font-size:17px;line-height:1.55;color:var(--ink-2);
   max-width:56ch;margin-bottom:24px}
 .idx-arrow{font-family:var(--mono);font-weight:500;font-size:12px;
-  letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 
 @media(max-width:860px){
   .cs-stats{grid-template-columns:1fr}

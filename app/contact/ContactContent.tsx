@@ -67,7 +67,7 @@ export default function ContactContent() {
           text-transform: uppercase;
         }
         .contact-eyebrow {
-          color: var(--accent);
+          color: var(--ink-2);
           margin-bottom: 28px;
         }
         .contact-h1 {

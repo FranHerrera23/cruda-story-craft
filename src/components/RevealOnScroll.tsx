@@ -2,45 +2,48 @@
 
 import { useEffect } from 'react'
 
-/* Site-wide reveal (parche P0.1 supersedes earlier data-reveal spec).
+/* Site-wide reveal — brief v2 Parte 2.1.
 
-   Rule:
-     .reveal { opacity: 0; transform: translateY(24px);
-               transition: opacity 700ms var(--ease),
-                           transform 700ms var(--ease);
-               transition-delay: var(--reveal-delay, 0ms); }
-     .reveal.is-visible { opacity: 1; transform: none; }
+   Contract with the CSS:
+   - Default state on .reveal is visible (opacity 1, transform none).
+   - Only when <html> carries .js-ready AND user is not in
+     reduced-motion does the CSS hide any .reveal that lacks
+     .is-visible. If JS fails, .js-ready never lands and everything
+     stays visible. That is the failsafe.
 
-   Stagger only inside .reveal-group — sibling index × 80ms.
-   Once-only: unobserve after fire. Nothing re-hides on scroll-up.
+   What this hook does, in order:
+   1. Stamp .js-ready on <html>. This is the ONLY thing that turns the
+      hidden-then-fade behavior on.
+   2. For each .reveal element inside a .reveal-group, compute
+      --reveal-delay = siblingIndex * 80ms.
+   3. Observe every .reveal. threshold 0 + rootMargin -12% bottom.
+      Unobserve after fire.
+   4. Safety timeout at 3 s: re-query the document for every .reveal
+      that is still not .is-visible and stamp it. Re-query so that any
+      .reveal added after mount is not missed.
 
-   Guardrails from the patch:
-   - threshold: 0 (rely on rootMargin). 0.15 fails on elements taller
-     than the viewport, which is what left /thinking blank.
-   - 3 s safety timeout: any .reveal still not visible after 3 s gets
-     is-visible stamped by force. Content never depends on an observer.
-   - noscript failsafe lives in root layout, covers both selectors.
-
-   prefers-reduced-motion: CSS paints the resting state; we still stamp
-   is-visible so nothing gets stuck. */
+   Reduced-motion: nothing to do — the CSS gate already skips the
+   hidden state, so .reveal is already visible. We still stamp
+   .js-ready so downstream selectors that key off it behave
+   consistently. */
 
 const STAGGER_MS = 80
 const SAFETY_TIMEOUT_MS = 3000
 
 export default function RevealOnScroll() {
   useEffect(() => {
+    // 1. Flag JS as ready. This is the switch that turns on the
+    // hidden-until-observed behavior via the CSS gate.
+    document.documentElement.classList.add('js-ready')
+
+    // Under reduced-motion the CSS never hides, so we can stop here.
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduce) return
+
     const nodes = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
     if (nodes.length === 0) return
 
-    const reveal = (el: HTMLElement) => el.classList.add('is-visible')
-
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) {
-      nodes.forEach(reveal)
-      return
-    }
-
-    // Per-element --reveal-delay inside a .reveal-group (index × 80ms).
+    // 2. Per-element stagger inside .reveal-group.
     nodes.forEach((el) => {
       const group = el.closest<HTMLElement>('.reveal-group')
       if (!group) return
@@ -49,11 +52,12 @@ export default function RevealOnScroll() {
       if (i > 0) el.style.setProperty('--reveal-delay', `${i * STAGGER_MS}ms`)
     })
 
+    // 3. Observe.
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (!entry.isIntersecting) continue
-          reveal(entry.target as HTMLElement)
+          entry.target.classList.add('is-visible')
           io.unobserve(entry.target)
         }
       },
@@ -61,12 +65,12 @@ export default function RevealOnScroll() {
     )
     nodes.forEach((el) => io.observe(el))
 
-    // Safety net: whatever is still hidden after 3 s gets forced visible.
-    // Content must never depend on an observer firing.
+    // 4. Safety timeout — re-query at fire time so late-mounted
+    // .reveal elements get swept in too.
     const safety = window.setTimeout(() => {
-      nodes.forEach((el) => {
-        if (!el.classList.contains('is-visible')) reveal(el)
-      })
+      document
+        .querySelectorAll<HTMLElement>('.reveal:not(.is-visible)')
+        .forEach((el) => el.classList.add('is-visible'))
     }, SAFETY_TIMEOUT_MS)
 
     return () => {

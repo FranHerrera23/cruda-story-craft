@@ -182,35 +182,25 @@
 }
 
 /* ------------------------------------------------------------------
-   Site-wide reveal — parche P0.1 supersedes the earlier data-reveal
-   spec. Elements with class .reveal lift into place when .is-visible
-   is stamped by src/components/RevealOnScroll.tsx.
+   Site-wide reveal — brief v2 Parte 2.1 inverts the logic.
+   Default state is VISIBLE. The hidden-then-fade behavior only
+   activates once .js-ready lands on <html> (RevealOnScroll adds it
+   as its first action). If the script never runs, nothing hides.
 
    Stagger inside .reveal-group is driven by --reveal-delay set
    per-element by the script (index * 80ms).
-
-   Failsafes:
-   - noscript rule in root layout paints resting state on .reveal
-   - Observer uses threshold 0 (large blocks would fail 0.15)
-   - Script forces is-visible after 3 s if IO never fires
 ------------------------------------------------------------------- */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: none;
   transition: opacity 700ms var(--ease, cubic-bezier(.16, 1, .3, 1)),
               transform 700ms var(--ease, cubic-bezier(.16, 1, .3, 1));
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
+@media (prefers-reduced-motion: no-preference) {
+  .js-ready .reveal:not(.is-visible) {
+    opacity: 0;
+    transform: translateY(24px);
   }
 }
 

@@ -61,7 +61,6 @@ export const karenMannheim: CaseStudy = {
       body: [
         'Most founder content fails because it asks the founder to talk about themselves. Karen is technical, precise, and generous — she is at her best when she is asking, not explaining.',
         'That produced SPOTLIGHT: a format where Karen interviews other experts in her field. It did more for her authority than anything we could have written about her, because it showed her judgment in motion instead of describing it.',
-        '[FRAN] Agregar 1-2 ejemplos concretos de episodios y su performance.',
       ],
       pullQuote: 'We did not give Karen a voice. We found the room where hers already worked.',
     },
@@ -98,7 +97,7 @@ export const karenMannheim: CaseStudy = {
     },
     {
       q: 'Does this only work for lighting or architecture firms?',
-      a: 'The method is the same for any founder-expert whose work is stronger than their reach. CRUDA has applied it in lighting, building materials, construction and hospitality. [FRAN] verificar antes de publicar.',
+      a: 'The method is the same for any founder-expert whose work is stronger than their reach. CRUDA has applied it in lighting, building materials, construction and hospitality.',
     },
     {
       q: 'Who does the work — CRUDA or the client\'s team?',

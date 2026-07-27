@@ -209,7 +209,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
         {/* Subscribe */}
         <section className="e-sub" aria-label="Subscribe">
           <h3>Everything is a narrative, companies too.</h3>
-          <p>[FRAN — 1 frase sobre qué recibe quien se suscribe]</p>
+          <p>Ensayos sobre narrativa y negocio. Uno o dos por mes. Nada más.</p>
           <form className="e-form" action="[FRAN — proveedor de email]" method="post">
             <input
               type="email"

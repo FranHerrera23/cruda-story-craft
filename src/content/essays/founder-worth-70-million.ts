@@ -1,14 +1,8 @@
 import type { Essay } from '@/components/EssayLayout'
 
 /* ------------------------------------------------------------------
-   Modelo de referencia — mismo rol que karen-mannheim.ts.
-   [FRAN] marca lo que Fran debe pasar antes de publicar.
-
-   Fragmentos lockeados por el brief (etapa 5, PASO 2):
-   - título, answer capsule, metadata, categoría, tiempo de lectura
-   - los dos pull quotes marcados
-   - la atribución de los diálogos con el CEO ("The founder")
-   - la cita de Gary Vee
+   Founder Worth $70M — cuerpo pegado verbatim del original.
+   No editar, no acortar, no suavizar.
 ------------------------------------------------------------------- */
 
 export const founderWorth70Million: Essay = {
@@ -18,7 +12,7 @@ export const founderWorth70Million: Essay = {
   contentType: 'Essay',
   readingMinutes: 4,
   publishedAt: '2025-04-03',
-  updatedAt: '[FRAN — fecha de republicación]',
+  updatedAt: '2025-04-03',
 
   title: 'What a founder worth $70 million told me about freedom',
 
@@ -26,78 +20,48 @@ export const founderWorth70Million: Essay = {
     "A construction founder with a net worth of $70 million told me he couldn't take a one-month road trip with his family. He had built something most people would envy and was actively designing his way out of it. This is about what that conversation changed in how I think about building.",
 
   body: [
-    // The brief supplies the anchors below but not the running paragraphs.
-    // Fran to paste the original Substack essay text verbatim (see brief PASO 2:
-    // "Cuerpo: el texto del ensayo original, tal cual. Fran lo pasa en el archivo adjunto.")
-    {
-      type: 'p',
-      text:
-        '[FRAN — paragraph 1 of original essay. Do not soften the language. La crudeza es la voz. Paste the Substack copy verbatim.]',
-    },
-    {
-      type: 'p',
-      text:
-        '[FRAN — paragraph 2. Set the scene of the conversation with the CEO. Verbatim.]',
-    },
+    { type: 'p', text: 'Last week I had a 30-minute call with a CEO from the US who’s been in business for over 20 years.' },
+    { type: 'p', text: 'He has an estimated net worth of USD 70 million. And honestly, it blew my mind.' },
+    { type: 'p', text: 'He was born and raised in the US, and due to the nature of his business (construction), he’s tied to a specific place, city, and location.' },
+    { type: 'p', text: 'While we were chatting, he started telling me about a road trip he was planning with his daughters. His excitement was contagious.' },
+    { type: 'p', text: 'I swear, the way he smiled and spoke about the route, the stops, the time they’d spend together—I didn’t want to interrupt him for even a second.' },
+    { type: 'p', text: 'So I asked, naturally:' },
 
-    // Founder dialogue — attributed quote block per brief conversion rules
-    {
-      type: 'quote',
-      text:
-        "[FRAN — first line of dialogue from the CEO. Verbatim. Preserve tone.]",
-      attribution: 'The founder',
-    },
+    { type: 'quote', text: 'You seem so excited. It’s clear you love this. Why don’t you do it more often?' },
 
-    {
-      type: 'p',
-      text:
-        '[FRAN — connecting paragraph after the first dialogue. Verbatim.]',
-    },
+    { type: 'p', text: 'He looked at me and said:' },
 
-    {
-      type: 'quote',
-      text:
-        "[FRAN — additional dialogue lines from the CEO, each as its own quote block if there are more. Verbatim.]",
-      attribution: 'The founder',
-    },
+    { type: 'quote', text: 'What you see from the outside Fran, is that I have a big business. Properties. Employees. Payroll. Daily fires. Stuff I can’t just walk away from.', attribution: 'The founder' },
 
-    {
-      type: 'p',
-      text:
-        '[FRAN — the paragraphs that lead into the first pull. Verbatim.]',
-    },
+    { type: 'quote', text: 'I would love to have the freedom of someone like you. You can work from anywhere, travel the world, take your laptop and go. I have $70M net worth… and yet, I can’t take a one-month road trip with my wife and daughter. That’s not freedom.', attribution: 'The founder' },
 
-    // Pull quote — locked verbatim from brief
-    {
-      type: 'pull',
-      text:
-        "Life's short. Don't get caught up in the numbers.",
-    },
+    { type: 'p', text: 'And I told him:' },
 
-    {
-      type: 'p',
-      text:
-        '[FRAN — paragraphs after the first pull, leading to the Gary Vee moment. Verbatim.]',
-    },
+    { type: 'quote', text: 'You know most people, including myself, would love to be in your shoes. Have a big company. Be ‘successful’. Build something big. Be you.' },
 
-    // Gary Vee — attributed quote per brief
-    {
-      type: 'quote',
-      text: '[FRAN — the exact Gary Vee quote from the original essay. Verbatim.]',
-      attribution: 'Gary Vaynerchuk',
-    },
+    { type: 'p', text: 'He smiled and replied:' },
 
-    {
-      type: 'p',
-      text:
-        '[FRAN — closing paragraphs before the final pull. Verbatim. Do not tone down the language — the rawness is the voice.]',
-    },
+    { type: 'quote', text: 'I get it. In my 20s, I thought that’s what I wanted too. Now, I’m designing a new life. I’m working on a new project that allows me to go remote. I’m hiring a GM to run this thing. I don’t want to deal with operations anymore. I want to travel the world with my family. That’s the goal now.', attribution: 'The founder' },
 
-    // Closing pull — locked verbatim from brief
-    {
-      type: 'pull',
-      text:
-        "Because if we're not building for that — what the fuck are we doing it for?",
-    },
+    { type: 'p', text: 'Then he said something that stuck with me:' },
+
+    { type: 'pull', text: 'Life’s short. Don’t get caught up in the numbers. They only matter if you’ve built a life that actually means something. I’m in a rat race, and I want out. Just think about it.' },
+
+    { type: 'p', text: 'I’ve been thinking about it ever since.' },
+    { type: 'p', text: 'It was a real fucking conversation. Not a podcast clip. Not a quote on LinkedIn. Not some ‘billionaire advice’ from Twitter.' },
+    { type: 'p', text: 'It was a guy I admire—someone who built an empire—telling me the truth behind the curtain.' },
+
+    { type: 'quote', text: 'How you make your money is more important than how much you make.', attribution: 'Gary Vaynerchuk' },
+
+    { type: 'p', text: 'We can make billions screwing the planet, hurting people, scaling nonsense, raising capital for stuff we don’t even believe in.' },
+    { type: 'p', text: 'Or maybe we make less, but we do it with integrity. With values. With a clean conscience.' },
+    { type: 'p', text: 'More than how much. More than how fast. More than who claps for us.' },
+    { type: 'p', text: 'What matters—at least to me—is knowing I can sleep at night, look in the mirror, and not feel like I’m bullshitting myself.' },
+    { type: 'p', text: 'That freedom we all chase doesn’t come with a net worth.' },
+    { type: 'p', text: 'It comes with design. With decisions. With courage.' },
+    { type: 'p', text: 'And sometimes, the courage isn’t to build something big—it’s to step away from it.' },
+    { type: 'p', text: 'To say “enough”, before it’s too late. To look at your daughter in the backseat of a van on a random Tuesday and say: “We made it.”' },
+
+    { type: 'pull', text: 'Because if we’re not building for that—what the fuck are we doing it for?' },
   ],
 }

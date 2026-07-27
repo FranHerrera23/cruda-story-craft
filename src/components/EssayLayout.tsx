@@ -137,8 +137,8 @@ export default function EssayLayout({ es }: { es: Essay }) {
             <Image
               src={AUTHOR.photo}
               alt={AUTHOR.name}
-              width={40}
-              height={40}
+              width={64}
+              height={64}
               className="e-av"
             />
             <div>

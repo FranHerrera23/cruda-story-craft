@@ -354,11 +354,11 @@ export default function AIConciergeContent() {
               </p>
             </div>
             <div className="wy rv">
-              <h4 className="h4">Nine years in this industry.</h4>
+              <h4 className="h4">Ten years in this industry.</h4>
               <p>Architecture studios, construction firms, interior designers, manufacturers.</p>
             </div>
             <div className="wy rv">
-              <h4 className="h4">And twenty industries before it.</h4>
+              <h4 className="h4">And fourteen industries before it.</h4>
               <p>
                 CPG. Tech. Private equity. Fintech. Hospitality. That&apos;s where the pattern
                 recognition comes from.

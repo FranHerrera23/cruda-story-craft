@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import './home.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). Etapa 3.
-   Copy locked from thecruda-home.html — 52 words, do not modify.
-   La madre no captura nada: no form, no CTA button. Declares.
+   CRUDA — Home (`/`). Brief v7 rewrite.
+
+   Un solo protagonista: el titular. Todo lo demás claramente
+   subordinado. La zona inferior es un bloque tranquilo con un solo
+   punto de color — el subrayado de `you`.
+
+   Copy locked. La madre no captura nada más allá del CTA de texto:
+   el botón macizo vive en las unidades, no acá.
 ------------------------------------------------------------------- */
 
 export const metadata: Metadata = {
@@ -72,19 +78,26 @@ export default function HomePage() {
               <span className="line-2">Strip the bullshit.</span>
             </h1>
 
-            <p className="punch">
-              Nobody buys the company. They buy <span className="punch-you">you</span>.
-            </p>
+            {/* Lower block — un solo bloque gris, contenido a 680px.
+                Punch + define son dos líneas del mismo nivel. */}
+            <div className="lower">
+              <div className="say">
+                <p>
+                  Nobody buys the company. They buy{' '}
+                  <span className="say-you">you</span>.
+                </p>
+                <p>Three companies. One method. Nobody&apos;s agency but yours.</p>
+              </div>
 
-            <p className="define">
-              Three companies. One method. Nobody&apos;s agency but yours.
-            </p>
+              <p className="principles mono">
+                We find stories &middot; No urgency &middot; Raw over polished
+              </p>
 
-            <ul className="principles mono">
-              <li>We find stories, we don&apos;t invent them</li>
-              <li>No urgency, no bullshit, ever</li>
-              <li>Raw over polished. Slow is fine</li>
-            </ul>
+              <Link href="/contact" className="cta">
+                Start a conversation{' '}
+                <span className="cta-arrow" aria-hidden="true">→</span>
+              </Link>
+            </div>
           </main>
 
           <footer className="foot">

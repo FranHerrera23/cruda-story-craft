@@ -1,6 +1,11 @@
-/* CRUDA — Home page styles (part 3-BIS rewrite).
-   Global tokens (colors + part 9 editorial tokens) come from
-   src/components/case-study.css. Scoped under .cruda-home. */
+/* CRUDA — Home page styles. Brief v7 rewrite.
+
+   Un solo protagonista: el titular. La mitad inferior es un bloque
+   contenido a 680px, todo en --ink-2 al mismo peso, con un solo
+   punto de color: el subrayado de `you`.
+
+   Global tokens (colores, --fs-*) vienen de src/components/case-study.css.
+   Todo scoped bajo .cruda-home. */
 
 .cruda-home-root {
   --sans: 'Archivo', -apple-system, sans-serif;
@@ -53,7 +58,7 @@
 }
 
 /* -------------------------------------------------------------------
-   1. Eyebrow — mono, no italic. "raw, in Spanish" in --ink-2.
+   1. Eyebrow.
 --------------------------------------------------------------------- */
 .cruda-home .etym {
   color: var(--ink);
@@ -66,12 +71,11 @@
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-style: normal; /* explicit override — no italics in copy */
+  font-style: normal;
 }
 
 /* -------------------------------------------------------------------
-   2. Manifesto H1 — .display treatment (part 2 tracking + optical).
-   Copy locked. Second line stays italic + red.
+   2. Manifesto H1 — único protagonista.
 --------------------------------------------------------------------- */
 .cruda-home .manifesto {
   font-family: var(--serif);
@@ -79,99 +83,90 @@
   font-size: clamp(46px, 8.6vw, 132px);
   line-height: 0.94;
   letter-spacing: -0.03em;
-  margin-left: -0.04em; /* optical alignment */
-  margin-bottom: clamp(24px, 4vh, 48px);
-  text-wrap: balance; /* no orphan words at the break */
+  margin-left: -0.04em;
+  margin-bottom: clamp(40px, 6vh, 72px);
+  text-wrap: balance;
 }
-.cruda-home .manifesto span {
-  display: block;
-}
+.cruda-home .manifesto span { display: block; }
 .cruda-home .manifesto .line-2 {
-  /* Punto 8.1: roman, not italic. Color alone carries the accent. */
   font-style: normal;
   color: var(--accent);
 }
 
 /* -------------------------------------------------------------------
-   3. Support paragraphs + "They buy you." on display.
+   3. Lower block — v7.
+   Contenido a 680px (el vacío de la derecha pasa a ser margen
+   intencional en vez de residuo). Todo --fs-lead / --ink-2 / 500.
+   El subrayado de `you` es el único acento de la zona.
 --------------------------------------------------------------------- */
-/* Punto 8.3: the position line is the only body copy on the home,
-   so it can carry more weight and a controlled measure. */
-/* Brief v6 T5 — la home respira.
-   "We build people. Companies follow." se retira (duplicaba el mismo
-   trabajo que hace punch). "punch" pasa a ser el único golpe entre
-   el H1 y la línea de definición, con más aire arriba.
-   "you" subrayado en --accent (por encima de 24px, cumple la regla). */
-.cruda-home .punch {
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: clamp(28px, 3vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-  margin: clamp(40px, 6.5vh, 72px) 0 0;
-  max-width: none;
-  text-wrap: balance;
-}
-.cruda-home .punch-you {
-  color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
+.cruda-home .lower {
+  max-width: 680px;
 }
 
-/* Definition line — brief v5 tarea 5.
-   Va debajo del manifiesto, antes de los principios. Archivo (voz
-   operativa, misma que "They buy you"), --fs-lead. Nunca display, no
-   compite con el titular. Sin acento porque está bajo 24px. */
-.cruda-home .define {
+.cruda-home .say p {
   font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 500;
   font-size: var(--fs-lead);
-  line-height: 1.35;
+  line-height: 1.45;
   letter-spacing: -0.005em;
   color: var(--ink-2);
-  margin: clamp(20px, 3.4vh, 32px) 0 0;
-  max-width: 42rem;
   text-wrap: pretty;
 }
+.cruda-home .say p + p { margin-top: 8px; }
 
-/* Three principles moved into the manifesto body (item 4).
-   13px mono, --ink-2, air between lines, red dot as the marker. */
+/* `you` — excepción deliberada al umbral de 24px (ver brief v7 §4):
+   el punto de color es un subrayado, no texto coloreado, y funciona
+   como el único acento visual de la mitad inferior. */
+.cruda-home .say-you {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+/* Principios — una línea, sin bullets. Si algún día no entra en
+   desktop, se acorta el texto, nunca se vuelve a apilar. */
 .cruda-home .principles {
-  list-style: none;
-  margin: clamp(32px, 5vh, 56px) 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-width: 44ch;
-}
-.cruda-home .principles li {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 1.5;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: var(--ink-2);
-  position: relative;
-  padding-left: 20px;
+  margin: clamp(28px, 4.4vh, 44px) 0 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  line-height: 1.5;
 }
-.cruda-home .principles li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.6em;
-  width: 6px;
-  height: 6px;
-  background: var(--ink-2);
-  border-radius: 50%;
+
+/* CTA de texto — no botón. El botón macizo vive en las unidades.
+   Underline en accent al hover, flecha corre 4px a la derecha. */
+.cruda-home .cta {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: clamp(24px, 4vh, 40px);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: var(--fs-lead);
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.cruda-home .cta:hover {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+.cruda-home .cta-arrow {
+  display: inline-block;
+  transition: transform 0.3s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+  color: var(--ink-2);
+}
+.cruda-home .cta:hover .cta-arrow {
+  transform: translateX(4px);
+  color: var(--accent);
 }
 
 /* -------------------------------------------------------------------
-   4. Footer — kept minimal after item 4: just the year mark.
+   4. Footer — solo la marca de año.
 --------------------------------------------------------------------- */
 .cruda-home .foot {
   flex-shrink: 0;
@@ -187,26 +182,24 @@
 }
 
 /* -------------------------------------------------------------------
-   5. Load sequence — orchestrated, single-shot on mount.
-   Home doesn't scroll: .reveal-based IO doesn't apply here.
+   5. Load sequence — CSS-only, respeta reduced-motion.
+   Baseline visible en caso extremo (JS off + prefers-reduced-motion):
+   no depende de observer. Cada nodo cae de vuelta a opacity: 1.
 --------------------------------------------------------------------- */
-/* Punto 8.5: orchestrated one-shot entry. Three principles + footer
-   fade in at the end so the eye lands on the manifesto first. */
 @media (prefers-reduced-motion: no-preference) {
   .cruda-home .etym,
   .cruda-home .manifesto .line-1,
   .cruda-home .manifesto .line-2,
-  .cruda-home .punch,
-  .cruda-home .define,
+  .cruda-home .say,
   .cruda-home .principles,
+  .cruda-home .cta,
   .cruda-home .foot {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-timing-function: var(--ease, cubic-bezier(.16, 1, .3, 1));
   }
   .cruda-home .manifesto .line-1,
-  .cruda-home .manifesto .line-2,
-  .cruda-home .punch {
+  .cruda-home .manifesto .line-2 {
     transform: translateY(16px);
   }
 
@@ -225,22 +218,25 @@
     animation-duration: 700ms;
     animation-delay: 260ms;
   }
-  .cruda-home .punch {
-    animation-name: cruda-home-rise;
-    animation-duration: 700ms;
-    animation-delay: 520ms;
-  }
-  .cruda-home .define {
+  .cruda-home .say {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;
-    animation-delay: 780ms;
+    animation-delay: 560ms;
   }
-  /* 930ms — principles + footer year, one fade together */
-  .cruda-home .principles,
+  .cruda-home .principles {
+    animation-name: cruda-home-fade;
+    animation-duration: 500ms;
+    animation-delay: 720ms;
+  }
+  .cruda-home .cta {
+    animation-name: cruda-home-fade;
+    animation-duration: 500ms;
+    animation-delay: 860ms;
+  }
   .cruda-home .foot {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;
-    animation-delay: 930ms;
+    animation-delay: 940ms;
   }
 }
 
@@ -265,6 +261,12 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
+  }
+  /* Los principios pueden envolver en mobile — no cortan las
+     palabras, solo saltan de línea entre separadores si hace falta.
+     No se re-apilan como lista. */
+  .cruda-home .principles {
+    letter-spacing: 0.12em;
   }
 }
 @media (prefers-reduced-motion: reduce) {

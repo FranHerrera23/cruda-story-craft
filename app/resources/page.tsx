@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import ResourcesLibrary from './ResourcesLibrary'
 import { allResources } from '@/content/resources'
 import './resources.css'
 
-/* /resources — brief v5 T7.
+/* /resources — brief v5 T7 + brief v6 T3.
    Biblioteca única con dos ejes (Company · Format). Reemplaza a
-   /thinking. La página es Server; los filtros son Client. */
+   /thinking. La página es Server; los filtros son Client. El Suspense
+   boundary es requisito de Next 14 para useSearchParams (query param
+   sync T3) sin desactivar el pre-render estático. */
 
 export const metadata: Metadata = {
   title: 'Resources — CRUDA',
@@ -32,7 +35,7 @@ export default function ResourcesPage() {
     <div className="rs-root">
       <section className="rs-head">
         <div className="rs-inner">
-          <p className="mono rs-eyebrow">Resources</p>
+          <p className="rs-eyebrow">Resources</p>
           <h1 className="rs-h1">Everything is a narrative. Companies too.</h1>
           <p className="rs-sub">
             Essays, conversations and case studies. What we&apos;ve written and
@@ -40,7 +43,9 @@ export default function ResourcesPage() {
           </p>
         </div>
       </section>
-      <ResourcesLibrary items={allResources} />
+      <Suspense fallback={null}>
+        <ResourcesLibrary items={allResources} />
+      </Suspense>
     </div>
   )
 }

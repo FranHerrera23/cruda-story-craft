@@ -41,7 +41,12 @@ export default function ArchitectureDesignPage() {
       <OurClientsSection />
       <BothSidesSection />
       <TestimonialsSection />
-      <CTASection />
+      {/* Brief v6 T4.6 — cierre explícito con el mismo botón del
+          sub-nav sticky (Book a call → Calendly). */}
+      <CTASection
+        ctaText="Book a call"
+        ctaHref="https://calendly.com/cruda-intro/narrative-sparring-live-1"
+      />
     </main>
   );
 }

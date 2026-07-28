@@ -12,6 +12,7 @@ interface CTASectionProps {
 
 const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: CTASectionProps) => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();
+  const isExternal = /^https?:\/\//.test(ctaHref);
 
   return (
     <section
@@ -47,11 +48,9 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
           <span style={{ color: '#E8623A' }}>Let&apos;s make sure it travels.</span>
         </h2>
 
-        {/* CTA Button */}
-        <Link
-          href={ctaHref}
-          className="cta-button-dark"
-          style={{
+        {/* CTA Button. External URLs (Calendly) open in a new tab. */}
+        {(() => {
+          const style: React.CSSProperties = {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '12px',
@@ -67,24 +66,50 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
             transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
             transition: 'all 0.25s ease',
             transitionDelay: '200ms'
-          }}
-          onMouseEnter={(e) => {
+          };
+          const onEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.currentTarget.style.backgroundColor = '#FFFFFF';
             e.currentTarget.style.color = '#0A0A0A';
-          }}
-          onMouseLeave={(e) => {
+          };
+          const onLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.currentTarget.style.backgroundColor = '#E8623A';
             e.currentTarget.style.color = '#FFFFFF';
-          }}
-        >
-          {ctaText}
-          <span
-            className="cta-arrow"
-            style={{ fontSize: '18px', transition: 'transform 0.25s ease' }}
-          >
-            →
-          </span>
-        </Link>
+          };
+          const inner = (
+            <>
+              {ctaText}
+              <span
+                className="cta-arrow"
+                style={{ fontSize: '18px', transition: 'transform 0.25s ease' }}
+              >
+                →
+              </span>
+            </>
+          );
+          return isExternal ? (
+            <a
+              href={ctaHref}
+              target="_blank"
+              rel="noopener"
+              className="cta-button-dark"
+              style={style}
+              onMouseEnter={onEnter}
+              onMouseLeave={onLeave}
+            >
+              {inner}
+            </a>
+          ) : (
+            <Link
+              href={ctaHref}
+              className="cta-button-dark"
+              style={style}
+              onMouseEnter={onEnter}
+              onMouseLeave={onLeave}
+            >
+              {inner}
+            </Link>
+          );
+        })()}
       </div>
 
       {/* Footer */}

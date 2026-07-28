@@ -92,9 +92,17 @@
   max-width: 1280px;
   margin: 0 auto;
 }
+/* Brief v6 T6.2 — sale de --fs-display, entra en --fs-h1.
+   El display se reserva al hero de la home. Este es H1 editorial. */
 .of .of-hero-h1 {
   color: var(--white);
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading, 1.05);
+  letter-spacing: var(--track-heading, -0.02em);
   max-width: 18ch;
+  margin: 0;
 }
 /* Typing effect: text renders visible; clip-path pulls it in on load.
    Baseline is inset(0 0 0 0) (fully shown), the animation just brings
@@ -280,9 +288,15 @@
 
 /* ---------- 05 — Contact ---------- */
 .of .of-block--ink .of-eyebrow { color: rgba(255, 255, 255, 0.6); }
+/* Brief v6 T6.2 — sale de --fs-display, entra en --fs-h1. */
 .of .of-close-line {
   color: var(--white);
-  max-width: 18ch;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: var(--lh-heading, 1.05);
+  letter-spacing: var(--track-heading, -0.02em);
+  max-width: 20ch;
   margin: 24px 0 56px;
 }
 /* Punto 5: proper button, not floating text. Explicit padding, mono

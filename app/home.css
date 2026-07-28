@@ -97,33 +97,28 @@
 --------------------------------------------------------------------- */
 /* Punto 8.3: the position line is the only body copy on the home,
    so it can carry more weight and a controlled measure. */
-/* Two golpes — Item 4 v2.
-   Row 02: "We build people. Companies follow." — Archivo 600, lead
-   scale, --ink-2.
-   Row 03: "Nobody buys the company. They buy you." — Archivo 600,
-   own scale (clamp 28-44), tracking -0.02em, --ink. Does not use
-   --fs-card-title — --fs-card-title was retuned for /thinking. */
-.cruda-home .say-2 {
-  max-width: 34rem;
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: var(--fs-lead);
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--ink-2);
-  text-wrap: pretty;
-  margin: 0;
-}
-.cruda-home .say .punch {
+/* Brief v6 T5 — la home respira.
+   "We build people. Companies follow." se retira (duplicaba el mismo
+   trabajo que hace punch). "punch" pasa a ser el único golpe entre
+   el H1 y la línea de definición, con más aire arriba.
+   "you" subrayado en --accent (por encima de 24px, cumple la regla). */
+.cruda-home .punch {
   font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 600;
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: var(--ink);
-  margin: clamp(20px, 3vh, 32px) 0 0;
+  margin: clamp(40px, 6.5vh, 72px) 0 0;
   max-width: none;
   text-wrap: balance;
+}
+.cruda-home .punch-you {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
 }
 
 /* Definition line — brief v5 tarea 5.
@@ -201,7 +196,6 @@
   .cruda-home .etym,
   .cruda-home .manifesto .line-1,
   .cruda-home .manifesto .line-2,
-  .cruda-home .say-2,
   .cruda-home .punch,
   .cruda-home .define,
   .cruda-home .principles,
@@ -231,27 +225,22 @@
     animation-duration: 700ms;
     animation-delay: 260ms;
   }
-  .cruda-home .say-2 {
-    animation-name: cruda-home-fade;
-    animation-duration: 600ms;
-    animation-delay: 520ms;
-  }
   .cruda-home .punch {
     animation-name: cruda-home-rise;
     animation-duration: 700ms;
-    animation-delay: 700ms;
+    animation-delay: 520ms;
   }
   .cruda-home .define {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;
-    animation-delay: 900ms;
+    animation-delay: 780ms;
   }
-  /* 1050ms — principles + footer year, one fade together */
+  /* 930ms — principles + footer year, one fade together */
   .cruda-home .principles,
   .cruda-home .foot {
     animation-name: cruda-home-fade;
     animation-duration: 500ms;
-    animation-delay: 1050ms;
+    animation-delay: 930ms;
   }
 }
 

@@ -72,10 +72,9 @@ export default function HomePage() {
               <span className="line-2">Strip the bullshit.</span>
             </h1>
 
-            <div className="say">
-              <p className="say-2">We build people. Companies follow.</p>
-              <p className="punch">Nobody buys the company. They buy you.</p>
-            </div>
+            <p className="punch">
+              Nobody buys the company. They buy <span className="punch-you">you</span>.
+            </p>
 
             <p className="define">
               Three companies. One method. Nobody&apos;s agency but yours.

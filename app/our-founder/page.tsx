@@ -51,7 +51,7 @@ const PERSON_SCHEMA = {
 // Text rows for At-a-Glance — brief-strict: only the 6 listed.
 // 10 / 26 / 14 promote to hero-scale numbers above the table.
 const TEXT_ROWS: { label: string; value: string }[] = [
-  { label: 'Based in', value: 'Russia' },
+  { label: 'Based in', value: 'Russia, transitioning to Catalunya' },
   { label: 'Building', value: 'CRUDA, a holding company' },
   { label: 'Verticals', value: 'Architecture & Design · Sports · AI Concierge' },
   {
@@ -83,10 +83,12 @@ export default function OurFounderPage() {
       <div className="of">
         <OurFounderStickyIndex />
 
-        {/* 01 — BELIEF · hero on ink, only H1 */}
+        {/* 01 — BELIEF · hero on ink, only H1.
+            Brief v6 T6.2: sale del `.display` reservado al hero de la home.
+            La escala baja a --fs-h1, la disciplina editorial vuelve. */}
         <section id="belief" data-section="belief" className="of-hero-ink">
           <div className="of-hero-inner">
-            <h1 className="display of-hero-h1">
+            <h1 className="of-hero-h1">
               <span className="of-typing">I believed the work spoke for itself.</span>
             </h1>
           </div>
@@ -130,12 +132,8 @@ export default function OurFounderPage() {
               </p>
               <p>CRUDA is that, made into a company.</p>
             </div>
-
-            <p className="of-pull">
-              Every room taught me the same thing from a different angle: the tools of
-              business are real, but the message that actually moves people comes from
-              somewhere else. It isn&apos;t manufactured in a slide.
-            </p>
+            {/* Brief v6 T6.1 — la cita suelta que flotaba a la derecha
+                sin patrón se retira. El párrafo de arriba ya cierra. */}
           </div>
         </section>
 
@@ -203,11 +201,12 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 05 — CONTACT — negro */}
+        {/* 05 — CONTACT — negro.
+            Brief v6 T6.2: sale del `.display`. --fs-h1 alcanza. */}
         <section id="contact" data-section="contact" className="of-block of-block--ink reveal">
           <div className="of-inner">
             <p className="mono of-eyebrow of-eyebrow--on-ink">05 · Contact</p>
-            <p className="display of-close-line">
+            <p className="of-close-line">
               The work still doesn&apos;t speak. Now I do it for other people.
             </p>
             <Link href="/contact" className="of-cta">

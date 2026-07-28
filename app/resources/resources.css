@@ -36,7 +36,15 @@
 
 /* Head */
 .rs-head { padding: clamp(96px, 14vh, 160px) 0 clamp(56px, 8vh, 96px); }
-.rs-eyebrow { color: var(--ink-2); margin-bottom: 28px; }
+.rs-eyebrow {
+  color: var(--ink-2);
+  margin-bottom: 28px;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: var(--track-mono, 0.14em);
+  text-transform: uppercase;
+}
 .rs-h1 {
   font-family: 'Instrument Serif', Georgia, serif;
   font-weight: 400;
@@ -57,7 +65,9 @@
 /* Body */
 .rs-body { padding: 0 0 clamp(96px, 14vh, 160px); }
 
-/* Filters */
+/* Filters — brief v6 T2: chips en Archivo sentence case. Mono en un
+   botón con paréntesis y dígitos (`CASE STUDY (5)`) se lee letra
+   por letra; Archivo lo lee como palabra. */
 .rs-filters {
   border-top: 1px solid var(--ink);
   border-bottom: 1px solid var(--rule);
@@ -73,7 +83,13 @@
   gap: 24px;
   align-items: center;
 }
-.rs-filter-label { color: var(--ink-2); }
+.rs-filter-label {
+  color: var(--ink-2);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.005em;
+}
 .rs-chips {
   display: flex;
   flex-wrap: wrap;
@@ -83,11 +99,11 @@
   background: transparent;
   border: 1px solid var(--rule);
   color: var(--ink);
-  font-family: var(--mono);
+  font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0;
+  text-transform: none;
   padding: 10px 16px;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
@@ -98,7 +114,7 @@
   color: var(--white);
   border-color: var(--ink);
 }
-.rs-count { opacity: 0.6; font-size: 11px; }
+.rs-count { opacity: 0.6; font-size: 13px; margin-left: 2px; }
 
 /* Empty state — honest, keeps filters */
 .rs-empty {
@@ -131,9 +147,13 @@
 .rs-card:hover .rs-card-more { color: var(--accent); }
 .rs-card-meta {
   display: flex;
-  gap: 20px;
+  gap: 12px;
   align-items: center;
   margin-bottom: 16px;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: -0.005em;
 }
 .rs-badge {
   color: var(--ink);
@@ -168,6 +188,9 @@
 }
 .rs-card-more {
   color: var(--ink);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 13px;
   transition: color 0.2s, transform 0.3s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
   display: inline-block;
 }

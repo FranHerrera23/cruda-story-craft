@@ -3,17 +3,30 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useRef, useState } from 'react'
+import {
+  allResources,
+  countByKind,
+  type ResourceKind,
+} from '@/content/resources'
 
 /* ------------------------------------------------------------------
-   CRUDA — Nav (global) — Brief v5, tarea 4.
+   CRUDA — Nav (global) — Brief v5 T4 + Brief v6 T3.
 
    Nav madre:
-     CRUDA    ABOUT    COMPANIES ▾    RESOURCES    CONTACT
+     CRUDA · ABOUT · COMPANIES ▾ · RESOURCES ▾ · CONTACT
 
    Sub-nav por unidad (aparece dentro de una unidad, no en la madre):
      A&D          : Work · How it works · Pricing · Book a call
      AI Concierge : How it works · Pricing · Book a call
      Sports       : sin sub-nav (holding "coming soon")
+
+   RESOURCES dropdown — brief v6 T3:
+   - Label es Link a /resources (todo, sin filtro).
+   - ▾ abre el menú de formatos, cada item lleva ?format=X en la URL.
+     Cada formato pasa a ser una URL indexable propia.
+   - Los items se construyen desde el conteo real (allResources). Si
+     un formato tiene 0 piezas hoy, no aparece.
+   - Company NO va acá (una sola opción hoy no aporta al nav).
 
    La madre declara filosofía. La unidad vende.
 ------------------------------------------------------------------- */
@@ -25,6 +38,27 @@ const COMPANIES = [
   { href: '/sports', label: 'CRUDA for Sports' },
   { href: '/ai-concierge', label: 'CRUDA AI Concierge' },
 ] as const
+
+// Format order in the dropdown — hardcoded editorial priority, not
+// alphabetical. Case studies read first because they're the hero
+// artifact of the site.
+const KIND_ORDER: readonly ResourceKind[] = [
+  'case-study',
+  'essay',
+  'conversation',
+  'playbook',
+]
+
+// Plural labels for the nav (kindLabel is singular).
+const KIND_LABEL_PLURAL: Record<ResourceKind, string> = {
+  essay: 'Essays',
+  conversation: 'Conversations',
+  playbook: 'Playbooks',
+  'case-study': 'Case studies',
+}
+
+const KIND_COUNTS = countByKind(allResources)
+const ACTIVE_FORMATS = KIND_ORDER.filter((k) => KIND_COUNTS[k] > 0)
 
 type SubItem =
   | { kind: 'link'; href: string; label: string }
@@ -56,9 +90,11 @@ function unitForPath(pathname: string): string | null {
 
 export default function Nav() {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  const [companiesOpen, setCompaniesOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+  const companiesRef = useRef<HTMLDivElement>(null)
+  const resourcesRef = useRef<HTMLDivElement>(null)
 
   const companiesActive = COMPANIES.some(
     (c) => pathname === c.href || pathname.startsWith(`${c.href}/`),
@@ -66,15 +102,23 @@ export default function Nav() {
   const unit = unitForPath(pathname)
   const subItems = unit ? SUBNAV[unit] : null
 
+  // Click outside + Escape closes whichever dropdown is open.
   useEffect(() => {
-    if (!open) return
+    if (!companiesOpen && !resourcesOpen) return
     function onDown(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setOpen(false)
+      const target = e.target as Node
+      if (companiesRef.current && !companiesRef.current.contains(target)) {
+        setCompaniesOpen(false)
+      }
+      if (resourcesRef.current && !resourcesRef.current.contains(target)) {
+        setResourcesOpen(false)
       }
     }
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') setOpen(false)
+      if (e.key === 'Escape') {
+        setCompaniesOpen(false)
+        setResourcesOpen(false)
+      }
     }
     document.addEventListener('mousedown', onDown)
     document.addEventListener('keydown', onKey)
@@ -82,10 +126,11 @@ export default function Nav() {
       document.removeEventListener('mousedown', onDown)
       document.removeEventListener('keydown', onKey)
     }
-  }, [open])
+  }, [companiesOpen, resourcesOpen])
 
   useEffect(() => {
-    setOpen(false)
+    setCompaniesOpen(false)
+    setResourcesOpen(false)
     setMobileOpen(false)
   }, [pathname])
 
@@ -100,8 +145,6 @@ export default function Nav() {
   })
 
   const isAbout = pathname === '/our-founder'
-  // /thinking today, /resources when T7 lands. Nav label is "Resources"
-  // from now on — the 301 keeps clicks working during the migration.
   const isResources =
     pathname === '/resources' ||
     pathname === '/thinking' ||
@@ -126,13 +169,17 @@ export default function Nav() {
               About
             </Link>
 
-            <div className="cruda-global-nav-dropdown" ref={dropdownRef}>
+            {/* Companies dropdown — click-driven, one label as button. */}
+            <div className="cruda-global-nav-dropdown" ref={companiesRef}>
               <button
                 type="button"
-                className={`cruda-global-nav-dropdown-btn${open ? ' open' : ''}`}
+                className={`cruda-global-nav-dropdown-btn${companiesOpen ? ' open' : ''}`}
                 aria-haspopup="true"
-                aria-expanded={open}
-                onClick={() => setOpen((v) => !v)}
+                aria-expanded={companiesOpen}
+                onClick={() => {
+                  setResourcesOpen(false)
+                  setCompaniesOpen((v) => !v)
+                }}
                 style={{
                   color: companiesActive ? 'var(--ink-2)' : 'var(--ink)',
                 }}
@@ -141,9 +188,9 @@ export default function Nav() {
                 <span className="cruda-global-nav-dropdown-arrow" aria-hidden="true">▾</span>
               </button>
               <ul
-                className={`cruda-global-nav-dropdown-menu${open ? ' open' : ''}`}
+                className={`cruda-global-nav-dropdown-menu${companiesOpen ? ' open' : ''}`}
                 role="menu"
-                aria-hidden={!open}
+                aria-hidden={!companiesOpen}
               >
                 {COMPANIES.map((c) => {
                   const active =
@@ -153,12 +200,12 @@ export default function Nav() {
                       <Link
                         href={c.href}
                         role="menuitem"
-                        tabIndex={open ? 0 : -1}
+                        tabIndex={companiesOpen ? 0 : -1}
                         aria-current={active ? 'page' : undefined}
                         style={{
                           color: active ? 'var(--ink-2)' : 'var(--ink)',
                         }}
-                        onClick={() => setOpen(false)}
+                        onClick={() => setCompaniesOpen(false)}
                       >
                         {c.label}
                       </Link>
@@ -168,13 +215,51 @@ export default function Nav() {
               </ul>
             </div>
 
-            <Link
-              href="/resources"
-              style={linkStyle(isResources)}
-              aria-current={isResources ? 'page' : undefined}
-            >
-              Resources
-            </Link>
+            {/* Resources — split-button. Label navigates; caret opens menu. */}
+            <div className="cruda-global-nav-dropdown cruda-global-nav-resources" ref={resourcesRef}>
+              <Link
+                href="/resources"
+                style={linkStyle(isResources)}
+                aria-current={isResources ? 'page' : undefined}
+                className="cruda-global-nav-resources-link"
+              >
+                Resources
+              </Link>
+              <button
+                type="button"
+                className={`cruda-global-nav-resources-caret${resourcesOpen ? ' open' : ''}`}
+                aria-haspopup="true"
+                aria-expanded={resourcesOpen}
+                aria-label="Filter resources by format"
+                onClick={() => {
+                  setCompaniesOpen(false)
+                  setResourcesOpen((v) => !v)
+                }}
+              >
+                <span className="cruda-global-nav-dropdown-arrow" aria-hidden="true">▾</span>
+              </button>
+              <ul
+                className={`cruda-global-nav-dropdown-menu${resourcesOpen ? ' open' : ''}`}
+                role="menu"
+                aria-hidden={!resourcesOpen}
+              >
+                {ACTIVE_FORMATS.map((k) => (
+                  <li key={k} role="none">
+                    <Link
+                      href={`/resources?format=${k}`}
+                      role="menuitem"
+                      tabIndex={resourcesOpen ? 0 : -1}
+                      onClick={() => setResourcesOpen(false)}
+                    >
+                      {KIND_LABEL_PLURAL[k]}{' '}
+                      <span className="cruda-global-nav-dropdown-count">
+                        ({KIND_COUNTS[k]})
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <Link
               href="/contact"
@@ -249,14 +334,58 @@ export default function Nav() {
                 })}
               </ul>
             </details>
-            <Link
-              href="/resources"
-              style={linkStyle(isResources)}
-              aria-current={isResources ? 'page' : undefined}
-              onClick={() => setMobileOpen(false)}
-            >
-              Resources
-            </Link>
+            <details>
+              <summary
+                style={{
+                  color: isResources ? 'var(--ink-2)' : 'var(--ink)',
+                  fontFamily: 'var(--mono)',
+                  fontWeight: 500,
+                  fontSize: '12px',
+                  letterSpacing: '.14em',
+                  textTransform: 'uppercase',
+                  cursor: 'pointer',
+                  listStyle: 'none',
+                }}
+              >
+                Resources
+              </summary>
+              <ul style={{ listStyle: 'none', paddingLeft: 16, marginTop: 8 }}>
+                <li style={{ padding: '6px 0' }}>
+                  <Link
+                    href="/resources"
+                    style={{
+                      color: 'var(--ink)',
+                      textDecoration: 'none',
+                      fontFamily: 'var(--mono)',
+                      fontSize: '12px',
+                      letterSpacing: '.14em',
+                      textTransform: 'uppercase',
+                    }}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    All resources
+                  </Link>
+                </li>
+                {ACTIVE_FORMATS.map((k) => (
+                  <li key={k} style={{ padding: '6px 0' }}>
+                    <Link
+                      href={`/resources?format=${k}`}
+                      style={{
+                        color: 'var(--ink)',
+                        textDecoration: 'none',
+                        fontFamily: 'var(--mono)',
+                        fontSize: '12px',
+                        letterSpacing: '.14em',
+                        textTransform: 'uppercase',
+                      }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {KIND_LABEL_PLURAL[k]} ({KIND_COUNTS[k]})
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </details>
             <Link
               href="/contact"
               style={linkStyle(isContact)}
@@ -352,7 +481,8 @@ export default function Nav() {
           display: inline-block;
           transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .cruda-global-nav-dropdown-btn.open .cruda-global-nav-dropdown-arrow {
+        .cruda-global-nav-dropdown-btn.open .cruda-global-nav-dropdown-arrow,
+        .cruda-global-nav-resources-caret.open .cruda-global-nav-dropdown-arrow {
           transform: rotate(180deg);
         }
         .cruda-global-nav-dropdown-menu {
@@ -360,7 +490,7 @@ export default function Nav() {
           top: 100%;
           right: 0;
           margin-top: 8px;
-          min-width: 300px;
+          min-width: 260px;
           background: rgba(255, 255, 255, 0.98);
           backdrop-filter: blur(16px);
           border: 1px solid var(--rule, #E2E0DA);
@@ -385,6 +515,7 @@ export default function Nav() {
           padding: 14px 22px;
           white-space: nowrap;
           text-decoration: none;
+          color: var(--ink);
           font-family: var(--mono);
           font-size: 12px;
           letter-spacing: 0.14em;
@@ -395,6 +526,31 @@ export default function Nav() {
           color: var(--ink-2);
           background: #FAFAF8;
         }
+        .cruda-global-nav-dropdown-count {
+          opacity: 0.5;
+          margin-left: 4px;
+        }
+
+        /* Resources — split-button: text is a link, caret is a button. */
+        .cruda-global-nav-resources {
+          display: inline-flex;
+          align-items: center;
+          gap: 2px;
+        }
+        .cruda-global-nav-resources-link {
+          padding-right: 2px;
+        }
+        .cruda-global-nav-resources-caret {
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px 2px;
+          display: inline-flex;
+          align-items: center;
+          color: var(--ink);
+          font-size: 12px;
+        }
+
         .cruda-global-nav-mobile-toggle {
           display: none;
           background: none;
@@ -424,65 +580,76 @@ export default function Nav() {
           .cruda-global-nav-mobile { display: none !important; }
         }
 
-        /* ---------- Sub-nav ---------- */
+        /* ---------- Sub-nav (brief v6 T4) ---------- */
         .cruda-subnav {
-          position: fixed;
+          position: sticky;
           top: 68px;
           left: 0;
           right: 0;
           z-index: 90;
-          background: var(--cream, #F5F1E8);
-          border-bottom: 1px solid var(--rule, #E2E0DA);
+          background: var(--white);
+          border-top: 1px solid var(--rule);
+          border-bottom: 1px solid var(--rule);
         }
         .cruda-subnav-in {
           max-width: var(--max, 1360px);
           margin: 0 auto;
-          padding: 14px var(--gut, clamp(24px, 5vw, 80px));
+          padding: 10px var(--gut, clamp(24px, 5vw, 80px));
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 24px;
         }
         .cruda-subnav-brand {
-          color: var(--ink, #0A0A0A);
+          color: var(--ink-2);
           font-size: 11px;
         }
         .cruda-subnav-list {
           list-style: none;
           display: flex;
-          gap: 32px;
+          align-items: center;
+          gap: 28px;
           padding: 0;
           margin: 0;
         }
-        .cruda-subnav-link, .cruda-subnav-cta {
+        .cruda-subnav-link {
+          font-family: var(--mono);
+          font-weight: 500;
+          font-size: 11px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: var(--ink-2);
+          transition: color 0.2s;
+        }
+        .cruda-subnav-link:hover { color: var(--ink); }
+        .cruda-subnav-cta {
           font-family: var(--mono);
           font-weight: 500;
           font-size: 12px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
           text-decoration: none;
-          color: var(--ink, #0A0A0A);
-          transition: color 0.2s;
-        }
-        .cruda-subnav-link:hover { color: var(--ink-2, #4A4A4A); }
-        .cruda-subnav-cta {
           background: var(--ink);
           color: var(--white, #FFFFFF);
-          padding: 10px 18px;
+          padding: 12px 22px;
           transition: background-color 0.2s;
         }
         .cruda-subnav-cta:hover { background: var(--accent, #E8623A); }
 
         @media (max-width: 900px) {
+          .cruda-subnav {
+            top: 60px;
+          }
           .cruda-subnav-in {
             flex-direction: column;
             align-items: flex-start;
-            gap: 12px;
-            padding: 12px var(--gut, clamp(24px, 5vw, 80px));
+            gap: 10px;
+            padding: 10px var(--gut, clamp(24px, 5vw, 80px));
           }
           .cruda-subnav-brand { display: none; }
           .cruda-subnav-list {
-            gap: 20px;
+            gap: 18px;
             flex-wrap: wrap;
           }
         }

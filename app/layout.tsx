@@ -63,6 +63,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  // Brief v6 T7 — Google Search Console site verification. Next renders
+  // this as <meta name="google-site-verification"> on every page.
+  verification: {
+    google: 'BhGFy4Z2dXgjoS_GqqxtGLy4oZPmUE1CYt-0uvgioXk',
+  },
   // Icons come from app/icon.svg (Next.js auto-detects) — no manual declaration.
 };
 

@@ -86,7 +86,17 @@ export default function HomePage() {
                   Nobody buys the company. They buy{' '}
                   <span className="say-you">you</span>.
                 </p>
-                <p>Three companies. One method. Nobody&apos;s agency but yours.</p>
+                <p>
+                  Three companies. One method.
+                  {/* Hard break después de "One method." — la frase entera no
+                     entra en el contenedor de 680px (aprox 82ch a 20px medium
+                     ≈ ~660-720px de ancho medido), así que forzamos el corte
+                     en el pivot semántico correcto. En mobile con ancho aún
+                     menor, la segunda frase wrappea internamente — inevitable
+                     y aceptable a esa escala. */}
+                  <br />
+                  Marketing built around the founder, not the logo.
+                </p>
               </div>
 
               <p className="principles mono">

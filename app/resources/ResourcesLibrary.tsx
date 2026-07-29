@@ -182,6 +182,12 @@ export default function ResourcesLibrary({ items }: Props) {
                   <div className="rs-card-meta">
                     <span className="rs-badge">{companyLabel(r.company)}</span>
                     <span className="rs-kind">{kindLabel(r.kind)}</span>
+                    {/* Brief v8 T2 — badge de idioma solo si es español.
+                        El inglés es el default visual del sitio y no
+                        necesita marcador. */}
+                    {r.language === 'es' && (
+                      <span className="rs-lang" aria-label="Spanish">ES</span>
+                    )}
                   </div>
                   <h2 className="rs-card-title">{r.title}</h2>
                   <p className="rs-card-excerpt">{r.excerpt}</p>

@@ -16,6 +16,10 @@ export async function generateMetadata(
   const es = allEssays.find((e) => e.slug === slug)
   if (!es) return {}
   const modified = es.updatedAt || es.publishedAt
+  /* Brief v8 T2 — metadata en idioma correcto. og:locale marca el
+     idioma real de la pieza para que LinkedIn muestre título y
+     descripción en español cuando corresponde. */
+  const locale = es.language === 'es' ? 'es_ES' : 'en_US'
   return {
     title: `${es.title} | CRUDA`,
     description: es.answerCapsule.slice(0, 155),
@@ -27,6 +31,7 @@ export async function generateMetadata(
       type: 'article',
       publishedTime: es.publishedAt,
       modifiedTime: modified,
+      locale,
       images: es.heroImage ? [`${BASE}${es.heroImage}`] : undefined,
     },
     twitter: {

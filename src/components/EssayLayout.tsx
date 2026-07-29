@@ -8,15 +8,25 @@ import './essay.css'
    CRUDA — EssayLayout
    AEO discipline adapted to essays and conversations.
    The skeleton serves the machine; the prose serves the human.
+
+   Brief v8: soporte de idioma sin i18n.
+   - `language` opcional en el Essay ('en' default).
+   - Se aplica como atributo lang= del <article>.
+   - EssayBlock permite `html` en p/pull para preservar inline markup
+     (bold, cursivas) — safe porque el contenido lo autoreamos nosotros.
+   - Nuevo bloque `checklist` para listas de checkboxes semánticas.
 ------------------------------------------------------------------- */
 
 export type EssayBlock =
-  | { type: 'p'; text: string; lead?: boolean }
+  | { type: 'p'; text?: string; html?: string; lead?: boolean }
   | { type: 'quote'; text: string; attribution?: string }
-  | { type: 'pull'; text: string }
+  | { type: 'pull'; text?: string; html?: string }
   | { type: 'h2'; text: string }
+  | { type: 'checklist'; items: string[] }
 
 export type Faq = { q: string; a: string }
+
+export type EssayLanguage = 'en' | 'es'
 
 export type Essay = {
   slug: string
@@ -32,6 +42,7 @@ export type Essay = {
   heroAlt?: string
   body: EssayBlock[]
   faqs?: Faq[]
+  language?: EssayLanguage
 }
 
 const AUTHOR = {
@@ -41,8 +52,8 @@ const AUTHOR = {
   url: 'https://www.thecruda.com/our-founder',
 }
 
-function fmt(iso: string) {
-  return new Date(iso).toLocaleDateString('en-US', {
+function fmt(iso: string, locale: string) {
+  return new Date(iso).toLocaleDateString(locale, {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -61,6 +72,7 @@ function schema(es: Essay) {
       datePublished: es.publishedAt,
       dateModified: modified,
       articleSection: es.category,
+      inLanguage: es.language === 'es' ? 'es' : 'en',
       keywords: es.tags && es.tags.length > 0 ? es.tags.join(', ') : undefined,
       image: es.heroImage ? `${base}${es.heroImage}` : undefined,
       author: {
@@ -108,6 +120,12 @@ function schema(es: Essay) {
 export default function EssayLayout({ es }: { es: Essay }) {
   const showUpdated = es.updatedAt !== '' && es.updatedAt !== es.publishedAt
   const contentType = es.contentType ?? 'Essay'
+  const lang = es.language ?? 'en'
+  const dateLocale = lang === 'es' ? 'es-ES' : 'en-US'
+  const backLabel = lang === 'es' ? '← Recursos' : '← Resources'
+  const updatedLabel = lang === 'es' ? 'Actualizado' : 'Updated'
+  const readingLabel = lang === 'es' ? 'min de lectura' : 'min read'
+  const questionsLabel = lang === 'es' ? 'Preguntas' : 'Questions'
   const metaTags = [es.category, ...(es.tags ?? [])].filter(Boolean)
 
   return (
@@ -119,15 +137,15 @@ export default function EssayLayout({ es }: { es: Essay }) {
 
       <EssayProgressBar />
 
-      <article>
+      <article lang={lang}>
         <header className="e-head">
           <Link href="/resources" className="mono e-back">
-            ← Resources
+            {backLabel}
           </Link>
           <p className="e-meta">
             <span className="e-type">{contentType}</span>
             <span className="mono">
-              {metaTags.join(' · ')} · {es.readingMinutes} min read
+              {metaTags.join(' · ')} · {es.readingMinutes} {readingLabel}
             </span>
           </p>
 
@@ -146,18 +164,21 @@ export default function EssayLayout({ es }: { es: Essay }) {
               <span className="e-role">{AUTHOR.role}</span>
             </div>
             <div className="e-dates">
-              <time dateTime={es.publishedAt}>{fmt(es.publishedAt)}</time>
+              <time dateTime={es.publishedAt}>{fmt(es.publishedAt, dateLocale)}</time>
               {showUpdated && (
                 <>
                   <br />
-                  Updated <time dateTime={es.updatedAt}>{fmt(es.updatedAt)}</time>
+                  {updatedLabel}{' '}
+                  <time dateTime={es.updatedAt}>{fmt(es.updatedAt, dateLocale)}</time>
                 </>
               )}
             </div>
           </div>
         </header>
 
-        {/* Answer capsule — de qué se trata, sin spoilear el giro */}
+        {/* Answer capsule — de qué se trata, sin spoilear el giro.
+            Brief v8 T1: sobre --cream, como el bloque takeaways de los
+            case studies. Es lo que la IA levanta como respuesta. */}
         <p className="e-capsule">{es.answerCapsule}</p>
 
         {es.heroImage && es.heroAlt && (
@@ -166,22 +187,56 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </figure>
         )}
 
-        {/* Body: flowing prose, no bullets */}
+        {/* Body */}
         <div className="e-body">
           {es.body.map((block, i) => {
             if (block.type === 'h2') return <h2 key={i}>{block.text}</h2>
             if (block.type === 'p') {
+              const className = block.lead ? 'lead' : undefined
+              if (block.html) {
+                return (
+                  <p
+                    key={i}
+                    className={className}
+                    dangerouslySetInnerHTML={{ __html: block.html }}
+                  />
+                )
+              }
               return (
-                <p key={i} className={block.lead ? 'lead' : undefined}>
+                <p key={i} className={className}>
                   {block.text}
                 </p>
               )
             }
             if (block.type === 'pull') {
+              if (block.html) {
+                return (
+                  <p
+                    key={i}
+                    className="e-pull"
+                    dangerouslySetInnerHTML={{ __html: block.html }}
+                  />
+                )
+              }
               return (
                 <p key={i} className="e-pull">
                   {block.text}
                 </p>
+              )
+            }
+            if (block.type === 'checklist') {
+              return (
+                <ul key={i} className="e-checklist" role="list">
+                  {block.items.map((item, j) => (
+                    <li key={j}>
+                      <span className="e-checkbox" aria-hidden="true" />
+                      <span
+                        className="e-checkitem"
+                        dangerouslySetInnerHTML={{ __html: item }}
+                      />
+                    </li>
+                  ))}
+                </ul>
               )
             }
             // quote — attributed
@@ -196,7 +251,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
 
         {es.faqs && es.faqs.length > 0 && (
           <section className="e-faq">
-            <h2>Questions</h2>
+            <h2>{questionsLabel}</h2>
             {es.faqs.map((f, i) => (
               <details key={i}>
                 <summary>{f.q}</summary>
@@ -206,9 +261,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </section>
         )}
 
-        {/* Closing block — brief v5 T6. Reemplazó al form de subscribe
-            (no hay proveedor de email; un form muerto es peor que nada). */}
-        <ClosingBlock kind="essay" />
+        <ClosingBlock kind="essay" lang={lang} />
       </article>
     </div>
   )

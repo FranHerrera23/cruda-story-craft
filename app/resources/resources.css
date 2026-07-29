@@ -162,6 +162,18 @@
   border: 1px solid var(--rule);
 }
 .rs-kind { color: var(--ink-2); }
+/* Brief v8 T2 — badge de idioma. Mismo tratamiento tipográfico que
+   el resto de la card-meta (Archivo, sentence case, 13px). Solo
+   aparece en piezas ES. */
+.rs-lang {
+  color: var(--ink);
+  background: var(--white);
+  padding: 4px 8px;
+  border: 1px solid var(--ink-2);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
 
 .rs-card-title {
   font-family: 'Archivo', -apple-system, sans-serif;

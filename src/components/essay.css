@@ -124,11 +124,12 @@
 }
 
 /* ANSWER CAPSULE — el bloque que la IA levanta.
-   Parte 6.1: --fs-capsule. */
+   Brief v8 T1: sobre --cream como el bloque takeaways de los case
+   studies. Padding generoso, sin border-left; el fondo es el aviso. */
 .essay .e-capsule {
   margin: 48px 0 56px;
-  padding-left: 26px;
-  border-left: 2px solid var(--accent);
+  padding: 32px 40px;
+  background: var(--cream);
   font-size: var(--fs-capsule);
   line-height: 1.5;
   font-weight: 500;
@@ -150,12 +151,58 @@
 .essay .e-body p.lead {
   font-size: var(--fs-lead);
 }
+/* Inline emphasis dentro del cuerpo — el ensayo trae bold y cursivas.
+   `strong` mantiene el mismo tamaño con peso, `em` queda cursiva
+   sin cambiar familia. */
+.essay .e-body strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+.essay .e-body em {
+  font-style: italic;
+  color: inherit;
+}
 .essay .e-body h2 {
   font-size: var(--fs-h2);
   font-weight: 700;
   line-height: var(--lh-heading);
   letter-spacing: var(--track-heading);
   margin: 56px 0 24px;
+}
+
+/* Checklist — brief v8. Los checkboxes son decorativos (mental
+   checklist), no interactivos. Cuadrado outline en --ink-2 al lado
+   izquierdo, alineado con la baseline del texto. */
+.essay .e-body .e-checklist {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.essay .e-body .e-checklist li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: baseline;
+}
+.essay .e-body .e-checkbox {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1.5px solid var(--ink-2);
+  flex-shrink: 0;
+  transform: translateY(2px);
+}
+.essay .e-body .e-checkitem {
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: #25252A;
+}
+.essay .e-body .e-checkitem strong {
+  font-weight: 700;
+  color: var(--ink);
 }
 
 /* Pull quote — Parte 6.1: --fs-h3, note measure, offset right.

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import './case-study.css'
 import ClosingBlock from './ClosingBlock'
+import RelatedResources from './RelatedResources'
 
 /* ------------------------------------------------------------------
    CRUDA — CaseStudyLayout
@@ -229,6 +230,9 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
         kind="case-study"
         variant={cs.status === 'portfolio' ? 'portfolio' : 'client'}
       />
+
+      {/* Brief v9 T5 — 3 piezas relacionadas después del cierre. */}
+      <RelatedResources currentHref={`/clients/${cs.slug}`} lang="en" />
     </article>
   )
 }

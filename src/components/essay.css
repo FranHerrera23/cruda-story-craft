@@ -85,7 +85,22 @@
   font-weight: 700;
   line-height: var(--lh-heading);
   letter-spacing: var(--track-heading);
-  margin-bottom: 36px;
+  margin-bottom: 24px;
+}
+
+/* Brief v9 T1 — bajada editorial entre H1 y byline.
+   --fs-lead, --ink-2, peso regular, sin negrita. Es el subtítulo
+   del ensayo; no compite con el titular ni con el body. */
+.essay .e-deck {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--ink-2);
+  margin: 0 0 32px;
+  max-width: 42rem;
+  text-wrap: pretty;
 }
 
 .essay .e-by {
@@ -162,12 +177,24 @@
   font-style: italic;
   color: inherit;
 }
+/* Brief v9 T4 — más aire antes de H2 para que la sección se lea
+   como corte real, no como párrafo con negrita. */
 .essay .e-body h2 {
   font-size: var(--fs-h2);
   font-weight: 700;
   line-height: var(--lh-heading);
   letter-spacing: var(--track-heading);
-  margin: 56px 0 24px;
+  margin: 88px 0 24px;
+}
+/* Brief v9 T4 — H3 disponible en el molde. --fs-h3 (22px). Menos
+   aire que H2 porque es sub-corte, no corte primario. */
+.essay .e-body h3 {
+  font-size: var(--fs-h3);
+  font-weight: 700;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
+  margin: 48px 0 16px;
+  color: var(--ink);
 }
 
 /* Checklist — brief v8. Los checkboxes son decorativos (mental
@@ -205,16 +232,22 @@
   color: var(--ink);
 }
 
-/* Pull quote — Parte 6.1: --fs-h3, note measure, offset right.
-   The rule from Parte 1.4: never larger than the H1 of its page. */
+/* Pull quote — Brief v9 T2.
+   Flush left contra la columna de texto, con regla vertical en
+   --accent a la izquierda. Mismo tratamiento que .cs-pull en los
+   case studies. Antes estaba offset a la derecha con serif — rompía
+   el eje de lectura sin motivo. */
 .essay .e-body p.e-pull {
-  margin: 56px 0 56px auto;
-  font-family: var(--serif);
+  margin: 40px 0 40px 0;
+  padding-left: 28px;
+  border-left: 2px solid var(--accent);
+  font-family: 'Archivo', -apple-system, sans-serif;
   font-size: var(--fs-h3);
   line-height: var(--lh-heading);
   letter-spacing: var(--track-heading);
+  font-weight: 500;
   color: var(--ink);
-  max-width: var(--measure-note);
+  max-width: 40ch;
   text-align: left;
 }
 
@@ -543,4 +576,100 @@
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* -----------------------------------------------------------------
+   Related resources — brief v9 T5.
+   Va al final de ensayos y case studies (después del ClosingBlock).
+   Fila de 3 cards sin imagen, cada una con badges + título + fecha.
+   El heading es H2 pero visualmente más chico que los H2 de sección
+   porque es un cierre de navegación, no un corte de contenido. */
+.rr {
+  margin: 80px 0 0;
+  padding: 56px 0 0;
+  border-top: 1px solid var(--rule);
+}
+.rr-heading {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: var(--lh-heading);
+  letter-spacing: var(--track-heading);
+  color: var(--ink);
+  margin: 0 0 32px;
+}
+.rr-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+.rr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 0;
+  border-top: 1px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+  height: 100%;
+  transition: color 0.2s;
+}
+.rr-card:hover .rr-title { color: var(--accent); }
+.rr-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: -0.005em;
+}
+.rr-badge {
+  color: var(--ink);
+  background: var(--cream);
+  padding: 3px 8px;
+  border: 1px solid var(--rule);
+}
+.rr-kind { color: var(--ink-2); }
+.rr-lang {
+  color: var(--ink);
+  background: var(--white);
+  padding: 3px 6px;
+  border: 1px solid var(--ink-2);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+.rr-title {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.25;
+  letter-spacing: -0.008em;
+  color: var(--ink);
+  margin: 0;
+  transition: color 0.2s;
+  /* Trim para que las cards mantengan altura consistente. */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.rr-date {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: 12px;
+  color: var(--ink-2);
+  margin-top: auto;
+}
+
+@media (max-width: 720px) {
+  .rr-list {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .rr-card { padding: 20px 0; }
 }

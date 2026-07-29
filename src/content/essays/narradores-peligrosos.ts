@@ -10,8 +10,8 @@ import type { Essay } from '@/components/EssayLayout'
 export const narradoresPeligrosos: Essay = {
   slug: 'narradores-peligrosos',
   language: 'es',
-  category: 'Narrative',
-  tags: ['Método'],
+  /* Brief v9 T3 — una sola categoría, en el idioma de la pieza. */
+  category: 'Narrativa',
   contentType: 'Essay',
   readingMinutes: 12,
   publishedAt: '2026-07-28',
@@ -19,17 +19,15 @@ export const narradoresPeligrosos: Essay = {
 
   title: 'Los trucos que usás cuando no confiás en lo que vendés',
 
+  /* Brief v9 T1 — bajada del molde. Antes vivía duplicada como
+     body[0] en negrita; ahora entra al header entre H1 y byline. */
+  deck:
+    'El contador que se reinicia, el "quedan 2 lugares" que no es cierto, el mail que aprieta. Ninguno de esos es un problema de copywriting. Son un problema de identidad.',
+
   answerCapsule:
     'Los mensajes que apuran no son un problema de redacción. Son el comportamiento visible de una creencia: que lo que vendés no alcanza para convencer solo. Se arregla cambiando desde dónde escribís, no las palabras. Y buena parte del daño no lo escribió nadie: son templates heredados y texto generado por IA que nadie volvió a leer.',
 
   body: [
-    {
-      type: 'p',
-      lead: true,
-      html:
-        '<strong>El contador que se reinicia, el "quedan 2 lugares" que no es cierto, el mail que aprieta. Ninguno de esos es un problema de copywriting. Son un problema de identidad.</strong>',
-    },
-
     {
       type: 'p',
       text:
@@ -150,7 +148,7 @@ export const narradoresPeligrosos: Essay = {
     {
       type: 'p',
       text:
-        'Chris Walker —que construyó una de las agencias de demand gen B2B más grandes y hoy escribe sobre otra cosa completamente distinta— tiene una cadena que explica bien por qué:',
+        'Chris Walker —que construyó Refine Labs y hoy escribe sobre otra cosa completamente distinta— tiene una cadena que explica bien por qué:',
     },
     {
       type: 'pull',

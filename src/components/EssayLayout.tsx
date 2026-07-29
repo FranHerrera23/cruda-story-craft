@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import EssayProgressBar from './EssayProgressBar'
 import ClosingBlock from './ClosingBlock'
+import RelatedResources from './RelatedResources'
 import './essay.css'
 
 /* ------------------------------------------------------------------
@@ -22,6 +23,7 @@ export type EssayBlock =
   | { type: 'quote'; text: string; attribution?: string }
   | { type: 'pull'; text?: string; html?: string }
   | { type: 'h2'; text: string }
+  | { type: 'h3'; text: string }
   | { type: 'checklist'; items: string[] }
 
 export type Faq = { q: string; a: string }
@@ -31,6 +33,10 @@ export type EssayLanguage = 'en' | 'es'
 export type Essay = {
   slug: string
   title: string
+  /* Brief v9 T1 — bajada editorial. Va entre H1 y byline, en
+     --fs-lead / --ink-2 / peso regular. Es el subtítulo del ensayo.
+     Distinta de answerCapsule (que sirve al AEO y va bajo --cream). */
+  deck?: string
   publishedAt: string
   updatedAt: string
   answerCapsule: string
@@ -151,6 +157,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
 
           <h1>{es.title}</h1>
 
+          {/* Brief v9 T1 — bajada entre H1 y byline. --fs-lead, --ink-2,
+              peso regular. Ninguna otra pieza del molde muestra este
+              texto: no se duplica en el body. */}
+          {es.deck && <p className="e-deck">{es.deck}</p>}
+
           <div className="e-by">
             <Image
               src={AUTHOR.photo}
@@ -191,6 +202,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
         <div className="e-body">
           {es.body.map((block, i) => {
             if (block.type === 'h2') return <h2 key={i}>{block.text}</h2>
+            if (block.type === 'h3') return <h3 key={i}>{block.text}</h3>
             if (block.type === 'p') {
               const className = block.lead ? 'lead' : undefined
               if (block.html) {
@@ -262,6 +274,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
         )}
 
         <ClosingBlock kind="essay" lang={lang} />
+
+        {/* Brief v9 T5 — 3 piezas relacionadas después del cierre.
+            Prioriza misma company, después más recientes. Nunca la
+            actual. Si no hay ninguna, no renderiza nada. */}
+        <RelatedResources currentHref={`/thinking/${es.slug}`} lang={lang} />
       </article>
     </div>
   )

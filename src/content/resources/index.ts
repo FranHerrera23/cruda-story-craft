@@ -63,6 +63,13 @@ const COMPANY_LABEL_LONG: Record<ResourceCompany, string> = {
   'ai-concierge': 'AI Concierge',
 }
 
+/* Brief v10 T2 — filtro de idioma. Labels visibles siguen el idioma
+   de la etiqueta ("Español" / "English"), no el idioma del navegador. */
+const LANGUAGE_LABEL: Record<ResourceLanguage, string> = {
+  es: 'Español',
+  en: 'English',
+}
+
 /* Brief v8 T3 — retag de ensayos existentes.
    Los dos ensayos anteriores estaban etiquetados como 'a-d' pero
    ninguno lo era: uno es una anécdota sobre confianza (categoría
@@ -72,6 +79,7 @@ const ESSAY_COMPANY: Record<string, ResourceCompany> = {
   'el-ocho': 'cruda',
   'founder-worth-70-million': 'cruda',
   'narradores-peligrosos': 'cruda',
+  'siglas-para-no-decir-gente': 'cruda',
 }
 
 const essayResources: Resource[] = allEssays.map((e) => ({
@@ -116,6 +124,9 @@ export function companyLabel(c: ResourceCompany) {
 export function companyLabelLong(c: ResourceCompany) {
   return COMPANY_LABEL_LONG[c]
 }
+export function languageLabel(l: ResourceLanguage) {
+  return LANGUAGE_LABEL[l]
+}
 
 /* Count per tag — used to build chips from data. If a value has zero
    items it doesn't appear at all. */
@@ -140,5 +151,15 @@ export function countByCompany(
     'ai-concierge': 0,
   }
   for (const r of items) acc[r.company] += 1
+  return acc
+}
+
+/* Brief v10 T2 — conteo por idioma para armar el eje. Los chips se
+   construyen desde este map: un idioma con 0 piezas no aparece. */
+export function countByLanguage(
+  items: Resource[],
+): Record<ResourceLanguage, number> {
+  const acc: Record<ResourceLanguage, number> = { en: 0, es: 0 }
+  for (const r of items) acc[r.language] += 1
   return acc
 }

@@ -41,6 +41,15 @@ const nextConfig = {
       // Nota: /thinking/[slug] queda vivo — el URL canonical de cada
       // ensayo no cambia para no romper backlinks. Cuando migren a
       // /resources/[slug] se agrega el 301 de cada slug.
+      {
+        // Cleanup post-v10: /book-call era un shell pre-v3 que abría
+        // Calendly en new tab con copy vieja ("construction and
+        // architecture leaders"). Redundante con /contact (que ya
+        // embebe Calendly + email). Nada del sitio linkeaba a esto.
+        source: '/book-call',
+        destination: '/contact',
+        permanent: true,
+      },
     ]
   },
 };

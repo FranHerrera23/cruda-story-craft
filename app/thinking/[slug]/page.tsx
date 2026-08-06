@@ -32,13 +32,15 @@ export async function generateMetadata(
       publishedTime: es.publishedAt,
       modifiedTime: modified,
       locale,
-      images: es.heroImage ? [`${BASE}${es.heroImage}`] : undefined,
+      /* Brief v12 T7 — sin heroImage cae al logo. Antes emitíamos
+         undefined y el link no tenía preview al compartir. */
+      images: [es.heroImage ? `${BASE}${es.heroImage}` : `${BASE}/logo.png`],
     },
     twitter: {
       card: 'summary_large_image',
       title: es.title,
       description: es.answerCapsule.slice(0, 200),
-      images: es.heroImage ? [`${BASE}${es.heroImage}`] : undefined,
+      images: [es.heroImage ? `${BASE}${es.heroImage}` : `${BASE}/logo.png`],
     },
   }
 }

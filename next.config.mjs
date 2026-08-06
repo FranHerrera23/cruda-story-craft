@@ -50,6 +50,22 @@ const nextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      // Brief v12 T2 — canonical duplicados: /resources?format=X tenía
+      // el mismo title y canonical que /resources. Ahora cada formato
+      // vive en su ruta con metadata propia. Los query params quedan
+      // como historial pero redirigen a la ruta canónica.
+      {
+        source: '/resources',
+        has: [{ type: 'query', key: 'format', value: 'case-study' }],
+        destination: '/resources/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/resources',
+        has: [{ type: 'query', key: 'format', value: 'essay' }],
+        destination: '/resources/essays',
+        permanent: true,
+      },
     ]
   },
 };

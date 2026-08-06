@@ -47,6 +47,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    // Brief v12 T2 — rutas de formato con canonical propio.
+    {
+      url: `${BASE}/resources/case-studies`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE}/resources/essays`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
     ...allEssays.map((e) => ({
       url: `${BASE}/thinking/${e.slug}`,
       lastModified: new Date(e.updatedAt || e.publishedAt),

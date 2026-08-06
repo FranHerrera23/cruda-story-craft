@@ -147,9 +147,9 @@ export default function Nav() {
   const isAbout = pathname === '/our-founder'
   const isResources =
     pathname === '/resources' ||
+    pathname.startsWith('/resources/') ||
     pathname === '/thinking' ||
-    pathname.startsWith('/thinking/') ||
-    pathname.startsWith('/resources/')
+    pathname.startsWith('/thinking/')
   const isContact = pathname === '/contact'
 
   return (
@@ -243,21 +243,32 @@ export default function Nav() {
                 role="menu"
                 aria-hidden={!resourcesOpen}
               >
-                {ACTIVE_FORMATS.map((k) => (
-                  <li key={k} role="none">
-                    <Link
-                      href={`/resources?format=${k}`}
-                      role="menuitem"
-                      tabIndex={resourcesOpen ? 0 : -1}
-                      onClick={() => setResourcesOpen(false)}
-                    >
-                      {KIND_LABEL_PLURAL[k]}{' '}
-                      <span className="cruda-global-nav-dropdown-count">
-                        ({KIND_COUNTS[k]})
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+                {ACTIVE_FORMATS.map((k) => {
+                  /* Brief v12 T2 — cada formato tiene su ruta real
+                     con title/canonical propios. El nav apunta a las
+                     rutas directas, no a query params. */
+                  const href =
+                    k === 'case-study'
+                      ? '/resources/case-studies'
+                      : k === 'essay'
+                        ? '/resources/essays'
+                        : `/resources?format=${k}`
+                  return (
+                    <li key={k} role="none">
+                      <Link
+                        href={href}
+                        role="menuitem"
+                        tabIndex={resourcesOpen ? 0 : -1}
+                        onClick={() => setResourcesOpen(false)}
+                      >
+                        {KIND_LABEL_PLURAL[k]}{' '}
+                        <span className="cruda-global-nav-dropdown-count">
+                          ({KIND_COUNTS[k]})
+                        </span>
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
 
@@ -366,24 +377,32 @@ export default function Nav() {
                     All resources
                   </Link>
                 </li>
-                {ACTIVE_FORMATS.map((k) => (
-                  <li key={k} style={{ padding: '6px 0' }}>
-                    <Link
-                      href={`/resources?format=${k}`}
-                      style={{
-                        color: 'var(--ink)',
-                        textDecoration: 'none',
-                        fontFamily: 'var(--mono)',
-                        fontSize: '12px',
-                        letterSpacing: '.14em',
-                        textTransform: 'uppercase',
-                      }}
-                      onClick={() => setMobileOpen(false)}
-                    >
-                      {KIND_LABEL_PLURAL[k]} ({KIND_COUNTS[k]})
-                    </Link>
-                  </li>
-                ))}
+                {ACTIVE_FORMATS.map((k) => {
+                  const href =
+                    k === 'case-study'
+                      ? '/resources/case-studies'
+                      : k === 'essay'
+                        ? '/resources/essays'
+                        : `/resources?format=${k}`
+                  return (
+                    <li key={k} style={{ padding: '6px 0' }}>
+                      <Link
+                        href={href}
+                        style={{
+                          color: 'var(--ink)',
+                          textDecoration: 'none',
+                          fontFamily: 'var(--mono)',
+                          fontSize: '12px',
+                          letterSpacing: '.14em',
+                          textTransform: 'uppercase',
+                        }}
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {KIND_LABEL_PLURAL[k]} ({KIND_COUNTS[k]})
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
             </details>
             <Link

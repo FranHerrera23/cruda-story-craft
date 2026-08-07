@@ -1082,8 +1082,9 @@ export default function DeckContent() {
                 </div>
               </Link>
 
-              {/* Card 04 — SH! Energy */}
-              <Link href="/clients/sh-energy" className="card reveal d-5">
+              {/* Card 04 — SH! Energy. Case in build — el detail
+                  page todavía no existe, así que la card no linkea. */}
+              <article className="card reveal d-5">
                 <div className="card-photo"><img src="/sh-energy.webp" alt="SH! Energy" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1096,9 +1097,9 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/sh-energy">thecruda.com/clients/sh-energy →</a>
+                  <span>Case in build</span>
                 </div>
-              </Link>
+              </article>
             </div>
           </div>
         </section>
@@ -1109,8 +1110,8 @@ export default function DeckContent() {
             <div className="slide-label reveal">Selected work · continued</div>
 
             <div className="cards-grid cards-grid-slide-7">
-              {/* Card 05 — Marcos Guevara Lynch */}
-              <Link href="/clients/marcos-guevara-lynch" className="card reveal d-1">
+              {/* Card 05 — Marcos Guevara Lynch. Case in build. */}
+              <article className="card reveal d-1">
                 <div className="card-photo"><img src="/marcos-guevara-lynch.webp" alt="Marcos Guevara Lynch" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1123,9 +1124,9 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/marcos-guevara-lynch">thecruda.com/clients/marcos-guevara-lynch →</a>
+                  <span>Case in build</span>
                 </div>
-              </Link>
+              </article>
 
               {/* Card 06 — Nitin Passi */}
               <Link href="/clients/nitin-passi" className="card reveal d-2">
@@ -1163,8 +1164,8 @@ export default function DeckContent() {
                 </div>
               </Link>
 
-              {/* Card 08 — Martin Pakciarz */}
-              <Link href="/clients/martin-pakciarz" className="card reveal d-4">
+              {/* Card 08 — Martin Pakciarz. Case in build. */}
+              <article className="card reveal d-4">
                 <div className="card-photo"><img src="/martin-pakciarz.webp" alt="Martin Pakciarz · Samurai Fight House" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1177,12 +1178,12 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/martin-pakciarz">thecruda.com/clients/martin-pakciarz →</a>
+                  <span>Case in build</span>
                 </div>
-              </Link>
+              </article>
 
-              {/* Card 09 — Alex Dmitriev */}
-              <Link href="/clients/alex-dmitriev" className="card reveal d-5">
+              {/* Card 09 — Alex Dmitriev. Case in build. */}
+              <article className="card reveal d-5">
                 <div className="card-photo"><img src="/alex-dmitriev.webp" alt="Alex Dmitriev" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1195,9 +1196,9 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/alex-dmitriev">thecruda.com/clients/alex-dmitriev →</a>
+                  <span>Case in build</span>
                 </div>
-              </Link>
+              </article>
             </div>
           </div>
         </section>

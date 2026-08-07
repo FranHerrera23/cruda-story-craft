@@ -22,7 +22,7 @@ const clients: Client[] = [
   {
     slug: "karen-mannheim",
     name: "Karen Mannheim",
-    title: "Co-founder, TRAZZO Lighting",
+    title: "Founder, TRAZZO Lighting",
     context: "Lima · Miami · Madrid\n80+ employees, $10M+ revenue",
     transformation: "30 years of architectural lighting excellence — now opening doors across three continents.",
     photo: karenPhoto.src,

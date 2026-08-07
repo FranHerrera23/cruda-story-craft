@@ -512,7 +512,7 @@ export default function PricingContent() {
               color: '#E8623A',
               marginTop: '24px'
             }}>
-              — Karen Mannheim, Co-founder, TRAZZO Lighting
+              — Karen Mannheim, Founder, TRAZZO Lighting
             </p>
           </div>
         </div>

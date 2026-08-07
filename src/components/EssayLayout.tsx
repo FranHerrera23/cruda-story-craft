@@ -32,7 +32,12 @@ export type EssayLanguage = 'en' | 'es'
 
 export type Essay = {
   slug: string
+  /* title = H1 visible (para el humano).
+     seoTitle = <title> del head + og:title + twitter:title (keyword
+     literal para el buscador y para AI). Si no existe, cae a title.
+     Brief v13 T2.1. */
   title: string
+  seoTitle?: string
   /* Brief v9 T1 — bajada editorial. Va entre H1 y byline, en
      --fs-lead / --ink-2 / peso regular. Es el subtítulo del ensayo.
      Distinta de answerCapsule (que sirve al AEO y va bajo --cream). */
@@ -73,7 +78,11 @@ function schema(es: Essay) {
     {
       '@type': 'Article',
       '@id': `${base}/thinking/${es.slug}#article`,
-      headline: es.title,
+      /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para
+         que AI y buscadores lo indexen bien; alternativeHeadline =
+         H1 humano. */
+      headline: es.seoTitle ?? es.title,
+      alternativeHeadline: es.seoTitle ? es.title : undefined,
       description: es.answerCapsule,
       datePublished: es.publishedAt,
       dateModified: modified,

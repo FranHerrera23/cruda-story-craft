@@ -871,7 +871,7 @@ export default function DeckContent() {
         </nav>
 
         {/* 01 — HERO */}
-        <section className="slide s-hero" data-counter="01 / 09">
+        <section className="slide s-hero" data-counter="01 / 08">
           <div className="slide-inner">
             <h1 className="hero-h1 reveal d-1">
               Everything is a narrative.
@@ -886,7 +886,7 @@ export default function DeckContent() {
         </section>
 
         {/* 02 — PHILOSOPHY */}
-        <section className="slide" data-counter="02 / 09">
+        <section className="slide" data-counter="02 / 08">
           <div className="slide-inner">
             <div className="slide-label reveal">Philosophy</div>
             <h1 className="philosophy-word reveal d-1">Cruda</h1>
@@ -904,7 +904,7 @@ export default function DeckContent() {
         </section>
 
         {/* 03 — FOUR WORLDS (4 same size, 1 major divider between 02 and 03) */}
-        <section className="slide" data-counter="03 / 09">
+        <section className="slide" data-counter="03 / 08">
           <div className="slide-inner">
             <div className="slide-label reveal d-1">What we cover</div>
 
@@ -954,7 +954,7 @@ export default function DeckContent() {
         </section>
 
         {/* 04 — WHY CRUDA */}
-        <section className="slide s-why" data-counter="04 / 09">
+        <section className="slide s-why" data-counter="04 / 08">
           <div className="slide-inner">
             <div className="slide-label reveal">Why CRUDA</div>
             <h2 className="why-h1 reveal d-1">Your narrative will be written.</h2>
@@ -971,7 +971,7 @@ export default function DeckContent() {
         </section>
 
         {/* 05 — WHAT WE DO */}
-        <section className="slide" data-counter="05 / 09">
+        <section className="slide" data-counter="05 / 08">
           <div className="slide-inner">
             <div className="slide-label reveal">What we do</div>
             <h2 className="do-h1 reveal d-1">What we actually do.</h2>
@@ -1018,8 +1018,14 @@ export default function DeckContent() {
           </div>
         </section>
 
-        {/* 06 — SELECTED WORK (Part 1) */}
-        <section className="slide" data-counter="06 / 09">
+        {/* 06 — SELECTED WORK — brief v13 T1.
+            Sacamos las 4 cards que no eran A&D (Alex Dmitriev, Marcos
+            Guevara Lynch, SH! Energy, Martín Pakciarz). Los assets se
+            quedan en /public; Marcos y SH! probablemente vuelven en el
+            deck de retail.
+            Quedan 5 cards → grilla de 3 col (3+2 al wide, 2+2+1 al
+            narrow). El slide 07 anterior se disolvió — todo entra acá. */}
+        <section className="slide" data-counter="06 / 08">
           <div className="slide-inner">
             <div className="slide-label reveal">Selected work</div>
             <div className="work-headline reveal d-1">
@@ -1027,7 +1033,7 @@ export default function DeckContent() {
               <p>What they share is harder to see: each one had expertise the world hadn&rsquo;t fully heard yet.</p>
             </div>
 
-            <div className="cards-grid">
+            <div className="cards-grid cards-grid-slide-7">
               {/* Card 01 — Karen Mannheim */}
               <Link href="/clients/karen-mannheim" className="card reveal d-2">
                 <div className="card-photo"><img src="/karen-mannheim.webp" alt="Karen Mannheim · Trazzo Lighting" /></div>
@@ -1082,58 +1088,12 @@ export default function DeckContent() {
                 </div>
               </Link>
 
-              {/* Card 04 — SH! Energy. Case in build — el detail
-                  page todavía no existe, así que la card no linkea. */}
-              <article className="card reveal d-5">
-                <div className="card-photo"><img src="/sh-energy.webp" alt="SH! Energy" /></div>
-                <div className="card-photo-divider"></div>
-                <div className="card-content">
-                  <div className="card-tag">CRUDA DEMAND · 04</div>
-                  <p className="card-name">SH! ENERGY</p>
-                  <h3 className="card-headline">$2M raised. A million cans sold. On the shelves of Carrefour and Cencosud.</h3>
-                  <p className="card-subcopy">
-                    SH! Energy is the CPG startup co-founded by football star Rodrigo De Paul. Just raised <span className="accent-red">$2M at a $30M valuation</span>. A million cans sold. The first energy drink to land mass shelf in LATAM through a founder narrative, not a marketing budget.
-                  </p>
-                </div>
-                <div className="card-footer-divider"></div>
-                <div className="card-footer">
-                  <span>Case in build</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        {/* 07 — SELECTED WORK (Part 2) */}
-        <section className="slide" data-counter="07 / 09">
-          <div className="slide-inner">
-            <div className="slide-label reveal">Selected work · continued</div>
-
-            <div className="cards-grid cards-grid-slide-7">
-              {/* Card 05 — Marcos Guevara Lynch. Case in build. */}
-              <article className="card reveal d-1">
-                <div className="card-photo"><img src="/marcos-guevara-lynch.webp" alt="Marcos Guevara Lynch" /></div>
-                <div className="card-photo-divider"></div>
-                <div className="card-content">
-                  <div className="card-tag">CRUDA DEMAND · 05</div>
-                  <p className="card-name">MARCOS GUEVARA LYNCH</p>
-                  <h3 className="card-headline">The company and the founder, both made on purpose.</h3>
-                  <p className="card-subcopy">
-                    Marcos Guevara Lynch co-founded SH! Energy. He&rsquo;s also building his own narrative system: newsletter, social presence, and a tribe of entrepreneurs gathering in person across LATAM. Most founders build a company and let the personal brand happen. Marcos is building both with intention. <span className="accent-red">Case in build.</span>
-                  </p>
-                </div>
-                <div className="card-footer-divider"></div>
-                <div className="card-footer">
-                  <span>Case in build</span>
-                </div>
-              </article>
-
-              {/* Card 06 — Nitin Passi */}
-              <Link href="/clients/nitin-passi" className="card reveal d-2">
+              {/* Card 04 — Nitin Passi */}
+              <Link href="/clients/nitin-passi" className="card reveal d-5">
                 <div className="card-photo"><img src="/nitin-passi.webp" alt="Nitin Passi · Sumwon Studios" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
-                  <div className="card-tag">CRUDA DEMAND · 06</div>
+                  <div className="card-tag">CRUDA DEMAND · 04</div>
                   <p className="card-name">NITIN PASSI · SUMWON STUDIOS</p>
                   <h3 className="card-headline">$300M in revenue. The comeback that wasn&rsquo;t supposed to happen.</h3>
                   <p className="card-subcopy">
@@ -1146,12 +1106,12 @@ export default function DeckContent() {
                 </div>
               </Link>
 
-              {/* Card 07 — Girish Sehgal */}
-              <Link href="/clients/girish-sehgal" className="card reveal d-3">
+              {/* Card 05 — Girish Sehgal */}
+              <Link href="/clients/girish-sehgal" className="card reveal d-6">
                 <div className="card-photo"><img src="/girish-sehgal.webp" alt="Girish Sehgal · SSMC" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
-                  <div className="card-tag">CRUDA DEMAND · 07</div>
+                  <div className="card-tag">CRUDA DEMAND · 05</div>
                   <p className="card-name">GIRISH SEHGAL · SSMC</p>
                   <h3 className="card-headline">25 years of world-class hospitality. Zero digital presence.</h3>
                   <p className="card-subcopy">
@@ -1163,48 +1123,12 @@ export default function DeckContent() {
                   <a href="/clients/girish-sehgal">thecruda.com/clients/girish-sehgal →</a>
                 </div>
               </Link>
-
-              {/* Card 08 — Martin Pakciarz. Case in build. */}
-              <article className="card reveal d-4">
-                <div className="card-photo"><img src="/martin-pakciarz.webp" alt="Martin Pakciarz · Samurai Fight House" /></div>
-                <div className="card-photo-divider"></div>
-                <div className="card-content">
-                  <div className="card-tag">CRUDA SPORTS · 08</div>
-                  <p className="card-name">MARTIN PAKCIARZ · SAMURAI FIGHT HOUSE</p>
-                  <h3 className="card-headline">Six of the ten Argentinians in the UFC came through one fight house.</h3>
-                  <p className="card-subcopy">
-                    Martin Pakciarz runs Samurai Fight House. Their featherweight Chino Vallejos sits in the global top ten. Just won a <span className="accent-red">$100K UFC bonus in Vegas</span>.
-                  </p>
-                </div>
-                <div className="card-footer-divider"></div>
-                <div className="card-footer">
-                  <span>Case in build</span>
-                </div>
-              </article>
-
-              {/* Card 09 — Alex Dmitriev. Case in build. */}
-              <article className="card reveal d-5">
-                <div className="card-photo"><img src="/alex-dmitriev.webp" alt="Alex Dmitriev" /></div>
-                <div className="card-photo-divider"></div>
-                <div className="card-content">
-                  <div className="card-tag">CRUDA CAPITAL · 09</div>
-                  <p className="card-name">ALEX DMITRIEV</p>
-                  <h3 className="card-headline">One engagement. One outcome.</h3>
-                  <p className="card-subcopy">
-                    Alex Dmitriev advises on cross-border M&amp;A at Horizon Capital, from Dubai. McKinsey. BCG. Kearney. CRUDA was brought in once. <span className="accent-red">Sometimes the right answer is one conversation, not a system.</span>
-                  </p>
-                </div>
-                <div className="card-footer-divider"></div>
-                <div className="card-footer">
-                  <span>Case in build</span>
-                </div>
-              </article>
             </div>
           </div>
         </section>
 
         {/* 08 — BIO (Block A only) */}
-        <section className="slide" data-counter="08 / 09">
+        <section className="slide" data-counter="07 / 08">
           <div className="slide-inner">
             <div className="bio-section">
               <div className="bio-photo-col reveal d-1">
@@ -1252,7 +1176,7 @@ export default function DeckContent() {
         </section>
 
         {/* 09 — CTA */}
-        <section className="slide" data-counter="09 / 09">
+        <section className="slide" data-counter="08 / 08">
           <div className="slide-inner">
             <div className="slide-label reveal">The conversation</div>
             <h2 className="cta-h1 reveal d-1">This isn&rsquo;t a pitch.</h2>

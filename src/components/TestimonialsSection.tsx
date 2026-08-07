@@ -5,7 +5,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 const testimonials = [
   {
     quote: "We finally sound like who we actually are.",
-    attribution: "— Karen Mannheim, Co-founder, TRAZZO Lighting"
+    attribution: "— Karen Mannheim, Founder, TRAZZO Lighting"
   },
   {
     quote: "I used to dread the 'so what do you do?' question. Now I look forward to it.",

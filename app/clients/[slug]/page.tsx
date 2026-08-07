@@ -21,12 +21,16 @@ export async function generateMetadata(
      (concatenación con undefined). Fallback al logo hasta que las
      fotos de portada existan. */
   const ogImage = cs.heroImage ? `${BASE}${cs.heroImage}` : `${BASE}/logo.png`
+  /* Brief v13 T2.1 — seoTitle es la keyword literal para buscador +
+     AI. title es el H1 visible para el humano. Si Alan entrega
+     seoTitle, gana en el head y en los previews. */
+  const headTitle = cs.seoTitle ?? cs.title
   return {
-    title: `${cs.title} | CRUDA`,
+    title: `${headTitle} | CRUDA`,
     description: cs.answerCapsule.slice(0, 155),
     alternates: { canonical: `${BASE}/clients/${cs.slug}` },
     openGraph: {
-      title: cs.title,
+      title: headTitle,
       description: cs.answerCapsule,
       url: `${BASE}/clients/${cs.slug}`,
       type: 'article',
@@ -36,7 +40,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: cs.title,
+      title: headTitle,
       description: cs.answerCapsule.slice(0, 200),
       images: [ogImage],
     },

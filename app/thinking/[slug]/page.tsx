@@ -20,12 +20,14 @@ export async function generateMetadata(
      idioma real de la pieza para que LinkedIn muestre título y
      descripción en español cuando corresponde. */
   const locale = es.language === 'es' ? 'es_ES' : 'en_US'
+  /* Brief v13 T2.1 — seoTitle gana en el head si existe. */
+  const headTitle = es.seoTitle ?? es.title
   return {
-    title: `${es.title} | CRUDA`,
+    title: `${headTitle} | CRUDA`,
     description: es.answerCapsule.slice(0, 155),
     alternates: { canonical: `${BASE}/thinking/${es.slug}` },
     openGraph: {
-      title: es.title,
+      title: headTitle,
       description: es.answerCapsule,
       url: `${BASE}/thinking/${es.slug}`,
       type: 'article',
@@ -38,7 +40,7 @@ export async function generateMetadata(
     },
     twitter: {
       card: 'summary_large_image',
-      title: es.title,
+      title: headTitle,
       description: es.answerCapsule.slice(0, 200),
       images: [es.heroImage ? `${BASE}${es.heroImage}` : `${BASE}/logo.png`],
     },

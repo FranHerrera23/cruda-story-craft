@@ -20,6 +20,11 @@ export type Stat = {
 
 export type Section = {
   heading: string
+  /* Brief v13 T2.2 — answer opcional. Renderea inmediatamente después
+     del heading, autocontenido (40-80 palabras), para que un motor de
+     respuesta pueda levantarlo solo sin el resto de la página.
+     Cuando Alan entregue las secciones-pregunta, este es el slot. */
+  answer?: string
   body: string[]
   pullQuote?: string
 }
@@ -28,7 +33,12 @@ export type Faq = { q: string; a: string }
 
 export type CaseStudy = {
   slug: string
+  /* title = H1 visible (para el humano).
+     seoTitle = <title> del head + og:title + twitter:title (keyword
+     literal para el buscador y para AI). Si no existe, cae a title.
+     Brief v13 T2.1. */
   title: string
+  seoTitle?: string
   subtitle?: string
   client: {
     name: string
@@ -72,7 +82,10 @@ function schema(cs: CaseStudy) {
   const article: Record<string, unknown> = {
     '@type': 'Article',
     '@id': `${base}/clients/${cs.slug}#article`,
-    headline: cs.title,
+    /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para AI
+       y buscadores; alternativeHeadline = H1 humano. */
+    headline: cs.seoTitle ?? cs.title,
+    alternativeHeadline: cs.seoTitle ? cs.title : undefined,
     description: cs.answerCapsule,
     author: {
       '@type': 'Person',
@@ -199,6 +212,10 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
         {cs.sections.map((sec, i) => (
           <section key={i} className="cs-section">
             <h2>{sec.heading}</h2>
+            {/* Brief v13 T2.2 — answer inmediatamente después del
+                heading (opcional). Es el bloque que un motor de
+                respuesta puede levantar solo, sin el resto. */}
+            {sec.answer && <p className="cs-answer">{sec.answer}</p>}
             {sec.body.map((p, j) => <p key={j}>{p}</p>)}
             {sec.pullQuote && <blockquote className="cs-pull">{sec.pullQuote}</blockquote>}
           </section>

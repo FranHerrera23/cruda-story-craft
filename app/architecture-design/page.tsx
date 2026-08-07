@@ -30,23 +30,68 @@ export const metadata: Metadata = {
   },
 };
 
+/* Brief v12 T3 follow-up — Service schema. La ruta ganaba el "sin
+   JSON-LD" en la auditoría. Este bloque le dice a la máquina qué
+   servicio es, quién lo presta, para quién, dónde y a través de
+   qué medio. AreaServed queda global (worked-on en 26 países). */
+const SERVICE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://www.thecruda.com/architecture-design#service',
+  name: 'CRUDA for Architecture & Design',
+  serviceType: 'Brand strategy and narrative infrastructure',
+  description:
+    'Brand building for founders and studios in architecture, construction and design. CRUDA builds the narrative system that makes their work legible internationally — LinkedIn, pitch decks, positioning, and the content that moves before the founder does.',
+  url: 'https://www.thecruda.com/architecture-design',
+  provider: {
+    '@type': 'Organization',
+    name: 'CRUDA',
+    url: 'https://www.thecruda.com',
+    founder: {
+      '@type': 'Person',
+      name: 'Francisco Herrera',
+      url: 'https://www.thecruda.com/our-founder',
+    },
+  },
+  audience: {
+    '@type': 'BusinessAudience',
+    audienceType:
+      'Founders, principals and CEOs of architecture studios, construction firms and lighting/interior design practices',
+  },
+  areaServed: {
+    '@type': 'Place',
+    name: 'Global',
+  },
+  offers: {
+    '@type': 'Offer',
+    url: 'https://www.thecruda.com/pricing',
+    availability: 'https://schema.org/LimitedAvailability',
+  },
+};
+
 export default function ArchitectureDesignPage() {
   return (
-    <main className="overflow-x-hidden">
-      <HeroManifesto />
-      <PhilosophySection />
-      <NarrativeAlignmentSection />
-      <HowWeWorkSection />
-      <WhoThisIsForSection />
-      <OurClientsSection />
-      <BothSidesSection />
-      <TestimonialsSection />
-      {/* Brief v6 T4.6 — cierre explícito con el mismo botón del
-          sub-nav sticky (Book a call → Calendly). */}
-      <CTASection
-        ctaText="Book a call"
-        ctaHref="https://calendly.com/cruda-intro/narrative-sparring-live-1"
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_SCHEMA) }}
       />
-    </main>
+      <main className="overflow-x-hidden">
+        <HeroManifesto />
+        <PhilosophySection />
+        <NarrativeAlignmentSection />
+        <HowWeWorkSection />
+        <WhoThisIsForSection />
+        <OurClientsSection />
+        <BothSidesSection />
+        <TestimonialsSection />
+        {/* Brief v6 T4.6 — cierre explícito con el mismo botón del
+            sub-nav sticky (Book a call → Calendly). */}
+        <CTASection
+          ctaText="Book a call"
+          ctaHref="https://calendly.com/cruda-intro/narrative-sparring-live-1"
+        />
+      </main>
+    </>
   );
 }

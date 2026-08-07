@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import ResourceCards from '../ResourceCards'
 import ResourceFilters from '../ResourceFilters'
 import { allResources, countByKind } from '@/content/resources'
+import { collectionPageSchema } from '@/lib/collection-schema'
 import '../resources.css'
 
 /* /resources/case-studies — brief v12 T2.
@@ -44,9 +45,21 @@ export const metadata: Metadata = {
 const CASE_STUDIES = allResources.filter((r) => r.kind === 'case-study')
 const GLOBAL_KIND_COUNTS = countByKind(allResources)
 
+const SCHEMA = collectionPageSchema({
+  url: 'https://www.thecruda.com/resources/case-studies',
+  name: 'Case studies — CRUDA',
+  description:
+    'Case studies from CRUDA — founder-experts whose work is stronger than their reach.',
+  items: CASE_STUDIES,
+})
+
 export default function CaseStudiesResourcesPage() {
   return (
     <div className="rs-root">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
+      />
       <section className="rs-head">
         <div className="rs-inner">
           <p className="rs-eyebrow">Resources · Case studies</p>

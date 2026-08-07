@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import ResourceCards from '../ResourceCards'
 import ResourceFilters from '../ResourceFilters'
 import { allResources, countByKind } from '@/content/resources'
+import { collectionPageSchema } from '@/lib/collection-schema'
 import '../resources.css'
 
 /* /resources/essays — brief v12 T2.
@@ -44,9 +45,21 @@ export const metadata: Metadata = {
 const ESSAYS = allResources.filter((r) => r.kind === 'essay')
 const GLOBAL_KIND_COUNTS = countByKind(allResources)
 
+const SCHEMA = collectionPageSchema({
+  url: 'https://www.thecruda.com/resources/essays',
+  name: 'Essays — CRUDA',
+  description:
+    'Essays from CRUDA on narrative, brand and the founders who build them.',
+  items: ESSAYS,
+})
+
 export default function EssaysResourcesPage() {
   return (
     <div className="rs-root">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
+      />
       <section className="rs-head">
         <div className="rs-inner">
           <p className="rs-eyebrow">Resources · Essays</p>

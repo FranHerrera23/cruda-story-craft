@@ -3,6 +3,7 @@ import { Suspense } from 'react'
 import ResourceCards from './ResourceCards'
 import ResourceFilters from './ResourceFilters'
 import { allResources, countByKind } from '@/content/resources'
+import { collectionPageSchema } from '@/lib/collection-schema'
 import './resources.css'
 
 /* /resources — brief v12 T1 + T2.
@@ -45,9 +46,21 @@ export const metadata: Metadata = {
 
 const GLOBAL_KIND_COUNTS = countByKind(allResources)
 
+const SCHEMA = collectionPageSchema({
+  url: 'https://www.thecruda.com/resources',
+  name: 'Resources — CRUDA',
+  description:
+    'Essays, conversations and case studies on narrative for founders, studios and athletes.',
+  items: allResources,
+})
+
 export default function ResourcesPage() {
   return (
     <div className="rs-root">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
+      />
       <section className="rs-head">
         <div className="rs-inner">
           <p className="rs-eyebrow">Resources</p>

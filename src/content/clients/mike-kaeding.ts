@@ -21,8 +21,12 @@ export const mikeKaeding: CaseStudy = {
     photoAlt: 'Mike Kaeding',
   },
 
-  publishedAt: '',
-  updatedAt: '',
+  /* Brief v14 T4 — fecha real de engagement desconocida. Uso la
+     fecha de migración al mould AEO (v5, 26 jul 2026) como
+     publishedAt del sitio. Cuando Alan/Fran confirme la fecha real,
+     actualizar. */
+  publishedAt: '2026-07-26',
+  updatedAt: '2026-07-26',
 
   answerCapsule:
     "Mike Kaeding runs Norhart, a residential construction company with over 1,000 units delivered and $230M in assets, including the largest residential project in Minneapolis history — a $100M building. He inherited the CEO seat when his father died and set the company against a bigger target: cut construction costs in half to solve America's housing crisis. The work was loud, the story was quiet. CRUDA built the narrative system that put twenty years of construction expertise in front of policymakers, industry leaders and media, without changing what Mike sounds like.",

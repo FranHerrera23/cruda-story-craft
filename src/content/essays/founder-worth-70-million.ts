@@ -63,5 +63,8 @@ export const founderWorth70Million: Essay = {
     { type: 'p', text: 'To say “enough”, before it’s too late. To look at your daughter in the backseat of a van on a random Tuesday and say: “We made it.”' },
 
     { type: 'pull', text: 'Because if we’re not building for that—what the fuck are we doing it for?' },
+
+    /* Brief v15 T4 — firma final. */
+    { type: 'signature', text: 'EVERYTHING IS A NARRATIVE.' },
   ],
 }

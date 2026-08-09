@@ -25,6 +25,10 @@ export type EssayBlock =
   | { type: 'h2'; text: string }
   | { type: 'h3'; text: string }
   | { type: 'checklist'; items: string[] }
+  /* Brief v15 T4 — firma final del ensayo (reemplaza la línea del
+     newsletter que prometía algo que no existe). Mono, mayúsculas,
+     --fs-meta, --ink-2. No es un CTA, es firma. */
+  | { type: 'signature'; text: string }
 
 export type Faq = { q: string; a: string }
 
@@ -54,6 +58,15 @@ export type Essay = {
   body: EssayBlock[]
   faqs?: Faq[]
   language?: EssayLanguage
+  /* Brief v15 T2 — vínculo entre versiones de una misma pieza en
+     distintos idiomas. Genérico: cuando entre otro par bilingüe,
+     apunta desde los dos lados.
+     Regla: recíproco. Las dos versiones se declaran mutuamente,
+     incluyéndose a sí mismas. */
+  alternates?: {
+    es?: string
+    en?: string
+  }
 }
 
 const AUTHOR = {
@@ -260,6 +273,13 @@ export default function EssayLayout({ es }: { es: Essay }) {
                 </ul>
               )
             }
+            if (block.type === 'signature') {
+              return (
+                <p key={i} className="e-signature">
+                  {block.text}
+                </p>
+              )
+            }
             // quote — attributed
             return (
               <div key={i} className="e-quote">
@@ -285,10 +305,22 @@ export default function EssayLayout({ es }: { es: Essay }) {
         <ClosingBlock kind="essay" lang={lang} />
 
         {/* Brief v9 T5 — 3 piezas relacionadas después del cierre.
-            Prioriza misma company, después más recientes. Nunca la
-            actual. Si no hay ninguna, no renderiza nada. */}
-        <RelatedResources currentHref={`/thinking/${es.slug}`} lang={lang} />
+            Brief v15 T3 — excluir la traducción cuando la pieza es
+            bilingüe. Leer un ES y ver su versión EN en "seguí
+            leyendo" es raro. */}
+        <RelatedResources
+          excludeHrefs={buildExcludeHrefs(es)}
+          lang={lang}
+        />
       </article>
     </div>
   )
+}
+
+function buildExcludeHrefs(es: Essay): string[] {
+  const acc = [`/thinking/${es.slug}`]
+  const alt = es.alternates
+  if (alt?.es && alt.es !== es.slug) acc.push(`/thinking/${alt.es}`)
+  if (alt?.en && alt.en !== es.slug) acc.push(`/thinking/${alt.en}`)
+  return acc
 }

@@ -1088,21 +1088,25 @@ export default function DeckContent() {
                 </div>
               </Link>
 
-              {/* Card 04 — Nitin Passi */}
-              <Link href="/clients/nitin-passi" className="card reveal d-5">
-                <div className="card-photo"><img src="/nitin-passi.webp" alt="Nitin Passi · Sumwon Studios" /></div>
+              {/* Card 04 — Confidential retail founder.
+                  Brief v14 T1: nada identificante en el código —
+                  ni nombre, ni empresa, ni asset con nombre real,
+                  ni slug con la persona. Copy y números tomados del
+                  case study (source of truth). */}
+              <Link href="/clients/confidential-retail-founder" className="card reveal d-5">
+                <div className="card-photo"><img src="/confidential-hero.jpg" alt="Confidential retail founder" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
                   <div className="card-tag">CRUDA DEMAND · 04</div>
-                  <p className="card-name">NITIN PASSI · SUMWON STUDIOS</p>
-                  <h3 className="card-headline">$300M in revenue. The comeback that wasn&rsquo;t supposed to happen.</h3>
+                  <p className="card-name">CONFIDENTIAL · GLOBAL RETAIL HOLDING</p>
+                  <h3 className="card-headline">$500M in revenue in under two years. Public voice, protected identity.</h3>
                   <p className="card-subcopy">
-                    Nitin Passi&rsquo;s comeback in fashion is rare. SUMWON Studios. <span className="accent-red">$300M in revenue</span> between Dubai and Manchester. One LinkedIn post about the rebuild brought 1,000+ CVs.
+                    A second-time founder with a <span className="accent-red">$500M business</span>. CRUDA built the positioning, market education and weekly LinkedIn system that let this founder speak publicly about the model — sophisticated without hyping, credible without over-sharing, founder-led without ego.
                   </p>
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/nitin-passi">thecruda.com/clients/nitin-passi →</a>
+                  <a href="/clients/confidential-retail-founder">thecruda.com/clients/confidential-retail-founder →</a>
                 </div>
               </Link>
 

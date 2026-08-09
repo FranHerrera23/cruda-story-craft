@@ -6,15 +6,20 @@ import {
   type Resource,
 } from '@/content/resources'
 
-/* Brief v9 T5 — Read more.
+/* Brief v9 T5 — Read more. Brief v15 T3 — exclude translations.
 
    Va al final de ensayos y case studies, después del ClosingBlock.
    Prioriza misma company primero, después más recientes. Nunca
-   incluye la pieza actual. Si hay menos de 3, muestra las que haya.
-   Si no hay ninguna, no renderiza. */
+   incluye la pieza actual ni su traducción (si es bilingüe). Si
+   hay menos de 3 disponibles, muestra las que haya. Si no hay
+   ninguna, no renderiza. */
 
 type Props = {
-  currentHref: string
+  /* Todas las hrefs a excluir: la pieza actual + su traducción si
+     existe. Genérico — cualquier caller pasa la lista.
+     Brief v15 T3: leer un ensayo en español y ver su traducción en
+     inglés como "seguí leyendo" es raro. */
+  excludeHrefs: string[]
   lang?: 'en' | 'es'
   limit?: number
 }
@@ -29,17 +34,21 @@ function fmtDate(iso: string, lang: 'en' | 'es'): string {
   })
 }
 
-function pickRelated(currentHref: string, limit: number): Resource[] {
-  const current = allResources.find((r) => r.href === currentHref)
-  if (!current) return []
+function pickRelated(excludeHrefs: string[], limit: number): Resource[] {
+  const excludeSet = new Set(excludeHrefs)
+  const seedHref = excludeHrefs[0]
+  const seed = allResources.find((r) => r.href === seedHref)
+  const sameCompany = seed?.company ?? null
 
-  const others = allResources.filter((r) => r.href !== currentHref)
+  const others = allResources.filter((r) => !excludeSet.has(r.href))
 
   const sorted = [...others].sort((a, b) => {
-    /* 1) Same company as current wins. */
-    const aSame = a.company === current.company ? 0 : 1
-    const bSame = b.company === current.company ? 0 : 1
-    if (aSame !== bSame) return aSame - bSame
+    /* 1) Same company as seed wins (if we know the seed's company). */
+    if (sameCompany !== null) {
+      const aSame = a.company === sameCompany ? 0 : 1
+      const bSame = b.company === sameCompany ? 0 : 1
+      if (aSame !== bSame) return aSame - bSame
+    }
     /* 2) Newest first. Empty publishedAt goes last. */
     if (!a.publishedAt && !b.publishedAt) return 0
     if (!a.publishedAt) return 1
@@ -51,11 +60,11 @@ function pickRelated(currentHref: string, limit: number): Resource[] {
 }
 
 export default function RelatedResources({
-  currentHref,
+  excludeHrefs,
   lang = 'en',
   limit = 3,
 }: Props) {
-  const picks = pickRelated(currentHref, limit)
+  const picks = pickRelated(excludeHrefs, limit)
   if (picks.length === 0) return null
 
   const heading = lang === 'es' ? 'Seguí leyendo' : 'Read more'

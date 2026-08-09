@@ -197,6 +197,20 @@
   color: var(--ink);
 }
 
+/* Signature — brief v15 T4. Reemplaza la línea del newsletter que
+   prometía algo que no existe todavía. Mono, mayúsculas, --fs-meta,
+   --ink-2. Es firma, no CTA. */
+.essay .e-body p.e-signature {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: var(--fs-meta);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 64px 0 0;
+  text-align: left;
+}
+
 /* Checklist — brief v8. Los checkboxes son decorativos (mental
    checklist), no interactivos. Cuadrado outline en --ink-2 al lado
    izquierdo, alineado con la baseline del texto. */

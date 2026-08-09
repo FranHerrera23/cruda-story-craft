@@ -54,8 +54,9 @@ const clients: Client[] = [
     quote: "CRUDA helped me position a brand nobody knew into the choice for architects who care about quality."
   },
 ];
-// Nitin removed from A&D portfolio (etapa 3 debt): retail breaks the vertical thread.
-// The case study remains at /clients/nitin-passi — it just no longer leads A&D.
+// The confidential retail case removed from A&D portfolio (etapa 3 debt):
+// retail breaks the vertical thread. The case study lives at
+// /clients/confidential-retail-founder — it just no longer leads A&D.
 
 const WhoTrustsUsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();

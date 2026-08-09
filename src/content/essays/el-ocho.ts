@@ -87,5 +87,8 @@ export const elOcho: Essay = {
       text:
         "But he had something most companies with a Series B will never buy: a neighbourhood full of kids who came back, and one who's still telling the story.",
     },
+
+    /* Brief v15 T4 — firma final. */
+    { type: 'signature', text: 'EVERYTHING IS A NARRATIVE.' },
   ],
 }

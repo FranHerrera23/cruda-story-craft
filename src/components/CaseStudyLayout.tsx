@@ -249,7 +249,7 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
       />
 
       {/* Brief v9 T5 — 3 piezas relacionadas después del cierre. */}
-      <RelatedResources currentHref={`/clients/${cs.slug}`} lang="en" />
+      <RelatedResources excludeHrefs={[`/clients/${cs.slug}`]} lang="en" />
     </article>
   )
 }

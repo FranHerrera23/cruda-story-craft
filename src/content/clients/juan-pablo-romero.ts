@@ -20,8 +20,12 @@ export const juanPabloRomero: CaseStudy = {
     photoAlt: 'Juan Pablo Romero',
   },
 
-  publishedAt: '',
-  updatedAt: '',
+  /* Brief v14 T4 — fecha real de engagement desconocida. Uso la
+     fecha de migración al mould AEO (v5, 26 jul 2026) como
+     publishedAt del sitio. Cuando Alan/Fran confirme la fecha real,
+     actualizar. */
+  publishedAt: '2026-07-26',
+  updatedAt: '2026-07-26',
 
   answerCapsule:
     "Juan Pablo Romero came to the United States from Guatemala at seventeen. He learned hardwood flooring alongside his father, and after twenty years he built JURA Plank — a luxury Canadian hardwood company specialising in European engineered floors — and Connecting the Dots, a consulting practice that helps international construction firms enter the US market. The technical expertise was three generations deep. The market visibility was zero. CRUDA built the positioning that lets architects, designers and developers understand what makes JURA different before the first meeting.",

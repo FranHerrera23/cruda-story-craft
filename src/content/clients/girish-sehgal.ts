@@ -21,8 +21,12 @@ export const girishSehgal: CaseStudy = {
     photoAlt: 'Girish Sehgal',
   },
 
-  publishedAt: '',
-  updatedAt: '',
+  /* Brief v14 T4 — fecha real de engagement desconocida. Uso la
+     fecha de migración al mould AEO (v5, 26 jul 2026) como
+     publishedAt del sitio. Cuando Alan/Fran confirme la fecha real,
+     actualizar. */
+  publishedAt: '2026-07-26',
+  updatedAt: '2026-07-26',
 
   answerCapsule:
     "Girish Sehgal spent twenty-five years running the world's most renowned hospitality brands — Four Seasons, Taj, JW Marriott, Grand Hyatt, Kempinski — across fourteen cities in six countries. When he moved from luxury hotels to healthcare as Chief Patient Experience Officer at SSMC in Abu Dhabi, the resume travelled but the voice didn't. CRUDA built a narrative system that turned two decades of hospitality culture-building into essays and posts read by more than 7,000 senior leaders in healthcare, hospitality and business.",

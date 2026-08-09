@@ -1,6 +1,6 @@
 # Case study data gaps
 
-After migrating the four remaining case studies (Girish, Juan Pablo, Mike, Nitin) to `CaseStudyLayout`, these fields are empty and need Fran to fill.
+After migrating the four remaining case studies (Girish, Juan Pablo, Mike, and the confidential retail founder) to `CaseStudyLayout`, these fields are empty and need Fran to fill.
 
 ## What was extracted from the old pages (verified)
 
@@ -9,7 +9,7 @@ After migrating the four remaining case studies (Girish, Juan Pablo, Mike, Nitin
 - **Answer capsule + sections**: rebuilt from the original `clientDescription / challengeDescription / storyContent / translationDescription` blocks — no invention, only re-ordering into the AEO mould.
 - **Testimonial**: verbatim from `testimonialQuote / testimonialAuthor / testimonialTitle`.
 - **Stats**: only where the original page carried a hard number in copy (Mike's $230M / 1,000 / $100M; Girish's 25 years / 14 cities / 7,000+). Where the original used soft badges (JP's "NARRATIVE / POSITIONING / EXPERTISE"), no stat row was written — those are labels, not data.
-- **Photos**: reused `public/clients/{slug}.jpeg|webp` where present. Nitin has no client photo (identity protected on the original page).
+- **Photos**: reused `public/clients/{slug}.jpeg|webp` where present. The confidential case has no client photo (identity protected — see brief v14 T1).
 
 ## What is missing per case study
 
@@ -28,10 +28,11 @@ After migrating the four remaining case studies (Girish, Juan Pablo, Mike, Nitin
 - **`stats[].source`** — the three numbers ($230M / 1,000 units / $100M project) were on the old page as copy. Fran to add sources or dates so they read as attributable claims, not marketing.
 - **`title` (H1)** — brief v5 T6.4 flagged the current H1 as a 43-word paragraph rendered at H1 scale (10+ lines on desktop). The CSS token change (H1 → --fs-h1) helps the scale but does not fix line count — copy has to shrink. Proposed direction from brief: *"A construction CEO with $230M in assets, invisible to the people who needed him"*. **Awaiting Fran's confirmation before publishing.** Do not swap the copy automatically.
 
-### Nitin Passi
+### Confidential retail founder
 - **`client.location`** — omitted on the original page (confidential).
 - **`client.photo`** — no client photo. Left blank; the byline still renders CRUDA's Fran avatar.
 - **`testimonial`** — no testimonial block on the original page (only the pull quote inside the sections). Kept the pull quote inline instead of inventing a separately-attributed testimonial.
+- **Identity kept out of code**: brief v14 T1 required that the person's name never appear in filenames, slugs, variable names, alt text or assets. Slug is `confidential-retail-founder`; the client's actual identity is only in Fran's head.
 
 ## What was NOT invented
 

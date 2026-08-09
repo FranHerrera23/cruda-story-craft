@@ -199,8 +199,12 @@ html { font-size: 17px; }
    accent. */
 .cb{background:var(--cream);padding:clamp(56px,8vw,96px) clamp(32px,5vw,72px);
   margin:80px 0 0}
+/* Brief v14 T8 — el heading del ClosingBlock estaba en tamaño
+   display (hasta 44px), competía con el H1 del ensayo/case study.
+   Va a --fs-h2 (32px), consistente con los headings de sección. */
 .cb-head{font-family:'Instrument Serif',Georgia,serif;
-  font-size:clamp(30px,3.2vw,44px);line-height:1.1;letter-spacing:-.02em;
+  font-size:var(--fs-h2);line-height:var(--lh-heading,1.05);
+  letter-spacing:var(--track-heading,-.02em);
   color:var(--ink);max-width:22ch;margin:0 0 20px}
 .cb-body{font-size:var(--fs-body);line-height:var(--lh-body,1.7);color:var(--ink-2);
   max-width:56ch;margin:0 0 32px}
@@ -305,8 +309,10 @@ html { font-size: 17px; }
    Vive en case-study.css (bundle global) para que aplique tanto en
    /thinking/[slug] como en /clients/[slug] — essay.css solo se
    carga en essays. */
+/* Brief v14 T8 — más aire entre el ClosingBlock (sobre --cream) y
+   la sección Read more. Antes se tocaban visualmente. */
 .rr {
-  margin: 80px 0 0;
+  margin: 120px 0 0;
   padding: 56px 0 0;
   border-top: 1px solid var(--rule);
 }

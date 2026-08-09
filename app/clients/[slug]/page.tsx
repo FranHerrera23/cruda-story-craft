@@ -16,11 +16,17 @@ export async function generateMetadata(
   const { slug } = await params
   const cs = allClients.find((c) => c.slug === slug)
   if (!cs) return {}
-  /* Brief v12 T7 — 4 de 5 case studies (Mike, Girish, JP, Nitin) no
-     tienen heroImage. Antes emitíamos og:image = ".comundefined/"
-     (concatenación con undefined). Fallback al logo hasta que las
-     fotos de portada existan. */
-  const ogImage = cs.heroImage ? `${BASE}${cs.heroImage}` : `${BASE}/logo.png`
+  /* Brief v14 T5 — cascada de og:image:
+     1) heroImage propio (landscape, ideal og) — hoy solo Karen.
+     2) client.photo (retrato) — Girish, JP, Mike. Mejor que el
+        logo para EEAT y para el preview al compartir en LinkedIn.
+     3) logo como último fallback — solo el confidencial cae acá.
+     Note: cliente confidencial no lleva foto por brief v14 T1. */
+  const ogImage = cs.heroImage
+    ? `${BASE}${cs.heroImage}`
+    : cs.client.photo
+      ? `${BASE}${cs.client.photo}`
+      : `${BASE}/logo.png`
   /* Brief v13 T2.1 — seoTitle es la keyword literal para buscador +
      AI. title es el H1 visible para el humano. Si Alan entrega
      seoTitle, gana en el head y en los previews. */

@@ -393,8 +393,11 @@ export const narradoresPeligrosos: Essay = {
     {
       type: 'p',
       html:
-        '<em>El checklist de arriba es el primer paso del Messaging Frequency Check que usamos en CRUDA. Escribo sobre narrativas, marcas y la gente que las construye — nos leemos en el newsletter.</em>',
+        '<em>El checklist de arriba es el primer paso del Messaging Frequency Check que usamos en CRUDA.</em>',
     },
+    /* Brief v15 T4 — la línea del newsletter salió (no hay
+       newsletter todavía; volverá con marca propia). Firma sobria. */
+    { type: 'signature', text: 'TODO ES UNA NARRATIVA.' },
   ],
 
   faqs: [],

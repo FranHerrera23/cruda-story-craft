@@ -287,11 +287,8 @@ export const siglasParaNoDecirGente: Essay = {
     },
     { type: 'p', text: 'Eso merece un nombre mejor que una sigla.' },
 
-    {
-      type: 'p',
-      html:
-        '<em>Escribo sobre narrativas, marcas y la gente que las construye. Nos leemos en el newsletter.</em>',
-    },
+    /* Brief v15 T4 — la línea del newsletter salió. Firma sobria. */
+    { type: 'signature', text: 'TODO ES UNA NARRATIVA.' },
   ],
 
   faqs: [],

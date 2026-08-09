@@ -80,6 +80,8 @@ const ESSAY_COMPANY: Record<string, ResourceCompany> = {
   'founder-worth-70-million': 'cruda',
   'narradores-peligrosos': 'cruda',
   'siglas-para-no-decir-gente': 'cruda',
+  'tercer-lugar': 'cruda',
+  'third-place': 'cruda',
 }
 
 const essayResources: Resource[] = allEssays.map((e) => ({

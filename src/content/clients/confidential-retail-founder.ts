@@ -1,13 +1,13 @@
 import type { CaseStudy } from '@/components/CaseStudyLayout'
 
-/* Nitin Passi — case is confidential; identity kept protected per prior page.
-   Content extracted verbatim from the retired hardcoded page.
-   Missing fields left empty; see docs/case-study-data-gaps.md.
-   No client portrait: the original page used a confidential-hero abstract
-   pattern. Photo intentionally omitted here. */
+/* Confidential retail founder case study.
+   Identity intentionally not stored in code — the slug, filename, and
+   variable name are all neutral so nothing in the repo leaks who this
+   client is. Any nombre that names the person belongs in Fran's head,
+   not here. Brief v14 T1 (crítico). */
 
-export const nitinPassi: CaseStudy = {
-  slug: 'nitin-passi',
+export const confidentialRetailFounder: CaseStudy = {
+  slug: 'confidential-retail-founder',
   vertical: 'Architecture & Design',
 
   title:
@@ -22,8 +22,12 @@ export const nitinPassi: CaseStudy = {
     photoAlt: 'Protected client portrait',
   },
 
-  publishedAt: '',
-  updatedAt: '',
+  /* Brief v14 T4 — fecha real de engagement desconocida. Uso la
+     fecha de migración al mould AEO (v5, 26 jul 2026) como
+     publishedAt del sitio. Cuando Alan/Fran confirme la fecha real,
+     actualizar. */
+  publishedAt: '2026-07-26',
+  updatedAt: '2026-07-26',
 
   answerCapsule:
     "This is a case CRUDA can share the shape of, not the identity. A third-generation entrepreneur and second-time founder previously built global retail brands to significant scale; the current venture reached $500M revenue in under two years. Over three months CRUDA built the positioning, market education, founder narrative and weekly LinkedIn system that let this founder speak publicly about the model — sophisticated without hyping, credible without over-sharing, founder-led without ego.",

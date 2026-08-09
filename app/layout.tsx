@@ -20,8 +20,11 @@ export const metadata: Metadata = {
   description:
     'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
   // meta-keywords removed per parche P4 — contradicts the holding thesis.
-  authors: [{ name: 'CRUDA' }],
-  creator: 'CRUDA',
+  /* Brief v14 T3 — EEAT premia autores humanos identificables. El
+     byline visible dice "Francisco Herrera, Founder, CRUDA"; los
+     metadatos ahora también. CRUDA se queda como publisher. */
+  authors: [{ name: 'Francisco Herrera', url: 'https://www.thecruda.com/our-founder' }],
+  creator: 'Francisco Herrera',
   publisher: 'CRUDA',
   formatDetection: {
     email: false,

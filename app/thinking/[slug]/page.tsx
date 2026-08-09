@@ -22,10 +22,28 @@ export async function generateMetadata(
   const locale = es.language === 'es' ? 'es_ES' : 'en_US'
   /* Brief v13 T2.1 — seoTitle gana en el head si existe. */
   const headTitle = es.seoTitle ?? es.title
+  /* Brief v15 T2 — hreflang recíproco. Cada versión declara ambos
+     idiomas (incluyéndose a sí misma) más x-default apuntando al
+     inglés porque el sitio comercial opera en inglés. Sin esto
+     Google trata las dos versiones como duplicados que compiten. */
+  const languages: Record<string, string> = {}
+  if (es.alternates?.es) {
+    languages['es'] = `${BASE}/thinking/${es.alternates.es}`
+  }
+  if (es.alternates?.en) {
+    languages['en'] = `${BASE}/thinking/${es.alternates.en}`
+    languages['x-default'] = `${BASE}/thinking/${es.alternates.en}`
+  }
+  const alternates: NonNullable<Metadata['alternates']> = {
+    canonical: `${BASE}/thinking/${es.slug}`,
+  }
+  if (Object.keys(languages).length > 0) {
+    alternates.languages = languages
+  }
   return {
     title: `${headTitle} | CRUDA`,
     description: es.answerCapsule.slice(0, 155),
-    alternates: { canonical: `${BASE}/thinking/${es.slug}` },
+    alternates,
     openGraph: {
       title: headTitle,
       description: es.answerCapsule,

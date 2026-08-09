@@ -40,6 +40,10 @@ const VERTICAL_TO_COMPANY: Record<string, ResourceCompany> = {
   'Architecture & Design': 'a-d',
   Sports: 'sports',
   'AI Concierge': 'ai-concierge',
+  /* Brief v14 T2 — case studies transversales (Girish, confidencial)
+     usan 'CRUDA' como vertical y se agrupan bajo la company cruda,
+     igual que los ensayos. */
+  CRUDA: 'cruda',
 }
 
 const KIND_LABEL: Record<ResourceKind, string> = {

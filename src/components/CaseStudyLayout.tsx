@@ -56,7 +56,11 @@ export type CaseStudy = {
   sections: Section[]
   testimonial?: { quote: string; attribution: string }
   faqs?: Faq[]
-  vertical: 'Architecture & Design' | 'Sports' | 'AI Concierge'
+  /* Brief v14 T2 — 'CRUDA' agregado para case studies transversales
+     que no pertenecen a un vertical (Girish=hospitality/healthcare;
+     confidencial=retail). Antes ambos decían "Architecture & Design"
+     en el eyebrow, mentiroso y filtraba mal. */
+  vertical: 'Architecture & Design' | 'Sports' | 'AI Concierge' | 'CRUDA'
   heroImage?: string
   heroAlt?: string
   /* Brief v5 T6 — portfolio (Mike, Girish) usan variante sin

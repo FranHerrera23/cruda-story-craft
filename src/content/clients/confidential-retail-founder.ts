@@ -8,7 +8,8 @@ import type { CaseStudy } from '@/components/CaseStudyLayout'
 
 export const confidentialRetailFounder: CaseStudy = {
   slug: 'confidential-retail-founder',
-  vertical: 'Architecture & Design',
+  /* Brief v14 T2 — retail, no A&D. Etiqueta CRUDA para transversal. */
+  vertical: 'CRUDA',
 
   title:
     "Positioning a second-time retail founder whose current venture reached $500M in revenue in under two years — without giving away the playbook",

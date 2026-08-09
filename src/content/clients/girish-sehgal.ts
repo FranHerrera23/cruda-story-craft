@@ -6,7 +6,9 @@ import type { CaseStudy } from '@/components/CaseStudyLayout'
 
 export const girishSehgal: CaseStudy = {
   slug: 'girish-sehgal',
-  vertical: 'Architecture & Design',
+  /* Brief v14 T2 — hospitality/healthcare, no A&D. La etiqueta
+     nueva 'CRUDA' se usa para case studies transversales. */
+  vertical: 'CRUDA',
   status: 'portfolio',
 
   title:

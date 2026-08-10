@@ -102,9 +102,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     // /projects/karen-mannheim/* — brief v5 1.5: fuera del sitemap,
-    // noindex a nivel página (opción B). Las rutas siguen vivas para
-    // uso interno (SeeTheWork las linkea), pero no compiten por
-    // autoridad con /clients/karen-mannheim.
+    // noindex a nivel página (opción B). Las rutas siguen vivas pero
+    // no compiten por autoridad con /clients/karen-mannheim.
     // /book-call no longer indexed — all CTAs point at Calendly now.
   ];
 }

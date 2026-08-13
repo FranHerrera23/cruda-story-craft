@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
-      url: `${BASE}/ai-concierge`,
+      url: `${BASE}/systems`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,

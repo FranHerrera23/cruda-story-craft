@@ -17,7 +17,7 @@ import {
 
    Sub-nav por unidad (aparece dentro de una unidad, no en la madre):
      A&D          : Work · How it works · Pricing · Book a call
-     AI Concierge : How it works · Pricing · Book a call
+     Systems      : How it works · Pricing · Book a call
      Sports       : sin sub-nav (holding "coming soon")
 
    RESOURCES dropdown — brief v6 T3:
@@ -36,7 +36,7 @@ const CALENDLY = 'https://calendly.com/cruda-intro/narrative-sparring-live-1'
 const COMPANIES = [
   { href: '/architecture-design', label: 'CRUDA for Architecture & Design' },
   { href: '/sports', label: 'CRUDA for Sports' },
-  { href: '/ai-concierge', label: 'CRUDA AI Concierge' },
+  { href: '/systems', label: 'CRUDA Systems' },
 ] as const
 
 // Format order in the dropdown — hardcoded editorial priority, not
@@ -71,9 +71,9 @@ const SUBNAV: Record<string, SubItem[] | null> = {
     { kind: 'link', href: '/pricing', label: 'Pricing' },
     { kind: 'external', href: CALENDLY, label: 'Book a call' },
   ],
-  '/ai-concierge': [
-    { kind: 'link', href: '/ai-concierge#how-it-works', label: 'How it works' },
-    { kind: 'link', href: '/ai-concierge#pricing', label: 'Pricing' },
+  '/systems': [
+    { kind: 'link', href: '/systems#how-it-works', label: 'How it works' },
+    { kind: 'link', href: '/systems#pricing', label: 'Pricing' },
     { kind: 'external', href: CALENDLY, label: 'Book a call' },
   ],
   '/sports': null,
@@ -82,8 +82,8 @@ const SUBNAV: Record<string, SubItem[] | null> = {
 function unitForPath(pathname: string): string | null {
   if (pathname === '/architecture-design' || pathname.startsWith('/architecture-design/'))
     return '/architecture-design'
-  if (pathname === '/ai-concierge' || pathname.startsWith('/ai-concierge/'))
-    return '/ai-concierge'
+  if (pathname === '/systems' || pathname.startsWith('/systems/'))
+    return '/systems'
   if (pathname === '/sports') return '/sports'
   return null
 }
@@ -422,7 +422,7 @@ export default function Nav() {
           <div className="cruda-subnav-in">
             <span className="mono cruda-subnav-brand">
               {unit === '/architecture-design' && 'CRUDA for Architecture & Design'}
-              {unit === '/ai-concierge' && 'CRUDA AI Concierge'}
+              {unit === '/systems' && 'CRUDA Systems'}
             </span>
             <ul className="cruda-subnav-list">
               {subItems.map((item) => (

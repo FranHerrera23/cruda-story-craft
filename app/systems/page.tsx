@@ -1,17 +1,32 @@
 import type { Metadata } from 'next'
-import AIConciergeContent from './AIConciergeContent'
+import SystemsContent from './SystemsContent'
 
 export const metadata: Metadata = {
-  title: 'CRUDA AI Concierge — Your judgment is the asset',
+  title: 'CRUDA Systems — Your creative energy is the asset',
   description:
     'We find the work in your studio that never needed you, and build it so it runs on its own. Free assessment for high-end architecture and design studios.',
-  alternates: { canonical: 'https://www.thecruda.com/ai-concierge' },
+  alternates: { canonical: 'https://www.thecruda.com/systems' },
   openGraph: {
-    title: 'CRUDA AI Concierge — Your judgment is the asset',
+    title: 'CRUDA Systems — Your creative energy is the asset',
     description:
       'We find the work in your studio that never needed you, and build it so it runs on its own.',
-    url: 'https://www.thecruda.com/ai-concierge',
+    url: 'https://www.thecruda.com/systems',
     type: 'website',
+    images: [
+      {
+        url: 'https://www.thecruda.com/logo.png',
+        width: 1080,
+        height: 1080,
+        alt: 'CRUDA',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CRUDA Systems — Your creative energy is the asset',
+    description:
+      'We find the work in your studio that never needed you, and build it so it runs on its own.',
+    images: ['https://www.thecruda.com/logo.png'],
   },
 }
 
@@ -60,7 +75,7 @@ const SCHEMA = {
   '@graph': [
     {
       '@type': 'Service',
-      name: 'CRUDA AI Concierge',
+      name: 'CRUDA Systems',
       serviceType: 'Business process automation for architecture and design studios',
       provider: { '@type': 'Organization', name: 'CRUDA', url: 'https://www.thecruda.com' },
       areaServed: 'United States',
@@ -86,14 +101,14 @@ const SCHEMA = {
   ],
 }
 
-export default function AIConciergePage() {
+export default function SystemsPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
-      <AIConciergeContent />
+      <SystemsContent />
     </>
   )
 }

@@ -2,7 +2,7 @@
 
    Merges essays + case studies into a single flat list with three
    independent tags: kind (essay · conversation · playbook · case-study),
-   company (cruda · a-d · sports · ai-concierge), and language (en · es).
+   company (cruda · a-d · sports · systems), and language (en · es).
 
    The /resources page reads this. Chips are built from the actual
    tags present — never hardcoded. Sports, Conversations and Playbooks
@@ -21,7 +21,7 @@ export type ResourceKind =
   | 'playbook'
   | 'case-study'
 
-export type ResourceCompany = 'cruda' | 'a-d' | 'sports' | 'ai-concierge'
+export type ResourceCompany = 'cruda' | 'a-d' | 'sports' | 'systems'
 
 export type ResourceLanguage = 'en' | 'es'
 
@@ -39,7 +39,7 @@ export type Resource = {
 const VERTICAL_TO_COMPANY: Record<string, ResourceCompany> = {
   'Architecture & Design': 'a-d',
   Sports: 'sports',
-  'AI Concierge': 'ai-concierge',
+  Systems: 'systems',
   /* Brief v14 T2 — case studies transversales (Girish, confidencial)
      usan 'CRUDA' como vertical y se agrupan bajo la company cruda,
      igual que los ensayos. */
@@ -57,14 +57,14 @@ const COMPANY_LABEL: Record<ResourceCompany, string> = {
   cruda: 'CRUDA',
   'a-d': 'A&D',
   sports: 'Sports',
-  'ai-concierge': 'AI Concierge',
+  systems: 'Systems',
 }
 
 const COMPANY_LABEL_LONG: Record<ResourceCompany, string> = {
   cruda: 'CRUDA',
   'a-d': 'Architecture & Design',
   sports: 'Sports',
-  'ai-concierge': 'AI Concierge',
+  systems: 'CRUDA Systems',
 }
 
 /* Brief v10 T2 — filtro de idioma. Labels visibles siguen el idioma
@@ -154,7 +154,7 @@ export function countByCompany(
     cruda: 0,
     'a-d': 0,
     sports: 0,
-    'ai-concierge': 0,
+    'systems': 0,
   }
   for (const r of items) acc[r.company] += 1
   return acc

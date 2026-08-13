@@ -16,7 +16,7 @@ import './home.css';
 export const metadata: Metadata = {
   title: 'CRUDA — Find the essence. Strip the bullshit.',
   description:
-    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you. Architecture & Design, Sports, AI Concierge.',
+    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you. Architecture & Design, Sports, Systems.',
   alternates: { canonical: 'https://www.thecruda.com' },
   openGraph: {
     title: 'CRUDA — Find the essence. Strip the bullshit.',
@@ -53,8 +53,8 @@ const ORG_SCHEMA = {
     },
     {
       '@type': 'Organization',
-      name: 'CRUDA AI Concierge',
-      url: 'https://www.thecruda.com/ai-concierge',
+      name: 'CRUDA Systems',
+      url: 'https://www.thecruda.com/systems',
     },
   ],
 };

@@ -53,7 +53,7 @@ const VALID_COMPANY: readonly ResourceCompany[] = [
   'cruda',
   'a-d',
   'sports',
-  'ai-concierge',
+  'systems',
 ]
 const VALID_LANGUAGE: readonly ResourceLanguage[] = ['en', 'es']
 

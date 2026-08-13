@@ -23,7 +23,7 @@ const COMPANIES_SECTION = `## Companies
 
 - [CRUDA for Architecture & Design](${BASE}/architecture-design): Brand building for founders and studios in architecture, construction and design.
 - [CRUDA for Sports](${BASE}/sports): Narrative infrastructure for athletes and sports organizations (coming soon).
-- [CRUDA AI Concierge](${BASE}/ai-concierge): Custom internal AI systems for studios that need to remember what the founder knows.`
+- [CRUDA Systems](${BASE}/systems): Custom internal AI systems for studios that need to remember what the founder knows.`
 
 const HUBS_SECTION = `## Pages
 

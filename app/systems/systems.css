@@ -1,0 +1,218 @@
+/* CRUDA — Systems stylesheet
+   Global tokens (--white, --ink, --ink-2, --accent, --cream, --rule, --rule-2)
+   are defined by Etapa 1 (case-study.css :root). Local overrides only here. */
+
+.sys {
+  --paper-2: #FAF7F0;
+  --rule-soft: #E9E6DF;
+  --sans: 'Archivo', -apple-system, sans-serif;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --mono: 'IBM Plex Mono', monospace;
+  --gut: clamp(24px, 5vw, 80px);
+  --max: 1360px;
+
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.sys * { margin: 0; padding: 0; box-sizing: border-box; }
+
+.sys .w { max-width: var(--max); margin: 0 auto; padding: 0 var(--gut); }
+
+/* ---------- type scale ---------- */
+.sys .h1 { font-size: clamp(40px, 6.4vw, 96px); font-weight: 700; line-height: .98; letter-spacing: -.028em; }
+.sys .h2 { font-size: clamp(30px, 4.4vw, 64px); font-weight: 700; line-height: 1.02; letter-spacing: -.024em; max-width: 17ch; }
+.sys .h3 { font-size: clamp(20px, 2vw, 26px); font-weight: 600; line-height: 1.2; letter-spacing: -.012em; }
+.sys .h4 { font-size: 19px; font-weight: 600; line-height: 1.3; letter-spacing: -.006em; }
+.sys .body { font-size: 17px; line-height: 1.55; color: var(--ink-2); }
+.sys .body-lg { font-size: clamp(19px, 1.8vw, 23px); line-height: 1.45; color: var(--ink-2); max-width: 30ch; }
+.sys .mono { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; }
+.sys .serif { font-family: var(--serif); font-weight: 400; }
+
+/* ---------- hero ---------- */
+.sys .sys-header { padding: calc(72px + 14vh) 0 clamp(72px, 10vh, 140px); }
+.sys .hero-eye { color: var(--ink-2); margin-bottom: 40px; }
+.sys .h1 .accent { color: var(--accent); }
+.sys .hero-h { margin-bottom: 48px; max-width: 19ch; }
+.sys .hero-row { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: end; padding-top: 40px; border-top: 1px solid var(--rule); }
+.sys .btn {
+  display: inline-block;
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  background: var(--ink);
+  color: var(--white);
+  padding: 20px 40px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 300ms cubic-bezier(.16, 1, .3, 1);
+}
+.sys .btn:hover { background-color: var(--accent); }
+.sys .btn-note { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--ink-2); margin-top: 16px; text-align: right; }
+
+/* ---------- sections ---------- */
+.sys section { padding: clamp(72px, 9vw, 144px) 0; border-top: 1px solid var(--rule); }
+.sys .sec-head { display: grid; grid-template-columns: auto 1fr; gap: clamp(32px, 6vw, 96px); align-items: start; margin-bottom: clamp(48px, 6vw, 80px); }
+.sys .sec-n { font-family: var(--mono); font-weight: 500; font-size: clamp(30px, 3vw, 44px); letter-spacing: -.01em; color: var(--accent); line-height: 1; text-transform: none; }
+.sys .sec-label { margin-bottom: 20px; color: var(--ink-2); }
+
+/* reveal — baseline visible per brief v3 Parte 1 (resolution B).
+   No observer. Where scroll-driven animations are supported, .rv
+   gets a subtle rise; otherwise it stays at rest. Never hidden. */
+.sys .rv { opacity: 1; transform: none; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sys .rv {
+      animation: aic-reveal-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes aic-reveal-rise {
+  from { transform: translateY(24px); }
+  to   { transform: none; }
+}
+
+/* ---------- problem ---------- */
+.sys .prob { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+.sys .prob-i { padding: 32px 32px 40px 0; border-right: 1px solid var(--rule-2); }
+.sys .prob-i:last-child { border-right: none; }
+.sys .prob-i:not(:first-child) { padding-left: 32px; }
+.sys .prob-i h3 { margin-bottom: 14px; }
+.sys .prob-i p { font-size: 16.5px; line-height: 1.5; color: var(--ink-2); }
+
+/* ---------- builds ---------- */
+.sys .grp { color: var(--ink-2); margin: 0 0 20px; }
+.sys .grp.second { margin-top: 64px; }
+.sys .builds { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+.sys .b { padding: 32px 32px 40px 0; border-right: 1px solid var(--rule-2); }
+.sys .b:nth-child(3n) { border-right: none; padding-right: 0; }
+.sys .b:not(:nth-child(3n+1)) { padding-left: 32px; }
+.sys .b-n { font-family: var(--mono); font-weight: 500; font-size: 11px; letter-spacing: .16em; color: var(--ink-2); display: block; margin-bottom: 24px; }
+.sys .dg { width: 100%; height: 126px; margin-bottom: 28px; display: block; }
+.sys .dg .l { fill: none; stroke: var(--ink); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.sys .dg .l-r { fill: none; stroke: var(--accent); stroke-width: 1.6; vector-effect: non-scaling-stroke; }
+.sys .dg .l-g { fill: none; stroke: var(--rule); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.sys .dg .dot { fill: var(--accent); }
+.sys .dg text { font-family: 'IBM Plex Mono', monospace; font-size: 7px; fill: var(--ink-2); letter-spacing: .12em; }
+/* SVGs — baseline drawn (dashoffset 0, dots + labels at opacity 1).
+   Where scroll-driven animation is supported, they draw in as the
+   card enters view. Otherwise: final state, always visible. */
+.sys .dg .l, .sys .dg .l-r, .sys .dg .l-g { stroke-dasharray: var(--len, 300); stroke-dashoffset: 0; }
+.sys .dg .dot, .sys .dg text { opacity: 1; }
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sys .b {
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    .sys .b .dg .l,
+    .sys .b .dg .l-r,
+    .sys .b .dg .l-g {
+      animation: aic-stroke-draw linear both;
+      animation-timeline: inherit;
+      animation-range: entry 0% entry 60%;
+    }
+    .sys .b .dg .dot,
+    .sys .b .dg text {
+      animation: aic-dot-fade linear both;
+      animation-timeline: inherit;
+      animation-range: entry 40% entry 80%;
+    }
+  }
+}
+@keyframes aic-stroke-draw {
+  from { stroke-dashoffset: var(--len, 300); }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes aic-dot-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.sys .b h3 { margin-bottom: 12px; }
+.sys .b p { font-size: 16.5px; line-height: 1.5; color: var(--ink-2); }
+.sys .b-note { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--rule); font-size: 17px; line-height: 1.55; color: var(--ink-2); max-width: 52ch; }
+
+/* ---------- steps ---------- */
+.sys .steps { border-top: 1px solid var(--ink); position: relative; }
+.sys .steps::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--rule); }
+.sys .steps::after { content: ''; position: absolute; left: 0; top: 0; width: 1px; height: var(--line, 0%); background: var(--accent); }
+.sys .st { display: grid; grid-template-columns: 96px 1fr; padding: 40px 0; border-bottom: 1px solid var(--rule-2); padding-left: 40px; position: relative; }
+.sys .st:last-child { border-bottom: none; }
+.sys .st-n { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .16em; color: var(--ink-2); padding-top: 6px; position: relative; }
+.sys .st-n::before { content: ''; position: absolute; left: -46px; top: 7px; width: 9px; height: 9px; border-radius: 50%; background: var(--white); border: 1px solid var(--rule); transition: background .4s ease, border-color .4s ease; }
+.sys .st.on .st-n::before { background: var(--accent); border-color: var(--accent); }
+.sys .st h3 { margin-bottom: 16px; }
+.sys .st p { max-width: 46ch; font-size: 17.5px; line-height: 1.55; color: var(--ink-2); }
+.sys .st p + p { margin-top: 14px; }
+.sys .st .keep { color: var(--ink); font-weight: 500; }
+
+/* ---------- pricing ---------- */
+.sys .price { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--ink); }
+.sys .pc { padding: 48px 48px 56px 0; border-right: 1px solid var(--rule-2); }
+.sys .pc:last-child { border-right: none; padding-left: 48px; padding-right: 0; }
+.sys .pc-n { color: var(--ink-2); margin-bottom: 24px; }
+.sys .pc-p { font-size: clamp(56px, 8vw, 112px); font-weight: 700; line-height: .9; letter-spacing: -.035em; margin-bottom: 28px; color: var(--ink); }
+.sys .pc-p.free { color: var(--accent); }
+.sys .pc-d { font-size: 18px; line-height: 1.5; max-width: 28ch; color: var(--ink); }
+.sys .p-note { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+.sys .p-note p { font-size: 16.5px; line-height: 1.55; color: var(--ink-2); }
+
+/* ---------- why ---------- */
+.sys .why { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--ink); }
+.sys .wy { padding: 32px 48px 40px 0; border-bottom: 1px solid var(--rule-2); border-right: 1px solid var(--rule-2); }
+.sys .wy:nth-child(even) { border-right: none; padding-left: 48px; padding-right: 0; }
+.sys .wy:nth-last-child(-n+1) { border-bottom: none; }
+.sys .wy h4 { margin-bottom: 12px; }
+.sys .wy p { font-size: 16.5px; line-height: 1.5; color: var(--ink-2); }
+.sys .pull { margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--rule); }
+.sys .pull p { font-family: var(--serif); font-size: clamp(28px, 3.6vw, 50px); line-height: 1.15; letter-spacing: -.012em; max-width: 20ch; color: var(--ink); }
+
+/* ---------- faq ---------- */
+.sys .faq { border-top: 1px solid var(--ink); }
+.sys .fi { border-bottom: 1px solid var(--rule-2); }
+.sys .fq { width: 100%; background: none; border: none; cursor: pointer; text-align: left; padding: 28px 56px 28px 0; position: relative; font-family: var(--sans); font-weight: 600; font-size: clamp(18px, 1.7vw, 21px); letter-spacing: -.008em; color: var(--ink); transition: color .2s; }
+.sys .fq:hover { color: var(--ink); }
+.sys .fq::after { content: ''; position: absolute; right: 6px; top: 50%; width: 13px; height: 1px; background: var(--accent); transition: transform .3s cubic-bezier(.16, 1, .3, 1); }
+.sys .fq::before { content: ''; position: absolute; right: 12px; top: 50%; width: 1px; height: 13px; margin-top: -6px; background: var(--accent); transition: transform .3s cubic-bezier(.16, 1, .3, 1), opacity .3s; }
+.sys .fi.open .fq::before { transform: rotate(90deg); opacity: 0; }
+.sys .fa { max-height: 0; overflow: hidden; transition: max-height .4s cubic-bezier(.16, 1, .3, 1); }
+.sys .fi.open .fa { max-height: 340px; }
+.sys .fa p { padding: 0 0 32px; max-width: 62ch; font-size: 17.5px; line-height: 1.6; color: var(--ink-2); }
+
+/* ---------- close ---------- */
+.sys .close { border-top: 1px solid var(--ink); }
+.sys .close .h2 { margin-bottom: 32px; }
+.sys .close-row { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: end; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--rule); }
+
+/* ---------- footer ---------- */
+.sys .sys-footer { padding: 40px 0 56px; border-top: 1px solid var(--rule); }
+.sys .ft { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; align-items: baseline; }
+.sys .ft a { color: var(--ink-2); text-decoration: none; transition: color .2s; }
+.sys .ft a:hover { color: var(--ink); }
+.sys .ft-links { display: flex; gap: 28px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .sys .prob, .sys .builds, .sys .price, .sys .why { grid-template-columns: 1fr; }
+  .sys .prob-i, .sys .b, .sys .pc, .sys .wy { border-right: none !important; padding-left: 0 !important; padding-right: 0 !important; border-bottom: 1px solid var(--rule-2); }
+  .sys .pc { padding-top: 36px; padding-bottom: 44px; }
+  .sys .sec-head { grid-template-columns: 1fr; gap: 20px; }
+  .sys .hero-row, .sys .close-row { grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  .sys .btn-note { text-align: left; }
+  .sys .p-note { grid-template-columns: 1fr; gap: 20px; }
+  .sys .st { grid-template-columns: 1fr; gap: 10px; padding-left: 32px; }
+  .sys .st-n::before { left: -38px; }
+  .sys .sys-header { padding: 120px 0 72px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sys *, .sys *::before, .sys *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+.sys :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }

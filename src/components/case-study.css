@@ -73,7 +73,7 @@ html { font-size: 17px; }
    Existing headings that opt in via .heading or the section-scoped
    layouts still keep their own tracking. This applies only where the
    token wins over a hard-coded value. */
-.of h2, .essay h2, .aic h2, .cs-section h2 {
+.of h2, .essay h2, .sys h2, .cs-section h2 {
   letter-spacing: var(--track-heading, -0.02em);
 }
 

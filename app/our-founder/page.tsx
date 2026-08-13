@@ -53,7 +53,7 @@ const PERSON_SCHEMA = {
 const TEXT_ROWS: { label: string; value: string }[] = [
   { label: 'Based in', value: 'Russia, transitioning to Catalunya' },
   { label: 'Building', value: 'CRUDA, a holding company' },
-  { label: 'Verticals', value: 'Architecture & Design · Sports · AI Concierge' },
+  { label: 'Verticals', value: 'Architecture & Design · Sports · Systems' },
   {
     label: 'Started as',
     value:

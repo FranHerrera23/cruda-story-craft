@@ -1,24 +1,29 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import './ai-concierge.css'
+import './systems.css'
 
 /* ------------------------------------------------------------------
-   CRUDA AI Concierge — content, copy locked from cruda-ai-concierge.html.
-   No paraphrasing. Interactions: FAQ accordion, reveal-on-scroll,
-   How-it-works progress line. All respect prefers-reduced-motion.
+   CRUDA Systems — content. Rebrand del anterior "AI Concierge"; el
+   copy de la landing se mantiene salvo el nombre de la unidad (los
+   seis builds, el pricing, el FAQ y la sección How it works quedan
+   verbatim per rebrand brief §7). Las menciones a AI como tecnología
+   dentro del cuerpo se preservan.
+
+   Interactions: FAQ accordion, reveal-on-scroll, How-it-works
+   progress line. All respect prefers-reduced-motion.
 ------------------------------------------------------------------- */
 
 const BOOK_HREF = 'https://calendly.com/cruda-intro/narrative-sparring-live-1'
 
-export default function AIConciergeContent() {
+export default function SystemsContent() {
   const stepsRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     // A. FAQ accordion — click toggles .open on the .fi parent.
-    const fqs = Array.from(document.querySelectorAll<HTMLButtonElement>('.aic .fq'))
+    const fqs = Array.from(document.querySelectorAll<HTMLButtonElement>('.sys .fq'))
     const onFqClick = (e: Event) => {
       const btn = e.currentTarget as HTMLElement
       btn.parentElement?.classList.toggle('open')
@@ -26,7 +31,7 @@ export default function AIConciergeContent() {
     fqs.forEach((b) => b.addEventListener('click', onFqClick))
 
     // Reveal-on-scroll retired per brief v3 Parte 1 (resolution B).
-    // .aic .rv is now baseline visible via CSS. No observer here.
+    // .sys .rv is now baseline visible via CSS. No observer here.
 
     // How-it-works progress line — scroll-linked painting of --line
     // and .on class on each step. Not a reveal — an ongoing state
@@ -61,10 +66,10 @@ export default function AIConciergeContent() {
   }, [])
 
   return (
-    <div className="aic">
-      <header className="aic-header">
+    <div className="sys">
+      <header className="sys-header">
         <div className="w">
-          <p className="mono hero-eye">CRUDA AI Concierge</p>
+          <p className="mono hero-eye">CRUDA Systems</p>
           <h1 className="h1 hero-h">
             Your creative energy is the asset. <span className="accent">Everything else</span> should
             run without you.
@@ -496,7 +501,7 @@ export default function AIConciergeContent() {
           </p>
           <div className="close-row">
             <p className="mono rv" style={{ color: 'var(--ink-2)' }}>
-              CRUDA AI Concierge
+              CRUDA Systems
             </p>
             <div className="rv">
               <a href={BOOK_HREF} target="_blank" rel="noopener" className="btn">
@@ -507,7 +512,7 @@ export default function AIConciergeContent() {
         </div>
       </section>
 
-      <footer className="aic-footer">
+      <footer className="sys-footer">
         <div className="w ft">
           <span className="mono" style={{ color: 'var(--ink-2)' }}>
             CRUDA

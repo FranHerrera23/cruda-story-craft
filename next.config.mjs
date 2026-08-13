@@ -66,6 +66,19 @@ const nextConfig = {
         destination: '/resources/essays',
         permanent: true,
       },
+      // Rebrand: la unidad se llama Systems. La URL vieja
+      // /ai-concierge está en 20+ emails ya enviados a prospectos —
+      // 301 obligatorio para no romper esos links.
+      {
+        source: '/ai-concierge',
+        destination: '/systems',
+        permanent: true,
+      },
+      {
+        source: '/ai-concierge/:path*',
+        destination: '/systems/:path*',
+        permanent: true,
+      },
     ]
   },
 };

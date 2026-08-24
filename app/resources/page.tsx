@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import ResourceCards from './ResourceCards'
 import ResourceFilters from './ResourceFilters'
-import { allResources, countByKind } from '@/content/resources'
+import { allResources, countByKind, dedupeByPiece } from '@/content/resources'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import './resources.css'
 
@@ -44,14 +44,18 @@ export const metadata: Metadata = {
   },
 }
 
-const GLOBAL_KIND_COUNTS = countByKind(allResources)
+/* Brief v4 UX §4.6 — deduplicar por pieza. Un ensayo bilingüe cuenta
+   como UNA pieza. La versión EN es la que aparece en el hub (site
+   default); la ES sigue accesible desde el filtro Language. */
+const HUB_ITEMS = dedupeByPiece(allResources, 'en')
+const GLOBAL_KIND_COUNTS = countByKind(HUB_ITEMS)
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/resources',
   name: 'Resources — CRUDA',
   description:
     'Essays, conversations and case studies on narrative for founders, studios and athletes.',
-  items: allResources,
+  items: HUB_ITEMS,
 })
 
 export default function ResourcesPage() {
@@ -77,14 +81,14 @@ export default function ResourcesPage() {
               useSearchParams. Fallback null preserva el SSR de las cards. */}
           <Suspense fallback={null}>
             <ResourceFilters
-              items={allResources}
+              items={HUB_ITEMS}
               scope="all"
-              totalItems={allResources.length}
+              totalItems={HUB_ITEMS.length}
               globalKindCounts={GLOBAL_KIND_COUNTS}
             />
           </Suspense>
           {/* Cards — server. Los links están en el HTML crudo. */}
-          <ResourceCards items={allResources} />
+          <ResourceCards items={HUB_ITEMS} />
         </div>
       </div>
     </div>

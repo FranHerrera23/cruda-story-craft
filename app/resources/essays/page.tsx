@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import ResourceCards from '../ResourceCards'
 import ResourceFilters from '../ResourceFilters'
-import { allResources, countByKind } from '@/content/resources'
+import { allResources, countByKind, dedupeByPiece } from '@/content/resources'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import '../resources.css'
 
@@ -42,8 +42,10 @@ export const metadata: Metadata = {
   },
 }
 
-const ESSAYS = allResources.filter((r) => r.kind === 'essay')
-const GLOBAL_KIND_COUNTS = countByKind(allResources)
+/* Brief v4 UX §4.6 — dedupe por pieza (un ensayo bilingüe es UNA). */
+const DEDUPED = dedupeByPiece(allResources, 'en')
+const ESSAYS = DEDUPED.filter((r) => r.kind === 'essay')
+const GLOBAL_KIND_COUNTS = countByKind(DEDUPED)
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/resources/essays',
@@ -77,7 +79,7 @@ export default function EssaysResourcesPage() {
             <ResourceFilters
               items={ESSAYS}
               scope="essays"
-              totalItems={allResources.length}
+              totalItems={DEDUPED.length}
               globalKindCounts={GLOBAL_KIND_COUNTS}
             />
           </Suspense>

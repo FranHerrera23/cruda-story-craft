@@ -3,6 +3,7 @@ import Link from 'next/link'
 import EssayProgressBar from './EssayProgressBar'
 import ClosingBlock from './ClosingBlock'
 import RelatedResources from './RelatedResources'
+import CaptureForm from './CaptureForm'
 import './essay.css'
 
 /* ------------------------------------------------------------------
@@ -59,14 +60,15 @@ export type Essay = {
   faqs?: Faq[]
   language?: EssayLanguage
   /* Brief v15 T2 — vínculo entre versiones de una misma pieza en
-     distintos idiomas. Genérico: cuando entre otro par bilingüe,
-     apunta desde los dos lados.
-     Regla: recíproco. Las dos versiones se declaran mutuamente,
-     incluyéndose a sí mismas. */
+     distintos idiomas. */
   alternates?: {
     es?: string
     en?: string
   }
+  /* Brief v4 UX §4.9 — footnotes numeradas al pie. Cada dato o cifra
+     citada en el body debería tener su fuente acá. El inline sup
+     va en un bloque html usando <a class="footnote-ref">…<sup>N</sup></a>. */
+  sources?: Array<{ n: number; text: string; url: string }>
 }
 
 const AUTHOR = {
@@ -90,7 +92,7 @@ function schema(es: Essay) {
   const graph: unknown[] = [
     {
       '@type': 'Article',
-      '@id': `${base}/thinking/${es.slug}#article`,
+      '@id': `${base}/resources/essays/${es.slug}#article`,
       /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para
          que AI y buscadores lo indexen bien; alternativeHeadline =
          H1 humano. */
@@ -118,7 +120,7 @@ function schema(es: Essay) {
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${base}/thinking/${es.slug}`,
+        '@id': `${base}/resources/essays/${es.slug}`,
       },
     },
     {
@@ -134,7 +136,7 @@ function schema(es: Essay) {
   if (es.faqs && es.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${base}/thinking/${es.slug}#faq`,
+      '@id': `${base}/resources/essays/${es.slug}#faq`,
       mainEntity: es.faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,
@@ -302,12 +304,34 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </section>
         )}
 
+        {/* Brief v4 UX §4.9 — sección Fuentes, si el ensayo declaró
+            footnotes. Numerada, con el link completo a cada fuente. */}
+        {es.sources && es.sources.length > 0 && (
+          <section className="e-sources" aria-labelledby="e-sources-heading">
+            <h2 id="e-sources-heading">
+              {lang === 'es' ? 'Fuentes' : 'Sources'}
+            </h2>
+            <ol>
+              {es.sources.map((s) => (
+                <li key={s.n} value={s.n}>
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
+                    {s.text}
+                    <span className="sr-only">
+                      {lang === 'es' ? ' (abre en una pestaña nueva)' : ' (opens in a new tab)'}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         <ClosingBlock kind="essay" lang={lang} />
 
-        {/* Brief v9 T5 — 3 piezas relacionadas después del cierre.
-            Brief v15 T3 — excluir la traducción cuando la pieza es
-            bilingüe. Leer un ES y ver su versión EN en "seguí
-            leyendo" es raro. */}
+        {/* Brief v4 UX §4.8 — captura entre CTA y related, variante full. */}
+        <CaptureForm lang={lang} variant="full" />
+
+        {/* Brief v9 T5 — 3 piezas relacionadas después del cierre. */}
         <RelatedResources
           excludeHrefs={buildExcludeHrefs(es)}
           lang={lang}
@@ -318,9 +342,9 @@ export default function EssayLayout({ es }: { es: Essay }) {
 }
 
 function buildExcludeHrefs(es: Essay): string[] {
-  const acc = [`/thinking/${es.slug}`]
+  const acc = [`/resources/essays/${es.slug}`]
   const alt = es.alternates
-  if (alt?.es && alt.es !== es.slug) acc.push(`/thinking/${alt.es}`)
-  if (alt?.en && alt.en !== es.slug) acc.push(`/thinking/${alt.en}`)
+  if (alt?.es && alt.es !== es.slug) acc.push(`/resources/essays/${alt.es}`)
+  if (alt?.en && alt.en !== es.slug) acc.push(`/resources/essays/${alt.en}`)
   return acc
 }

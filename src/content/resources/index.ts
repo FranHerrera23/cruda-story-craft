@@ -34,6 +34,11 @@ export type Resource = {
   company: ResourceCompany
   language: ResourceLanguage
   publishedAt: string
+  /* Brief v4 UX §4.6 — un mismo ensayo en dos idiomas es UNA pieza,
+     no dos. canonicalPieceId agrupa las traducciones. Un ensayo sin
+     traducción usa su propio slug. Un ensayo con alternates usa el
+     slug de la versión x-default (inglés) como piece.id. */
+  canonicalPieceId: string
 }
 
 const VERTICAL_TO_COMPANY: Record<string, ResourceCompany> = {
@@ -88,26 +93,30 @@ const ESSAY_COMPANY: Record<string, ResourceCompany> = {
   'third-place': 'cruda',
 }
 
+/* Brief v4 UX §5 — rutas nuevas. Toda pieza vive bajo /resources/.
+   Los slugs de la carpeta content no cambian; solo el prefijo público. */
 const essayResources: Resource[] = allEssays.map((e) => ({
   slug: e.slug,
-  href: `/thinking/${e.slug}`,
+  href: `/resources/essays/${e.slug}`,
   title: e.title,
   excerpt: e.answerCapsule,
   kind: e.contentType === 'Conversation' ? 'conversation' : 'essay',
   company: ESSAY_COMPANY[e.slug] ?? 'cruda',
   language: (e.language ?? 'en') as ResourceLanguage,
   publishedAt: e.publishedAt,
+  canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
 
 const caseStudyResources: Resource[] = allClients.map((c) => ({
   slug: c.slug,
-  href: `/clients/${c.slug}`,
+  href: `/resources/case-studies/${c.slug}`,
   title: c.title,
   excerpt: c.answerCapsule,
   kind: 'case-study',
   company: VERTICAL_TO_COMPANY[c.vertical] ?? 'a-d',
   language: 'en',
   publishedAt: c.publishedAt || '',
+  canonicalPieceId: c.slug,
 }))
 
 /* Newest first. Empty publishedAt goes last. */
@@ -136,6 +145,33 @@ export function languageLabel(l: ResourceLanguage) {
 
 /* Count per tag — used to build chips from data. If a value has zero
    items it doesn't appear at all. */
+/* Brief v4 UX §4.6 — un ensayo bilingüe es UNA pieza en la biblioteca.
+   Deduplica por canonicalPieceId, prefiriendo la versión que matchea
+   `preferredLang`. Si ninguna coincide, cae a la primera disponible.
+   Los case studies (sin traducciones) pasan sin cambio. */
+export function dedupeByPiece(
+  items: Resource[],
+  preferredLang: ResourceLanguage = 'en',
+): Resource[] {
+  const groups = new Map<string, Resource[]>()
+  for (const r of items) {
+    const g = groups.get(r.canonicalPieceId) ?? []
+    g.push(r)
+    groups.set(r.canonicalPieceId, g)
+  }
+  const out: Resource[] = []
+  /* Recorremos items en orden para preservar el sort original. */
+  const seen = new Set<string>()
+  for (const r of items) {
+    if (seen.has(r.canonicalPieceId)) continue
+    seen.add(r.canonicalPieceId)
+    const group = groups.get(r.canonicalPieceId)!
+    const pick = group.find((x) => x.language === preferredLang) ?? group[0]
+    out.push(pick)
+  }
+  return out
+}
+
 export function countByKind(items: Resource[]): Record<ResourceKind, number> {
   const acc: Record<ResourceKind, number> = {
     essay: 0,

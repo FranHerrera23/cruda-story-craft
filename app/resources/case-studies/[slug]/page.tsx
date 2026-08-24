@@ -34,11 +34,11 @@ export async function generateMetadata(
   return {
     title: `${headTitle} | CRUDA`,
     description: cs.answerCapsule.slice(0, 155),
-    alternates: { canonical: `${BASE}/clients/${cs.slug}` },
+    alternates: { canonical: `${BASE}/resources/case-studies/${cs.slug}` },
     openGraph: {
       title: headTitle,
       description: cs.answerCapsule,
-      url: `${BASE}/clients/${cs.slug}`,
+      url: `${BASE}/resources/case-studies/${cs.slug}`,
       type: 'article',
       publishedTime: cs.publishedAt,
       modifiedTime: cs.updatedAt,

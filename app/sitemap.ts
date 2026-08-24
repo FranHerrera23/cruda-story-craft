@@ -39,15 +39,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    // Resources — brief v5 T7 (reemplaza a /thinking; el 301 vive
-    // en next.config.mjs). Los ensayos siguen en /thinking/[slug].
+    // Brief v4 UX §5 — todas las piezas viven bajo /resources/.
     {
       url: `${BASE}/resources`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
-    // Brief v12 T2 — rutas de formato con canonical propio.
     {
       url: `${BASE}/resources/case-studies`,
       lastModified: new Date(),
@@ -61,8 +59,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     ...allEssays.map((e) => ({
-      url: `${BASE}/thinking/${e.slug}`,
+      url: `${BASE}/resources/essays/${e.slug}`,
       lastModified: new Date(e.updatedAt || e.publishedAt),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    })),
+    ...allClients.map((c) => ({
+      url: `${BASE}/resources/case-studies/${c.slug}`,
+      lastModified: c.updatedAt ? new Date(c.updatedAt) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
@@ -73,19 +77,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
-    // Clients (global)
+    // Newsletter — brief v4 UX §4.8 ubicación 4.
     {
-      url: `${BASE}/clients`,
+      url: `${BASE}/newsletter`,
       lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
+      changeFrequency: 'monthly',
+      priority: 0.6,
     },
-    ...allClients.map((c) => ({
-      url: `${BASE}/clients/${c.slug}`,
-      lastModified: c.updatedAt ? new Date(c.updatedAt) : new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    })),
     // Contact / book-call (kept live)
     {
       url: `${BASE}/contact`,

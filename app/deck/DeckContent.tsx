@@ -1035,7 +1035,7 @@ export default function DeckContent() {
 
             <div className="cards-grid cards-grid-slide-7">
               {/* Card 01 — Karen Mannheim */}
-              <Link href="/clients/karen-mannheim" className="card reveal d-2">
+              <Link href="/resources/case-studies/karen-mannheim" className="card reveal d-2">
                 <div className="card-photo"><img src="/karen-mannheim.webp" alt="Karen Mannheim · Trazzo Lighting" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1048,12 +1048,12 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/karen-mannheim">thecruda.com/clients/karen-mannheim →</a>
+                  <a href="/resources/case-studies/karen-mannheim">thecruda.com/resources/case-studies/karen-mannheim →</a>
                 </div>
               </Link>
 
               {/* Card 02 — Mike Kaeding */}
-              <Link href="/clients/mike-kaeding" className="card reveal d-3">
+              <Link href="/resources/case-studies/mike-kaeding" className="card reveal d-3">
                 <div className="card-photo"><img src="/mike-kaeding.webp" alt="Mike Kaeding · Norhart" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1066,12 +1066,12 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/mike-kaeding">thecruda.com/clients/mike-kaeding →</a>
+                  <a href="/resources/case-studies/mike-kaeding">thecruda.com/resources/case-studies/mike-kaeding →</a>
                 </div>
               </Link>
 
               {/* Card 03 — Juan Pablo Romero */}
-              <Link href="/clients/juan-pablo-romero" className="card reveal d-4">
+              <Link href="/resources/case-studies/juan-pablo-romero" className="card reveal d-4">
                 <div className="card-photo"><img src="/juan-pablo-romero.webp" alt="Juan Pablo Romero · CTD" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1084,7 +1084,7 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/juan-pablo-romero">thecruda.com/clients/juan-pablo-romero →</a>
+                  <a href="/resources/case-studies/juan-pablo-romero">thecruda.com/resources/case-studies/juan-pablo-romero →</a>
                 </div>
               </Link>
 
@@ -1093,7 +1093,7 @@ export default function DeckContent() {
                   ni nombre, ni empresa, ni asset con nombre real,
                   ni slug con la persona. Copy y números tomados del
                   case study (source of truth). */}
-              <Link href="/clients/confidential-retail-founder" className="card reveal d-5">
+              <Link href="/resources/case-studies/confidential-retail-founder" className="card reveal d-5">
                 <div className="card-photo"><img src="/confidential-hero.jpg" alt="Confidential retail founder" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1106,12 +1106,12 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/confidential-retail-founder">thecruda.com/clients/confidential-retail-founder →</a>
+                  <a href="/resources/case-studies/confidential-retail-founder">thecruda.com/resources/case-studies/confidential-retail-founder →</a>
                 </div>
               </Link>
 
               {/* Card 05 — Girish Sehgal */}
-              <Link href="/clients/girish-sehgal" className="card reveal d-6">
+              <Link href="/resources/case-studies/girish-sehgal" className="card reveal d-6">
                 <div className="card-photo"><img src="/girish-sehgal.webp" alt="Girish Sehgal · SSMC" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1124,7 +1124,7 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/clients/girish-sehgal">thecruda.com/clients/girish-sehgal →</a>
+                  <a href="/resources/case-studies/girish-sehgal">thecruda.com/resources/case-studies/girish-sehgal →</a>
                 </div>
               </Link>
             </div>

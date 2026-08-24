@@ -44,7 +44,7 @@ function caseStudiesSection(): string {
   const rows = allClients
     .map((c) => {
       const label = `${c.client.name} — ${c.client.company}`
-      const url = `${BASE}/clients/${c.slug}`
+      const url = `${BASE}/resources/case-studies/${c.slug}`
       return `- [${label}](${url}): ${oneLine(c.answerCapsule)}`
     })
     .join('\n')
@@ -59,7 +59,7 @@ function essaysSection(): string {
   )
   const rows = sorted
     .map((e) => {
-      const url = `${BASE}/thinking/${e.slug}`
+      const url = `${BASE}/resources/essays/${e.slug}`
       const langTag = e.language === 'es' ? ' [ES]' : ''
       return `- [${e.title}${langTag}](${url}): ${oneLine(e.answerCapsule)}`
     })

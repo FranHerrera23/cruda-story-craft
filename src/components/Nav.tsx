@@ -147,9 +147,7 @@ export default function Nav() {
   const isAbout = pathname === '/our-founder'
   const isResources =
     pathname === '/resources' ||
-    pathname.startsWith('/resources/') ||
-    pathname === '/thinking' ||
-    pathname.startsWith('/thinking/')
+    pathname.startsWith('/resources/')
   const isContact = pathname === '/contact'
 
   return (

@@ -23,7 +23,7 @@ const nextConfig = {
       {
         // Etapa 1: Work → Clients (AEO case study system)
         source: '/work',
-        destination: '/clients',
+        destination: '/resources/case-studies',
         permanent: true,
       },
       {
@@ -32,15 +32,28 @@ const nextConfig = {
         destination: '/architecture-design/about',
         permanent: true,
       },
+      // Brief v4 UX §5 — todas las piezas viven bajo /resources/.
+      // /thinking/* y /clients/* redirigen 301 a las canónicas nuevas.
       {
-        // Brief v5 T7: /thinking (index) → /resources (biblioteca)
         source: '/thinking',
-        destination: '/resources',
+        destination: '/resources/essays',
         permanent: true,
       },
-      // Nota: /thinking/[slug] queda vivo — el URL canonical de cada
-      // ensayo no cambia para no romper backlinks. Cuando migren a
-      // /resources/[slug] se agrega el 301 de cada slug.
+      {
+        source: '/thinking/:slug',
+        destination: '/resources/essays/:slug',
+        permanent: true,
+      },
+      {
+        source: '/clients',
+        destination: '/resources/case-studies',
+        permanent: true,
+      },
+      {
+        source: '/clients/:slug',
+        destination: '/resources/case-studies/:slug',
+        permanent: true,
+      },
       {
         // Cleanup post-v10: /book-call era un shell pre-v3 que abría
         // Calendly en new tab con copy vieja ("construction and

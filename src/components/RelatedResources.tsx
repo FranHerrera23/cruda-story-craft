@@ -2,29 +2,27 @@ import Link from 'next/link'
 import {
   allResources,
   companyLabel,
+  dedupeByPiece,
   kindLabel,
   type Resource,
+  type ResourceLanguage,
 } from '@/content/resources'
 
-/* Brief v9 T5 — Read more. Brief v15 T3 — exclude translations.
+/* Brief v9 T5 + Brief v4 UX §4.5 §4.6.
 
-   Va al final de ensayos y case studies, después del ClosingBlock.
-   Prioriza misma company primero, después más recientes. Nunca
-   incluye la pieza actual ni su traducción (si es bilingüe). Si
-   hay menos de 3 disponibles, muestra las que haya. Si no hay
-   ninguna, no renderiza. */
+   §4.5 — card sin translateY, sin sombra, sin escala. Solo opacity +
+   flecha que estaba ahí y aparece deslizándose 4px.
+   §4.6 — dedupe por canonicalPieceId. Un ensayo bilingüe es UNA
+   pieza; se sirve la traducción que coincide con el idioma de la
+   pieza actual. Si no existe traducción, cae a la que haya. */
 
 type Props = {
-  /* Todas las hrefs a excluir: la pieza actual + su traducción si
-     existe. Genérico — cualquier caller pasa la lista.
-     Brief v15 T3: leer un ensayo en español y ver su traducción en
-     inglés como "seguí leyendo" es raro. */
   excludeHrefs: string[]
-  lang?: 'en' | 'es'
+  lang?: ResourceLanguage
   limit?: number
 }
 
-function fmtDate(iso: string, lang: 'en' | 'es'): string {
+function fmtDate(iso: string, lang: ResourceLanguage): string {
   if (!iso) return ''
   const locale = lang === 'es' ? 'es-ES' : 'en-US'
   return new Date(iso).toLocaleDateString(locale, {
@@ -34,22 +32,27 @@ function fmtDate(iso: string, lang: 'en' | 'es'): string {
   })
 }
 
-function pickRelated(excludeHrefs: string[], limit: number): Resource[] {
+function pickRelated(
+  excludeHrefs: string[],
+  lang: ResourceLanguage,
+  limit: number,
+): Resource[] {
+  /* Primero deduplicamos por pieza (respetando el idioma de contexto),
+     después excluimos la pieza actual y su traducción. */
+  const deduped = dedupeByPiece(allResources, lang)
   const excludeSet = new Set(excludeHrefs)
   const seedHref = excludeHrefs[0]
   const seed = allResources.find((r) => r.href === seedHref)
   const sameCompany = seed?.company ?? null
 
-  const others = allResources.filter((r) => !excludeSet.has(r.href))
+  const others = deduped.filter((r) => !excludeSet.has(r.href))
 
   const sorted = [...others].sort((a, b) => {
-    /* 1) Same company as seed wins (if we know the seed's company). */
     if (sameCompany !== null) {
       const aSame = a.company === sameCompany ? 0 : 1
       const bSame = b.company === sameCompany ? 0 : 1
       if (aSame !== bSame) return aSame - bSame
     }
-    /* 2) Newest first. Empty publishedAt goes last. */
     if (!a.publishedAt && !b.publishedAt) return 0
     if (!a.publishedAt) return 1
     if (!b.publishedAt) return -1
@@ -64,7 +67,7 @@ export default function RelatedResources({
   lang = 'en',
   limit = 3,
 }: Props) {
-  const picks = pickRelated(excludeHrefs, limit)
+  const picks = pickRelated(excludeHrefs, lang, limit)
   if (picks.length === 0) return null
 
   const heading = lang === 'es' ? 'Seguí leyendo' : 'Read more'
@@ -73,25 +76,35 @@ export default function RelatedResources({
     <section className="rr" aria-label={heading}>
       <h2 className="rr-heading">{heading}</h2>
       <ul className="rr-list" role="list">
-        {picks.map((r) => (
-          <li key={r.href}>
-            <Link href={r.href} className="rr-card">
-              <div className="rr-meta">
-                <span className="rr-badge">{companyLabel(r.company)}</span>
-                <span className="rr-kind">{kindLabel(r.kind)}</span>
-                {r.language === 'es' && (
-                  <span className="rr-lang" aria-label="Spanish">ES</span>
+        {picks.map((r) => {
+          /* Brief v4 UX §4.6 — la marca de idioma solo aparece si la
+             pieza está en un idioma distinto al de contexto. Es
+             información útil, no debug. */
+          const showLangBadge = r.language !== lang
+          const eyebrow = showLangBadge
+            ? `${kindLabel(r.kind).toUpperCase()} · ${r.language.toUpperCase()}`
+            : kindLabel(r.kind).toUpperCase()
+          return (
+            <li key={r.href}>
+              <Link href={r.href} className="card">
+                <div className="card__head">
+                  <span className="card__eyebrow">{eyebrow}</span>
+                  <span className="card__arrow" aria-hidden="true">↗</span>
+                </div>
+                <h3 className="card__title">{r.title}</h3>
+                {r.publishedAt && (
+                  <time className="card__date" dateTime={r.publishedAt}>
+                    {fmtDate(r.publishedAt, lang)}
+                  </time>
                 )}
-              </div>
-              <h3 className="rr-title">{r.title}</h3>
-              {r.publishedAt && (
-                <time className="rr-date" dateTime={r.publishedAt}>
-                  {fmtDate(r.publishedAt, lang)}
-                </time>
-              )}
-            </Link>
-          </li>
-        ))}
+                {/* Company label como contexto secundario, no como chip. */}
+                <span className="card__meta" aria-hidden="true">
+                  {companyLabel(r.company)}
+                </span>
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </section>
   )

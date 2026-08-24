@@ -211,6 +211,192 @@
   border: 0;
 }
 
+/* Newsletter route — /newsletter, ubicación 4 del capture §4.8. */
+.newsletter-root { background: var(--color-surface); }
+.newsletter-shell { padding-block: 244px 96px; }
+.newsletter-inner {
+  grid-column: 1 / span 8;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+@media (max-width: 767px) {
+  .newsletter-shell { padding-block: 120px 64px; }
+  .newsletter-inner { grid-column: 1 / -1; }
+}
+.newsletter-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0;
+}
+.newsletter-heading {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0;
+}
+.newsletter-body {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-body-large);
+  line-height: 1.5;
+  color: var(--color-ink);
+  max-width: 46ch;
+  margin: 0;
+}
+.newsletter-inner .capture {
+  grid-column: unset;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+/* ==================================================================
+   Capture form — brief v4 UX §4.8
+   ================================================================== */
+.capture {
+  grid-column: 3 / span 9;
+  margin-block: 96px;
+  padding: var(--space-4);
+  border: 1px solid var(--color-rule);
+  background: var(--color-surface);
+}
+@media (max-width: 767px) {
+  .capture { grid-column: 1 / -1; padding: var(--space-3); }
+}
+.capture--compact {
+  margin-block: var(--space-4);
+  padding: var(--space-3);
+}
+.capture__heading {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 0 0 8px;
+}
+.capture__body {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-muted);
+  max-width: 46ch;
+  margin: 0 0 var(--space-3);
+}
+.capture__form { max-width: 480px; }
+.capture__row { display: flex; }
+.capture__row input {
+  flex: 1;
+  padding: 16px 20px;
+  border: 1px solid var(--color-ink);
+  border-right: none;
+  /* Mínimo 16px para que iOS no haga zoom al focus. */
+  font-size: 16px;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  color: var(--color-ink);
+  background: transparent;
+  min-width: 0;
+}
+.capture__row input::placeholder { color: var(--color-muted); }
+.capture__row input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+.capture__row button {
+  padding: 16px 28px;
+  background: var(--color-ink);
+  color: var(--color-surface);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background var(--dur-hover) var(--ease-ui),
+              color var(--dur-hover) var(--ease-ui);
+}
+.capture__row button:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+.capture__row button:disabled { opacity: 0.6; cursor: default; }
+.capture__status {
+  margin: 12px 0 0;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.capture__status--invalid,
+.capture__status--error { color: var(--color-ink); }
+
+/* ==================================================================
+   Footnotes — brief v4 UX §4.9
+   Superíndice tipográfico real (font-feature-settings: sups) en vez
+   de dejar que el navegador escale y suba el número. La diferencia
+   se ve.
+   ================================================================== */
+.footnote-ref {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--dur-fast) var(--ease-ui);
+}
+.footnote-ref:hover { opacity: 0.5; }
+.footnote-ref sup {
+  font-feature-settings: 'sups';
+  font-size: 1em;
+  vertical-align: baseline;
+  top: 0;
+  margin-left: 2px;
+  color: color-mix(in srgb, var(--color-ink) 30%, transparent);
+}
+
+/* Sección "Fuentes" al pie del ensayo. */
+.essay .e-sources {
+  grid-column: 4 / span 7;
+  margin-top: 96px;
+  padding-top: 48px;
+  border-top: 1px solid var(--color-rule);
+}
+@media (max-width: 767px) {
+  .essay .e-sources { grid-column: 1 / -1; }
+}
+.essay .e-sources h2 {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 0 0 24px;
+}
+.essay .e-sources ol {
+  list-style: decimal;
+  padding-left: 24px;
+  margin: 0;
+  color: var(--color-muted);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.6;
+}
+.essay .e-sources li + li { margin-top: 12px; }
+.essay .e-sources a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: opacity var(--dur-fast) var(--ease-ui);
+}
+.essay .e-sources a:hover { opacity: 0.6; }
+
 /* ==================================================================
    Site footer — brief v4 UX §4.10
    ================================================================== */
@@ -581,11 +767,11 @@ html { font-size: 17px; }
 }
 .rr-heading {
   font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: var(--fs-h3);
+  font-size: var(--text-h3);
   font-weight: 600;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-heading);
-  color: var(--ink);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
   margin: 0 0 32px;
 }
 .rr-list {
@@ -596,69 +782,77 @@ html { font-size: 17px; }
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
-.rr-card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 24px 0;
-  border-top: 1px solid var(--ink);
-  text-decoration: none;
-  color: var(--ink);
-  height: 100%;
-  transition: color 0.2s;
-}
-.rr-card:hover .rr-title { color: var(--accent); }
-.rr-meta {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  flex-wrap: wrap;
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: -0.005em;
-}
-.rr-badge {
-  color: var(--ink);
-  background: var(--cream);
-  padding: 3px 8px;
-  border: 1px solid var(--rule);
-}
-.rr-kind { color: var(--ink-2); }
-.rr-lang {
-  color: var(--ink);
-  background: var(--white);
-  padding: 3px 6px;
-  border: 1px solid var(--ink-2);
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.06em;
-}
-.rr-title {
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 1.25;
-  letter-spacing: -0.008em;
-  color: var(--ink);
-  margin: 0;
-  transition: color 0.2s;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.rr-date {
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: 12px;
-  color: var(--ink-2);
-  margin-top: auto;
+@media (max-width: 720px) {
+  .rr-list { grid-template-columns: 1fr; gap: 8px; }
 }
 
-@media (max-width: 720px) {
-  .rr-list {
-    grid-template-columns: 1fr;
-    gap: 8px;
-  }
-  .rr-card { padding: 20px 0; }
+/* Card — brief v4 UX §4.5. Un solo componente para related, hub
+   listings, footer previews. Cero translateY, cero sombra, cero
+   escala. Opacidad + flecha. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 24px 0;
+  text-decoration: none;
+  color: var(--color-ink);
+  height: 100%;
+  transition: opacity var(--dur-hover) var(--ease-ui);
+}
+.card:hover { opacity: 0.8; }
+
+.card__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--color-rule);
+}
+.card__eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.card__arrow {
+  opacity: 0;
+  transform: translate(-4px, 4px);
+  transition: opacity var(--dur-hover) ease-out,
+              transform var(--dur-hover) ease-out;
+  color: var(--color-ink);
+  font-size: 16px;
+}
+.card:hover .card__arrow { opacity: 1; transform: translate(0, 0); }
+
+.card__title {
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 600;
+  font-size: var(--text-h3);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(var(--text-h3) * 1.25 * 3);
+}
+.card__date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: auto;
+}
+.card__meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: 4px;
 }

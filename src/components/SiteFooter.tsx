@@ -1,9 +1,9 @@
 import Link from 'next/link'
+import CaptureForm from './CaptureForm'
 
 /* Site-wide footer — brief v4 UX §4.10.
-   Grid-container aligned. Wordmark, capture placeholder (block 6 wires
-   Substack backend), three nav columns, legal.
-   Motion respects prefers-reduced-motion via token defaults. */
+   Grid-container aligned. Wordmark, capture form (backend Substack,
+   §4.8), three nav columns, legal. */
 
 export default function SiteFooter() {
   const year = 2026
@@ -12,9 +12,9 @@ export default function SiteFooter() {
       <div className="grid-container site-footer__grid">
         <div className="site-footer__wordmark">CRUDA</div>
 
-        {/* Capture placeholder — se implementa en block 6 (§4.8).
-            Estructura visual reservada; backend Substack pendiente. */}
-        <div className="site-footer__capture-slot" aria-hidden="true" />
+        <div className="site-footer__capture-slot">
+          <CaptureForm lang="en" variant="compact" />
+        </div>
 
         <nav className="site-footer__nav site-footer__nav--1" aria-label="Content">
           <Link href="/resources/essays" className="link">Essays</Link>

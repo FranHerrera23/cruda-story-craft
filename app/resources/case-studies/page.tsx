@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 import ResourceCards from '../ResourceCards'
 import ResourceFilters from '../ResourceFilters'
-import { allResources, countByKind } from '@/content/resources'
+import { allResources, countByKind, dedupeByPiece } from '@/content/resources'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import '../resources.css'
 
@@ -42,8 +42,11 @@ export const metadata: Metadata = {
   },
 }
 
-const CASE_STUDIES = allResources.filter((r) => r.kind === 'case-study')
-const GLOBAL_KIND_COUNTS = countByKind(allResources)
+/* Brief v4 UX §4.6 — dedupe (los case studies no tienen traducciones
+   hoy, pero mantenemos el patrón consistente). */
+const DEDUPED = dedupeByPiece(allResources, 'en')
+const CASE_STUDIES = DEDUPED.filter((r) => r.kind === 'case-study')
+const GLOBAL_KIND_COUNTS = countByKind(DEDUPED)
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/resources/case-studies',
@@ -77,7 +80,7 @@ export default function CaseStudiesResourcesPage() {
             <ResourceFilters
               items={CASE_STUDIES}
               scope="case-studies"
-              totalItems={allResources.length}
+              totalItems={DEDUPED.length}
               globalKindCounts={GLOBAL_KIND_COUNTS}
             />
           </Suspense>

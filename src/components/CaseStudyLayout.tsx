@@ -85,7 +85,7 @@ function schema(cs: CaseStudy) {
   const base = 'https://www.thecruda.com'
   const article: Record<string, unknown> = {
     '@type': 'Article',
-    '@id': `${base}/clients/${cs.slug}#article`,
+    '@id': `${base}/resources/case-studies/${cs.slug}#article`,
     /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para AI
        y buscadores; alternativeHeadline = H1 humano. */
     headline: cs.seoTitle ?? cs.title,
@@ -109,7 +109,7 @@ function schema(cs: CaseStudy) {
       name: cs.client.company,
       location: cs.client.location,
     },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${base}/clients/${cs.slug}` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${base}/resources/case-studies/${cs.slug}` },
   }
   if (cs.publishedAt) article.datePublished = cs.publishedAt
   if (cs.updatedAt) article.dateModified = cs.updatedAt
@@ -119,7 +119,7 @@ function schema(cs: CaseStudy) {
   if (cs.faqs && cs.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${base}/clients/${cs.slug}#faq`,
+      '@id': `${base}/resources/case-studies/${cs.slug}#faq`,
       mainEntity: cs.faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,
@@ -253,7 +253,7 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
       />
 
       {/* Brief v9 T5 — 3 piezas relacionadas después del cierre. */}
-      <RelatedResources excludeHrefs={[`/clients/${cs.slug}`]} lang="en" />
+      <RelatedResources excludeHrefs={[`/resources/case-studies/${cs.slug}`]} lang="en" />
     </article>
   )
 }

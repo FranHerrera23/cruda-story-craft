@@ -454,15 +454,15 @@ export default function Nav() {
           top: 0;
           left: 0;
           right: 0;
-          z-index: 100;
-          background: rgba(255, 255, 255, 0.94);
-          backdrop-filter: blur(16px);
-          border-bottom: 1px solid var(--rule-2, #EFEDE8);
+          z-index: 110;
+          /* Brief v4 UX §4.1 — bg opaco. NO transparente, NO blur. */
+          background: var(--color-surface);
+          border-bottom: 1px solid var(--color-rule);
         }
         .cruda-global-nav-in {
           max-width: var(--max, 1360px);
           margin: 0 auto;
-          padding: 20px var(--gut, clamp(24px, 5vw, 80px));
+          padding: 30px var(--gut, clamp(24px, 5vw, 80px));
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -510,9 +510,9 @@ export default function Nav() {
           right: 0;
           margin-top: 8px;
           min-width: 260px;
-          background: rgba(255, 255, 255, 0.98);
-          backdrop-filter: blur(16px);
-          border: 1px solid var(--rule, #E2E0DA);
+          /* Brief v4 UX §4.1 — bg opaco también en el dropdown panel. */
+          background: var(--color-surface);
+          border: 1px solid var(--color-rule);
           box-shadow: 0 12px 40px rgba(10, 10, 10, 0.07);
           padding: 10px 0;
           list-style: none;

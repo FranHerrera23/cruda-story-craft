@@ -28,93 +28,156 @@
 }
 .essay-root html { scroll-behavior: smooth; }
 
-/* ---------- Reading progress bar ---------- */
+/* ---------- Reading progress bar — brief v4 UX §4.1
+   Sale del naranja. Se queda a 2px en --color-ink. */
 .essay .essay-bar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 2px;
-  background: var(--accent);
+  background: var(--color-ink);
   z-index: 200;
   transform: scaleX(0);
   transform-origin: left;
   will-change: transform;
 }
 
-/* ---------- Essay page: 760px reading column ---------- */
+/* ---------- Essay page — brief v4 UX §4.2 §4.3
+   El artículo usa la grilla del sitio. Ningún componente lleva
+   max-width propio; posición por grid-column. --------------- */
 .essay article {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 0 var(--gut) 120px;
+  /* Comportamiento de .grid-container inlineado — el <article> ES
+     el contenedor. Nada se envuelve en un div extra. */
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+  padding-inline: 24px;
+  margin-inline: auto;
+  width: 100%;
+  padding-bottom: 96px;
+}
+@media (min-width: 768px) {
+  .essay article {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding-inline: 20px;
+  }
+}
+@media (min-width: 1024px) { .essay article { padding-inline: 40px; } }
+@media (min-width: 1600px) {
+  .essay article { max-width: 1600px; padding-inline: 40px; }
 }
 
-.essay .e-head { padding: calc(72px + 11vh) 0 0; }
-.essay .e-back {
-  display: inline-block;
-  margin-bottom: 40px;
-  color: var(--ink-2);
-  text-decoration: none;
-  transition: color 0.2s;
+/* Hero — §4.2 */
+.essay .e-head {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding-top: 120px;   /* mobile */
+  padding-bottom: 96px;
 }
-.essay .e-back:hover { color: var(--ink); }
+@media (min-width: 768px) {
+  .essay .e-head { padding-top: var(--space-8); }  /* 244px desktop */
+}
+
+.essay .e-back {
+  grid-column: 1 / -1;
+  margin-bottom: 64px;
+  color: var(--color-muted);
+  text-decoration: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: opacity var(--dur-hover) var(--ease-ui);
+}
+.essay .e-back:hover { opacity: 0.6; }
+
 .essay .e-meta {
-  margin-bottom: 26px;
+  grid-column: 1 / span 5;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   flex-wrap: wrap;
-}
-.essay .e-type {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 10px;
-  letter-spacing: 0.16em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  background: var(--ink);
-  color: var(--white);
-  padding: 5px 10px;
+  color: var(--color-muted);
 }
-.essay .e-meta .mono {
-  color: var(--ink-2);
-  font-size: 10px;
-  letter-spacing: 0.16em;
+/* No más badge negro — es texto mono, no un chip (§4.2). */
+.essay .e-type {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--color-muted);
+  padding: 0;
 }
+.essay .e-meta .mono { color: var(--color-muted); }
+
 .essay h1 {
-  font-size: var(--fs-h1);
+  /* §4.2 — H1 en col 1-8 (media pantalla vacía a la derecha) */
+  grid-column: 1 / span 8;
+  margin-top: var(--space-3);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-display);
   font-weight: 700;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-heading);
-  margin-bottom: 24px;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+}
+@media (max-width: 767px) {
+  .essay h1 { grid-column: 1 / -1; }
 }
 
-/* Brief v9 T1 — bajada editorial entre H1 y byline.
-   --fs-lead, --ink-2, peso regular, sin negrita. Es el subtítulo
-   del ensayo; no compite con el titular ni con el body. */
+/* Bajada — §4.2 col 1-6, body-large, ink */
 .essay .e-deck {
+  grid-column: 1 / span 6;
+  margin-top: var(--space-4);
   font-family: 'Archivo', -apple-system, sans-serif;
   font-weight: 400;
-  font-size: var(--fs-lead);
-  line-height: 1.45;
-  letter-spacing: -0.005em;
-  color: var(--ink-2);
-  margin: 0 0 32px;
-  max-width: 42rem;
+  font-size: var(--text-body-large);
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--color-ink);
   text-wrap: pretty;
 }
+@media (max-width: 767px) {
+  .essay .e-deck { grid-column: 1 / -1; }
+}
+
+/* Hairline entre bajada y byline — §4.2 */
+.essay .e-head::before,
+.essay .e-head::after {
+  content: "";
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--color-rule);
+}
+.essay .e-head::before { margin-top: 64px; }
 
 .essay .e-by {
-  display: flex;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
   align-items: center;
-  gap: 14px;
-  flex-wrap: wrap;
-  padding: 22px 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
+  padding-block: var(--space-3);
+}
+.essay .e-by > *:first-child { /* foto */
+  grid-column: 1 / span 1;
+}
+.essay .e-by > div:nth-of-type(1) { /* name/role */
+  grid-column: 2 / span 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 .essay .e-av {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   object-fit: cover;
   filter: grayscale(1);
@@ -122,80 +185,117 @@
 .essay .e-name {
   display: block;
   font-weight: 600;
-  font-size: 15px;
+  font-size: var(--text-body);
+  color: var(--color-ink);
 }
 .essay .e-role {
   display: block;
-  font-size: 13.5px;
-  color: var(--ink-2);
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: 'IBM Plex Mono', monospace;
 }
 .essay .e-dates {
-  margin-left: auto;
-  font-family: var(--mono);
-  font-size: 11.5px;
-  color: var(--ink-2);
-  letter-spacing: 0.04em;
+  grid-column: 10 / span 3;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   text-align: right;
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .essay .e-by > div:nth-of-type(1) { grid-column: 2 / -1; }
+  .essay .e-dates { grid-column: 1 / -1; text-align: left; margin-top: 12px; }
 }
 
-/* ANSWER CAPSULE — el bloque que la IA levanta.
-   Brief v8 T1: sobre --cream como el bloque takeaways de los case
-   studies. Padding generoso, sin border-left; el fondo es el aviso. */
+/* Answer capsule — sigue en --color-paper. §4.3 breakout col 3-11. */
 .essay .e-capsule {
-  margin: 48px 0 56px;
-  padding: 32px 40px;
-  background: var(--cream);
-  font-size: var(--fs-capsule);
+  grid-column: 3 / span 9;
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  background: var(--color-paper);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-body-large);
   line-height: 1.5;
   font-weight: 500;
-  letter-spacing: -0.008em;
-  color: var(--ink);
+  letter-spacing: 0;
+  color: var(--color-ink);
+}
+@media (max-width: 767px) {
+  .essay .e-capsule { grid-column: 1 / -1; }
 }
 
-.essay .e-hero { margin: 32px 0 40px; }
+.essay .e-hero { grid-column: 1 / -1; margin-top: var(--space-4); }
 .essay .e-hero img { width: 100%; height: auto; display: block; }
 
-/* Body — Parte 6.1: --fs-body / --lh-body.
-   This is the single change with the biggest visible impact on the site. */
+/* Body — brief v4 UX §4.3
+   Prose col 4-10 (7 columnas, ~68 chars/línea a 18px).
+   Breakout col 3-11. Full-bleed col 1-12. */
+.essay .e-body {
+  grid-column: 4 / span 7;
+  margin-top: var(--space-5);
+}
+@media (max-width: 767px) {
+  .essay .e-body { grid-column: 1 / -1; }
+}
+
+.essay .e-body > * + * { margin-top: 28px; }
+
 .essay .e-body p {
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: #25252A;
-  margin-bottom: 28px;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-ink);
+  margin-bottom: 0;
 }
-.essay .e-body p.lead {
-  font-size: var(--fs-lead);
-}
-/* Inline emphasis dentro del cuerpo — el ensayo trae bold y cursivas.
-   `strong` mantiene el mismo tamaño con peso, `em` queda cursiva
-   sin cambiar familia. */
-.essay .e-body strong {
-  font-weight: 700;
-  color: var(--ink);
-}
-.essay .e-body em {
-  font-style: italic;
-  color: inherit;
-}
-/* Brief v9 T4 — más aire antes de H2 para que la sección se lea
-   como corte real, no como párrafo con negrita. */
+.essay .e-body p.lead { font-size: var(--text-body-large); }
+
+.essay .e-body strong { font-weight: 700; color: var(--color-ink); }
+.essay .e-body em { font-style: italic; color: inherit; }
+
+/* §4.3 spacing rules — H2 96px arriba, H3 56px arriba */
 .essay .e-body h2 {
-  font-size: var(--fs-h2);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h2);
   font-weight: 700;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-heading);
-  margin: 88px 0 24px;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  margin-top: 96px;
+  margin-bottom: 24px;
+  color: var(--color-ink);
 }
-/* Brief v9 T4 — H3 disponible en el molde. --fs-h3 (22px). Menos
-   aire que H2 porque es sub-corte, no corte primario. */
 .essay .e-body h3 {
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-heading);
-  margin: 48px 0 16px;
-  color: var(--ink);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-top: 56px;
+  margin-bottom: 16px;
+  color: var(--color-ink);
 }
+
+/* Inline text links within essay body get the sweep underline. */
+.essay .e-body a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--dur-ui) var(--ease-ui);
+}
+.essay .e-body a::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 1px; width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-ui) var(--ease-ui);
+}
+.essay .e-body a:hover::after { transform: scaleX(1); transform-origin: left; }
 
 /* Signature — brief v15 T4. Reemplaza la línea del newsletter que
    prometía algo que no existe todavía. Mono, mayúsculas, --fs-meta,
@@ -246,57 +346,58 @@
   color: var(--ink);
 }
 
-/* Pull quote — Brief v9 T2.
-   Flush left contra la columna de texto, con regla vertical en
-   --accent a la izquierda. Mismo tratamiento que .cs-pull en los
-   case studies. Antes estaba offset a la derecha con serif — rompía
-   el eje de lectura sin motivo. */
+/* Pull quote — brief v4 UX §4.3 breakout.
+   Antes usaba border-left en --accent naranja; ahora --color-rule
+   (neutro) porque el accent está reservado a focus + botón. */
 .essay .e-body p.e-pull {
-  margin: 40px 0 40px 0;
+  margin: 40px 0;
   padding-left: 28px;
-  border-left: 2px solid var(--accent);
+  border-left: 2px solid var(--color-rule);
   font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: var(--fs-h3);
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-heading);
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   font-weight: 500;
-  color: var(--ink);
-  max-width: 40ch;
+  color: var(--color-ink);
   text-align: left;
 }
 
-/* cita atribuida */
 .essay .e-quote {
   margin: 44px 0;
   padding: 28px 32px;
-  background: var(--cream);
+  background: var(--color-paper);
 }
 .essay .e-quote p {
-  font-size: var(--fs-lead);
+  font-size: var(--text-body-large);
   line-height: 1.5;
   margin-bottom: 14px;
-  color: var(--ink);
+  color: var(--color-ink);
 }
 .essay .e-quote cite {
   font-style: normal;
-  font-family: var(--mono);
-  font-size: var(--fs-meta);
-  letter-spacing: 0.14em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: var(--color-muted);
 }
 
-/* FAQ */
+/* FAQ — grid-column 4/7 dentro del artículo, hairlines en --color-rule */
 .essay .e-faq {
-  border-top: 1px solid var(--ink);
+  grid-column: 4 / span 7;
+  border-top: 1px solid var(--color-rule);
   padding-top: 48px;
-  margin: 64px 0 32px;
+  margin-top: 96px;
+}
+@media (max-width: 767px) {
+  .essay .e-faq { grid-column: 1 / -1; }
 }
 .essay .e-faq h2 {
-  font-size: var(--fs-h2);
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h2);
   font-weight: 700;
-  line-height: var(--lh-heading);
-  letter-spacing: var(--track-heading);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
   margin-bottom: 32px;
 }
 .essay .e-faq details { border-bottom: 1px solid var(--rule-2); }

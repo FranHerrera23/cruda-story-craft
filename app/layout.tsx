@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Nav from "@/components/Nav";
+import SiteFooter from "@/components/SiteFooter";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Providers from './providers';
@@ -98,10 +99,13 @@ export default function RootLayout({
             <Toaster />
             <Sonner />
             <ScrollToTop />
+            {/* Brief v4 UX §1.8 — skip link como primer elemento del body. */}
+            <a href="#main" className="skip-link">Skip to content</a>
             <Nav />
-            <main className="route-transition-wrapper" data-page>
+            <main id="main" className="route-transition-wrapper" data-page>
               {children}
             </main>
+            <SiteFooter />
           </TooltipProvider>
         </Providers>
       </body>

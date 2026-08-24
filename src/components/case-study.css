@@ -1,48 +1,272 @@
 :root{
-  /* Palette — brief v2 Parte 1.
-     --accent replaces the retired --red (bright pink read as alert on
-     small strokes). --petrol only enters essay cover backgrounds. */
-  --white:#FFFFFF;
-  --ink:#0A0A0A;
-  --ink-2:#4A4A4A;
-  --accent:#E8623A;
-  --petrol:#1C2E33;
-  --cream:#F5F1E8;
-  --rule:#E2E0DA;
-  --rule-2:#EFEDE8;
+  /* ==================================================================
+     Brief v4 UX (24 ago 2026) — sistema de tokens único.
+     Todo lo demás deriva de acá. Si un componente necesita un valor
+     que no está en esta lista, el componente está mal.
 
-  /* Type scale — brief v2 Parte 1. No component may declare font-size
-     outside these tokens. Values above override earlier per-element
-     briefs. */
-  --fs-display:     clamp(64px, 9vw, 168px);
-  --fs-display-sm:  clamp(40px, 5vw, 68px);
-  --fs-h1:          clamp(40px, 5vw, 68px);
-  --fs-h2:          32px;
-  --fs-h3:          22px;
-  --fs-capsule:     22px;
-  --fs-lead:        20px;
-  --fs-body:        19px;
-  --fs-card-title:  24px;
-  --fs-excerpt:     17px;
-  --fs-meta:        11px;
+     Los tokens NUEVOS son los canónicos (--color-*, --text-*, etc.).
+     Los ALIAS legacy (--white, --ink, --cream, --rule, --fs-*) apuntan
+     a los nuevos para no romper componentes que aún no se refactoraron.
+     ================================================================== */
 
-  /* Line height */
-  --lh-display:     0.92;
-  --lh-heading:     1.05;
+  /* -------- Color -------- */
+  --color-ink:        #0A0A0A;
+  --color-surface:    #FFFFFF;
+  --color-paper:      #F5F1E8;
+  --color-muted:      #6B6B6B;
+  --color-rule:       rgba(10, 10, 10, 0.20);
+  /* --color-accent aparece exactamente en dos lugares del sitio:
+     el focus ring de teclado y el hover del botón primario.
+     Si aparece en una tercera parte, pierde el significado. */
+  --color-accent:     #FFD200;
+  --focus-ring-color: var(--color-ink);
+
+  /* -------- Type -------- */
+  --text-display:     44px;
+  --text-h2:          32px;
+  --text-h3:          22px;
+  --text-body-large:  22px;
+  --text-body:        18px;
+  --text-caption:     13px;
+
+  /* -------- Spacing (base 8) -------- */
+  --space-1:  8px;
+  --space-2:  16px;
+  --space-3:  24px;
+  --space-4:  40px;
+  --space-5:  64px;
+  --space-6:  96px;
+  --space-7:  160px;
+  --space-8:  244px;    /* padding-top del hero (deliberado, ex NDS) */
+
+  /* -------- Motion (dos curvas, cuatro duraciones) -------- */
+  --ease-ui:      cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-overlay: cubic-bezier(0.33,  1,    0.68,  1);
+  --dur-fast:     200ms;
+  --dur-hover:    300ms;
+  --dur-ui:       600ms;
+  --dur-overlay:  500ms;
+
+  /* -------- Alias legacy (mantener hasta que todo migre) -------- */
+  --white:  var(--color-surface);
+  --ink:    var(--color-ink);
+  --ink-2:  var(--color-muted);
+  /* --accent (alias legacy) usaba naranja para decoración (border-lefts,
+     underlines, focus). El brief v4 UX prohíbe usar el accent
+     decorativamente — --color-accent solo va en focus ring + hover del
+     botón primario. Para no salpicar amarillo sobre componentes viejos
+     que aún referencian --accent, apuntamos a rule (neutral).
+     Migración por componente cuando se refactora. */
+  --accent: var(--color-rule);
+  --petrol: #1C2E33;
+  --cream:  var(--color-paper);
+  --rule:   var(--color-rule);
+  --rule-2: rgba(10, 10, 10, 0.08);
+
+  --fs-display:     var(--text-display);
+  --fs-display-sm:  var(--text-display);
+  --fs-h1:          var(--text-display);
+  --fs-h2:          var(--text-h2);
+  --fs-h3:          var(--text-h3);
+  --fs-capsule:     var(--text-body-large);
+  --fs-lead:        var(--text-body-large);
+  --fs-body:        var(--text-body);
+  --fs-card-title:  var(--text-h3);
+  --fs-excerpt:     var(--text-body);
+  --fs-meta:        var(--text-caption);
+
+  --lh-display:     1.08;
+  --lh-heading:     1.15;
   --lh-body:        1.7;
   --lh-tight:       1.3;
 
-  /* Tracking */
-  --track-display:  -0.03em;
-  --track-heading:  -0.02em;
+  --track-display:  -0.02em;
+  --track-heading:  -0.015em;
   --track-mono:      0.12em;
 
-  /* Measures */
   --measure-full:    100%;
   --measure-reading: 42rem;
   --measure-note:    22rem;
 
-  --ease: cubic-bezier(.16,1,.3,1);
+  --ease: var(--ease-ui);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --text-display:    32px;
+    --text-h2:         26px;
+    --text-h3:         20px;
+    --text-body-large: 19px;
+    --text-body:       17px;
+    --text-caption:    12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ==================================================================
+   Grilla — un único contenedor. Ningún componente lleva max-width
+   propio. Todo se posiciona con grid-column.
+   ================================================================== */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 20px;
+  padding-inline: 24px;
+  margin-inline: auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    padding-inline: 20px;
+  }
+}
+@media (min-width: 1024px) {
+  .grid-container { padding-inline: 40px; }
+}
+@media (min-width: 1600px) {
+  .grid-container {
+    max-width: 1600px;
+    padding-inline: 40px;
+  }
+}
+
+/* ==================================================================
+   Link de texto — underline de barrido. Componente único; todo link
+   inline del sitio lo usa. origin-right en reposo, origin-left al
+   hover: entra por la izquierda, sale por la derecha.
+   ================================================================== */
+.link {
+  position: relative;
+  width: fit-content;
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity var(--dur-ui) var(--ease-ui);
+}
+.link::after {
+  content: "";
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 1px; width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--dur-ui) var(--ease-ui);
+}
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Focus ring visible en cada link, input y botón. */
+:focus-visible {
+  outline: 2px solid var(--focus-ring-color);
+  outline-offset: 4px;
+}
+
+/* Skip-link — brief v4 UX §1.8. sr-only por default; visible al focus. */
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 200;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-ink);
+  color: var(--color-surface);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: var(--text-caption);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.skip-link:focus-visible {
+  clip: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* sr-only para labels de accesibilidad (skip links, "opens in new tab") */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==================================================================
+   Site footer — brief v4 UX §4.10
+   ================================================================== */
+.site-footer {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  border-top: 1px solid var(--color-rule);
+  padding-block: var(--space-5);
+}
+.site-footer__grid {
+  min-height: 640px;
+  grid-auto-rows: min-content;
+  row-gap: var(--space-4);
+}
+.site-footer__wordmark {
+  grid-column: 1 / span 6;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: clamp(56px, 8vw, 128px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+.site-footer__capture-slot {
+  grid-column: 1 / span 5;
+  margin-top: var(--space-5);
+  min-height: 96px;                /* Reservado para block 6 (§4.8) */
+}
+.site-footer__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-body);
+  align-self: start;
+}
+.site-footer__nav--1 { grid-column: 8 / span 2; }
+.site-footer__nav--2 { grid-column: 10 / span 2; }
+.site-footer__nav--3 { grid-column: 12 / span 1; }
+.site-footer__legal {
+  grid-column: 1 / -1;
+  margin-top: auto;
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: 'IBM Plex Mono', monospace;
+  padding-top: var(--space-4);
+}
+
+@media (max-width: 767px) {
+  .site-footer__grid { min-height: auto; }
+  .site-footer__wordmark { grid-column: 1 / -1; }
+  .site-footer__capture-slot { grid-column: 1 / -1; }
+  .site-footer__nav--1,
+  .site-footer__nav--2,
+  .site-footer__nav--3 { grid-column: 1 / -1; }
 }
 
 /* Root anchor (Parte 1.1). All rem-based sizes derive from this. */
@@ -197,24 +421,57 @@ html { font-size: 17px; }
 /* ClosingBlock — brief v5 T6. Va al final de todos los ensayos y
    case studies. Sobre --cream. CTA sobre --ink que hace hover en
    accent. */
-.cb{background:var(--cream);padding:clamp(56px,8vw,96px) clamp(32px,5vw,72px);
-  margin:80px 0 0}
-/* Brief v14 T8 — el heading del ClosingBlock estaba en tamaño
-   display (hasta 44px), competía con el H1 del ensayo/case study.
-   Va a --fs-h2 (32px), consistente con los headings de sección. */
-.cb-head{font-family:'Instrument Serif',Georgia,serif;
-  font-size:var(--fs-h2);line-height:var(--lh-heading,1.05);
-  letter-spacing:var(--track-heading,-.02em);
-  color:var(--ink);max-width:22ch;margin:0 0 20px}
-.cb-body{font-size:var(--fs-body);line-height:var(--lh-body,1.7);color:var(--ink-2);
-  max-width:56ch;margin:0 0 32px}
-.cb-cta{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);
-  font-weight:500;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-  background:var(--ink);color:var(--white);padding:19px 32px;text-decoration:none;
-  transition:background .2s}
-.cb-cta:hover{background:var(--accent)}
-.cb-arrow{display:inline-block;transition:transform .3s var(--ease,cubic-bezier(.16,1,.3,1))}
-.cb-cta:hover .cb-arrow{transform:translateX(6px)}
+/* Brief v4 UX §4.7 — CTA en grid, sans (cero serif), inline-block
+   button, hover del botón vira a --color-accent (uno de los dos
+   únicos lugares donde el yellow aparece). Ancho fijo 46ch para
+   el body. */
+.cb{
+  grid-column: 3 / span 9;
+  margin-top: 120px;
+  padding: var(--space-5);
+  background: var(--color-paper);
+}
+@media (max-width: 767px) {
+  .cb { grid-column: 1 / -1; padding: var(--space-4); }
+}
+.cb-head{
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h2);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  color: var(--color-ink);
+  margin: 0 0 20px;
+}
+.cb-body{
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-ink);
+  max-width: 46ch;
+  margin: 0 0 var(--space-4);
+}
+.cb-cta{
+  display: inline-block;
+  padding: 18px 36px;
+  background: var(--color-ink);
+  color: var(--color-surface);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background var(--dur-hover) var(--ease-ui),
+              color var(--dur-hover) var(--ease-ui);
+}
+.cb-cta:hover{
+  /* §3.1 rule — --color-accent aparece exactamente en dos lugares:
+     focus ring y este hover. */
+  background: var(--color-accent);
+  color: var(--color-ink);
+}
+.cb-arrow{ display: inline-block; margin-left: 8px; }
 
 /* ÍNDICE */
 .idx{max-width:1280px;margin:0 auto;padding:clamp(96px,14vh,160px) clamp(24px,5vw,72px) 120px}
@@ -312,9 +569,15 @@ html { font-size: 17px; }
 /* Brief v14 T8 — más aire entre el ClosingBlock (sobre --cream) y
    la sección Read more. Antes se tocaban visualmente. */
 .rr {
+  /* Brief v4 UX §3.2 — el bloque vive en la grilla del sitio.
+     3/9 al mismo ancho que ClosingBlock. */
+  grid-column: 3 / span 9;
   margin: 120px 0 0;
   padding: 56px 0 0;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--color-rule);
+}
+@media (max-width: 767px) {
+  .rr { grid-column: 1 / -1; }
 }
 .rr-heading {
   font-family: 'Archivo', -apple-system, sans-serif;

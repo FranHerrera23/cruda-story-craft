@@ -90,7 +90,10 @@
 .cruda-home .manifesto span { display: block; }
 .cruda-home .manifesto .line-2 {
   font-style: normal;
-  color: var(--color-ink);
+  /* Gris explícito (no el alias legacy). Dos líneas, dos pesos:
+     "Find the essence." declara (--color-ink), "Strip the bullshit."
+     se desvanece (--color-muted). C1. */
+  color: var(--color-muted);
 }
 
 /* -------------------------------------------------------------------

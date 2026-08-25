@@ -36,7 +36,12 @@
 /* ---------- hero ---------- */
 .sys .sys-header { padding: calc(72px + 14vh) 0 clamp(72px, 10vh, 140px); }
 .sys .hero-eye { color: var(--ink-2); margin-bottom: 40px; }
-.sys .h1 .accent { color: var(--color-ink); }
+/* .accent envuelve "Everything else" en el H1 — mismo mecanismo que
+   .line-2 de la home: el resto en ink, el accent más claro. Muted
+   contra ink resalta por contraste inverso, sin usar color de marca.
+   C2 preferencia 2 (weight superior no aplica: Archivo no se está
+   cargando via next/font todavía). */
+.sys .h1 .accent { color: var(--color-muted); }
 .sys .hero-h { margin-bottom: 48px; max-width: 19ch; }
 .sys .hero-row { display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: end; padding-top: 40px; border-top: 1px solid var(--rule); }
 .sys .btn {

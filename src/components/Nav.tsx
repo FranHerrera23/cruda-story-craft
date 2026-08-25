@@ -134,8 +134,13 @@ export default function Nav() {
     setMobileOpen(false)
   }, [pathname])
 
+  /* B2 — hover es opacidad. Inactivos en --color-muted (~60% de ink),
+     hover 100%, activo (currentPage) siempre 100%. Es el patrón
+     inverso al anterior: la página actual se destaca, las demás se
+     apagan hasta hover. La transición color viene del global de
+     globals.css. */
   const linkStyle = (isActive: boolean): React.CSSProperties => ({
-    color: isActive ? 'var(--ink-2)' : 'var(--ink)',
+    color: isActive ? 'var(--color-ink)' : 'var(--color-muted)',
     textDecoration: 'none',
     fontFamily: 'var(--mono)',
     fontWeight: 500,
@@ -161,6 +166,7 @@ export default function Nav() {
           <div className="cruda-global-nav-menu">
             <Link
               href="/our-founder"
+              className="link"
               style={linkStyle(isAbout)}
               aria-current={isAbout ? 'page' : undefined}
             >
@@ -179,7 +185,7 @@ export default function Nav() {
                   setCompaniesOpen((v) => !v)
                 }}
                 style={{
-                  color: companiesActive ? 'var(--ink-2)' : 'var(--ink)',
+                  color: companiesActive ? 'var(--color-ink)' : 'var(--color-muted)',
                 }}
               >
                 Companies
@@ -201,7 +207,7 @@ export default function Nav() {
                         tabIndex={companiesOpen ? 0 : -1}
                         aria-current={active ? 'page' : undefined}
                         style={{
-                          color: active ? 'var(--ink-2)' : 'var(--ink)',
+                          color: active ? 'var(--color-ink)' : 'var(--color-muted)',
                         }}
                         onClick={() => setCompaniesOpen(false)}
                       >
@@ -219,7 +225,7 @@ export default function Nav() {
                 href="/resources"
                 style={linkStyle(isResources)}
                 aria-current={isResources ? 'page' : undefined}
-                className="cruda-global-nav-resources-link"
+                className="cruda-global-nav-resources-link link"
               >
                 Resources
               </Link>
@@ -272,6 +278,7 @@ export default function Nav() {
 
             <Link
               href="/contact"
+              className="link"
               style={linkStyle(isContact)}
               aria-current={isContact ? 'page' : undefined}
             >
@@ -514,18 +521,18 @@ export default function Nav() {
           box-shadow: 0 12px 40px rgba(10, 10, 10, 0.07);
           padding: 10px 0;
           list-style: none;
+          /* B2 — reveal es solo opacidad. Se sacó translateY(-8px)
+             que hacía slide vertical del panel. Vocabulario del sitio:
+             opacidad + flecha. */
           opacity: 0;
           visibility: hidden;
-          transform: translateY(-8px);
           transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
                       visibility 0.3s;
           z-index: 30;
         }
         .cruda-global-nav-dropdown-menu.open {
           opacity: 1;
           visibility: visible;
-          transform: translateY(0);
         }
         .cruda-global-nav-dropdown-menu li a {
           display: block;
@@ -652,7 +659,11 @@ export default function Nav() {
           padding: 12px 22px;
           transition: background-color 0.2s;
         }
-        .cruda-subnav-cta:hover { background: var(--accent, #E8623A); }
+        /* B2 — hover del CTA del subnav en --color-accent (amarillo).
+           Se removió el fallback #E8623A: si --color-accent no resuelve,
+           el hover deja de pintar y falla visible en vez de retroceder
+           al naranja legacy. */
+        .cruda-subnav-cta:hover { background: var(--color-accent); color: var(--color-ink); }
 
         @media (max-width: 900px) {
           .cruda-subnav {

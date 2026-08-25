@@ -96,18 +96,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={instrumentSerif.variable}>
       <head>
-        {/* Satoshi font from Fontshare - Primary */}
-        <link rel="preconnect" href="https://api.fontshare.com" />
-        <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet" />
-        {/* DM Sans from Google Fonts - Fallback */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
         {/* EB Garamond + Instrument Sans — cargadas SOLO para
             /architecture-design/about, que usa CSS inline con esas
             fuentes. Ni EB Garamond ni Instrument Sans son parte del
-            sistema tipográfico de CRUDA. Este <link> muere cuando el
-            template de About se reemplace. */}
+            sistema tipográfico de CRUDA (Archivo + Instrument Serif +
+            IBM Plex Mono). Este <link> muere cuando el template de
+            About se reemplace.
+            Satoshi y DM Sans fueron removidas en B1: globals.css ya
+            no las declara y ningún CSS del repo las consume. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>

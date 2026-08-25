@@ -149,7 +149,8 @@ export default function AboutContent() {
       ))}
       <ValuesSection />
       <CTASection />
-      <FooterSection />
+      {/* B4 — FooterSection inline removido. El SiteFooter global (del
+          layout) es el único footer del sitio. */}
 
       <style>{aboutStyles}</style>
     </div>

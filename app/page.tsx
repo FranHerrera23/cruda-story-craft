@@ -97,10 +97,6 @@ export default function HomePage() {
               </Link>
             </div>
           </main>
-
-          <footer className="foot">
-            <span className="mono yr">CRUDA &copy; 2026</span>
-          </footer>
         </div>
       </div>
     </>

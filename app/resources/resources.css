@@ -124,94 +124,18 @@
   padding: 40px 0;
 }
 
-/* Cards — sin imagen. Badge company + kind. */
-.rs-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.rs-list li {
-  border-bottom: 1px solid var(--rule);
-}
-.rs-card {
-  display: block;
-  padding: clamp(28px, 4vw, 40px) 0;
-  text-decoration: none;
-  color: var(--ink);
-  transition: background 0.2s;
-  position: relative;
-}
-.rs-card:hover { background: var(--cream); }
-.rs-card:hover .rs-card-title { color: var(--accent); }
-.rs-card:hover .rs-card-more { color: var(--accent); }
-.rs-card-meta {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 16px;
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  letter-spacing: -0.005em;
-}
-.rs-badge {
-  color: var(--ink);
-  background: var(--cream);
-  padding: 4px 10px;
-  border: 1px solid var(--rule);
-}
-.rs-kind { color: var(--ink-2); }
-/* Brief v8 T2 — badge de idioma. Mismo tratamiento tipográfico que
-   el resto de la card-meta (Archivo, sentence case, 13px). Solo
-   aparece en piezas ES. */
-.rs-lang {
-  color: var(--ink);
-  background: var(--white);
-  padding: 4px 8px;
-  border: 1px solid var(--ink-2);
-  font-weight: 600;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-}
+/* Nota B4: bloque de .rs-list / .rs-card* / .rs-badge / .rs-kind /
+   .rs-lang / .rs-card-title / .rs-card-excerpt / .rs-card-more borrado.
+   Era la lista vieja de cards antes del rewrite de §4.5 (block 5) — el
+   JSX de ResourceCards y RelatedResources ahora usa .card (definido en
+   case-study.css). Cero DOM matcheaba estos selectores.
 
-.rs-card-title {
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 600;
-  font-size: var(--fs-card-title);
-  line-height: 1.15;
-  letter-spacing: -0.014em;
-  color: var(--ink);
-  max-width: 28ch;
-  margin-bottom: 14px;
-  transition: color 0.2s;
-}
-.rs-card-excerpt {
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 68ch;
-  margin-bottom: 20px;
-  /* Trim to a few lines so the list stays scannable. */
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.rs-card-more {
-  color: var(--ink);
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  transition: color 0.2s, transform 0.3s var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
-  display: inline-block;
-}
-.rs-card:hover .rs-card-more { transform: translateX(6px); }
+   Sobrevive solo la media query del filter row en mobile, porque
+   .rs-filter-row sigue vivo. */
 
 @media (max-width: 720px) {
   .rs-filter-row {
     grid-template-columns: 1fr;
     gap: 12px;
   }
-  .rs-card-meta { flex-wrap: wrap; gap: 12px; }
 }

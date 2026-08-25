@@ -12,15 +12,16 @@
   --serif: var(--font-instrument-serif), Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
-  overflow: hidden;
+  /* B4 — se removió overflow:hidden + height:100dvh del root: ese par
+     estaba tapando el SiteFooter global. El .shell mantiene su
+     100dvh (el manifesto sigue ocupando la pantalla completa al
+     entrar), pero la página scrollea para revelar el footer global. */
   background: var(--white);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  height: 100dvh;
-  min-height: 100dvh;
 }
 .cruda-home-root *,
 .cruda-home-root *::before,
@@ -167,24 +168,12 @@
   color: var(--color-ink);
 }
 
-/* -------------------------------------------------------------------
-   4. Footer — solo la marca de año.
---------------------------------------------------------------------- */
-.cruda-home .foot {
-  flex-shrink: 0;
-  padding: clamp(20px, 3vh, 32px) 0 clamp(24px, 3.4vh, 40px);
-  border-top: 1px solid var(--rule);
-  display: flex;
-  align-items: baseline;
-  justify-content: flex-start;
-}
-.cruda-home .yr {
-  color: var(--ink-2);
-  font-size: 12px;
-}
+/* Nota B4: .cruda-home .foot borrado. El footer de la home ahora es
+   el SiteFooter global (que se ve al scrollear). Reglas .foot y .yr
+   quedaron muertas y se removieron. */
 
 /* -------------------------------------------------------------------
-   5. Load sequence — CSS-only, respeta reduced-motion.
+   4. Load sequence — CSS-only, respeta reduced-motion.
    Baseline visible en caso extremo (JS off + prefers-reduced-motion):
    no depende de observer. Cada nodo cae de vuelta a opacity: 1.
 --------------------------------------------------------------------- */
@@ -194,8 +183,7 @@
   .cruda-home .manifesto .line-2,
   .cruda-home .say,
   .cruda-home .principles,
-  .cruda-home .cta,
-  .cruda-home .foot {
+  .cruda-home .cta {
     opacity: 0;
     animation-fill-mode: forwards;
     animation-timing-function: var(--ease, cubic-bezier(.16, 1, .3, 1));
@@ -235,11 +223,6 @@
     animation-duration: 500ms;
     animation-delay: 860ms;
   }
-  .cruda-home .foot {
-    animation-name: cruda-home-fade;
-    animation-duration: 500ms;
-    animation-delay: 940ms;
-  }
 }
 
 @keyframes cruda-home-rise {
@@ -252,18 +235,8 @@
 }
 
 @media (max-width: 860px) {
-  html.cruda-home-html,
-  .cruda-home-root {
-    overflow: auto !important;
-    height: auto !important;
-  }
   .cruda-home .shell { height: auto; min-height: 100dvh; }
   .cruda-home .mid { padding: clamp(40px, 8vh, 80px) 0; }
-  .cruda-home .foot {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
   /* Los principios pueden envolver en mobile — no cortan las
      palabras, solo saltan de línea entre separadores si hace falta.
      No se re-apilan como lista. */

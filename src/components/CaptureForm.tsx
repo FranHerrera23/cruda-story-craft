@@ -67,6 +67,10 @@ export default function CaptureForm({
 }: Props) {
   const copy = COPY[lang]
   const [email, setEmail] = useState('')
+  /* Honeypot — el usuario humano nunca lo ve (sr-only + tabIndex=-1
+     + autocomplete=off). Un bot que llena todos los campos lo completa,
+     y el server responde 200 sin llamar a Substack (B4). */
+  const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<Status>('idle')
 
   async function handleSubmit(e: React.FormEvent) {
@@ -89,6 +93,7 @@ export default function CaptureForm({
           source_path: sourcePath ?? (typeof window !== 'undefined' ? window.location.pathname : ''),
           utm_source: params.get('utm_source') ?? '',
           utm_campaign: params.get('utm_campaign') ?? '',
+          website,
         }),
       })
       const data = (await res.json().catch(() => ({}))) as {
@@ -125,6 +130,31 @@ export default function CaptureForm({
         </>
       )}
       <form className="capture__form" onSubmit={handleSubmit} noValidate>
+        {/* Honeypot — sr-only + tabIndex=-1 + autoComplete=off. Invisible
+            para el humano, invisible para el screen reader que respeta
+            aria-hidden, y fuera del tab order. Un bot que autofillea
+            todos los inputs lo completa y el server descarta. */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            left: '-9999px',
+            width: 1,
+            height: 1,
+            overflow: 'hidden',
+          }}
+        >
+          <label htmlFor="capture-website">Website (leave blank)</label>
+          <input
+            id="capture-website"
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+          />
+        </div>
         <div className="capture__row">
           <input
             type="email"

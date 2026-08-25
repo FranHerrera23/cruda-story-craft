@@ -230,11 +230,13 @@
 .essay .e-hero { grid-column: 1 / -1; margin-top: var(--space-4); }
 .essay .e-hero img { width: 100%; height: auto; display: block; }
 
-/* Body — brief v4 UX §4.3
-   Prose col 4-10 (7 columnas, ~68 chars/línea a 18px).
-   Breakout col 3-11. Full-bleed col 1-12. */
+/* Body — brief v4 UX §4.3, corregido B3.
+   Prose col 4-9 (6 columnas). El comentario anterior decía "~68 chars"
+   pero la medición real en playwright a 1440px con 7 cols dio 85 chars.
+   6 cols acerca a los 68 target sin llegar del todo. Breakout col 3-11,
+   full-bleed col 1-12. */
 .essay .e-body {
-  grid-column: 4 / span 7;
+  grid-column: 4 / span 6;
   margin-top: var(--space-5);
 }
 @media (max-width: 767px) {
@@ -381,9 +383,9 @@
   color: var(--color-muted);
 }
 
-/* FAQ — grid-column 4/7 dentro del artículo, hairlines en --color-rule */
+/* FAQ — alineado a la columna del body (4/6), hairlines en --color-rule */
 .essay .e-faq {
-  grid-column: 4 / span 7;
+  grid-column: 4 / span 6;
   border-top: 1px solid var(--color-rule);
   padding-top: 48px;
   margin-top: 96px;

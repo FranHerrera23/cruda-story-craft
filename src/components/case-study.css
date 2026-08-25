@@ -358,9 +358,9 @@
   color: color-mix(in srgb, var(--color-ink) 30%, transparent);
 }
 
-/* Sección "Fuentes" al pie del ensayo. */
+/* Sección "Fuentes" al pie del ensayo — alineada al body (4/6). */
 .essay .e-sources {
-  grid-column: 4 / span 7;
+  grid-column: 4 / span 6;
   margin-top: 96px;
   padding-top: 48px;
   border-top: 1px solid var(--color-rule);
@@ -469,7 +469,30 @@ html { font-size: 17px; }
   letter-spacing: var(--track-heading, -0.02em);
 }
 
-.cs{max-width:1280px;margin:0 auto;padding:0 clamp(24px,5vw,72px) 120px}
+/* B3.B — .cs pasa a la grilla del sitio (.grid-container inlineada,
+   igual que .essay article). Se removió max-width:1280px propio y el
+   padding horizontal manual: el grid-container los provee. Cada hijo
+   directo se posiciona con grid-column. Prosa a 6 columnas (4/span 6),
+   no a 68ch fijos — mismo tratamiento que el ensayo. */
+.cs{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(0, 1fr));
+  gap:0 20px;
+  padding-inline:24px;
+  padding-bottom:120px;
+  margin-inline:auto;
+  width:100%;
+}
+@media (min-width:768px){
+  .cs{grid-template-columns:repeat(12, minmax(0, 1fr));padding-inline:20px}
+}
+@media (min-width:1024px){.cs{padding-inline:40px}}
+@media (min-width:1600px){.cs{max-width:1600px;padding-inline:40px}}
+
+/* Default: cada hijo directo de .cs abarca el ancho completo de la
+   grilla. Los que necesitan una columna más angosta la sobreescriben
+   abajo (.cs-body a 4/6, .cs-faq a 4/6, .cs-capsule a 3/9). */
+.cs > *{grid-column:1 / -1}
 
 /* HEAD */
 .cs-head{padding:clamp(96px,14vh,160px) 0 0}
@@ -495,9 +518,12 @@ html { font-size: 17px; }
 .cs-role{display:block;font-size:14px;color:var(--ink-2)}
 .cs-dates{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
 
-/* ANSWER CAPSULE — el bloque que la IA levanta */
-.cs-capsule{font-size:clamp(20px,2.2vw,27px);line-height:1.42;font-weight:500;
-  max-width:72ch;margin:56px 0 48px;letter-spacing:-.008em}
+/* ANSWER CAPSULE — el bloque que la IA levanta. Breakout col 3-11
+   (9 cols), mismo tratamiento que .e-capsule en el essay. Sin
+   max-width propio: la columna grid ya lo constrañe. */
+.cs-capsule{grid-column:3 / span 9;font-size:clamp(20px,2.2vw,27px);
+  line-height:1.42;font-weight:500;margin:56px 0 48px;letter-spacing:-.008em}
+@media (max-width:767px){.cs-capsule{grid-column:1 / -1}}
 
 /* TAKEAWAYS */
 .cs-takeaways{background:var(--cream);padding:32px 40px 40px;margin-bottom:64px}
@@ -532,7 +558,11 @@ html { font-size: 17px; }
   letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
 .cs-stat-s{display:block;font-size:12px;color:var(--ink-2);margin-top:8px;opacity:.75}
 
-/* BODY */
+/* BODY — prosa a 6 columnas (4/span 6), mismo tratamiento que
+   .essay .e-body. Sin max-width fijo en los <p>: la columna grid
+   ya establece la medida (~68 chars a 18px). */
+.cs-body{grid-column:4 / span 6}
+@media (max-width:767px){.cs-body{grid-column:1 / -1}}
 .cs-section{margin-bottom:64px}
 /* T6 — H2 de sección en --fs-h2 (32px). Antes en clamp 24-36 competía
    con la escala del H1. */
@@ -547,7 +577,7 @@ html { font-size: 17px; }
 .cs-answer{font-size:var(--fs-lead);line-height:1.5;font-weight:500;
   color:var(--ink);letter-spacing:-.006em;max-width:68ch;
   margin:0 0 24px;padding:0 0 0 16px;border-left:2px solid var(--rule)}
-.cs-section p{font-size:18px;line-height:1.62;color:var(--ink-2);max-width:68ch}
+.cs-section p{font-size:18px;line-height:1.62;color:var(--ink-2)}
 .cs-section p+p{margin-top:20px}
 .cs-pull{margin:40px 0 0;padding-left:28px;border-left:2px solid var(--color-rule);
   font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:var(--ink);
@@ -561,8 +591,9 @@ html { font-size: 17px; }
 .cs-testimonial cite{font-style:normal;font-family:var(--mono);font-size:12px;
   letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.6)}
 
-/* FAQ */
-.cs-faq{border-top:1px solid var(--ink);padding-top:48px;margin-bottom:80px}
+/* FAQ — alineado al body a 6 columnas. */
+.cs-faq{grid-column:4 / span 6;border-top:1px solid var(--ink);padding-top:48px;margin-bottom:80px}
+@media (max-width:767px){.cs-faq{grid-column:1 / -1}}
 /* T6 — H2 fijo en --fs-h2. */
 .cs-faq h2{font-size:var(--fs-h2);font-weight:700;
   letter-spacing:var(--track-heading,-.02em);margin-bottom:32px}
@@ -573,8 +604,7 @@ html { font-size: 17px; }
 .cs-faq summary::after{content:'+';position:absolute;right:6px;top:50%;
   transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--ink-2)}
 .cs-faq details[open] summary::after{content:'–'}
-.cs-faq details p{padding:0 0 30px;font-size:17.5px;line-height:1.6;
-  color:var(--ink-2);max-width:68ch}
+.cs-faq details p{padding:0 0 30px;font-size:17.5px;line-height:1.6;color:var(--ink-2)}
 
 /* CTA (legacy — reemplazado por ClosingBlock; se mantiene para no
    romper páginas antiguas si alguna lo usa suelto). */

@@ -112,15 +112,14 @@
   color: var(--ink-2);
   text-wrap: pretty;
 }
-.cruda-home .say p + p { margin-top: 8px; }
 
-/* `you` — excepción deliberada al umbral de 24px (ver brief v7 §4):
-   el punto de color es un subrayado, no texto coloreado, y funciona
-   como el único acento visual de la mitad inferior. */
+/* `you` — único acento visual de la mitad inferior. Subrayado en
+   --color-ink sólido (no --accent alias, que apagaba el punto de
+   color). 2px, sin transparencia. */
 .cruda-home .say-you {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--accent);
+  text-decoration-color: var(--color-ink);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }

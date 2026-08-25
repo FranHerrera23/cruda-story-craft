@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import './case-study.css'
-import ClosingBlock from './ClosingBlock'
-import RelatedResources from './RelatedResources'
+import CaptureForm from './CaptureForm'
 
 /* ------------------------------------------------------------------
    CRUDA — CaseStudyLayout
@@ -10,7 +9,21 @@ import RelatedResources from './RelatedResources'
 
    Data-gap rule: any field without a verified value gets left empty.
    The layout skips render + the JSON-LD skips emit. No invention.
-------------------------------------------------------------------- */
+
+   B5 rework (deroga §4.5, §4.6 y §4.7 del brief para páginas de pieza):
+   - El chip .cs-eyebrow (la vertical) sale del hero. Las categorías
+     viven solo en las cards de los índices.
+   - El hero se ordena breadcrumb → fecha → H1 → subtitle → byline
+     (foto, nombre, rol) → imagen hero.
+   - Cada Section puede abrir con una imagen. Sin imagen → arranca
+     sin hueco.
+   - ClosingBlock (.cb bloque beige) eliminado. Reemplazo: línea de
+     texto con .link — "¿Tenés una historia que contar? Hablemos." /
+     "Got a story worth telling? Let's talk."
+   - RelatedResources eliminado del cierre. Mecanismo de continuidad
+     es el newsletter (CaptureForm). Cards viven solo en /resources/*.
+   - Orden final: sections → testimonial → faq → CTA line →
+     CaptureForm → SiteFooter global. */
 
 export type Stat = {
   value: string
@@ -27,6 +40,8 @@ export type Section = {
   answer?: string
   body: string[]
   pullQuote?: string
+  /* B5.4 — slot de imagen opcional al abrir la sección. */
+  image?: { src: string; alt: string }
 }
 
 export type Faq = { q: string; a: string }
@@ -134,6 +149,10 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
   const hasDates = !!cs.publishedAt
   const showUpdated =
     hasDates && cs.updatedAt && cs.updatedAt !== cs.publishedAt
+  /* B5.2 — CTA de una línea. Case studies del sitio siempre están en
+     inglés hoy, pero el copy queda listo para bilingüe si mañana
+     Karen o JP levantan versión española. */
+  const ctaLine = "Got a story worth telling? Let's talk."
 
   return (
     <article className="cs">
@@ -142,12 +161,21 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(cs)) }}
       />
 
-      {/* ---------- HEAD ---------- */}
+      {/* ---------- HEAD (B5.3) ----------
+          breadcrumb → fecha → H1 → subtitle → byline. Cero chip
+          de vertical: las categorías viven en los índices. */}
       <header className="cs-head">
         <Link href="/resources" className="cs-back mono">
           ← Resources
         </Link>
-        <p className="cs-eyebrow">{cs.vertical}</p>
+        {hasDates && (
+          <p className="cs-date mono">
+            <time dateTime={cs.publishedAt}>{fmt(cs.publishedAt!)}</time>
+            {showUpdated && (
+              <> · Updated <time dateTime={cs.updatedAt}>{fmt(cs.updatedAt!)}</time></>
+            )}
+          </p>
+        )}
         <h1 className="cs-title">{cs.title}</h1>
         {cs.subtitle && <p className="cs-sub">{cs.subtitle}</p>}
 
@@ -157,14 +185,6 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
             <span className="cs-author">{AUTHOR.name}</span>
             <span className="cs-role">{AUTHOR.role}</span>
           </div>
-          {hasDates && (
-            <div className="cs-dates">
-              <time dateTime={cs.publishedAt}>{fmt(cs.publishedAt!)}</time>
-              {showUpdated && (
-                <span> · Updated <time dateTime={cs.updatedAt}>{fmt(cs.updatedAt!)}</time></span>
-              )}
-            </div>
-          )}
         </div>
       </header>
 
@@ -215,6 +235,14 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
       <div className="cs-body">
         {cs.sections.map((sec, i) => (
           <section key={i} className="cs-section">
+            {/* B5.4 — slot de imagen opcional al abrir la sección.
+                Reveal por clip-path (definido en CSS). Sin imagen,
+                la sección arranca sin hueco. */}
+            {sec.image && (
+              <figure className="cs-section-image">
+                <Image src={sec.image.src} alt={sec.image.alt} width={1600} height={900} />
+              </figure>
+            )}
             <h2>{sec.heading}</h2>
             {/* Brief v13 T2.2 — answer inmediatamente después del
                 heading (opcional). Es el bloque que un motor de
@@ -247,13 +275,16 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
         </section>
       )}
 
-      <ClosingBlock
-        kind="case-study"
-        variant={cs.status === 'portfolio' ? 'portfolio' : 'client'}
-      />
+      {/* B5.2 — CTA es una línea, no un bloque beige. */}
+      <p className="cs-cta-line">
+        <Link href="/contact" className="link">
+          {ctaLine}
+        </Link>
+      </p>
 
-      {/* Brief v9 T5 — 3 piezas relacionadas después del cierre. */}
-      <RelatedResources excludeHrefs={[`/resources/case-studies/${cs.slug}`]} lang="en" />
+      {/* B5.6 — captura al cierre. Reemplaza al grid de RelatedResources
+          que se eliminó. Continuidad = newsletter. */}
+      <CaptureForm lang="en" variant="full" />
     </article>
   )
 }

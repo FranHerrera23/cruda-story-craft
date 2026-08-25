@@ -500,8 +500,9 @@ html { font-size: 17px; }
 .cs-back{display:inline-block;color:var(--ink-2);text-decoration:none;
   margin-bottom:32px;transition:color .2s}
 .cs-back:hover{color:var(--ink)}
-.cs-eyebrow{font-family:var(--mono);font-weight:500;font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:24px}
+/* Nota B5.3: .cs-eyebrow eliminado — el chip de vertical salió del
+   header del case study. Las categorías viven solo en las cards de
+   índices. */
 /* Brief v5 T6 — H1 en --fs-h1 (no display).
    El display se reserva para el hero de la home; un case study es
    editorial, no portada. Si un H1 pasa de 4 líneas en desktop, el
@@ -616,60 +617,69 @@ html { font-size: 17px; }
   padding:19px 38px;text-decoration:none;transition:background .2s}
 .cs-btn:hover{background:var(--color-accent);color:var(--color-ink)}
 
-/* ClosingBlock — brief v5 T6. Va al final de todos los ensayos y
-   case studies. Sobre --cream. CTA sobre --ink que hace hover en
-   accent. */
-/* Brief v4 UX §4.7 — CTA en grid, sans (cero serif), inline-block
-   button, hover del botón vira a --color-accent (uno de los dos
-   únicos lugares donde el yellow aparece). Ancho fijo 46ch para
-   el body. */
-.cb{
-  grid-column: 3 / span 9;
-  margin-top: 120px;
-  padding: var(--space-5);
-  background: var(--color-paper);
+/* Nota B5: bloque .cb / .cb-head / .cb-body / .cb-cta / .cb-arrow
+   (ClosingBlock) removido. Reemplazado por .e-cta-line / .cs-cta-line
+   — una sola línea de texto con .link, no una caja beige. Ver más
+   abajo. */
+
+/* B5.2 — CTA line en essays y case studies. Alineada a la columna
+   del cuerpo (4/span 6), tipografía del H3 sans en peso 500, con .link
+   dando el sweep underline al hover. Sin caja, sin fondo, sin botón. */
+.essay .e-cta-line,
+.cs-cta-line {
+  grid-column: 4 / span 6;
+  margin: 96px 0 0;
+  font-family: 'Archivo', -apple-system, sans-serif;
+  font-size: var(--text-h3);
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
 }
 @media (max-width: 767px) {
-  .cb { grid-column: 1 / -1; padding: var(--space-4); }
+  .essay .e-cta-line,
+  .cs-cta-line { grid-column: 1 / -1; }
 }
-.cb-head{
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: var(--text-h2);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.015em;
-  color: var(--color-ink);
-  margin: 0 0 20px;
+.essay .e-cta-line .link,
+.cs-cta-line .link {
+  color: inherit;
 }
-.cb-body{
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: var(--text-body);
-  line-height: 1.7;
-  color: var(--color-ink);
-  max-width: 46ch;
-  margin: 0 0 var(--space-4);
-}
-.cb-cta{
-  display: inline-block;
-  padding: 18px 36px;
-  background: var(--color-ink);
-  color: var(--color-surface);
-  font-family: 'IBM Plex Mono', monospace;
+
+/* B5.3 — .cs-date: fecha entre breadcrumb y H1 del case study. Mono. */
+.cs-date {
+  font-family: var(--mono);
   font-weight: 500;
   font-size: var(--text-caption);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  text-decoration: none;
-  transition: background var(--dur-hover) var(--ease-ui),
-              color var(--dur-hover) var(--ease-ui);
+  color: var(--color-muted);
+  margin: 0 0 20px;
 }
-.cb-cta:hover{
-  /* §3.1 rule — --color-accent aparece exactamente en dos lugares:
-     focus ring y este hover. */
-  background: var(--color-accent);
-  color: var(--color-ink);
+
+/* B5.4 — slot de imagen al abrir cada sección del case study. Reveal
+   por clip-path, misma mecánica que .e-section-image. */
+.cs-section-image {
+  margin: 0 0 32px;
+  clip-path: inset(0 0 0 0);
 }
-.cb-arrow{ display: inline-block; margin-left: 8px; }
+.cs-section-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cs-section-image {
+      animation: cs-image-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+@keyframes cs-image-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
 
 /* ÍNDICE */
 .idx{max-width:1280px;margin:0 auto;padding:clamp(96px,14vh,160px) clamp(24px,5vw,72px) 120px}
@@ -757,46 +767,11 @@ html { font-size: 17px; }
   outline-offset: 4px;
 }
 
-/* -----------------------------------------------------------------
-   Related resources — brief v9 T5.
-   Va al final de ensayos y case studies (después del ClosingBlock).
-   Fila de 3 cards sin imagen, cada una con badges + título + fecha.
-   Vive en case-study.css (bundle global) para que aplique tanto en
-   /thinking/[slug] como en /clients/[slug] — essay.css solo se
-   carga en essays. */
-/* Brief v14 T8 — más aire entre el ClosingBlock (sobre --cream) y
-   la sección Read more. Antes se tocaban visualmente. */
-.rr {
-  /* Brief v4 UX §3.2 — el bloque vive en la grilla del sitio.
-     3/9 al mismo ancho que ClosingBlock. */
-  grid-column: 3 / span 9;
-  margin: 120px 0 0;
-  padding: 56px 0 0;
-  border-top: 1px solid var(--color-rule);
-}
-@media (max-width: 767px) {
-  .rr { grid-column: 1 / -1; }
-}
-.rr-heading {
-  font-family: 'Archivo', -apple-system, sans-serif;
-  font-size: var(--text-h3);
-  font-weight: 600;
-  line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--color-ink);
-  margin: 0 0 32px;
-}
-.rr-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-}
-@media (max-width: 720px) {
-  .rr-list { grid-template-columns: 1fr; gap: 8px; }
-}
+/* Nota B5: bloque .rr / .rr-heading / .rr-list (RelatedResources)
+   removido junto con el componente. NDS no tiene related al cierre
+   de la pieza; el mecanismo de continuidad ahora es el newsletter.
+   Las .card viven solo en /resources/* — su bloque de estilo sigue
+   más abajo (los índices las usan). */
 
 /* Card — brief v4 UX §4.5. Un solo componente para related, hub
    listings, footer previews. Cero translateY, cero sombra, cero

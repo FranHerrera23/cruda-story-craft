@@ -1,8 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import EssayProgressBar from './EssayProgressBar'
-import ClosingBlock from './ClosingBlock'
-import RelatedResources from './RelatedResources'
 import CaptureForm from './CaptureForm'
 import './essay.css'
 
@@ -11,19 +9,30 @@ import './essay.css'
    AEO discipline adapted to essays and conversations.
    The skeleton serves the machine; the prose serves the human.
 
-   Brief v8: soporte de idioma sin i18n.
-   - `language` opcional en el Essay ('en' default).
-   - Se aplica como atributo lang= del <article>.
-   - EssayBlock permite `html` en p/pull para preservar inline markup
-     (bold, cursivas) — safe porque el contenido lo autoreamos nosotros.
-   - Nuevo bloque `checklist` para listas de checkboxes semánticas.
-------------------------------------------------------------------- */
+   B5 rework (deroga §4.5, §4.6 y §4.7 del brief para páginas de pieza):
+   - El hero se reordena: breadcrumb → fecha → H1 → byline
+     (foto, nombre, rol, tiempo de lectura) → imagen hero. Los chips
+     de contentType y meta salen; las categorías viven solo en las
+     cards de los índices.
+   - Cada h2 puede abrir con una imagen (`image?: { src, alt }`). El
+     slot se renderea con reveal por clip-path; si la pieza no tiene
+     imagen, la sección arranca sin hueco.
+   - El bloque beige del ClosingBlock (.cb) se elimina. Reemplazo:
+     una línea de texto con link (.link) — "¿Tenés una historia que
+     contar? Hablemos." / "Got a story worth telling? Let's talk."
+   - El grid de RelatedResources al cierre se elimina. El mecanismo de
+     continuidad es el newsletter (CaptureForm), no un grid de cards.
+     Las cards viven solo en /resources/*.
+   - Orden final del cierre: body → sources → faq → CTA line →
+     CaptureForm → SiteFooter global. */
 
 export type EssayBlock =
   | { type: 'p'; text?: string; html?: string; lead?: boolean }
   | { type: 'quote'; text: string; attribution?: string }
   | { type: 'pull'; text?: string; html?: string }
-  | { type: 'h2'; text: string }
+  /* B5 — h2 puede abrir con una imagen. Si no viene, la sección
+     renderea sin imagen y sin hueco. */
+  | { type: 'h2'; text: string; image?: { src: string; alt: string } }
   | { type: 'h3'; text: string }
   | { type: 'checklist'; items: string[] }
   /* Brief v15 T4 — firma final del ensayo (reemplaza la línea del
@@ -149,14 +158,16 @@ function schema(es: Essay) {
 
 export default function EssayLayout({ es }: { es: Essay }) {
   const showUpdated = es.updatedAt !== '' && es.updatedAt !== es.publishedAt
-  const contentType = es.contentType ?? 'Essay'
   const lang = es.language ?? 'en'
   const dateLocale = lang === 'es' ? 'es-ES' : 'en-US'
   const backLabel = lang === 'es' ? '← Recursos' : '← Resources'
   const updatedLabel = lang === 'es' ? 'Actualizado' : 'Updated'
   const readingLabel = lang === 'es' ? 'min de lectura' : 'min read'
   const questionsLabel = lang === 'es' ? 'Preguntas' : 'Questions'
-  const metaTags = [es.category, ...(es.tags ?? [])].filter(Boolean)
+  const ctaLine =
+    lang === 'es'
+      ? '¿Tenés una historia que contar? Hablemos.'
+      : "Got a story worth telling? Let's talk."
 
   return (
     <div className="essay-root essay">
@@ -168,15 +179,23 @@ export default function EssayLayout({ es }: { es: Essay }) {
       <EssayProgressBar />
 
       <article lang={lang}>
+        {/* B5.3 — hero: breadcrumb → fecha → H1 → byline → hero image.
+            Cero chips de categoría en la página de pieza. */}
         <header className="e-head">
           <Link href="/resources" className="mono e-back">
             {backLabel}
           </Link>
-          <p className="e-meta">
-            <span className="e-type">{contentType}</span>
-            <span className="mono">
-              {metaTags.join(' · ')} · {es.readingMinutes} {readingLabel}
-            </span>
+          <p className="e-date mono">
+            <time dateTime={es.publishedAt}>
+              {fmt(es.publishedAt, dateLocale)}
+            </time>
+            {showUpdated && (
+              <>
+                {' · '}
+                {updatedLabel}{' '}
+                <time dateTime={es.updatedAt}>{fmt(es.updatedAt, dateLocale)}</time>
+              </>
+            )}
           </p>
 
           <h1>{es.title}</h1>
@@ -198,15 +217,8 @@ export default function EssayLayout({ es }: { es: Essay }) {
               <span className="e-name">{AUTHOR.name}</span>
               <span className="e-role">{AUTHOR.role}</span>
             </div>
-            <div className="e-dates">
-              <time dateTime={es.publishedAt}>{fmt(es.publishedAt, dateLocale)}</time>
-              {showUpdated && (
-                <>
-                  <br />
-                  {updatedLabel}{' '}
-                  <time dateTime={es.updatedAt}>{fmt(es.updatedAt, dateLocale)}</time>
-                </>
-              )}
+            <div className="e-reading mono">
+              {es.readingMinutes} {readingLabel}
             </div>
           </div>
         </header>
@@ -225,7 +237,26 @@ export default function EssayLayout({ es }: { es: Essay }) {
         {/* Body */}
         <div className="e-body">
           {es.body.map((block, i) => {
-            if (block.type === 'h2') return <h2 key={i}>{block.text}</h2>
+            if (block.type === 'h2') {
+              /* B5.4 — slot de imagen opcional. Si viene image, la
+                 sección arranca con una <figure> con reveal por
+                 clip-path (CSS). Sin imagen → h2 solo, cero hueco. */
+              return (
+                <div key={i} className="e-section">
+                  {block.image && (
+                    <figure className="e-section-image">
+                      <Image
+                        src={block.image.src}
+                        alt={block.image.alt}
+                        width={1600}
+                        height={900}
+                      />
+                    </figure>
+                  )}
+                  <h2>{block.text}</h2>
+                </div>
+              )
+            }
             if (block.type === 'h3') return <h3 key={i}>{block.text}</h3>
             if (block.type === 'p') {
               const className = block.lead ? 'lead' : undefined
@@ -292,20 +323,10 @@ export default function EssayLayout({ es }: { es: Essay }) {
           })}
         </div>
 
-        {es.faqs && es.faqs.length > 0 && (
-          <section className="e-faq">
-            <h2>{questionsLabel}</h2>
-            {es.faqs.map((f, i) => (
-              <details key={i}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </section>
-        )}
-
-        {/* Brief v4 UX §4.9 — sección Fuentes, si el ensayo declaró
-            footnotes. Numerada, con el link completo a cada fuente. */}
+        {/* B5.6 — orden del cierre: sources ANTES de faq. Antes eran
+            body → faq → sources; ahora body → sources → faq. La
+            sección de fuentes cierra el argumento del cuerpo; las
+            preguntas abren después. */}
         {es.sources && es.sources.length > 0 && (
           <section className="e-sources" aria-labelledby="e-sources-heading">
             <h2 id="e-sources-heading">
@@ -326,25 +347,30 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </section>
         )}
 
-        <ClosingBlock kind="essay" lang={lang} />
+        {es.faqs && es.faqs.length > 0 && (
+          <section className="e-faq">
+            <h2>{questionsLabel}</h2>
+            {es.faqs.map((f, i) => (
+              <details key={i}>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </section>
+        )}
 
-        {/* Brief v4 UX §4.8 — captura entre CTA y related, variante full. */}
+        {/* B5.2 — CTA es una línea, no un bloque. .link para el sweep
+            underline; contact abre una conversación real. */}
+        <p className="e-cta-line">
+          <Link href="/contact" className="link">
+            {ctaLine}
+          </Link>
+        </p>
+
+        {/* B5.6 — captura al final del cierre. Mecanismo de continuidad
+            del sitio; reemplaza al grid de related (que se eliminó). */}
         <CaptureForm lang={lang} variant="full" />
-
-        {/* Brief v9 T5 — 3 piezas relacionadas después del cierre. */}
-        <RelatedResources
-          excludeHrefs={buildExcludeHrefs(es)}
-          lang={lang}
-        />
       </article>
     </div>
   )
-}
-
-function buildExcludeHrefs(es: Essay): string[] {
-  const acc = [`/resources/essays/${es.slug}`]
-  const alt = es.alternates
-  if (alt?.es && alt.es !== es.slug) acc.push(`/resources/essays/${alt.es}`)
-  if (alt?.en && alt.en !== es.slug) acc.push(`/resources/essays/${alt.en}`)
-  return acc
 }

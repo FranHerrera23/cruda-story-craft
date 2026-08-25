@@ -3,7 +3,7 @@
 
 .rs-root {
   --sans: 'Archivo', -apple-system, sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
+  --serif: var(--font-instrument-serif), Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
   background: var(--white);
@@ -46,7 +46,7 @@
   text-transform: uppercase;
 }
 .rs-h1 {
-  font-family: 'Instrument Serif', Georgia, serif;
+  font-family: var(--serif);
   font-weight: 400;
   font-size: var(--fs-h1);
   line-height: var(--lh-heading, 1.05);

@@ -4,7 +4,6 @@
 
 .essay-root {
   --sans: 'Archivo', -apple-system, sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
   background: var(--white);

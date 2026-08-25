@@ -9,7 +9,7 @@
 
 .cruda-home-root {
   --sans: 'Archivo', -apple-system, sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
+  --serif: var(--font-instrument-serif), Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
   overflow: hidden;
@@ -90,7 +90,7 @@
 .cruda-home .manifesto span { display: block; }
 .cruda-home .manifesto .line-2 {
   font-style: normal;
-  color: var(--accent);
+  color: var(--color-ink);
 }
 
 /* -------------------------------------------------------------------
@@ -152,7 +152,7 @@
 }
 .cruda-home .cta:hover {
   color: var(--ink);
-  border-bottom-color: var(--accent);
+  border-bottom-color: var(--color-ink);
 }
 .cruda-home .cta-arrow {
   display: inline-block;
@@ -161,7 +161,7 @@
 }
 .cruda-home .cta:hover .cta-arrow {
   transform: translateX(4px);
-  color: var(--accent);
+  color: var(--color-ink);
 }
 
 /* -------------------------------------------------------------------
@@ -273,6 +273,6 @@
 }
 
 .cruda-home :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }

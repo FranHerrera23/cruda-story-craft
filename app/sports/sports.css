@@ -1,8 +1,9 @@
-/* CRUDA — /sports placeholder (part 6). Full black, .display headline. */
+/* CRUDA — /sports placeholder. Full black, headline en Archivo bold
+   (regla tipográfica B0 — la serif se reserva a páginas-declaración,
+   /sports es vertical placeholder, no está en esa lista). */
 
 .sports-root {
   --sans: 'Archivo', -apple-system, sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
 
@@ -53,6 +54,11 @@
 .sports .headline {
   color: var(--white);
   max-width: 18ch;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(48px, 8vw, 128px);
+  line-height: 0.98;
+  letter-spacing: -0.028em;
 }
 .sports .foot {
   flex-shrink: 0;
@@ -75,8 +81,8 @@
   transition: color 0.2s, border-color 0.2s;
 }
 .sports .contact a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+  color: var(--color-ink);
+  border-color: var(--color-ink);
 }
 
 @media (max-width: 860px) {
@@ -149,6 +155,6 @@
 }
 
 .sports :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--color-accent);
   outline-offset: 4px;
 }

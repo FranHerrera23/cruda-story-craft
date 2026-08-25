@@ -5,7 +5,6 @@
 
 .of {
   --sans: 'Archivo', -apple-system, sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
 
@@ -96,8 +95,8 @@
    El display se reserva al hero de la home. Este es H1 editorial. */
 .of .of-hero-h1 {
   color: var(--white);
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 700;
   font-size: var(--fs-h1);
   line-height: var(--lh-heading, 1.05);
   letter-spacing: var(--track-heading, -0.02em);
@@ -166,8 +165,8 @@
   margin: 8px 0 32px;
 }
 .of .of-pull {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 500;
   font-size: var(--fs-h3);
   line-height: var(--lh-heading);
   letter-spacing: var(--track-heading);
@@ -194,11 +193,12 @@
 }
 .of .of-hero-n-v {
   display: block;
+  font-family: var(--mono);
+  font-weight: 500;
   font-size: clamp(96px, 14vw, 180px);
   line-height: var(--lh-display, 0.92);
-  letter-spacing: var(--track-display, -0.03em);
+  letter-spacing: -0.04em;
   color: var(--ink);
-  margin-left: -0.045em;
 }
 .of .of-hero-n-l {
   color: var(--ink);
@@ -275,11 +275,11 @@
   gap: 10px;
   color: var(--ink);
   text-decoration: none;
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 1px solid var(--color-rule);
   padding-bottom: 5px;
-  transition: color 0.2s;
+  transition: color 0.2s, border-color 0.2s;
 }
-.of .of-proof-link:hover { color: var(--accent); }
+.of .of-proof-link:hover { color: var(--color-ink); border-bottom-color: var(--color-ink); }
 .of .of-proof-arrow {
   display: inline-block;
   transition: transform 400ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
@@ -291,8 +291,8 @@
 /* Brief v6 T6.2 — sale de --fs-display, entra en --fs-h1. */
 .of .of-close-line {
   color: var(--white);
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-weight: 400;
+  font-family: var(--sans);
+  font-weight: 700;
   font-size: var(--fs-h1);
   line-height: var(--lh-heading, 1.05);
   letter-spacing: var(--track-heading, -0.02em);
@@ -316,8 +316,8 @@
               color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
 .of .of-cta:hover {
-  background-color: var(--accent);
-  color: var(--white);
+  background-color: var(--color-accent);
+  color: var(--color-ink);
 }
 
 /* ---------- Sticky index ----------

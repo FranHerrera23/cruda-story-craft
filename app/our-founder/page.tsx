@@ -144,16 +144,16 @@ export default function OurFounderPage() {
 
             <div className="of-hero-numbers reveal-group">
               <div className="of-hero-n reveal">
-                <span className="display of-hero-n-v">10</span>
+                <span className="of-hero-n-v">10</span>
                 <p className="mono of-hero-n-l">years building brands</p>
               </div>
               <div className="of-hero-n reveal">
-                <span className="display of-hero-n-v">26</span>
+                <span className="of-hero-n-v">26</span>
                 <p className="mono of-hero-n-l">countries across 4 continents</p>
                 <p className="mono of-hero-n-list">{COUNTRIES}</p>
               </div>
               <div className="of-hero-n reveal">
-                <span className="display of-hero-n-v">14</span>
+                <span className="of-hero-n-v">14</span>
                 <p className="mono of-hero-n-l">industries</p>
                 <p className="mono of-hero-n-list">{INDUSTRIES}</p>
               </div>

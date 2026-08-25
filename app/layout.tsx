@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -8,6 +9,18 @@ import SiteFooter from "@/components/SiteFooter";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Providers from './providers';
+
+/* Instrument Serif — display face de las páginas-declaración (home,
+   índices de /resources, /contact, /architecture-design/about).
+   Solo weight 400. next/font la self-hostea: cero request externo,
+   cero layout shift. Se expone como CSS variable --font-instrument-serif
+   para que los tokens --serif la consuman via var(). */
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-instrument-serif',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.thecruda.com'),
@@ -81,7 +94,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={instrumentSerif.variable}>
       <head>
         {/* Satoshi font from Fontshare - Primary */}
         <link rel="preconnect" href="https://api.fontshare.com" />
@@ -90,7 +103,11 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        {/* EB Garamond + Instrument Sans for About page redesign */}
+        {/* EB Garamond + Instrument Sans — cargadas SOLO para
+            /architecture-design/about, que usa CSS inline con esas
+            fuentes. Ni EB Garamond ni Instrument Sans son parte del
+            sistema tipográfico de CRUDA. Este <link> muere cuando el
+            template de About se reemplace. */}
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body>

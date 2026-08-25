@@ -104,12 +104,13 @@ export default function ContactContent() {
         .contact-fallback a {
           color: var(--ink);
           text-decoration: none;
-          border-bottom: 1px solid var(--accent);
+          border-bottom: 1px solid var(--color-rule);
           padding-bottom: 2px;
-          transition: color 0.2s;
+          transition: color 0.2s, border-color 0.2s;
         }
         .contact-fallback a:hover {
-          color: var(--accent);
+          color: var(--color-ink);
+          border-bottom-color: var(--color-ink);
         }
 
         .contact-email {
@@ -124,20 +125,21 @@ export default function ContactContent() {
           color: var(--ink-2);
         }
         .contact-alt-mail {
-          font-family: 'Instrument Serif', Georgia, serif;
-          font-size: clamp(28px, 3vw, 40px);
-          line-height: 1.1;
-          letter-spacing: -0.02em;
+          font-family: 'Archivo', -apple-system, sans-serif;
+          font-weight: 600;
+          font-size: clamp(24px, 2.4vw, 32px);
+          line-height: 1.15;
+          letter-spacing: -0.015em;
           color: var(--ink);
           text-decoration: none;
-          border-bottom: 1px solid var(--accent);
+          border-bottom: 1px solid var(--color-rule);
           padding-bottom: 4px;
           align-self: flex-start;
           transition: color 0.2s, border-color 0.2s;
         }
         .contact-alt-mail:hover {
-          color: var(--accent);
-          border-color: var(--accent);
+          color: var(--color-ink);
+          border-color: var(--color-ink);
         }
         .contact-alt-note {
           font-size: 15px;
@@ -147,7 +149,7 @@ export default function ContactContent() {
         }
 
         :global(.contact-root) :focus-visible {
-          outline: 2px solid var(--accent);
+          outline: 2px solid var(--color-accent);
           outline-offset: 4px;
         }
 

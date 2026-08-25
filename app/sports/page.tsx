@@ -21,7 +21,7 @@ export default function SportsPage() {
       <div className="shell">
         <main className="mid">
           <p className="mono eyebrow step-1">CRUDA Sports</p>
-          <h1 className="display headline step-2">
+          <h1 className="headline step-2">
             A media and marketing company building athletes.
           </h1>
         </main>

@@ -1,38 +1,41 @@
-/* Import Satoshi font from Fontshare */
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/**
- * Smooth Navigation & Scroll Behavior
- * Ensures calm, contemplative page transitions
- */
+/* CRUDA — global CSS (brief v4 UX B1 rewrite).
 
-/* Global smooth scrolling */
+   Sistema tipográfico único: Archivo (sans/UI) + Instrument Serif
+   (via next/font, declaración H1) + IBM Plex Mono (eyebrows/datos).
+   Cero Satoshi, cero DM Sans, cero Inter, cero Space Grotesk.
+
+   La mayoría de las páginas tienen su propio CSS scoped (.essay, .cs,
+   .rs-root, .cruda-home, .sys, .sports, .of). Este archivo se limita a:
+   - resets mínimos + tokens shadcn que consume el UI de radix
+   - body / h1-h6 / p base en Archivo (sin max-width global)
+   - link/button transition uniform (opacidad + color, cero translateY)
+   - ::selection y :focus-visible en --color-accent (amarillo)
+   - Square-corners global (regla de marca)
+   - .route-transition-wrapper (usado por app/layout.tsx)
+   - .display + .display--sm (utilitarias site-wide para H1 de
+     páginas-declaración: Instrument Serif via next/font)
+
+   Todos los otros bloques que vivían acá (Droga5 case-study-hero,
+   pillar-card, work-grid, impact-stats, editorial-underline,
+   hand-drawn-line, strikethrough-red, liquid-glow, timeline-progress,
+   marquee-track, animate-*, stagger-*, hover-lift/breathe/glow,
+   .btn-primary sweep-fill con #E8623A, B&W photo filters, etc.) eran
+   orphan (0 matches en el DOM actual) o pisaban v4 con hardcoded
+   orange + translateY + box-shadow. Se removieron enteros en B1. */
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
 
-/* Prevent sudden layout shifts */
-body {
-  opacity: 1;
-  transition: opacity 600ms ease-out;
-}
-
-/* Ensure sections account for fixed nav when scrolling */
 section {
   scroll-margin-top: 100px;
 }
 
-/* Smooth transitions for links */
-a {
-  transition: color 300ms ease, background 300ms ease, opacity 300ms ease;
-}
-
-/* Ensure images don't cause layout shifts */
 img {
   display: block;
   max-width: 100%;
@@ -41,47 +44,39 @@ img {
 
 @layer base {
   :root {
-    /* CRUDA Design System - Master Brief Requirements */
-    --pure-white: 0 0% 100%;         /* #FFFFFF - Primary background */
-    --dark: 0 0% 4%;                 /* #0A0A0A - Dark backgrounds & primary text */
-    --signal-red: 347 100% 59%;      /* #E8623A - Accent */
+    /* shadcn/ui semantic tokens — consumidos por radix/toaster/dialog
+       via hsl(var(--*)). El código de CRUDA no los usa directo — los
+       tokens de marca viven en case-study.css (--color-ink, etc.). */
+    --pure-white: 0 0% 100%;
+    --dark: 0 0% 4%;
+    --signal-red: 347 100% 59%;
 
-    /* Text opacity variants (using #0A0A0A base) */
     --text-primary: var(--dark);
-    --text-secondary: 0 0% 4% / 0.6;   /* rgba(10, 10, 10, 0.6) */
-    --text-tertiary: 0 0% 4% / 0.5;    /* rgba(10, 10, 10, 0.5) */
-    --text-quaternary: 0 0% 4% / 0.4;  /* rgba(10, 10, 10, 0.4) */
+    --text-secondary: 0 0% 4% / 0.6;
+    --text-tertiary: 0 0% 4% / 0.5;
+    --text-quaternary: 0 0% 4% / 0.4;
 
-    /* Semantic Tokens */
     --background: var(--pure-white);
     --foreground: var(--dark);
-
     --card: var(--pure-white);
     --card-foreground: var(--dark);
-
     --popover: var(--pure-white);
     --popover-foreground: var(--dark);
-
     --primary: var(--dark);
     --primary-foreground: var(--pure-white);
-
     --secondary: 0 0% 98%;
     --secondary-foreground: var(--dark);
-
     --muted: 0 0% 98%;
     --muted-foreground: var(--text-secondary);
-
     --accent: var(--signal-red);
     --accent-foreground: var(--dark);
-
     --destructive: var(--signal-red);
     --destructive-foreground: var(--pure-white);
-
-    --border: 0 0% 4% / 0.08;     /* rgba(10, 10, 10, 0.08) */
+    --border: 0 0% 4% / 0.08;
     --input: 0 0% 4% / 0.08;
     --ring: var(--signal-red);
 
-    --radius: 0rem; /* CRITICAL: Zero border radius per brief */
+    --radius: 0rem;
   }
 
   * {
@@ -90,7 +85,7 @@ img {
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Satoshi', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -98,1324 +93,89 @@ img {
     color: #0A0A0A;
   }
 
-  /* Typography Hierarchy - Master Brief Typography Scale */
+  /* H1-H6 base en Archivo bold. Las páginas-declaración overridean
+     con .display / .display--sm para levantar Instrument Serif. */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Satoshi', 'DM Sans', sans-serif;
-    font-weight: 600;
+    font-family: 'Archivo', -apple-system, sans-serif;
+    font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
   }
-
-  /* Hero headlines */
-  h1 {
-    font-size: clamp(48px, 6vw, 80px);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-  }
-
-  /* Section headlines */
-  h2 {
-    font-size: clamp(36px, 4vw, 56px);
-    font-weight: 600;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-
-  /* Sub-headlines */
-  h3 {
-    font-size: clamp(22px, 2.5vw, 28px);
-    font-weight: 600;
-  }
-
-  /* Body text */
-  p {
-    font-size: clamp(17px, 1.8vw, 20px);
-    line-height: 1.65;
-    max-width: 75ch;
-  }
-
-  /* Ensure all transitions use the luxury easing */
-  * {
-    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
 }
 
-@layer components {
-  /* Scroll Animation Styles - Contemplative, smooth animations */
-
-  /* Z-index scale for consistent layering */
-  :root {
-    --z-background: -1;
-    --z-base: 1;
-    --z-card: 10;
-    --z-card-hover: 20;
-    --z-nav: 100;
-    --z-modal-backdrop: 1000;
-    --z-modal: 1001;
-  }
-
-  /* Base animation class */
-  .animate-on-scroll {
-    opacity: 0;
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-on-scroll.visible {
-    opacity: 1;
-  }
-
-  /* Headers - slide up from below + fade in - gentler */
-  .animate-header {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-header.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Paragraphs - simple fade in */
-  .animate-paragraph {
-    opacity: 0;
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-paragraph.visible {
-    opacity: 1;
-  }
-
-  /* Images - fade in with subtle movement (no scale) */
-  .animate-image {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-image.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Image pairs - left then right with delay */
-  .animate-image-left {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-image-left.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .animate-image-right {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: 150ms;
-  }
-
-  .animate-image-right.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Red box section - subtle fade only (no scale) */
-  .animate-box {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-box.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Dividers with dots - sequential animation - slower */
-  .animate-dots .dot {
-    opacity: 0;
-    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-dots.visible .dot:nth-child(1) {
-    opacity: 1;
-    transition-delay: 0ms;
-  }
-
-  .animate-dots.visible .dot:nth-child(2) {
-    opacity: 1;
-    transition-delay: 150ms;
-  }
-
-  .animate-dots.visible .dot:nth-child(3) {
-    opacity: 1;
-    transition-delay: 300ms;
-  }
-
-  /* Carousel/dark section - gentle fade in */
-  .animate-carousel {
-    opacity: 0;
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-carousel.visible {
-    opacity: 1;
-  }
-
-  /* Accessibility - respect reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-on-scroll,
-    .animate-header,
-    .animate-paragraph,
-    .animate-image,
-    .animate-image-left,
-    .animate-image-right,
-    .animate-box,
-    .animate-carousel {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-    }
-
-    .animate-dots .dot {
-      opacity: 1 !important;
-      transition: none !important;
-    }
-  }
-
-  /* Route transition wrapper for smooth page changes */
-  .route-transition-wrapper {
-    animation: fadeInContent 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @keyframes fadeInContent {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* Smooth section transitions */
-  section {
-    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-html {
-  scroll-behavior: smooth;
+/* .display + .display--sm — Instrument Serif via next/font.
+   Utilitarias site-wide para H1 de páginas-declaración (home,
+   /architecture-design/about, /contact, índices de /resources) según
+   la regla tipográfica B0. Movidas desde src/components/case-study.css
+   porque son cross-cutting (las consumen home, contact y otras). */
+.display {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(64px, 9vw, 168px);
+  line-height: var(--lh-display, 0.92);
+  letter-spacing: var(--track-display, -0.03em);
+  margin-left: -0.045em;
+}
+.display--sm {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(40px, 5vw, 80px);
+  line-height: var(--lh-heading, 0.96);
+  letter-spacing: var(--track-heading, -0.02em);
+  margin-left: -0.04em;
 }
 
-/* Page fade-in transition - gentle */
-body {
-  animation: pageFadeIn 400ms cubic-bezier(0.4, 0, 0.2, 1);
+/* Link + button — transición uniforme, brief v4 UX §3.
+   Vocabulario de hover para todo el sitio: opacidad + color. Nada
+   de translateY, scale ni box-shadow. Cada componente puede añadir
+   su propia transición para propiedades específicas (arrow, border). */
+a, button {
+  transition: color 200ms ease, background-color 200ms ease,
+              opacity 200ms ease;
 }
 
-  @keyframes pageFadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* Universal Card Hover Management - Prevents overlap issues */
-  .card-hover,
-  .pillar-card,
-  .work-card,
-  .press-card,
-  .client-card {
-    position: relative;
-    z-index: var(--z-card);
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                z-index 0ms 0ms;
-  }
-
-  /* Desktop hover effects */
-  @media (hover: hover) and (pointer: fine) {
-    .card-hover:hover,
-    .pillar-card:hover,
-    .work-card:hover,
-    .press-card:hover,
-    .client-card:hover {
-      transform: translateY(-8px);
-      z-index: var(--z-card-hover);
-      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  z-index 0ms 0ms;
-    }
-
-    /* Return z-index after hover ends */
-    .card-hover,
-    .pillar-card,
-    .work-card,
-    .press-card,
-    .client-card {
-      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  z-index 0ms 300ms;
-    }
-  }
-
-  /* Touch devices - subtle press feedback */
-  @media (hover: none) and (pointer: coarse) {
-    .card-hover:active,
-    .pillar-card:active,
-    .work-card:active,
-    .press-card:active,
-    .client-card:active {
-      transform: scale(0.98);
-      transition: transform 100ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-  }
-
-  /* Button and Link Transitions - Consistent across site */
-  button, a {
-    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* CTA Button Style */
-  .cta-button {
-    transform: scale(1);
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                background 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .cta-button:hover {
-      transform: scale(1.02);
-    }
-  }
-
-  /* Text Link with Underline Animation */
-  .text-link {
-    position: relative;
-    transition: color 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .text-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: currentColor;
-    transition: width 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .text-link:hover::after {
-    width: 100%;
-  }
-
-  /* Punk Minimalism Utilities */
-  .section-number {
-    @apply text-sm font-medium tracking-[0.25em] text-accent uppercase;
-    font-variant-numeric: tabular-nums;
-  }
-
-  .editorial-underline {
-    @apply relative inline-block;
-  }
-
-  .editorial-underline::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: hsl(var(--signal-red));
-    transform: scaleX(0.6);
-    transform-origin: left;
-  }
-
-  .hand-drawn-line {
-    position: relative;
-  }
-
-  .hand-drawn-line::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: -2%;
-    width: 104%;
-    height: 3px;
-    background: hsl(var(--signal-red));
-    clip-path: polygon(
-      0% 50%, 2% 45%, 5% 52%, 8% 48%, 12% 53%, 15% 47%,
-      20% 51%, 25% 49%, 30% 52%, 35% 48%, 40% 50%, 45% 52%,
-      50% 48%, 55% 51%, 60% 49%, 65% 52%, 70% 47%, 75% 50%,
-      80% 53%, 85% 49%, 90% 51%, 95% 48%, 98% 52%, 100% 50%
-    );
-  }
-
-  .strikethrough-red {
-    position: relative;
-    color: hsl(var(--muted-foreground));
-  }
-
-  .strikethrough-red::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -2%;
-    width: 104%;
-    height: 2px;
-    background: hsl(var(--signal-red));
-    transform: translateY(-50%) rotate(-1deg);
-  }
-
-  .liquid-glow {
-    transition: all 0.6s cubic-bezier(0.33, 1, 0.68, 1);
-  }
-
-  .liquid-glow:hover {
-    box-shadow: 0 0 0 1px hsl(var(--signal-red) / 0.3);
-  }
-
-  /* Reveal Animation */
-  .slow-reveal {
-    animation: reveal 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  @keyframes reveal {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .slow-fade-in {
-    animation: fadeIn 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
-    opacity: 0;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-
-  @keyframes scaleInX {
-    to { transform: scaleX(1); }
-  }
-
-  @keyframes scaleDown {
-    from {
-      transform: scale(1.05);
-    }
-    to {
-      transform: scale(1.00);
-    }
-  }
-
-  @keyframes gentlePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-  }
-
-  /* Respect reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    .slow-fade-in,
-    .slow-reveal {
-      animation: fadeInSimple 0.2s ease-out forwards;
-    }
-
-    @keyframes fadeInSimple {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* Asymmetric Grid */
-  .grid-asymmetric {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2.5rem;
-  }
-
-  .col-7 {
-    grid-column: span 7;
-  }
-
-  .col-5 {
-    grid-column: span 5;
-  }
-
-  /* Typography Controls */
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .tracking-tight-2 {
-    letter-spacing: -0.02em;
-  }
-
-  .tracking-wide-5 {
-    letter-spacing: 0.05em;
-  }
-}
-
-@layer utilities {
-  /* Spacing System - 8px baseline */
-  .space-y-baseline {
-    & > * + * {
-      margin-top: 2rem; /* 32px */
-    }
-  }
-
-  /* Scroll Animation Classes */
-  .animate-on-scroll {
-    opacity: 0;
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-on-scroll.visible {
-    opacity: 1;
-  }
-
-  /* Header Animation - Slide up */
-  .animate-header {
-    transform: translateY(16px);
-  }
-
-  .animate-header.visible {
-    transform: translateY(0);
-  }
-
-  /* Paragraph Animation - Fade only */
-  .animate-paragraph {
-    opacity: 0;
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-paragraph.visible {
-    opacity: 1;
-  }
-
-  /* Image Animation - Fade + subtle movement */
-  .animate-image {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 800ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-image.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Image Pair - Staggered Left/Right - gentler */
-  .animate-image-left {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-image-left.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .animate-image-right {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-    transition-delay: 150ms;
-  }
-
-  .animate-image-right.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Box Animation - no scale, just fade and move */
-  .animate-box {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-box.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Carousel Section */
-  .animate-carousel {
-    opacity: 0;
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-carousel.visible {
-    opacity: 1;
-  }
-
-  /* Red Dots Animation - slower */
-  .animate-dots .dot {
-    opacity: 0;
-    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .animate-dots.visible .dot:nth-child(1) {
-    opacity: 1;
-    transition-delay: 0ms;
-  }
-
-  .animate-dots.visible .dot:nth-child(2) {
-    opacity: 1;
-    transition-delay: 150ms;
-  }
-
-  .animate-dots.visible .dot:nth-child(3) {
-    opacity: 1;
-    transition-delay: 300ms;
-  }
-
-  /* Paragraph Stagger - slower timing */
-  .stagger-paragraph {
-    opacity: 0;
-    transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .stagger-paragraph.visible {
-    opacity: 1;
-  }
-
-  .stagger-paragraph:nth-child(1) { transition-delay: 0ms; }
-  .stagger-paragraph:nth-child(2) { transition-delay: 150ms; }
-  .stagger-paragraph:nth-child(3) { transition-delay: 300ms; }
-  .stagger-paragraph:nth-child(4) { transition-delay: 450ms; }
-  .stagger-paragraph:nth-child(5) { transition-delay: 600ms; }
-  .stagger-paragraph:nth-child(6) { transition-delay: 750ms; }
-
-  /* ================================ */
-  /* STAGGERED LIST ANIMATIONS       */
-  /* ================================ */
-
-  .stagger-item {
-    opacity: 0;
-    transform: translateY(16px);
-    transition: opacity 500ms cubic-bezier(0.4, 0, 0.2, 1),
-                transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .stagger-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Stagger delays for list items */
-  .stagger-item:nth-child(1) { transition-delay: 0ms; }
-  .stagger-item:nth-child(2) { transition-delay: 80ms; }
-  .stagger-item:nth-child(3) { transition-delay: 160ms; }
-  .stagger-item:nth-child(4) { transition-delay: 240ms; }
-  .stagger-item:nth-child(5) { transition-delay: 320ms; }
-  .stagger-item:nth-child(6) { transition-delay: 400ms; }
-  .stagger-item:nth-child(7) { transition-delay: 480ms; }
-  .stagger-item:nth-child(8) { transition-delay: 560ms; }
-
-  /* ================================ */
-  /* PARALLAX UTILITIES              */
-  /* ================================ */
-
-  .parallax-slow {
-    will-change: transform;
-    transition: transform 0.1s linear;
-  }
-
-  .parallax-container {
-    overflow: hidden;
-    position: relative;
-  }
-
-  /* ================================ */
-  /* ENHANCED HOVER STATES           */
-  /* ================================ */
-
-  /* Button lift effect */
-  .hover-lift {
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .hover-lift:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.15);
-    }
-  }
-
-  /* Card breathe effect */
-  .hover-breathe {
-    transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .hover-breathe:hover {
-      transform: scale(1.02);
-    }
-  }
-
-  /* Subtle glow on hover */
-  .hover-glow {
-    transition: box-shadow 400ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .hover-glow:hover {
-      box-shadow: 0 0 0 1px hsl(var(--signal-red) / 0.2),
-                  0 8px 24px -8px hsl(var(--signal-red) / 0.1);
-    }
-  }
-
-  /* ================================ */
-  /* TIMELINE PROGRESS BAR           */
-  /* ================================ */
-
-  .timeline-progress {
-    position: relative;
-    height: 2px;
-    background: hsl(var(--border));
-    overflow: hidden;
-  }
-
-  .timeline-progress-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    background: hsl(var(--signal-red));
-    transform-origin: left;
-    transition: transform 100ms linear;
-  }
-
-  /* ================================ */
-  /* MARQUEE ANIMATION               */
-  /* ================================ */
-
-  .marquee-track {
-    display: flex;
-    width: fit-content;
-    animation: marquee 40s linear infinite;
-  }
-
-  .marquee-track:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  /* Respect reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    .animate-on-scroll,
-    .animate-header,
-    .animate-paragraph,
-    .animate-image,
-    .animate-image-left,
-    .animate-image-right,
-    .animate-box,
-    .animate-carousel,
-    .animate-dots .dot,
-    .stagger-paragraph,
-    .stagger-item,
-    .marquee-track {
-      opacity: 1 !important;
-      transform: none !important;
-      transition: none !important;
-      transition-delay: 0ms !important;
-      animation: none !important;
-    }
-  }
-
-  /* ================================ */
-  /* CASE STUDY STYLES (Droga5-Inspired) */
-  /* ================================ */
-
-  /* Hero Section */
-  .case-study-hero {
-    position: relative;
-    height: 100vh;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-
-  .hero-image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-  }
-
-  .hero-image-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      rgba(61, 56, 53, 0.3) 0%,
-      rgba(61, 56, 53, 0.6) 100%
-    );
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: #FDFBF7;
-    max-width: 800px;
-    padding: 0 40px;
-  }
-
-  .hero-label {
-    font-size: 12px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.8;
-    margin-bottom: 20px;
-  }
-
-  .hero-name {
-    font-size: clamp(48px, 6vw, 72px);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 32px;
-  }
-
-  .hero-meta {
-    font-size: 18px;
-    font-weight: 400;
-    opacity: 0.9;
-  }
-
-  .meta-separator {
-    margin: 0 16px;
-    opacity: 0.6;
-  }
-
-  .scroll-indicator {
-    position: absolute;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    color: #FDFBF7;
-    opacity: 0.7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-
-  /* Challenge Section */
-  .challenge-quote blockquote {
-    font-size: clamp(28px, 4vw, 40px);
-    font-weight: 500;
-    line-height: 1.4;
-    color: #3D3835;
-    font-style: italic;
-    margin: 0 0 80px 0;
-    padding-left: 40px;
-    border-left: 4px solid #E8623A;
-  }
-
-  /* Translation Section - Pillars Grid */
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin: 80px 0;
-  }
-
-  .pillar-card {
-    background: rgba(255, 255, 255, 0.4);
-    padding: 40px 32px;
-    border-radius: 12px;
-    border: 1px solid rgba(61, 56, 53, 0.08);
-    position: relative;
-    z-index: var(--z-card);
-    transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                background 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                z-index 0ms 0ms;
-  }
-
-  @media (hover: hover) and (pointer: fine) {
-    .pillar-card:hover {
-      background: rgba(255, 255, 255, 0.6);
-      transform: translateY(-8px);
-      box-shadow: 0 8px 32px rgba(61, 56, 53, 0.12);
-      z-index: var(--z-card-hover);
-      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  background 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  z-index 0ms 0ms;
-    }
-
-    .pillar-card {
-      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  background 300ms cubic-bezier(0.4, 0, 0.2, 1),
-                  z-index 0ms 300ms;
-    }
-  }
-
-  .pillar-number {
-    font-size: 14px;
-    font-weight: 700;
-    color: #E8623A;
-    margin-bottom: 20px;
-  }
-
-  .pillar-heading {
-    font-size: 22px;
-    font-weight: 600;
-    color: #3D3835;
-    line-height: 1.3;
-    margin-bottom: 16px;
-  }
-
-  .pillar-description {
-    font-size: 17px;
-    line-height: 1.8;
-    color: rgba(61, 56, 53, 0.85);
-  }
-
-  /* Work Grid */
-  .work-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 48px;
-    margin-top: 80px;
-  }
-
-  .work-item {
-    position: relative;
-  }
-
-  .work-image {
-    width: 100%;
-    aspect-ratio: 4/3;
-    overflow: hidden;
-    border-radius: 12px;
-    margin-bottom: 24px;
-  }
-
-  .work-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 600ms ease;
-  }
-
-  .work-item:hover .work-image img {
-    transform: scale(1.05);
-  }
-
-  .work-caption h4 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #3D3835;
-    margin-bottom: 8px;
-  }
-
-  .work-caption p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: rgba(61, 56, 53, 0.75);
-  }
-
-  /* Impact Section */
-  .impact-quote blockquote {
-    font-size: clamp(28px, 4vw, 36px);
-    font-weight: 500;
-    line-height: 1.5;
-    font-style: italic;
-    margin: 0 auto 32px;
-    max-width: 900px;
-  }
-
-  .impact-quote cite {
-    font-size: 18px;
-    font-style: normal;
-    opacity: 0.7;
-  }
-
-  .impact-stats {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    margin: 80px 0;
-    flex-wrap: wrap;
-  }
-
-  .stat-value {
-    font-size: clamp(42px, 6vw, 56px);
-    font-weight: 700;
-    color: #E8623A;
-    margin-bottom: 8px;
-  }
-
-  .stat-label {
-    font-size: 16px;
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  /* Stagger animations for cards */
-  .pillar-card:nth-child(1) { transition-delay: 0ms; }
-  .pillar-card:nth-child(2) { transition-delay: 150ms; }
-  .pillar-card:nth-child(3) { transition-delay: 300ms; }
-
-  .work-item:nth-child(1) { transition-delay: 0ms; }
-  .work-item:nth-child(2) { transition-delay: 150ms; }
-  .work-item:nth-child(3) { transition-delay: 300ms; }
-  .work-item:nth-child(4) { transition-delay: 450ms; }
-
-  /* Mobile responsive */
-  @media (max-width: 768px) {
-    .pillars-grid {
-      grid-template-columns: 1fr;
-      gap: 32px;
-    }
-
-    .work-grid {
-      grid-template-columns: 1fr;
-      gap: 40px;
-    }
-
-    .hero-name {
-      font-size: clamp(36px, 8vw, 48px);
-    }
-
-    .challenge-quote blockquote {
-      font-size: clamp(22px, 5vw, 28px);
-      padding-left: 24px;
-    }
-  }
-
-  /* ================================ */
-  /* LUXURY MICRO-INTERACTIONS       */
-  /* ================================ */
-
-  /* Selection color */
-  ::selection {
-    background: #E8623A;
-    color: #FFFFFF;
-  }
-
-  /* Custom scrollbar styling (Webkit) */
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(10, 10, 10, 0.15);
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(10, 10, 10, 0.3);
-  }
-
-  /* Beautiful focus states for accessibility */
-  :focus-visible {
-    outline: 2px solid #E8623A;
-    outline-offset: 4px;
-  }
-
-  /* Image loading fade-in */
-  img {
-    opacity: 1;
-    transition: opacity 0.4s ease;
-  }
-
-  img:not([src]) {
-    opacity: 0;
-  }
-
-  /* ================================ */
-  /* B&W PHOTO FILTER                */
-  /* ================================ */
-
-  /* Apply B&W filter to all client and team photos for visual cohesion */
-  .client-photo,
-  .team-photo,
-  .client-card img,
-  .team-member img {
-    filter: grayscale(100%) contrast(1.1);
-    transition: filter 0.4s ease;
-  }
-
-  .client-photo:hover,
-  .team-photo:hover,
-  .client-card:hover img,
-  .team-member:hover img {
-    filter: grayscale(0%) contrast(1);
-  }
-}
-
-/* ================================ */
-/* PHASE 8: LUXURY POLISH DETAILS  */
-/* ================================ */
-
-/* Text selection */
+/* Selection + focus — ambos apuntan al --color-accent (amarillo).
+   Regla dura del brief v4: el accent aparece en exactamente dos
+   lugares del sitio — el focus ring y el hover del botón primario. */
 ::selection {
-  background: #E8623A;
-  color: #FFFFFF;
+  background: var(--color-accent, #FFD200);
+  color: var(--color-ink, #0A0A0A);
 }
-
-/* Focus states */
 :focus-visible {
-  outline: 2px solid #E8623A;
+  outline: 2px solid var(--color-accent, #FFD200);
   outline-offset: 4px;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
+/* Scrollbar sutil. Mismo tinte que ink translúcido, no marca. */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
   background: rgba(10, 10, 10, 0.15);
   border-radius: 3px;
 }
+::-webkit-scrollbar-thumb:hover { background: rgba(10, 10, 10, 0.3); }
 
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(10, 10, 10, 0.3);
+/* Route transition wrapper — layout.tsx envuelve el <main> con esta
+   clase para dar un fade discreto entre páginas. */
+.route-transition-wrapper {
+  animation: fadeInContent 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes fadeInContent {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-transition-wrapper { animation: none; }
 }
 
-/* Smooth scroll */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Section dividers - gradient fades */
-.section-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(to right,
-    transparent 0%,
-    rgba(10,10,10,0.08) 20%,
-    rgba(10,10,10,0.08) 80%,
-    transparent 100%
-  );
-}
-
-/* ============================================
-   SCROLL REVEAL ANIMATIONS
-   ============================================ */
-
-/* Legacy [data-reveal] / .in-view rules removed — no component consumes
-   them anymore, and the observer that stamped .in-view (ScrollRevealInit)
-   has been deleted per patch P0.1 (unify to .reveal / .is-visible). */
-
-/* ============================================
-   GLOBAL BUTTON SYSTEM — SWEEP-FILL
-   ============================================ */
-
-/* Universal CTA button styles */
-.btn-primary,
-a[class*="cta"]:not(.nav-cta),
-button[class*="conversation"],
-button[class*="book"],
-a[class*="button"] {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  background: #0A0A0A;
-  color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 18px 32px;
-  border: none;
-  border-radius: 0 !important;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-/* Hover sweep-fill from left */
-.btn-primary::before,
-a[class*="cta"]:not(.nav-cta)::before,
-button[class*="conversation"]::before,
-button[class*="book"]::before,
-a[class*="button"]::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: #E8623A;
-  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 0;
-}
-
-.btn-primary:hover::before,
-a[class*="cta"]:not(.nav-cta):hover::before,
-button[class*="conversation"]:hover::before,
-button[class*="book"]:hover::before,
-a[class*="button"]:hover::before {
-  width: 100%;
-}
-
-/* Ensure child elements are above sweep fill */
-.btn-primary > *,
-a[class*="cta"]:not(.nav-cta) > *,
-button[class*="conversation"] > *,
-button[class*="book"] > *,
-a[class*="button"] > * {
-  position: relative;
-  z-index: 1;
-}
-
-/* Arrow nudge on hover */
-.btn-primary .arrow,
-.btn-primary svg,
-a[class*="cta"] .arrow,
-button[class*="conversation"] .arrow,
-button[class*="book"] .arrow {
-  transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.btn-primary:hover .arrow,
-.btn-primary:hover svg,
-a[class*="cta"]:hover .arrow,
-button[class*="conversation"]:hover .arrow,
-button[class*="book"]:hover .arrow {
-  transform: translateX(4px);
-}
-
-/* Click feedback */
-.btn-primary:active,
-a[class*="cta"]:active,
-button[class*="conversation"]:active,
-button[class*="book"]:active {
-  transform: scale(0.98);
-}
-
-/* Dark section variant - white text on red bg */
-[class*="dark"] .btn-primary,
-[class*="cta-dark"],
-section[style*="0A0A0A"] .btn-primary {
-  background: #E8623A;
-}
-
-[class*="dark"] .btn-primary::before,
-[class*="cta-dark"]::before,
-section[style*="0A0A0A"] .btn-primary::before {
-  background: #FFFFFF;
-}
-
-[class*="dark"] .btn-primary:hover,
-[class*="cta-dark"]:hover,
-section[style*="0A0A0A"] .btn-primary:hover {
-  color: #0A0A0A;
-}
-
-/* ============================================
-   CLIENT CARD PHOTO TREATMENT — B&W WITH COLOR REVEAL
-   ============================================ */
-
-/* Apply to all client card images */
-.client-card img,
-.client-card picture img,
-[class*="client"] img,
-.our-clients-section img {
-  filter: grayscale(100%) contrast(1.05);
-  transition: filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Color reveal on hover */
-.client-card:hover img,
-.client-card:hover picture img,
-[class*="client"]:hover img,
-.our-clients-section .client-card:hover img {
-  filter: grayscale(0%) contrast(1);
-}
-
-/* Ensure consistent aspect ratio */
-.client-card-image,
-.client-photo {
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-}
-
-.client-card-image img,
-.client-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ============================================
-   FORCE SQUARE CORNERS GLOBALLY
-   ============================================ */
-
-/* Square is the brand - no rounded corners anywhere */
+/* Square corners — brief. Regla de marca: nada tiene radio.
+   Alguna ui de shadcn (toast, sonner, dialog) puede llegar con
+   border-radius propio; !important lo aplasta. */
 button,
 a,
 input,
 textarea,
 select,
-.btn-primary,
 [class*="btn"],
 [class*="cta"],
 [class*="card"],

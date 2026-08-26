@@ -663,7 +663,8 @@ export default function Nav() {
            Se removió el fallback #E8623A: si --color-accent no resuelve,
            el hover deja de pintar y falla visible en vez de retroceder
            al naranja legacy. */
-        .cruda-subnav-cta:hover { background: var(--color-accent); color: var(--color-ink); }
+        /* F2 — hover del CTA subnav: naranja + texto blanco. */
+        .cruda-subnav-cta:hover { background: var(--color-accent); color: var(--color-surface); }
 
         @media (max-width: 900px) {
           .cruda-subnav {

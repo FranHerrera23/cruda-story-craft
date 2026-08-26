@@ -118,13 +118,14 @@
   text-wrap: pretty;
 }
 
-/* `you` — único acento visual de la mitad inferior. Subrayado en
-   --color-ink sólido (no --accent alias, que apagaba el punto de
-   color). 2px, sin transparencia. */
+/* `you` — único acento visual de la mitad inferior. F2 — vuelve a
+   naranja (--color-accent = #E8623A). Es el uso #1 permitido del
+   token; el naranja está reservado a esto + hover de botón primario
+   + un acento tipográfico por página. 2px sólido, sin transparencia. */
 .cruda-home .say-you {
   color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--color-ink);
+  text-decoration-color: var(--color-accent);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
@@ -250,6 +251,6 @@
 }
 
 .cruda-home :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus);
   outline-offset: 4px;
 }

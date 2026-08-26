@@ -58,7 +58,8 @@
   white-space: nowrap;
   transition: background-color 300ms cubic-bezier(.16, 1, .3, 1);
 }
-.sys .btn:hover { background-color: var(--color-accent); color: var(--color-ink); }
+/* F2 — hover del botón primario: naranja + texto blanco. */
+.sys .btn:hover { background-color: var(--color-accent); color: var(--color-surface); }
 .sys .btn-note { font-family: var(--mono); font-size: 11px; letter-spacing: .08em; color: var(--ink-2); margin-top: 16px; text-align: right; }
 
 /* ---------- sections ---------- */
@@ -219,4 +220,4 @@
 @media (prefers-reduced-motion: reduce) {
   .sys *, .sys *::before, .sys *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
-.sys :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
+.sys :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 4px; }

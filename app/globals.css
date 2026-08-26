@@ -13,7 +13,9 @@
    - resets mínimos + tokens shadcn que consume el UI de radix
    - body / h1-h6 / p base en Archivo (sin max-width global)
    - link/button transition uniform (opacidad + color, cero translateY)
-   - ::selection y :focus-visible en --color-accent (amarillo)
+   - ::selection y :focus-visible en --color-focus (amarillo)
+   - --color-accent (naranja CRUDA #E8623A) reservado a hover de
+     botón primario y acentos tipográficos discretos (regla F2)
    - Square-corners global (regla de marca)
    - .route-transition-wrapper (usado por app/layout.tsx)
    - .display + .display--sm (utilitarias site-wide para H1 de
@@ -134,15 +136,16 @@ a, button {
               opacity 200ms ease;
 }
 
-/* Selection + focus — ambos apuntan al --color-accent (amarillo).
-   Regla dura del brief v4: el accent aparece en exactamente dos
-   lugares del sitio — el focus ring y el hover del botón primario. */
+/* F2 — el naranja (--color-accent = #E8623A) queda para hover de
+   botón primario y acentos tipográficos discretos. El chrome de
+   interfaz (focus ring, ::selection) usa --color-focus (amarillo)
+   para no mezclar el acento con la marca. */
 ::selection {
-  background: var(--color-accent, #FFD200);
+  background: var(--color-focus, #FFD200);
   color: var(--color-ink, #0A0A0A);
 }
 :focus-visible {
-  outline: 2px solid var(--color-accent, #FFD200);
+  outline: 2px solid var(--color-focus, #FFD200);
   outline-offset: 4px;
 }
 

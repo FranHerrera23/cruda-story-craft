@@ -22,11 +22,21 @@
      H1 de la home ("Strip the bullshit."), el `.accent` del H1 de
      /systems ("Everything else"). D2. */
   --color-ghost:      #CCCCCC;
-  /* --color-accent aparece exactamente en dos lugares del sitio:
-     el focus ring de teclado y el hover del botón primario.
-     Si aparece en una tercera parte, pierde el significado. */
-  --color-accent:     #FFD200;
-  --focus-ring-color: var(--color-ink);
+  /* F2 — el naranja CRUDA vuelve como token con reglas.
+     Usos permitidos, ninguno más:
+       1. El subrayado de "you" en la home
+       2. Hover de botones primarios (fondo naranja + texto blanco)
+       3. Un acento tipográfico por página como máximo
+     Prohibido: hairlines, bordes estructurales, bullets, numerales,
+     barras de progreso, cromo de interfaz. Si aparece más de una
+     vez por pantalla deja de ser acento. */
+  --color-accent:     #E8623A;
+  /* Anillo de foco y ::selection — chrome de interfaz, va en
+     amarillo. NO se mezcla con el acento. */
+  --color-focus:      #FFD200;
+  /* --focus-ring-color se mantiene por compat pero los focus-visible
+     actuales apuntan directo a --color-focus. */
+  --focus-ring-color: var(--color-focus);
 
   /* -------- Type -------- */
   --text-display:     44px;
@@ -311,7 +321,7 @@
 }
 .capture__row input::placeholder { color: var(--color-muted); }
 .capture__row input:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus);
   outline-offset: -2px;
 }
 .capture__row button {
@@ -329,8 +339,9 @@
               color var(--dur-hover) var(--ease-ui);
 }
 .capture__row button:hover:not(:disabled) {
+  /* F2 — hover del botón primario: naranja + texto blanco. */
   background: var(--color-accent);
-  color: var(--color-ink);
+  color: var(--color-surface);
 }
 .capture__row button:disabled { opacity: 0.6; cursor: default; }
 .capture__status {
@@ -622,7 +633,7 @@ html { font-size: 17px; }
 .cs-btn{display:inline-block;font-family:var(--mono);font-weight:500;font-size:12px;
   letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--white);
   padding:19px 38px;text-decoration:none;transition:background .2s}
-.cs-btn:hover{background:var(--color-accent);color:var(--color-ink)}
+.cs-btn:hover{background:var(--color-accent);color:var(--color-surface)}
 
 /* Nota B5: bloque .cb / .cb-head / .cb-body / .cb-cta / .cb-arrow
    (ClosingBlock) removido. Reemplazado por .e-cta-line / .cs-cta-line
@@ -770,7 +781,7 @@ html { font-size: 17px; }
    own :focus-visible; this is the fallback for anything unscoped so no
    route ever ends up with outline: none by accident. */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus);
   outline-offset: 4px;
 }
 

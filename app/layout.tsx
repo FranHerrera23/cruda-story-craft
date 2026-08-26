@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Instrument_Serif } from 'next/font/google';
+import { Archivo, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -20,6 +20,19 @@ const instrumentSerif = Instrument_Serif({
   weight: '400',
   display: 'swap',
   variable: '--font-instrument-serif',
+});
+
+/* Archivo — sans/UI face del sistema. Se usa en H1 de piezas
+   (essay, case study, sports, our-founder), H2/H3 de todo, body y
+   cards. Pesos declarados en CSS: 400, 500, 600, 700. No cargamos
+   800/900 porque nada los pide — si algún componente los declarara
+   sin cargarlos, el browser sintetizaría el bold y se vería mal.
+   Se expone como --font-archivo para que --sans lo consuma. */
+const archivo = Archivo({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-archivo',
 });
 
 export const metadata: Metadata = {
@@ -94,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={instrumentSerif.variable}>
+    <html lang="en" className={`${instrumentSerif.variable} ${archivo.variable}`}>
       <head>
         {/* EB Garamond + Instrument Sans — cargadas SOLO para
             /architecture-design/about, que usa CSS inline con esas

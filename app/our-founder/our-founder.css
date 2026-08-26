@@ -4,7 +4,7 @@
    src/components/case-study.css. Scoped under .of. */
 
 .of {
-  --sans: 'Archivo', -apple-system, sans-serif;
+  --sans: var(--font-archivo), -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
 
@@ -155,7 +155,7 @@
    Punto 2.4 — pull quote sits below reading measure, offset right,
    never larger than the H1. */
 .of .of-h2 {
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-weight: 600;
   font-size: var(--fs-h2);
   line-height: var(--lh-heading);

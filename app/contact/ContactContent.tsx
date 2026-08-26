@@ -62,7 +62,7 @@ export default function ContactContent() {
         .contact-root {
           background: var(--white);
           color: var(--ink);
-          font-family: 'Archivo', -apple-system, sans-serif;
+          font-family: var(--font-archivo), -apple-system, sans-serif;
           -webkit-font-smoothing: antialiased;
         }
         .contact-shell {
@@ -125,7 +125,7 @@ export default function ContactContent() {
           color: var(--ink-2);
         }
         .contact-alt-mail {
-          font-family: 'Archivo', -apple-system, sans-serif;
+          font-family: var(--font-archivo), -apple-system, sans-serif;
           font-weight: 600;
           font-size: clamp(24px, 2.4vw, 32px);
           line-height: 1.15;

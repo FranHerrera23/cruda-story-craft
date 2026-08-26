@@ -5,7 +5,7 @@
 .sys {
   --paper-2: #FAF7F0;
   --rule-soft: #E9E6DF;
-  --sans: 'Archivo', -apple-system, sans-serif;
+  --sans: var(--font-archivo), -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 80px);
   --max: 1360px;

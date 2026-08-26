@@ -3,7 +3,7 @@
    come from src/components/case-study.css (etapa 1). Local vars only. */
 
 .essay-root {
-  --sans: 'Archivo', -apple-system, sans-serif;
+  --sans: var(--font-archivo), -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
   background: var(--white);
@@ -113,7 +113,7 @@
   /* §4.2 — H1 en col 1-8 (media pantalla vacía a la derecha) */
   grid-column: 1 / span 8;
   margin-top: var(--space-3);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-display);
   font-weight: 700;
   line-height: 1.08;
@@ -128,7 +128,7 @@
 .essay .e-deck {
   grid-column: 1 / span 6;
   margin-top: var(--space-4);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-weight: 400;
   font-size: var(--text-body-large);
   line-height: 1.5;
@@ -211,7 +211,7 @@
   margin-top: var(--space-5);
   padding: var(--space-4);
   background: var(--color-paper);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-body-large);
   line-height: 1.5;
   font-weight: 500;
@@ -279,7 +279,7 @@
 }
 
 .essay .e-body p {
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-body);
   line-height: 1.7;
   color: var(--color-ink);
@@ -292,7 +292,7 @@
 
 /* §4.3 spacing rules — H2 96px arriba, H3 56px arriba */
 .essay .e-body h2 {
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-h2);
   font-weight: 700;
   line-height: 1.15;
@@ -302,7 +302,7 @@
   color: var(--color-ink);
 }
 .essay .e-body h3 {
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-h3);
   font-weight: 600;
   line-height: 1.3;
@@ -387,7 +387,7 @@
   margin: 40px 0;
   padding-left: 28px;
   border-left: 2px solid var(--color-rule);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-h3);
   line-height: 1.3;
   letter-spacing: -0.01em;
@@ -427,7 +427,7 @@
   .essay .e-faq { grid-column: 1 / -1; }
 }
 .essay .e-faq h2 {
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-h2);
   font-weight: 700;
   line-height: 1.15;

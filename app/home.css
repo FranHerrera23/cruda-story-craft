@@ -8,7 +8,7 @@
    Todo scoped bajo .cruda-home. */
 
 .cruda-home-root {
-  --sans: 'Archivo', -apple-system, sans-serif;
+  --sans: var(--font-archivo), -apple-system, sans-serif;
   --serif: var(--font-instrument-serif), Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
@@ -91,10 +91,11 @@
 .cruda-home .manifesto span { display: block; }
 .cruda-home .manifesto .line-2 {
   font-style: normal;
-  /* Gris explícito (no el alias legacy). Dos líneas, dos pesos:
-     "Find the essence." declara (--color-ink), "Strip the bullshit."
-     se desvanece (--color-muted). C1. */
-  color: var(--color-muted);
+  /* Dos líneas, dos pesos: "Find the essence." declara (--color-ink),
+     "Strip the bullshit." se desvanece (--color-ghost = #CCCCCC).
+     --color-muted (#6B6B6B) competía; --color-ghost se desvanece
+     como pedía el diseño original. D2. */
+  color: var(--color-ghost);
 }
 
 /* -------------------------------------------------------------------
@@ -108,7 +109,7 @@
 }
 
 .cruda-home .say p {
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-weight: 500;
   font-size: var(--fs-lead);
   line-height: 1.45;
@@ -145,7 +146,7 @@
   align-items: baseline;
   gap: 8px;
   margin-top: clamp(24px, 4vh, 40px);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-weight: 500;
   font-size: var(--fs-lead);
   color: var(--ink);

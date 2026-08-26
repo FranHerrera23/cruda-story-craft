@@ -3,7 +3,7 @@
    /sports es vertical placeholder, no está en esa lista). */
 
 .sports-root {
-  --sans: 'Archivo', -apple-system, sans-serif;
+  --sans: var(--font-archivo), -apple-system, sans-serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
 

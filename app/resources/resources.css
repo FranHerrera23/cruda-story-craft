@@ -2,7 +2,7 @@
    Tokens y --fs-* del case-study.css. Todo scoped a .rs-root. */
 
 .rs-root {
-  --sans: 'Archivo', -apple-system, sans-serif;
+  --sans: var(--font-archivo), -apple-system, sans-serif;
   --serif: var(--font-instrument-serif), Georgia, serif;
   --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
@@ -85,7 +85,7 @@
 }
 .rs-filter-label {
   color: var(--ink-2);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: -0.005em;
@@ -99,7 +99,7 @@
   background: transparent;
   border: 1px solid var(--rule);
   color: var(--ink);
-  font-family: 'Archivo', -apple-system, sans-serif;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 0;

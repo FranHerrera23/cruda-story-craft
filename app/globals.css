@@ -85,7 +85,7 @@ img {
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: var(--font-archivo), -apple-system, BlinkMacSystemFont, sans-serif;
     font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -96,7 +96,7 @@ img {
   /* H1-H6 base en Archivo bold. Las páginas-declaración overridean
      con .display / .display--sm para levantar Instrument Serif. */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Archivo', -apple-system, sans-serif;
+    font-family: var(--font-archivo), -apple-system, sans-serif;
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;

@@ -1,0 +1,444 @@
+/* CRUDA — /architecture-design/about (E1 rebuild).
+
+   Página-declaración: H1 en Instrument Serif (regla B0), todo lo
+   demás en Archivo. Estructura sale de fetch en vivo de
+   ndstudio.gov/about: hero → secciones numeradas con romano en la
+   fila del eyebrow → cierre con línea (no bloque negro).
+
+   Todo por token, cero literales. */
+
+.about-root {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  /* Font-family lo hereda del body (Archivo via next/font, globals.css). */
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.about-root .mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* .about es .grid-container inlineada: mismo comportamiento que
+   .essay article. El <article> ES la grilla, nada se envuelve en
+   un div extra. Padding vertical top a 244px como el hero del essay. */
+.about {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-6);
+}
+@media (max-width: 767px) {
+  .about { padding-top: 120px; }
+}
+
+/* ==================================================================
+   HERO — eyebrow → H1 → body (1-6) + pull quote (8-12). Slot de
+   imagen preparado; sin render mientras no haya arte.
+   ================================================================== */
+.about-hero {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  gap: var(--space-4) 20px;
+  padding-bottom: var(--space-7);
+}
+
+.about-hero-eyebrow {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.about-hero-h1 {
+  grid-column: 1 / span 10;
+  color: var(--color-ink);
+  margin: var(--space-3) 0 var(--space-5);
+  /* Instrument Serif viene de .display--sm (globals.css). Aplicamos
+     esa clase en el markup, no acá — este bloque solo maneja layout
+     y color. */
+}
+.about-hero-h1 em {
+  font-style: italic;
+  color: var(--color-ghost);
+}
+
+.about-hero-body {
+  grid-column: 1 / span 6;
+  font-size: var(--text-body-large);
+  line-height: 1.55;
+  color: var(--color-ink);
+  margin: 0;
+}
+
+.about-hero-pull {
+  grid-column: 8 / span 5;
+  font-size: var(--text-h3);
+  line-height: 1.35;
+  color: var(--color-muted);
+  font-style: italic;
+  border-left: 2px solid var(--color-rule);
+  padding-left: var(--space-3);
+  margin: 0;
+  align-self: end;
+}
+@media (max-width: 767px) {
+  .about-hero-h1 { grid-column: 1 / -1; }
+  .about-hero-body { grid-column: 1 / -1; }
+  .about-hero-pull {
+    grid-column: 1 / -1;
+    align-self: auto;
+  }
+}
+
+/* Slot de imagen hero — cuando exista una <figure class="about-hero-image">
+   se renderea a ancho completo. Mientras no exista, no ocupa espacio.
+   Reveal por clip-path (misma mecánica que .e-section-image). */
+.about-hero-image {
+  grid-column: 1 / -1;
+  margin-top: var(--space-4);
+  clip-path: inset(0 0 0 0);
+}
+.about-hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-hero-image {
+      animation: about-image-reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+@keyframes about-image-reveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* ==================================================================
+   SECCIONES numeradas con romano — I / II / III / IV.
+   Hairline arriba (--color-rule = 20% ink). Head con numeral + nombre
+   en mono, cols 1-3. Body en cols 4-12.
+   ================================================================== */
+.about-section {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+}
+
+.about-section-head {
+  grid-column: 1 / span 3;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  color: var(--color-muted);
+}
+.about-section-n {
+  min-width: 20px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.about-section-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.about-section-body {
+  grid-column: 4 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  gap: var(--space-3) 20px;
+}
+
+@media (max-width: 767px) {
+  .about-section-head { grid-column: 1 / -1; margin-bottom: var(--space-3); }
+  .about-section-body { grid-column: 1 / -1; }
+}
+
+/* H2 grande de sección en Archivo (regla B0: solo H1 va serif). */
+.about-section-body h2 {
+  grid-column: 1 / -1;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: var(--text-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-3);
+  max-width: 22ch;
+}
+@media (max-width: 767px) {
+  .about-section-body h2 { font-size: var(--text-h2); }
+}
+
+.about-section-body p {
+  grid-column: 1 / span 7;
+  font-size: var(--text-body-large);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0;
+}
+.about-section-body p + p { margin-top: var(--space-3); }
+.about-section-body p strong { font-weight: 700; color: var(--color-ink); }
+
+.about-section-quote {
+  grid-column: 1 / span 7;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-style: italic;
+  font-size: var(--text-h3);
+  line-height: 1.35;
+  color: var(--color-muted);
+  border-left: 2px solid var(--color-rule);
+  padding-left: var(--space-3);
+  margin: var(--space-4) 0 0;
+}
+@media (max-width: 767px) {
+  .about-section-body p,
+  .about-section-quote { grid-column: 1 / -1; }
+}
+
+/* ==================================================================
+   ETYMOLOGY — palabra "Cruda" en Instrument Serif (el único otro
+   lugar donde el serif aparece, porque la palabra ES la declaración).
+   ================================================================== */
+/* Selectores compuestos (.about-section-body .about-*) para ganarle
+   en especificidad al `.about-section-body p` que setea el body-large
+   por default. */
+.about-section-body .about-etym-word {
+  grid-column: 1 / -1;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(80px, 12vw, 180px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--color-ghost);
+  margin: 0 0 var(--space-4);
+  max-width: none;
+  user-select: none;
+}
+.about-section-body .about-etym-lead {
+  grid-column: 1 / -1;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-3);
+  max-width: none;
+}
+
+/* ==================================================================
+   TEAM — anuncio (h2 + sub) + grid de 6 miembros.
+   Ordinales 01-06 en mono (regla usuario: dos sistemas de numeración
+   distintos para dos jerarquías — romanos para secciones, dígitos
+   para miembros).
+   ================================================================== */
+.about-team-intro {
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-6);
+}
+.about-team-intro h2 {
+  max-width: 20ch;
+  margin: 0 0 var(--space-3);
+}
+.about-team-intro p {
+  grid-column: unset;
+  font-size: var(--text-body-large);
+  line-height: 1.6;
+  color: var(--color-ink);
+  max-width: 56ch;
+  margin: 0;
+}
+
+.about-team-list {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.about-member {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-5);
+  align-items: start;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-rule);
+  /* Hover solo opacidad — cero translateY / scale / filter. */
+  transition: opacity var(--dur-ui, 600ms) var(--ease-ui, cubic-bezier(0.215, 0.61, 0.355, 1));
+}
+.about-member:first-child { border-top: none; padding-top: 0; }
+.about-member.flip {
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+}
+.about-member.flip .about-member-photo { order: 2; }
+.about-member.flip .about-member-bio { order: 1; }
+
+.about-member-photo {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--color-paper);
+}
+.about-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Sin filter — el hover no cambia grayscale. Cero movimiento. */
+}
+
+/* Placeholder de Abril: fondo negro con overlay de texto blanco. */
+.about-member-placeholder {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+.about-member-placeholder span {
+  color: rgba(255, 255, 255, 0.15);
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: var(--text-caption);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.6;
+}
+
+.about-member-bio {
+  padding-top: var(--space-3);
+}
+.about-member-n {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: var(--space-3);
+}
+.about-member-name {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: var(--text-h2);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0;
+}
+.about-member-role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: var(--space-1) 0 var(--space-4);
+}
+.about-member-bio-text {
+  font-size: var(--text-body);
+  line-height: 1.7;
+  color: var(--color-ink);
+  max-width: 46ch;
+}
+.about-member-bio-text p { margin: 0; }
+.about-member-bio-text p + p { margin-top: var(--space-2); }
+
+.about-member-logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.about-member-logo {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  padding: 6px 12px;
+  border: 1px solid var(--color-rule);
+}
+
+@media (max-width: 767px) {
+  .about-member,
+  .about-member.flip {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  .about-member.flip .about-member-photo { order: 1; }
+  .about-member.flip .about-member-bio { order: 2; }
+}
+
+/* ==================================================================
+   HOW WE WORK — 3 value items (headline + párrafo).
+   ================================================================== */
+.about-values {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+.about-value h4 {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: var(--text-h3);
+  line-height: 1.2;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-2);
+}
+.about-value p {
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--color-muted);
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .about-values { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+/* ==================================================================
+   CTA line — cierre. Reemplaza el bloque negro con botón por una
+   sola línea con .link (misma mecánica que .e-cta-line / .cs-cta-line).
+   ================================================================== */
+.about-cta-line {
+  grid-column: 4 / -1;
+  margin: var(--space-6) 0 0;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.about-cta-line .link {
+  color: inherit;
+}
+@media (max-width: 767px) {
+  .about-cta-line { grid-column: 1 / -1; }
+}

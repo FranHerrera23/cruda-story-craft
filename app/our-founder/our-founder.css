@@ -315,24 +315,47 @@
   transition: background-color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
               color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
 }
+/* F2 — hover del botón primario: naranja + texto blanco. */
 .of .of-cta:hover {
   background-color: var(--color-accent);
-  color: var(--color-ink);
+  color: var(--color-surface);
 }
 
 /* ---------- Sticky index ----------
+   F4 bug 1 — antes era position: fixed, así que sobrevivía fuera de
+   .of y se lee encima del wordmark CRUDA del SiteFooter global.
+   Ahora es position: sticky dentro de .of: cuando el usuario scrollea
+   al SiteFooter, el rail se queda en el borde de .of y no invade.
+   z-index bajado a 20 (por debajo de la Nav global que está en 110).
+
    Punto 1: rail lives at left: 48px, width: 180px. Content starts
    at padding-left: 300px so there is no dead gap between the two —
    the reading column begins right where the rail ends, plus 72px of
    air. Verified visually at 1280 / 1440 / 1680. */
+.of {
+  position: relative;
+}
 .of .of-sticky-idx {
-  position: fixed;
-  left: 48px;
-  top: 50%;
+  position: sticky;
+  /* Sticky con top:50vh + transform:translateY(-50%) mantiene el
+     rail centrado verticalmente en el viewport hasta que se llegue
+     al final de .of. */
+  top: 50vh;
   transform: translateY(-50%);
-  z-index: 40;
+  z-index: 20;
   display: none;
   width: 180px;
+  margin-left: 48px;
+  /* Reserva el hueco vertical del rail sobre el flow del documento:
+     con position: sticky el nodo participa en el flow y desplaza el
+     resto. Con height: 0 no aporta layout; el visual queda por el
+     translateY. Su primer hijo (<ol>) absorbe la altura via
+     position: absolute abajo. */
+  height: 0;
+  pointer-events: none;
+}
+.of .of-sticky-idx > * {
+  pointer-events: auto;
 }
 .of .of-sticky-idx ol {
   list-style: none;
@@ -363,6 +386,18 @@
   .of .of-inner {
     padding-left: 300px;
     padding-right: 48px;
+    max-width: none;
+    margin: 0;
+  }
+  /* F4 bug 1 (continuación) — el hero-ink usaba .of-hero-inner con
+     max-width 1280 centrado, así que el H1 arrancaba a 80px de left
+     mientras el rail estaba en 48-228px: overlap directo.
+     Ahora el hero también reserva la columna del rail. */
+  .of .of-hero-ink {
+    padding-left: 300px;
+    padding-right: 48px;
+  }
+  .of .of-hero-inner {
     max-width: none;
     margin: 0;
   }

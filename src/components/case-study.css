@@ -587,7 +587,18 @@ html { font-size: 17px; }
    con la escala del H1. */
 .cs-section h2{font-size:var(--fs-h2);font-weight:700;
   line-height:var(--lh-heading,1.14);letter-spacing:var(--track-heading,-.02em);
-  max-width:24ch;margin-bottom:24px}
+  max-width:24ch;margin-bottom:24px;
+  /* F3.3 — reveal opcional via animation-timeline. Baseline visible. */
+  opacity:1}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .cs-section h2 {
+      animation: cruda-text-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
 /* Brief v13 T2.2 — answer autocontenida entre heading y body.
    --fs-lead + weight 500 sobre --ink. Más chico que la capsule de la
    página pero visualmente distinto del body corrido: un motor de
@@ -694,8 +705,9 @@ html { font-size: 17px; }
     }
   }
 }
+/* F3.2 — reveal open-from-center. */
 @keyframes cs-image-reveal {
-  from { clip-path: inset(0 100% 0 0); }
+  from { clip-path: inset(50% 50% 50% 50%); }
   to   { clip-path: inset(0 0 0 0); }
 }
 

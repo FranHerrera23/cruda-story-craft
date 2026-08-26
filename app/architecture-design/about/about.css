@@ -116,8 +116,9 @@
     }
   }
 }
+/* F3.2 — reveal open-from-center. */
 @keyframes about-image-reveal {
-  from { clip-path: inset(0 100% 0 0); }
+  from { clip-path: inset(50% 50% 50% 50%); }
   to   { clip-path: inset(0 0 0 0); }
 }
 
@@ -131,7 +132,30 @@
   display: grid;
   grid-template-columns: subgrid;
   padding-block: var(--space-6);
-  border-top: 1px solid var(--color-rule);
+  position: relative;
+}
+/* F3.3 — hairline en pseudo-elemento para poder animar scaleX 0→1
+   desde origin-left al entrar en viewport. Baseline visible cuando
+   la animación no se soporta o hay reduced-motion. */
+.about-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-rule);
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-section::before {
+      animation: cruda-line-scale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
 }
 
 .about-section-head {
@@ -182,6 +206,17 @@
   color: var(--color-ink);
   margin: 0 0 var(--space-3);
   max-width: 22ch;
+  /* F3.3 — reveal opcional via animation-timeline. Baseline visible. */
+  opacity: 1;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .about-section-body h2 {
+      animation: cruda-text-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
 }
 @media (max-width: 767px) {
   .about-section-body h2 { font-size: var(--text-h2); }

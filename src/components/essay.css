@@ -273,8 +273,12 @@
     }
   }
 }
+/* F3.2 — reveal open-from-center. Antes era sweep desde la izquierda
+   (inset(0 100% 0 0)); ahora el clip abre desde el centro
+   (inset(50% 50% 50% 50%)) coincidiendo con el keyframe global
+   .reveal-media. */
 @keyframes essay-image-reveal {
-  from { clip-path: inset(0 100% 0 0); }
+  from { clip-path: inset(50% 50% 50% 50%); }
   to   { clip-path: inset(0 0 0 0); }
 }
 
@@ -300,6 +304,17 @@
   margin-top: 96px;
   margin-bottom: 24px;
   color: var(--color-ink);
+  /* F3.3 — baseline visible. Reveal opcional via animation-timeline. */
+  opacity: 1;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .essay .e-body h2 {
+      animation: cruda-text-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
 }
 .essay .e-body h3 {
   font-family: var(--font-archivo), -apple-system, sans-serif;

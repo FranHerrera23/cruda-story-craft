@@ -9,6 +9,7 @@ import SiteFooter from "@/components/SiteFooter";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import Providers from './providers';
+import PageShell from "@/components/PageShell";
 
 /* Instrument Serif — display face de las páginas-declaración (home,
    índices de /resources, /contact, /architecture-design/about).
@@ -122,9 +123,15 @@ export default function RootLayout({
             {/* Brief v4 UX §1.8 — skip link como primer elemento del body. */}
             <a href="#main" className="skip-link">Skip to content</a>
             <Nav />
-            <main id="main" className="route-transition-wrapper" data-page>
-              {children}
-            </main>
+            {/* F3.1 — PageShell intercepta clicks internos y dispara
+                document.startViewTransition en browsers que la soportan
+                (Chrome/Edge/Safari). El fade out+in vive en CSS bajo
+                ::view-transition-old(root) y ::view-transition-new(root). */}
+            <PageShell>
+              <main id="main" className="route-transition-wrapper" data-page>
+                {children}
+              </main>
+            </PageShell>
             <SiteFooter />
           </TooltipProvider>
         </Providers>

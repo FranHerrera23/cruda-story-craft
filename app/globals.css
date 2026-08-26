@@ -158,17 +158,149 @@ a, button {
 }
 ::-webkit-scrollbar-thumb:hover { background: rgba(10, 10, 10, 0.3); }
 
+/* ==================================================================
+   F3.1 — Transición de página con la View Transitions API.
+
+   PageShell (client component) intercepta clicks internos y dispara
+   document.startViewTransition() en browsers que la soportan. El
+   snapshot de la página vieja se enmascara con opacity 1→0 en 300ms,
+   el scroll salta a top DENTRO del callback (durante el fade), y la
+   página nueva entra con opacity 0→1 en 500ms.
+
+   Regla dura del brief F3: solo opacidad. Cero translate, cero
+   slide, cero scale en el eje Y ni en ningún otro.
+
+   Fallback: browsers sin startViewTransition (Firefox al 2026)
+   caen al .route-transition-wrapper fadeIn de 400ms de entrada.
+   ================================================================== */
+::view-transition-old(root) {
+  animation: cruda-page-fade-out var(--dur-hover, 300ms)
+             var(--ease-ui, cubic-bezier(0.215, 0.61, 0.355, 1)) both;
+}
+::view-transition-new(root) {
+  animation: cruda-page-fade-in var(--dur-overlay, 500ms)
+             var(--ease-overlay, cubic-bezier(0.33, 1, 0.68, 1)) both;
+}
+@keyframes cruda-page-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes cruda-page-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* Route transition wrapper — layout.tsx envuelve el <main> con esta
-   clase para dar un fade discreto entre páginas. */
+   clase. Actúa como fallback de entrada para browsers sin
+   view-transition (Firefox). Los que sí la soportan reciben la
+   animación de la view-transition, y este fadeInContent es un
+   segundo fade encima — inaudible visualmente porque termina antes. */
 .route-transition-wrapper {
   animation: fadeInContent 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 @keyframes fadeInContent {
   from { opacity: 0; }
-  to { opacity: 1; }
+  to   { opacity: 1; }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .route-transition-wrapper { animation: none; }
+  .route-transition-wrapper,
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* ==================================================================
+   F3.2 — Reveal de media al entrar en viewport.
+
+   La imagen se abre desde el centro con clip-path, no aparece con
+   fade. 600ms, --ease-ui, una sola vez (animation-timeline: view()).
+
+   Se aplica a cualquier elemento con .reveal-media envuelto sobre la
+   figura/imagen. Los slots existentes (.e-section-image,
+   .cs-section-image, .about-hero-image, .about-member-photo, foto de
+   byline en essay/case study, foto de /our-founder) reciben el
+   mismo tratamiento.
+   ================================================================== */
+.reveal-media {
+  clip-path: inset(0 0 0 0);
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-media {
+      animation: cruda-media-open linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+@keyframes cruda-media-open {
+  from { clip-path: inset(50% 50% 50% 50%); }
+  to   { clip-path: inset(0 0 0 0); }
+}
+
+/* Aplicación del reveal-media a los slots con nombre existente:
+   byline photos (essay + case study), team photos (About), foto
+   principal de /our-founder. Cada uno mantiene su selector para no
+   requerir cambio de markup. */
+.essay .e-av,
+.cs-avatar,
+.about-member-photo,
+.of-photo {
+  clip-path: inset(0 0 0 0);
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .essay .e-av,
+    .cs-avatar,
+    .about-member-photo,
+    .of-photo {
+      animation: cruda-media-open linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+/* ==================================================================
+   F3.3 — Reveal de texto y hairlines al entrar en viewport.
+
+   .reveal-text  — opacity 0→1 (600ms). Sin desplazamiento en Y.
+   .reveal-line  — scaleX 0→1 desde origin-left (600ms).
+
+   Ambos una sola vez, via animation-timeline: view(). Sin observer.
+   Baseline visible cuando el browser no soporta la API o cuando el
+   usuario tiene prefers-reduced-motion.
+   ================================================================== */
+.reveal-text {
+  opacity: 1;
+}
+.reveal-line {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-text {
+      animation: cruda-text-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    .reveal-line {
+      animation: cruda-line-scale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+  }
+}
+@keyframes cruda-text-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes cruda-line-scale {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 /* Square corners — brief. Regla de marca: nada tiene radio.

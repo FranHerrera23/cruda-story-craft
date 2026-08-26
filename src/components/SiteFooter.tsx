@@ -3,20 +3,25 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import CaptureForm from './CaptureForm'
+import { CAPTURE_ENABLED } from '@/lib/flags'
 
 /* Site-wide footer — brief v4 UX §4.10.
    Grid-container aligned. Wordmark, capture form (backend Substack,
    §4.8), three nav columns, legal.
 
    Client component: necesita usePathname para ocultar la capture en
-   /newsletter (esa ruta ya trae una capture full arriba de la página,
-   y una segunda compact en el footer duplica visualmente. B4). */
+   /newsletter cuando el flag está prendido (esa ruta trae una capture
+   full arriba y una segunda en el footer duplicaría).
+
+   F0 — CAPTURE_ENABLED apagado: el slot entero (wrapper + form) no
+   renderea en ninguna ruta. Sin hueco, sin gap huérfano. */
 
 const ROUTES_WITHOUT_CAPTURE = new Set(['/newsletter'])
 
 export default function SiteFooter() {
   const pathname = usePathname()
-  const showCapture = !ROUTES_WITHOUT_CAPTURE.has(pathname)
+  const showCapture =
+    CAPTURE_ENABLED && !ROUTES_WITHOUT_CAPTURE.has(pathname)
   const year = 2026
   return (
     <footer className="site-footer">

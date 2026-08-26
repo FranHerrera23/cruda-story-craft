@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { CAPTURE_ENABLED } from '@/lib/flags'
 
 /* Brief v4 UX §4.8 — captura de email.
    Substack se conecta desde el input propio (sin embed, que inyecta
@@ -72,6 +73,13 @@ export default function CaptureForm({
      y el server responde 200 sin llamar a Substack (B4). */
   const [website, setWebsite] = useState('')
   const [status, setStatus] = useState<Status>('idle')
+
+  /* F0 — flag apagado, cero render (ni el form ni el <section> wrapper).
+     Va DESPUÉS de los hooks para no violar la regla de order-of-hooks;
+     como CAPTURE_ENABLED es una const de compile-time el resultado es
+     el mismo pero el linter queda contento y el tree-shaking hace su
+     trabajo cuando la constante es literal false. */
+  if (!CAPTURE_ENABLED) return null
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

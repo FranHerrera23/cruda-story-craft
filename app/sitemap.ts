@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
 import { allEssays } from '@/content/essays';
+import { CAPTURE_ENABLED } from '@/lib/flags';
 
 const BASE = 'https://www.thecruda.com';
 
@@ -78,12 +79,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     // Newsletter — brief v4 UX §4.8 ubicación 4.
-    {
-      url: `${BASE}/newsletter`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
+    // F0 — con CAPTURE_ENABLED apagado la ruta pierde su form y no
+    // aporta contenido: sale del sitemap y va como noindex a nivel
+    // meta. Cuando el flag vuelva a true, esta entrada vuelve al sitemap.
+    ...(CAPTURE_ENABLED
+      ? [{
+          url: `${BASE}/newsletter`,
+          lastModified: new Date(),
+          changeFrequency: 'monthly' as const,
+          priority: 0.6,
+        }]
+      : []),
     // Contact / book-call (kept live)
     {
       url: `${BASE}/contact`,

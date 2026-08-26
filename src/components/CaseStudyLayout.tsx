@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import './case-study.css'
 import CaptureForm from './CaptureForm'
+import { CAPTURE_ENABLED } from '@/lib/flags'
 
 /* ------------------------------------------------------------------
    CRUDA — CaseStudyLayout
@@ -283,8 +284,11 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
       </p>
 
       {/* B5.6 — captura al cierre. Reemplaza al grid de RelatedResources
-          que se eliminó. Continuidad = newsletter. */}
-      <CaptureForm lang="en" variant="full" />
+          que se eliminó. Continuidad = newsletter.
+          F0 — gateado por CAPTURE_ENABLED. Si el flag está apagado
+          el cierre queda sections → testimonial → faq → línea CTA →
+          SiteFooter, sin hueco. */}
+      {CAPTURE_ENABLED && <CaptureForm lang="en" variant="full" />}
     </article>
   )
 }

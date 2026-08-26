@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import EssayProgressBar from './EssayProgressBar'
 import CaptureForm from './CaptureForm'
+import { CAPTURE_ENABLED } from '@/lib/flags'
 import './essay.css'
 
 /* ------------------------------------------------------------------
@@ -368,8 +369,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
         </p>
 
         {/* B5.6 — captura al final del cierre. Mecanismo de continuidad
-            del sitio; reemplaza al grid de related (que se eliminó). */}
-        <CaptureForm lang={lang} variant="full" />
+            del sitio; reemplaza al grid de related (que se eliminó).
+            F0 — gateado por CAPTURE_ENABLED. Si el flag está apagado el
+            wrapper tampoco renderea: el cierre queda body → sources →
+            faq → línea CTA → SiteFooter, sin hueco. */}
+        {CAPTURE_ENABLED && <CaptureForm lang={lang} variant="full" />}
       </article>
     </div>
   )

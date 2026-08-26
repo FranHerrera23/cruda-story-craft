@@ -190,11 +190,30 @@ a, button {
   to   { opacity: 1; }
 }
 
+/* Fallback para browsers sin View Transitions API (Firefox al 2026).
+   PageShell corre un ciclo con estado React: phase='leaving' baja
+   opacity a 0 en 300ms, phase='entering' la sube a 1 en 500ms.
+   Mismos tiempos y easings que la ruta VT — Fran ve lo mismo en
+   Firefox y en Chrome. */
+[data-page-phase] {
+  opacity: 1;
+}
+[data-page-phase="leaving"] {
+  opacity: 0;
+  transition: opacity var(--dur-hover, 300ms)
+              var(--ease-ui, cubic-bezier(0.215, 0.61, 0.355, 1));
+}
+[data-page-phase="entering"] {
+  animation: cruda-page-fade-in var(--dur-overlay, 500ms)
+             var(--ease-overlay, cubic-bezier(0.33, 1, 0.68, 1)) both;
+}
+
 /* Route transition wrapper — layout.tsx envuelve el <main> con esta
-   clase. Actúa como fallback de entrada para browsers sin
-   view-transition (Firefox). Los que sí la soportan reciben la
-   animación de la view-transition, y este fadeInContent es un
-   segundo fade encima — inaudible visualmente porque termina antes. */
+   clase. Legacy fade discreto de 400ms para casos borde (primera
+   pintura sin JS, hard-reload). Con PageShell activo se pisa por el
+   camino VT (Chrome/Edge/Safari) o por el fallback data-page-phase
+   (Firefox), pero se mantiene para no dejar la primera pintura sin
+   entrada suave. */
 .route-transition-wrapper {
   animation: fadeInContent 400ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -205,9 +224,12 @@ a, button {
 
 @media (prefers-reduced-motion: reduce) {
   .route-transition-wrapper,
+  [data-page-phase],
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
   }
 }
 

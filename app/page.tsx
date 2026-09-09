@@ -13,15 +13,20 @@ import './home.css';
    el botón macizo vive en las unidades, no acá.
 ------------------------------------------------------------------- */
 
+/* A.1.1 — description interina autorizada por Fran. Reemplaza la copy
+   que anunciaba rutas retiradas (/sports, /systems en 410) y contenía
+   la frase "Nobody buys the company — they buy you" retracted por
+   home v2. Se reemplaza otra vez cuando Phase C corra la home. */
+const HOME_DESCRIPTION =
+  'Fran Herrera, Founder & CEO of CRUDA. Narrative and brand work for founder-led companies — Purina, Brahma, CCU, and independent studios across the Americas and Europe.'
+
 export const metadata: Metadata = {
   title: 'CRUDA — Find the essence. Strip the bullshit.',
-  description:
-    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you. Architecture & Design, Sports, Systems.',
+  description: HOME_DESCRIPTION,
   alternates: { canonical: 'https://www.thecruda.com' },
   openGraph: {
     title: 'CRUDA — Find the essence. Strip the bullshit.',
-    description:
-      'We build people. Companies follow. Nobody buys the company — they buy you.',
+    description: HOME_DESCRIPTION,
     url: 'https://www.thecruda.com',
     type: 'website',
   },

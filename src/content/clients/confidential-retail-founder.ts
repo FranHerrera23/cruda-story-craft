@@ -12,7 +12,7 @@ export const confidentialRetailFounder: CaseStudy = {
   vertical: 'CRUDA',
 
   title:
-    "Positioning a second-time retail founder whose current venture reached $300M in revenue in under two years — without giving away the playbook",
+    "Positioning a second-time retail founder whose current venture reached $300M in revenue — without giving away the playbook",
 
   // Task 7 — one-liner (brief v2). Nota copy: la trade press reporta
   // $300M en 2025 (triplicado desde $100M en 2024). El H1 y el resto
@@ -41,7 +41,7 @@ export const confidentialRetailFounder: CaseStudy = {
   updatedAt: '2026-07-26',
 
   answerCapsule:
-    "This is a case CRUDA can share the shape of, not the identity. A third-generation entrepreneur and second-time founder previously built global retail brands to significant scale; the current venture reached $300M revenue in under two years. Over three months CRUDA built the positioning, market education, founder narrative and weekly LinkedIn system that let this founder speak publicly about the model — sophisticated without hyping, credible without over-sharing, founder-led without ego.",
+    "This is a case CRUDA can share the shape of, not the identity. A third-generation entrepreneur and second-time founder previously built global retail brands to significant scale; the current venture reached $300M revenue. Over three months CRUDA built the positioning, market education, founder narrative and weekly LinkedIn system that let this founder speak publicly about the model — sophisticated without hyping, credible without over-sharing, founder-led without ego.",
 
   takeaways: [
     "Confidentiality is a positioning problem, not a comms problem. A protected founder still has to sound like the operator of a $300M business — the trick is which details travel.",
@@ -50,7 +50,7 @@ export const confidentialRetailFounder: CaseStudy = {
   ],
 
   stats: [
-    { value: '$300M', label: 'Revenue reached in under two years' },
+    { value: '$300M', label: 'Revenue' },
     { value: '3 months', label: 'Engagement length' },
   ],
 
@@ -58,7 +58,7 @@ export const confidentialRetailFounder: CaseStudy = {
     {
       heading: "This is a case study CRUDA can't fully share.",
       body: [
-        "Our client is a second-time founder in retail. Third-generation entrepreneur. Previously built global retail brands to significant scale. Current venture reached $300M revenue in under two years.",
+        "Our client is a second-time founder in retail. Third-generation entrepreneur. Previously built global retail brands to significant scale. Current venture reached $300M revenue.",
         "We worked with them over three months on four fronts: strategic positioning (second-time founder, lessons applied), market education (explaining how the model works and why it's better), founder story (what changed between the first company and this one), and a content system (weekly LinkedIn, messaging matrix, investor-ready language).",
         "The work was sophisticated. We can share results, not the full strategy.",
       ],

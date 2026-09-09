@@ -91,13 +91,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
-    // Pricing — D4 pendiente Fran, se queda por ahora.
-    {
-      url: `${BASE}/pricing`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
+    /* A.2.1 — /pricing fuera del sitemap. La ruta sigue viva pero
+       responde noindex a nivel meta hasta que la decisión sobre
+       rate card público esté cerrada. */
     // Newsletter — F0 flag: sale del sitemap mientras esté apagado.
     ...(CAPTURE_ENABLED
       ? [{

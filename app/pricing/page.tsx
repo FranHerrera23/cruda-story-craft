@@ -2,9 +2,18 @@ import type { Metadata } from 'next';
 import PricingContent from './PricingContent';
 import CTASection from '@/components/CTASection';
 
+/* A.2.1 — /pricing interino: fuera del nav (ya lo estaba tras
+   Phase A), fuera del sitemap (removido en este mismo commit) y
+   noindex a nivel meta. NO 410: la decisión sobre si CRUDA publica
+   rate card queda abierta hasta que la categoría esté cerrada, y un
+   noindex es más fácil de deshacer que un 410. */
 export const metadata: Metadata = {
   title: 'Pricing — CRUDA',
   description: 'By month six. Everything compounds. $15,600 for a six-month engagement.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   openGraph: {
     title: 'Pricing — CRUDA',
     description: 'By month six. Everything compounds. $15,600 for a six-month engagement.',

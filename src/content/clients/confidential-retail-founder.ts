@@ -50,7 +50,7 @@ export const confidentialRetailFounder: CaseStudy = {
   ],
 
   stats: [
-    { value: '$300M', label: 'Revenue' },
+    { value: '$300M', label: 'Revenue, 2025' },
     { value: '3 months', label: 'Engagement length' },
   ],
 

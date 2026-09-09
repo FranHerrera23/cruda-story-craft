@@ -94,7 +94,12 @@ export type CaseStudy = {
 }
 
 const AUTHOR = {
-  name: 'Francisco Herrera',
+  /* A.1.2b — public name "Fran Herrera" en byline visible y en el
+     author.name del Article JSON-LD. Antes contradecía al Person
+     schema del layout (name: "Fran Herrera", alternateName incluía
+     "Francisco Herrera"). Un entity resolver leyendo Article →
+     Person con dos "name" distintos es el bug que estamos cerrando. */
+  name: 'Fran Herrera',
   role: 'Founder, CRUDA',
   photo: '/fran-herrera.png',
   url: 'https://www.thecruda.com/our-founder',

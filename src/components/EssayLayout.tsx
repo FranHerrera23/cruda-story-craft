@@ -82,7 +82,11 @@ export type Essay = {
 }
 
 const AUTHOR = {
-  name: 'Francisco Herrera',
+  /* A.1.2b — public name "Fran Herrera" en byline visible y en el
+     author.name del Article JSON-LD que este componente emite.
+     "Francisco" solo vive como alternateName del Person schema en
+     /our-founder. */
+  name: 'Fran Herrera',
   role: 'Founder, CRUDA',
   photo: '/fran-herrera.png',
   url: 'https://www.thecruda.com/our-founder',

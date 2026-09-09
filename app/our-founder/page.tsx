@@ -192,11 +192,11 @@ export default function OurFounderPage() {
               <figure className="of-photo">
                 <Image
                   src="/fran-herrera.png"
-                  alt="Francisco Herrera, founder of CRUDA"
+                  alt="Fran Herrera, founder of CRUDA"
                   width={800}
                   height={1000}
                 />
-                <figcaption className="mono">Francisco Herrera</figcaption>
+                <figcaption className="mono">Fran Herrera</figcaption>
               </figure>
             </div>
           </div>

@@ -73,11 +73,12 @@ export const metadata: Metadata = {
   description:
     'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
   // meta-keywords removed per parche P4 — contradicts the holding thesis.
-  /* Brief v2 Task 6 + A.1.2 — public name es "Fran Herrera" en todo
+  /* Brief v2 Task 6 + A.1.2 — public name "Fran Herrera" en todo
      metadato visible. "Francisco" solo dentro del alternateName del
-     Person schema. Los meta author/creator contradecían al schema en
-     la misma página — exactamente lo que confunde a un entity
-     resolver. Publisher se queda como CRUDA (organización). */
+     Person schema (/our-founder). Los meta author/creator + los
+     bylines de essay/case study + alt text + figcaption ya migraron
+     a "Fran Herrera" (A.1.2b). Publisher se queda como CRUDA
+     (organización). */
   authors: [{ name: 'Fran Herrera', url: 'https://www.thecruda.com/our-founder' }],
   creator: 'Fran Herrera',
   publisher: 'CRUDA',

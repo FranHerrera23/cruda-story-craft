@@ -14,12 +14,18 @@ export const girishSehgal: CaseStudy = {
   title:
     "Translating twenty-five years of hospitality leadership into a healthcare voice that reaches 7,000+ senior leaders",
 
+  // Task 7 — one-liner (brief v2).
+  oneLiner:
+    'Founder narrative for a hospitality executive of twenty-five years moving into healthcare.',
+  // Task 8 — moment axis.
+  moment: 'category-shift',
+
   client: {
     name: 'Girish Sehgal',
     role: 'Chief Patient Experience Officer',
     company: 'SSMC',
     location: 'Abu Dhabi, United Arab Emirates',
-    photo: '/clients/girish-sehgal.jpeg',
+    photo: '/work/girish-sehgal.jpeg',
     photoAlt: 'Girish Sehgal',
   },
 

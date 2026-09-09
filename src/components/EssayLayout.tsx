@@ -102,7 +102,7 @@ function schema(es: Essay) {
   const graph: unknown[] = [
     {
       '@type': 'Article',
-      '@id': `${base}/resources/essays/${es.slug}#article`,
+      '@id': `${base}/essays/${es.slug}#article`,
       /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para
          que AI y buscadores lo indexen bien; alternativeHeadline =
          H1 humano. */
@@ -130,7 +130,7 @@ function schema(es: Essay) {
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${base}/resources/essays/${es.slug}`,
+        '@id': `${base}/essays/${es.slug}`,
       },
     },
     {
@@ -146,7 +146,7 @@ function schema(es: Essay) {
   if (es.faqs && es.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${base}/resources/essays/${es.slug}#faq`,
+      '@id': `${base}/essays/${es.slug}#faq`,
       mainEntity: es.faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,
@@ -183,7 +183,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
         {/* B5.3 — hero: breadcrumb → fecha → H1 → byline → hero image.
             Cero chips de categoría en la página de pieza. */}
         <header className="e-head">
-          <Link href="/resources" className="mono e-back">
+          <Link href="/essays" className="mono e-back">
             {backLabel}
           </Link>
           <p className="e-date mono">

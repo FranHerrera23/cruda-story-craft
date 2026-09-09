@@ -12,12 +12,18 @@ export const mikeKaeding: CaseStudy = {
   title:
     "A construction CEO with $230M in assets and a mission to cut housing costs in half — turned from best-kept secret into a voice policymakers and industry leaders take calls from",
 
+  // Task 7 — one-liner (brief v2).
+  oneLiner:
+    'Brand and communications strategy for a construction company on a mission to halve the cost of housing.',
+  // Task 8 — moment axis (Fran decisión D6).
+  moment: 'category-shift',
+
   client: {
     name: 'Mike Kaeding',
     role: 'CEO',
     company: 'Norhart',
     location: 'Minneapolis, Minnesota',
-    photo: '/clients/mike-kaeding.webp',
+    photo: '/work/mike-kaeding.webp',
     photoAlt: 'Mike Kaeding',
   },
 

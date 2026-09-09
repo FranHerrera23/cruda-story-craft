@@ -11,12 +11,18 @@ export const juanPabloRomero: CaseStudy = {
   title:
     'From zero US market presence to clear positioning that architects, designers and developers understand before the first meeting',
 
+  // Task 7 — one-liner (brief v2).
+  oneLiner:
+    'Positioning and brand narrative for a Guatemalan hardwood company entering the United States.',
+  // Task 8 — moment axis.
+  moment: 'market-entry',
+
   client: {
     name: 'Juan Pablo Romero',
     role: 'Founder',
     company: 'JURA Plank & Connecting the Dots',
     location: 'Miami, Florida',
-    photo: '/clients/juan-pablo-romero.jpeg',
+    photo: '/work/juan-pablo-romero.jpeg',
     photoAlt: 'Juan Pablo Romero',
   },
 

@@ -36,7 +36,7 @@ const KarenPorscheProject = () => {
         }}
       >
         <div className="absolute top-6 left-6 md:left-20">
-          <Link href="/clients/karen-mannheim#projects" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '14px', color: '#FFFFFF' }}>
+          <Link href="/work/karen-mannheim#projects" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '14px', color: '#FFFFFF' }}>
             <ArrowLeft className="w-4 h-4 group-hover:opacity-70" />
             <span className="group-hover:opacity-70">Back to Karen's Story</span>
           </Link>
@@ -186,7 +186,7 @@ const KarenPorscheProject = () => {
             See more of Karen's work
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/clients/karen-mannheim#projects" className="inline-block px-10 py-4 font-semibold transition-all duration-300 hover:opacity-90" style={{ backgroundColor: '#0A0A0A', color: '#FFFFFF', borderRadius: '4px', fontSize: '16px' }}>
+            <Link href="/work/karen-mannheim#projects" className="inline-block px-10 py-4 font-semibold transition-all duration-300 hover:opacity-90" style={{ backgroundColor: '#0A0A0A', color: '#FFFFFF', borderRadius: '4px', fontSize: '16px' }}>
               ← Back to Karen's Page
             </Link>
             <Link href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener" className="inline-block px-10 py-4 font-semibold transition-all duration-300" style={{ backgroundColor: 'transparent', color: '#0A0A0A', borderRadius: '4px', fontSize: '16px', border: '2px solid #0A0A0A' }}>

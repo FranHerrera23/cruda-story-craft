@@ -35,8 +35,8 @@ export default function SiteFooter() {
         )}
 
         <nav className="site-footer__nav site-footer__nav--1" aria-label="Content">
-          <Link href="/resources/essays" className="link">Essays</Link>
-          <Link href="/resources/case-studies" className="link">Case studies</Link>
+          <Link href="/essays" className="link">Essays</Link>
+          <Link href="/work" className="link">Case studies</Link>
           <Link href="/newsletter" className="link">Newsletter</Link>
         </nav>
 

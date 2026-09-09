@@ -11,13 +11,18 @@ import './our-founder.css'
    in Instrument Serif via .display.
 ------------------------------------------------------------------- */
 
+/* Brief v2 Task 6 — public name es "Fran Herrera" en todos los
+   metadatos visibles. "Francisco" queda solo dentro de alternateName
+   del Person schema. El H1 del hero también dice "Fran Herrera"
+   per la regla; el body de la page está pendiente de content pass
+   Phase C (our-founder v1 copy). */
 export const metadata: Metadata = {
-  title: 'Francisco Herrera — Founder, CRUDA',
+  title: 'Fran Herrera — Founder, CRUDA',
   description:
     "I believed the work spoke for itself. It doesn't. The world doesn't reward the best — it rewards the best told. CRUDA exists to change that.",
   alternates: { canonical: 'https://www.thecruda.com/our-founder' },
   openGraph: {
-    title: 'Francisco Herrera — Founder, CRUDA',
+    title: 'Fran Herrera — Founder, CRUDA',
     description:
       "The world doesn't reward the best — it rewards the best told. CRUDA exists to change that.",
     url: 'https://www.thecruda.com/our-founder',
@@ -25,19 +30,31 @@ export const metadata: Metadata = {
   },
 }
 
-// sameAs omitted intentionally — placeholders were dropped per etapa 4 brief.
+/* Brief v2 Task 5 — Person schema completo. alternateName es la
+   pieza que corta la ambigüedad con el cuartetero salteño en los
+   entity resolvers. sameAs apunta a las cuentas verificables donde
+   la identidad se cruza (LinkedIn, X, Substack, YouTube, portfolio).
+   worksFor referencia por @id al Organization declarado en el
+   layout root. */
 const PERSON_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Francisco Herrera',
+  '@id': 'https://www.thecruda.com/our-founder#person',
+  name: 'Fran Herrera',
+  alternateName: ['Francisco Herrera', 'Francisco Fran Herrera'],
   jobTitle: 'Founder',
+  worksFor: { '@id': 'https://www.thecruda.com/#organization' },
+  birthPlace: 'Salta, Argentina',
+  nationality: 'Argentine',
   url: 'https://www.thecruda.com/our-founder',
   image: 'https://www.thecruda.com/fran-herrera.png',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'CRUDA',
-    url: 'https://www.thecruda.com',
-  },
+  sameAs: [
+    'https://www.linkedin.com/in/franherrera2',
+    'https://x.com/franherrera_23',
+    'https://thefranherrera.substack.com',
+    'https://www.youtube.com/@franherrera2',
+    'https://franherrera.me',
+  ],
   knowsAbout: [
     'Brand strategy',
     'Narrative systems',
@@ -194,7 +211,7 @@ export default function OurFounderPage() {
               If the job is making other people visible, the proof has to be people you can
               see.
             </p>
-            <Link href="/clients" className="mono of-proof-link">
+            <Link href="/work" className="mono of-proof-link">
               <span>See the work</span>
               <span className="of-proof-arrow" aria-hidden="true">→</span>
             </Link>

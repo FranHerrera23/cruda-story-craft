@@ -15,12 +15,18 @@ export const karenMannheim: CaseStudy = {
     'How a Lima lighting studio went from zero Miami presence to winning pitches against international firms',
   subtitle: 'TRAZZO Lighting · Karen Mannheim Lighting Studio',
 
+  // Task 7 (brief v2) — one-liner unifica subtitle + meta + og.
+  oneLiner:
+    'Narrative and positioning for a lighting studio with twenty-eight years of work almost nobody had seen.',
+  // Task 8 (brief v2) — moment axis.
+  moment: 'market-entry',
+
   client: {
     name: 'Karen Mannheim',
     role: 'Founder',
     company: 'TRAZZO Lighting',
     location: 'Lima, Peru → Miami, Florida',
-    photo: '/clients/karen-mannheim.jpg',
+    photo: '/work/karen-mannheim.jpg',
     photoAlt: 'Karen Mannheim, founder of TRAZZO Lighting',
   },
 
@@ -45,7 +51,7 @@ export const karenMannheim: CaseStudy = {
     { value: '33 years', label: 'Of practice, made legible' },
   ],
 
-  heroImage: '/clients/karen-mannheim-hero.jpg',
+  heroImage: '/work/karen-mannheim-hero.jpg',
   heroAlt: 'Karen Mannheim, founder of TRAZZO Lighting, Lima',
 
   sections: [

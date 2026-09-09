@@ -1,28 +1,29 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import ResourceCards from '../ResourceCards'
-import ResourceFilters from '../ResourceFilters'
+import ResourceCards from '@/components/ResourceCards'
+import ResourceFilters from '@/components/ResourceFilters'
 import { allResources, countByKind, dedupeByPiece } from '@/content/resources'
 import { collectionPageSchema } from '@/lib/collection-schema'
-import '../resources.css'
+import '@/styles/resources.css'
 
-/* /resources/case-studies — brief v12 T2.
-   Ruta real con title y canonical propios. Server-rendera los 5 case
-   studies. Company y Language chips filtran dentro del scope; el
-   Format axis apunta a las tres rutas hermanas via <Link>. */
+/* /work — brief v2 Task 3.
+   Canonical case study index. Reemplaza /resources/case-studies y
+   /architecture-design (ambos con 301 permanente). Phase B agrega el
+   NDS grid (label above image, huge images, no descriptions); esta
+   versión mantiene la card list actual hasta que Phase B corra. */
 
 export const metadata: Metadata = {
-  title: 'Case studies — CRUDA',
+  title: 'Work — CRUDA',
   description:
-    'Case studies from CRUDA — founder-experts whose work is stronger than their reach. What we built and what changed.',
+    'Case studies from CRUDA — founder-led companies at a point of inflection. Market entry, category shift, succession, hyperscale, new entity.',
   alternates: {
-    canonical: 'https://www.thecruda.com/resources/case-studies',
+    canonical: 'https://www.thecruda.com/work',
   },
   openGraph: {
-    title: 'Case studies — CRUDA',
+    title: 'Work — CRUDA',
     description:
-      'Case studies from CRUDA — founder-experts whose work is stronger than their reach.',
-    url: 'https://www.thecruda.com/resources/case-studies',
+      'Case studies from CRUDA — founder-led companies at a point of inflection.',
+    url: 'https://www.thecruda.com/work',
     type: 'website',
     images: [
       {
@@ -35,28 +36,26 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Case studies — CRUDA',
+    title: 'Work — CRUDA',
     description:
-      'Case studies from CRUDA — founder-experts whose work is stronger than their reach.',
+      'Case studies from CRUDA — founder-led companies at a point of inflection.',
     images: ['https://www.thecruda.com/logo.png'],
   },
 }
 
-/* Brief v4 UX §4.6 — dedupe (los case studies no tienen traducciones
-   hoy, pero mantenemos el patrón consistente). */
 const DEDUPED = dedupeByPiece(allResources, 'en')
 const CASE_STUDIES = DEDUPED.filter((r) => r.kind === 'case-study')
 const GLOBAL_KIND_COUNTS = countByKind(DEDUPED)
 
 const SCHEMA = collectionPageSchema({
-  url: 'https://www.thecruda.com/resources/case-studies',
-  name: 'Case studies — CRUDA',
+  url: 'https://www.thecruda.com/work',
+  name: 'Work — CRUDA',
   description:
-    'Case studies from CRUDA — founder-experts whose work is stronger than their reach.',
+    'Case studies from CRUDA — founder-led companies at a point of inflection.',
   items: CASE_STUDIES,
 })
 
-export default function CaseStudiesResourcesPage() {
+export default function WorkPage() {
   return (
     <div className="rs-root">
       <script
@@ -65,12 +64,11 @@ export default function CaseStudiesResourcesPage() {
       />
       <section className="rs-head">
         <div className="rs-inner">
-          <p className="rs-eyebrow">Resources · Case studies</p>
-          <h1 className="rs-h1">Case studies.</h1>
+          <p className="rs-eyebrow">Work</p>
+          <h1 className="rs-h1">Selected work.</h1>
           <p className="rs-sub">
-            What we built for founder-experts whose work is stronger than their
-            reach. The narrative system, the piece that moved, and what changed
-            after it landed.
+            Founder-led companies at a point of inflection. What we built and
+            what changed.
           </p>
         </div>
       </section>

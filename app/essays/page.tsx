@@ -1,28 +1,27 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import ResourceCards from '../ResourceCards'
-import ResourceFilters from '../ResourceFilters'
+import ResourceCards from '@/components/ResourceCards'
+import ResourceFilters from '@/components/ResourceFilters'
 import { allResources, countByKind, dedupeByPiece } from '@/content/resources'
 import { collectionPageSchema } from '@/lib/collection-schema'
-import '../resources.css'
+import '@/styles/resources.css'
 
-/* /resources/essays — brief v12 T2.
-   Ruta real con title y canonical propios. Server-rendera los ensayos.
-   Company y Language chips filtran dentro del scope; el Format axis
-   apunta a las tres rutas hermanas via <Link>. */
+/* /essays — brief v2 D3.
+   Canonical essay index. Reemplaza /resources/essays (301 permanent).
+   Nav "Essays" apunta directo acá — sin cadenas.  */
 
 export const metadata: Metadata = {
   title: 'Essays — CRUDA',
   description:
     'Essays from CRUDA on narrative, brand and the founders who build them. Everything is a narrative — companies too.',
   alternates: {
-    canonical: 'https://www.thecruda.com/resources/essays',
+    canonical: 'https://www.thecruda.com/essays',
   },
   openGraph: {
     title: 'Essays — CRUDA',
     description:
       'Essays from CRUDA on narrative, brand and the founders who build them.',
-    url: 'https://www.thecruda.com/resources/essays',
+    url: 'https://www.thecruda.com/essays',
     type: 'website',
     images: [
       {
@@ -48,14 +47,14 @@ const ESSAYS = DEDUPED.filter((r) => r.kind === 'essay')
 const GLOBAL_KIND_COUNTS = countByKind(DEDUPED)
 
 const SCHEMA = collectionPageSchema({
-  url: 'https://www.thecruda.com/resources/essays',
+  url: 'https://www.thecruda.com/essays',
   name: 'Essays — CRUDA',
   description:
     'Essays from CRUDA on narrative, brand and the founders who build them.',
   items: ESSAYS,
 })
 
-export default function EssaysResourcesPage() {
+export default function EssaysPage() {
   return (
     <div className="rs-root">
       <script
@@ -64,7 +63,7 @@ export default function EssaysResourcesPage() {
       />
       <section className="rs-head">
         <div className="rs-inner">
-          <p className="rs-eyebrow">Resources · Essays</p>
+          <p className="rs-eyebrow">Essays</p>
           <h1 className="rs-h1">Essays.</h1>
           <p className="rs-sub">
             Pieces on narrative, brand, and the founders who build them. Written

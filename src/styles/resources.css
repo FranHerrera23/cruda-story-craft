@@ -128,12 +128,20 @@
    .rs-lang / .rs-card-title / .rs-card-excerpt / .rs-card-more borrado.
    Era la lista vieja de cards antes del rewrite de §4.5 (block 5) — el
    JSX de ResourceCards y RelatedResources ahora usa .card (definido en
-   case-study.css). Cero DOM matcheaba estos selectores.
+   case-study.css). */
 
-   Sobrevive solo la media query del filter row en mobile, porque
-   .rs-filter-row sigue vivo. */
-
+/* Brief v2 Task 8 — grid del índice por moment. Reutiliza .card
+   del case-study.css como el resto de listings. */
+.rs-moment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
 @media (max-width: 720px) {
+  .rs-moment-list { grid-template-columns: 1fr; gap: 8px; }
   .rs-filter-row {
     grid-template-columns: 1fr;
     gap: 12px;

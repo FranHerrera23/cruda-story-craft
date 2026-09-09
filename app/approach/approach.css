@@ -1,0 +1,195 @@
+/* /approach — brief v2 Task 4.
+
+   Numbered phase headers set large (the sequence is the argument),
+   prose column generous, pull quotes as repeatable block (same
+   mechanism as case study template). No illustration — page is
+   typographic. Tokens de case-study.css :root. */
+
+.ap {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-6);
+  color: var(--color-ink);
+}
+@media (max-width: 767px) {
+  .ap { padding-top: 120px; }
+}
+
+/* Head */
+.ap-head {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  gap: var(--space-3) 20px;
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-rule);
+  margin-bottom: var(--space-6);
+}
+.ap-eyebrow {
+  grid-column: 1 / -1;
+  color: var(--color-muted);
+  margin: 0;
+}
+.ap-h1 {
+  grid-column: 1 / span 8;
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-weight: 400;
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: var(--space-3) 0 0;
+}
+.ap-sub {
+  grid-column: 1 / span 8;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: var(--text-body-large);
+  line-height: 1.5;
+  color: var(--color-ink);
+  margin: 0;
+}
+@media (max-width: 767px) {
+  .ap-h1, .ap-sub { grid-column: 1 / -1; }
+}
+
+/* Lede (opening paragraphs before phase 1) */
+.ap-lede {
+  grid-column: 4 / span 6;
+  margin-bottom: var(--space-7);
+}
+.ap-lede p {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: var(--text-body-large);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-3);
+}
+
+/* Phase blocks — numeral + name at left, body at right. */
+.ap-phase {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+}
+.ap-phase-head {
+  grid-column: 1 / span 3;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.ap-phase-n {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: var(--text-h2);
+  letter-spacing: -0.02em;
+  color: var(--color-muted);
+  min-width: 40px;
+  line-height: 1;
+  /* Sequence is the argument — set large. */
+}
+.ap-phase-name {
+  color: var(--color-muted);
+}
+.ap-phase-body {
+  grid-column: 4 / -1;
+  display: grid;
+  grid-template-columns: subgrid;
+}
+.ap-phase-body h2 {
+  grid-column: 1 / -1;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: var(--text-display);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-4);
+  max-width: 22ch;
+}
+.ap-phase-body p {
+  grid-column: 1 / span 7;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: var(--text-body-large);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-3);
+}
+.ap-phase-body p strong {
+  font-weight: 700;
+}
+@media (max-width: 767px) {
+  .ap-lede { grid-column: 1 / -1; }
+  .ap-phase-head { grid-column: 1 / -1; margin-bottom: var(--space-3); }
+  .ap-phase-body { grid-column: 1 / -1; }
+  .ap-phase-body h2 { font-size: var(--text-h2); }
+  .ap-phase-body p { grid-column: 1 / -1; }
+}
+
+/* Pull quote — repeatable block, same mechanism as case study */
+.ap-phase-body p.ap-pull {
+  grid-column: 1 / span 7;
+  margin: var(--space-4) 0;
+  padding-left: var(--space-3);
+  border-left: 2px solid var(--color-rule);
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  color: var(--color-ink);
+  font-weight: 500;
+}
+@media (max-width: 767px) {
+  .ap-phase-body p.ap-pull { grid-column: 1 / -1; }
+}
+
+/* Standalone blocks (What this is not / When companies call us / How
+   a project starts). */
+.ap-block {
+  grid-column: 4 / span 6;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-rule);
+}
+.ap-block h2 {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 700;
+  font-size: var(--text-h2);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-4);
+}
+.ap-block p {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: var(--text-body-large);
+  line-height: 1.6;
+  color: var(--color-ink);
+  margin: 0 0 var(--space-3);
+}
+.ap-block .ap-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.ap-block .ap-list li {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: var(--text-body-large);
+  line-height: 1.6;
+  color: var(--color-ink);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+.ap-block .ap-list li:last-child { border-bottom: none; }
+
+.ap-cta-line {
+  margin-top: var(--space-5);
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: var(--text-h3);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.ap-cta-line .link { color: inherit; }
+
+@media (max-width: 767px) {
+  .ap-block { grid-column: 1 / -1; }
+}

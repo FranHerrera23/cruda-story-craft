@@ -27,45 +27,14 @@ export const metadata: Metadata = {
   },
 };
 
-const ORG_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'CRUDA',
-  url: 'https://www.thecruda.com',
-  slogan: 'Find the essence. Strip the bullshit.',
-  description:
-    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
-  founder: {
-    '@type': 'Person',
-    name: 'Francisco Herrera',
-    jobTitle: 'Founder',
-  },
-  subOrganization: [
-    {
-      '@type': 'Organization',
-      name: 'CRUDA Architecture & Design',
-      url: 'https://www.thecruda.com/architecture-design',
-    },
-    {
-      '@type': 'Organization',
-      name: 'CRUDA Sports',
-      url: 'https://www.thecruda.com/sports',
-    },
-    {
-      '@type': 'Organization',
-      name: 'CRUDA Systems',
-      url: 'https://www.thecruda.com/systems',
-    },
-  ],
-};
+/* Brief v2 Task 5 — Organization schema se mueve al layout raíz
+   (sitio-wide, referenciable por @id desde Person y Article schemas).
+   subOrganization retirada: /architecture-design está en 301, /systems
+   y /sports en 410. La schema anterior apuntaba a URLs muertas. */
 
 export default function HomePage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
-      />
       <div className="cruda-home-root cruda-home">
         <div className="shell">
           <main className="mid">

@@ -75,9 +75,9 @@ const FORMAT_LINKS: Array<{
   href: string
   scope: Props['scope']
 }> = [
-  { kind: 'all', href: '/resources', scope: 'all' },
-  { kind: 'case-study', href: '/resources/case-studies', scope: 'case-studies' },
-  { kind: 'essay', href: '/resources/essays', scope: 'essays' },
+  { kind: 'all', href: '/work', scope: 'all' },
+  { kind: 'case-study', href: '/work', scope: 'case-studies' },
+  { kind: 'essay', href: '/essays', scope: 'essays' },
 ]
 
 export default function ResourceFilters({
@@ -102,9 +102,9 @@ export default function ResourceFilters({
   }, [params])
 
   const basePath = useMemo(() => {
-    if (scope === 'case-studies') return '/resources/case-studies'
-    if (scope === 'essays') return '/resources/essays'
-    return '/resources'
+    if (scope === 'case-studies') return '/work'
+    if (scope === 'essays') return '/essays'
+    return '/work'
   }, [scope])
 
   const pushUrl = useCallback(

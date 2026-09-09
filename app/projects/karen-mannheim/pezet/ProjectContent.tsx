@@ -53,7 +53,7 @@ const KarenPezetProject = () => {
         {/* Back Link */}
         <div className="absolute top-6 left-6 md:left-20">
           <Link
-            href="/clients/karen-mannheim#projects"
+            href="/work/karen-mannheim#projects"
             className="inline-flex items-center gap-2 transition-colors duration-300 group"
             style={{ fontSize: '14px', color: '#FFFFFF' }}
           >
@@ -240,7 +240,7 @@ const KarenPezetProject = () => {
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="/clients/karen-mannheim#projects"
+              href="/work/karen-mannheim#projects"
               className="inline-block px-10 py-4 font-semibold transition-all duration-300 hover:opacity-90"
               style={{ backgroundColor: '#0A0A0A', color: '#FFFFFF', borderRadius: '4px', fontSize: '16px' }}
             >

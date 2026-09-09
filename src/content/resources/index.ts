@@ -93,11 +93,13 @@ const ESSAY_COMPANY: Record<string, ResourceCompany> = {
   'third-place': 'cruda',
 }
 
-/* Brief v4 UX §5 — rutas nuevas. Toda pieza vive bajo /resources/.
-   Los slugs de la carpeta content no cambian; solo el prefijo público. */
+/* Brief v2 Task 2 + D3 — rutas canónicas planas:
+     Essays → /essays/{slug}
+     Case studies → /work/{slug}
+   Los slugs de la carpeta content no cambian. */
 const essayResources: Resource[] = allEssays.map((e) => ({
   slug: e.slug,
-  href: `/resources/essays/${e.slug}`,
+  href: `/essays/${e.slug}`,
   title: e.title,
   excerpt: e.answerCapsule,
   kind: e.contentType === 'Conversation' ? 'conversation' : 'essay',
@@ -109,8 +111,11 @@ const essayResources: Resource[] = allEssays.map((e) => ({
 
 const caseStudyResources: Resource[] = allClients.map((c) => ({
   slug: c.slug,
-  href: `/resources/case-studies/${c.slug}`,
-  title: c.title,
+  href: `/work/${c.slug}`,
+  /* Task 7 — one-liner es el título AEO-friendly. Fallback al H1 humano. */
+  title: c.oneLiner ?? c.title,
+  /* Excerpt sigue siendo el answerCapsule (que es más denso que el
+     one-liner) para tener resúmenes en cards que agreguen contexto. */
   excerpt: c.answerCapsule,
   kind: 'case-study',
   company: VERTICAL_TO_COMPANY[c.vertical] ?? 'a-d',

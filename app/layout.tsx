@@ -11,6 +11,31 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import Providers from './providers';
 import PageShell from "@/components/PageShell";
 
+/* Brief v2 Task 5 — Organization schema site-wide.
+   Emitido en el root layout, dentro del <head>. Todas las páginas
+   heredan la referencia por @id.
+
+   foundingDate: "2024-02" — regla dura del brief. La LinkedIn company
+   page está desalineada (dice 2023). Un dato inconsistente entre
+   fuentes es lo que un entity resolver marca como conflicto.
+
+   sameAs: cuentas corporativas de CRUDA. LinkedIn confirmada; X e
+   Instagram con placeholder ({handle}) hasta que Fran confirme
+   handles reales. */
+const ORG_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': 'https://www.thecruda.com/#organization',
+  name: 'CRUDA',
+  url: 'https://www.thecruda.com',
+  logo: 'https://www.thecruda.com/logo.png',
+  foundingDate: '2024-02',
+  founder: { '@id': 'https://www.thecruda.com/our-founder#person' },
+  sameAs: [
+    'https://www.linkedin.com/company/thecrudaspace',
+  ],
+} as const
+
 /* Instrument Serif — display face de las páginas-declaración (home,
    índices de /resources, /contact, /architecture-design/about).
    Solo weight 400. next/font la self-hostea: cero request externo,
@@ -115,6 +140,14 @@ export default function RootLayout({
           next/font (Archivo + Instrument Serif) — cero requests
           externos, cero preconnect a fonts.googleapis.com / gstatic. */}
       <body>
+        {/* Task 5 — Organization JSON-LD site-wide. Emitted en el
+            <body> (Next.js no permite <script> arbitrarios en <head>
+            desde un layout server component). Google levanta el
+            JSON-LD desde donde esté. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
+        />
         <Providers>
           <TooltipProvider>
             <Toaster />

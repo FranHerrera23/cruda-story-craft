@@ -14,6 +14,15 @@ export const confidentialRetailFounder: CaseStudy = {
   title:
     "Positioning a second-time retail founder whose current venture reached $500M in revenue in under two years — without giving away the playbook",
 
+  // Task 7 — one-liner (brief v2). Nota copy: la trade press
+  // reporta $300M en 2025 (triplicado desde $100M en 2024), no
+  // $500M. El title del H1 sigue con $500M — es copy work para
+  // Fran, no infra. Flag pendiente.
+  oneLiner:
+    'Narrative work for a second-time founder rebuilding the market thesis behind a business that scaled past $300M.',
+  // Task 8 — moment axis.
+  moment: 'hyperscale',
+
   client: {
     name: '[Name protected]',
     role: 'Founder & CEO',

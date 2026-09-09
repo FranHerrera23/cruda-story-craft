@@ -58,7 +58,7 @@ const clients: Client[] = [
 ];
 // The confidential retail case removed from A&D portfolio (etapa 3 debt):
 // retail breaks the vertical thread. The case study lives at
-// /clients/confidential-retail-founder — it just no longer leads A&D.
+// /work/confidential-retail-founder — it just no longer leads A&D.
 
 const OurClientsSection = () => {
   const { elementRef, isVisible } = useScrollAnimation<HTMLElement>();

@@ -24,7 +24,7 @@ const KarenTrazzoExpansionProject = () => {
     <div style={{ backgroundColor: '#FDFBF7' }}>
       {/* BREADCRUMB */}
       <section className="py-6 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
-        <Link href="/clients/karen-mannheim#projects" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '14px', color: '#3D3835' }}>
+        <Link href="/work/karen-mannheim#projects" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '14px', color: '#3D3835' }}>
           <ArrowLeft className="w-4 h-4 group-hover:text-[#E8623A]" />
           <span className="group-hover:text-[#E8623A]">Back to Karen's Story</span>
         </Link>
@@ -133,7 +133,7 @@ const KarenTrazzoExpansionProject = () => {
 
       {/* BACK LINK */}
       <section className="py-20 px-10 md:px-20 text-center" style={{ backgroundColor: '#E8DED1' }}>
-        <Link href="/clients/karen-mannheim#metrics" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '18px', color: '#3D3835', fontWeight: 600 }}>
+        <Link href="/work/karen-mannheim#metrics" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '18px', color: '#3D3835', fontWeight: 600 }}>
           <ArrowLeft className="w-5 h-5 group-hover:text-[#E8623A]" />
           <span className="group-hover:text-[#E8623A]">Back to Karen's Story</span>
         </Link>

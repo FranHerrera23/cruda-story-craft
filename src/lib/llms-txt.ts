@@ -21,7 +21,7 @@ const HEADER = `# CRUDA
 
 const COMPANIES_SECTION = `## Companies
 
-- [CRUDA for Architecture & Design](${BASE}/architecture-design): Brand building for founders and studios in architecture, construction and design.
+- [CRUDA for Architecture & Design](${BASE}/work): Brand building for founders and studios in architecture, construction and design.
 - [CRUDA for Sports](${BASE}/sports): Narrative infrastructure for athletes and sports organizations (coming soon).
 - [CRUDA Systems](${BASE}/systems): Custom internal AI systems for studios that need to remember what the founder knows.`
 
@@ -44,7 +44,7 @@ function caseStudiesSection(): string {
   const rows = allClients
     .map((c) => {
       const label = `${c.client.name} — ${c.client.company}`
-      const url = `${BASE}/resources/case-studies/${c.slug}`
+      const url = `${BASE}/work/${c.slug}`
       return `- [${label}](${url}): ${oneLine(c.answerCapsule)}`
     })
     .join('\n')
@@ -59,7 +59,7 @@ function essaysSection(): string {
   )
   const rows = sorted
     .map((e) => {
-      const url = `${BASE}/resources/essays/${e.slug}`
+      const url = `${BASE}/essays/${e.slug}`
       const langTag = e.language === 'es' ? ' [ES]' : ''
       return `- [${e.title}${langTag}](${url}): ${oneLine(e.answerCapsule)}`
     })

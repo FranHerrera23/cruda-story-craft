@@ -3,6 +3,7 @@ import Link from 'next/link'
 import './case-study.css'
 import CaptureForm from './CaptureForm'
 import { CAPTURE_ENABLED } from '@/lib/flags'
+import { MOMENT_LABEL, type Moment } from '@/content/moments'
 
 /* ------------------------------------------------------------------
    CRUDA — CaseStudyLayout
@@ -56,6 +57,14 @@ export type CaseStudy = {
   title: string
   seoTitle?: string
   subtitle?: string
+  /* Task 7 — one-liner. UNA sola string que aparece en tres lugares:
+     subtitle bajo el nombre del case, meta description, og:description.
+     Byte-identical en los tres. Es lo que un LLM cita cuando le
+     preguntan qué hizo CRUDA. Brief v2 canónico. */
+  oneLiner?: string
+  /* Task 8 — moment taxonomy. Un valor por case study. Renderea
+     como pill bajo el one-liner + linkea a /work/{moment}. */
+  moment?: Moment
   client: {
     name: string
     role: string
@@ -101,7 +110,7 @@ function schema(cs: CaseStudy) {
   const base = 'https://www.thecruda.com'
   const article: Record<string, unknown> = {
     '@type': 'Article',
-    '@id': `${base}/resources/case-studies/${cs.slug}#article`,
+    '@id': `${base}/work/${cs.slug}#article`,
     /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para AI
        y buscadores; alternativeHeadline = H1 humano. */
     headline: cs.seoTitle ?? cs.title,
@@ -125,7 +134,7 @@ function schema(cs: CaseStudy) {
       name: cs.client.company,
       location: cs.client.location,
     },
-    mainEntityOfPage: { '@type': 'WebPage', '@id': `${base}/resources/case-studies/${cs.slug}` },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${base}/work/${cs.slug}` },
   }
   if (cs.publishedAt) article.datePublished = cs.publishedAt
   if (cs.updatedAt) article.dateModified = cs.updatedAt
@@ -135,7 +144,7 @@ function schema(cs: CaseStudy) {
   if (cs.faqs && cs.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${base}/resources/case-studies/${cs.slug}#faq`,
+      '@id': `${base}/work/${cs.slug}#faq`,
       mainEntity: cs.faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,
@@ -166,7 +175,7 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
           breadcrumb → fecha → H1 → subtitle → byline. Cero chip
           de vertical: las categorías viven en los índices. */}
       <header className="cs-head">
-        <Link href="/resources" className="cs-back mono">
+        <Link href="/work" className="cs-back mono">
           ← Resources
         </Link>
         {hasDates && (
@@ -178,7 +187,22 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
           </p>
         )}
         <h1 className="cs-title">{cs.title}</h1>
-        {cs.subtitle && <p className="cs-sub">{cs.subtitle}</p>}
+        {/* Task 7 — one-liner es la fuente única. Si el case tiene
+            oneLiner, ese es el subtitle (misma string que meta description
+            y og:description). Fallback a subtitle legacy si no hay
+            oneLiner. */}
+        {(cs.oneLiner ?? cs.subtitle) && (
+          <p className="cs-sub">{cs.oneLiner ?? cs.subtitle}</p>
+        )}
+        {/* Task 8 — moment pill bajo el one-liner. Linkea al índice
+            /work/{moment}. */}
+        {cs.moment && (
+          <p className="cs-moments" aria-label="Moment">
+            <Link href={`/work/${cs.moment}`} className="cs-moment-pill">
+              {MOMENT_LABEL[cs.moment]}
+            </Link>
+          </p>
+        )}
 
         <div className="cs-byline">
           <Image src={AUTHOR.photo} alt={AUTHOR.name} width={40} height={40} className="cs-avatar" />

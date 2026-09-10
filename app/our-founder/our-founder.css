@@ -271,65 +271,14 @@
   border-color: var(--color-accent);
 }
 
-/* ---------- Sticky index (retained) ----------
-   Anchors nuevos: hero / now / before / voices / short.
-   Layout unchanged desde F4 bug 1 — position: sticky dentro de .of,
-   z-index 20 (por debajo de la Nav global). Rail centrado
-   verticalmente via top: 50vh + translateY(-50%). */
-.of .of-sticky-idx {
-  position: sticky;
-  top: 50vh;
-  transform: translateY(-50%);
-  z-index: 20;
-  display: none;
-  width: 180px;
-  margin-left: 48px;
-  height: 0;
-  pointer-events: none;
-}
-.of .of-sticky-idx > * {
-  pointer-events: auto;
-}
-.of .of-sticky-idx ol {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.of .of-sticky-idx a {
-  display: block;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: var(--track-mono, 0.12em);
-  text-transform: uppercase;
-  color: var(--ink-2);
-  text-decoration: none;
-  transition: color 300ms var(--ease, ease);
-  padding: 4px 0;
-}
-.of .of-sticky-idx a:hover { color: var(--ink); }
-.of .of-sticky-idx a.is-active { color: var(--ink); font-weight: 700; }
+/* Sticky index retirado — el rail forzaba una reserva de 300px en
+   todo el desktop y angostaba la columna de lectura, y sobre bloques
+   a sangre se volvía ilegible. Fran lo probó en los tres case
+   studies y no funcionaba en ninguno. Se retira acá con la misma
+   lógica.
 
-@media (min-width: 1024px) {
-  .of .of-sticky-idx { display: block; }
-  /* Reserva la columna del rail (48 + 180 + 72 aire = 300) y espeja
-     el margen derecho al inset del rail (48). */
-  .of .of-inner {
-    padding-left: 300px;
-    padding-right: 48px;
-    max-width: none;
-    margin: 0;
-  }
-  .of .of-hero-ink {
-    padding-left: 300px;
-    padding-right: 48px;
-  }
-  .of .of-hero-inner {
-    max-width: none;
-    margin: 0;
-  }
-}
+   Los data-section attributes en las secciones se mantienen como
+   metadata inerte por si en el futuro se recupera un índice. */
 
 /* ---------- Mobile ---------- */
 @media (max-width: 860px) {

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import OurFounderStickyIndex from './StickyIndex'
 import './our-founder.css'
 
 /* ------------------------------------------------------------------
@@ -87,8 +86,6 @@ export default function OurFounderPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
       />
       <div className="of">
-        <OurFounderStickyIndex />
-
         {/* HERO — ink */}
         <section id="hero" data-section="hero" className="of-hero-ink">
           <div className="of-hero-inner">

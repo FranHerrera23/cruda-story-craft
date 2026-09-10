@@ -105,6 +105,36 @@ export type Block =
       items: { number: string; heading: string; body: string }[]
       note?: string
     }
+  /* PIECE · una pieza publicada del cliente, recreada entera para
+     legibilidad. Columna de texto con apertura display, frases
+     bisagra en semibold, y párrafos normales. Sidebar sticky con
+     métricas de engagement + fuente + por qué esa pieza importa.
+
+     content.text es COPY DEL AUTOR (Girish's own words). NO entra
+     al pool de pull quotes — misma política que passages.excerpt.
+
+     sidebar.why es prosa NUESTRA sobre la pieza. SÍ entra al pool. */
+  | {
+      type: 'piece'
+      label?: string
+      content: PieceLine[]
+      sidebar: {
+        metrics: { value: string; label: string }[]
+        src?: string
+        why?: string
+      }
+      note?: string
+    }
+
+/* PIECE · líneas de una pieza publicada, tres kinds.
+   - open: apertura display de la pieza.
+   - turn: frase bisagra en semibold, quiebra el ritmo.
+   - p:    párrafo normal.
+   El renderer decide clase CSS por kind. */
+export type PieceLine =
+  | { kind: 'open'; text: string }
+  | { kind: 'turn'; text: string }
+  | { kind: 'p'; text: string }
 
 /* B13 · Passage. Para casos cuya prueba es escritura publicada.
    Dos densidades:

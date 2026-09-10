@@ -24,6 +24,7 @@ import BlockClaim from './BlockClaim'
 import BlockManifesto from './BlockManifesto'
 import BlockSpx from './BlockSpx'
 import BlockPillars from './BlockPillars'
+import BlockPiece from './BlockPiece'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -57,6 +58,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'manifesto',
   'spx',
   'pillars',
+  'piece',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -192,6 +194,16 @@ function renderBlock(block: Block, index: number) {
           note={block.note}
         />
       )
+    case 'piece':
+      return (
+        <BlockPiece
+          key={key}
+          label={block.label}
+          content={block.content}
+          sidebar={block.sidebar}
+          note={block.note}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -244,6 +256,11 @@ function verifyPullQuotes(blocks: Block[]) {
       /* pillars.body es prosa nuestra; entra. Headings son display
          (no argumento); NO entran. */
       for (const item of b.items) prose.push(item.body)
+    } else if (b.type === 'piece') {
+      /* piece.content son las palabras del cliente/autor (pieza
+         publicada, recreada); NO entra. piece.sidebar.why es
+         prosa NUESTRA sobre por qué esa pieza importa; SÍ entra. */
+      if (b.sidebar.why) prose.push(b.sidebar.why)
     }
     /* passages.excerpt, claim.text/gloss/note, manifesto.lines, y
        voice.quote NO entran al pool — son copy del caso o del

@@ -360,14 +360,14 @@ export default function OurFounderPage() {
                 </figcaption>
               </figure>
 
-              {/* A.4 pending — el doc dice:
-                  *[Link out to the LinkedIn recommendations section
-                  so each one is checkable at source.]*
-                  Es una directiva al implementador, no copy de UI.
-                  Se necesita: (a) texto exacto del link, (b) URL exacta
-                  (¿profile o /details/recommendations/?). Se resuelve
-                  aparte, en un commit chico, cuando Fran confirme el
-                  string. */}
+              <a
+                className="of-linkedin-link"
+                href="https://www.linkedin.com/in/franherrera2/details/recommendations/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                See the recommendations on LinkedIn
+              </a>
             </div>
           </div>
         </section>

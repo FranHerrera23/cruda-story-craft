@@ -196,6 +196,24 @@
   color: var(--ink-2);
 }
 
+/* Link a LinkedIn — bajo el último testimonio. 14px gris, sin
+   flecha (regla del doc: botones y links de la página sin →). */
+.of .of-linkedin-link {
+  display: inline-block;
+  margin-top: clamp(32px, 5vh, 56px);
+  padding-left: clamp(24px, 3vw, 40px);
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color 200ms var(--ease, ease);
+}
+.of .of-linkedin-link:hover {
+  color: var(--ink);
+}
+
 /* ---------- 04 — Short version on ink ---------- */
 .of .of-short-body {
   max-width: var(--measure-reading, 42rem);

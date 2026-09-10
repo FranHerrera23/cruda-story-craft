@@ -321,6 +321,33 @@
   gap: 6px;
 }
 
+/* ── B6 · PAIR ── dos imágenes lado a lado a 0.82 × --media.
+   §3. En mobile se apilan; el .u de cada slot toma la altura. */
+.cb-root .b-pair {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+  display: grid;
+  gap: clamp(10px, 1vw, 16px);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .cb-root .b-pair { grid-template-columns: 1fr 1fr; }
+}
+.cb-root .b-pair figure { margin: 0; }
+.cb-root .b-pair figure .u {
+  height: calc(var(--media) * 0.82);
+}
+
+/* ── B7 · BLEED ── una imagen a sangre a --media. Sin max-width,
+   sin padding lateral, sin margin auto — se come el ancho de la
+   pantalla. §3. */
+.cb-root .b-bleed {
+  width: 100%;
+  height: var(--media);
+  margin: 0 0 var(--sp-2);
+}
+
 /* ── B13 · PASSAGES ── escritura publicada.
    Dos densidades: featured (pieza destacada con excerpt a tamaño
    de lectura) y archive (lista compacta title + venue/year).

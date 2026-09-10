@@ -17,6 +17,8 @@ import BlockVoice from './BlockVoice'
 import BlockFigures from './BlockFigures'
 import BlockBuilt from './BlockBuilt'
 import BlockPassages from './BlockPassages'
+import BlockPair from './BlockPair'
+import BlockBleed from './BlockBleed'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -44,6 +46,8 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'figures',
   'built',
   'passages',
+  'pair',
+  'bleed',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -139,6 +143,10 @@ function renderBlock(block: Block, index: number) {
           archive={block.archive}
         />
       )
+    case 'pair':
+      return <BlockPair key={key} assets={block.assets} />
+    case 'bleed':
+      return <BlockBleed key={key} asset={block.asset} />
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {

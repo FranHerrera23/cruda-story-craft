@@ -27,7 +27,7 @@ const COMPANIES_SECTION = `## Companies
 
 const HUBS_SECTION = `## Pages
 
-- [About the founder](${BASE}/our-founder): Francisco Herrera — 10 years building brands across 26 countries and 14 industries.
+- [About the founder](${BASE}/our-founder): Fran Herrera — 10 years building brands across 26 countries and 14 industries.
 - [Pricing](${BASE}/pricing): CRUDA's engagement structure and rates.
 - [Contact](${BASE}/contact): Book a 45-minute conversation or write hello@thecruda.com.
 - [All resources](${BASE}/resources): Every essay and case study in one library.`

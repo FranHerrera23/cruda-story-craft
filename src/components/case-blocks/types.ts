@@ -48,13 +48,22 @@ export type Credits = {
   attribution: string
 }
 
-/* Bloques individuales — discriminados por `type`.
-   Punto 3 del orden: B1 B2 B3 B4 B5 B11 B12 primero.
-   El resto (B6 B7 B8 B9 B10 B13 B14 + slab modifier) se agrega
-   en la siguiente iteración. `slab` va como wrapping para B4/B8;
-   se declara acá para que el compositor lo omita+loguée si aparece
-   antes de estar implementado. */
-export type Block =
+/* Campos comunes a todos los bloques.
+   - draft: cuando true, el compositor lo omite en producción y sólo
+     lo renderiza en preview (via prop `preview` del CaseComposer).
+     Permite publicar el layout con un placeholder textual (ej. voice
+     de MTC sin el testimonio real) sin riesgo de que salga solo. */
+export type BlockBase = {
+  draft?: boolean
+}
+
+/* Bloques — discriminados por `type`, con BlockBase intersectado
+   para heredar los campos comunes.
+
+   Sin bloques hardcodeados por caso, sin condicionales por slug.
+   `slab` es modificador wrapper; sus hijos válidos son `claim` y
+   `manifesto`. Un `type` desconocido se omite y se loguea. */
+export type Block = BlockBase & (
   | {
       type: 'head'
       title: string
@@ -109,14 +118,35 @@ export type Block =
                         // (acepta <b>...</b> inline)
     }
   /* SPX · specifiers. Lista jerárquica de entidades con etiqueta
-     corta al costado. INOUT: quién especifica el sistema. MTC:
-     hitos de AGP. No lleva prosa nuestra — no entra al pool de
-     pull quotes. */
+     corta al costado. INOUT: quién especifica el sistema (studios
+     que compran el sistema). MTC: hitos de AGP. No lleva prosa
+     nuestra — no entra al pool de pull quotes.
+
+     INSIDERS (INOUT) NO va acá — es un formato editorial, no una
+     lista de adopción. Ver block-type `series`. */
   | {
       type: 'spx'
       label?: string
       items: { title: string; meta?: string }[]
       src?: string     // atribución de fuente (MTC)
+    }
+  /* SERIES · lista de episodios/entradas de una serie editorial que
+     el caso produjo. INOUT: INSIDERS — mirada introspectiva sobre
+     los espacios, entrevistando a las mentes más brillantes de la
+     arquitectura del norte argentino. NO es evidencia de adopción
+     (eso vive en spx); es el formato / ángulo del caso. Se escribe
+     por lo que es, no por a quién convirtió.
+
+     Cada episodio se nombra por quién es, no por qué compró.
+     `note` opcional al final ("The series continues, produced by
+     the client."). No entra al pool de pull quotes — es content
+     del formato, no prosa argumental. */
+  | {
+      type: 'series'
+      label?: string
+      subtitle?: string
+      episodes: { number?: string; title: string; meta?: string }[]
+      note?: string
     }
   /* PILLARS · tres (o N) pilares numerados. Cada uno con número,
      heading display y cuerpo de prosa. Es lo que hace que doce
@@ -148,6 +178,7 @@ export type Block =
       }
       note?: string
     }
+)
 
 /* PIECE · líneas de una pieza publicada, tres kinds.
    - open: apertura display de la pieza.

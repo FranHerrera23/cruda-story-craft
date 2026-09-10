@@ -622,6 +622,67 @@
   margin: 18px 0 0;
 }
 
+/* ── SERIES ── lista de episodios de una serie editorial (INOUT:
+   INSIDERS). Layout con número a la izquierda y title/meta al
+   costado. Similar a spx pero con la columna del número exacta —
+   el orden importa. */
+.cb-root .b-series {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+}
+.cb-root .b-series-sub {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--dim);
+  max-width: 48ch;
+  margin: 0 0 var(--sp-1);
+}
+.cb-root .b-series ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--black);
+}
+.cb-root .b-series li {
+  display: grid;
+  gap: 4px 24px;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 700px) {
+  .cb-root .b-series li {
+    grid-template-columns: 44px 1fr;
+  }
+}
+.cb-root .b-series i {
+  font-style: normal;
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+}
+.cb-root .b-series strong {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(19px, 2.2vw, 26px);
+  letter-spacing: -.02em;
+  display: block;
+  margin: 0 0 4px;
+}
+.cb-root .b-series span {
+  font-family: var(--g);
+  font-size: 14px;
+  color: var(--dim);
+  display: block;
+}
+.cb-root .b-series-note {
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+  margin: 18px 0 0;
+}
+
 /* ── SPX · specifiers ── lista jerárquica de entidades. Cada fila
    es strong (nombre en escala display) + span (meta chico gris).
    Border-top negro fuerte, border-bottom en --rule por fila. Src

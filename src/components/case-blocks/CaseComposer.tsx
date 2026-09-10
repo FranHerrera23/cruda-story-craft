@@ -25,6 +25,7 @@ import BlockManifesto from './BlockManifesto'
 import BlockSpx from './BlockSpx'
 import BlockPillars from './BlockPillars'
 import BlockPiece from './BlockPiece'
+import BlockSeries from './BlockSeries'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -59,6 +60,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'spx',
   'pillars',
   'piece',
+  'series',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -200,6 +202,16 @@ function renderBlock(block: Block, index: number) {
           note={block.note}
         />
       )
+    case 'series':
+      return (
+        <BlockSeries
+          key={key}
+          label={block.label}
+          subtitle={block.subtitle}
+          episodes={block.episodes}
+          note={block.note}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -282,8 +294,42 @@ function verifyPullQuotes(blocks: Block[]) {
   console.warn(msg)
 }
 
-export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
-  verifyPullQuotes(cs.blocks)
+function filterDrafts(blocks: Block[]): Block[] {
+  const out: Block[] = []
+  for (const b of blocks) {
+    if (b.draft) continue
+    if (b.type === 'slab') {
+      /* Slab con todos sus hijos draft = sin contenido = skip.
+         Slab con algunos hijos draft = filtrar los hijos, mantener
+         la envolvente pintada. */
+      const kids = filterDrafts(b.children)
+      if (kids.length === 0) continue
+      out.push({ ...b, children: kids })
+      continue
+    }
+    out.push(b)
+  }
+  return out
+}
+
+export default function CaseComposer({
+  cs,
+  preview = false,
+}: {
+  cs: CaseStudyV2
+  /* preview: cuando true, los bloques con `draft: true` se
+     renderizan. Cuando false (default = producción, /work/[slug]),
+     los drafts se omiten. Permite publicar el layout de un caso
+     con placeholders textuales sin riesgo de que salgan solos.
+     Ver BlockBase.draft en types.ts. */
+  preview?: boolean
+}) {
+  /* Filtro de drafts corre PRIMERO — verify + unknown-types operan
+     sobre bloques que realmente van a renderizar. Un pull cuya prosa
+     vive en un draft está roto en producción (donde el draft no
+     está); el check refleja eso. */
+  const blocks = preview ? cs.blocks : filterDrafts(cs.blocks)
+  verifyPullQuotes(blocks)
 
   const identity = cs.identity
   /* Manifest resuelve identity.type → font-family stack + clase de
@@ -329,7 +375,7 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
       } as React.CSSProperties)
     : undefined
 
-  const allBlocks = flatten(cs.blocks)
+  const allBlocks = flatten(blocks)
   const knownCount = allBlocks.filter((b) => KNOWN_TYPES.has(b.type)).length
   if (process.env.NODE_ENV !== 'production' && knownCount < allBlocks.length) {
     // eslint-disable-next-line no-console
@@ -354,7 +400,7 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
   return (
     <div className={rootClass} style={rootStyle}>
       <CaseChrome />
-      {cs.blocks.map((b, i) => renderBlock(b, i))}
+      {blocks.map((b, i) => renderBlock(b, i))}
     </div>
   )
 }

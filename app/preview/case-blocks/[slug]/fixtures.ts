@@ -19,13 +19,15 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
      head · lead · band · pull · slab-verde · system · prose ·
      slab-azul · band · specifiers · voice · built · credits · next
 
-   Composición de este fixture — la real de INOUT (§4 del spec):
+   Composición de INOUT (Fran cerró contenido el 10-sep):
      head · lead · band · pull · slab-c2 { claim } · system ·
-     prose · slab-c1 { manifesto } · band · spx · voice · built ·
-     credits · next
+     prose · slab-c1 { manifesto } · band · series · spx · voice ·
+     built · credits · next
 
-   Cierre completo de INOUT contra la referencia del 10-sep. Los
-   bloques bleed/pair no se usan porque INOUT no los pide.
+   Cambios respecto de la referencia HTML:
+   - INSIDERS pasa a su propio bloque `series`, no vive en el
+     figcaption del band #2. spx queda sólo con los specifiers.
+   - Los episodios se nombran por quiénes son.
 
    Contenido verbatim de cruda-case-inout.html — sin inventar copy. */
 
@@ -197,8 +199,6 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
           slotName: 'INSIDERS — still',
           slotSpec: 'Episodio con el arquitecto en pantalla. 68vh.',
         },
-        caption:
-          'INSIDERS #01 Salvador Pepi · #02 Sergio Cabrera · #03 Horizontal Arquitectos. The series continues, produced by the client.',
         groups: [
           {
             label: 'The intervention',
@@ -208,6 +208,22 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
             ],
           },
         ],
+      },
+      {
+        type: 'series',
+        label: 'INSIDERS',
+        subtitle:
+          'Una mirada introspectiva sobre los espacios, entrevistando a las mentes más brillantes de la arquitectura del norte argentino.',
+        episodes: [
+          {
+            number: '#01',
+            title: 'Salvador Pepi',
+            meta: 'Infinito al Cuadrado · agosto 2021',
+          },
+          { number: '#02', title: 'Sergio Cabrera' },
+          { number: '#03', title: 'Horizontal Arquitectos' },
+        ],
+        note: 'The series continues, produced by the client.',
       },
       {
         type: 'spx',

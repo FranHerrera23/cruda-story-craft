@@ -32,5 +32,8 @@ export default async function Page(
   const { slug } = await params
   const cs = previewFixtures[slug]
   if (!cs) notFound()
-  return <CaseComposer cs={cs} />
+  /* preview=true — se renderizan también los bloques con draft:true.
+     En producción /work/[slug] el default es preview=false y los
+     drafts se omiten. */
+  return <CaseComposer cs={cs} preview />
 }

@@ -25,14 +25,23 @@ const CRAWL_ALLOW_ALL = [
   'LinkedInBot',
 ];
 
+/* Task 11 · preview de bloques (/preview/*) — ruta de trabajo
+   interno. Se sirve pero no debe entrar a ningún índice. Cinturón:
+     - robots meta noindex en la page
+     - Disallow: /preview/ acá
+     - X-Robots-Tag: noindex via middleware
+     - Fuera del sitemap */
+const DISALLOW_PATHS = ['/preview/'];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       ...CRAWL_ALLOW_ALL.map((userAgent) => ({
         userAgent,
         allow: '/',
+        disallow: DISALLOW_PATHS,
       })),
-      { userAgent: '*', allow: '/' },
+      { userAgent: '*', allow: '/', disallow: DISALLOW_PATHS },
     ],
     sitemap: 'https://www.thecruda.com/sitemap.xml',
     host: 'https://www.thecruda.com',

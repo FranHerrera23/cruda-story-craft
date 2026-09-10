@@ -22,8 +22,15 @@ import type { NextRequest } from 'next/server'
 
 const GONE_ROUTES = ['/sports', '/systems']
 
+/* Task 11 · /preview/* — ruta interna de trabajo. No es 410 porque
+   la usamos para revisar bloques nuevos antes de shippear; se sirve
+   normal + noindex duro. Muchos bots no parsean el meta pero sí el
+   header, así que X-Robots-Tag va acá además del meta en la page. */
+const NOINDEX_HEADER_ROUTES = ['/preview']
+
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
+
   for (const gone of GONE_ROUTES) {
     if (pathname === gone || pathname.startsWith(`${gone}/`)) {
       return new NextResponse(
@@ -38,11 +45,27 @@ export function middleware(req: NextRequest) {
       )
     }
   }
+
+  for (const noindex of NOINDEX_HEADER_ROUTES) {
+    if (pathname === noindex || pathname.startsWith(`${noindex}/`)) {
+      const res = NextResponse.next()
+      res.headers.set('X-Robots-Tag', 'noindex, nofollow')
+      return res
+    }
+  }
+
   return NextResponse.next()
 }
 
 /* Matcher: solo corre para las rutas relevantes. Evita costo edge
    por cada request. */
 export const config = {
-  matcher: ['/sports', '/sports/:path*', '/systems', '/systems/:path*'],
+  matcher: [
+    '/sports',
+    '/sports/:path*',
+    '/systems',
+    '/systems/:path*',
+    '/preview',
+    '/preview/:path*',
+  ],
 }

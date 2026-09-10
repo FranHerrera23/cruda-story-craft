@@ -61,6 +61,15 @@ const archivo = Archivo({
   variable: '--font-archivo',
 });
 
+/* A.3.1 — description site-wide para rutas donde el sujeto es CRUDA
+   (Fran responde en /). Reemplaza la copy retirada "Nobody buys the
+   company — they buy you". Una constante, tres salidas: metadata,
+   openGraph, twitter. Home tiene su propia HOME_DESCRIPTION en
+   app/page.tsx (A.1.1) — ese string describe a Fran, este describe
+   a CRUDA. */
+const SITE_DESCRIPTION =
+  'CRUDA. Narrative and brand work for founder-led companies — Purina, Brahma, CCU, and independent studios across the Americas and Europe.'
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.thecruda.com'),
   // No template — page-level titles are already qualified with " | CRUDA"
@@ -70,8 +79,7 @@ export const metadata: Metadata = {
     default: 'CRUDA — Find the essence. Strip the bullshit.',
     template: '%s',
   },
-  description:
-    'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
+  description: SITE_DESCRIPTION,
   // meta-keywords removed per parche P4 — contradicts the holding thesis.
   /* Brief v2 Task 6 + A.1.2 — public name "Fran Herrera" en todo
      metadato visible. "Francisco" solo dentro del alternateName del
@@ -92,8 +100,7 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://www.thecruda.com',
     title: 'CRUDA — Find the essence. Strip the bullshit.',
-    description:
-      'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
+    description: SITE_DESCRIPTION,
     siteName: 'CRUDA',
     images: [
       {
@@ -107,8 +114,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'CRUDA — Find the essence. Strip the bullshit.',
-    description:
-      'CRUDA builds people. Companies follow. Nobody buys the company — they buy you.',
+    description: SITE_DESCRIPTION,
     images: ['https://www.thecruda.com/logo.png'],
   },
   robots: {

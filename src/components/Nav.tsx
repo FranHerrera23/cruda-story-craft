@@ -26,10 +26,37 @@ const NAV_ITEMS = [
 export default function Nav() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [away, setAway] = useState(false)
 
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
+
+  /* §5.1 del spec de Task 11 (recortado) — la nav se retira al bajar
+     y vuelve al subir. Umbral 140px para que el gesto inicial de la
+     página no la haga desaparecer. Site-wide: el mismo comportamiento
+     hace legible el 78vh del lead en case studies y no molesta en
+     páginas cortas donde el usuario no llega al umbral.
+
+     El estado vive en React (no vía classList) — más simple y el
+     ciclo de render de Next se encarga. Passive listener para no
+     bloquear scroll. */
+  useEffect(() => {
+    let last = 0
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const y = window.scrollY
+        setAway(y > last && y > 140)
+        last = y
+        ticking = false
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   /* B2 — hover es opacidad. Inactivos en --color-muted (~60% de ink),
      activo (currentPage) siempre 100%. La página actual se destaca,
@@ -47,7 +74,9 @@ export default function Nav() {
 
   return (
     <>
-      <nav className="cruda-global-nav">
+      <nav
+        className={`cruda-global-nav${away && !mobileOpen ? ' away' : ''}`}
+      >
         <div className="cruda-global-nav-in">
           <Link href="/" className="cruda-global-nav-brand" aria-label="CRUDA home">
             CRUDA
@@ -113,6 +142,20 @@ export default function Nav() {
           /* Brief v4 UX §4.1 — bg opaco. NO transparente, NO blur. */
           background: var(--color-surface);
           border-bottom: 1px solid var(--color-rule);
+          /* §5.1 — la nav se retira al bajar con .away.
+             Transform + transition; sin ocupar espacio del layout.
+             cubic-bezier suave para no rasgar la vista. */
+          transform: translateY(0);
+          transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+          will-change: transform;
+        }
+        .cruda-global-nav.away {
+          transform: translateY(-100%);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .cruda-global-nav {
+            transition: none;
+          }
         }
         .cruda-global-nav-in {
           max-width: var(--max, 1360px);

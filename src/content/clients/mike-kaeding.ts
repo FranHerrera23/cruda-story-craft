@@ -10,7 +10,7 @@ export const mikeKaeding: CaseStudy = {
   status: 'portfolio',
 
   title:
-    "A construction CEO with $230M in assets and a mission to cut housing costs in half — turned from best-kept secret into a voice policymakers and industry leaders take calls from",
+    "A construction CEO with $200M in assets and a mission to cut housing costs in half — turned from best-kept secret into a voice policymakers and industry leaders take calls from",
 
   // Task 7 — one-liner (brief v2).
   oneLiner:
@@ -35,7 +35,7 @@ export const mikeKaeding: CaseStudy = {
   updatedAt: '2026-07-26',
 
   answerCapsule:
-    "Mike Kaeding runs Norhart, a residential construction company with over 1,000 units delivered and $230M in assets, including the largest residential project in Minneapolis history — a $100M building. He inherited the CEO seat when his father died and set the company against a bigger target: cut construction costs in half to solve America's housing crisis. The work was loud, the story was quiet. CRUDA built the narrative system that put twenty years of construction expertise in front of policymakers, industry leaders and media, without changing what Mike sounds like.",
+    "Mike Kaeding runs Norhart, a residential construction company with over 1,000 units delivered and $200M in assets, including the largest residential project in Minneapolis history — a $100M building. He inherited the CEO seat when his father died and set the company against a bigger target: cut construction costs in half to solve America's housing crisis. The work was loud, the story was quiet. CRUDA built the narrative system that put twenty years of construction expertise in front of policymakers, industry leaders and media, without changing what Mike sounds like.",
 
   takeaways: [
     "Being the best-kept secret in an industry that desperately needs what you build is not a growth strategy. Invisibility is a distinct risk.",
@@ -44,7 +44,7 @@ export const mikeKaeding: CaseStudy = {
   ],
 
   stats: [
-    { value: '$230M', label: 'In assets' },
+    { value: '$200M', label: 'In assets' },
     { value: '1,000+', label: 'Residential units delivered' },
     { value: '$100M', label: 'Largest residential project in Minneapolis history' },
   ],
@@ -53,7 +53,7 @@ export const mikeKaeding: CaseStudy = {
     {
       heading: 'Twenty years of construction expertise. A quiet story.',
       body: [
-        "Mike Kaeding runs Norhart, a residential construction company in Minnesota. He didn't choose to lead it — his father's unexpected death put him there. What he did next matters more: he turned a family business into the kind of company that builds the largest residential project in Minneapolis history. A $100 million building. Over 1,000 units delivered. $230M in assets.",
+        "Mike Kaeding runs Norhart, a residential construction company in Minnesota. He didn't choose to lead it — his father's unexpected death put him there. What he did next matters more: he turned a family business into the kind of company that builds the largest residential project in Minneapolis history. A $100 million building. Over 1,000 units delivered. $200M in assets.",
         "But none of that showed up online. Mike is a software engineer by training, a builder by conviction. He had a mission — cut construction costs in half to solve America's housing crisis — but no system to make that mission travel. His posts were technical. Intermittent. Impersonal. The work was loud. The story was quiet.",
       ],
       pullQuote:

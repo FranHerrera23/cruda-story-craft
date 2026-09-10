@@ -8,7 +8,12 @@ import type { Moment } from '@/content/moments'
 /* Identidad del cliente — tres valores, inyectados como CSS custom
    properties (--c-1, --c-2, --c-type) en el contenedor del caso.
    El molde no cambia; cambia de color. Casos sin identidad (Girish,
-   confidencial): c1 cae a --black, c2 a --ink, type a --g. */
+   confidencial): c1 cae a --black, c2 a --ink, type a --g.
+
+   `type` es una CLAVE del manifest en fonts.ts (ej. 'montserrat').
+   El compositor resuelve la clave → CSS variable. Si la clave no
+   existe, cae a --g y loguea en dev (misma política que los blocks
+   desconocidos). */
 export type Identity = {
   c1: string
   c2: string

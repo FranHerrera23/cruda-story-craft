@@ -32,7 +32,7 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
     identity: {
       c1: '#1600FF',
       c2: '#3E4B41',
-      type: "'Montserrat', sans-serif",
+      type: 'montserrat',
     },
     blocks: [
       {

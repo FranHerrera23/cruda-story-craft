@@ -1,5 +1,9 @@
 import './case-blocks.css'
-import { sourceSerif4 } from './fonts'
+import {
+  sourceSerif4,
+  allClientFontVariables,
+  resolveClientType,
+} from './fonts'
 import BlockHead from './BlockHead'
 import BlockLead from './BlockLead'
 import BlockBand from './BlockBand'
@@ -123,11 +127,28 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
   verifyPullQuotes(cs.blocks)
 
   const identity = cs.identity
+  /* Manifest resuelve identity.type → font-family stack + clase de
+     next/font. Si la clave no existe, resolveClientType devuelve null
+     y --c-type queda sin sobrescribir (fallback en CSS: --g). */
+  const typeResolved = resolveClientType(identity?.type)
+  if (
+    process.env.NODE_ENV !== 'production' &&
+    identity?.type &&
+    !typeResolved
+  ) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      `[CaseComposer] identity.type key "${identity.type}" is not registered in the font manifest — --c-type falls back to --g.`
+    )
+  }
+
   const rootStyle = identity
     ? ({
         ['--c-1' as string]: identity.c1,
         ['--c-2' as string]: identity.c2,
-        ['--c-type' as string]: identity.type,
+        ...(typeResolved
+          ? { ['--c-type' as string]: typeResolved.family }
+          : {}),
       } as React.CSSProperties)
     : undefined
 
@@ -139,8 +160,21 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
     )
   }
 
+  /* Todas las fuentes de cliente del manifest se declaran en el
+     contenedor. Las que el caso no usa quedan disponibles pero no
+     se activan hasta que un font-family las pida — costo de carga
+     de una fuente no usada = 0 (next/font solo emite el CSS de la
+     face; el download del binario sucede on-demand). */
+  const rootClass = [
+    'cb-root',
+    sourceSerif4.variable,
+    allClientFontVariables(),
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
-    <div className={`cb-root ${sourceSerif4.variable}`} style={rootStyle}>
+    <div className={rootClass} style={rootStyle}>
       {cs.blocks.map((b, i) => renderBlock(b, i))}
     </div>
   )

@@ -9,8 +9,13 @@ import { previewFixtures } from './fixtures'
    /work/[slug] (los cinco casos existentes siguen corriendo con el
    CaseStudyLayout legacy hasta el paso 5 del spec).
 
-   Punto 3 del orden: reportar acá antes de seguir con B8/B9/B10 y
-   el resto. Este route se retira cuando los casos migren. */
+   Fuentes de cliente: el compositor las carga via manifest en
+   fonts.ts (next/font). Un data file ya no controla el <head>.
+
+   Hardening noindex (además del `robots` meta acá):
+   - Middleware añade X-Robots-Tag: noindex
+   - robots.txt tiene Disallow: /preview/
+   - No está en el sitemap */
 
 export const metadata: Metadata = {
   title: 'Preview · Case blocks — CRUDA',
@@ -27,26 +32,5 @@ export default async function Page(
   const { slug } = await params
   const cs = previewFixtures[slug]
   if (!cs) notFound()
-
-  return (
-    <>
-      {/* Montserrat para la identidad de INOUT. En un data file real
-          cada caso trae su propia tipografía por identity.type; los
-          casos sin identidad caen a --g (Archivo). */}
-      <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-      />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin=""
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap"
-      />
-      <CaseComposer cs={cs} />
-    </>
-  )
+  return <CaseComposer cs={cs} />
 }

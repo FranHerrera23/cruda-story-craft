@@ -97,11 +97,19 @@ function renderBlock(block: Block, index: number) {
 }
 
 /* §7 regla 1 — chequeo verbatim de pull quotes.
-   Reúne toda la prosa (prose, band) y verifica que cada pull aparezca
-   palabra por palabra. Si falta, es un bug del data file. Dev-only —
-   no pisa el render en prod. */
+   Reúne toda la prosa (prose, band, passages) y verifica que cada
+   pull aparezca palabra por palabra. Si falta: THROW.
+
+   Corre en cada render — server, client, SSG. Como `next build`
+   prerenderiza /preview/case-blocks/[slug] y (cuando migren)
+   /work/[slug], una cita rota hace fallar el build y el deploy.
+   Es el gate que Fran pidió: "no debería poder shippear".
+
+   En prod runtime también throw (5xx). Es la política correcta:
+   entre servir la página con una cita rota (mentiroso) y devolver
+   500 (visible), lo segundo es preferible. Un caso vivo no debería
+   llegar a prod sin haber pasado el build gate. */
 function verifyPullQuotes(blocks: Block[]) {
-  if (process.env.NODE_ENV === 'production') return
   const prose: string[] = []
   for (const b of blocks) {
     if (b.type === 'prose') prose.push(...b.paragraphs)
@@ -112,14 +120,18 @@ function verifyPullQuotes(blocks: Block[]) {
     }
   }
   const pool = prose.join(' ')
+  const missing: string[] = []
   for (const b of blocks) {
     if (b.type !== 'pull') continue
-    if (!pool.includes(b.quote)) {
-      // eslint-disable-next-line no-console
-      console.warn(
-        `[CaseComposer] Pull quote not found verbatim in page prose:\n  "${b.quote}"`
-      )
-    }
+    if (!pool.includes(b.quote)) missing.push(b.quote)
+  }
+  if (missing.length > 0) {
+    throw new Error(
+      `[CaseComposer] Pull quote(s) not verbatim in same-page prose ` +
+        `(${missing.length}). Every pull must be lifted word-for-word ` +
+        `from a paragraph on the same page (§7 regla 1). Offenders:\n` +
+        missing.map((q) => `  - "${q}"`).join('\n')
+    )
   }
 }
 

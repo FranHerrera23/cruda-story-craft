@@ -29,6 +29,7 @@ import BlockSeries from './BlockSeries'
 import BlockLine from './BlockLine'
 import BlockThesis from './BlockThesis'
 import type { Block, CaseStudyV2 } from './types'
+import { getNextInfo } from '@/content/next-order'
 
 /* Task 11 · compositor.
    Mapea `type` → componente y renderiza en orden. Sin bloques
@@ -350,9 +351,20 @@ export default function CaseComposer({
   /* Filtro de drafts corre PRIMERO — verify + unknown-types operan
      sobre bloques que realmente van a renderizar. Un pull cuya prosa
      vive en un draft está roto en producción (donde el draft no
-     está); el check refleja eso. */
-  const blocks = preview ? cs.blocks : filterDrafts(cs.blocks)
+     está); el check refleja eso.
+
+     Además: se descarta cualquier `{ type: 'next' }` que aparezca
+     en cs.blocks. El next se computa dinámicamente al final desde
+     next-order.ts — data files no lo declaran hardcoded. Si alguno
+     lo trae por inercia, se ignora. */
+  const filtered = preview ? cs.blocks : filterDrafts(cs.blocks)
+  const blocks = filtered.filter((b) => b.type !== 'next')
   verifyPullQuotes(blocks)
+
+  /* Next case computado desde el orden canónico. Si el slug no
+     está en el chain (case fuera de la home grilla), no se rendereá
+     next block. */
+  const nextInfo = getNextInfo(cs.slug)
 
   const identity = cs.identity
   /* Manifest resuelve identity.type → font-family stack + clase de
@@ -430,6 +442,13 @@ export default function CaseComposer({
     <div className={rootClass} style={rootStyle}>
       <CaseChrome />
       {blocks.map((b, i) => renderBlock(b, i))}
+      {nextInfo ? (
+        <BlockNext
+          slug={nextInfo.slug}
+          label={nextInfo.label}
+          oneLiner={nextInfo.oneLiner}
+        />
+      ) : null}
     </div>
   )
 }

@@ -264,13 +264,6 @@ export const inout: CaseStudyV2 = {
       attribution:
         "CRUDA built the naming, the brand and the formats. The engineering, the patent and the company are Germán's.",
     },
-    {
-      type: 'next',
-      slug: 'girish-sehgal',
-      label: 'Girish Sehgal',
-      oneLiner:
-        'Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find.',
-    },
   ],
   credits: {
     facts: [
@@ -281,11 +274,5 @@ export const inout: CaseStudyV2 = {
     ],
     attribution:
       "CRUDA built the naming, the brand and the formats. The engineering, the patent and the company are Germán's.",
-  },
-  next: {
-    slug: 'girish-sehgal',
-    label: 'Girish Sehgal',
-    oneLiner:
-      'Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find.',
   },
 }

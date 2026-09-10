@@ -300,13 +300,6 @@ export const girishSehgal: CaseStudyV2 = {
       attribution:
         'CRUDA built the positioning, the pillars and the editorial system. The positions are his, and so is the career they come from.',
     },
-    {
-      type: 'next',
-      slug: 'karen-mannheim',
-      label: 'Karen Mannheim',
-      oneLiner:
-        'Narrative and positioning for a lighting studio with twenty-eight years of work almost nobody had seen.',
-    },
   ],
   credits: {
     facts: [
@@ -317,11 +310,5 @@ export const girishSehgal: CaseStudyV2 = {
     ],
     attribution:
       'CRUDA built the positioning, the pillars and the editorial system. The positions are his, and so is the career they come from.',
-  },
-  next: {
-    slug: 'karen-mannheim',
-    label: 'Karen Mannheim',
-    oneLiner:
-      'Narrative and positioning for a lighting studio with twenty-eight years of work almost nobody had seen.',
   },
 }

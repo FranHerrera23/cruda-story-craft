@@ -313,7 +313,11 @@ export type SystemCell =
 
 /* Contrato principal — reemplaza al CaseStudy legacy cuando se
    migren los cinco casos existentes (paso 5). Por ahora corren
-   ambos en paralelo. */
+   ambos en paralelo.
+
+   `next` NO se declara acá — el compositor lo computa desde
+   src/content/next-order.ts, la fuente única del chain de los
+   nueve casos. Data files no lo hardcodean. */
 export type CaseStudyV2 = {
   slug: string
   title: string
@@ -322,5 +326,4 @@ export type CaseStudyV2 = {
   identity?: Identity
   blocks: Block[]
   credits: Credits
-  next: { slug: string; label: string; oneLiner: string }
 }

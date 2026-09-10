@@ -301,13 +301,6 @@ export const mannheimTrading: CaseStudyV2 = {
       attribution:
         "CRUDA built the narrative, the positioning, the brand identity and the website. There was no naming — the company arrived with its name. The supply chain, the financing and sixty years of industry standing are José Mannheim's. CRUDA has never worked with AGP Group; every figure about AGP here is published by AGP or stated publicly by José himself.",
     },
-    {
-      type: 'next',
-      slug: 'karen-mannheim',
-      label: 'Karen Mannheim',
-      oneLiner:
-        'Narrative and positioning for a lighting studio with twenty-eight years of work almost nobody had seen.',
-    },
   ],
   credits: {
     facts: [
@@ -318,11 +311,5 @@ export const mannheimTrading: CaseStudyV2 = {
     ],
     attribution:
       "CRUDA built the narrative, the positioning, the brand identity and the website. There was no naming — the company arrived with its name. The supply chain, the financing and sixty years of industry standing are José Mannheim's. CRUDA has never worked with AGP Group; every figure about AGP here is published by AGP or stated publicly by José himself.",
-  },
-  next: {
-    slug: 'karen-mannheim',
-    label: 'Karen Mannheim',
-    oneLiner:
-      'Narrative and positioning for a lighting studio with twenty-eight years of work almost nobody had seen.',
   },
 }

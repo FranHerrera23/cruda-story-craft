@@ -84,7 +84,13 @@ export default function BlockPassages({
               const meta = [p.venue, p.year, p.language].filter(Boolean).join(' · ')
               const row = (
                 <>
+                  {p.number ? (
+                    <span className="b-passages-archive-n">{p.number}</span>
+                  ) : null}
                   <span className="b-passages-archive-t">{p.title}</span>
+                  {p.excerpt ? (
+                    <span className="b-passages-archive-s">{p.excerpt}</span>
+                  ) : null}
                   {meta ? (
                     <span className="b-passages-archive-m">{meta}</span>
                   ) : null}

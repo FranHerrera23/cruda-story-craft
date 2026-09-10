@@ -235,6 +235,9 @@ export type Passage = {
   /* Metadata alternativa al year — MTC usa language en vez de
      year en las meta chips. */
   language?: string
+  /* Numeración del archivo (Girish "02", "03"…). Se rendereá a la
+     izquierda de la fila en el archive index. */
+  number?: string
   url?: string
 }
 

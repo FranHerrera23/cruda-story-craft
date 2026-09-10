@@ -480,13 +480,20 @@
 .cb-root .b-passages-archive li {
   border-bottom: 1px solid var(--rule);
 }
+/* Layout del archive: número (44px) + title + subtitle + meta.
+   Grid desde 820px. Cada fila con border-bottom en --rule. */
 .cb-root .b-passages-archive li > a,
 .cb-root .b-passages-archive li {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
+  display: grid;
+  gap: 4px 24px;
   align-items: baseline;
   padding: 16px 0;
+}
+@media (min-width: 820px) {
+  .cb-root .b-passages-archive li,
+  .cb-root .b-passages-archive li > a {
+    grid-template-columns: 44px minmax(0, 7fr) minmax(0, 9fr) 120px;
+  }
 }
 .cb-root .b-passages-archive li > a {
   padding: 0;
@@ -498,17 +505,28 @@
 .cb-root .b-passages-archive li > a:hover {
   color: var(--c-1);
 }
+.cb-root .b-passages-archive-n {
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+  font-style: normal;
+}
 .cb-root .b-passages-archive-t {
   font-family: var(--g);
-  font-weight: 500;
-  font-size: 17px;
+  font-weight: 700;
+  font-size: clamp(17px, 1.55vw, 21px);
+  letter-spacing: -.015em;
   color: var(--ink);
-  flex: 1 1 20ch;
-  max-width: 60ch;
+}
+.cb-root .b-passages-archive-s {
+  font-family: var(--s);
+  font-size: 16.5px;
+  color: var(--dim);
+  font-style: normal;
 }
 .cb-root .b-passages-archive-m {
   font-family: var(--g);
-  font-size: 13px;
+  font-size: 12.5px;
   color: var(--dim);
   letter-spacing: .04em;
 }
@@ -813,6 +831,12 @@
   .cb-root .b-built {
     grid-template-columns: 1fr 1fr;
     gap: clamp(40px, 5vw, 96px);
+  }
+  /* Cuando solo se renderea una columna (la otra tiene lista vacía),
+     el grid vuelve a full-width para que la existente no quede
+     encajonada al 50%. */
+  .cb-root .b-built.b-built--single {
+    grid-template-columns: 1fr;
   }
 }
 .cb-root .b-built h2 {

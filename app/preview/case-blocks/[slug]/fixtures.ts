@@ -20,13 +20,15 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
      slab-azul · band · specifiers · voice · built · credits · next
 
    Composición de este fixture (subset a los bloques implementados):
-     head · lead · band · pull · slab-c2 { prose } · system ·
-     slab-c1 { prose } · band · voice · built · credits · next
+     head · lead · band · pull · slab-c2 { claim } · system ·
+     prose · slab-c1 { manifesto } · band · voice · built ·
+     credits · next
 
-   Dos slabs demuestran la inyección de identidad: --c-2 (verde)
-   y --c-1 (azul) pintados a sangre. El bloque system renderiza la
-   paleta y la tipografía del cliente (§7: no se simulan). Contenido
-   verbatim de cruda-case-inout.html — sin inventar copy. */
+   La composición ya matchea la real de INOUT (§4 del spec), menos
+   `specifiers` (spx) que llega en el próximo commit y `bleed/pair`
+   que INOUT no usa.
+
+   Contenido verbatim de cruda-case-inout.html — sin inventar copy. */
 
 export const previewFixtures: Record<string, CaseStudyV2> = {
   inout: {
@@ -93,12 +95,11 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
         tone: 'c2',
         children: [
           {
-            type: 'prose',
-            label: 'The system',
-            paragraphs: [
-              "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
-              'The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. That is not execution. That is the argument of the brand resolved as a system.',
-            ],
+            type: 'claim',
+            text: 'Vos elegís<br>de qué lado <b>estar.</b>',
+            gloss: 'You choose which side to be on.',
+            note:
+              'Launched in August 2021, with half the world still shut indoors. The line turns inside and outside from a condition into a choice. The product did not change; the meaning was built out of the moment.',
           },
         ],
       },
@@ -150,15 +151,32 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
         ],
       },
       {
+        type: 'prose',
+        label: 'The system',
+        paragraphs: [
+          "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
+          'The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. That is not execution. That is the argument of the brand resolved as a system.',
+        ],
+      },
+      {
         type: 'slab',
         tone: 'c1',
         children: [
           {
-            type: 'prose',
-            label: 'INSIDERS',
+            type: 'manifesto',
+            who: 'INSIDERS',
             paragraphs: [
               'The format: the brand interviewing the architects who decide what gets built in the region. INOUT never explains its own quality. It hosts the people whose judgment sets it.',
               'This is where the method starts. Five years on, CRUDA still runs it — the interview as authority, putting the brand in the room with whoever decides.',
+            ],
+            lines: [
+              'INSIDERS are the ones who <b>dream awake.</b>',
+              'The mad ones who know they are mad.',
+              'The ones who <b>contemplate</b>, not the ones who look.',
+              'The ones who turn up the volume on silence.',
+              'The ones who <b>slow time down.</b>',
+              'The ones who make wherever they are their place.',
+              'Not the strongest — <b>the ones who adapt fastest.</b>',
             ],
           },
         ],

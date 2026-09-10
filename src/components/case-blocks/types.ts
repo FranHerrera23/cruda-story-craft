@@ -68,6 +68,23 @@ export type Block =
     }
   | { type: 'system'; label?: string; cells: SystemCell[] }
   | { type: 'slab'; tone: 'c1' | 'c2'; children: Block[] }
+  /* Contenido de slabs — sólo válidos dentro de un slab.
+     Cuando el caso no declara identidad, --c-1 y --c-2 caen a
+     --black y --ink, y el claim/manifesto salen en negro sin que
+     nadie tenga que declararlo. */
+  | {
+      type: 'claim'
+      text: string    // acepta <br> y <b> vía dangerouslySetInnerHTML
+      gloss?: string  // línea en el otro idioma / lectura
+      note?: string   // nota de contexto abajo
+    }
+  | {
+      type: 'manifesto'
+      who: string       // rótulo grande en --c-type
+      paragraphs: string[]  // prosa de argumento a la izquierda
+      lines: string[]   // lista de líneas de marca a la derecha
+                        // (acepta <b>...</b> inline)
+    }
 
 /* B13 · Passage. Para casos cuya prueba es escritura publicada.
    Dos densidades:

@@ -695,6 +695,83 @@
   margin-bottom: 0;
 }
 
+/* Container interno para bloques hijos de slab que definen su propio
+   inner (claim, manifesto). Alineado al max-width y pad del sistema. */
+.cb-root .slab .slab-in {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+}
+
+/* ── CLAIM ── hijo de slab. Línea display en --c-type + gloss + note.
+   Sólo aparece dentro de un slab. */
+.cb-root .slab .claim {
+  font-family: var(--c-type);
+  font-weight: 200;
+  letter-spacing: .02em;
+  font-size: clamp(30px, 5.4vw, 74px);
+  line-height: 1.14;
+  max-width: 15ch;
+  margin: 0;
+}
+.cb-root .slab .claim b {
+  font-weight: 500;
+}
+.cb-root .slab .gloss {
+  font-family: var(--g);
+  font-size: 14px;
+  letter-spacing: .04em;
+  opacity: .6;
+  margin: 22px 0 0;
+}
+.cb-root .slab .note {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 46ch;
+  margin: var(--sp-2) 0 0;
+  opacity: .82;
+}
+
+/* ── MANIFESTO ── hijo de slab. Dos columnas: prosa 6fr / lista 5fr.
+   La lista va en --c-type (voz del cliente). */
+.cb-root .slab .manif {
+  display: grid;
+  gap: var(--sp-2);
+}
+@media (min-width: 1000px) {
+  .cb-root .slab .manif {
+    grid-template-columns: 6fr 5fr;
+    gap: clamp(40px, 6vw, 120px);
+  }
+}
+.cb-root .slab .manif .who {
+  font-family: var(--c-type);
+  font-weight: 200;
+  letter-spacing: .14em;
+  font-size: clamp(24px, 3vw, 40px);
+  line-height: 1.2;
+  margin: 0 0 22px;
+}
+.cb-root .slab .manif p {
+  font-size: 17px;
+  line-height: 1.6;
+  opacity: .82;
+  max-width: 40ch;
+  margin: 0;
+}
+.cb-root .slab .manif ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--c-type);
+  font-weight: 300;
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.85;
+}
+.cb-root .slab .manif ul b {
+  font-weight: 600;
+}
+
 /* ── SLOT ── §6 — media faltante. Fondo blanco, filete negro 1px,
    proporción real del asset, nombre y spec abajo. Es parte del
    sistema, no andamiaje temporal. */

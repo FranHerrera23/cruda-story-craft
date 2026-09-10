@@ -20,6 +20,8 @@ import BlockPassages from './BlockPassages'
 import BlockPair from './BlockPair'
 import BlockBleed from './BlockBleed'
 import CaseChrome from './CaseChrome'
+import BlockClaim from './BlockClaim'
+import BlockManifesto from './BlockManifesto'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -49,6 +51,8 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'passages',
   'pair',
   'bleed',
+  'claim',
+  'manifesto',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -148,6 +152,24 @@ function renderBlock(block: Block, index: number) {
       return <BlockPair key={key} assets={block.assets} />
     case 'bleed':
       return <BlockBleed key={key} asset={block.asset} />
+    case 'claim':
+      return (
+        <BlockClaim
+          key={key}
+          text={block.text}
+          gloss={block.gloss}
+          note={block.note}
+        />
+      )
+    case 'manifesto':
+      return (
+        <BlockManifesto
+          key={key}
+          who={block.who}
+          paragraphs={block.paragraphs}
+          lines={block.lines}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -192,13 +214,15 @@ function verifyPullQuotes(blocks: Block[]) {
     if (b.type === 'prose') prose.push(...b.paragraphs)
     else if (b.type === 'band') {
       for (const g of b.groups) prose.push(...g.paragraphs)
+    } else if (b.type === 'manifesto') {
+      /* manifesto.paragraphs es prosa nuestra sobre la marca; entra.
+         manifesto.lines es copy del cliente; NO entra. */
+      prose.push(...b.paragraphs)
     }
-    /* passages excerpts NO entran al pool: son copy del autor
-       (Girish), no argumento nuestro. Una pull que quiera venir de
-       un excerpt se declara como prose block al lado — así queda
-       explícito que la sacamos por decisión editorial, no por
-       reciclaje automático. Misma regla se aplicará a manifesto
-       cuando el block-type llegue. */
+    /* passages.excerpt, claim.text/gloss/note, manifesto.lines, y
+       voice.quote NO entran al pool — son copy del caso o del
+       autor, no argumento nuestro. Una pull que quiera venir de
+       ahí se declara como prose block adyacente, explícita. */
   }
   const pool = prose.join(' ')
   const missing: string[] = []

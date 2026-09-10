@@ -19,6 +19,7 @@ import BlockBuilt from './BlockBuilt'
 import BlockPassages from './BlockPassages'
 import BlockPair from './BlockPair'
 import BlockBleed from './BlockBleed'
+import CaseChrome from './CaseChrome'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -271,6 +272,7 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
 
   return (
     <div className={rootClass} style={rootStyle}>
+      <CaseChrome />
       {cs.blocks.map((b, i) => renderBlock(b, i))}
     </div>
   )

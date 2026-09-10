@@ -52,12 +52,16 @@ export default function HomePage() {
               <span className="line-2">Strip the bullshit.</span>
             </h1>
 
-            {/* Lower block — un solo bloque gris, contenido a 680px. */}
+            {/* Lower block — un solo bloque gris, contenido a 680px.
+                A.3.2 — reemplazo interino autorizado por Fran. Retira
+                "Nobody buys the company. They buy you." (categoría
+                sin cerrar) sin usar el subtitle de home v2 (mismo
+                motivo). Este string se reemplaza entero cuando corra
+                el bloque 1 de home en Phase C. */}
             <div className="lower">
               <div className="say">
                 <p>
-                  Nobody buys the company. They buy{' '}
-                  <span className="say-you">you</span>.
+                  The work is good. Outside your circle, nobody finds out.
                 </p>
               </div>
 

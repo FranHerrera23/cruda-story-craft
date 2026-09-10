@@ -257,9 +257,10 @@ function verifyPullQuotes(blocks: Block[]) {
     else if (b.type === 'band') {
       for (const g of b.groups) prose.push(...g.paragraphs)
     } else if (b.type === 'manifesto') {
-      /* manifesto.paragraphs es prosa nuestra sobre la marca; entra.
-         manifesto.lines es copy del cliente; NO entra. */
+      /* L55 (Fran) — el manifiesto es escritura de CRUDA, no voz
+         del cliente. Ambos entran al pool. */
       prose.push(...b.paragraphs)
+      prose.push(...b.lines)
     } else if (b.type === 'pillars') {
       /* pillars.body es prosa nuestra; entra. Headings son display
          (no argumento); NO entran. */

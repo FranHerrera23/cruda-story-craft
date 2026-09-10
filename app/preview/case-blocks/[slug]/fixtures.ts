@@ -2,34 +2,19 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
 
 /* Task 11 · fixtures del preview route.
 
-   Estos NO son data files por caso — son fixtures inline para validar
-   el compositor y los 7 bloques del punto 3 del spec. INOUT, Girish,
-   MTC y BAUHOME no se crean como data files hasta que Fran lo pida
-   (§9 del spec).
+   Fixtures inline para validar el compositor. Cuando un caso migra
+   a data file real en src/content/clients-v2/, se retira de acá.
 
-   Contenido de "inout" tomado verbatim de cruda-case-inout.html
-   (la referencia de implementación). Sólo usamos los 7 bloques
-   implementados en esta iteración; los bloques que la composición
-   real de INOUT declara y todavía no existen (slab, system, voice,
-   specifiers, built) se omiten aquí para que el preview render sin
-   log warnings. Cuando lleguen se rehidrata la composición completa
-   en el data file real.
-
-   Composición real de INOUT (§4 del spec):
-     head · lead · band · pull · slab-verde · system · prose ·
-     slab-azul · band · specifiers · voice · built · credits · next
-
-   Composición de INOUT (Fran cerró contenido el 10-sep):
+   INOUT — composición actualizada (Fran cerró contenido 10-sep):
      head · lead · band · pull · slab-c2 { claim } · system ·
-     prose · slab-c1 { manifesto } · band · series · spx · voice ·
+     prose · slab-c1 { manifesto · series } · band · spx · voice ·
      built · credits · next
 
-   Cambios respecto de la referencia HTML:
-   - INSIDERS pasa a su propio bloque `series`, no vive en el
-     figcaption del band #2. spx queda sólo con los specifiers.
-   - Los episodios se nombran por quiénes son.
+   L56 — manifesto y series (INSIDERS) van EN UN SOLO SLAB. Concepto
+   arriba, ejecución abajo. Nunca al revés. Se lee como una sola
+   idea: "así se pensó el formato → así salió tres veces".
 
-   Contenido verbatim de cruda-case-inout.html — sin inventar copy. */
+   Contenido verbatim de cruda-case-inout.html + correcciones L53-L57. */
 
 export const previewFixtures: Record<string, CaseStudyV2> = {
   inout: {
@@ -191,6 +176,19 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
               'Not the strongest — <b>the ones who adapt fastest.</b>',
             ],
           },
+          {
+            type: 'series',
+            episodes: [
+              {
+                number: '#01',
+                title: 'Salvador Pepi',
+                meta: 'Infinito al Cuadrado · agosto 2021',
+              },
+              { number: '#02', title: 'Sergio Cabrera' },
+              { number: '#03', title: 'Horizontal Arquitectos' },
+            ],
+            note: 'The series continues, produced by the client.',
+          },
         ],
       },
       {
@@ -208,22 +206,6 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
             ],
           },
         ],
-      },
-      {
-        type: 'series',
-        label: 'INSIDERS',
-        subtitle:
-          'Una mirada introspectiva sobre los espacios, entrevistando a las mentes más brillantes de la arquitectura del norte argentino.',
-        episodes: [
-          {
-            number: '#01',
-            title: 'Salvador Pepi',
-            meta: 'Infinito al Cuadrado · agosto 2021',
-          },
-          { number: '#02', title: 'Sergio Cabrera' },
-          { number: '#03', title: 'Horizontal Arquitectos' },
-        ],
-        note: 'The series continues, produced by the client.',
       },
       {
         type: 'spx',

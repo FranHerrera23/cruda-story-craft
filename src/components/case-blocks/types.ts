@@ -114,8 +114,9 @@ export type Block = BlockBase & (
       type: 'manifesto'
       who: string       // rótulo grande en --c-type
       paragraphs: string[]  // prosa de argumento a la izquierda
-      lines: string[]   // lista de líneas de marca a la derecha
-                        // (acepta <b>...</b> inline)
+      lines: string[]   // líneas del manifiesto a la derecha,
+                        // ESCRITURA DE CRUDA (no voz del cliente),
+                        // acepta <b>...</b> inline
     }
   /* SPX · specifiers. Lista jerárquica de entidades con etiqueta
      corta al costado. INOUT: quién especifica el sistema (studios

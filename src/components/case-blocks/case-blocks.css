@@ -683,6 +683,35 @@
   margin: 18px 0 0;
 }
 
+/* Series dentro de un slab: se lee como continuación del manifesto,
+   no como una sección separada. Tarjetas con fondo transparente y
+   texto blanco. Aire de 96px arriba (L56 — "una línea de aire de
+   96px" separa concepto de ejecución dentro del mismo azul). */
+.cb-root .slab .b-series {
+  max-width: none;
+  margin: 0;
+  padding: 96px 0 0;
+}
+.cb-root .slab .b-series-sub {
+  color: rgba(255, 255, 255, 0.72);
+}
+.cb-root .slab .b-series ol {
+  border-top-color: rgba(255, 255, 255, 0.35);
+}
+.cb-root .slab .b-series li {
+  border-bottom-color: rgba(255, 255, 255, 0.18);
+}
+.cb-root .slab .b-series i,
+.cb-root .slab .b-series span {
+  color: rgba(255, 255, 255, 0.72);
+}
+.cb-root .slab .b-series strong {
+  color: #fff;
+}
+.cb-root .slab .b-series-note {
+  color: rgba(255, 255, 255, 0.72);
+}
+
 /* ── SPX · specifiers ── lista jerárquica de entidades. Cada fila
    es strong (nombre en escala display) + span (meta chico gris).
    Border-top negro fuerte, border-bottom en --rule por fila. Src

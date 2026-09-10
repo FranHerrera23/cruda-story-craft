@@ -163,6 +163,17 @@ export type Block = BlockBase & (
       episodes: { number?: string; title: string; meta?: string }[]
       note?: string
     }
+  /* THESIS · statement narrativo dentro de un slab. Diferente de
+     claim (que es display-typographic en --c-type con gloss/note).
+     Thesis es prosa argumental — se rendereá en --g (Archivo) con
+     weight 700 tracking tight, más un `reading` opcional en 14px
+     debajo. MTC usa dos slabs con thesis. Ambos strings entran al
+     pool de pull quotes. */
+  | {
+      type: 'thesis'
+      statement: string
+      reading?: string
+    }
   /* PILLARS · tres (o N) pilares numerados. Cada uno con número,
      heading display y cuerpo de prosa. Es lo que hace que doce
      piezas se lean como un argumento. Girish. Cuerpo SÍ entra al
@@ -215,9 +226,15 @@ export type PieceLine =
    publicado). */
 export type Passage = {
   title: string
+  /* excerpt: cita a tamaño de lectura. `paragraphs` para
+     multi-párrafo (MTC); `excerpt` string para single-línea. */
+  paragraphs?: string[]
   excerpt?: string
   venue?: string
   year?: string
+  /* Metadata alternativa al year — MTC usa language en vez de
+     year en las meta chips. */
+  language?: string
   url?: string
 }
 

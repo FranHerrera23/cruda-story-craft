@@ -41,17 +41,20 @@ export default function BlockPassages({
 
       <div className="b-passages-featured">
         {featured.map((p, i) => {
+          const meta = [p.venue, p.year, p.language].filter(Boolean).join(' · ')
           const inner = (
             <>
               <h3 className="b-passages-title">{p.title}</h3>
-              {p.excerpt ? (
+              {p.paragraphs && p.paragraphs.length > 0 ? (
+                <div className="b-passages-excerpt-multi">
+                  {p.paragraphs.map((para, j) => (
+                    <p key={j}>{para}</p>
+                  ))}
+                </div>
+              ) : p.excerpt ? (
                 <p className="b-passages-excerpt">{p.excerpt}</p>
               ) : null}
-              {p.venue || p.year ? (
-                <p className="b-passages-meta">
-                  {[p.venue, p.year].filter(Boolean).join(' · ')}
-                </p>
-              ) : null}
+              {meta ? <p className="b-passages-meta">{meta}</p> : null}
             </>
           )
           return (
@@ -78,7 +81,7 @@ export default function BlockPassages({
           <h3 className="b-passages-archive-h">Archive</h3>
           <ul>
             {archive.map((p, i) => {
-              const meta = [p.venue, p.year].filter(Boolean).join(' · ')
+              const meta = [p.venue, p.year, p.language].filter(Boolean).join(' · ')
               const row = (
                 <>
                   <span className="b-passages-archive-t">{p.title}</span>

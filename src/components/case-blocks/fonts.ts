@@ -1,5 +1,5 @@
 import type { NextFont } from 'next/dist/compiled/@next/font'
-import { Source_Serif_4, Montserrat } from 'next/font/google'
+import { Source_Serif_4, Montserrat, Figtree } from 'next/font/google'
 
 /* Task 11 · sistema de fuentes.
 
@@ -36,6 +36,13 @@ const montserrat = Montserrat({
   variable: '--font-client-montserrat',
 })
 
+const figtree = Figtree({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-client-figtree',
+})
+
 /* Manifest — clave → { font, cssVar, family }.
    `font`  → el objeto de next/font (expone .variable con la
               custom property que activa la face).
@@ -46,7 +53,7 @@ const montserrat = Montserrat({
    Para añadir una tipografía: importarla arriba desde next/font,
    pushear la entrada acá con una `variable` propia (no colisionar).
 */
-export type ClientFontKey = 'montserrat'
+export type ClientFontKey = 'montserrat' | 'figtree'
 
 type ClientFontEntry = {
   font: NextFont & { variable: string }
@@ -59,6 +66,11 @@ export const CLIENT_FONTS: Record<ClientFontKey, ClientFontEntry> = {
     font: montserrat,
     cssVar: '--font-client-montserrat',
     family: "'Montserrat', sans-serif",
+  },
+  figtree: {
+    font: figtree,
+    cssVar: '--font-client-figtree',
+    family: "'Figtree', system-ui, sans-serif",
   },
 }
 

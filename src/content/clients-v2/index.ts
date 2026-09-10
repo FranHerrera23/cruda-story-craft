@@ -1,5 +1,6 @@
 import type { CaseStudyV2 } from '@/components/case-blocks/types'
 import { inout } from './inout'
+import { mannheimTrading } from './mannheim-trading'
 
 /* Paso 5 del spec — case studies migrados al modelo de bloques.
 
@@ -10,7 +11,7 @@ import { inout } from './inout'
    Karen, JP, Mike, confidencial y BAUHOME se mantienen legacy
    hasta que Fran los pida en v2. M2Develop no se toca. */
 
-export const allClientsV2: CaseStudyV2[] = [inout]
+export const allClientsV2: CaseStudyV2[] = [inout, mannheimTrading]
 
 export function findClientV2(slug: string): CaseStudyV2 | undefined {
   return allClientsV2.find((c) => c.slug === slug)

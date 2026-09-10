@@ -27,6 +27,7 @@ import BlockPillars from './BlockPillars'
 import BlockPiece from './BlockPiece'
 import BlockSeries from './BlockSeries'
 import BlockLine from './BlockLine'
+import BlockThesis from './BlockThesis'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -63,6 +64,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'piece',
   'series',
   'line',
+  'thesis',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -216,6 +218,14 @@ function renderBlock(block: Block, index: number) {
       )
     case 'line':
       return <BlockLine key={key} text={block.text} />
+    case 'thesis':
+      return (
+        <BlockThesis
+          key={key}
+          statement={block.statement}
+          reading={block.reading}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -268,6 +278,11 @@ function verifyPullQuotes(blocks: Block[]) {
     } else if (b.type === 'line') {
       /* L57 · frase de código editorial. Prosa nuestra. Entra. */
       prose.push(b.text)
+    } else if (b.type === 'thesis') {
+      /* Thesis es prosa argumental nuestra dentro de un slab.
+         Statement y reading entran al pool — son citables. */
+      prose.push(b.statement)
+      if (b.reading) prose.push(b.reading)
     } else if (b.type === 'pillars') {
       /* pillars.body es prosa nuestra; entra. Headings son display
          (no argumento); NO entran. */

@@ -437,6 +437,20 @@
   max-width: 52ch;
   margin: 0 0 14px;
 }
+.cb-root .b-passages-excerpt-multi {
+  margin: 0 0 14px;
+}
+.cb-root .b-passages-excerpt-multi p {
+  font-family: var(--s);
+  font-size: 19px;
+  line-height: 1.62;
+  color: var(--ink);
+  max-width: 50ch;
+  margin: 0 0 .85rem;
+}
+.cb-root .b-passages-excerpt-multi p:last-child {
+  margin-bottom: 0;
+}
 .cb-root .b-passages-meta {
   font-family: var(--g);
   font-size: 13px;
@@ -1054,6 +1068,30 @@
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--pad);
+}
+
+/* ── THESIS ── hijo de slab. Statement narrativo argumental en --g
+   (Archivo) weight 700 tracking tight, con reading opcional en 14px
+   gris. MTC lo usa para las dos afirmaciones que arman el caso.
+   Diferente de claim (display-typographic en --c-type). */
+.cb-root .slab .thesis {
+  color: #fff;
+}
+.cb-root .slab .thesis-statement {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(32px, 5.2vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -.028em;
+  max-width: 18ch;
+  margin: 0;
+}
+.cb-root .slab .thesis-reading {
+  font-family: var(--g);
+  font-style: normal;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 32px 0 0;
 }
 
 /* ── CLAIM ── hijo de slab. Línea display en --c-type + gloss + note.

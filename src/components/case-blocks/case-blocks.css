@@ -228,6 +228,37 @@
   margin: 0;
 }
 
+/* ── B8 · VOICE ── voz del cliente en el flujo. §3: NO un slab
+   negro al final. Grilla 2fr/10fr como el resto de bloques con
+   label. La cita es del cliente — no entra al chequeo de pulls. */
+.cb-root .b-voice {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+  display: grid;
+  gap: var(--sp-1);
+}
+@media (min-width: 1000px) {
+  .cb-root .b-voice {
+    grid-template-columns: 2fr 10fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+}
+.cb-root .b-voice blockquote {
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.38;
+  max-width: 30ch;
+  margin: 0;
+}
+.cb-root .b-voice cite {
+  font-family: var(--g);
+  font-style: normal;
+  font-size: 14px;
+  color: var(--dim);
+  display: block;
+  margin-top: 20px;
+}
+
 /* ── B11 · CREDITS ── ficha + línea de atribución ── */
 .cb-root .b-credits {
   max-width: var(--max);

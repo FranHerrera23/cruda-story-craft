@@ -13,6 +13,7 @@ import BlockCredits from './BlockCredits'
 import BlockNext from './BlockNext'
 import BlockSlab from './BlockSlab'
 import BlockSystem from './BlockSystem'
+import BlockVoice from './BlockVoice'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -36,6 +37,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'next',
   'slab',
   'system',
+  'voice',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -100,6 +102,15 @@ function renderBlock(block: Block, index: number) {
     case 'system':
       return (
         <BlockSystem key={key} label={block.label} cells={block.cells} />
+      )
+    case 'voice':
+      return (
+        <BlockVoice
+          key={key}
+          label={block.label}
+          quote={block.quote}
+          attribution={block.attribution}
+        />
       )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.

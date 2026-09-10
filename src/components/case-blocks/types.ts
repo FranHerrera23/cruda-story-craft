@@ -53,7 +53,7 @@ export type Block =
      que existan. Ver §3 del spec. */
   | { type: 'pair'; assets: [MediaAsset, MediaAsset] }
   | { type: 'bleed'; asset: MediaAsset }
-  | { type: 'voice'; quote: string; attribution: string }
+  | { type: 'voice'; label?: string; quote: string; attribution: string }
   | { type: 'figures'; primary: Figure; support: Figure[] }
   | {
       type: 'built'

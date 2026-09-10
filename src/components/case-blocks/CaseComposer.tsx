@@ -11,6 +11,7 @@ import BlockProse from './BlockProse'
 import BlockPull from './BlockPull'
 import BlockCredits from './BlockCredits'
 import BlockNext from './BlockNext'
+import BlockSlab from './BlockSlab'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -32,6 +33,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'pull',
   'credits',
   'next',
+  'slab',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -84,6 +86,15 @@ function renderBlock(block: Block, index: number) {
           oneLiner={block.oneLiner}
         />
       )
+    case 'slab':
+      return (
+        <BlockSlab
+          key={key}
+          tone={block.tone}
+          items={block.children}
+          renderBlock={renderBlock}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -109,9 +120,19 @@ function renderBlock(block: Block, index: number) {
    entre servir la página con una cita rota (mentiroso) y devolver
    500 (visible), lo segundo es preferible. Un caso vivo no debería
    llegar a prod sin haber pasado el build gate. */
-function verifyPullQuotes(blocks: Block[]) {
-  const prose: string[] = []
+function flatten(blocks: Block[]): Block[] {
+  const out: Block[] = []
   for (const b of blocks) {
+    out.push(b)
+    if (b.type === 'slab') out.push(...flatten(b.children))
+  }
+  return out
+}
+
+function verifyPullQuotes(blocks: Block[]) {
+  const all = flatten(blocks)
+  const prose: string[] = []
+  for (const b of all) {
     if (b.type === 'prose') prose.push(...b.paragraphs)
     else if (b.type === 'band') {
       for (const g of b.groups) prose.push(...g.paragraphs)
@@ -121,7 +142,7 @@ function verifyPullQuotes(blocks: Block[]) {
   }
   const pool = prose.join(' ')
   const missing: string[] = []
-  for (const b of blocks) {
+  for (const b of all) {
     if (b.type !== 'pull') continue
     if (!pool.includes(b.quote)) missing.push(b.quote)
   }
@@ -164,11 +185,12 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
       } as React.CSSProperties)
     : undefined
 
-  const knownCount = cs.blocks.filter((b) => KNOWN_TYPES.has(b.type)).length
-  if (process.env.NODE_ENV !== 'production' && knownCount < cs.blocks.length) {
+  const allBlocks = flatten(cs.blocks)
+  const knownCount = allBlocks.filter((b) => KNOWN_TYPES.has(b.type)).length
+  if (process.env.NODE_ENV !== 'production' && knownCount < allBlocks.length) {
     // eslint-disable-next-line no-console
     console.warn(
-      `[CaseComposer] ${cs.blocks.length - knownCount} of ${cs.blocks.length} blocks are unknown types and were omitted.`
+      `[CaseComposer] ${allBlocks.length - knownCount} of ${allBlocks.length} blocks are unknown types and were omitted.`
     )
   }
 

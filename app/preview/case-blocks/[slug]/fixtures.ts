@@ -19,8 +19,14 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
      head · lead · band · pull · slab-verde · system · prose ·
      slab-azul · band · specifiers · voice · built · credits · next
 
-   Composición de este fixture (subset a los 7 bloques):
-     head · lead · band · pull · prose · band · credits · next */
+   Composición de este fixture (subset a los bloques implementados):
+     head · lead · band · pull · slab-c2 { prose } ·
+     slab-c1 { prose } · band · credits · next
+
+   Dos slabs demuestran la inyección de identidad: --c-2 (verde)
+   y --c-1 (azul) pintados a sangre. Contenido de los slabs tomado
+   verbatim de cruda-case-inout.html (párrafos existentes en la
+   referencia, sin inventar copy). */
 
 export const previewFixtures: Record<string, CaseStudyV2> = {
   inout: {
@@ -83,11 +89,31 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
         quote: 'He was already known. That was the problem.',
       },
       {
-        type: 'prose',
-        label: 'The system',
-        paragraphs: [
-          "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
-          'The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. That is not execution. That is the argument of the brand resolved as a system.',
+        type: 'slab',
+        tone: 'c2',
+        children: [
+          {
+            type: 'prose',
+            label: 'The system',
+            paragraphs: [
+              "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
+              'The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. That is not execution. That is the argument of the brand resolved as a system.',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'slab',
+        tone: 'c1',
+        children: [
+          {
+            type: 'prose',
+            label: 'INSIDERS',
+            paragraphs: [
+              'The format: the brand interviewing the architects who decide what gets built in the region. INOUT never explains its own quality. It hosts the people whose judgment sets it.',
+              'This is where the method starts. Five years on, CRUDA still runs it — the interview as authority, putting the brand in the room with whoever decides.',
+            ],
+          },
         ],
       },
       {

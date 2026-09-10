@@ -314,6 +314,38 @@
   color: var(--paper);
 }
 
+/* ── SLAB ── modificador de B4/B8. El color del cliente a sangre.
+   No es un bloque de contenido, es un wrapper: envuelve blocks
+   hijos y los renderiza sobre --c-1 (c1) o --c-2 (c2), con texto
+   invertido a blanco.
+
+   Padding vertical del slab reemplaza el margin-bottom del último
+   hijo (los blocks internos ya declaran su propio spacing) — el
+   slab respira desde su padding y no del block. */
+.cb-root .slab {
+  padding: var(--sp-3) 0;
+  margin: 0 0 var(--sp-2);
+  color: #fff;
+}
+.cb-root .slab-c1 { background: var(--c-1); }
+.cb-root .slab-c2 { background: var(--c-2); }
+
+/* Dentro del slab: prosa blanca sobre color. La label pierde brillo
+   pero mantiene contraste legible. Los últimos-hijos pierden su
+   margin-bottom porque el slab ya aporta padding-bottom. */
+.cb-root .slab .b-prose .body p,
+.cb-root .slab .b-band .prose p {
+  color: rgba(255, 255, 255, 0.92);
+}
+.cb-root .slab .b-prose .lbl,
+.cb-root .slab .b-band .prose .lbl {
+  color: rgba(255, 255, 255, 0.7);
+}
+.cb-root .slab .b-prose,
+.cb-root .slab .b-band {
+  margin-bottom: 0;
+}
+
 /* ── SLOT ── §6 — media faltante. Fondo blanco, filete negro 1px,
    proporción real del asset, nombre y spec abajo. Es parte del
    sistema, no andamiaje temporal. */

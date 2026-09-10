@@ -23,6 +23,7 @@ import CaseChrome from './CaseChrome'
 import BlockClaim from './BlockClaim'
 import BlockManifesto from './BlockManifesto'
 import BlockSpx from './BlockSpx'
+import BlockPillars from './BlockPillars'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -55,6 +56,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'claim',
   'manifesto',
   'spx',
+  'pillars',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -181,6 +183,15 @@ function renderBlock(block: Block, index: number) {
           src={block.src}
         />
       )
+    case 'pillars':
+      return (
+        <BlockPillars
+          key={key}
+          label={block.label}
+          items={block.items}
+          note={block.note}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -229,6 +240,10 @@ function verifyPullQuotes(blocks: Block[]) {
       /* manifesto.paragraphs es prosa nuestra sobre la marca; entra.
          manifesto.lines es copy del cliente; NO entra. */
       prose.push(...b.paragraphs)
+    } else if (b.type === 'pillars') {
+      /* pillars.body es prosa nuestra; entra. Headings son display
+         (no argumento); NO entran. */
+      for (const item of b.items) prose.push(item.body)
     }
     /* passages.excerpt, claim.text/gloss/note, manifesto.lines, y
        voice.quote NO entran al pool — son copy del caso o del

@@ -95,6 +95,16 @@ export type Block =
       items: { title: string; meta?: string }[]
       src?: string     // atribución de fuente (MTC)
     }
+  /* PILLARS · tres (o N) pilares numerados. Cada uno con número,
+     heading display y cuerpo de prosa. Es lo que hace que doce
+     piezas se lean como un argumento. Girish. Cuerpo SÍ entra al
+     pool de pull quotes (es prosa nuestra). */
+  | {
+      type: 'pillars'
+      label?: string
+      items: { number: string; heading: string; body: string }[]
+      note?: string
+    }
 
 /* B13 · Passage. Para casos cuya prueba es escritura publicada.
    Dos densidades:

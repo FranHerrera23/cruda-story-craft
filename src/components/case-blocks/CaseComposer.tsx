@@ -14,6 +14,7 @@ import BlockNext from './BlockNext'
 import BlockSlab from './BlockSlab'
 import BlockSystem from './BlockSystem'
 import BlockVoice from './BlockVoice'
+import BlockFigures from './BlockFigures'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -38,6 +39,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'slab',
   'system',
   'voice',
+  'figures',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -110,6 +112,14 @@ function renderBlock(block: Block, index: number) {
           label={block.label}
           quote={block.quote}
           attribution={block.attribution}
+        />
+      )
+    case 'figures':
+      return (
+        <BlockFigures
+          key={key}
+          primary={block.primary}
+          support={block.support}
         />
       )
     default:

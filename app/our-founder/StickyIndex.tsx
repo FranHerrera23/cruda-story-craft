@@ -2,17 +2,17 @@
 
 import { useEffect } from 'react'
 
-/* Left-side sticky index for /our-founder (brief part 8).
-   Five anchors. Active state driven by IntersectionObserver on the
-   [data-section] marks — the section whose middle is inside the center
-   band of the viewport wins. Hidden below 1024px (CSS). */
+/* Left-side sticky index for /our-founder — anchors alineados al
+   rebuild A.4. Cinco marcas: hero + las cuatro secciones del v1
+   doc. Active state via IntersectionObserver sobre [data-section].
+   Hidden below 1024px (CSS). */
 
 const ITEMS = [
-  { id: 'belief', label: '01  BELIEF' },
-  { id: 'method', label: '02  METHOD' },
-  { id: 'at-a-glance', label: '03  AT A GLANCE' },
-  { id: 'proof', label: '04  PROOF' },
-  { id: 'contact', label: '05  CONTACT' },
+  { id: 'hero', label: '00  HERO' },
+  { id: 'now', label: '01  NOW' },
+  { id: 'before', label: '02  BEFORE' },
+  { id: 'voices', label: '03  VOICES' },
+  { id: 'short', label: '04  SHORT' },
 ] as const
 
 export default function OurFounderStickyIndex() {
@@ -46,7 +46,6 @@ export default function OurFounderStickyIndex() {
     e: React.MouseEvent<HTMLAnchorElement>,
     id: string
   ) => {
-    // Smooth scroll only on this click, not globally.
     const target = document.getElementById(id)
     if (!target) return
     e.preventDefault()

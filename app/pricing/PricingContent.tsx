@@ -48,7 +48,9 @@ export default function PricingContent() {
       alt: "Templates. Trends. Whatever worked for someone else."
     },
     {
-      cruda: "Fortune 500 experience, founder attention",
+      // A.3.3 — se cae la mitad indefendible ("Fortune 500 experience").
+      // Sobrevive lo que es cierto: founder attention.
+      cruda: "Founder attention",
       alt: "Senior pitch, junior delivery."
     }
   ];

@@ -115,17 +115,20 @@ function renderBlock(block: Block, index: number) {
 
 /* §7 regla 1 — chequeo verbatim de pull quotes.
    Reúne toda la prosa (prose, band, passages) y verifica que cada
-   pull aparezca palabra por palabra. Si falta: THROW.
+   pull aparezca palabra por palabra.
 
-   Corre en cada render — server, client, SSG. Como `next build`
-   prerenderiza /preview/case-blocks/[slug] y (cuando migren)
-   /work/[slug], una cita rota hace fallar el build y el deploy.
-   Es el gate que Fran pidió: "no debería poder shippear".
+   Política por fase:
+     - phase-production-build (SSG durante `next build`) → THROW.
+       Rompe el build y bloquea el deploy. Es el gate que Fran
+       pidió: "no debería poder shippear".
+     - runtime prod / dev / cualquier otra fase → warn. La página
+       se sirve, el error queda en logs. Si un data file entra por
+       otra vía (CMS, hot-swap) una cita rota no debería tirar la
+       página del visitante — el gate está en el deploy, no en el
+       request.
 
-   En prod runtime también throw (5xx). Es la política correcta:
-   entre servir la página con una cita rota (mentiroso) y devolver
-   500 (visible), lo segundo es preferible. Un caso vivo no debería
-   llegar a prod sin haber pasado el build gate. */
+   Detección de fase via NEXT_PHASE (Next.js expone la variable
+   durante `next build` con el valor 'phase-production-build'). */
 function flatten(blocks: Block[]): Block[] {
   const out: Block[] = []
   for (const b of blocks) {
@@ -152,14 +155,17 @@ function verifyPullQuotes(blocks: Block[]) {
     if (b.type !== 'pull') continue
     if (!pool.includes(b.quote)) missing.push(b.quote)
   }
-  if (missing.length > 0) {
-    throw new Error(
-      `[CaseComposer] Pull quote(s) not verbatim in same-page prose ` +
-        `(${missing.length}). Every pull must be lifted word-for-word ` +
-        `from a paragraph on the same page (§7 regla 1). Offenders:\n` +
-        missing.map((q) => `  - "${q}"`).join('\n')
-    )
+  if (missing.length === 0) return
+  const msg =
+    `[CaseComposer] Pull quote(s) not verbatim in same-page prose ` +
+    `(${missing.length}). Every pull must be lifted word-for-word ` +
+    `from a paragraph on the same page (§7 regla 1). Offenders:\n` +
+    missing.map((q) => `  - "${q}"`).join('\n')
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    throw new Error(msg)
   }
+  // eslint-disable-next-line no-console
+  console.warn(msg)
 }
 
 export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {

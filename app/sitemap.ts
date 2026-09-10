@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
+import { allClientsV2 } from '@/content/clients-v2';
 import { allEssays } from '@/content/essays';
 import { CAPTURE_ENABLED } from '@/lib/flags';
 import { MOMENTS } from '@/content/moments';
@@ -70,10 +71,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),
-    // Case studies canónicas
+    // Case studies canónicas — legacy (CaseStudyLayout).
     ...allClients.map((c) => ({
       url: `${BASE}/work/${c.slug}`,
       lastModified: c.updatedAt ? new Date(c.updatedAt) : new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.8,
+    })),
+    // Case studies v2 — modelo de bloques (paso 5 del spec).
+    ...allClientsV2.map((c) => ({
+      url: `${BASE}/work/${c.slug}`,
+      lastModified: new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),

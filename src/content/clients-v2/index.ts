@@ -1,20 +1,16 @@
 import type { CaseStudyV2 } from '@/components/case-blocks/types'
+import { inout } from './inout'
 
 /* Paso 5 del spec — case studies migrados al modelo de bloques.
 
    Los cinco cases legacy (`src/content/clients/*.ts`) siguen
-   corriendo con `CaseStudyLayout`. Cuando cada uno migre a este
-   folder, la route /work/[slug] lo detecta acá primero y lo
-   renderea con `CaseComposer`; sino cae al legacy.
+   corriendo con `CaseStudyLayout`. La route /work/[slug] intenta
+   v2 primero; si no encuentra, cae al legacy.
 
    Karen, JP, Mike, confidencial y BAUHOME se mantienen legacy
-   hasta que Fran los pida en v2.
+   hasta que Fran los pida en v2. M2Develop no se toca. */
 
-   Los slots vacíos son intencionales — el array va poblando en
-   commits siguientes. */
-
-// eslint-disable-next-line prefer-const
-export let allClientsV2: CaseStudyV2[] = []
+export const allClientsV2: CaseStudyV2[] = [inout]
 
 export function findClientV2(slug: string): CaseStudyV2 | undefined {
   return allClientsV2.find((c) => c.slug === slug)

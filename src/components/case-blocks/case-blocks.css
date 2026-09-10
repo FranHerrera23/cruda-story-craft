@@ -531,6 +531,67 @@
   letter-spacing: .04em;
 }
 
+/* ── METHOD ── tres (o N) movimientos en grilla de columnas.
+   Border-top negro fuerte marca entrada de sección. Cada movimiento:
+   número en gris chico + heading display + prosa larga. */
+.cb-root .b-method {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+}
+.cb-root .b-method .set {
+  display: grid;
+  gap: var(--sp-2);
+  border-top: 1px solid var(--black);
+  padding-top: var(--sp-2);
+}
+@media (min-width: 1000px) {
+  .cb-root .b-method .set {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(32px, 3.4vw, 64px);
+  }
+}
+.cb-root .b-method .mv i {
+  font-style: normal;
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+  display: block;
+  margin-bottom: 14px;
+}
+.cb-root .b-method .mv h3 {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(20px, 2vw, 27px);
+  line-height: 1.14;
+  letter-spacing: -.02em;
+  margin: 0 0 16px;
+  max-width: 20ch;
+}
+.cb-root .b-method .mv p {
+  font-size: 17.5px;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+  max-width: 40ch;
+}
+.cb-root .b-method .mv p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── REDACT ── span gris que tapa nombres de empresa en casos
+   confidenciales. Se lee como "hay algo acá que no puede aparecer"
+   sin romper el flow del párrafo. Rendereá inline via
+   dangerouslySetInnerHTML. */
+.cb-root .redact {
+  display: inline-block;
+  background: var(--rule);
+  color: transparent;
+  border-radius: 2px;
+  user-select: none;
+  vertical-align: baseline;
+  width: 9ch;
+}
+
 /* ── PIECE ── pieza publicada recreada entera. Grid 8fr/3fr desde
    1000px. Text column con apertura display + frases bisagra +
    párrafos. Sidebar sticky con métricas, fuente, y una nota sobre
@@ -555,6 +616,14 @@
     grid-template-columns: 8fr 3fr;
     gap: clamp(40px, 5vw, 88px);
   }
+}
+.cb-root .b-piece .txt .piece-title {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.12;
+  letter-spacing: -.018em;
+  margin: 0 0 18px;
 }
 .cb-root .b-piece .txt p {
   font-size: 18px;

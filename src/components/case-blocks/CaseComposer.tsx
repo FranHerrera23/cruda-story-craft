@@ -28,6 +28,7 @@ import BlockPiece from './BlockPiece'
 import BlockSeries from './BlockSeries'
 import BlockLine from './BlockLine'
 import BlockThesis from './BlockThesis'
+import BlockMethod from './BlockMethod'
 import type { Block, CaseStudyV2 } from './types'
 import { getNextInfo } from '@/content/next-order'
 
@@ -66,6 +67,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'series',
   'line',
   'thesis',
+  'method',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -202,6 +204,7 @@ function renderBlock(block: Block, index: number) {
         <BlockPiece
           key={key}
           label={block.label}
+          pieceTitle={block.pieceTitle}
           content={block.content}
           sidebar={block.sidebar}
           note={block.note}
@@ -225,6 +228,14 @@ function renderBlock(block: Block, index: number) {
           key={key}
           statement={block.statement}
           reading={block.reading}
+        />
+      )
+    case 'method':
+      return (
+        <BlockMethod
+          key={key}
+          label={block.label}
+          movements={block.movements}
         />
       )
     default:
@@ -284,6 +295,10 @@ function verifyPullQuotes(blocks: Block[]) {
          Statement y reading entran al pool — son citables. */
       prose.push(b.statement)
       if (b.reading) prose.push(b.reading)
+    } else if (b.type === 'method') {
+      /* method.movements[].paragraphs es prosa nuestra sobre cómo
+         se trabajó; entra. Headings y número no entran (display). */
+      for (const m of b.movements) prose.push(...m.paragraphs)
     } else if (b.type === 'pillars') {
       /* pillars.body es prosa nuestra; entra. Headings son display
          (no argumento); NO entran. */

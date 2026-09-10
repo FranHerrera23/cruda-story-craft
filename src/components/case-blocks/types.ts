@@ -174,6 +174,21 @@ export type Block = BlockBase & (
       statement: string
       reading?: string
     }
+  /* METHOD · tres (o N) movimientos en grilla de columnas iguales.
+     Cada movimiento numerado ("Movement one") + heading display +
+     prosa larga. Confidencial lo usa porque el cliente no puede
+     ser el sujeto visible; la prueba tangible del trabajo es este
+     bloque. Cuerpo entra al pool de pull quotes (es prosa nuestra);
+     headings y número no entran (display). */
+  | {
+      type: 'method'
+      label?: string
+      movements: {
+        number: string       // "Movement one"
+        heading: string      // "Go backwards before going forwards"
+        paragraphs: string[]
+      }[]
+    }
   /* PILLARS · tres (o N) pilares numerados. Cada uno con número,
      heading display y cuerpo de prosa. Es lo que hace que doce
      piezas se lean como un argumento. Girish. Cuerpo SÍ entra al
@@ -196,8 +211,16 @@ export type Block = BlockBase & (
   | {
       type: 'piece'
       label?: string
+      /* pieceTitle: H3 opcional dentro de la columna de texto,
+         antes del contenido. Confidencial lo usa para nombrar la
+         pieza recreada ("The opening of the founder's most-read
+         post"); Girish no lo usa (la pieza abre directo con
+         `open`). */
+      pieceTitle?: string
       content: PieceLine[]
       sidebar: {
+        /* metrics vacío = sidebar sin métricas de engagement.
+           Confidencial no publica métricas del cliente. */
         metrics: { value: string; label: string }[]
         src?: string
         why?: string

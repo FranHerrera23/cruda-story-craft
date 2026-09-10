@@ -2,6 +2,7 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
 import { inout } from './inout'
 import { mannheimTrading } from './mannheim-trading'
 import { girishSehgal } from './girish-sehgal'
+import { confidentialRetailFounder } from './confidential-retail-founder'
 
 /* Paso 5 del spec — case studies migrados al modelo de bloques.
 
@@ -12,7 +13,12 @@ import { girishSehgal } from './girish-sehgal'
    Karen, JP, Mike, confidencial y BAUHOME se mantienen legacy
    hasta que Fran los pida en v2. M2Develop no se toca. */
 
-export const allClientsV2: CaseStudyV2[] = [inout, mannheimTrading, girishSehgal]
+export const allClientsV2: CaseStudyV2[] = [
+  inout,
+  mannheimTrading,
+  girishSehgal,
+  confidentialRetailFounder,
+]
 
 export function findClientV2(slug: string): CaseStudyV2 | undefined {
   return allClientsV2.find((c) => c.slug === slug)

@@ -12,12 +12,14 @@ import type { PieceLine } from './types'
    componente resuelve la clase CSS. */
 export default function BlockPiece({
   label,
+  pieceTitle,
   content,
   sidebar,
   note,
   id,
 }: {
   label?: string
+  pieceTitle?: string
   content: PieceLine[]
   sidebar: {
     metrics: { value: string; label: string }[]
@@ -32,6 +34,7 @@ export default function BlockPiece({
       {label ? <span className="lbl">{label}</span> : null}
       <div className="piece">
         <div className="txt">
+          {pieceTitle ? <h3 className="piece-title">{pieceTitle}</h3> : null}
           {content.map((line, i) => {
             const className =
               line.kind === 'open'
@@ -39,10 +42,16 @@ export default function BlockPiece({
                 : line.kind === 'turn'
                   ? 'turn'
                   : undefined
+            /* Content lines aceptan HTML inline (ej. <span class="redact">
+               para tapar nombres de empresa en confidenciales). Se inyecta
+               via dangerouslySetInnerHTML — el string viene del data file,
+               es trusted. */
             return (
-              <p key={i} className={className}>
-                {line.text}
-              </p>
+              <p
+                key={i}
+                className={className}
+                dangerouslySetInnerHTML={{ __html: line.text }}
+              />
             )
           })}
         </div>

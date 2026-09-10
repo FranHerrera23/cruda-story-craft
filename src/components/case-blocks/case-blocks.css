@@ -1,0 +1,354 @@
+/* Task 11 — sistema de bloques para case studies.
+   Todo scoped bajo .cb-root. Ningún bloque define valores propios.
+   Tokens: §1 del spec. Identidad del cliente (--c-1 / --c-2 / --c-type)
+   se inyecta inline por el compositor en .cb-root.
+
+   Copiado de cruda-case-inout.html con estos ajustes:
+   - Scope .cb-root para no pisar el resto del sitio.
+   - Nav styles omitidos — pertenecen a punto 4 (§5.1) y no al 3.
+   - .rv classes se mantienen; punto 4 las activa vía IO. Sin JS
+     el elemento nunca lleva la clase y no queda oculto.
+   - --font-source-serif-4 usada como Source Serif 4 (next/font). */
+
+.cb-root {
+  --paper: #FFFFFF;
+  --black: #000000;
+  --ink: #1A1A1A;
+  --dim: #6E6E6E;
+  --rule: #E0E0E0;
+  --signal: #FF2E63;
+
+  /* Fallbacks — el compositor sobrescribe con la identidad del caso
+     cuando existe. Girish y confidencial se sostienen en tipografía. */
+  --c-1: var(--black);
+  --c-2: var(--ink);
+  --c-type: var(--g);
+
+  --g: var(--font-archivo), 'Archivo', system-ui, sans-serif;
+  --s: var(--font-source-serif-4), 'Source Serif 4', Georgia, serif;
+
+  --pad: clamp(20px, 4vw, 64px);
+  --max: 1600px;
+
+  /* §1 — --media es alto de viewport, NO ratio fijo. Un ratio a ancho
+     completo da bloques chatos; el punto es que una imagen no entre
+     entera en pantalla. */
+  --media: 68vh;
+  --media-lead: 78vh;
+
+  --sp-1: 24px;
+  --sp-2: clamp(40px, 5vw, 72px);
+  --sp-3: clamp(80px, 9vw, 132px);
+
+  --e: cubic-bezier(.19, 1, .22, 1);
+
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--s);
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.cb-root * {
+  box-sizing: border-box;
+}
+
+.cb-root img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cb-root a {
+  color: inherit;
+}
+
+.cb-root :focus-visible {
+  outline: 2px solid var(--c-1);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cb-root * {
+    transition: none !important;
+  }
+}
+
+/* §7 regla 3 — Nada de labels en caja alta. 13px / 600 / gris. */
+.cb-root .lbl {
+  font-family: var(--g);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--dim);
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* ── B1 · HEAD ── asimétrico: 8fr título / 3fr ficha ── */
+.cb-root .b-head {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--sp-3) var(--pad) var(--sp-2);
+  display: grid;
+  gap: var(--sp-2);
+}
+@media (min-width: 1000px) {
+  .cb-root .b-head {
+    grid-template-columns: 8fr 3fr;
+    gap: clamp(40px, 5vw, 96px);
+    align-items: end;
+  }
+}
+.cb-root .b-head h1 {
+  font-family: var(--c-type);
+  font-weight: 200;
+  letter-spacing: .18em;
+  font-size: clamp(44px, 8vw, 116px);
+  line-height: 1;
+  margin: 0 0 26px;
+}
+.cb-root .b-head h1 b {
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+.cb-root .b-head .one {
+  font-size: clamp(20px, 1.9vw, 25px);
+  line-height: 1.45;
+  color: var(--dim);
+  max-width: 44ch;
+  margin: 0;
+}
+.cb-root .facts {
+  font-family: var(--g);
+  font-size: 14px;
+  border-top: 1px solid var(--black);
+  padding-top: 16px;
+}
+.cb-root .facts div {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cb-root .facts span:first-child {
+  color: var(--dim);
+}
+
+/* ── B2 · LEAD ── 78vh, media única de apertura ── */
+.cb-root .b-lead {
+  height: var(--media-lead);
+  margin-bottom: var(--sp-3);
+}
+
+/* ── B3 · BAND ── media 7fr izquierda + prosa 4fr derecha sticky ── */
+.cb-root .b-band {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+  display: grid;
+  gap: var(--sp-2);
+}
+@media (min-width: 1000px) {
+  .cb-root .b-band {
+    grid-template-columns: 7fr 4fr;
+    gap: clamp(40px, 4vw, 72px);
+    align-items: start;
+  }
+  .cb-root .b-band .prose {
+    position: sticky;
+    top: 110px;
+  }
+}
+.cb-root .b-band .media .u {
+  height: var(--media);
+}
+.cb-root .b-band figure {
+  margin: 0;
+}
+.cb-root .b-band .prose p {
+  margin: 0 0 1.35rem;
+  max-width: 38ch;
+}
+.cb-root .b-band .prose .grp {
+  margin-bottom: var(--sp-2);
+}
+.cb-root .b-band .prose .grp:last-child {
+  margin-bottom: 0;
+}
+
+/* ── B4 · PROSE ── etiqueta 2fr / cuerpo 10fr ── */
+.cb-root .b-prose {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+  display: grid;
+  gap: var(--sp-1);
+}
+@media (min-width: 1000px) {
+  .cb-root .b-prose {
+    grid-template-columns: 2fr 10fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+}
+.cb-root .b-prose .body p {
+  margin: 0 0 1.5rem;
+  max-width: 52ch;
+  font-size: 20px;
+}
+.cb-root .b-prose .body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── B5 · PULL ── arranca en columna 2, no contra el margen ── */
+.cb-root .b-pull {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: var(--sp-1) var(--pad);
+  display: grid;
+}
+@media (min-width: 1000px) {
+  .cb-root .b-pull {
+    grid-template-columns: 2fr 10fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+  .cb-root .b-pull blockquote {
+    grid-column: 2;
+  }
+}
+.cb-root .b-pull blockquote {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(28px, 3.9vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -.025em;
+  max-width: 20ch;
+  margin: 0;
+}
+
+/* ── B11 · CREDITS ── ficha + línea de atribución ── */
+.cb-root .b-credits {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: var(--sp-2) var(--pad);
+}
+.cb-root .b-credits .row {
+  display: grid;
+  gap: var(--sp-1);
+  margin: 0 0 var(--sp-2);
+}
+@media (min-width: 760px) {
+  .cb-root .b-credits .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+.cb-root .b-credits dt {
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+  margin-bottom: 6px;
+}
+.cb-root .b-credits dd {
+  font-family: var(--g);
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+.cb-root .b-credits .attrib {
+  font-size: 17px;
+  max-width: 62ch;
+  color: var(--dim);
+  margin: 0;
+}
+
+/* ── B12 · NEXT ── siguiente caso a sangre, 72vh sobre negro ── */
+.cb-root .b-next {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: block;
+  min-height: 72vh;
+  background: var(--black);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.cb-root .b-next a {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 72vh;
+  padding: var(--sp-3) var(--pad);
+  text-decoration: none;
+}
+.cb-root .b-next span {
+  font-family: var(--g);
+  font-size: 12.5px;
+  letter-spacing: .06em;
+  color: #8a8a8a;
+  display: block;
+  margin-bottom: 18px;
+}
+.cb-root .b-next strong {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 88px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  display: block;
+  max-width: 14ch;
+  transition: color .25s var(--e);
+}
+.cb-root .b-next em {
+  font-style: normal;
+  font-family: var(--s);
+  font-size: 19px;
+  color: #9a9a9a;
+  display: block;
+  margin-top: 20px;
+  max-width: 46ch;
+}
+.cb-root .b-next a:hover strong {
+  color: var(--paper);
+}
+
+/* ── SLOT ── §6 — media faltante. Fondo blanco, filete negro 1px,
+   proporción real del asset, nombre y spec abajo. Es parte del
+   sistema, no andamiaje temporal. */
+.cb-root .slot {
+  background: var(--paper);
+  border: 1px solid var(--black);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px;
+  font-family: var(--g);
+}
+.cb-root .slot b {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.cb-root .slot i {
+  font-style: normal;
+  font-size: 12.5px;
+  color: var(--dim);
+  line-height: 1.4;
+}
+
+.cb-root figcaption {
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+  margin-top: 10px;
+}
+
+/* Reveals — punto 4 los activa. Sin la clase .on los elementos
+   renderizan visibles porque el JS todavía no corre. */
+.cb-root .rv.on {
+  opacity: 1;
+  transform: none;
+}

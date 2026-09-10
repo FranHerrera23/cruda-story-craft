@@ -1,0 +1,152 @@
+import type { CaseStudyV2 } from '@/components/case-blocks/types'
+
+/* Task 11 · fixtures del preview route.
+
+   Estos NO son data files por caso — son fixtures inline para validar
+   el compositor y los 7 bloques del punto 3 del spec. INOUT, Girish,
+   MTC y BAUHOME no se crean como data files hasta que Fran lo pida
+   (§9 del spec).
+
+   Contenido de "inout" tomado verbatim de cruda-case-inout.html
+   (la referencia de implementación). Sólo usamos los 7 bloques
+   implementados en esta iteración; los bloques que la composición
+   real de INOUT declara y todavía no existen (slab, system, voice,
+   specifiers, built) se omiten aquí para que el preview render sin
+   log warnings. Cuando lleguen se rehidrata la composición completa
+   en el data file real.
+
+   Composición real de INOUT (§4 del spec):
+     head · lead · band · pull · slab-verde · system · prose ·
+     slab-azul · band · specifiers · voice · built · credits · next
+
+   Composición de este fixture (subset a los 7 bloques):
+     head · lead · band · pull · prose · band · credits · next */
+
+export const previewFixtures: Record<string, CaseStudyV2> = {
+  inout: {
+    slug: 'inout',
+    title: 'INOUT',
+    oneLiner:
+      'Brand and narrative system for a frameless door line built by the founder of the leading glass manufacturer in northern Argentina.',
+    moment: 'new-entity',
+    identity: {
+      c1: '#1600FF',
+      c2: '#3E4B41',
+      type: "'Montserrat', sans-serif",
+    },
+    blocks: [
+      {
+        type: 'head',
+        title: 'IN<b>OUT</b>',
+        oneLiner:
+          'Brand and narrative system for a frameless door line built by the founder of the leading glass manufacturer in northern Argentina.',
+        facts: [
+          { label: 'Moment', value: 'New entity' },
+          { label: 'Sector', value: 'Architecture' },
+          { label: 'Where', value: 'Salta, Argentina' },
+          { label: 'Years', value: '2020–2022' },
+        ],
+      },
+      {
+        type: 'lead',
+        asset: {
+          slotName: 'Lead media — producto instalado',
+          slotSpec:
+            'Obra terminada, fotografía original. No render, no catálogo. 78vh, mínimo 2800px.',
+        },
+      },
+      {
+        type: 'band',
+        asset: {
+          slotName: 'Instalación — plano general',
+          slotSpec: '68vh.',
+        },
+        caption: '[Proyecto, estudio, año.]',
+        groups: [
+          {
+            label: 'The moment',
+            paragraphs: [
+              'Germán Noël had built Cristalizando into the leading glass and high-performance openings manufacturer in northern Argentina: an industrial plant, façades for hospitals and towers, contracts won on volume and price.',
+              'INOUT was the opposite. A frameless system he engineered himself — 20mm vertical profiles, insulated glass — quoted project by project, for houses that wanted the wall to disappear.',
+            ],
+          },
+          {
+            label: 'The narrative problem',
+            paragraphs: [
+              'He was already known. That was the problem. Known as the reliable supplier, and that reputation does not travel up to the tier where studios are buying authorship rather than specification.',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'pull',
+        quote: 'He was already known. That was the problem.',
+      },
+      {
+        type: 'prose',
+        label: 'The system',
+        paragraphs: [
+          "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
+          'The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. That is not execution. That is the argument of the brand resolved as a system.',
+        ],
+      },
+      {
+        type: 'band',
+        asset: {
+          slotName: 'INSIDERS — still',
+          slotSpec: 'Episodio con el arquitecto en pantalla. 68vh.',
+        },
+        caption:
+          'INSIDERS #01 Salvador Pepi · #02 Sergio Cabrera · #03 Horizontal Arquitectos. The series continues, produced by the client.',
+        groups: [
+          {
+            label: 'The intervention',
+            paragraphs: [
+              'A supplier does not get to convene that room. An author does.',
+              'We built the format and produced the first episodes. INOUT has been making it without us ever since — the clearest evidence a system was built rather than delivered.',
+            ],
+          },
+        ],
+      },
+      {
+        type: 'credits',
+        facts: [
+          { label: 'Client', value: 'Germán Noël' },
+          { label: 'Moment', value: 'New entity' },
+          { label: 'Years', value: '2020–2022' },
+          { label: 'Team', value: 'Fran Herrera' },
+        ],
+        attribution:
+          "CRUDA built the naming, the brand and the formats. The engineering, the patent and the company are Germán's.",
+      },
+    ],
+    credits: {
+      facts: [
+        { label: 'Client', value: 'Germán Noël' },
+        { label: 'Moment', value: 'New entity' },
+        { label: 'Years', value: '2020–2022' },
+        { label: 'Team', value: 'Fran Herrera' },
+      ],
+      attribution:
+        "CRUDA built the naming, the brand and the formats. The engineering, the patent and the company are Germán's.",
+    },
+    next: {
+      slug: 'girish-sehgal',
+      label: 'Girish Sehgal',
+      oneLiner:
+        'Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find.',
+    },
+  },
+}
+
+/* Añadir el bloque `next` al final de blocks[] usando el `next` del
+   objeto raíz — el compositor no toma el `next` de la raíz por sí solo
+   porque cada block es explícito. */
+for (const cs of Object.values(previewFixtures)) {
+  cs.blocks.push({
+    type: 'next',
+    slug: cs.next.slug,
+    label: cs.next.label,
+    oneLiner: cs.next.oneLiner,
+  })
+}

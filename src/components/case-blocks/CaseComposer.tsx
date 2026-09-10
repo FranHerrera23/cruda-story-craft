@@ -15,6 +15,7 @@ import BlockSlab from './BlockSlab'
 import BlockSystem from './BlockSystem'
 import BlockVoice from './BlockVoice'
 import BlockFigures from './BlockFigures'
+import BlockBuilt from './BlockBuilt'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -40,6 +41,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'system',
   'voice',
   'figures',
+  'built',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -121,6 +123,10 @@ function renderBlock(block: Block, index: number) {
           primary={block.primary}
           support={block.support}
         />
+      )
+    case 'built':
+      return (
+        <BlockBuilt key={key} built={block.built} changes={block.changes} />
       )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.

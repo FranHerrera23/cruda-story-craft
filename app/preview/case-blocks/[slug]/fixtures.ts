@@ -21,7 +21,7 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
 
    Composición de este fixture (subset a los bloques implementados):
      head · lead · band · pull · slab-c2 { prose } · system ·
-     slab-c1 { prose } · band · voice · credits · next
+     slab-c1 { prose } · band · voice · built · credits · next
 
    Dos slabs demuestran la inyección de identidad: --c-2 (verde)
    y --c-1 (azul) pintados a sangre. El bloque system renderiza la
@@ -187,6 +187,23 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
         quote: '[Testimonio de Germán — Fran lo tiene.]',
         attribution:
           'Germán Noël — Founder, INOUT. Founder, Cristalizando',
+      },
+      {
+        type: 'built',
+        built: [
+          'Naming',
+          'Brand strategy',
+          'Visual identity',
+          'Verbal identity',
+          'Communications',
+          'INSIDERS',
+        ],
+        changes: [
+          'Specified by the leading practices in the region',
+          'The system still in use, unchanged, five years on',
+          'INSIDERS still in production — by the client, without us',
+          'The format became the method CRUDA runs today',
+        ],
       },
       {
         type: 'credits',

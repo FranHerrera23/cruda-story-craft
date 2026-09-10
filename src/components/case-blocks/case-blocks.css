@@ -321,6 +321,44 @@
   gap: 6px;
 }
 
+/* ── B10 · BUILT ── dos columnas: "What we built" y "Observable
+   change". Labels fijas (parte del bloque, no de la copy). Items
+   sin bullet, cada uno con border-bottom. Border-top del bloque
+   entero sirve como separador de la sección anterior. */
+.cb-root .b-built {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: var(--sp-2) var(--pad) 0;
+  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: var(--sp-2);
+}
+@media (min-width: 900px) {
+  .cb-root .b-built {
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 5vw, 96px);
+  }
+}
+.cb-root .b-built h2 {
+  font-family: var(--g);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--dim);
+  text-transform: none;
+  margin: 0 0 18px;
+}
+.cb-root .b-built ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cb-root .b-built li {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule);
+  max-width: 40ch;
+}
+
 /* ── B11 · CREDITS ── ficha + línea de atribución ── */
 .cb-root .b-credits {
   max-width: var(--max);

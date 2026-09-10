@@ -102,17 +102,20 @@
     align-items: end;
   }
 }
+/* Defaults del H1 sirven a MTC (--c-type Figtree, weight 700
+   tracking tight) y a Girish (sin identidad → --c-type cae a --g).
+   INOUT sobrescribe los tokens via identity.head. */
 .cb-root .b-head h1 {
   font-family: var(--c-type);
-  font-weight: 200;
-  letter-spacing: .18em;
-  font-size: clamp(44px, 8vw, 116px);
+  font-weight: var(--c-h1-weight, 700);
+  letter-spacing: var(--c-h1-tracking, -.03em);
+  font-size: var(--c-h1-size, clamp(38px, 6vw, 84px));
   line-height: 1;
   margin: 0 0 26px;
 }
 .cb-root .b-head h1 b {
-  font-weight: 600;
-  letter-spacing: .1em;
+  font-weight: var(--c-h1-b-weight, 700);
+  letter-spacing: var(--c-h1-b-tracking, inherit);
 }
 .cb-root .b-head .one {
   font-size: clamp(20px, 1.9vw, 25px);
@@ -120,6 +123,16 @@
   color: var(--dim);
   max-width: 44ch;
   margin: 0;
+}
+/* Tags en head — texto plano separado por punto medio, bajo el
+   one-liner. No links, no píldoras (§7 regla 4). Están para
+   orientar, no para navegar. */
+.cb-root .b-head .b-head-tags {
+  font-family: var(--g);
+  font-size: 13px;
+  color: var(--dim);
+  letter-spacing: .04em;
+  margin: 20px 0 0;
 }
 .cb-root .facts {
   font-family: var(--g);
@@ -259,66 +272,56 @@
   margin-top: 20px;
 }
 
-/* ── B9 · FIGURES ── datos. Cifra primaria 5fr + support 3fr.
-   Primary domina en escala (clamp muy generoso); support baja a
-   valores de lectura. Sin ratio ni background — la tipografía es
-   la única jerarquía. */
+/* ── B9 · FIGURES ── datos. Lista plana; el primer item manda en
+   escala (via :first-child) y el resto apoya. Layout flex —
+   funciona para 2 items (5fr/3fr), 3 (5fr/3fr/3fr como MTC y
+   Girish), o más. Sin ratio ni background — la tipografía es la
+   única jerarquía. */
 .cb-root .b-figures {
   max-width: var(--max);
   margin: 0 auto var(--sp-2);
   padding: 0 var(--pad);
-  display: grid;
-  gap: var(--sp-2);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
 }
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
   .cb-root .b-figures {
-    grid-template-columns: 5fr 3fr;
-    gap: clamp(40px, 5vw, 96px);
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: end;
+    gap: clamp(24px, 3vw, 48px);
+  }
+  .cb-root .b-figures > div {
+    flex: 3 1 200px;
+  }
+  .cb-root .b-figures > div:first-child {
+    flex: 5 1 280px;
   }
 }
-.cb-root .b-figures-primary {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-.cb-root .b-figures-v {
+.cb-root .b-figures b {
+  display: block;
   font-family: var(--g);
-  font-weight: 700;
-  font-size: clamp(64px, 11vw, 160px);
-  line-height: .92;
-  letter-spacing: -.03em;
-  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: .86;
+  font-size: clamp(46px, 5vw, 64px);
 }
-.cb-root .b-figures-v-sm {
-  font-family: var(--g);
-  font-weight: 700;
-  font-size: clamp(28px, 3.4vw, 44px);
-  line-height: 1;
-  letter-spacing: -.02em;
-  color: var(--ink);
+.cb-root .b-figures > div:first-child b {
+  font-size: clamp(60px, 9vw, 124px);
 }
-.cb-root .b-figures-l {
+.cb-root .b-figures p {
   font-family: var(--g);
-  font-size: 13px;
+  font-size: 15px;
+  margin: 14px 0 0;
+  max-width: 24ch;
+}
+.cb-root .b-figures small {
+  font-family: var(--g);
+  font-size: 12px;
   color: var(--dim);
-  letter-spacing: .04em;
-  line-height: 1.35;
-  max-width: 30ch;
-}
-.cb-root .b-figures-support {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 3vh, 40px);
-  border-top: 1px solid var(--rule);
-  padding-top: clamp(24px, 3vh, 40px);
-  margin: 0;
-}
-.cb-root .b-figures-support li {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: block;
+  margin-top: 6px;
 }
 
 /* ── B6 · PAIR ── dos imágenes lado a lado a 0.82 × --media.

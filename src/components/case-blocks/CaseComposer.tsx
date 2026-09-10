@@ -70,6 +70,7 @@ function renderBlock(block: Block, index: number) {
           key={key}
           title={block.title}
           oneLiner={block.oneLiner}
+          tags={block.tags}
           facts={block.facts}
         />
       )
@@ -134,13 +135,8 @@ function renderBlock(block: Block, index: number) {
         />
       )
     case 'figures':
-      return (
-        <BlockFigures
-          key={key}
-          primary={block.primary}
-          support={block.support}
-        />
-      )
+      return <BlockFigures key={key} items={block.items} />
+
     case 'built':
       return (
         <BlockBuilt key={key} built={block.built} changes={block.changes} />
@@ -305,12 +301,30 @@ export default function CaseComposer({ cs }: { cs: CaseStudyV2 }) {
     )
   }
 
+  /* Style inline con los tokens del caso. Los tokens del head
+     (--c-h1-*) sólo se inyectan cuando identity.head existe; sino
+     el CSS usa los defaults. */
   const rootStyle = identity
     ? ({
         ['--c-1' as string]: identity.c1,
         ['--c-2' as string]: identity.c2,
         ...(typeResolved
           ? { ['--c-type' as string]: typeResolved.family }
+          : {}),
+        ...(identity.head?.weight !== undefined
+          ? { ['--c-h1-weight' as string]: String(identity.head.weight) }
+          : {}),
+        ...(identity.head?.tracking
+          ? { ['--c-h1-tracking' as string]: identity.head.tracking }
+          : {}),
+        ...(identity.head?.size
+          ? { ['--c-h1-size' as string]: identity.head.size }
+          : {}),
+        ...(identity.head?.boldWeight !== undefined
+          ? { ['--c-h1-b-weight' as string]: String(identity.head.boldWeight) }
+          : {}),
+        ...(identity.head?.boldTracking
+          ? { ['--c-h1-b-tracking' as string]: identity.head.boldTracking }
           : {}),
       } as React.CSSProperties)
     : undefined

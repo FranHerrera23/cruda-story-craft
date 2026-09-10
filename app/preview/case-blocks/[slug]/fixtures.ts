@@ -40,6 +40,17 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
       c1: '#1600FF',
       c2: '#3E4B41',
       type: 'montserrat',
+      /* INOUT tiene un display display-typography particular en el
+         head: weight 200 con wide-tracking .18em. Se declara acá
+         y el compositor lo inyecta como tokens; los otros casos
+         usan los defaults 700 / -.03em. */
+      head: {
+        weight: 200,
+        tracking: '.18em',
+        size: 'clamp(44px, 8vw, 116px)',
+        boldWeight: 600,
+        boldTracking: '.1em',
+      },
     },
     blocks: [
       {

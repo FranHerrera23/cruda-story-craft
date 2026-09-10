@@ -5,19 +5,32 @@
 
 import type { Moment } from '@/content/moments'
 
-/* Identidad del cliente — tres valores, inyectados como CSS custom
-   properties (--c-1, --c-2, --c-type) en el contenedor del caso.
-   El molde no cambia; cambia de color. Casos sin identidad (Girish,
-   confidencial): c1 cae a --black, c2 a --ink, type a --g.
+/* Identidad del cliente — tres valores obligatorios, inyectados
+   como CSS custom properties (--c-1, --c-2, --c-type) en el
+   contenedor del caso. El molde no cambia; cambia de color.
+   Casos sin identidad (Girish, confidencial): c1 cae a --black,
+   c2 a --ink, type a --g.
 
    `type` es una CLAVE del manifest en fonts.ts (ej. 'montserrat').
    El compositor resuelve la clave → CSS variable. Si la clave no
-   existe, cae a --g y loguea en dev (misma política que los blocks
-   desconocidos). */
+   existe, cae a --g y loguea en dev.
+
+   `head` es OPCIONAL — override de estilo del H1 del head para
+   casos con display display-typography particular (INOUT usa
+   weight 200 + tracking .18em). Cuando no se declara, el H1 usa
+   los defaults de case-blocks.css (weight 700, tracking tight,
+   sizing normal), que sirven para MTC y Girish. */
 export type Identity = {
   c1: string
   c2: string
   type: string
+  head?: {
+    weight?: number         // default 700
+    tracking?: string       // default '-.03em'
+    size?: string           // default clamp(38px, 6vw, 84px)
+    boldWeight?: number     // <b> dentro del H1. default 700
+    boldTracking?: string   // default 'inherit'
+  }
 }
 
 export type Fact = {
@@ -42,7 +55,13 @@ export type Credits = {
    se declara acá para que el compositor lo omita+loguée si aparece
    antes de estar implementado. */
 export type Block =
-  | { type: 'head'; title: string; oneLiner: string; facts: Fact[] }
+  | {
+      type: 'head'
+      title: string
+      oneLiner: string
+      tags?: string[]  // texto plano separado por punto medio, no links
+      facts: Fact[]
+    }
   | { type: 'lead'; asset: MediaAsset }
   | { type: 'band'; asset: MediaAsset; caption?: string; groups: ProseGroup[] }
   | { type: 'prose'; label?: string; paragraphs: string[] }
@@ -54,7 +73,11 @@ export type Block =
   | { type: 'pair'; assets: [MediaAsset, MediaAsset] }
   | { type: 'bleed'; asset: MediaAsset }
   | { type: 'voice'; label?: string; quote: string; attribution: string }
-  | { type: 'figures'; primary: Figure; support: Figure[] }
+  /* B9 · figures — lista plana. El primer item es el que "manda"
+     y CSS lo hace más grande via :first-child. El resto son support.
+     Grid genera N columnas via flex (first 5, rest 3). Sirve para
+     2 items (5fr/3fr), 3 (5fr/3fr/3fr, como MTC/Girish), o más. */
+  | { type: 'figures'; items: Figure[] }
   | {
       type: 'built'
       built: string[]
@@ -169,6 +192,7 @@ export type ProseGroup = {
 export type Figure = {
   value: string
   label: string
+  hint?: string  // small note debajo del label — fuente, período
 }
 
 /* B14 · celdas del sistema de identidad. Se rendereán (no se

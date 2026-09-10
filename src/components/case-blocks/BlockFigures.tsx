@@ -1,34 +1,29 @@
 import type { Figure } from './types'
 
-/* B9 · FIGURES. §3: "Datos. Una cifra manda (5fr) y el resto apoya
-   (3fr)". Un primary figure grande + una lista de support. La
-   arquitectura del bloque es la misma para todos los casos que lo
-   usen (Girish, Confidencial); solo cambian los valores. */
+/* B9 · FIGURES. §3: "Datos. Una cifra manda y el resto apoya."
+   Lista plana — el primer item se renderea más grande via CSS
+   (:first-child), el resto en escala de apoyo. Tres, cuatro items,
+   el layout se acomoda vía flex.
+
+   Cada item puede tener un `hint` opcional (small note debajo del
+   label — fuente, atribución, período). MTC/Girish lo usan para
+   linkear al origen del dato. */
 export default function BlockFigures({
-  primary,
-  support,
+  items,
   id,
 }: {
-  primary: Figure
-  support: Figure[]
+  items: Figure[]
   id?: string
 }) {
   return (
     <section className="b-figures" id={id}>
-      <div className="b-figures-primary">
-        <span className="b-figures-v">{primary.value}</span>
-        <span className="b-figures-l">{primary.label}</span>
-      </div>
-      {support.length > 0 ? (
-        <ul className="b-figures-support">
-          {support.map((f, i) => (
-            <li key={i}>
-              <span className="b-figures-v-sm">{f.value}</span>
-              <span className="b-figures-l">{f.label}</span>
-            </li>
-          ))}
-        </ul>
-      ) : null}
+      {items.map((f, i) => (
+        <div key={i}>
+          <b>{f.value}</b>
+          <p>{f.label}</p>
+          {f.hint ? <small>{f.hint}</small> : null}
+        </div>
+      ))}
     </section>
   )
 }

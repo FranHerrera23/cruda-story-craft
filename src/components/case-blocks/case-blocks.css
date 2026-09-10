@@ -321,6 +321,126 @@
   gap: 6px;
 }
 
+/* ── B13 · PASSAGES ── escritura publicada.
+   Dos densidades: featured (pieza destacada con excerpt a tamaño
+   de lectura) y archive (lista compacta title + venue/year).
+   La grilla es de TEXTO, no de media (§ Fran).
+
+   Featured: stack vertical de mini-artículos. Cada uno arranca en
+   la columna 2 (grid 2fr/10fr) para dejar aire a la izquierda —
+   la sangría marca "estoy leyendo texto publicado", no navegando.
+
+   Archive: tabla compacta, title izquierda + meta derecha. Border-
+   bottom por fila. Más denso que featured, menos denso que un
+   índice UI. */
+.cb-root .b-passages {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+}
+.cb-root .b-passages .lbl {
+  margin-bottom: var(--sp-1);
+}
+.cb-root .b-passages-featured {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(56px, 8vh, 96px);
+  margin-bottom: var(--sp-3);
+}
+@media (min-width: 1000px) {
+  .cb-root .b-passages-featured {
+    padding-left: calc((100% / 12) * 2);
+  }
+}
+.cb-root .b-passages-featured-item a.b-passages-featured-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.cb-root .b-passages-featured-item:hover .b-passages-title {
+  color: var(--c-1);
+}
+.cb-root .b-passages-title {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(24px, 2.8vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0 0 18px;
+  max-width: 24ch;
+  transition: color .25s var(--e);
+}
+.cb-root .b-passages-excerpt {
+  font-family: var(--s);
+  font-size: 20px;
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 52ch;
+  margin: 0 0 14px;
+}
+.cb-root .b-passages-meta {
+  font-family: var(--g);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--dim);
+  margin: 0;
+}
+
+.cb-root .b-passages-archive {
+  border-top: 1px solid var(--black);
+  padding-top: var(--sp-2);
+}
+.cb-root .b-passages-archive-h {
+  font-family: var(--g);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: var(--dim);
+  text-transform: none;
+  margin: 0 0 var(--sp-1);
+}
+.cb-root .b-passages-archive ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.cb-root .b-passages-archive li {
+  border-bottom: 1px solid var(--rule);
+}
+.cb-root .b-passages-archive li > a,
+.cb-root .b-passages-archive li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  align-items: baseline;
+  padding: 16px 0;
+}
+.cb-root .b-passages-archive li > a {
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+  transition: color .2s var(--e);
+}
+.cb-root .b-passages-archive li > a:hover {
+  color: var(--c-1);
+}
+.cb-root .b-passages-archive-t {
+  font-family: var(--g);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--ink);
+  flex: 1 1 20ch;
+  max-width: 60ch;
+}
+.cb-root .b-passages-archive-m {
+  font-family: var(--g);
+  font-size: 13px;
+  color: var(--dim);
+  letter-spacing: .04em;
+}
+
 /* ── B10 · BUILT ── dos columnas: "What we built" y "Observable
    change". Labels fijas (parte del bloque, no de la copy). Items
    sin bullet, cada uno con border-bottom. Border-top del bloque

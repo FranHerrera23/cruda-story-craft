@@ -16,6 +16,7 @@ import BlockSystem from './BlockSystem'
 import BlockVoice from './BlockVoice'
 import BlockFigures from './BlockFigures'
 import BlockBuilt from './BlockBuilt'
+import BlockPassages from './BlockPassages'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -42,6 +43,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'voice',
   'figures',
   'built',
+  'passages',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -128,6 +130,15 @@ function renderBlock(block: Block, index: number) {
       return (
         <BlockBuilt key={key} built={block.built} changes={block.changes} />
       )
+    case 'passages':
+      return (
+        <BlockPassages
+          key={key}
+          label={block.label}
+          featured={block.featured}
+          archive={block.archive}
+        />
+      )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -172,9 +183,13 @@ function verifyPullQuotes(blocks: Block[]) {
     if (b.type === 'prose') prose.push(...b.paragraphs)
     else if (b.type === 'band') {
       for (const g of b.groups) prose.push(...g.paragraphs)
-    } else if (b.type === 'passages') {
-      prose.push(...b.paragraphs)
     }
+    /* passages excerpts NO entran al pool: son copy del autor
+       (Girish), no argumento nuestro. Una pull que quiera venir de
+       un excerpt se declara como prose block al lado — así queda
+       explícito que la sacamos por decisión editorial, no por
+       reciclaje automático. Misma regla se aplicará a manifesto
+       cuando el block-type llegue. */
   }
   const pool = prose.join(' ')
   const missing: string[] = []

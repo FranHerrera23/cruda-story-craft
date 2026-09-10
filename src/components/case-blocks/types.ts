@@ -60,9 +60,30 @@ export type Block =
       built: string[]
       changes: string[]
     }
-  | { type: 'passages'; paragraphs: string[]; archive?: string[] }
+  | {
+      type: 'passages'
+      label?: string
+      featured: Passage[]
+      archive?: Passage[]
+    }
   | { type: 'system'; label?: string; cells: SystemCell[] }
   | { type: 'slab'; tone: 'c1' | 'c2'; children: Block[] }
+
+/* B13 · Passage. Para casos cuya prueba es escritura publicada.
+   Dos densidades:
+     - featured: pieza destacada. title + excerpt a tamaño de
+                 lectura + venue/year como metadata.
+     - archive:  entrada del archivo. title + venue + year, sin
+                 excerpt. Densa, listable.
+   `url` externo opcional en cualquiera de las dos (link al piece
+   publicado). */
+export type Passage = {
+  title: string
+  excerpt?: string
+  venue?: string
+  year?: string
+  url?: string
+}
 
 export type MediaAsset = {
   src?: string

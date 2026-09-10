@@ -19,14 +19,13 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
      head · lead · band · pull · slab-verde · system · prose ·
      slab-azul · band · specifiers · voice · built · credits · next
 
-   Composición de este fixture (subset a los bloques implementados):
+   Composición de este fixture — la real de INOUT (§4 del spec):
      head · lead · band · pull · slab-c2 { claim } · system ·
-     prose · slab-c1 { manifesto } · band · voice · built ·
+     prose · slab-c1 { manifesto } · band · spx · voice · built ·
      credits · next
 
-   La composición ya matchea la real de INOUT (§4 del spec), menos
-   `specifiers` (spx) que llega en el próximo commit y `bleed/pair`
-   que INOUT no usa.
+   Cierre completo de INOUT contra la referencia del 10-sep. Los
+   bloques bleed/pair no se usan porque INOUT no los pide.
 
    Contenido verbatim de cruda-case-inout.html — sin inventar copy. */
 
@@ -197,6 +196,17 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
               'We built the format and produced the first episodes. INOUT has been making it without us ever since — the clearest evidence a system was built rather than delivered.',
             ],
           },
+        ],
+      },
+      {
+        type: 'spx',
+        label: 'Who specifies the system',
+        items: [
+          { title: 'Sergio Cabrera Arquitectos', meta: 'Architecture' },
+          { title: 'Horizontal Arquitectos', meta: 'Architecture' },
+          { title: 'Estudio A Group', meta: 'Development' },
+          { title: 'Proyecto Norte', meta: 'Construction' },
+          { title: 'Male Figueroa', meta: 'Interiors · El Tipal, 2022' },
         ],
       },
       {

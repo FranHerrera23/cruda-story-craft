@@ -85,6 +85,16 @@ export type Block =
       lines: string[]   // lista de líneas de marca a la derecha
                         // (acepta <b>...</b> inline)
     }
+  /* SPX · specifiers. Lista jerárquica de entidades con etiqueta
+     corta al costado. INOUT: quién especifica el sistema. MTC:
+     hitos de AGP. No lleva prosa nuestra — no entra al pool de
+     pull quotes. */
+  | {
+      type: 'spx'
+      label?: string
+      items: { title: string; meta?: string }[]
+      src?: string     // atribución de fuente (MTC)
+    }
 
 /* B13 · Passage. Para casos cuya prueba es escritura publicada.
    Dos densidades:

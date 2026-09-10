@@ -468,6 +468,49 @@
   letter-spacing: .04em;
 }
 
+/* ── SPX · specifiers ── lista jerárquica de entidades. Cada fila
+   es strong (nombre en escala display) + span (meta chico gris).
+   Border-top negro fuerte, border-bottom en --rule por fila. Src
+   opcional al final. Sin prosa: no entra al pool de pull quotes. */
+.cb-root .spx {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+}
+.cb-root .spx ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--black);
+}
+.cb-root .spx li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 32px;
+  align-items: baseline;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cb-root .spx strong {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(19px, 2.2vw, 30px);
+  letter-spacing: -.02em;
+  flex: 1 1 18ch;
+}
+.cb-root .spx span {
+  font-family: var(--g);
+  font-size: 14px;
+  color: var(--dim);
+  flex: 1 1 26ch;
+}
+.cb-root .spx .src {
+  font-family: var(--g);
+  font-size: 12.5px;
+  color: var(--dim);
+  margin: 18px 0 0;
+}
+
 /* ── B10 · BUILT ── dos columnas: "What we built" y "Observable
    change". Labels fijas (parte del bloque, no de la copy). Items
    sin bullet, cada uno con border-bottom. Border-top del bloque

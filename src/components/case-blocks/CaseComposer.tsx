@@ -22,6 +22,7 @@ import BlockBleed from './BlockBleed'
 import CaseChrome from './CaseChrome'
 import BlockClaim from './BlockClaim'
 import BlockManifesto from './BlockManifesto'
+import BlockSpx from './BlockSpx'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -53,6 +54,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'bleed',
   'claim',
   'manifesto',
+  'spx',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -168,6 +170,15 @@ function renderBlock(block: Block, index: number) {
           who={block.who}
           paragraphs={block.paragraphs}
           lines={block.lines}
+        />
+      )
+    case 'spx':
+      return (
+        <BlockSpx
+          key={key}
+          label={block.label}
+          items={block.items}
+          src={block.src}
         />
       )
     default:

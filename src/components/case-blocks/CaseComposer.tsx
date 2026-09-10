@@ -12,6 +12,7 @@ import BlockPull from './BlockPull'
 import BlockCredits from './BlockCredits'
 import BlockNext from './BlockNext'
 import BlockSlab from './BlockSlab'
+import BlockSystem from './BlockSystem'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -34,6 +35,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'credits',
   'next',
   'slab',
+  'system',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -94,6 +96,10 @@ function renderBlock(block: Block, index: number) {
           items={block.children}
           renderBlock={renderBlock}
         />
+      )
+    case 'system':
+      return (
+        <BlockSystem key={key} label={block.label} cells={block.cells} />
       )
     default:
       // §4 — type desconocido: omitir y loguear, no romper.

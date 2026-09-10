@@ -61,7 +61,7 @@ export type Block =
       changes: string[]
     }
   | { type: 'passages'; paragraphs: string[]; archive?: string[] }
-  | { type: 'system'; cells: SystemCell[] }
+  | { type: 'system'; label?: string; cells: SystemCell[] }
   | { type: 'slab'; tone: 'c1' | 'c2'; children: Block[] }
 
 export type MediaAsset = {
@@ -83,12 +83,35 @@ export type Figure = {
   label: string
 }
 
-export type SystemCell = {
-  kind: 'swatch' | 'type' | 'slot'
-  wide?: boolean
-  // Union of shape-specific fields, kept loose intentionally.
-  payload: Record<string, string>
-}
+/* B14 · celdas del sistema de identidad. Se rendereán (no se
+   simulan) — la celda de color muestra la muestra real de --c-1
+   o --c-2; la celda tipográfica renderea texto con la face y
+   pesos del cliente; los slots reservan lugar para piezas que
+   todavía no existen (manual, brochure, morfología).
+
+   `wide: true` hace que la celda ocupe 2 columnas de la grilla
+   de 4 (útil para spreads y assets horizontales). */
+export type SystemCell =
+  | {
+      kind: 'swatch'
+      wide?: boolean
+      tone: 'c1' | 'c2'
+      pantone: string
+      hex: string
+      friendly: string
+    }
+  | {
+      kind: 'type'
+      wide?: boolean
+      ladder: { weight: 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900; text: string }[]
+      note: string
+    }
+  | {
+      kind: 'slot'
+      wide?: boolean
+      slotName: string
+      slotSpec: string
+    }
 
 /* Contrato principal — reemplaza al CaseStudy legacy cuando se
    migren los cinco casos existentes (paso 5). Por ahora corren

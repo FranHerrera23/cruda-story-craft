@@ -314,6 +314,77 @@
   color: var(--paper);
 }
 
+/* ── B14 · SYSTEM ── grilla de 4 columnas. Piezas chicas de
+   identidad: swatch (color chip real), type (escalera de pesos
+   en --c-type), slot (§6 para assets que faltan). §7 regla:
+   paleta y tipografía se renderizan, no se simulan. */
+.cb-root .b-system {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: 0 var(--pad);
+}
+.cb-root .b-system .lbl {
+  margin-bottom: var(--sp-1);
+}
+.cb-root .sysgrid {
+  display: grid;
+  gap: clamp(10px, 1vw, 16px);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .cb-root .sysgrid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .cb-root .sysgrid { grid-template-columns: repeat(4, 1fr); }
+}
+.cb-root .cell {
+  aspect-ratio: 4 / 3;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--g);
+  font-size: 12.5px;
+}
+.cb-root .cell em {
+  font-style: normal;
+  color: var(--dim);
+}
+.cb-root .cell.on-dark em {
+  color: rgba(255, 255, 255, 0.72);
+}
+.cb-root .cell.sw-1 { background: var(--c-1); color: #fff; }
+.cb-root .cell.sw-2 { background: var(--c-2); color: #fff; }
+.cb-root .cell .pantone {
+  font-family: var(--g);
+  font-weight: 600;
+  font-size: 15px;
+}
+.cb-root .cell.spec {
+  border: 1px solid var(--rule);
+  justify-content: center;
+  gap: 4px;
+}
+/* La ladder tipográfica se renderiza en la face del cliente. Los
+   `<u>` no llevan underline — se usan como spans con font-weight
+   variable. */
+.cb-root .cell.spec u {
+  text-decoration: none;
+  font-family: var(--c-type);
+  font-size: 15px;
+  letter-spacing: .14em;
+}
+.cb-root .w1 { font-weight: 100; }
+.cb-root .w2 { font-weight: 200; }
+.cb-root .w3 { font-weight: 300; }
+.cb-root .w4 { font-weight: 400; }
+.cb-root .w5 { font-weight: 500; }
+.cb-root .w6 { font-weight: 600; }
+.cb-root .w7 { font-weight: 700; }
+.cb-root .w8 { font-weight: 800; }
+.cb-root .w9 { font-weight: 900; }
+.cb-root .wide { grid-column: span 2; }
+
 /* ── SLAB ── modificador de B4/B8. El color del cliente a sangre.
    No es un bloque de contenido, es un wrapper: envuelve blocks
    hijos y los renderiza sobre --c-1 (c1) o --c-2 (c2), con texto

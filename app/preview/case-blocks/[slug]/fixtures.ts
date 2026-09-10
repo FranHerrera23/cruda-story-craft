@@ -20,13 +20,13 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
      slab-azul · band · specifiers · voice · built · credits · next
 
    Composición de este fixture (subset a los bloques implementados):
-     head · lead · band · pull · slab-c2 { prose } ·
+     head · lead · band · pull · slab-c2 { prose } · system ·
      slab-c1 { prose } · band · credits · next
 
    Dos slabs demuestran la inyección de identidad: --c-2 (verde)
-   y --c-1 (azul) pintados a sangre. Contenido de los slabs tomado
-   verbatim de cruda-case-inout.html (párrafos existentes en la
-   referencia, sin inventar copy). */
+   y --c-1 (azul) pintados a sangre. El bloque system renderiza la
+   paleta y la tipografía del cliente (§7: no se simulan). Contenido
+   verbatim de cruda-case-inout.html — sin inventar copy. */
 
 export const previewFixtures: Record<string, CaseStudyV2> = {
   inout: {
@@ -99,6 +99,53 @@ export const previewFixtures: Record<string, CaseStudyV2> = {
               "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
               'The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. That is not execution. That is the argument of the brand resolved as a system.',
             ],
+          },
+        ],
+      },
+      {
+        type: 'system',
+        label: 'The identity system',
+        cells: [
+          {
+            kind: 'swatch',
+            tone: 'c1',
+            pantone: 'Pantone 4736 C',
+            hex: '#1600FF',
+            friendly: 'Azul eléctrico',
+          },
+          {
+            kind: 'swatch',
+            tone: 'c2',
+            pantone: 'Pantone 418 C',
+            hex: '#3E4B41',
+            friendly: 'Verde cemento',
+          },
+          {
+            kind: 'type',
+            ladder: [
+              { weight: 100, text: 'FRAMELESS' },
+              { weight: 300, text: 'SLIDING' },
+              { weight: 500, text: 'DOORS' },
+              { weight: 700, text: 'INOUT' },
+            ],
+            note: 'Montserrat · tracking 14pt',
+          },
+          {
+            kind: 'slot',
+            slotName: 'Morfología',
+            slotSpec: 'Construcción del logo sobre grilla 22X.',
+          },
+          {
+            kind: 'slot',
+            wide: true,
+            slotName: 'Manual de marca — spread',
+            slotSpec: 'Doble página.',
+          },
+          {
+            kind: 'slot',
+            wide: true,
+            slotName: 'Brochure — spread',
+            slotSpec: 'Doble página.',
           },
         ],
       },

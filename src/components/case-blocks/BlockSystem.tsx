@@ -4,15 +4,15 @@ import type { SystemCell } from './types'
 /* B14 · SYSTEM. Grilla de 4 columnas para piezas chicas de identidad.
    Paleta y tipografía se RENDERIZAN (no se simulan), per §3.
 
-   Tres tipos de celda:
-     - swatch: color chip con Pantone + hex + nombre. Fondo = tono.
-     - type:   escalera tipográfica en --c-type (weights) + nota.
-     - slot:   fallback §6 para artefactos aún no existentes
-               (manual, brochure, morfología del logo).
+   Cell kinds:
+     - swatch:   color chip. tone='c1'|'c2' pinta la celda entera.
+                 tone='both' la divide en dos (INOUT).
+     - type:     escalera tipográfica en --c-type + nota.
+     - slot:     fallback §6 para artefactos aún no existentes.
+     - decision: dato del manual — construcción, morfología, etc.
+                 No es mockup; es decisión escrita a tamaño ficha.
 
-   `wide: true` extiende la celda a 2 columnas del grid.
-   La clase .wide vive directamente en el grid child para no
-   introducir wrappers extra que desalinearían la grilla. */
+   `wide: true` extiende cualquier celda a 2 columnas del grid. */
 
 export default function BlockSystem({
   label,
@@ -32,6 +32,28 @@ export default function BlockSystem({
           const key = `${c.kind}-${i}`
 
           if (c.kind === 'swatch') {
+            if (c.tone === 'both') {
+              return (
+                <div key={key} className={`cell swatch-both${wide}`}>
+                  <div className="cell-half on-c1">
+                    <span className="pantone">{c.pantone}</span>
+                    <span>
+                      {c.hex}
+                      <br />
+                      <em>{c.friendly}</em>
+                    </span>
+                  </div>
+                  <div className="cell-half on-c2">
+                    <span className="pantone">{c.pantone2 ?? c.pantone}</span>
+                    <span>
+                      {c.hex2 ?? c.hex}
+                      <br />
+                      <em>{c.friendly2 ?? c.friendly}</em>
+                    </span>
+                  </div>
+                </div>
+              )
+            }
             const toneClass = c.tone === 'c1' ? 'sw-1' : 'sw-2'
             return (
               <div key={key} className={`cell on-dark ${toneClass}${wide}`}>
@@ -56,6 +78,15 @@ export default function BlockSystem({
                 <span style={{ marginTop: 14 }}>
                   <em>{c.note}</em>
                 </span>
+              </div>
+            )
+          }
+
+          if (c.kind === 'decision') {
+            return (
+              <div key={key} className={`cell decision${wide}`}>
+                <b>{c.title}</b>
+                {c.body ? <em>{c.body}</em> : null}
               </div>
             )
           }

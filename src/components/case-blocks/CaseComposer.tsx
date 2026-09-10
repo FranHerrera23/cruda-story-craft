@@ -26,6 +26,7 @@ import BlockSpx from './BlockSpx'
 import BlockPillars from './BlockPillars'
 import BlockPiece from './BlockPiece'
 import BlockSeries from './BlockSeries'
+import BlockLine from './BlockLine'
 import type { Block, CaseStudyV2 } from './types'
 
 /* Task 11 · compositor.
@@ -61,6 +62,7 @@ const KNOWN_TYPES = new Set<Block['type']>([
   'pillars',
   'piece',
   'series',
+  'line',
 ])
 
 function renderBlock(block: Block, index: number) {
@@ -212,6 +214,8 @@ function renderBlock(block: Block, index: number) {
           note={block.note}
         />
       )
+    case 'line':
+      return <BlockLine key={key} text={block.text} />
     default:
       // §4 — type desconocido: omitir y loguear, no romper.
       if (process.env.NODE_ENV !== 'production') {
@@ -261,6 +265,9 @@ function verifyPullQuotes(blocks: Block[]) {
          del cliente. Ambos entran al pool. */
       prose.push(...b.paragraphs)
       prose.push(...b.lines)
+    } else if (b.type === 'line') {
+      /* L57 · frase de código editorial. Prosa nuestra. Entra. */
+      prose.push(b.text)
     } else if (b.type === 'pillars') {
       /* pillars.body es prosa nuestra; entra. Headings son display
          (no argumento); NO entran. */
@@ -372,6 +379,12 @@ export default function CaseComposer({
           : {}),
         ...(identity.head?.boldTracking
           ? { ['--c-h1-b-tracking' as string]: identity.head.boldTracking }
+          : {}),
+        ...(identity.system?.cellAspect
+          ? { ['--c-cell-aspect' as string]: identity.system.cellAspect }
+          : {}),
+        ...(identity.system?.cellBg
+          ? { ['--c-cell-bg' as string]: identity.system.cellBg }
           : {}),
       } as React.CSSProperties)
     : undefined

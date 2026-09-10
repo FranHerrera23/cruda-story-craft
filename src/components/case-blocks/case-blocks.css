@@ -215,6 +215,34 @@
   margin-bottom: 0;
 }
 
+/* ── LINE ── frase de código editorial a tamaño display. Sobre
+   blanco, sin slab. INOUT L57. Grilla 2fr/10fr misma que pull para
+   que arranque en columna 2 desde 1000px. */
+.cb-root .b-line {
+  max-width: var(--max);
+  margin: 0 auto var(--sp-2);
+  padding: var(--sp-2) var(--pad);
+  display: grid;
+}
+@media (min-width: 1000px) {
+  .cb-root .b-line {
+    grid-template-columns: 2fr 10fr;
+    gap: clamp(28px, 3vw, 56px);
+  }
+  .cb-root .b-line p {
+    grid-column: 2;
+  }
+}
+.cb-root .b-line p {
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(28px, 3.6vw, 54px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  max-width: 22ch;
+  margin: 0;
+}
+
 /* ── B5 · PULL ── arranca en columna 2, no contra el margen ── */
 .cb-root .b-pull {
   max-width: var(--max);
@@ -903,13 +931,51 @@
   .cb-root .sysgrid { grid-template-columns: repeat(4, 1fr); }
 }
 .cb-root .cell {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: var(--c-cell-aspect, 4 / 3);
+  background: var(--c-cell-bg, var(--paper));
   padding: 18px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-family: var(--g);
   font-size: 12.5px;
+}
+/* Decision cell: dato del manual escrito a tamaño ficha. */
+.cb-root .cell.decision b {
+  display: block;
+  font-family: var(--g);
+  font-weight: 700;
+  font-size: clamp(16px, 1.7vw, 22px);
+  letter-spacing: -.015em;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.cb-root .cell.decision em {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--dim);
+  line-height: 1.45;
+  max-width: 34ch;
+}
+/* Swatch dividida en dos mitades — INOUT los dos Pantone en una
+   sola celda. Sin gap entre halves. */
+.cb-root .cell.swatch-both {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.cb-root .cell.swatch-both .cell-half {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+}
+.cb-root .cell.swatch-both .cell-half.on-c1 { background: var(--c-1); }
+.cb-root .cell.swatch-both .cell-half.on-c2 { background: var(--c-2); }
+.cb-root .cell.swatch-both em {
+  color: rgba(255, 255, 255, 0.72);
 }
 .cb-root .cell em {
   font-style: normal;

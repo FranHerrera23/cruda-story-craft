@@ -31,6 +31,13 @@ export type Identity = {
     boldWeight?: number     // <b> dentro del H1. default 700
     boldTracking?: string   // default 'inherit'
   }
+  /* Tokens del bloque `system` — INOUT usa cells cuadradas sobre
+     gris muy claro. Cuando no se declara, default 4/3 sobre --paper.
+     Se inyectan como --c-cell-aspect y --c-cell-bg en el .cb-root. */
+  system?: {
+    cellAspect?: string     // default '4 / 3'
+    cellBg?: string         // default var(--paper)
+  }
 }
 
 export type Fact = {
@@ -75,6 +82,13 @@ export type Block = BlockBase & (
   | { type: 'band'; asset: MediaAsset; caption?: string; groups: ProseGroup[] }
   | { type: 'prose'; label?: string; paragraphs: string[] }
   | { type: 'pull'; quote: string }
+  /* LINE · frase de código editorial. Prosa nuestra a tamaño display
+     sobre blanco — es una regla, no un pull ni un claim. INOUT L57:
+     "toda foto de INOUT se toma desde adentro" es el código
+     fotográfico convertido en línea de la página.
+
+     Entra al pool de pull quotes (es prosa nuestra). */
+  | { type: 'line'; text: string }
   | { type: 'credits'; facts: Fact[]; attribution: string; id?: string }
   | { type: 'next'; slug: string; label: string; oneLiner: string }
   /* Placeholders declarados — el compositor los omite y loguea hasta
@@ -239,10 +253,20 @@ export type SystemCell =
   | {
       kind: 'swatch'
       wide?: boolean
-      tone: 'c1' | 'c2'
+      /* tone: 'c1' | 'c2' pinta el fondo con esa CSS variable.
+         tone: 'both' divide la celda en dos mitades — mitad c1
+         mitad c2. Útil cuando la paleta es dos valores y quiere
+         mostrarse junta (INOUT: los dos Pantone en una sola celda). */
+      tone: 'c1' | 'c2' | 'both'
       pantone: string
       hex: string
       friendly: string
+      /* Cuando tone='both' se declaran los dos: segundo Pantone/hex/
+         friendly. Sin estos, ambos lados de la celda muestran el
+         mismo texto. */
+      pantone2?: string
+      hex2?: string
+      friendly2?: string
     }
   | {
       kind: 'type'
@@ -255,6 +279,16 @@ export type SystemCell =
       wide?: boolean
       slotName: string
       slotSpec: string
+    }
+  /* DECISION · celda de decisión de diseño. No es un mockup, es
+     un dato del manual — construcción del logo, morfología de los
+     ejes, etc. Sobre fondo del sistema (--c-cell-bg). INOUT usa
+     grilla de 4 con decisiones (§L57 correction). */
+  | {
+      kind: 'decision'
+      wide?: boolean
+      title: string   // "Construcción 22X/3X"
+      body?: string   // descripción opcional bajo el título
     }
 
 /* Contrato principal — reemplaza al CaseStudy legacy cuando se

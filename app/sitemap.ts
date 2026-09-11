@@ -40,12 +40,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
-    {
-      url: `${BASE}/work`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
+    /* /work retirado del sitemap (brief 10-sep §9 paso 4) — la ruta
+       responde 308 al ancla /#selected-work. Los case studies
+       individuales /work/{slug} y los moment indexes siguen abajo. */
     {
       url: `${BASE}/approach`,
       lastModified: new Date(),

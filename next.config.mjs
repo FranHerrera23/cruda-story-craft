@@ -124,6 +124,15 @@ const nextConfig = {
         destination: '/work/confidential-fashion-founder',
         permanent: true,
       },
+      /* Home · Selected Work (brief 10-sep §9 paso 4) — el índice
+         /work con filtros se retira. Los nueve casos viven en la
+         grilla de la home. /work permanent 308 al ancla. Las rutas
+         hijas /work/[slug] siguen sirviendo cada caso. */
+      {
+        source: '/work',
+        destination: '/#selected-work',
+        permanent: true,
+      },
     ]
   },
 };

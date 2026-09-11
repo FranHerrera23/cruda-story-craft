@@ -1,37 +1,29 @@
 /* Home · why-now · "Half the Value".
-   Valores exactos del brief 10-sep §3.
+   Brief 11-sep §3.
 
-   Fondo blanco puro (var(--color-surface)) — el corte contra
-   --paper-warm del hero y de Selected Work es la costura (§4).
-   Sin border-top, sin <hr>, sin margen: cada sección lleva su
-   fondo a sangre.
+   El título en --serif (nombra), los párrafos en --grot (explica).
+   El tamaño del párrafo baja de clamp(21-32) a clamp(20-28) para
+   que no compita con el hero — el bloque se lee como declaración
+   sin volverse el evento.
 
-   Layout: 1fr / 1.4fr desde 1000px. Título arriba-izquierda,
-   párrafos en la columna derecha. Mobile: una columna, título
-   arriba.
-
-   Los párrafos van GRANDES —clamp(21px, 2vw, 32px)— no a tamaño
-   de cuerpo. En la referencia el bloque del problema usa el mismo
-   tamaño que el hero. Es lo que hace que se lea como declaración
-   y no como texto de relleno. */
+   Fondo blanco puro (var(--paper)) — el corte contra --paper-warm
+   del hero y de Selected Work es la costura (§4 del brief anterior).
+   Sin border-top, sin <hr>. Cada sección pinta a sangre. */
 
 .why-now {
-  --why-pad: clamp(24px, 5vw, 80px);
-  --why-max: 1360px;
-  --why-g: var(--font-archivo), 'Archivo', system-ui, sans-serif;
   background: var(--color-surface);
-  padding: clamp(100px, 16vh, 200px) var(--why-pad);
+  padding: clamp(100px, 16vh, 200px) var(--pad);
   scroll-margin-top: 64px;
 }
 
 @media (max-width: 999px) {
   .why-now {
-    padding: 80px var(--why-pad);
+    padding: 80px var(--pad);
   }
 }
 
 .why-now .in {
-  max-width: var(--why-max);
+  max-width: 1360px;
   margin: 0 auto;
   display: grid;
   gap: clamp(40px, 5vw, 96px);
@@ -44,16 +36,17 @@
 }
 
 .why-now h2 {
-  font-family: var(--why-g);
+  font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(28px, 3vw, 44px);
+  font-size: clamp(26px, 2.8vw, 40px);
   line-height: 1.1;
-  letter-spacing: -.02em;
+  letter-spacing: -.012em;
   color: #000;
   margin: 0;
   align-self: start;
 }
 .why-now h2 sup {
+  font-family: var(--grot);
   font-size: .42em;
   vertical-align: super;
   line-height: 0;
@@ -66,11 +59,11 @@
 
 .why-now__body p,
 .why-now p {
-  font-family: var(--why-g);
+  font-family: var(--grot);
   font-weight: 400;
-  font-size: clamp(21px, 2vw, 32px);
-  line-height: 1.34;
-  letter-spacing: -.01em;
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.38;
+  letter-spacing: -.008em;
   color: #000;
   margin: 0 0 1.5em;
   max-width: 34ch;
@@ -80,15 +73,14 @@
   margin-bottom: 0;
 }
 
-/* Footnote — línea de ancla y placeholder. Margin-top del volado
-   aparece a la altura de página; el `1.` va grande, la copy debajo
-   en gris chico. */
+/* Footnote — placeholder de la fuente pendiente. Fuente pequeña y
+   discreta al final del bloque, con border-top del sistema. */
 .why-now__refs.refs {
-  max-width: var(--why-max);
+  max-width: 1360px;
   margin: clamp(64px, 8vh, 110px) auto 0;
   padding-top: 20px;
   border-top: 1px solid var(--color-rule);
-  font-family: var(--why-g);
+  font-family: var(--grot);
   font-size: 13px;
   color: var(--color-muted);
   list-style: none;

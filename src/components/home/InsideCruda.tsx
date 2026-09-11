@@ -61,10 +61,10 @@ export default function InsideCruda() {
             <p className="ic-name">Fran Herrera</p>
             <p className="ic-role">Founder</p>
             <p>
-              Twenty years building brands across three continents,
-              in-house and on the agency side: ByteDance and TikTok,
-              Purina, Mondelez, Brahma, DeliveryHero, the United
-              Nations.
+              Ten years building brands across three continents,
+              in-house and on the agency side, on accounts for
+              TikTok, Oreo, Brahma, PedidosYa, Purina and the
+              United Nations.
             </p>
             <p>
               CRUDA is what that experience looks like pointed at one

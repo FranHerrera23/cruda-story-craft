@@ -36,7 +36,7 @@ export const CASE_ORDER: readonly OrderEntry[] = [
   { slug: 'karen-mannheim', label: 'Karen Mannheim' },
   { slug: 'bauhome', label: 'Arman Keshishian' },
   { slug: 'mistiva', label: 'Jack' },
-  { slug: 'confidential-retail-founder', label: 'A $300M fashion founder' },
+  { slug: 'confidential-fashion-founder', label: 'An on-demand fashion founder' },
 ] as const
 
 function lookupOneLiner(slug: string): string | undefined {

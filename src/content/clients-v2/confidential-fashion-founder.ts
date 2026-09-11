@@ -1,8 +1,8 @@
 import type { CaseStudyV2 } from '@/components/case-blocks/types'
 
-/* Confidential — data file v2. Slug queda `confidential-retail-founder`
-   (per D3 anterior, aunque el descriptor es "fashion" no "retail" —
-   el slug no renombra). H1 y content dicen "fashion" verbatim.
+/* Confidential — data file v2. Slug `confidential-fashion-founder`
+   per L5: el descriptor es fashion, no retail. El slug anterior
+   (confidential-retail-founder) redirect 308 desde next.config.mjs.
 
    Sin identidad — cae a defaults negros. El slab se pinta negro
    sin declararse; H1 en Archivo weight 700 tracking tight.
@@ -16,8 +16,8 @@ import type { CaseStudyV2 } from '@/components/case-blocks/types'
    Bloque nuevo `method` (tres movimientos numerados) es la única
    prueba visible cuando no podés mostrar al cliente. */
 
-export const confidentialRetailFounder: CaseStudyV2 = {
-  slug: 'confidential-retail-founder',
+export const confidentialFashionFounder: CaseStudyV2 = {
+  slug: 'confidential-fashion-founder',
   title: 'An industry with no faces.',
   oneLiner:
     'Founder narrative for the head of a $300M on-demand fashion group, who had built the same business twice and never told the story of either one.',

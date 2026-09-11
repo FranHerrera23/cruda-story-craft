@@ -116,6 +116,14 @@ const nextConfig = {
         destination: '/contact',
         permanent: true,
       },
+      /* Slug rename del confidential (L5) — el descriptor es fashion,
+         no retail. 308 permanente desde el slug viejo. Sin cadena:
+         apunta directo al nuevo canónico. */
+      {
+        source: '/work/confidential-retail-founder',
+        destination: '/work/confidential-fashion-founder',
+        permanent: true,
+      },
     ]
   },
 };

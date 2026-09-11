@@ -32,7 +32,7 @@ After migrating the four remaining case studies (Girish, Juan Pablo, Mike, and t
 - **`client.location`** — omitted on the original page (confidential).
 - **`client.photo`** — no client photo. Left blank; the byline still renders CRUDA's Fran avatar.
 - **`testimonial`** — no testimonial block on the original page (only the pull quote inside the sections). Kept the pull quote inline instead of inventing a separately-attributed testimonial.
-- **Identity kept out of code**: brief v14 T1 required that the person's name never appear in filenames, slugs, variable names, alt text or assets. Slug is `confidential-retail-founder`; the client's actual identity is only in Fran's head.
+- **Identity kept out of code**: brief v14 T1 required that the person's name never appear in filenames, slugs, variable names, alt text or assets. Slug is `confidential-fashion-founder` (renombrado desde `confidential-retail-founder` en la migración v2 per L5); the client's actual identity is only in Fran's head.
 
 ## What was NOT invented
 

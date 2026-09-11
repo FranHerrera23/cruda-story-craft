@@ -1093,7 +1093,7 @@ export default function DeckContent() {
                   ni nombre, ni empresa, ni asset con nombre real,
                   ni slug con la persona. Copy y números tomados del
                   case study (source of truth). */}
-              <Link href="/work/confidential-retail-founder" className="card reveal d-5">
+              <Link href="/work/confidential-fashion-founder" className="card reveal d-5">
                 <div className="card-photo"><img src="/confidential-hero.jpg" alt="Confidential retail founder" /></div>
                 <div className="card-photo-divider"></div>
                 <div className="card-content">
@@ -1106,7 +1106,7 @@ export default function DeckContent() {
                 </div>
                 <div className="card-footer-divider"></div>
                 <div className="card-footer">
-                  <a href="/work/confidential-retail-founder">thecruda.com/work/confidential-retail-founder →</a>
+                  <a href="/work/confidential-fashion-founder">thecruda.com/work/confidential-fashion-founder →</a>
                 </div>
               </Link>
 

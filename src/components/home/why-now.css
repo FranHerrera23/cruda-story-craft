@@ -1,0 +1,98 @@
+/* Home · why-now · "Half the Value".
+   Valores exactos del brief 10-sep §3.
+
+   Fondo blanco puro (var(--color-surface)) — el corte contra
+   --paper-warm del hero y de Selected Work es la costura (§4).
+   Sin border-top, sin <hr>, sin margen: cada sección lleva su
+   fondo a sangre.
+
+   Layout: 1fr / 1.4fr desde 1000px. Título arriba-izquierda,
+   párrafos en la columna derecha. Mobile: una columna, título
+   arriba.
+
+   Los párrafos van GRANDES —clamp(21px, 2vw, 32px)— no a tamaño
+   de cuerpo. En la referencia el bloque del problema usa el mismo
+   tamaño que el hero. Es lo que hace que se lea como declaración
+   y no como texto de relleno. */
+
+.why-now {
+  --why-pad: clamp(24px, 5vw, 80px);
+  --why-max: 1360px;
+  --why-g: var(--font-archivo), 'Archivo', system-ui, sans-serif;
+  background: var(--color-surface);
+  padding: clamp(100px, 16vh, 200px) var(--why-pad);
+  scroll-margin-top: 64px;
+}
+
+@media (max-width: 999px) {
+  .why-now {
+    padding: 80px var(--why-pad);
+  }
+}
+
+.why-now .in {
+  max-width: var(--why-max);
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(40px, 5vw, 96px);
+}
+
+@media (min-width: 1000px) {
+  .why-now .in {
+    grid-template-columns: 1fr 1.4fr;
+  }
+}
+
+.why-now h2 {
+  font-family: var(--why-g);
+  font-weight: 400;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: #000;
+  margin: 0;
+  align-self: start;
+}
+.why-now h2 sup {
+  font-size: .42em;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 2px;
+}
+.why-now h2 sup a {
+  text-decoration: none;
+  color: var(--color-muted);
+}
+
+.why-now__body p,
+.why-now p {
+  font-family: var(--why-g);
+  font-weight: 400;
+  font-size: clamp(21px, 2vw, 32px);
+  line-height: 1.34;
+  letter-spacing: -.01em;
+  color: #000;
+  margin: 0 0 1.5em;
+  max-width: 34ch;
+}
+.why-now__body p:last-of-type,
+.why-now p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Footnote — línea de ancla y placeholder. Margin-top del volado
+   aparece a la altura de página; el `1.` va grande, la copy debajo
+   en gris chico. */
+.why-now__refs.refs {
+  max-width: var(--why-max);
+  margin: clamp(64px, 8vh, 110px) auto 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--color-rule);
+  font-family: var(--why-g);
+  font-size: 13px;
+  color: var(--color-muted);
+  list-style: none;
+}
+.why-now__refs li {
+  scroll-margin-top: 64px;
+}

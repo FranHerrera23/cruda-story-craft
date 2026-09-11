@@ -197,8 +197,9 @@ img {
    de translateY, scale ni box-shadow. Cada componente puede añadir
    su propia transición para propiedades específicas (arrow, border). */
 a, button {
-  transition: color 200ms ease, background-color 200ms ease,
-              opacity 200ms ease;
+  transition: color var(--t-1) var(--ease),
+              background-color var(--t-1) var(--ease),
+              opacity var(--t-1) var(--ease);
 }
 
 /* F2 — el naranja (--color-accent = #E8623A) queda para hover de
@@ -238,13 +239,13 @@ a, button {
    Fallback: browsers sin startViewTransition (Firefox al 2026)
    usan [data-page-phase] con opacity toggle desde PageShell.
    ================================================================== */
+/* Motion §3.2 — salida más rápida (--t-1) que entrada (--t-3),
+   ambas con --ease. Sin asimetría de easing entre entrada y salida. */
 ::view-transition-old(root) {
-  animation: cruda-page-fade-out var(--dur-hover, 300ms)
-             var(--ease-ui, cubic-bezier(0.215, 0.61, 0.355, 1)) both;
+  animation: cruda-page-fade-out var(--t-1) var(--ease) both;
 }
 ::view-transition-new(root) {
-  animation: cruda-page-fade-in var(--dur-overlay, 500ms)
-             var(--ease-overlay, cubic-bezier(0.33, 1, 0.68, 1)) both;
+  animation: cruda-page-fade-in var(--t-3) var(--ease) both;
 }
 @keyframes cruda-page-fade-out {
   from { opacity: 1; }
@@ -257,20 +258,17 @@ a, button {
 
 /* Fallback para browsers sin View Transitions API (Firefox al 2026).
    PageShell corre un ciclo con estado React: phase='leaving' baja
-   opacity a 0 en 300ms, phase='entering' la sube a 1 en 500ms.
-   Mismos tiempos y easings que la ruta VT — Fran ve lo mismo en
-   Firefox y en Chrome. */
+   opacity a 0 con --t-1, phase='entering' la sube a 1 con --t-3.
+   Mismos tiempos que la ruta VT. */
 [data-page-phase] {
   opacity: 1;
 }
 [data-page-phase="leaving"] {
   opacity: 0;
-  transition: opacity var(--dur-hover, 300ms)
-              var(--ease-ui, cubic-bezier(0.215, 0.61, 0.355, 1));
+  transition: opacity var(--t-1) var(--ease);
 }
 [data-page-phase="entering"] {
-  animation: cruda-page-fade-in var(--dur-overlay, 500ms)
-             var(--ease-overlay, cubic-bezier(0.33, 1, 0.68, 1)) both;
+  animation: cruda-page-fade-in var(--t-3) var(--ease) both;
 }
 
 /* Motion §3.1 · carga de página.

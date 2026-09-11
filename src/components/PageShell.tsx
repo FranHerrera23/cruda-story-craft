@@ -3,16 +3,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-/* F3.1 — Transición de página.
+/* Motion §3.2 — Transición de página.
 
    Envuelve el <main> en layout.tsx. Intercepta clicks en cualquier <a>
    interno (next/link renderea <a>, así que quedan cubiertos) y ejecuta
    una transición de página opacity-only.
 
-     · Salida: opacity 1→0 en 300ms (--dur-hover) con --ease-ui
+     · Salida: opacity 1→0 en --t-1 (200ms) con --ease
      · scrollTo(0,0) con behavior:'instant' — bypasea el
        scroll-behavior:smooth global. Ocurre DURANTE el fade.
-     · Entrada: opacity 0→1 en 500ms (--dur-overlay) con --ease-overlay
+     · Entrada: opacity 0→1 en --t-3 (500ms) con --ease
      · Sin translate, sin slide, sin scale. Solo opacidad.
 
    Dos caminos según soporte del browser:
@@ -36,7 +36,10 @@ import { useRouter, usePathname } from 'next/navigation'
 type StartViewTransitionFn = (callback: () => void) => { finished: Promise<void> }
 type Phase = 'idle' | 'leaving' | 'entering'
 
-const LEAVE_MS = 300
+/* Motion §3.2 — salida --t-1 (200ms), entrada --t-3 (500ms). Los
+   valores viven acá porque el JS necesita agendar el setTimeout de
+   navegación; los tokens CSS pintan el fade. */
+const LEAVE_MS = 200
 const ENTER_MS = 500
 
 export default function PageShell({ children }: { children: React.ReactNode }) {

@@ -249,9 +249,9 @@
   color: var(--ink);
   padding: 20px 32px;
   text-decoration: none;
-  transition: background-color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
-              color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1)),
-              border-color 300ms var(--ease, cubic-bezier(0.16, 1, 0.3, 1));
+  transition: background-color var(--t-2) var(--ease),
+              color var(--t-2) var(--ease),
+              border-color var(--t-2) var(--ease);
 }
 /* F2 — hover del primario: naranja + texto blanco. */
 .of .of-cta:hover {

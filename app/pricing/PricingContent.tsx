@@ -584,7 +584,7 @@ export default function PricingContent() {
                     style={{
                       color: 'rgba(10, 10, 10, 0.3)',
                       flexShrink: 0,
-                      transition: 'transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                      transition: 'transform var(--t-2) var(--ease)',
                       transform: openFaq === index ? 'rotate(180deg)' : 'rotate(0)'
                     }}
                   />
@@ -594,7 +594,7 @@ export default function PricingContent() {
                   style={{
                     maxHeight: openFaq === index ? '600px' : '0',
                     overflow: 'hidden',
-                    transition: 'max-height 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                    transition: 'max-height var(--t-2) var(--ease), padding var(--t-2) var(--ease)',
                     paddingBottom: openFaq === index ? '40px' : '0'
                   }}
                 >

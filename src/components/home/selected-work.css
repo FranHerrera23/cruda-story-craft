@@ -1,5 +1,5 @@
 /* Home · Selected Work section.
-   Brief 11-sep §3.
+   Brief 11-sep v2 §5.
 
    La sección arranca sin padding-top — el filete de 1px queda
    pegado al corte contra white de why-now. El padding-bottom
@@ -7,9 +7,9 @@
 
    Filete 1px al 20% de opacidad — NO línea sólida.
 
-   Label a 17px grotesca. "I" como span de 20px con gap 24px entre
-   el "I" y el label — la referencia deja aire propio entre el
-   número y el título, no los pega. */
+   El label pasa a eyebrow como los del sitio viejo: 13px,
+   mayúsculas, tracking abierto, gris --color-muted, peso 600.
+   Sale el "I" con spacer de 20px — era gesto de la referencia. */
 
 .home-work {
   background: var(--paper-warm);
@@ -29,16 +29,12 @@
 
 .home-work__label {
   font-family: var(--grot);
-  font-size: 17px;
-  font-weight: 400;
-  color: var(--color-ink);
-  display: flex;
-  gap: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
   padding-top: 23px;
-}
-.home-work__label .i {
-  width: 20px;
-  display: inline-block;
 }
 
 .home-work__grid {

@@ -1,11 +1,13 @@
 /* Home · WorkCard.
-   Brief 11-sep §3.
+   Brief 11-sep v2 §5.
 
-   Reescala + hover simplificado. Estructura de la referencia:
-   head (name + arrow) · figure 4:5 · company. La imagen manda,
-   el nombre es casi body. Hover: opacity .8 en la card entera.
-   Sin --signal en el nombre — el rojo en una grilla de nueve se
-   vuelve ruido. */
+   Los nombres vuelven a 24px peso 700 — con nueve placeholders
+   grises, el nombre es lo único para mirar; a 19px en regular la
+   grilla se lee vacía. Cuando lleguen las fotos se puede revaluar.
+
+   Estructura de la referencia: head (name + arrow) · figure 4:5 ·
+   company. Hover: opacity .8 en la card entera. Sin --signal en el
+   nombre — el rojo en una grilla de nueve se vuelve ruido. */
 
 .work-card {
   display: block;
@@ -33,23 +35,22 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  /* Brief 11-sep (Fran L) — altura mínima de dos líneas fija para
-     toda la grilla. Los nombres que rompen a dos líneas ("An
-     on-demand fashion founder", "JURA · Connecting the Dots" en
-     ancho angosto, etc.) empujan hacia abajo; los que caben en una
-     línea dejan aire arriba del baseline. La imagen abajo arranca
-     siempre a la misma altura — sin desalineación entre cards.
+  /* Altura mínima de dos líneas fija para toda la grilla. Los nombres
+     que rompen a dos líneas ("An on-demand fashion founder", "JURA ·
+     Connecting the Dots" en ancho angosto, etc.) empujan hacia abajo;
+     los que caben en una línea dejan aire arriba del baseline. La
+     imagen abajo arranca siempre a la misma altura.
 
-     Cálculo: 2 × 19px × 1.2 = 45.6px. Round a 46px. */
-  min-height: 46px;
+     Cálculo: 2 × 24px × 1.15 = 55.2px. Round a 56px. */
+  min-height: 56px;
 }
 
 .work-card__name {
   font-family: var(--grot);
-  font-weight: 400;
-  font-size: 19px;
-  line-height: 1.2;
-  letter-spacing: 0;
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
   color: var(--color-ink);
   /* nowrap retirado — los nombres del brief son personas y descriptores
      ("An on-demand fashion founder", "Arman Keshishian") que se rompen
@@ -113,9 +114,11 @@
 
 .work-card__company {
   font-family: var(--grot);
-  font-size: 15px;
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: .02em;
   color: var(--color-muted);
-  margin: 14px 0 0;
+  margin: 12px 0 0;
 }
 
 /* Placeholder de imagen — §5 del brief 10-sep. No es caja vacía:

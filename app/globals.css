@@ -29,6 +29,42 @@
    orphan (0 matches en el DOM actual) o pisaban v4 con hardcoded
    orange + translateY + box-shadow. Se removieron enteros en B1. */
 
+/* ==================================================================
+   Motion system — brief 11-sep · raíz del design system.
+
+   Dos easings, cuatro duraciones, stagger múltiplo de 75. Ninguna
+   duración o easing literal en ningún otro archivo CSS o style
+   inline del proyecto — siempre token.
+
+   Los tokens legacy (--dur-fast/hover/overlay/ui, --ease-ui/overlay,
+   --e, --e-soft) se preservan como alias a los nuevos para migración
+   progresiva. Se retiran cuando ningún archivo los referencia.
+   ================================================================== */
+:root {
+  /* Easing · dos, y solo dos. */
+  --ease:      cubic-bezier(0.215, 0.61, 0.355, 1);  /* general */
+  --ease-exit: cubic-bezier(0.33,  1,    0.68,  1);  /* entradas desde máscara */
+
+  /* Duración · cuatro, y solo cuatro. */
+  --t-1: 200ms;  /* micro: color, opacidad de un ícono */
+  --t-2: 300ms;  /* hover, cambios de estado */
+  --t-3: 500ms;  /* transición de página, entrada de nav */
+  --t-4: 600ms;  /* reveals de scroll, media, transform grande */
+
+  /* Stagger · múltiplos de 75ms, tope en 5 → 375ms. */
+  --stagger: 75ms;
+
+  /* Aliases legacy — se migran en pasos 2–6. */
+  --ease-ui:      var(--ease);
+  --ease-overlay: var(--ease-exit);
+  --e:            var(--ease-exit);
+  --e-soft:       var(--ease);
+  --dur-fast:     var(--t-1);
+  --dur-hover:    var(--t-2);
+  --dur-overlay:  var(--t-3);
+  --dur-ui:       var(--t-4);
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
@@ -36,6 +72,35 @@ html {
 
 section {
   scroll-margin-top: 100px;
+}
+
+/* ==================================================================
+   prefers-reduced-motion — global, un solo bloque.
+
+   Apaga todo el sistema de movimiento de una vez. Ningún componente
+   necesita su propia regla de reduce. Las que existen hoy en case
+   studies y home se retiran en los pasos siguientes.
+   ================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  .page-root { opacity: 1 !important; }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .nav__item > * { transform: none !important; }
+  .work-card__arrow {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 img {

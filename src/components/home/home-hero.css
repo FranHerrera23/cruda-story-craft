@@ -25,3 +25,36 @@
   color: var(--color-ink);
   margin: 0;
 }
+
+/* Efecto de tipeo — brief 11-sep v2 §3.
+
+   .type-visible: chars ya escritos.
+   .type-invisible: chars faltantes, ocupan lugar (reservan wrap) sin
+     mostrarse. `visibility: hidden` mantiene layout.
+   .type-cursor: bloque sólido en --signal, blink 530ms, se esconde
+     al terminar via .done.
+
+   Sin la clase .done, el cursor parpadea. Con .done, display:none —
+   no queda titilando (regla dura del brief).
+
+   prefers-reduced-motion se maneja del lado JS: la función setup
+   nunca corre, el H1 queda con el textContent completo del SSR. */
+.home-hero h1 .type-invisible {
+  visibility: hidden;
+}
+.home-hero h1 .type-cursor {
+  display: inline-block;
+  width: .06em;
+  height: .82em;
+  background: var(--signal);
+  vertical-align: -.04em;
+  margin-left: .04em;
+  animation: cruda-type-blink 530ms steps(1) infinite;
+}
+.home-hero h1 .type-cursor.done {
+  display: none;
+}
+@keyframes cruda-type-blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}

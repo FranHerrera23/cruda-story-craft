@@ -17,7 +17,11 @@ import { useEffect, useState } from 'react'
 
 const NAV_ITEMS = [
   { href: '/our-founder', label: 'About', match: /^\/(our-founder|about)/ },
-  { href: '/work', label: 'Work', match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
+  /* Home · Selected Work (brief 10-sep §9 paso 5) — WORK apunta al
+     ancla en la home. Las rutas hijas /work/[slug] siguen matcheando
+     el activo por la regex; en la home el activo lo dispara /work
+     via el fragment. */
+  { href: '/#selected-work', label: 'Work', match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
   { href: '/approach', label: 'Approach', match: /^\/approach/ },
   { href: '/essays', label: 'Essays', match: /^\/(essays|resources\/essays|thinking)/ },
   { href: '/contact', label: 'Contact', match: /^\/contact/ },

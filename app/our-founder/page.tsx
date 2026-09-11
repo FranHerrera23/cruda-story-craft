@@ -142,151 +142,24 @@ export default function OurFounderPage() {
         >
           <div className="of-inner">
             <p className="of-eyebrow">Before CRUDA</p>
-
-            <div className="of-chapter">
-              <h3 className="of-chapter-h">Salta, 2016–2020 · Events</h3>
-              <div className="of-reading of-body">
-                <p>
-                  Started producing. Fuckup Nights in Salta, 2016. An
-                  internship at <strong>Endeavor Argentina</strong> in
-                  2017, running entrepreneurship events across three cities
-                  in the north — including the 50th anniversary of
-                  UCASAL&apos;s Economics department: fifteen C-level
-                  speakers, 600 attendees, USD 20,000 budget.
-                </p>
-                <p>
-                  Then <strong>Quiero Stand Up!</strong> in Buenos Aires,
-                  first as junior planner, then as Senior Event &amp; PR
-                  Manager. Twenty-plus theatre and comedy shows, 20,000
-                  tickets, Luna Park and Gran Rex.
-                </p>
-                <p>
-                  I learned there that a room full of people is a narrative
-                  problem before it&apos;s a logistics problem.
-                </p>
-              </div>
-            </div>
-
-            <div className="of-chapter">
-              <h3 className="of-chapter-h">
-                Buenos Aires, 2017–2020 · Agencies
-              </h3>
-              <div className="of-reading of-body">
-                <p>
-                  <strong>Somos Fans</strong>, influencer marketing,
-                  2017–2018. Campaigns for Mary Kay, Natura, Havanna,
-                  Mastercard, MercadoLibre, DogHero, DirecTV and
-                  McDonald&apos;s. On-site content at Mary Kay&apos;s
-                  year-end event with their CMO. Social tracking for
-                  DirecTV&apos;s Barcelona–Real Madrid campaigns.
-                </p>
-                <p>
-                  <strong>Mate.Cool</strong>, 2018–2019. Influencer
-                  campaigns for LATAM brands: DirecTV, FOX, TikTok, Oreo,
-                  Brahma, PedidosYa, the Argentine Polo Association.
-                  Production on <strong>TikTok&apos;s official launch event
-                  in Argentina</strong>, negotiating with twenty-plus
-                  creators. Support to the commercial and PR lead for the
-                  three biggest football influencers during the 2018 World
-                  Cup.
-                </p>
-                <p>
-                  Freelance across those years: <strong>CCU</strong>{' '}
-                  (Cerveza Imperial, Cerveza Salta), an audiovisual
-                  production for <strong>Purina</strong>, and an 8M
-                  awareness campaign with women&apos;s health professionals
-                  for <strong>the United Nations</strong>.
-                </p>
-              </div>
-            </div>
-
-            <div className="of-chapter">
-              <h3 className="of-chapter-h">Salta, 2020–2022 · Brand</h3>
-              <div className="of-reading of-body">
-                <p>
-                  <strong>Bushido Advertising Global</strong>, Senior PR
-                  &amp; Account Manager, then Junior Brand Manager. Two
-                  years and three months. Brand development for
-                  fifteen-plus companies in hospitality, real estate,
-                  supply chain, architecture and lighting design.
-                </p>
-                <p>
-                  One of those accounts was <strong>TRAZZO</strong>,
-                  Peru&apos;s most exclusive lighting and luxury furniture
-                  company, and the personal brand of its founder, Karen
-                  Mannheim. That work led to a collaboration with
-                  Architectural Digest.
-                </p>
-                <p>
-                  Karen hired me in early 2021. She is still a client
-                  today. That relationship has outlasted two of my
-                  employers.
-                </p>
-              </div>
-            </div>
-
-            <div className="of-chapter">
-              <h3 className="of-chapter-h">
-                Dubai and Abu Dhabi, 2022–2023
-              </h3>
-              <div className="of-reading of-body">
-                <p>Emigrated in September 2022.</p>
-                <p>
-                  <strong>Luna PR</strong>, Dubai. PR Strategist, then
-                  Brand Strategy Manager. Built the agency&apos;s branding
-                  and strategy unit from zero. Brand strategy and identity
-                  for VOY Finance, APAD, and BillionAir. Clients and teams
-                  across the UK, USA, Czech Republic, Saudi Arabia,
-                  Sweden, China, Spain and Israel.
-                </p>
-                <p>
-                  <strong>VOY Finance</strong>, 2023. Led the rebrand of a
-                  fintech operating in Estonia and the UK — identity,
-                  positioning, tagline, messaging, tone of voice, and the
-                  full website.
-                </p>
-              </div>
-            </div>
-
-            <div className="of-chapter">
-              <h3 className="of-chapter-h">
-                Minnesota, remote, 2023–2024
-              </h3>
-              <div className="of-reading of-body">
-                <p>
-                  <strong>Norhart</strong>. Brand &amp; Communications
-                  Strategist for a residential construction company with
-                  1,000+ apartments delivered and $200M in assets, working
-                  directly with CEO Mike Kaeding on a mission to halve
-                  construction costs.
-                </p>
-                <p>
-                  A $1M marketing budget. Copy for the CEO&apos;s LinkedIn
-                  that reached 100,000 impressions in its first month.
-                  Website copy for norhart.com/invest, an SEC-regulated
-                  investment platform. Two months of coaching with Dean
-                  Rotbart, former Wall Street Journal reporter.
-                </p>
-                <p>
-                  In February 2024 they announced my layoff in a
-                  restructuring. I registered CRUDA that same month.
-                </p>
-              </div>
-            </div>
-
-            <div className="of-chapter">
-              <h3 className="of-chapter-h">
-                Los Angeles, remote, 2024–2025
-              </h3>
-              <div className="of-reading of-body">
-                <p>
-                  <strong>BAUHOME</strong>, brand and marketing strategy
-                  from scratch — a luxury kitchen, closet and bath showroom
-                  backed by The Baumann Group, a German manufacturer
-                  founded in 1917 that produces 140,000 kitchens a year
-                  across 700+ showrooms.
-                </p>
-              </div>
+            <div className="of-reading of-body">
+              <p>
+                Events first, in Salta and then Buenos Aires — Fuckup
+                Nights, Endeavor, twenty-plus theatre and comedy shows at
+                Luna Park and Gran Rex. Then agencies: influencer
+                marketing at Somos Fans, production at Mate.Cool, brand
+                at Bushido, on accounts for Mary Kay, Natura, MercadoLibre,
+                DirecTV, FOX, Oreo and Brahma, the production of
+                TikTok&apos;s official launch event in Argentina, and an
+                8M awareness campaign for the United Nations. One of the
+                Bushido accounts was TRAZZO — which is how Karen Mannheim
+                hired me in early 2021, and why she is still a client.
+                Dubai from September 2022, building a branding and
+                strategy unit from zero at Luna PR. Then in-house at
+                Norhart in Minnesota, a $1M budget and a CEO on a mission
+                to halve construction costs. They restructured in February
+                2024. I registered CRUDA that month.
+              </p>
             </div>
           </div>
         </section>

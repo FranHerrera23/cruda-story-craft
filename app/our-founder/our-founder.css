@@ -76,14 +76,17 @@
   color: var(--paper);
 }
 
-/* ---------- Reading measures ---------- */
+/* ---------- Reading measures ----------
+   Medida uniforme 62ch — la misma de why-now — desde el brief
+   design-system unificado y el brief /our-founder §4.2. */
 .of .of-reading {
-  max-width: var(--measure-reading, 42rem);
+  max-width: 62ch;
 }
 .of .of-body p {
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: var(--ink-2);
+  font-family: var(--sans);
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--ink);
 }
 .of .of-body p + p { margin-top: 20px; }
 .of .of-body strong {
@@ -153,21 +156,8 @@
   to   { transform: translateY(-64px); opacity: 0.35;}
 }
 
-/* ---------- 02 — Before CRUDA (chapters) ---------- */
-.of .of-chapter + .of-chapter {
-  margin-top: clamp(56px, 8vh, 96px);
-  padding-top: clamp(40px, 6vh, 72px);
-  border-top: 1px solid var(--rule);
-}
-.of .of-chapter-h {
-  font-family: var(--sans);
-  font-weight: 600;
-  font-size: var(--fs-h3);
-  line-height: var(--lh-heading, 1.15);
-  letter-spacing: var(--track-heading, -0.01em);
-  color: var(--ink);
-  margin: 0 0 24px;
-}
+/* Estilos de .of-chapter retirados — Before CRUDA es un solo
+   párrafo per brief §4.2, sin subheaders por ciudad ni por año. */
 
 /* ---------- 03 — Testimonials ----------
    Blockquote sin comillas tipográficas — el rule vertical marca

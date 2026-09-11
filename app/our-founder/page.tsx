@@ -211,12 +211,10 @@ export default function OurFounderPage() {
           id="short"
           data-section="short"
           data-reveal="text"
-          className="of-block of-block--ink"
+          className="of-block"
         >
           <div className="of-inner">
-            <p className="of-eyebrow of-eyebrow--on-ink">
-              The short version
-            </p>
+            <p className="of-eyebrow">The short version</p>
 
             <div className="of-short-body">
               <p>
@@ -237,12 +235,14 @@ export default function OurFounderPage() {
               </p>
             </div>
 
-            {/* Botones sin flechas ni →. Texto solo (regla del doc). */}
+            {/* Botones sin flechas — texto tipográfico. Brief §5:
+                "See the work" apunta a /#selected-work, NO a /work
+                ni a /clients que redirigen a la raíz. */}
             <div className="of-cta-row">
-              <Link href="/work" className="of-cta">
+              <Link href="/#selected-work" className="of-cta">
                 See the work
               </Link>
-              <Link href="/contact" className="of-cta of-cta--ghost">
+              <Link href="/contact" className="of-cta">
                 Start a conversation
               </Link>
             </div>

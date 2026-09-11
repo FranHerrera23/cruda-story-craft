@@ -8,10 +8,9 @@
 
 .of {
   --sans: var(--font-archivo), -apple-system, sans-serif;
-  --mono: 'IBM Plex Mono', monospace;
   --gut: clamp(24px, 5vw, 72px);
 
-  background: var(--white);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 17px;
@@ -29,13 +28,9 @@
   box-sizing: border-box;
 }
 
-.of .mono {
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: var(--track-mono, 0.12em);
-  text-transform: uppercase;
-}
+/* --mono y .mono retirados — brief §5 saca la numeración mono
+   entera de la página. Los eyebrows viven en grot y los CTAs
+   pasan a tratamiento de eyebrow. IBM Plex Mono no se carga acá. */
 
 /* ---------- Block frames ----------
    Design system unificado §7: fondo blanco uniforme. Sale el beige
@@ -114,30 +109,33 @@
   margin: 0 auto;
 }
 .of .of-hero-h1 {
-  color: var(--white);
-  font-family: var(--sans);
-  font-weight: 700;
-  font-size: var(--fs-h1);
-  line-height: var(--lh-heading, 1.05);
-  letter-spacing: var(--track-heading, -0.02em);
+  color: var(--paper);
+  /* "Fran Herrera" son dos palabras — cumple la regla §2 de
+     "serif solo en títulos ≤6 palabras". Instrument Serif 400. */
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 54px);
+  line-height: 1.14;
+  letter-spacing: -.02em;
   margin: 0 0 24px;
 }
 .of .of-hero-kicker {
-  color: var(--white);
+  color: var(--paper);
   font-family: var(--sans);
-  font-weight: 600;
-  font-size: var(--fs-lead);
+  font-weight: 500;
+  font-size: clamp(18px, 1.8vw, 22px);
   line-height: 1.35;
   margin: 0 0 40px;
-  max-width: 40ch;
+  max-width: 44ch;
 }
 .of .of-hero-body {
-  max-width: var(--measure-reading, 42rem);
+  max-width: 62ch;
 }
 .of .of-hero-body p {
-  color: rgba(255, 255, 255, 0.72);
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
 }
 .of .of-hero-body p + p { margin-top: 20px; }
 /* Parallax al salir del viewport. Solo donde animation-timeline es
@@ -220,61 +218,57 @@
   color: var(--ink);
 }
 
-/* ---------- 04 — Short version on ink ---------- */
+/* ---------- Short version ----------
+   Ahora sobre blanco (paso 5 del brief /our-founder). El brief
+   anterior estableció que el inverso es un gesto único del sitio;
+   dos bloques negros en una misma página lo gastan. Copy verbatim,
+   solo cambia el fondo y los colores de texto a --ink. */
 .of .of-short-body {
-  max-width: var(--measure-reading, 42rem);
+  max-width: 62ch;
   margin-bottom: 56px;
 }
 .of .of-short-body p {
-  font-size: var(--fs-body);
-  line-height: var(--lh-body);
-  color: rgba(255, 255, 255, 0.72);
+  font-family: var(--sans);
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--ink);
 }
 .of .of-short-body p + p { margin-top: 20px; }
 .of .of-short-close {
-  color: var(--white) !important;
+  color: var(--ink);
   font-weight: 600;
 }
 
 /* ---------- CTAs — texto solo, sin flechas ----------
-   Doc §Botones. Dos CTAs lado a lado; en mobile se apilan. */
+   Brief §5: "salen de mono y pasan al mismo tratamiento de
+   eyebrow". Grot 13px 600 uppercase tracking .14em negro. Sin
+   fondo, sin borde, sin naranja — el link tipográfico. Hover
+   baja opacidad (mismo vocabulario que work-card / essay-card). */
 .of .of-cta-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: clamp(24px, 4vw, 40px);
   align-items: center;
 }
 .of .of-cta {
   display: inline-block;
-  font-family: var(--mono);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  background: var(--white);
   color: var(--ink);
-  padding: 20px 32px;
-  text-decoration: none;
-  transition: background-color var(--t-2) var(--ease),
-              color var(--t-2) var(--ease),
-              border-color var(--t-2) var(--ease);
-}
-/* F2 — hover del primario: naranja + texto blanco. */
-.of .of-cta:hover {
-  background-color: var(--color-accent);
-  color: var(--paper);
-}
-/* Ghost — sobre ink, borde blanco + fondo transparente. */
-.of .of-cta--ghost {
   background: transparent;
-  color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  padding: 19px 31px;
+  padding: 0;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: opacity var(--t-2) var(--ease);
 }
-.of .of-cta--ghost:hover {
-  background: var(--color-accent);
-  color: var(--paper);
-  border-color: var(--color-accent);
+.of .of-cta:hover,
+.of .of-cta:focus-visible {
+  opacity: .7;
 }
 
 /* Sticky index retirado — el rail forzaba una reserva de 300px en

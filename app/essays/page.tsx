@@ -1,14 +1,36 @@
 import type { Metadata } from 'next'
-import { Suspense } from 'react'
-import ResourceCards from '@/components/ResourceCards'
-import ResourceFilters from '@/components/ResourceFilters'
-import { allResources, countByKind, dedupeByPiece } from '@/content/resources'
+import Link from 'next/link'
+import {
+  allResources,
+  dedupeByPiece,
+  kindLabel,
+  languageLabel,
+} from '@/content/resources'
 import { collectionPageSchema } from '@/lib/collection-schema'
-import '@/styles/resources.css'
+import './essays.css'
 
-/* /essays — brief v2 D3.
-   Canonical essay index. Reemplaza /resources/essays (301 permanent).
-   Nav "Essays" apunta directo acá — sin cadenas.  */
+/* /essays — design system unificado §7.
+
+   Los filtros de chips (kind / company / language) se retiran —
+   tres filas de botones con "CRUDA (5)" contra nada no dicen
+   nada. La página queda como índice tipográfico: título, lede,
+   y lista de ensayos separados por filete, título en grot 700
+   con meta debajo.
+
+   Data source: allResources + dedupeByPiece('en') filtrado por
+   kind === 'essay'. Un ensayo bilingüe es una sola pieza. */
+
+const ESSAYS = dedupeByPiece(allResources, 'en').filter(
+  (r) => r.kind === 'essay',
+)
+
+const SCHEMA = collectionPageSchema({
+  url: 'https://www.thecruda.com/essays',
+  name: 'Essays — CRUDA',
+  description:
+    'Essays from CRUDA on narrative, brand and the founders who build them.',
+  items: ESSAYS,
+})
 
 export const metadata: Metadata = {
   title: 'Essays — CRUDA',
@@ -41,50 +63,36 @@ export const metadata: Metadata = {
   },
 }
 
-/* Brief v4 UX §4.6 — dedupe por pieza (un ensayo bilingüe es UNA). */
-const DEDUPED = dedupeByPiece(allResources, 'en')
-const ESSAYS = DEDUPED.filter((r) => r.kind === 'essay')
-const GLOBAL_KIND_COUNTS = countByKind(DEDUPED)
-
-const SCHEMA = collectionPageSchema({
-  url: 'https://www.thecruda.com/essays',
-  name: 'Essays — CRUDA',
-  description:
-    'Essays from CRUDA on narrative, brand and the founders who build them.',
-  items: ESSAYS,
-})
-
 export default function EssaysPage() {
   return (
-    <div className="rs-root">
+    <div className="ei">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
-      <section className="rs-head">
-        <div className="rs-inner">
-          <p className="rs-eyebrow">Essays</p>
-          <h1 className="rs-h1">Essays.</h1>
-          <p className="rs-sub">
-            Pieces on narrative, brand, and the founders who build them. Written
-            for people who have to make decisions, not for people who write
-            about them.
-          </p>
-        </div>
-      </section>
-      <div className="rs-body">
-        <div className="rs-inner">
-          <Suspense fallback={null}>
-            <ResourceFilters
-              items={ESSAYS}
-              scope="essays"
-              totalItems={DEDUPED.length}
-              globalKindCounts={GLOBAL_KIND_COUNTS}
-            />
-          </Suspense>
-          <ResourceCards items={ESSAYS} />
-        </div>
-      </div>
+
+      <header data-reveal="text" className="ei-head">
+        <p className="ei-eyebrow">Essays</p>
+        <h1 className="ei-h1">Essays.</h1>
+        <p className="ei-lede">
+          Pieces on narrative, brand, and the founders who build them.
+          Written for people who have to make decisions, not for people
+          who write about them.
+        </p>
+      </header>
+
+      <ol className="ei-list">
+        {ESSAYS.map((e) => (
+          <li key={e.slug} data-reveal="text" className="ei-item">
+            <Link href={e.href} className="ei-link">
+              <h2 className="ei-title">{e.title}</h2>
+              <p className="ei-meta">
+                {kindLabel(e.kind)} · {languageLabel(e.language)}
+              </p>
+            </Link>
+          </li>
+        ))}
+      </ol>
     </div>
   )
 }

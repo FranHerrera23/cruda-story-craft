@@ -1,0 +1,98 @@
+/* /essays — design system unificado §7 · índice tipográfico.
+
+   Sin filtros. Sin cards con imagen. Título grande, lede, y una
+   lista vertical con filete arriba de cada ítem. La grilla es la
+   familia tipográfica del sitio: eyebrow → h1 serif corto →
+   lede grot → items grot 700 con meta debajo. */
+
+.ei {
+  background: var(--paper);
+  color: var(--ink);
+  padding: clamp(140px, 18vh, 220px) var(--pad) clamp(120px, 16vh, 180px);
+}
+
+.ei-head {
+  max-width: 1360px;
+  margin: 0 auto clamp(96px, 12vh, 160px);
+}
+
+.ei-eyebrow {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 clamp(32px, 4vh, 48px);
+}
+
+/* H1 = "Essays." — una palabra. Encaja en la regla del §2 de
+   "serif solo en títulos ≤6 palabras" y va en Instrument Serif. */
+.ei-h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(56px, 9vw, 128px);
+  line-height: 0.98;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0 0 clamp(32px, 4vh, 48px);
+}
+
+.ei-lede {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.45;
+  letter-spacing: -.008em;
+  color: var(--ink);
+  max-width: 42ch;
+  margin: 0;
+}
+
+/* Lista de ensayos: cada uno separado por filete arriba. Sin
+   grilla lateral — es un índice de lectura, no una galería. */
+.ei-list {
+  max-width: 1360px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+.ei-item {
+  border-top: 1px solid var(--rule);
+}
+.ei-item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+.ei-link {
+  display: block;
+  padding: clamp(32px, 5vh, 56px) 0;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--t-2) var(--ease);
+}
+.ei-link:hover,
+.ei-link:focus-visible {
+  opacity: .8;
+}
+
+.ei-title {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  max-width: 32ch;
+  margin: 0;
+}
+
+.ei-meta {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: .02em;
+  color: var(--ink);
+  margin: 12px 0 0;
+}

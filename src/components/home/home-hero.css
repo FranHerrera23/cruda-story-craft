@@ -1,44 +1,27 @@
-/* Home · Hero. Brief 11-sep §2/§3.
+/* Home · Hero. Brief 11-sep v2 §3.
 
-   Baja del layout centrado a la disposición de la referencia:
-   texto arranca a una distancia FIJA del tope, no centrado
-   vertical. Columna 7 / span 6 de una grilla de 12 — el vacío de
-   la izquierda deja de ser hueco y pasa a ser margen del sistema.
+   Alineado a la izquierda, ancho completo del contenedor. Sin
+   grilla de 12, sin columna 7, sin vacío a la izquierda — ese
+   gesto era la firma de la referencia y con eso puesto cualquier
+   sitio se ve como esa referencia.
 
-   Serif del sitio (Instrument Serif, weight 400) a 52px máx en
-   desktop, no 72. La copia sigue verbatim del brief 10-sep §2.
-   El hero deja de destacar por escala y pasa a destacar por face
-   y silencio — es lo que corta el parecido con la referencia. */
+   Peso 700 en Archivo, clamp 34→76. El sitio viejo tenía peso en
+   el display y eso es parte de por qué se sostenía. Medida 20ch
+   corta en 4 líneas en desktop. */
 
 .home-hero {
   background: var(--paper-warm);
-  padding: clamp(140px, 18vh, 226px) var(--pad) clamp(100px, 14vh, 180px);
-  min-height: 0;
-}
-
-@media (min-width: 1000px) {
-  .home-hero {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    column-gap: 20px;
-  }
-  .home-hero h1 {
-    grid-column: 7 / span 6;
-  }
+  padding: clamp(120px, 16vh, 200px) var(--pad);
 }
 
 .home-hero h1 {
   font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(30px, 3.4vw, 52px);
-  line-height: 1.16;
-  letter-spacing: -.012em;
-  color: #000;
+  font-weight: 700;
+  font-size: clamp(34px, 5.2vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -.03em;
+  max-width: 20ch;
+  text-align: left;
+  color: var(--color-ink);
   margin: 0;
-  /* text-wrap: pretty priorizaba balance de líneas y en viewports
-     angostos (~390px) prefería líneas que no cabían antes que
-     agregar una cuarta. Se retira. Los defaults del browser cortan
-     mejor. overflow-wrap: break-word queda como fallback duro para
-     nombres como "founder-led" sobre columnas muy angostas. */
-  overflow-wrap: break-word;
 }

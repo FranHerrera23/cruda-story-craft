@@ -1,9 +1,9 @@
 /* Home · Selected Work section.
    Valores exactos del brief 10-sep §3.
 
-   Fondo: var(--color-paper-tint) = #F2F2F0. Off-white más neutro
-   que el cream — hace respirar el blanco y negro de los retratos.
-   Es el único valor nuevo del brief; va como token, no hardcodeado.
+   Fondo: var(--paper-warm) = #F2F2F0. Off-white más neutro que el
+   cream — hace respirar el blanco y negro de los retratos. Token
+   registrado en case-study.css (brief 10-sep §4).
 
    Grilla: 3 columnas iguales desde 769px, columna 32px, row 96px.
    En mobile (≤768px) pasa a 1 columna y row baja a 64px.
@@ -14,7 +14,7 @@
    Padding vertical de la sección: 120/160 desktop, 80/96 mobile. */
 
 .home-work {
-  background: var(--color-paper-tint);
+  background: var(--paper-warm);
   padding: 120px 0 160px;
 }
 

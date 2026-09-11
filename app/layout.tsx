@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   // where they need to be, and the old "%s — CRUDA" template was doubling
   // brand on routes that already carried it.
   title: {
-    default: 'CRUDA — Find the essence. Strip the bullshit.',
+    default: 'CRUDA',
     template: '%s',
   },
   description: SITE_DESCRIPTION,
@@ -99,7 +99,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://www.thecruda.com',
-    title: 'CRUDA — Find the essence. Strip the bullshit.',
+    title: 'CRUDA',
     description: SITE_DESCRIPTION,
     siteName: 'CRUDA',
     images: [
@@ -113,7 +113,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'CRUDA — Find the essence. Strip the bullshit.',
+    title: 'CRUDA',
     description: SITE_DESCRIPTION,
     images: ['https://www.thecruda.com/logo.png'],
   },

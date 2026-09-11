@@ -1,0 +1,45 @@
+/* Home · Hero. Valores exactos del brief 10-sep §2.
+
+   Layout: dos columnas 1fr / 1.4fr desde 1000px, H1 en la segunda.
+   Mobile: una columna. Fondo `--paper-warm`, min-height 72vh.
+   Weight 400 — no 700. Regular a tamaño grande es lo que hace que
+   se lea editorial y no landing.
+
+   Sin animación de entrada. Es lo primero que se ve al cargar. */
+
+.home-hero {
+  --hero-pad: clamp(24px, 5vw, 80px);
+  background: var(--paper-warm);
+  min-height: 72vh;
+  display: grid;
+  align-items: center;
+  padding: clamp(80px, 12vh, 180px) var(--hero-pad);
+}
+
+.home-hero__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  gap: clamp(40px, 5vw, 96px);
+}
+
+@media (min-width: 1000px) {
+  .home-hero__inner {
+    grid-template-columns: 1fr 1.4fr;
+  }
+  .home-hero h1 {
+    grid-column: 2;
+  }
+}
+
+.home-hero h1 {
+  font-family: var(--font-archivo), 'Archivo', system-ui, sans-serif;
+  font-weight: 400;
+  font-size: clamp(34px, 4.6vw, 72px);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  max-width: 26ch;
+  color: #000;
+  margin: 0;
+}

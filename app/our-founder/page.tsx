@@ -98,12 +98,6 @@ export default function OurFounderPage() {
                 I&apos;ve spent ten years helping companies say what they
                 actually do.
               </p>
-              <p>
-                Eight of those years inside agencies in Argentina, on
-                accounts for TikTok, Brahma, Oreo, DirecTV, Mary Kay and
-                MercadoLibre. Two in-house in Dubai and the United States.
-                Since February 2024, running CRUDA.
-              </p>
             </div>
           </div>
         </section>

@@ -40,7 +40,7 @@
   --sp-2: clamp(40px, 5vw, 72px);
   --sp-3: clamp(80px, 9vw, 132px);
 
-  --e: cubic-bezier(.19, 1, .22, 1);
+  /* Easing local retirado — usa --ease del motion system (globals). */
 
   background: var(--paper);
   color: var(--ink);
@@ -70,11 +70,7 @@
   outline-offset: 4px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .cb-root * {
-    transition: none !important;
-  }
-}
+/* reduce global vive en globals.css (motion §6) — sin regla propia. */
 
 /* §7 regla 3 — Nada de labels en caja alta. 13px / 600 / gris. */
 .cb-root .lbl {
@@ -427,7 +423,7 @@
   color: var(--ink);
   margin: 0 0 18px;
   max-width: 24ch;
-  transition: color .25s var(--e);
+  transition: color var(--t-2) var(--ease);
 }
 .cb-root .b-passages-excerpt {
   font-family: var(--s);
@@ -500,7 +496,7 @@
   text-decoration: none;
   color: inherit;
   width: 100%;
-  transition: color .2s var(--e);
+  transition: color var(--t-2) var(--ease);
 }
 .cb-root .b-passages-archive li > a:hover {
   color: var(--c-1);
@@ -999,7 +995,7 @@
   letter-spacing: -.03em;
   display: block;
   max-width: 14ch;
-  transition: color .25s var(--e);
+  transition: color var(--t-2) var(--ease);
 }
 .cb-root .b-next em {
   font-style: normal;
@@ -1297,8 +1293,8 @@
    directo, sin transición. */
 .cb-root .rv {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity .8s var(--e), transform .8s var(--e);
+  transform: translateY(16px);
+  transition: opacity var(--t-4) var(--ease), transform var(--t-4) var(--ease);
 }
 .cb-root .rv.on {
   opacity: 1;

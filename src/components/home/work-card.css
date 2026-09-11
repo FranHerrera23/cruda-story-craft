@@ -64,7 +64,28 @@
   margin-top: 14px;
   aspect-ratio: 445 / 552;
   overflow: hidden;
-  /* wipe container — para el clip-path del §6 (reveal) */
+}
+
+/* Brief 11-sep §5 — entrada por máscara, no por fade.
+   HomeChrome agrega .rv en mount y .on cuando la figura interseca.
+   Sin la clase .rv (sin JS), la figura muestra normal.
+   Stagger de tres via .d1 (100ms) y .d2 (200ms). */
+.work-card__figure.rv {
+  clip-path: inset(0 0 100% 0);
+}
+.work-card__figure.rv.on {
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 900ms var(--e);
+}
+.work-card__figure.rv.d1.on { transition-delay: 100ms; }
+.work-card__figure.rv.d2.on { transition-delay: 200ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .work-card__figure.rv,
+  .work-card__figure.rv.on {
+    clip-path: none;
+    transition: none;
+  }
 }
 
 .work-card__img {

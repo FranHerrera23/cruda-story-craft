@@ -31,10 +31,19 @@ export default function Nav() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [away, setAway] = useState(false)
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
+
+  /* Brief 11-sep §5 — cada link entra desde abajo con delays
+     escalonados. `ready` se dispara en mount (post-hydration) para
+     que la transición corra desde el estado inicial `translateY(100%)`
+     al final `translateY(0)`. Cinco items con stagger de 75ms. */
+  useEffect(() => {
+    setReady(true)
+  }, [])
 
   /* §5.1 del spec de Task 11 (recortado) — la nav se retira al bajar
      y vuelve al subir. Umbral 140px para que el gesto inicial de la
@@ -62,25 +71,30 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  /* B2 — hover es opacidad. Inactivos en --color-muted (~60% de ink),
-     activo (currentPage) siempre 100%. La página actual se destaca,
-     las demás se apagan hasta hover. Transición color viene del
-     global de globals.css. */
+  /* Brief 11-sep §3 — nav en var(--grot), tamaño chico, mismo peso
+     para todos. El activo se marca por --color-ink; los demás en
+     --color-muted hasta hover. */
   const linkStyle = (isActive: boolean): React.CSSProperties => ({
     color: isActive ? 'var(--color-ink)' : 'var(--color-muted)',
     textDecoration: 'none',
-    fontFamily: 'var(--mono)',
+    fontFamily: 'var(--grot)',
     fontWeight: 500,
     fontSize: '12px',
     letterSpacing: '.14em',
     textTransform: 'uppercase',
   })
 
+  const navClass = [
+    'cruda-global-nav',
+    away && !mobileOpen ? 'away' : '',
+    ready ? 'ready' : '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <>
-      <nav
-        className={`cruda-global-nav${away && !mobileOpen ? ' away' : ''}`}
-      >
+      <nav className={navClass}>
         <div className="cruda-global-nav-in">
           <Link href="/" className="cruda-global-nav-brand" aria-label="CRUDA home">
             CRUDA
@@ -90,15 +104,16 @@ export default function Nav() {
             {NAV_ITEMS.map((item) => {
               const isActive = item.match.test(pathname)
               return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="link"
-                  style={linkStyle(isActive)}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  {item.label}
-                </Link>
+                <span key={item.href} className="nav__item">
+                  <Link
+                    href={item.href}
+                    className="link"
+                    style={linkStyle(isActive)}
+                    aria-current={isActive ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                </span>
               )
             })}
           </div>
@@ -182,6 +197,62 @@ export default function Nav() {
           align-items: center;
           gap: 32px;
         }
+
+        /* Brief 11-sep §5 — reveal del nav.
+           Cada item envuelto en .nav__item con overflow:hidden. El
+           link interno arranca en translateY(100%); cuando la nav
+           tiene .ready, translateY(0). Cinco items con stagger de
+           75ms. */
+        .nav__item {
+          display: inline-block;
+          overflow: hidden;
+        }
+        .nav__item .link {
+          display: inline-block;
+          position: relative;
+          transform: translateY(100%);
+          transition: transform 400ms var(--e);
+        }
+        .cruda-global-nav.ready .nav__item .link {
+          transform: translateY(0);
+        }
+        .cruda-global-nav-menu .nav__item:nth-child(1) .link { transition-delay: 0ms; }
+        .cruda-global-nav-menu .nav__item:nth-child(2) .link { transition-delay: 75ms; }
+        .cruda-global-nav-menu .nav__item:nth-child(3) .link { transition-delay: 150ms; }
+        .cruda-global-nav-menu .nav__item:nth-child(4) .link { transition-delay: 225ms; }
+        .cruda-global-nav-menu .nav__item:nth-child(5) .link { transition-delay: 300ms; }
+
+        /* Subrayado del link — crece desde la derecha en salida y
+           desde la izquierda en hover. El cambio de origin es lo que
+           lo hace sentir intencional. */
+        .nav__item .link::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -3px;
+          width: 100%;
+          height: 1px;
+          background: currentColor;
+          transform: scaleX(0);
+          transform-origin: right;
+          transition: transform 600ms var(--e-soft);
+        }
+        .nav__item .link:hover::after,
+        .nav__item .link:focus-visible::after {
+          transform: scaleX(1);
+          transform-origin: left;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .nav__item .link {
+            transform: none !important;
+            transition: none !important;
+          }
+          .nav__item .link::after {
+            transition: none !important;
+          }
+        }
+
         .cruda-global-nav-mobile-toggle {
           display: none;
           background: none;

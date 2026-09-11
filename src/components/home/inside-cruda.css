@@ -1,0 +1,96 @@
+/* Home · inside-cruda — brief 11-sep §5.
+
+   Fondo blanco. Eyebrow 13/600 upper (mismo estilo que el eyebrow
+   de Selected Work). H2 al peso 700 del sistema (mismo formato que
+   why-now h2 y el resto de los h2 del home). Tres filas con filete
+   de 1px al 20% arriba de cada una (color-mix con --color-ink).
+
+   Grilla de dos columnas 1fr / 1.4fr desde 1000px — la misma
+   proporción de why-now. Mobile: una columna, etiqueta arriba. */
+
+.inside-cruda {
+  background: var(--color-surface);
+  padding: clamp(100px, 16vh, 180px) var(--pad);
+}
+.inside-cruda .in {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.inside-cruda__eyebrow {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0 0 clamp(48px, 7vh, 88px);
+}
+
+.inside-cruda h2 {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--color-ink);
+  max-width: 20ch;
+  margin: 0 0 clamp(64px, 9vh, 110px);
+}
+
+/* Filas etiqueta-cuerpo. Filete arriba al 20% — coincide con el
+   filete de Selected Work para leer como un mismo sistema. */
+.ic-row {
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent);
+  padding: clamp(32px, 5vh, 56px) 0;
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 1000px) {
+  .ic-row {
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(40px, 5vw, 96px);
+  }
+}
+
+.ic-row__label {
+  font-family: var(--grot);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+.ic-row__body p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(18px, 1.5vw, 24px);
+  line-height: 1.42;
+  letter-spacing: -.006em;
+  color: var(--color-ink);
+  max-width: 42ch;
+  margin: 0 0 1.1em;
+}
+.ic-row__body p:last-child {
+  margin-bottom: 0;
+}
+
+/* Name + role para el bloque "Who runs it". El nombre a 24/700
+   iguala el peso de los card names — es la misma jerarquía. */
+.ic-row__body .ic-name {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--color-ink);
+  max-width: none;
+  margin: 0 0 2px;
+}
+.ic-row__body .ic-role {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--color-muted);
+  max-width: none;
+  margin: 0 0 clamp(24px, 3vh, 36px);
+}

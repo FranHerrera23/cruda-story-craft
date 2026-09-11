@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import HomeHero from '@/components/home/HomeHero';
 import WhyNow from '@/components/home/WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
+import InsideCruda from '@/components/home/InsideCruda';
 import HomeChrome from '@/components/home/HomeChrome';
 import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
@@ -51,6 +52,7 @@ export default function HomePage() {
       <HomeHero />
       <WhyNow />
       <SelectedWork cards={selectedWorkCards} />
+      <InsideCruda />
     </>
   );
 }

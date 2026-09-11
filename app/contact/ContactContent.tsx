@@ -19,7 +19,7 @@ export default function ContactContent() {
   return (
     <div className="contact-root">
       <main className="contact-shell">
-        <section className="contact-lede">
+        <section data-reveal="text" className="contact-lede">
           <p className="mono contact-eyebrow">Contact</p>
           <h1 className="display--sm contact-h1">Let&apos;s talk about your story.</h1>
           <p className="contact-sub">
@@ -28,7 +28,7 @@ export default function ContactContent() {
           </p>
         </section>
 
-        <section className="contact-calendly">
+        <section data-reveal="text" className="contact-calendly">
           <div
             className="calendly-inline-widget"
             data-url={CALENDLY_EMBED}
@@ -42,7 +42,7 @@ export default function ContactContent() {
           </p>
         </section>
 
-        <section className="contact-email">
+        <section data-reveal="text" className="contact-email">
           <p className="mono contact-alt-label">Or write</p>
           <a href={`mailto:${HELLO}`} className="contact-alt-mail">
             {HELLO}

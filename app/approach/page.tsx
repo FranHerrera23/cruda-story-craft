@@ -36,13 +36,13 @@ export const metadata: Metadata = {
 export default function ApproachPage() {
   return (
     <article className="ap grid-container">
-      <header className="ap-head">
+      <header data-reveal="text" className="ap-head">
         <p className="ap-eyebrow mono">Approach</p>
         <h1 className="ap-h1">We do not start by writing.</h1>
         <p className="ap-sub">{ONE_LINER}</p>
       </header>
 
-      <div className="ap-lede">
+      <div data-reveal="text" className="ap-lede">
         <p>
           Most content work starts at the end. Someone opens a calendar, picks
           a topic, and writes something.
@@ -53,7 +53,7 @@ export default function ApproachPage() {
         </p>
       </div>
 
-      <section className="ap-phase" id="capture">
+      <section data-reveal="text" className="ap-phase" id="capture">
         <div className="ap-phase-head">
           <span className="ap-phase-n mono">1</span>
           <span className="ap-phase-name mono">Capture</span>
@@ -91,7 +91,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      <section className="ap-phase" id="diagnosis">
+      <section data-reveal="text" className="ap-phase" id="diagnosis">
         <div className="ap-phase-head">
           <span className="ap-phase-n mono">2</span>
           <span className="ap-phase-name mono">Diagnosis</span>
@@ -133,7 +133,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      <section className="ap-phase" id="mother-piece">
+      <section data-reveal="text" className="ap-phase" id="mother-piece">
         <div className="ap-phase-head">
           <span className="ap-phase-n mono">3</span>
           <span className="ap-phase-name mono">The mother piece</span>
@@ -158,7 +158,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      <section className="ap-phase" id="editing">
+      <section data-reveal="text" className="ap-phase" id="editing">
         <div className="ap-phase-head">
           <span className="ap-phase-n mono">4</span>
           <span className="ap-phase-name mono">Editing</span>
@@ -177,7 +177,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      <section className="ap-phase" id="run-it">
+      <section data-reveal="text" className="ap-phase" id="run-it">
         <div className="ap-phase-head">
           <span className="ap-phase-n mono">·</span>
           <span className="ap-phase-name mono">And then we run it</span>
@@ -214,7 +214,7 @@ export default function ApproachPage() {
         </div>
       </section>
 
-      <section className="ap-block" aria-label="What CRUDA is not">
+      <section data-reveal="text" className="ap-block" aria-label="What CRUDA is not">
         <h2>What this is not</h2>
         <p>We are not a LinkedIn ghostwriting service.</p>
         <p>We are not a content calendar.</p>
@@ -226,7 +226,7 @@ export default function ApproachPage() {
         </p>
       </section>
 
-      <section className="ap-block" aria-label="When companies call CRUDA">
+      <section data-reveal="text" className="ap-block" aria-label="When companies call CRUDA">
         <h2>When companies call us</h2>
         <ul className="ap-list">
           <li>
@@ -246,7 +246,7 @@ export default function ApproachPage() {
         </ul>
       </section>
 
-      <section className="ap-block" aria-label="How a project starts">
+      <section data-reveal="text" className="ap-block" aria-label="How a project starts">
         <h2>How a project starts</h2>
         <p>
           One conversation. We ask what you are actually trying to do, and

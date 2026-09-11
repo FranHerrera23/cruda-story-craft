@@ -1,0 +1,73 @@
+/* Home · cierre — brief 11-sep §B.4.
+
+   Fondo --color-ink. Texto en --color-surface (blanco). Párrafo en
+   #9A9A9A — gris claro específico, NO --color-muted (que está
+   calibrado para blanco). El contraste sobre negro es otro.
+
+   El mail lleva subrayado SIEMPRE visible que desaparece en hover.
+   Es al revés del nav (que lo revela en hover) — y por eso se nota
+   que es el final del sitio, el único elemento con este gesto. */
+
+.home-close {
+  background: var(--color-ink);
+  color: var(--color-surface);
+  padding: clamp(120px, 20vh, 220px) var(--pad);
+}
+.home-close__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.home-close h2 {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  color: var(--color-surface);
+  max-width: 24ch;
+  margin: 0 0 clamp(32px, 4vh, 48px);
+}
+
+.home-close p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.38;
+  letter-spacing: -.008em;
+  color: #9A9A9A;
+  max-width: 30ch;
+  margin: 0 0 clamp(64px, 10vh, 110px);
+}
+
+.home-close__mail {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(22px, 2.2vw, 32px);
+  letter-spacing: -.01em;
+  color: var(--color-surface);
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  /* Sin transition en el color — el underline lleva la animación. */
+}
+
+/* Underline SIEMPRE visible al cargar, desaparece en hover — al
+   revés que el subrayado del nav. Origin: right, así al desaparecer
+   colapsa desde la derecha hacia el punto de anclaje izquierdo. */
+.home-close__mail::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(1);
+  transform-origin: right;
+  transition: transform var(--t-4) var(--ease);
+}
+.home-close__mail:hover::after,
+.home-close__mail:focus-visible::after {
+  transform: scaleX(0);
+}

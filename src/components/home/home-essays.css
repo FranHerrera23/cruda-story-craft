@@ -1,0 +1,106 @@
+/* Home · essays — brief 11-sep §A.5.
+
+   Fondo --paper-warm (mismo que Selected Work). Filete de 1px al
+   20% arriba del eyebrow y "All essays ↗" a la derecha en flex
+   baseline. Grilla tipográfica de tres columnas — sin imágenes,
+   sin excerpt: el título es el gancho. */
+
+.home-essays {
+  background: var(--paper-warm);
+  padding: 0 var(--pad) clamp(120px, 16vh, 180px);
+}
+.home-essays__inner {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+.home-essays__rule {
+  height: 1px;
+  background: color-mix(in srgb, var(--color-ink) 20%, transparent);
+}
+.home-essays__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 24px;
+  padding-top: 23px;
+}
+
+.home-essays__eyebrow {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin: 0;
+}
+
+.home-essays__all {
+  font-family: var(--grot);
+  font-size: 14px;
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color var(--t-2) var(--ease);
+}
+.home-essays__all:hover,
+.home-essays__all:focus-visible {
+  color: var(--color-ink);
+}
+
+.home-essays__lede {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.38;
+  letter-spacing: -.008em;
+  color: var(--color-ink);
+  max-width: 34ch;
+  margin: clamp(80px, 12vh, 120px) 0 clamp(56px, 8vh, 80px);
+}
+
+.home-essays__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 20px;
+  row-gap: 64px;
+}
+@media (min-width: 768px) {
+  .home-essays__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .home-essays__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Card: título 24/700 grot, meta 14 gris. Hover opacity .8 —
+   mismo vocabulario que work-card. Sin --signal en el título. */
+.essay-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--t-2) var(--ease);
+}
+.essay-card:hover,
+.essay-card:focus-visible {
+  opacity: .8;
+}
+
+.essay-card__title {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.18;
+  letter-spacing: -.02em;
+  color: var(--color-ink);
+  max-width: 22ch;
+  margin: 0;
+}
+
+.essay-card__meta {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 14px;
+  letter-spacing: .02em;
+  color: var(--color-muted);
+  margin: 16px 0 0;
+}

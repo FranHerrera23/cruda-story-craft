@@ -3,6 +3,8 @@ import HomeHero from '@/components/home/HomeHero';
 import WhyNow from '@/components/home/WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import InsideCruda from '@/components/home/InsideCruda';
+import HomeEssays from '@/components/home/HomeEssays';
+import HomeClose from '@/components/home/HomeClose';
 import HomeChrome from '@/components/home/HomeChrome';
 import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
@@ -53,6 +55,8 @@ export default function HomePage() {
       <WhyNow />
       <SelectedWork cards={selectedWorkCards} />
       <InsideCruda />
+      <HomeEssays />
+      <HomeClose />
     </>
   );
 }

@@ -1,27 +1,28 @@
 import './why-now.css'
 
-/* Home · why-now — "Half the Value".
-   Brief 10-sep §3. Copy verbatim, NO CHANGE.
+/* Home · why-now — design system unificado §6.
 
-   Va entre el hero y Selected Work. Es el problema planteado antes
-   de mostrar cualquier pieza de trabajo — el equivalente estructural
-   de "Ten Billion Hours" de la referencia. Sin este bloque las cards
-   peladas no tienen contexto.
+   Sale la composición de dos columnas con volado a la izquierda —
+   era la firma de la referencia NDS. Entra una estructura de una
+   sola columna, centrada, en medida de lectura (62ch). Es lo que
+   hace Tetragrammaton y no se parece a nada de la referencia
+   anterior.
 
-   El título lleva un superíndice `¹` que linkea al ancla `#ref-1`
-   del footnote debajo. Hasta que Fran confirme la fuente, el footnote
-   entra con `data-placeholder-text="true"` per §8. */
+   El título deja de ser "Half the Value¹" con superíndice y pasa
+   a ser una frase completa en serif: "Half the value of your
+   company is not on the balance sheet." Es epígrafe de sección,
+   no headline — por eso la excepción a la regla de "serif solo
+   en títulos ≤6 palabras".
+
+   El dato del volado se dice en la prosa. El footnote con el
+   placeholder de fuente se retira entero — sin cita no hay
+   superíndice que sostener, y no queda placeholder en producción. */
 
 export default function WhyNow() {
   return (
     <section id="why-now" className="why-now">
       <div className="why-now__in in">
-        <h2>
-          Half the Value
-          <sup>
-            <a href="#ref-1" aria-label="See footnote 1">1</a>
-          </sup>
-        </h2>
+        <h2>Half the value of your company is not on the balance sheet.</h2>
         <div className="why-now__body">
           <p>
             Roughly half of what your company is worth sits in you. Who
@@ -46,11 +47,6 @@ export default function WhyNow() {
           </p>
         </div>
       </div>
-      <ol className="why-now__refs refs">
-        <li id="ref-1" data-placeholder-text="true">
-          1. [Fuente pendiente]
-        </li>
-      </ol>
     </section>
   )
 }

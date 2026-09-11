@@ -1,90 +1,45 @@
-/* Home · why-now · "Half the Value".
-   Brief 11-sep §3.
+/* Home · why-now — design system unificado §6.
 
-   El título en --serif (nombra), los párrafos en --grot (explica).
-   El tamaño del párrafo baja de clamp(21-32) a clamp(20-28) para
-   que no compita con el hero — el bloque se lee como declaración
-   sin volverse el evento.
+   Una sola columna centrada, medida de lectura (62ch). Sin volado
+   a la izquierda, sin dos columnas, sin footnote — la composición
+   Tetragrammaton en vez de la firma de NDS.
 
-   Fondo blanco puro (var(--paper)) — el corte contra --paper
-   del hero y de Selected Work es la costura (§4 del brief anterior).
-   Sin border-top, sin <hr>. Cada sección pinta a sangre. */
+   Título en --serif (Instrument Serif 400) — excepción documentada
+   a la regla de "serif solo en títulos ≤6 palabras": este es
+   epígrafe de sección, no headline, y en serif a 54px sobre una
+   columna angosta se lee como epígrafe de libro. */
 
 .why-now {
   background: var(--paper);
-  padding: clamp(100px, 16vh, 200px) var(--pad);
+  padding: clamp(120px, 20vh, 220px) var(--pad);
   scroll-margin-top: 64px;
 }
 
-@media (max-width: 999px) {
-  .why-now {
-    padding: 80px var(--pad);
-  }
-}
-
 .why-now .in {
-  max-width: 1360px;
+  max-width: 62ch;
   margin: 0 auto;
-  display: grid;
-  gap: clamp(40px, 5vw, 96px);
-}
-
-@media (min-width: 1000px) {
-  .why-now .in {
-    grid-template-columns: 1fr 1.4fr;
-  }
 }
 
 .why-now h2 {
-  font-family: var(--grot);
-  font-weight: 700;
-  font-size: clamp(28px, 3vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -.02em;
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(30px, 3.6vw, 54px);
+  line-height: 1.14;
+  letter-spacing: -.012em;
   color: var(--ink);
-  margin: 0;
-  align-self: start;
-}
-.why-now h2 sup {
-  font-family: var(--grot);
-  font-size: .42em;
-  vertical-align: super;
-  line-height: 0;
-  margin-left: 2px;
-}
-.why-now h2 sup a {
-  text-decoration: none;
-  color: var(--ink);
+  margin: 0 0 clamp(48px, 7vh, 80px);
 }
 
 .why-now__body p,
 .why-now p {
   font-family: var(--grot);
   font-weight: 400;
-  font-size: clamp(20px, 1.8vw, 28px);
-  line-height: 1.38;
-  letter-spacing: -.008em;
-  color: #000;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.55;
+  color: var(--ink);
   margin: 0 0 1.5em;
-  max-width: 34ch;
 }
 .why-now__body p:last-of-type,
 .why-now p:last-of-type {
   margin-bottom: 0;
-}
-
-/* Footnote — placeholder de la fuente pendiente. Fuente pequeña y
-   discreta al final del bloque, con border-top del sistema. */
-.why-now__refs.refs {
-  max-width: 1360px;
-  margin: clamp(64px, 8vh, 110px) auto 0;
-  padding-top: 20px;
-  border-top: 1px solid var(--rule);
-  font-family: var(--grot);
-  font-size: 13px;
-  color: var(--ink);
-  list-style: none;
-}
-.why-now__refs li {
-  scroll-margin-top: 64px;
 }

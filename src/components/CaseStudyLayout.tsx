@@ -180,8 +180,8 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
           breadcrumb → fecha → H1 → subtitle → byline. Cero chip
           de vertical: las categorías viven en los índices. */}
       <header className="cs-head">
-        <Link href="/work" className="cs-back mono">
-          ← Resources
+        <Link href="/#selected-work" className="cs-back mono">
+          ← Selected work
         </Link>
         {hasDates && (
           <p className="cs-date mono">

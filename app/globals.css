@@ -34,15 +34,6 @@ html {
   scroll-padding-top: 100px;
 }
 
-/* Safety net contra scroll horizontal en mobile — sin esto,
-   cualquier elemento que se pase de 100vw (transform, tabla ancha,
-   heredado de shadcn con min-width oculto) empuja todo el body a la
-   derecha y las líneas de texto rebalsan el viewport. */
-html,
-body {
-  overflow-x: hidden;
-}
-
 section {
   scroll-margin-top: 100px;
 }

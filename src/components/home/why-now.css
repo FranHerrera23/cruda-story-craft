@@ -36,7 +36,7 @@
 }
 
 .why-now h2 {
-  font-family: var(--serif);
+  font-family: var(--grot);
   font-weight: 400;
   font-size: clamp(26px, 2.8vw, 40px);
   line-height: 1.1;

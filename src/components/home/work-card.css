@@ -45,7 +45,7 @@
 }
 
 .work-card__name {
-  font-family: var(--serif);
+  font-family: var(--grot);
   font-weight: 400;
   font-size: 19px;
   line-height: 1.2;

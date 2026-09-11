@@ -1,0 +1,29 @@
+/* Home · layout entre secciones · brief 10-sep §4.
+
+   La costura entre secciones es CAMBIO DE FONDO A SANGRE. No hay
+   separador, no hay <hr>, no hay margen. Cada sección pinta su fondo
+   full-width y su propio padding interno. Una sección termina y la
+   siguiente arranca sin aire intermedio.
+
+   Secuencia de fondos de la home:
+
+     hero           --paper-warm     #F2F2F0
+     why-now        --color-surface  #FFFFFF
+     selected-work  --paper-warm     #F2F2F0
+     inside-cruda   --color-surface  #FFFFFF   (siguiente brief)
+     cierre         --color-ink      #000000   (siguiente brief)
+
+   El corte de color es lo que separa. Este archivo es la defensa
+   contra que algo agregue margin/border por accidente: fuerza las
+   cinco clases de sección a margin 0, border-top 0. Si alguien
+   agrega un margen en una definición aparte, esto lo cancela por
+   cascada (última declarada gana en igualdad de especificidad). */
+
+.home-hero,
+.why-now,
+.home-work,
+.home-inside-cruda,
+.home-cierre {
+  margin: 0;
+  border-top: 0;
+}

@@ -3,6 +3,7 @@ import HomeHero from '@/components/home/HomeHero';
 import WhyNow from '@/components/home/WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import { selectedWorkCards } from '@/content/home/selected-work';
+import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
    CRUDA — Home (`/`). Brief 10-sep.

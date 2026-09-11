@@ -53,6 +53,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* En retratos siempre perdés piernas antes que frente. Cuando la
+     source es 2:3 alargada y el contenedor es 3:4, `center top`
+     ancla al top y recorta abajo — Fran §4. Aplicado a toda la
+     grilla, no solo a los casos con fuente 2:3. */
+  object-position: center top;
   filter: grayscale(100%);
   transition: transform 600ms cubic-bezier(.2, .6, .2, 1);
   display: block;

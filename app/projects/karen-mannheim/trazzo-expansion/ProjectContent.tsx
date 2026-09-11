@@ -23,7 +23,7 @@ const KarenTrazzoExpansionProject = () => {
   return (
     <div style={{ backgroundColor: '#FDFBF7' }}>
       {/* BREADCRUMB */}
-      <section className="py-6 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      <section className="py-6 px-10 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
         <Link href="/work/karen-mannheim#projects" className="inline-flex items-center gap-2 transition-colors duration-300 group" style={{ fontSize: '14px', color: '#3D3835' }}>
           <ArrowLeft className="w-4 h-4 group-hover:text-[#E8623A]" />
           <span className="group-hover:text-[#E8623A]">Back to Karen's Story</span>
@@ -51,7 +51,7 @@ const KarenTrazzoExpansionProject = () => {
       </section>
 
       {/* PROJECT SUMMARY */}
-      <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      <section className="py-24 md:py-32 px-10 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-[800px] mx-auto space-y-10">
           <p style={{ fontSize: 'clamp(17px, 2vw, 20px)', lineHeight: 1.9, color: '#3D3835' }}>
             Behind every international project is a story of how TRAZZO went from regional to global. This isn't a single project—it's the collection of work that shows the progression: from Lima's finest projects to Miami's high-end developments, from Middle Eastern hospitality to partnerships across Indonesia, Spain, and Hawaii.
@@ -68,7 +68,7 @@ const KarenTrazzoExpansionProject = () => {
       </section>
 
       {/* GALLERY */}
-      <section className="pb-20 px-10 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      <section className="pb-20 px-10 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-[1200px] mx-auto space-y-8">
           <img src={galleryItems[0].src} alt={galleryItems[0].caption} className="w-full" style={{ borderRadius: '12px', boxShadow: '0 4px 20px rgba(61, 56, 53, 0.1)' }} />
 

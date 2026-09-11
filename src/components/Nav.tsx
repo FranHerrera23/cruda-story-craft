@@ -73,9 +73,9 @@ export default function Nav() {
 
   /* Brief 11-sep §3 — nav en var(--grot), tamaño chico, mismo peso
      para todos. El activo se marca por --color-ink; los demás en
-     --color-muted hasta hover. */
+     --ink hasta hover. */
   const linkStyle = (isActive: boolean): React.CSSProperties => ({
-    color: isActive ? 'var(--color-ink)' : 'var(--color-muted)',
+    color: isActive ? 'var(--ink)' : 'var(--ink)',
     textDecoration: 'none',
     fontFamily: 'var(--grot)',
     fontWeight: 500,
@@ -159,8 +159,8 @@ export default function Nav() {
           right: 0;
           z-index: 110;
           /* Brief v4 UX §4.1 — bg opaco. NO transparente, NO blur. */
-          background: var(--color-surface);
-          border-bottom: 1px solid var(--color-rule);
+          background: var(--paper);
+          border-bottom: 1px solid var(--rule);
           /* §5.1 — la nav se retira al bajar con .away.
              Transform + transition; sin ocupar espacio del layout.
              Motion system: --t-3 y --ease. */
@@ -185,7 +185,7 @@ export default function Nav() {
           font-weight: 700;
           font-size: 19px;
           letter-spacing: 0.04em;
-          color: var(--color-ink);
+          color: var(--ink);
           text-decoration: none;
         }
         .cruda-global-nav-menu {
@@ -257,7 +257,7 @@ export default function Nav() {
           display: block;
           width: 22px;
           height: 1.5px;
-          background: var(--color-ink);
+          background: var(--ink);
         }
         .cruda-global-nav-mobile {
           padding: 0 var(--gut, clamp(24px, 5vw, 80px)) 24px;

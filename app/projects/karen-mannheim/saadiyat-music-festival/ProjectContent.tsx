@@ -72,10 +72,10 @@ const KarenSaadiyatProject = () => {
                 The Project
               </p>
               <div className="space-y-4">
-                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#000000' }}>
                   Saadiyat Music Festival. Abu Dhabi, UAE.
                 </p>
-                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#000000' }}>
                   Jennifer Lopez, Christina Aguilera, Mariah Carey. The lighting design for an international festival that put TRAZZO on the global stage.
                 </p>
               </div>
@@ -86,10 +86,10 @@ const KarenSaadiyatProject = () => {
                 The Challenge
               </p>
               <div className="space-y-4">
-                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#000000' }}>
                   The UAE partnership started with content, not cold outreach.
                 </p>
-                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A' }}>
+                <p style={{ fontSize: '20px', lineHeight: 1.7, color: '#000000' }}>
                   Karen's work was speaking to international audiences. Now she needed projects that matched the ambition.
                 </p>
               </div>
@@ -105,9 +105,9 @@ const KarenSaadiyatProject = () => {
       />
 
       {/* SECTION 4: THE CONTENT IN ACTION */}
-      <section className="py-20 md:py-28 px-6 md:px-20" style={{ backgroundColor: '#F5F1E8' }}>
+      <section className="py-20 md:py-28 px-6 md:px-20" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-[1200px] mx-auto">
-          <h2 className="mb-12" style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 600, color: '#0A0A0A', lineHeight: 1.2 }}>
+          <h2 className="mb-12" style={{ fontSize: 'clamp(32px, 4vw, 44px)', fontWeight: 600, color: '#000000', lineHeight: 1.2 }}>
             The content in action
           </h2>
 
@@ -125,7 +125,7 @@ const KarenSaadiyatProject = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#0A0A0A', marginBottom: '4px' }}>{video.title}</h3>
+                  <h3 style={{ fontSize: '18px', fontWeight: 600, color: '#000000', marginBottom: '4px' }}>{video.title}</h3>
                   <p style={{ fontSize: '14px', color: 'rgba(10, 10, 10, 0.6)' }}>{video.description}</p>
                 </div>
               </div>
@@ -153,15 +153,15 @@ const KarenSaadiyatProject = () => {
             How we told this story
           </p>
 
-          <p className="mb-12" style={{ fontSize: '20px', lineHeight: 1.7, color: '#0A0A0A', maxWidth: '600px' }}>
+          <p className="mb-12" style={{ fontSize: '20px', lineHeight: 1.7, color: '#000000', maxWidth: '600px' }}>
             We told Saadiyat as a story about complexity. Field execution, not showroom perfection.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {strategyCards.map((card, index) => (
-              <div key={index} style={{ backgroundColor: '#F5F1E8', padding: '32px', borderRadius: '4px' }}>
+              <div key={index} style={{ backgroundColor: '#FFFFFF', padding: '32px', borderRadius: '4px' }}>
                 <p style={{ fontSize: '14px', color: '#E8623A', fontWeight: 600, marginBottom: '16px' }}>{card.number}</p>
-                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#0A0A0A', marginBottom: '12px' }}>{card.title}</h3>
+                <h3 style={{ fontSize: '20px', fontWeight: 600, color: '#000000', marginBottom: '12px' }}>{card.title}</h3>
                 <p style={{ fontSize: '15px', lineHeight: 1.6, color: 'rgba(10, 10, 10, 0.6)' }}>{card.description}</p>
               </div>
             ))}
@@ -170,7 +170,7 @@ const KarenSaadiyatProject = () => {
       </section>
 
       {/* SECTION 6: IMAGE GALLERY */}
-      <section className="py-20 md:py-28 px-6 md:px-20" style={{ backgroundColor: '#0A0A0A' }}>
+      <section className="py-20 md:py-28 px-6 md:px-20" style={{ backgroundColor: '#000000' }}>
         <div className="max-w-[1200px] mx-auto">
           <img src={galleryImages[0].src.src} alt={galleryImages[0].caption} className="w-full mb-8" style={{ borderRadius: '8px', aspectRatio: '16/9', objectFit: 'cover' }} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -182,16 +182,16 @@ const KarenSaadiyatProject = () => {
       </section>
 
       {/* SECTION 7: CTA */}
-      <section className="py-20 md:py-28 px-6 md:px-20 text-center" style={{ backgroundColor: '#F5F1E8' }}>
+      <section className="py-20 md:py-28 px-6 md:px-20 text-center" style={{ backgroundColor: '#FFFFFF' }}>
         <div className="max-w-3xl mx-auto">
-          <h2 className="mb-8" style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 600, color: '#0A0A0A', lineHeight: 1.2 }}>
+          <h2 className="mb-8" style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 600, color: '#000000', lineHeight: 1.2 }}>
             See more of Karen's work
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/work/karen-mannheim#projects" className="inline-block px-10 py-4 font-semibold transition-all duration-300 hover:opacity-90" style={{ backgroundColor: '#0A0A0A', color: '#FFFFFF', borderRadius: '4px', fontSize: '16px' }}>
+            <Link href="/work/karen-mannheim#projects" className="inline-block px-10 py-4 font-semibold transition-all duration-300 hover:opacity-90" style={{ backgroundColor: '#000000', color: '#FFFFFF', borderRadius: '4px', fontSize: '16px' }}>
               ← Back to Karen's Page
             </Link>
-            <Link href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener" className="inline-block px-10 py-4 font-semibold transition-all duration-300" style={{ backgroundColor: 'transparent', color: '#0A0A0A', borderRadius: '4px', fontSize: '16px', border: '2px solid #0A0A0A' }}>
+            <Link href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener" className="inline-block px-10 py-4 font-semibold transition-all duration-300" style={{ backgroundColor: 'transparent', color: '#000000', borderRadius: '4px', fontSize: '16px', border: '2px solid #000000' }}>
               Start a Conversation →
             </Link>
           </div>

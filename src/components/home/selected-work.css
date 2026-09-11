@@ -8,11 +8,11 @@
    Filete 1px al 20% de opacidad — NO línea sólida.
 
    El label pasa a eyebrow como los del sitio viejo: 13px,
-   mayúsculas, tracking abierto, gris --color-muted, peso 600.
+   mayúsculas, tracking abierto, gris --ink, peso 600.
    Sale el "I" con spacer de 20px — era gesto de la referencia. */
 
 .home-work {
-  background: var(--paper-warm);
+  background: var(--paper);
   padding: 0 var(--pad) clamp(120px, 16vh, 180px);
 }
 
@@ -23,7 +23,7 @@
 
 .home-work__rule {
   height: 1px;
-  background: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
   margin-bottom: 24px;
 }
 
@@ -33,7 +33,7 @@
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   padding-top: 23px;
 }
 

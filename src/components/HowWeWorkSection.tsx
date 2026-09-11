@@ -117,7 +117,7 @@ const HowWeWorkSection = () => {
               <h4 style={{
                 fontSize: '22px',
                 fontWeight: '600',
-                color: '#0A0A0A',
+                color: '#000000',
                 marginBottom: '16px'
               }}>
                 {step.title}

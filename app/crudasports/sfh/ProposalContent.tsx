@@ -632,8 +632,8 @@ export default function ProposalContent() {
           --bg: #fafaf7;
           --bg-elevated: #ffffff;
           --bg-card: #f4f2ec;
-          --bg-deep: #0a0a0a;
-          --ink: #0a0a0a;
+          --bg-deep: #000000;
+          --ink: #000000;
           --ink-muted: #4a4744;
           --ink-dim: #8a8580;
           --accent: #d4242e;

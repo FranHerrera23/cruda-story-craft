@@ -46,9 +46,9 @@ export default function DeckContent() {
         :root {
           /* Brand */
           --cruda-red: #E8623A;
-          --cruda-dark: #0A0A0A;
+          --cruda-dark: #000000;
           --cruda-white: #FFFFFF;
-          --cruda-cream: #F5F1E8;
+          --cruda-cream: #FFFFFF;
 
           /* Greyscale */
           --gray-text: #4A4A4A;

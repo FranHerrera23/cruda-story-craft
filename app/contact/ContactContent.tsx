@@ -104,13 +104,13 @@ export default function ContactContent() {
         .contact-fallback a {
           color: var(--ink);
           text-decoration: none;
-          border-bottom: 1px solid var(--color-rule);
+          border-bottom: 1px solid var(--rule);
           padding-bottom: 2px;
           transition: color var(--t-1) var(--ease), border-color var(--t-1) var(--ease);
         }
         .contact-fallback a:hover {
-          color: var(--color-ink);
-          border-bottom-color: var(--color-ink);
+          color: var(--ink);
+          border-bottom-color: var(--ink);
         }
 
         .contact-email {
@@ -132,14 +132,14 @@ export default function ContactContent() {
           letter-spacing: -0.015em;
           color: var(--ink);
           text-decoration: none;
-          border-bottom: 1px solid var(--color-rule);
+          border-bottom: 1px solid var(--rule);
           padding-bottom: 4px;
           align-self: flex-start;
           transition: color var(--t-1) var(--ease), border-color var(--t-1) var(--ease);
         }
         .contact-alt-mail:hover {
-          color: var(--color-ink);
-          border-color: var(--color-ink);
+          color: var(--ink);
+          border-color: var(--ink);
         }
         .contact-alt-note {
           font-size: 15px;

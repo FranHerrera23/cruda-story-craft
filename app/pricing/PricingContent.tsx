@@ -121,7 +121,7 @@ export default function PricingContent() {
             style={{
               fontSize: '52px',
               fontWeight: '600',
-              color: '#0A0A0A',
+              color: '#000000',
               letterSpacing: '-0.02em',
               marginBottom: '40px',
               opacity: heroVisible ? 1 : 0,
@@ -179,7 +179,7 @@ export default function PricingContent() {
             style={{
               fontSize: '24px',
               fontWeight: '600',
-              color: '#0A0A0A',
+              color: '#000000',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
               transitionDelay: '700ms'
@@ -204,7 +204,7 @@ export default function PricingContent() {
             style={{
               fontSize: '24px',
               fontWeight: '600',
-              color: '#0A0A0A',
+              color: '#000000',
               marginBottom: '48px',
               opacity: insideVisible ? 1 : 0,
               transform: insideVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -267,7 +267,7 @@ export default function PricingContent() {
             style={{
               fontSize: '24px',
               fontWeight: '600',
-              color: '#0A0A0A',
+              color: '#000000',
               marginBottom: '32px',
               opacity: engagementVisible ? 1 : 0,
               transform: engagementVisible ? 'translateY(0)' : 'translateY(20px)'
@@ -349,7 +349,7 @@ export default function PricingContent() {
             href="/contact"
             className="cta-button-pricing inline-flex items-center gap-3 transition-all"
             style={{
-              backgroundColor: '#0A0A0A',
+              backgroundColor: '#000000',
               color: '#FFFFFF',
               padding: '18px 28px',
               fontSize: '15px',
@@ -361,7 +361,7 @@ export default function PricingContent() {
               transitionDelay: '400ms'
             }}
             onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E8623A'; }}
-            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#0A0A0A'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#000000'; }}
           >
             Book a Discovery Call
             <span style={{ fontSize: '18px' }}>→</span>
@@ -431,7 +431,7 @@ export default function PricingContent() {
                 padding: '28px 40px 28px 0',
                 fontSize: '17px',
                 lineHeight: '1.5',
-                color: '#0A0A0A',
+                color: '#000000',
                 fontWeight: '500'
               }}>
                 <span style={{ color: '#E8623A', marginRight: '12px' }}>→</span>
@@ -455,7 +455,7 @@ export default function PricingContent() {
       <section
         ref={testimonialRef}
         style={{
-          backgroundColor: '#0A0A0A',
+          backgroundColor: '#000000',
           padding: '100px 80px'
         }}
       >
@@ -574,7 +574,7 @@ export default function PricingContent() {
                   <span style={{
                     fontSize: '20px',
                     fontWeight: '500',
-                    color: '#0A0A0A',
+                    color: '#000000',
                     paddingRight: '24px'
                   }}>
                     {faq.question}

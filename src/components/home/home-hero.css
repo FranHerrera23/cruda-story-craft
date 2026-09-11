@@ -10,7 +10,7 @@
    corta en 4 líneas en desktop. */
 
 .home-hero {
-  background: var(--paper-warm);
+  background: var(--paper);
   padding: clamp(120px, 16vh, 200px) var(--pad);
 }
 
@@ -22,7 +22,7 @@
   letter-spacing: -.03em;
   max-width: 20ch;
   text-align: left;
-  color: var(--color-ink);
+  color: var(--ink);
   margin: 0;
 }
 

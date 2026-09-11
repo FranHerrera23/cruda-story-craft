@@ -9,7 +9,7 @@
    proporción de why-now. Mobile: una columna, etiqueta arriba. */
 
 .inside-cruda {
-  background: var(--color-surface);
+  background: var(--paper);
   padding: clamp(100px, 16vh, 180px) var(--pad);
 }
 .inside-cruda .in {
@@ -23,7 +23,7 @@
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   margin: 0 0 clamp(48px, 7vh, 88px);
 }
 
@@ -33,7 +33,7 @@
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1.1;
   letter-spacing: -.02em;
-  color: var(--color-ink);
+  color: var(--ink);
   max-width: 20ch;
   margin: 0 0 clamp(64px, 9vh, 110px);
 }
@@ -41,7 +41,7 @@
 /* Filas etiqueta-cuerpo. Filete arriba al 20% — coincide con el
    filete de Selected Work para leer como un mismo sistema. */
 .ic-row {
-  border-top: 1px solid color-mix(in srgb, var(--color-ink) 20%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
   padding: clamp(32px, 5vh, 56px) 0;
   display: grid;
   gap: 16px;
@@ -57,7 +57,7 @@
   font-family: var(--grot);
   font-size: 14px;
   font-weight: 400;
-  color: var(--color-muted);
+  color: var(--ink);
 }
 
 .ic-row__body p {
@@ -66,7 +66,7 @@
   font-size: clamp(18px, 1.5vw, 24px);
   line-height: 1.42;
   letter-spacing: -.006em;
-  color: var(--color-ink);
+  color: var(--ink);
   max-width: 42ch;
   margin: 0 0 1.1em;
 }
@@ -82,7 +82,7 @@
   font-size: clamp(20px, 1.6vw, 24px);
   line-height: 1.15;
   letter-spacing: -.02em;
-  color: var(--color-ink);
+  color: var(--ink);
   max-width: none;
   margin: 0 0 2px;
 }
@@ -90,7 +90,7 @@
   font-family: var(--grot);
   font-weight: 400;
   font-size: 14px;
-  color: var(--color-muted);
+  color: var(--ink);
   max-width: none;
   margin: 0 0 clamp(24px, 3vh, 36px);
 }

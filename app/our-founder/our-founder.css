@@ -256,7 +256,7 @@
 /* F2 — hover del primario: naranja + texto blanco. */
 .of .of-cta:hover {
   background-color: var(--color-accent);
-  color: var(--color-surface);
+  color: var(--paper);
 }
 /* Ghost — sobre ink, borde blanco + fondo transparente. */
 .of .of-cta--ghost {
@@ -267,7 +267,7 @@
 }
 .of .of-cta--ghost:hover {
   background: var(--color-accent);
-  color: var(--color-surface);
+  color: var(--paper);
   border-color: var(--color-accent);
 }
 

@@ -51,7 +51,7 @@
   font-size: clamp(20px, 1.6vw, 24px);
   line-height: 1.15;
   letter-spacing: -.02em;
-  color: var(--color-ink);
+  color: var(--ink);
   /* nowrap retirado — los nombres del brief son personas y descriptores
      ("An on-demand fashion founder", "Arman Keshishian") que se rompen
      naturalmente. Dos líneas en el head no rompen la grilla porque
@@ -61,7 +61,7 @@
 .work-card__arrow {
   font-family: var(--grot);
   font-size: 20px;
-  color: var(--color-ink);
+  color: var(--ink);
   opacity: 0;
   transform: translate(-4px, 4px);
   transition: opacity var(--t-2) var(--ease), transform var(--t-2) var(--ease);
@@ -100,7 +100,7 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: .02em;
-  color: var(--color-muted);
+  color: var(--ink);
   margin: 12px 0 0;
 }
 
@@ -108,7 +108,7 @@
    lleva el nombre del case adentro. Confidencial usa el mismo
    placeholder de forma permanente (data-placeholder="permanent"). */
 .work-card__figure--placeholder {
-  background: var(--color-rule);
+  background: var(--rule);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,7 +116,7 @@
 .work-card__placeholder-label {
   font-family: var(--grot);
   font-size: 15px;
-  color: var(--color-muted);
+  color: var(--ink);
   text-align: center;
   padding: 0 24px;
 }

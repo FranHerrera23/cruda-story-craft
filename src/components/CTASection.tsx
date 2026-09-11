@@ -19,7 +19,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
       ref={elementRef}
       className="cta-section"
       style={{
-        backgroundColor: '#0A0A0A',
+        backgroundColor: '#000000',
         padding: '160px 80px 100px',
         display: 'flex',
         flexDirection: 'column',
@@ -69,7 +69,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
           };
           const onEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.currentTarget.style.backgroundColor = '#FFFFFF';
-            e.currentTarget.style.color = '#0A0A0A';
+            e.currentTarget.style.color = '#000000';
           };
           const onLeave = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.currentTarget.style.backgroundColor = '#E8623A';

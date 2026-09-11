@@ -14,8 +14,8 @@
   --paper: #FFFFFF;
   --black: #000000;
   --ink: #1A1A1A;
-  --dim: #6E6E6E;
-  --rule: #E0E0E0;
+  --dim: #000000;
+  --rule: rgba(0, 0, 0, .14);
   --signal: #FF2E63;
 
   /* Fallbacks — el compositor sobrescribe con la identidad del caso
@@ -1001,7 +1001,7 @@
   font-style: normal;
   font-family: var(--s);
   font-size: 19px;
-  color: #9a9a9a;
+  color: #FFFFFF;
   display: block;
   margin-top: 20px;
   max-width: 46ch;

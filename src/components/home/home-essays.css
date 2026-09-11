@@ -1,12 +1,12 @@
 /* Home · essays — brief 11-sep §A.5.
 
-   Fondo --paper-warm (mismo que Selected Work). Filete de 1px al
+   Fondo --paper (mismo que Selected Work). Filete de 1px al
    20% arriba del eyebrow y "All essays ↗" a la derecha en flex
    baseline. Grilla tipográfica de tres columnas — sin imágenes,
    sin excerpt: el título es el gancho. */
 
 .home-essays {
-  background: var(--paper-warm);
+  background: var(--paper);
   padding: 0 var(--pad) clamp(120px, 16vh, 180px);
 }
 .home-essays__inner {
@@ -16,7 +16,7 @@
 
 .home-essays__rule {
   height: 1px;
-  background: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
 }
 .home-essays__head {
   display: flex;
@@ -32,20 +32,20 @@
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   margin: 0;
 }
 
 .home-essays__all {
   font-family: var(--grot);
   font-size: 14px;
-  color: var(--color-muted);
+  color: var(--ink);
   text-decoration: none;
   transition: color var(--t-2) var(--ease);
 }
 .home-essays__all:hover,
 .home-essays__all:focus-visible {
-  color: var(--color-ink);
+  color: var(--ink);
 }
 
 .home-essays__lede {
@@ -54,7 +54,7 @@
   font-size: clamp(20px, 1.8vw, 28px);
   line-height: 1.38;
   letter-spacing: -.008em;
-  color: var(--color-ink);
+  color: var(--ink);
   max-width: 34ch;
   margin: clamp(80px, 12vh, 120px) 0 clamp(56px, 8vh, 80px);
 }
@@ -91,7 +91,7 @@
   font-size: clamp(20px, 1.6vw, 24px);
   line-height: 1.18;
   letter-spacing: -.02em;
-  color: var(--color-ink);
+  color: var(--ink);
   max-width: 22ch;
   margin: 0;
 }
@@ -101,6 +101,6 @@
   font-weight: 400;
   font-size: 14px;
   letter-spacing: .02em;
-  color: var(--color-muted);
+  color: var(--ink);
   margin: 16px 0 0;
 }

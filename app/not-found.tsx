@@ -19,7 +19,7 @@ export default function NotFound() {
           style={{
             fontSize: 'clamp(48px, 6vw, 72px)',
             fontWeight: '600',
-            color: '#0A0A0A',
+            color: '#000000',
             marginBottom: '24px',
             letterSpacing: '-0.03em'
           }}
@@ -43,7 +43,7 @@ export default function NotFound() {
           style={{
             fontSize: '24px',
             fontWeight: '500',
-            color: '#0A0A0A',
+            color: '#000000',
             lineHeight: '1.6',
             marginBottom: '48px'
           }}
@@ -57,7 +57,7 @@ export default function NotFound() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '12px',
-            background: '#0A0A0A',
+            background: '#000000',
             color: '#FFFFFF',
             fontSize: '15px',
             fontWeight: '500',
@@ -67,7 +67,7 @@ export default function NotFound() {
             transition: 'background var(--t-2) var(--ease)'
           }}
           onMouseEnter={(e) => { e.currentTarget.style.background = '#E8623A'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.background = '#0A0A0A'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.background = '#000000'; }}
         >
           Back to Home
           <span style={{ fontSize: '18px' }}>→</span>

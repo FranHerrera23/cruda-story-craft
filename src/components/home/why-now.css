@@ -6,12 +6,12 @@
    que no compita con el hero — el bloque se lee como declaración
    sin volverse el evento.
 
-   Fondo blanco puro (var(--paper)) — el corte contra --paper-warm
+   Fondo blanco puro (var(--paper)) — el corte contra --paper
    del hero y de Selected Work es la costura (§4 del brief anterior).
    Sin border-top, sin <hr>. Cada sección pinta a sangre. */
 
 .why-now {
-  background: var(--color-surface);
+  background: var(--paper);
   padding: clamp(100px, 16vh, 200px) var(--pad);
   scroll-margin-top: 64px;
 }
@@ -41,7 +41,7 @@
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1.1;
   letter-spacing: -.02em;
-  color: var(--color-ink);
+  color: var(--ink);
   margin: 0;
   align-self: start;
 }
@@ -54,7 +54,7 @@
 }
 .why-now h2 sup a {
   text-decoration: none;
-  color: var(--color-muted);
+  color: var(--ink);
 }
 
 .why-now__body p,
@@ -79,10 +79,10 @@
   max-width: 1360px;
   margin: clamp(64px, 8vh, 110px) auto 0;
   padding-top: 20px;
-  border-top: 1px solid var(--color-rule);
+  border-top: 1px solid var(--rule);
   font-family: var(--grot);
   font-size: 13px;
-  color: var(--color-muted);
+  color: var(--ink);
   list-style: none;
 }
 .why-now__refs li {

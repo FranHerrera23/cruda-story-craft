@@ -155,7 +155,7 @@ img {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    color: #0A0A0A;
+    color: #000000;
   }
 
   /* H1-H6 base en Archivo bold. Las páginas-declaración overridean
@@ -206,7 +206,7 @@ a, button {
    para no mezclar el acento con la marca. */
 ::selection {
   background: var(--color-focus, #FFD200);
-  color: var(--color-ink, #0A0A0A);
+  color: var(--color-ink, #000000);
 }
 :focus-visible {
   outline: 2px solid var(--color-focus, #FFD200);

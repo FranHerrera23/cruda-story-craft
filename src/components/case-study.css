@@ -9,60 +9,37 @@
      a los nuevos para no romper componentes que aún no se refactoraron.
      ================================================================== */
 
-  /* -------- Color -------- */
-  --color-ink:        #0A0A0A;
-  --color-surface:    #FFFFFF;
-  --color-paper:      #F5F1E8;
-  /* Off-white neutro (no cream). Fondo del hero y de Selected Work en
-     la home — es lo que hace que el blanco y negro de los retratos y
-     el weight 400 del H1 respiren. Registrado como token per brief
-     10-sep §4. */
-  --paper-warm:       #F2F2F0;
-  /* Home · brief 11-sep §3 — tokens de la capa de identidad.
-     Roles fijos: la serif nombra, la grotesca explica.
-     --serif se usa en H1 del hero, H2 de why-now, nombres de card, y
-     el H1 de case studies. --grot se usa en párrafos, eyebrows,
-     labels, nav, metadatos, nombre de empresa bajo la card, notas.
-     Ningún párrafo largo va en serif; ningún nombre propio va en
-     grotesca. */
-  --serif:            var(--font-instrument-serif), 'Iowan Old Style', 'Palatino', Georgia, serif;
-  --grot:             var(--font-archivo), 'Archivo', system-ui, -apple-system, sans-serif;
-  /* Easings — los tokens canónicos --ease y --ease-exit viven en
-     globals.css (motion system). --e y --e-soft quedan como alias
-     ahí y se retiran cuando termina el barrido. */
-  /* Pad horizontal genérico de las secciones de home. Coincide con
-     el valor que ya se venía usando en home-hero.css, why-now.css y
-     selected-work.css como token local. Consolidado. */
-  --pad:              clamp(24px, 5vw, 80px);
-  /* --signal — rojo CRUDA per el brief 11-sep. Existe como token
-     pero §7 explícitamente NO va en el hover de nombres de card en
-     una grilla de nueve (se vuelve ruido). Registrado por si otro
-     acento editorial lo pide. */
-  --signal:           #FF2E63;
-  --color-muted:      #6B6B6B;
-  --color-rule:       rgba(10, 10, 10, 0.20);
-  /* ghost — texto que se desvanece contra el blanco. Igual valor
-     efectivo que el rgba(0,0,0,0.20) original que teníamos como
-     "color de acento apagado" antes de B0.5, pero declarado como
-     token con nombre propio en vez de alias. El uso histórico
-     (segunda línea del H1 de home v7 + `.accent` del H1 de /systems)
-     ya no aplica — ambos H1 se retiraron. Token queda disponible
-     para futuros acentos que necesiten esa densidad. D2. */
-  --color-ghost:      #CCCCCC;
-  /* F2 — el naranja CRUDA vuelve como token con reglas.
-     Usos permitidos, ninguno más:
-       1. El subrayado de "you" en la home
-       2. Hover de botones primarios (fondo naranja + texto blanco)
-       3. Un acento tipográfico por página como máximo
-     Prohibido: hairlines, bordes estructurales, bullets, numerales,
-     barras de progreso, cromo de interfaz. Si aparece más de una
-     vez por pantalla deja de ser acento. */
-  --color-accent:     #E8623A;
-  /* Anillo de foco y ::selection — chrome de interfaz, va en
-     amarillo. NO se mezcla con el acento. */
+  /* -------- Color · brief 11-sep design system unificado --------
+     Tres valores para todo el sitio: blanco, negro, filete.
+     --signal queda reservado al cursor del tipeo en el hero.
+     Cualquier gris está prohibido (§3, §10). */
+  --paper:   #FFFFFF;
+  --ink:     #000000;
+  --rule:    rgba(0, 0, 0, .14);
+  --signal:  #FF2E63;
+
+  /* Aliases legacy — mantienen los selectores viejos apuntando a
+     los tokens nuevos. Se retiran cuando ningún archivo los
+     referencia. */
+  --color-ink:      var(--ink);
+  --color-surface:  var(--paper);
+  --color-paper:    var(--paper);
+  --color-rule:     var(--rule);
+
+  /* Familias tipográficas. Reglas del brief §2:
+     --serif solo en títulos de ≤ 6 palabras (excepción documentada:
+     el H2 de why-now es una frase completa en serif porque es
+     epígrafe de sección, no headline).
+     --grot en todo lo demás. */
+  --serif:  var(--font-instrument-serif), 'Iowan Old Style', 'Palatino', Georgia, serif;
+  --grot:   var(--font-archivo), 'Archivo', system-ui, -apple-system, sans-serif;
+
+  /* Pad horizontal genérico. */
+  --pad:    clamp(24px, 5vw, 80px);
+
+  /* Chrome de interfaz — el amarillo del focus ring queda fuera de
+     la paleta editorial pero sirve al a11y. */
   --color-focus:      #FFD200;
-  /* --focus-ring-color se mantiene por compat pero los focus-visible
-     actuales apuntan directo a --color-focus. */
   --focus-ring-color: var(--color-focus);
 
   /* -------- Type -------- */
@@ -87,19 +64,11 @@
      --ease, --ease-exit, --t-1..4 y --stagger viven en globals.css.
      Los alias legacy --ease-ui/overlay y --dur-* siguen ahí. */
 
-  /* -------- Alias legacy (mantener hasta que todo migre) -------- */
-  --white:  var(--color-surface);
-  --ink:    var(--color-ink);
-  --ink-2:  var(--color-muted);
-  /* --accent (alias legacy) fue borrado en B0.5 — cada componente que
-     lo usaba se migró a --color-rule (decoración), --color-ink (énfasis)
-     o --color-accent (focus + hover CTA). Si aparece un `var(--accent)`
-     nuevo en el repo, es un bug: hay que decidir a qué apunta caso por
-     caso, no volver a aliasear. */
-  --petrol: #1C2E33;
-  --cream:  var(--color-paper);
-  --rule:   var(--color-rule);
-  --rule-2: rgba(10, 10, 10, 0.08);
+  /* -------- Alias legacy adicionales -------- */
+  --white:  var(--paper);
+  --ink-2:  var(--ink);
+  --cream:  var(--paper);
+  --rule-2: var(--rule);
 
   --fs-display:     var(--text-display);
   --fs-display-sm:  var(--text-display);
@@ -210,8 +179,8 @@
   left: 12px;
   z-index: 200;
   padding: var(--space-1) var(--space-2);
-  background: var(--color-ink);
-  color: var(--color-surface);
+  background: var(--ink);
+  color: var(--paper);
   font-family: 'IBM Plex Mono', monospace;
   font-size: var(--text-caption);
   letter-spacing: 0.12em;
@@ -243,7 +212,7 @@
 }
 
 /* Newsletter route — /newsletter, ubicación 4 del capture §4.8. */
-.newsletter-root { background: var(--color-surface); }
+.newsletter-root { background: var(--paper); }
 .newsletter-shell { padding-block: 244px 96px; }
 .newsletter-inner {
   grid-column: 1 / span 8;
@@ -260,7 +229,7 @@
   font-size: var(--text-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   margin: 0;
 }
 .newsletter-heading {
@@ -269,14 +238,14 @@
   font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.02em;
-  color: var(--color-ink);
+  color: var(--ink);
   margin: 0;
 }
 .newsletter-body {
   font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-body-large);
   line-height: 1.5;
-  color: var(--color-ink);
+  color: var(--ink);
   max-width: 46ch;
   margin: 0;
 }
@@ -294,8 +263,8 @@
   grid-column: 3 / span 9;
   margin-block: 96px;
   padding: var(--space-4);
-  border: 1px solid var(--color-rule);
-  background: var(--color-surface);
+  border: 1px solid var(--rule);
+  background: var(--paper);
 }
 @media (max-width: 767px) {
   .capture { grid-column: 1 / -1; padding: var(--space-3); }
@@ -310,14 +279,14 @@
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: var(--color-ink);
+  color: var(--ink);
   margin: 0 0 8px;
 }
 .capture__body {
   font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-body);
   line-height: 1.6;
-  color: var(--color-muted);
+  color: var(--ink);
   max-width: 46ch;
   margin: 0 0 var(--space-3);
 }
@@ -326,24 +295,24 @@
 .capture__row input {
   flex: 1;
   padding: 16px 20px;
-  border: 1px solid var(--color-ink);
+  border: 1px solid var(--ink);
   border-right: none;
   /* Mínimo 16px para que iOS no haga zoom al focus. */
   font-size: 16px;
   font-family: var(--font-archivo), -apple-system, sans-serif;
-  color: var(--color-ink);
+  color: var(--ink);
   background: transparent;
   min-width: 0;
 }
-.capture__row input::placeholder { color: var(--color-muted); }
+.capture__row input::placeholder { color: var(--ink); }
 .capture__row input:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: -2px;
 }
 .capture__row button {
   padding: 16px 28px;
-  background: var(--color-ink);
-  color: var(--color-surface);
+  background: var(--ink);
+  color: var(--paper);
   font-family: 'IBM Plex Mono', monospace;
   font-weight: 500;
   font-size: var(--text-caption);
@@ -357,7 +326,7 @@
 .capture__row button:hover:not(:disabled) {
   /* F2 — hover del botón primario: naranja + texto blanco. */
   background: var(--color-accent);
-  color: var(--color-surface);
+  color: var(--paper);
 }
 .capture__row button:disabled { opacity: 0.6; cursor: default; }
 .capture__status {
@@ -366,10 +335,10 @@
   font-size: var(--text-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
 }
 .capture__status--invalid,
-.capture__status--error { color: var(--color-ink); }
+.capture__status--error { color: var(--ink); }
 
 /* ==================================================================
    Footnotes — brief v4 UX §4.9
@@ -389,7 +358,7 @@
   vertical-align: baseline;
   top: 0;
   margin-left: 2px;
-  color: color-mix(in srgb, var(--color-ink) 30%, transparent);
+  color: color-mix(in srgb, var(--ink) 30%, transparent);
 }
 
 /* Sección "Fuentes" al pie del ensayo — alineada al body (4/6). */
@@ -397,7 +366,7 @@
   grid-column: 4 / span 6;
   margin-top: 96px;
   padding-top: 48px;
-  border-top: 1px solid var(--color-rule);
+  border-top: 1px solid var(--rule);
 }
 @media (max-width: 767px) {
   .essay .e-sources { grid-column: 1 / -1; }
@@ -408,14 +377,14 @@
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: var(--color-ink);
+  color: var(--ink);
   margin: 0 0 24px;
 }
 .essay .e-sources ol {
   list-style: decimal;
   padding-left: 24px;
   margin: 0;
-  color: var(--color-muted);
+  color: var(--ink);
   font-family: var(--font-archivo), -apple-system, sans-serif;
   font-size: var(--text-body);
   line-height: 1.6;
@@ -433,9 +402,9 @@
    Site footer — brief v4 UX §4.10
    ================================================================== */
 .site-footer {
-  background: var(--color-surface);
-  color: var(--color-ink);
-  border-top: 1px solid var(--color-rule);
+  background: var(--paper);
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
   padding-block: var(--space-5);
 }
 .site-footer__grid {
@@ -450,7 +419,7 @@
   font-size: clamp(56px, 8vw, 128px);
   line-height: 0.9;
   letter-spacing: -0.02em;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 .site-footer__capture-slot {
   grid-column: 1 / span 5;
@@ -471,7 +440,7 @@
   grid-column: 1 / -1;
   margin-top: auto;
   font-size: var(--text-caption);
-  color: var(--color-muted);
+  color: var(--ink);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: 'IBM Plex Mono', monospace;
@@ -562,14 +531,14 @@ html { font-size: 17px; }
   font-size:var(--text-caption);
   letter-spacing:0.12em;
   text-transform:uppercase;
-  color:var(--color-ink);
+  color:var(--ink);
   padding:6px 14px;
-  border:1px solid var(--color-rule);
+  border:1px solid var(--rule);
   text-decoration:none;
   transition:border-color var(--t-2) var(--ease),
              color var(--t-2) var(--ease);
 }
-.cs-moment-pill:hover{border-color:var(--color-ink)}
+.cs-moment-pill:hover{border-color:var(--ink)}
 
 /* BYLINE */
 .cs-byline{display:flex;align-items:center;gap:14px;flex-wrap:wrap;
@@ -595,7 +564,7 @@ html { font-size: 17px; }
   line-height:1.5;max-width:66ch}
 .cs-takeaways li+li{margin-top:14px}
 .cs-takeaways li::before{content:'';position:absolute;left:0;top:.6em;
-  width:6px;height:6px;background:var(--color-rule);border-radius:50%}
+  width:6px;height:6px;background:var(--rule);border-radius:50%}
 
 /* HERO */
 .cs-hero{margin:0 0 72px}
@@ -651,7 +620,7 @@ html { font-size: 17px; }
   margin:0 0 24px;padding:0 0 0 16px;border-left:2px solid var(--rule)}
 .cs-section p{font-size:18px;line-height:1.62;color:var(--ink-2)}
 .cs-section p+p{margin-top:20px}
-.cs-pull{margin:40px 0 0;padding-left:28px;border-left:2px solid var(--color-rule);
+.cs-pull{margin:40px 0 0;padding-left:28px;border-left:2px solid var(--rule);
   font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:var(--ink);
   font-weight:500;max-width:30ch}
 
@@ -686,7 +655,7 @@ html { font-size: 17px; }
 .cs-btn{display:inline-block;font-family:var(--mono);font-weight:500;font-size:12px;
   letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--white);
   padding:19px 38px;text-decoration:none;transition:background var(--t-2) var(--ease)}
-.cs-btn:hover{background:var(--color-accent);color:var(--color-surface)}
+.cs-btn:hover{background:var(--color-accent);color:var(--paper)}
 
 /* Nota B5: bloque .cb / .cb-head / .cb-body / .cb-cta / .cb-arrow
    (ClosingBlock) removido. Reemplazado por .e-cta-line / .cs-cta-line
@@ -705,7 +674,7 @@ html { font-size: 17px; }
   font-weight: 500;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: var(--color-ink);
+  color: var(--ink);
 }
 @media (max-width: 767px) {
   .essay .e-cta-line,
@@ -723,7 +692,7 @@ html { font-size: 17px; }
   font-size: var(--text-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   margin: 0 0 20px;
 }
 
@@ -844,7 +813,7 @@ html { font-size: 17px; }
   gap: 20px;
   padding: 24px 0;
   text-decoration: none;
-  color: var(--color-ink);
+  color: var(--ink);
   height: 100%;
   transition: opacity var(--t-2) var(--ease);
 }
@@ -855,7 +824,7 @@ html { font-size: 17px; }
   align-items: baseline;
   justify-content: space-between;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--rule);
 }
 .card__eyebrow {
   font-family: 'IBM Plex Mono', monospace;
@@ -863,14 +832,14 @@ html { font-size: 17px; }
   line-height: 1;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
 }
 .card__arrow {
   opacity: 0;
   transform: translate(-4px, 4px);
   transition: opacity var(--t-2) var(--ease),
               transform var(--t-2) var(--ease);
-  color: var(--color-ink);
+  color: var(--ink);
   font-size: 16px;
 }
 .card:hover .card__arrow { opacity: 1; transform: translate(0, 0); }
@@ -881,7 +850,7 @@ html { font-size: 17px; }
   font-size: var(--text-h3);
   line-height: 1.25;
   letter-spacing: -0.01em;
-  color: var(--color-ink);
+  color: var(--ink);
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -894,7 +863,7 @@ html { font-size: 17px; }
   font-size: var(--text-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   margin-top: auto;
 }
 .card__meta {
@@ -902,6 +871,6 @@ html { font-size: 17px; }
   font-size: var(--text-caption);
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--ink);
   margin-top: 4px;
 }

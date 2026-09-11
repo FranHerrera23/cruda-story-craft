@@ -20,7 +20,7 @@ const TestimonialsSection = () => {
     <section 
       ref={elementRef} 
       style={{ 
-        backgroundColor: '#0A0A0A',
+        backgroundColor: '#000000',
         padding: '120px 80px',
         display: 'flex',
         flexDirection: 'column',

@@ -13,7 +13,7 @@
   display: block;
   text-decoration: none;
   color: inherit;
-  transition: opacity 300ms var(--e);
+  transition: opacity var(--t-2) var(--ease);
 }
 .work-card:hover,
 .work-card:focus-visible {
@@ -64,7 +64,7 @@
   color: var(--color-ink);
   opacity: 0;
   transform: translate(-4px, 4px);
-  transition: opacity 300ms ease-out, transform 300ms ease-out;
+  transition: opacity var(--t-2) var(--ease), transform var(--t-2) var(--ease);
   flex-shrink: 0;
 }
 .work-card:hover .work-card__arrow,
@@ -88,18 +88,14 @@
 }
 .work-card__figure.rv.on {
   clip-path: inset(0 0 0 0);
-  transition: clip-path 900ms var(--e);
+  transition: clip-path var(--t-4) var(--ease);
 }
-.work-card__figure.rv.d1.on { transition-delay: 100ms; }
-.work-card__figure.rv.d2.on { transition-delay: 200ms; }
+.work-card__figure.rv.d1.on { transition-delay: var(--stagger); }
+.work-card__figure.rv.d2.on { transition-delay: calc(2 * var(--stagger)); }
 
-@media (prefers-reduced-motion: reduce) {
-  .work-card__figure.rv,
-  .work-card__figure.rv.on {
-    clip-path: none;
-    transition: none;
-  }
-}
+/* reduce global (motion §6) fija transition-duration a 1ms y
+   opacity/clip-path/transform en [data-reveal]. La .rv legacy
+   se convierte a [data-reveal="media"] en §5. */
 
 .work-card__img {
   width: 100%;
@@ -146,16 +142,5 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .work-card {
-    transition: none;
-  }
-  .work-card:hover {
-    opacity: 1;
-  }
-  .work-card__arrow {
-    opacity: 1;
-    transform: translate(0, 0);
-    transition: none;
-  }
-}
+/* reduce global (motion §6) fija .work-card__arrow en opacity 1 y
+   transform none, y baja transition-duration a 1ms — sin regla local. */

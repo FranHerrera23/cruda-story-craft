@@ -163,19 +163,15 @@ export default function Nav() {
           border-bottom: 1px solid var(--color-rule);
           /* §5.1 — la nav se retira al bajar con .away.
              Transform + transition; sin ocupar espacio del layout.
-             cubic-bezier suave para no rasgar la vista. */
+             Motion system: --t-3 y --ease. */
           transform: translateY(0);
-          transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+          transition: transform var(--t-3) var(--ease);
           will-change: transform;
         }
         .cruda-global-nav.away {
           transform: translateY(-100%);
         }
-        @media (prefers-reduced-motion: reduce) {
-          .cruda-global-nav {
-            transition: none;
-          }
-        }
+        /* reduce global vive en globals.css (motion §6). */
         .cruda-global-nav-in {
           max-width: var(--max, 1360px);
           margin: 0 auto;
@@ -211,16 +207,18 @@ export default function Nav() {
           display: inline-block;
           position: relative;
           transform: translateY(100%);
-          transition: transform 400ms var(--e);
+          /* Motion §3.5 — entrada desde máscara con --ease-exit y --t-3. */
+          transition: transform var(--t-3) var(--ease-exit);
         }
         .cruda-global-nav.ready .nav__item .link {
           transform: translateY(0);
         }
-        .cruda-global-nav-menu .nav__item:nth-child(1) .link { transition-delay: 0ms; }
-        .cruda-global-nav-menu .nav__item:nth-child(2) .link { transition-delay: 75ms; }
-        .cruda-global-nav-menu .nav__item:nth-child(3) .link { transition-delay: 150ms; }
-        .cruda-global-nav-menu .nav__item:nth-child(4) .link { transition-delay: 225ms; }
-        .cruda-global-nav-menu .nav__item:nth-child(5) .link { transition-delay: 300ms; }
+        /* Stagger de cinco items en múltiplos de --stagger (75ms). */
+        .cruda-global-nav-menu .nav__item:nth-child(1) .link { transition-delay: 0; }
+        .cruda-global-nav-menu .nav__item:nth-child(2) .link { transition-delay: var(--stagger); }
+        .cruda-global-nav-menu .nav__item:nth-child(3) .link { transition-delay: calc(2 * var(--stagger)); }
+        .cruda-global-nav-menu .nav__item:nth-child(4) .link { transition-delay: calc(3 * var(--stagger)); }
+        .cruda-global-nav-menu .nav__item:nth-child(5) .link { transition-delay: calc(4 * var(--stagger)); }
 
         /* Subrayado del link — crece desde la derecha en salida y
            desde la izquierda en hover. El cambio de origin es lo que
@@ -235,7 +233,7 @@ export default function Nav() {
           background: currentColor;
           transform: scaleX(0);
           transform-origin: right;
-          transition: transform 600ms var(--e-soft);
+          transition: transform var(--t-4) var(--ease);
         }
         .nav__item .link:hover::after,
         .nav__item .link:focus-visible::after {
@@ -243,15 +241,8 @@ export default function Nav() {
           transform-origin: left;
         }
 
-        @media (prefers-reduced-motion: reduce) {
-          .nav__item .link {
-            transform: none !important;
-            transition: none !important;
-          }
-          .nav__item .link::after {
-            transition: none !important;
-          }
-        }
+        /* reduce global (motion §6) apaga transitions y fija
+           .nav__item > * en transform:none. Sin regla local. */
 
         .cruda-global-nav-mobile-toggle {
           display: none;

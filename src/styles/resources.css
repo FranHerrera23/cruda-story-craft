@@ -106,7 +106,7 @@
   text-transform: none;
   padding: 10px 16px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition: background var(--t-2) var(--ease), color var(--t-2) var(--ease), border-color var(--t-2) var(--ease);
 }
 .rs-chip:hover { border-color: var(--ink); }
 .rs-chip.is-active {

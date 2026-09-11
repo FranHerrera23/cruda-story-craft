@@ -49,7 +49,10 @@
   background: var(--signal);
   vertical-align: -.04em;
   margin-left: .04em;
-  animation: cruda-type-blink 530ms steps(1) infinite;
+  /* Blink al ritmo de --t-3 (500ms) — el 530ms del brief de art
+     direction redondeado al token más cercano. Fran §7 del motion
+     system: "el cursor pasa a usar los tokens". */
+  animation: cruda-type-blink var(--t-3) steps(1) infinite;
 }
 .home-hero h1 .type-cursor.done {
   display: none;

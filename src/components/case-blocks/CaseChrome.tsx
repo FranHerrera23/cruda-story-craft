@@ -2,36 +2,38 @@
 
 import { useEffect } from 'react'
 
-/* §5.4 del spec (§5 recortado a 2 comportamientos) — entrada de
-   contenido. En mount, se agrega la clase `.rv` a los elementos
-   candidatos de reveal y se los observa; cuando entran al viewport,
-   se les agrega `.on` y salen del observer. Sin JS: los elementos
-   NO llevan .rv, se muestran normal. Sin FOUC.
+/* Motion §3.3/§3.4 · reveals unificados.
 
-   La lista de selectores es la combinación de las tres referencias
-   (INOUT, Girish, MTC). Los que no matchean en una composición
-   dada simplemente son no-op.
+   Los elementos candidatos se etiquetan con data-reveal:
+   - "media" (figures, imágenes, slots, sangre) → clip-path center-out
+   - "text"  (prose, blockquote, cells, slab, meta) → opacity + translateY(16px)
 
-   Respeta prefers-reduced-motion via CSS — si está reduce, el
-   .rv tiene opacity 1 y transform none (definido en case-blocks.css),
-   por lo que la clase no oculta nada. */
+   El IntersectionObserver agrega .on cuando entran al viewport y
+   los deja de observar. Los estilos de reveal viven en globals.css
+   como reglas globales por atributo — sin duplicación por componente.
 
-const REVEAL_SELECTORS = [
-  '.b-lead > .slot',
+   Sin JS: no hay data-reveal, los elementos se ven normales. Sin FOUC.
+   Sin prefers-reduced-motion: reduce lo maneja el bloque global. */
+
+const MEDIA_SELECTORS = [
   '.b-lead > img',
+  '.b-lead > .slot',
   '.b-band figure',
+  '.b-pair figure',
+  '.b-bleed',
+  '.b-system .slot',
+].join(',')
+
+const TEXT_SELECTORS = [
   '.b-band .prose .grp',
   '.b-prose .body',
   '.b-pull blockquote',
-  '.b-pair figure',
-  '.b-bleed',
   '.b-voice > div',
   '.b-figures > div',
   '.b-built > div',
   '.b-passages-featured-item',
   '.b-passages-archive li',
   '.b-system .cell',
-  '.b-system .slot',
   '.slab',
 ].join(',')
 
@@ -39,10 +41,15 @@ export default function CaseChrome() {
   useEffect(() => {
     const root = document.querySelector('.cb-root')
     if (!root) return
-    const targets = Array.from(
-      root.querySelectorAll<HTMLElement>(REVEAL_SELECTORS)
+
+    const mediaTargets = Array.from(
+      root.querySelectorAll<HTMLElement>(MEDIA_SELECTORS)
     )
-    if (targets.length === 0) return
+    const textTargets = Array.from(
+      root.querySelectorAll<HTMLElement>(TEXT_SELECTORS)
+    )
+
+    if (mediaTargets.length === 0 && textTargets.length === 0) return
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -55,8 +62,12 @@ export default function CaseChrome() {
       { rootMargin: '0px 0px -12% 0px', threshold: 0.06 }
     )
 
-    for (const el of targets) {
-      el.classList.add('rv')
+    for (const el of mediaTargets) {
+      el.setAttribute('data-reveal', 'media')
+      io.observe(el)
+    }
+    for (const el of textTargets) {
+      el.setAttribute('data-reveal', 'text')
       io.observe(el)
     }
 

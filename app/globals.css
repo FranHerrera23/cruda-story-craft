@@ -291,95 +291,64 @@ a, button {
 }
 
 /* ==================================================================
-   F3.2 — Reveal de media al entrar en viewport.
+   Motion §3.3 · Reveal de media.
 
-   La imagen se abre desde el centro con clip-path, no aparece con
-   fade. 600ms, --ease-ui, una sola vez (animation-timeline: view()).
+   Desde el centro hacia afuera con clip-path. Corrige el brief
+   anterior que abría de arriba hacia abajo. Se aplica a cualquier
+   elemento etiquetado con `data-reveal="media"`. Sin la clase .on,
+   el elemento está clipeado invisible; el IntersectionObserver
+   (CaseChrome, HomeChrome) agrega .on al entrar al viewport.
 
-   Se aplica a cualquier elemento con .reveal-media envuelto sobre la
-   figura/imagen. Los slots existentes (.e-section-image,
-   .cs-section-image, .about-hero-image, .about-member-photo, foto de
-   byline en essay/case study, foto de /our-founder) reciben el
-   mismo tratamiento.
+   Se aplica a: figures de las cards del home, lead de los case
+   studies, .b-bleed, y las imágenes/.slot del bloque system.
    ================================================================== */
-.reveal-media {
+[data-reveal="media"] {
+  clip-path: inset(50% 50% 50% 50%);
+}
+[data-reveal="media"].on {
   clip-path: inset(0 0 0 0);
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal-media {
-      animation: cruda-media-open linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 60%;
-    }
-  }
-}
-@keyframes cruda-media-open {
-  from { clip-path: inset(50% 50% 50% 50%); }
-  to   { clip-path: inset(0 0 0 0); }
+  transition: clip-path var(--t-4) var(--ease);
 }
 
-/* Aplicación del reveal-media a los slots con nombre existente:
-   byline photos (essay + case study), team photos (About), foto
-   principal de /our-founder. Cada uno mantiene su selector para no
-   requerir cambio de markup. */
+/* ==================================================================
+   Motion §3.4 · Reveal de texto.
+
+   Opacity 0→1 + translateY 16→0. Reemplaza a la clase .rv de los
+   case studies. Mismo IO (rootMargin -12%) desde CaseChrome.
+   ================================================================== */
+[data-reveal="text"] {
+  opacity: 0;
+  transform: translateY(16px);
+}
+[data-reveal="text"].on {
+  opacity: 1;
+  transform: none;
+  transition: opacity var(--t-4) var(--ease), transform var(--t-4) var(--ease);
+}
+
+/* ==================================================================
+   Motion §4 · Stagger por atributo.
+
+   Múltiplos de --stagger (75ms). Tope en 5 → 375ms. En una grilla
+   de nueve cards, el índice se cicla por fila con index % 3.
+   ================================================================== */
+[data-stagger="0"] { transition-delay: 0; }
+[data-stagger="1"] { transition-delay: var(--stagger); }
+[data-stagger="2"] { transition-delay: calc(2 * var(--stagger)); }
+[data-stagger="3"] { transition-delay: calc(3 * var(--stagger)); }
+[data-stagger="4"] { transition-delay: calc(4 * var(--stagger)); }
+[data-stagger="5"] { transition-delay: calc(5 * var(--stagger)); }
+
+/* Legacy: byline photos y team photos siguen aplicando clip-path
+   inset(0,0,0,0) para paint estable. La animación scroll-driven
+   (animation-timeline: view()) se retiró — el nuevo sistema usa el
+   IO de CaseChrome/HomeChrome. Los elementos que necesiten reveal
+   se etiquetan con data-reveal. */
 .essay .e-av,
 .cs-avatar,
 .about-member-photo,
 .of-photo {
   clip-path: inset(0 0 0 0);
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .essay .e-av,
-    .cs-avatar,
-    .about-member-photo,
-    .of-photo {
-      animation: cruda-media-open linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 60%;
-    }
-  }
-}
-
-/* ==================================================================
-   F3.3 — Reveal de texto y hairlines al entrar en viewport.
-
-   .reveal-text  — opacity 0→1 (600ms). Sin desplazamiento en Y.
-   .reveal-line  — scaleX 0→1 desde origin-left (600ms).
-
-   Ambos una sola vez, via animation-timeline: view(). Sin observer.
-   Baseline visible cuando el browser no soporta la API o cuando el
-   usuario tiene prefers-reduced-motion.
-   ================================================================== */
-.reveal-text {
-  opacity: 1;
-}
-.reveal-line {
-  transform: scaleX(1);
-  transform-origin: left center;
-}
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal-text {
-      animation: cruda-text-fade linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 40%;
-    }
-    .reveal-line {
-      animation: cruda-line-scale linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 40%;
-    }
-  }
-}
-@keyframes cruda-text-fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes cruda-line-scale {
-  from { transform: scaleX(0); }
-  to   { transform: scaleX(1); }
 }
 
 /* Square corners — brief. Regla de marca: nada tiene radio.

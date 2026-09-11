@@ -79,23 +79,10 @@
   overflow: hidden;
 }
 
-/* Brief 11-sep §5 — entrada por máscara, no por fade.
-   HomeChrome agrega .rv en mount y .on cuando la figura interseca.
-   Sin la clase .rv (sin JS), la figura muestra normal.
-   Stagger de tres via .d1 (100ms) y .d2 (200ms). */
-.work-card__figure.rv {
-  clip-path: inset(0 0 100% 0);
-}
-.work-card__figure.rv.on {
-  clip-path: inset(0 0 0 0);
-  transition: clip-path var(--t-4) var(--ease);
-}
-.work-card__figure.rv.d1.on { transition-delay: var(--stagger); }
-.work-card__figure.rv.d2.on { transition-delay: calc(2 * var(--stagger)); }
-
-/* reduce global (motion §6) fija transition-duration a 1ms y
-   opacity/clip-path/transform en [data-reveal]. La .rv legacy
-   se convierte a [data-reveal="media"] en §5. */
+/* Reveal: HomeChrome etiqueta cada figure con data-reveal="media"
+   y data-stagger="0|1|2" ciclado por index % 3. Los estilos viven
+   en globals.css (motion §3.3 + §4) — el clip-path abre desde el
+   centro con --t-4 / --ease. Reduce lo maneja globals §6. */
 
 .work-card__img {
   width: 100%;

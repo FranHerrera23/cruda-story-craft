@@ -1284,26 +1284,8 @@
   margin-top: 10px;
 }
 
-/* Reveals — §5.4 del spec (§5 recortado). CaseChrome monta el
-   IntersectionObserver y agrega .rv a los elementos candidatos.
-   Sin JS: los elementos NO llevan .rv y muestran normal (sin FOUC).
-   Con JS + antes de entrar al viewport: .rv oculta con opacity 0
-   y offset de 18px. Al intersecar: .on lo revela con transition.
-   Con prefers-reduced-motion: .rv no oculta, se muestra visible
-   directo, sin transición. */
-.cb-root .rv {
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity var(--t-4) var(--ease), transform var(--t-4) var(--ease);
-}
-.cb-root .rv.on {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .cb-root .rv {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
+/* Reveals — motion §3.3 + §3.4. CaseChrome etiqueta cada target con
+   data-reveal="media" o data-reveal="text" y monta el IO que agrega
+   .on al intersecar. Los estilos viven en globals.css. Sin JS: no
+   hay data-reveal → los elementos muestran normal (sin FOUC).
+   Reduce lo maneja el bloque global de globals.css (§6). */

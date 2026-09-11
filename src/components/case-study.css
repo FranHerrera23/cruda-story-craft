@@ -18,6 +18,29 @@
      el weight 400 del H1 respiren. Registrado como token per brief
      10-sep §4. */
   --paper-warm:       #F2F2F0;
+  /* Home · brief 11-sep §3 — tokens de la capa de identidad.
+     Roles fijos: la serif nombra, la grotesca explica.
+     --serif se usa en H1 del hero, H2 de why-now, nombres de card, y
+     el H1 de case studies. --grot se usa en párrafos, eyebrows,
+     labels, nav, metadatos, nombre de empresa bajo la card, notas.
+     Ningún párrafo largo va en serif; ningún nombre propio va en
+     grotesca. */
+  --serif:            var(--font-instrument-serif), 'Iowan Old Style', 'Palatino', Georgia, serif;
+  --grot:             var(--font-archivo), 'Archivo', system-ui, -apple-system, sans-serif;
+  /* Easings del brief 11-sep §3 — --e ancla la mayoría de las
+     transiciones, --e-soft el subrayado de nav (más largo, más
+     relajado). Ambos ease-out. */
+  --e:                cubic-bezier(0.33, 1, 0.68, 1);
+  --e-soft:           cubic-bezier(0.215, 0.61, 0.355, 1);
+  /* Pad horizontal genérico de las secciones de home. Coincide con
+     el valor que ya se venía usando en home-hero.css, why-now.css y
+     selected-work.css como token local. Consolidado. */
+  --pad:              clamp(24px, 5vw, 80px);
+  /* --signal — rojo CRUDA per el brief 11-sep. Existe como token
+     pero §7 explícitamente NO va en el hover de nombres de card en
+     una grilla de nueve (se vuelve ruido). Registrado por si otro
+     acento editorial lo pide. */
+  --signal:           #FF2E63;
   --color-muted:      #6B6B6B;
   --color-rule:       rgba(10, 10, 10, 0.20);
   /* ghost — texto que se desvanece contra el blanco. Igual valor

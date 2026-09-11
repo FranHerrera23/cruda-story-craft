@@ -24,9 +24,9 @@ import { useRouter, usePathname } from 'next/navigation'
    2. Firefox (sin startViewTransition) — F3.1 fallback:
       Estado local phase = 'idle' | 'leaving' | 'entering'. En
       'leaving' el wrapper aplica opacity 1→0 vía data-attribute + CSS
-      transition. Setimeout(300ms) hace scroll + push. Cuando cambia
+      transition. Setimeout LEAVE_MS hace scroll + push. Cuando cambia
       pathname, phase pasa a 'entering' (opacity 0→1 vía animation
-      cruda-page-fade-in). Setimeout(500ms) vuelve a 'idle'.
+      cruda-page-fade-in). Setimeout ENTER_MS vuelve a 'idle'.
 
    Fran: mismo comportamiento en Firefox y en Chrome — no depende del
    browser.

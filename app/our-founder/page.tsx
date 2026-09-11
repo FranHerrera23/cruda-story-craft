@@ -108,14 +108,15 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 01 — WHAT I DO NOW · cream */}
+        {/* 01 — WHAT I DO NOW */}
         <section
           id="now"
           data-section="now"
-          className="of-block of-block--cream"
+          data-reveal="text"
+          className="of-block"
         >
           <div className="of-inner">
-            <p className="mono of-eyebrow">01 · What I do now</p>
+            <p className="of-eyebrow">What I do now</p>
             <div className="of-reading of-body">
               <p>
                 CRUDA works with founder-led companies at a point of
@@ -138,14 +139,15 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 02 — BEFORE CRUDA · white */}
+        {/* 02 — BEFORE CRUDA */}
         <section
           id="before"
           data-section="before"
+          data-reveal="text"
           className="of-block of-block--white"
         >
           <div className="of-inner">
-            <p className="mono of-eyebrow">02 · Before CRUDA</p>
+            <p className="of-eyebrow">Before CRUDA</p>
 
             <div className="of-chapter">
               <h3 className="of-chapter-h">Salta, 2016–2020 · Events</h3>
@@ -295,15 +297,16 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 03 — WHAT PEOPLE I'VE WORKED FOR SAY · cream */}
+        {/* 03 — WHAT PEOPLE I'VE WORKED FOR SAY */}
         <section
           id="voices"
           data-section="voices"
-          className="of-block of-block--cream"
+          data-reveal="text"
+          className="of-block"
         >
           <div className="of-inner">
-            <p className="mono of-eyebrow">
-              03 · What people I&apos;ve worked for say
+            <p className="of-eyebrow">
+              What people I&apos;ve worked for say
             </p>
 
             <div className="of-testimonials">
@@ -369,15 +372,16 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 04 — THE SHORT VERSION · ink */}
+        {/* 04 — THE SHORT VERSION */}
         <section
           id="short"
           data-section="short"
+          data-reveal="text"
           className="of-block of-block--ink"
         >
           <div className="of-inner">
-            <p className="mono of-eyebrow of-eyebrow--on-ink">
-              04 · The short version
+            <p className="of-eyebrow of-eyebrow--on-ink">
+              The short version
             </p>
 
             <div className="of-short-body">

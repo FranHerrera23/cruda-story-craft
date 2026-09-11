@@ -37,13 +37,20 @@
   text-transform: uppercase;
 }
 
-/* ---------- Block frames ---------- */
+/* ---------- Block frames ----------
+   Design system unificado §7: fondo blanco uniforme. Sale el beige
+   de of-block--cream. La única excepción es of-block--ink (el hero
+   y el bloque "short version"), que se conserva. Filete entre
+   bloques via border-top del sistema. */
 .of .of-block {
-  padding: clamp(80px, 12vh, 160px) 0;
+  padding: clamp(100px, 16vh, 180px) 0;
 }
-.of .of-block--white { background: var(--white); color: var(--ink); }
-.of .of-block--cream { background: var(--cream); color: var(--ink); }
-.of .of-block--ink   { background: var(--ink);   color: var(--white); }
+.of .of-block--white { background: var(--paper); color: var(--ink); }
+.of .of-block--ink   { background: var(--ink);   color: var(--paper); }
+
+.of .of-block + .of-block:not(.of-block--ink) {
+  border-top: 1px solid var(--rule);
+}
 
 .of .of-inner {
   max-width: 1280px;
@@ -51,13 +58,22 @@
   padding: 0 var(--gut);
 }
 
-/* ---------- Eyebrow ---------- */
+/* ---------- Eyebrow ----------
+   Mismo estilo que el eyebrow del home: 13px, 600, uppercase,
+   tracking .14em, negro puro. Sale el mono con numeración —
+   §7 dice que la numeración era ruido y que el eyebrow se
+   diferencia por tamaño y tracking, no por familia. */
 .of .of-eyebrow {
-  color: var(--ink-2);
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
   margin-bottom: 40px;
 }
 .of .of-eyebrow--on-ink {
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--paper);
 }
 
 /* ---------- Reading measures ---------- */

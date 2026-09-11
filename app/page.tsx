@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import SelectedWork from '@/components/home/SelectedWork';
 import './home.css';
 
 /* ------------------------------------------------------------------
@@ -77,6 +78,9 @@ export default function HomePage() {
           </main>
         </div>
       </div>
+      {/* Home · Selected Work (brief 10-sep). Shell + grilla; los
+          9 cards se agregan en paso 3 del brief. */}
+      <SelectedWork />
     </>
   );
 }

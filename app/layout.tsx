@@ -168,9 +168,14 @@ export default function RootLayout({
             {/* F3.1 — PageShell intercepta clicks internos y dispara
                 document.startViewTransition en browsers que la soportan
                 (Chrome/Edge/Safari). El fade out+in vive en CSS bajo
-                ::view-transition-old(root) y ::view-transition-new(root). */}
+                ::view-transition-old(root) y ::view-transition-new(root).
+
+                Motion §3.1 — PageShell aplica .page-root al wrapper y
+                toggle .ready al montarse: la carga de página fade a
+                opacity 1 usando --t-3 / --ease. Sin JS, .page-root
+                queda a opacity 1 por default (scripting:none). */}
             <PageShell>
-              <main id="main" className="route-transition-wrapper" data-page>
+              <main id="main">
                 {children}
               </main>
             </PageShell>

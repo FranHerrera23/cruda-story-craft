@@ -810,17 +810,9 @@ html { font-size: 17px; }
   to   { transform: none; }
 }
 
-/* Page-enter fade (brief part 8). Not on the home — the home has its
-   own orchestrated load sequence. Any route wrapper opting in adds
-   [data-page]; the animation runs once per navigation. */
-[data-page] {
-  animation: cruda-page-in var(--t-3) var(--ease);
-}
-@keyframes cruda-page-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-/* reduce se maneja en globals.css (motion §6). */
+/* Page-enter fade legacy retirado — reemplazado por .page-root en
+   motion §3.1 (globals.css). PageShell aplica la clase y toggle
+   .ready post-hydration para el fade con --t-3 / --ease. */
 
 /* Brief part 8 non-negotiable floor — visible keyboard focus everywhere.
    Individual scopes (case-study, essay, of, sports) already declare their

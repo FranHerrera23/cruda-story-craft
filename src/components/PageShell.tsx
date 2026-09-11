@@ -43,9 +43,19 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
   const [phase, setPhase] = useState<Phase>('idle')
+  const [ready, setReady] = useState(false)
   const pendingHref = useRef<string | null>(null)
   const prevPath = useRef(pathname)
   const enterTimer = useRef<number | null>(null)
+
+  /* Motion §3.1 · carga de página.
+     `.page-root` arranca en opacity 0 (bajo scripting:enabled) y sube
+     a 1 al agregarse `.ready` en el próximo tick post-hydration. Sin
+     JS, el `.page-root` queda a opacity 1 por default — el fade es
+     progresivo enhancement, no bloqueo. */
+  useEffect(() => {
+    setReady(true)
+  }, [])
 
   /* Intercept: uso un listener por click con cleanup. Router + hasVT
      no cambian, así que el effect se monta una sola vez. */
@@ -119,5 +129,9 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
     }
   }, [pathname])
 
-  return <div data-page-phase={phase}>{children}</div>
+  return (
+    <div className={`page-root${ready ? ' ready' : ''}`} data-page-phase={phase}>
+      {children}
+    </div>
+  )
 }

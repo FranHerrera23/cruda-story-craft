@@ -17,7 +17,7 @@
    - --color-accent (naranja CRUDA #E8623A) reservado a hover de
      botón primario y acentos tipográficos discretos (regla F2)
    - Square-corners global (regla de marca)
-   - .route-transition-wrapper (usado por app/layout.tsx)
+   - .page-root (motion §3.1, aplicado por PageShell)
    - .display + .display--sm (utilitarias site-wide para H1 de
      páginas-declaración: Instrument Serif via next/font)
 
@@ -236,7 +236,7 @@ a, button {
    slide, cero scale en el eje Y ni en ningún otro.
 
    Fallback: browsers sin startViewTransition (Firefox al 2026)
-   caen al .route-transition-wrapper fadeIn de 400ms de entrada.
+   usan [data-page-phase] con opacity toggle desde PageShell.
    ================================================================== */
 ::view-transition-old(root) {
   animation: cruda-page-fade-out var(--dur-hover, 300ms)
@@ -273,28 +273,20 @@ a, button {
              var(--ease-overlay, cubic-bezier(0.33, 1, 0.68, 1)) both;
 }
 
-/* Route transition wrapper — layout.tsx envuelve el <main> con esta
-   clase. Legacy fade discreto de 400ms para casos borde (primera
-   pintura sin JS, hard-reload). Con PageShell activo se pisa por el
-   camino VT (Chrome/Edge/Safari) o por el fallback data-page-phase
-   (Firefox), pero se mantiene para no dejar la primera pintura sin
-   entrada suave. */
-.route-transition-wrapper {
-  animation: fadeInContent 400ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-@keyframes fadeInContent {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+/* Motion §3.1 · carga de página.
 
-@media (prefers-reduced-motion: reduce) {
-  .route-transition-wrapper,
-  [data-page-phase],
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
+   `.page-root` es opacity 0 al pintarse y sube a 1 al agregarse
+   `.ready` post-hydration. Solo opacidad, sin transform. Bajo
+   scripting:none (JS off), no gate: el default de opacity 1 se
+   respeta y la página aparece de una.
+
+   reduce (globals §6) fija `.page-root { opacity: 1 }` — ver bloque
+   más abajo. */
+@media (scripting: enabled) {
+  .page-root:not(.ready) { opacity: 0; }
+  .page-root.ready {
+    opacity: 1;
+    transition: opacity var(--t-3) var(--ease);
   }
 }
 

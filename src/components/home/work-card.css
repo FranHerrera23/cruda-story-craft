@@ -33,6 +33,15 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+  /* Brief 11-sep (Fran L) — altura mínima de dos líneas fija para
+     toda la grilla. Los nombres que rompen a dos líneas ("An
+     on-demand fashion founder", "JURA · Connecting the Dots" en
+     ancho angosto, etc.) empujan hacia abajo; los que caben en una
+     línea dejan aire arriba del baseline. La imagen abajo arranca
+     siempre a la misma altura — sin desalineación entre cards.
+
+     Cálculo: 2 × 19px × 1.2 = 45.6px. Round a 46px. */
+  min-height: 46px;
 }
 
 .work-card__name {
@@ -42,7 +51,10 @@
   line-height: 1.2;
   letter-spacing: 0;
   color: var(--color-ink);
-  white-space: nowrap;
+  /* nowrap retirado — los nombres del brief son personas y descriptores
+     ("An on-demand fashion founder", "Arman Keshishian") que se rompen
+     naturalmente. Dos líneas en el head no rompen la grilla porque
+     min-height ya fija la altura. */
 }
 
 .work-card__arrow {

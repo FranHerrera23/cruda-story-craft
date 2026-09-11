@@ -28,7 +28,6 @@ export default function HomeEssays() {
   return (
     <section id="essays" className="home-essays">
       <div className="home-essays__inner in">
-        <div className="home-essays__rule" aria-hidden="true" />
         <div className="home-essays__head">
           <p className="home-essays__eyebrow">Essays</p>
           <Link href="/essays" className="home-essays__all">

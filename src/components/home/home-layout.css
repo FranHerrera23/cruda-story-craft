@@ -1,23 +1,17 @@
-/* Home · layout entre secciones · brief 10-sep §4.
+/* Home · layout entre secciones · design system unificado §4.
 
-   La costura entre secciones es CAMBIO DE FONDO A SANGRE. No hay
-   separador, no hay <hr>, no hay margen. Cada sección pinta su fondo
-   full-width y su propio padding interno. Una sección termina y la
-   siguiente arranca sin aire intermedio.
+   El corte de color se retira. Con fondo blanco uniforme, la
+   transición la hace el filete y el aire. Filete de 1px al 14% de
+   negro entre secciones consecutivas, ancho completo del contenedor.
 
-   Secuencia de fondos de la home:
+   Excepciones:
+     · La primera sección (hero) no lleva filete arriba.
+     · El cierre (home-close, fondo --ink) no lleva filete arriba —
+       el corte de color al negro es la transición ahí, y por eso
+       funciona: es el único inverso del sitio.
 
-     hero           --paper     #FFFFFF
-     why-now        --color-surface  #FFFFFF
-     selected-work  --paper     #FFFFFF
-     inside-cruda   --color-surface  #FFFFFF   (siguiente brief)
-     cierre         --color-ink      #000000   (siguiente brief)
-
-   El corte de color es lo que separa. Este archivo es la defensa
-   contra que algo agregue margin/border por accidente: fuerza las
-   cinco clases de sección a margin 0, border-top 0. Si alguien
-   agrega un margen en una definición aparte, esto lo cancela por
-   cascada (última declarada gana en igualdad de especificidad). */
+   Reset defensivo de margins también para no dejar espacio hueco
+   entre secciones (última declaración gana por cascada). */
 
 .home-hero,
 .why-now,
@@ -27,4 +21,14 @@
 .home-close {
   margin: 0;
   border-top: 0;
+}
+
+/* Filete entre secciones consecutivas. Se aplica al segundo, tercer,
+   cuarto y quinto bloque de la secuencia — no al hero (primer bloque)
+   ni al cierre (el corte de color hace la transición). */
+.home-hero + .why-now,
+.why-now + .home-work,
+.home-work + .inside-cruda,
+.inside-cruda + .home-essays {
+  border-top: 1px solid var(--rule);
 }

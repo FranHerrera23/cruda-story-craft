@@ -4,11 +4,9 @@ import './selected-work.css'
 
 /* Home · Selected Work — grilla de nueve retratos.
 
-   Brief 11-sep v2 §5. La sección arranca con un filete de 1px al
-   20% antes del label. El label pasa a eyebrow del sitio viejo:
-   13px, mayúsculas, tracking abierto, gris. Sale el "I" con el
-   spacer de 20px — era gesto de la referencia y se retira con la
-   grilla de doce del hero.
+   Design system unificado §4 — el filete arriba lo pinta ahora
+   home-layout.css entre secciones, no la sección misma. El eyebrow
+   SELECTED WORK arranca directo dentro del padding uniforme.
 
    Entre label y grilla van 160px de aire (mobile: menos). El gap
    horizontal de la grilla es 20px.
@@ -35,7 +33,6 @@ export default function SelectedWork({
   return (
     <section id="selected-work" className="home-work">
       <div className="home-work__inner">
-        <div className="home-work__rule" aria-hidden="true" />
         <div className="home-work__label">Selected Work</div>
         <div className="home-work__grid">
           {cards.map((card, i) => (

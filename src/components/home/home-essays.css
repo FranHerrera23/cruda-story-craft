@@ -1,29 +1,24 @@
-/* Home · essays — brief 11-sep §A.5.
+/* Home · essays — design system unificado §4.
 
-   Fondo --paper (mismo que Selected Work). Filete de 1px al
-   20% arriba del eyebrow y "All essays ↗" a la derecha en flex
-   baseline. Grilla tipográfica de tres columnas — sin imágenes,
-   sin excerpt: el título es el gancho. */
+   Fondo --paper. Padding uniforme. El filete arriba lo pinta
+   home-layout.css entre secciones — no una regla propia. Grilla
+   tipográfica de tres columnas: sin imágenes, sin excerpt, el
+   título es el gancho. */
 
 .home-essays {
   background: var(--paper);
-  padding: 0 var(--pad) clamp(120px, 16vh, 180px);
+  padding: clamp(100px, 16vh, 180px) var(--pad);
 }
 .home-essays__inner {
   max-width: 1360px;
   margin: 0 auto;
 }
 
-.home-essays__rule {
-  height: 1px;
-  background: color-mix(in srgb, var(--ink) 20%, transparent);
-}
 .home-essays__head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 24px;
-  padding-top: 23px;
 }
 
 .home-essays__eyebrow {

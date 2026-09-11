@@ -1,51 +1,69 @@
 /* Home · Selected Work section.
-   Valores exactos del brief 10-sep §3.
+   Brief 11-sep §3.
 
-   Fondo: var(--paper-warm) = #F2F2F0. Off-white más neutro que el
-   cream — hace respirar el blanco y negro de los retratos. Token
-   registrado en case-study.css (brief 10-sep §4).
+   La sección arranca sin padding-top — el filete de 1px queda
+   pegado al corte contra white de why-now. El padding-bottom
+   sí queda generoso para separar de la sección siguiente.
 
-   Grilla: 3 columnas iguales desde 769px, columna 32px, row 96px.
-   En mobile (≤768px) pasa a 1 columna y row baja a 64px.
+   Filete 1px al 20% de opacidad — NO línea sólida.
 
-   Encabezado: "I  Selected Work" en 22px 400. Gap 72px entre el "I"
-   literal y el label. Margin-bottom 80px al grid.
-
-   Padding vertical de la sección: 120/160 desktop, 80/96 mobile. */
+   Label a 17px grotesca. "I" como span de 20px con gap 24px entre
+   el "I" y el label — la referencia deja aire propio entre el
+   número y el título, no los pega. */
 
 .home-work {
   background: var(--paper-warm);
-  padding: 120px 0 160px;
+  padding: 0 var(--pad) clamp(120px, 16vh, 180px);
 }
 
 .home-work__inner {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 80px);
+}
+
+.home-work__rule {
+  height: 1px;
+  background: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  margin-bottom: 24px;
 }
 
 .home-work__label {
-  font-size: 22px;
+  font-family: var(--grot);
+  font-size: 17px;
   font-weight: 400;
-  color: #000;
-  margin: 0 0 80px;
+  color: var(--color-ink);
   display: flex;
-  gap: 72px;
+  gap: 24px;
+  padding-top: 23px;
+}
+.home-work__label .i {
+  width: 20px;
+  display: inline-block;
 }
 
 .home-work__grid {
+  margin-top: clamp(96px, 14vh, 160px);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 32px;
+  grid-template-columns: 1fr;
+  column-gap: 20px;
   row-gap: 96px;
+}
+@media (min-width: 768px) {
+  .home-work__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .home-work__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
   .home-work {
-    padding: 80px 0 96px;
+    padding: 0 var(--pad) 96px;
   }
   .home-work__grid {
-    grid-template-columns: 1fr;
     row-gap: 64px;
   }
 }

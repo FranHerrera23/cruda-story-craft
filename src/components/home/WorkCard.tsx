@@ -1,34 +1,27 @@
 import Link from 'next/link'
 
-/* Card individual de la grilla de Selected Work en la home.
+/* Card de la grilla de Selected Work en la home.
+   Brief 11-sep §3.
 
-   Estructura: nombre arriba (con flecha en hover) · figura 3:4 al
-   medio · empresa abajo en gris. Grayscale filter en la foto, hover
-   scale muy suave.
+   Estructura:
+     work-card__head    (flex baseline, name + arrow)
+     work-card__figure  (aspect 4:5)
+     work-card__company (grot 15px gris)
 
-   Placeholder de imagen:
-     Cuando `imageSrc` no se declara, se rendereá una figura gris
-     con el nombre adentro en gris chico. No es una caja vacía —
-     una caja pelada se lee como imagen rota; con el nombre se lee
-     como pendiente. §5 del brief.
+   El nombre pasa a serif 19px — casi body. La imagen manda; el
+   nombre acompaña. Hover: la CARD ENTERA baja a opacity .8. Ninguna
+   parte cambia de color — el rojo en una grilla de nueve se vuelve
+   ruido.
 
-   Placeholder de texto:
-     Cuando `nameVerified` o `companyVerified` es false, ese string
-     se envuelve con `data-placeholder-text="true"`. Sin tratamiento
-     visual — el texto se ve normal. El atributo existe para grepear
-     qué falta antes de publicar. §5 del brief.
+   Placeholder de imagen (§5 brief 10-sep): cuando `imageSrc` no
+   está, la figura muestra el nombre centrado en gris. La card del
+   confidencial usa placeholder permanente.
 
-   Card del confidencial:
-     `permanentPlaceholder: true` marca que la card no espera foto,
-     nunca la va a tener. Placeholder gris queda como diseño final.
+   Placeholder de texto: `data-placeholder-text="true"` cuando
+   name/company no están verificados. Grepeable.
 
-   Route ausente:
-     Cuando `href` es undefined (BAUHOME y Mistiva mientras no tengan
-     data file ni ruta), la card se rendereá como <div> — no
-     clickable, no afforda navegación. La flecha ↗ no aparece.
-     `data-placeholder-route="true"` marca la card para grep. Cuando
-     Fran migre el case, se agrega el href y la card se vuelve
-     Link automáticamente. */
+   Route ausente: cuando `href` es undefined, la card se rendereá
+   como <div> no-clickable, sin flecha. `data-placeholder-route`. */
 export default function WorkCard({
   name,
   company,
@@ -61,14 +54,14 @@ export default function WorkCard({
 
   const inner = (
     <>
-      <p className="work-card__name">
-        <span>{nameNode}</span>
+      <div className="work-card__head">
+        <span className="work-card__name">{nameNode}</span>
         {href ? (
           <span className="work-card__arrow" aria-hidden="true">
             ↗
           </span>
         ) : null}
-      </p>
+      </div>
       {imageSrc ? (
         <figure className="work-card__figure">
           <img

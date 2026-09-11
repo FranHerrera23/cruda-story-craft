@@ -478,7 +478,13 @@
   padding-top: var(--space-4);
 }
 
-@media (max-width: 767px) {
+/* Stack a una columna en cualquier viewport donde la 12-col grid
+   deja las nav columns ~40px de ancho (col 12 / span 1). El
+   grid-container arranca a 768 con 12 cols; entre 768 y ~900 las
+   labels "LinkedIn", "About", "Case studies" no caben en una col
+   sola y desbordan del contenedor. Fix: stackear hasta 900px,
+   alineado con el mismo umbral del nav mobile. */
+@media (max-width: 900px) {
   .site-footer__grid { min-height: auto; }
   .site-footer__wordmark { grid-column: 1 / -1; }
   .site-footer__capture-slot { grid-column: 1 / -1; }

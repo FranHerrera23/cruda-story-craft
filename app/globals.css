@@ -34,11 +34,19 @@
 
    Dos easings, cuatro duraciones, stagger múltiplo de 75. Ninguna
    duración o easing literal en ningún otro archivo CSS o style
-   inline del proyecto — siempre token.
+   inline del proyecto público — siempre token.
 
-   Los tokens legacy (--dur-fast/hover/overlay/ui, --ease-ui/overlay,
-   --e, --e-soft) se preservan como alias a los nuevos para migración
-   progresiva. Se retiran cuando ningún archivo los referencia.
+   Cubierto por el barrido: home, case studies, case-blocks, nav,
+   footer, hovers site-wide (a, button), our-founder, contact,
+   not-found, essays.
+
+   Fuera del barrido, intencional:
+     · app/pricing/PricingContent.tsx — inline transitionDelay
+       stagger 100/200/300/700ms (no múltiplos de 75). La ruta es
+       noindex, fuera del nav y fuera del sitemap (L12); nadie la
+       ve. Reescala si algún día vuelve a producto.
+     · app/crudasports/sfh y app/deck — cubic-bezier literales.
+       Propuestas one-off, no forman parte del sitio.
    ================================================================== */
 :root {
   /* Easing · dos, y solo dos. */

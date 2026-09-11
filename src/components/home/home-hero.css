@@ -1,45 +1,39 @@
-/* Home · Hero. Valores exactos del brief 10-sep §2.
+/* Home · Hero. Brief 11-sep §2/§3.
 
-   Layout: dos columnas 1fr / 1.4fr desde 1000px, H1 en la segunda.
-   Mobile: una columna. Fondo `--paper-warm`, min-height 72vh.
-   Weight 400 — no 700. Regular a tamaño grande es lo que hace que
-   se lea editorial y no landing.
+   Baja del layout centrado a la disposición de la referencia:
+   texto arranca a una distancia FIJA del tope, no centrado
+   vertical. Columna 7 / span 6 de una grilla de 12 — el vacío de
+   la izquierda deja de ser hueco y pasa a ser margen del sistema.
 
-   Sin animación de entrada. Es lo primero que se ve al cargar. */
+   Serif del sitio (Instrument Serif, weight 400) a 52px máx en
+   desktop, no 72. La copia sigue verbatim del brief 10-sep §2.
+   El hero deja de destacar por escala y pasa a destacar por face
+   y silencio — es lo que corta el parecido con la referencia. */
 
 .home-hero {
-  --hero-pad: clamp(24px, 5vw, 80px);
   background: var(--paper-warm);
-  min-height: 72vh;
-  display: grid;
-  align-items: center;
-  padding: clamp(80px, 12vh, 180px) var(--hero-pad);
-}
-
-.home-hero__inner {
-  max-width: 1360px;
-  margin: 0 auto;
-  width: 100%;
-  display: grid;
-  gap: clamp(40px, 5vw, 96px);
+  padding: clamp(140px, 18vh, 226px) var(--pad) clamp(100px, 14vh, 180px);
+  min-height: 0;
 }
 
 @media (min-width: 1000px) {
-  .home-hero__inner {
-    grid-template-columns: 1fr 1.4fr;
+  .home-hero {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 20px;
   }
   .home-hero h1 {
-    grid-column: 2;
+    grid-column: 7 / span 6;
   }
 }
 
 .home-hero h1 {
-  font-family: var(--font-archivo), 'Archivo', system-ui, sans-serif;
+  font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(34px, 4.6vw, 72px);
-  line-height: 1.12;
-  letter-spacing: -.02em;
-  max-width: 26ch;
+  font-size: clamp(30px, 3.4vw, 52px);
+  line-height: 1.16;
+  letter-spacing: -.012em;
   color: #000;
   margin: 0;
+  text-wrap: pretty;
 }

@@ -172,9 +172,7 @@ export default function OurFounderPage() {
           className="of-block"
         >
           <div className="of-inner">
-            <p className="of-eyebrow">
-              What people I&apos;ve worked for say
-            </p>
+            <p className="of-eyebrow">What people say</p>
 
             <div className="of-testimonials">
               <figure className="of-testimonial">
@@ -193,37 +191,6 @@ export default function OurFounderPage() {
                 <figcaption className="of-testimonial-attrib">
                   <strong>Karen Mannheim</strong> — Lighting Designer,
                   Miami. Client. <em>(August 2026)</em>
-                </figcaption>
-              </figure>
-
-              <figure className="of-testimonial">
-                <blockquote>
-                  <p>
-                    Fran is creative, intuitive, and enthusiastic. He did a
-                    great job for us managing multiple campaigns, social
-                    media, and creatives. He actively contributes to a
-                    positive team culture and is just fun.
-                  </p>
-                </blockquote>
-                <figcaption className="of-testimonial-attrib">
-                  <strong>Stacy Ekholm</strong> — SVP Property Operations,
-                  Norhart. Managed Fran directly. <em>(March 2024)</em>
-                </figcaption>
-              </figure>
-
-              <figure className="of-testimonial">
-                <blockquote>
-                  <p>
-                    He has a comprehensive profile for account management:
-                    strategy, brand identity, copywriting, sales, PR, event
-                    management, and business development. I&apos;ve worked
-                    with him on projects as a Creative Director for real
-                    estate brands.
-                  </p>
-                </blockquote>
-                <figcaption className="of-testimonial-attrib">
-                  <strong>Oscar Gramajo</strong> — Creative Director.
-                  Managed Fran directly. <em>(March 2023)</em>
                 </figcaption>
               </figure>
 

@@ -1,28 +1,32 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import './home-hero.css'
 
-/* Home · Hero — brief 11-sep v2 §3.
+/* Home · Hero — design system unificado §5.
 
-   El H1 se escribe carácter por carácter al cargar. Reglas duras:
+   Peso 500 (no 700), clamp(30, 3.6vw, 54) — el hero deja de ser
+   un cartel y vuelve a leerse como una afirmación. Grot, no serif
+   (la regla de §2: serif solo en títulos ≤6 palabras; el hero
+   tiene 20 palabras). max-width 26ch.
 
-   1. El H1 completo va en el HTML servido — SSR renderea el texto
-      entero. Sin JS, el usuario ve el H1 igual (SEO, screen readers,
-      hard refresh, JS off).
-   2. Antes de mutar el DOM, se lockea `min-height` a la altura
-      natural del H1 con el texto completo. Elimina CLS: sin importar
-      qué haya adentro, la caja no cambia de alto.
-   3. Estructura durante el tipeo: span visible (chars ya escritos),
-      cursor, span invisible (chars faltantes con visibility:hidden).
-      Los tres son `aria-hidden`; el `aria-label` del H1 tiene el
-      texto completo — screen readers no ven la animación.
-   4. Cursor 0.06em × 0.82em en --signal, blink 530ms, `.done` lo
-      esconde al terminar — no queda titilando.
-   5. prefers-reduced-motion: reduce → no animación, texto completo
-      al instante, sin cursor.
-   6. `document.fonts.ready` antes de medir la altura — evita medir
-      con fallback y que la altura salte cuando carga Archivo. */
+   Fix del bug de fondo (§5.1): el h1 renderea DOS spans:
+     · .ghost — la copy completa, visibility: hidden. Reserva el
+       alto final desde el primer frame, sin importar cuánto haya
+       tipeado el usuario todavía.
+     · .typed — posición absoluta sobre el ghost, con lo que se
+       está escribiendo + el cursor.
+
+   El HTML servido lleva la copy completa en ghost + typed vacío,
+   así que sin JS el visible queda invisible pero el ghost pinta.
+   Al hidratar, JS reemplaza ghost/typed con el ciclo del tipeo.
+
+   aria-label del h1 tiene la copy completa; ambos spans van con
+   aria-hidden. Screen readers leen el aria-label.
+
+   Reduced motion: se saltea el tipeo y typed queda con la copy
+   completa desde el mount — el alto es el mismo (ghost lo reserva),
+   solo cambia si hay animación o no. */
 
 const FULL =
   'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
@@ -30,76 +34,49 @@ const SPEED = 22
 const START_DELAY = 300
 
 export default function HomeHero() {
-  const h1Ref = useRef<HTMLHeadingElement>(null)
+  const [typed, setTyped] = useState('')
+  const [done, setDone] = useState(false)
 
   useEffect(() => {
-    const h1 = h1Ref.current
-    if (!h1) return
-
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) return
+    if (reduce) {
+      setTyped(FULL)
+      setDone(true)
+      return
+    }
 
+    let i = 0
     let cancelled = false
     let timeoutId: number | undefined
-    let startId: number | undefined
 
-    const setup = () => {
+    const tick = () => {
       if (cancelled) return
-
-      /* Lock height BEFORE mutating, con el texto completo aún dentro. */
-      const naturalHeight = h1.offsetHeight
-      h1.style.minHeight = `${naturalHeight}px`
-
-      const visible = document.createElement('span')
-      visible.setAttribute('aria-hidden', 'true')
-      visible.className = 'type-visible'
-
-      const cursor = document.createElement('span')
-      cursor.setAttribute('aria-hidden', 'true')
-      cursor.className = 'type-cursor'
-
-      const invisible = document.createElement('span')
-      invisible.setAttribute('aria-hidden', 'true')
-      invisible.className = 'type-invisible'
-      invisible.textContent = FULL
-
-      h1.textContent = ''
-      h1.appendChild(visible)
-      h1.appendChild(cursor)
-      h1.appendChild(invisible)
-
-      let i = 0
-      const tick = () => {
-        if (cancelled) return
-        if (i >= FULL.length) {
-          cursor.classList.add('done')
-          return
-        }
-        i++
-        visible.textContent = FULL.slice(0, i)
-        invisible.textContent = FULL.slice(i)
-        timeoutId = window.setTimeout(tick, SPEED)
+      if (i >= FULL.length) {
+        setDone(true)
+        return
       }
-      startId = window.setTimeout(tick, START_DELAY)
+      i++
+      setTyped(FULL.slice(0, i))
+      timeoutId = window.setTimeout(tick, SPEED)
     }
 
-    if (document.fonts && typeof document.fonts.ready?.then === 'function') {
-      document.fonts.ready.then(setup)
-    } else {
-      setup()
-    }
+    const startId = window.setTimeout(tick, START_DELAY)
 
     return () => {
       cancelled = true
+      window.clearTimeout(startId)
       if (timeoutId !== undefined) window.clearTimeout(timeoutId)
-      if (startId !== undefined) window.clearTimeout(startId)
     }
   }, [])
 
   return (
     <section className="home-hero">
-      <h1 ref={h1Ref} aria-label={FULL}>
-        {FULL}
+      <h1 className="home-hero__h1" aria-label={FULL}>
+        <span className="ghost" aria-hidden="true">{FULL}</span>
+        <span className="typed" aria-hidden="true">
+          {typed}
+          {!done && <i className="cursor" />}
+        </span>
       </h1>
     </section>
   )

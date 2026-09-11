@@ -1,62 +1,59 @@
-/* Home · Hero. Brief 11-sep v2 §3.
+/* Home · Hero. Design system unificado §5.
 
-   Alineado a la izquierda, ancho completo del contenedor. Sin
-   grilla de 12, sin columna 7, sin vacío a la izquierda — ese
-   gesto era la firma de la referencia y con eso puesto cualquier
-   sitio se ve como esa referencia.
+   Peso 500, clamp(30, 3.6vw, 54) — el hero deja de ser un cartel
+   y vuelve a leerse como afirmación. Grot, no serif (regla §2:
+   serif solo en títulos ≤6 palabras).
 
-   Peso 700 en Archivo, clamp 34→76. El sitio viejo tenía peso en
-   el display y eso es parte de por qué se sostenía. Medida 20ch
-   corta en 4 líneas en desktop. */
+   Fix del bug de fondo (§5): el h1 mide desde el primer frame el
+   alto del texto COMPLETO, gracias al ghost span con
+   visibility:hidden. El span animado va superpuesto absolute. Sin
+   salto ni borde cortado al terminar el tipeo. */
 
 .home-hero {
   background: var(--paper);
-  padding: clamp(120px, 16vh, 200px) var(--pad);
+  padding: clamp(120px, 18vh, 200px) var(--pad);
+  min-height: auto;
 }
 
-.home-hero h1 {
+.home-hero__h1 {
   font-family: var(--grot);
-  font-weight: 700;
-  font-size: clamp(34px, 5.2vw, 76px);
-  line-height: 1.06;
-  letter-spacing: -.03em;
-  max-width: 20ch;
-  text-align: left;
+  font-weight: 500;
+  font-size: clamp(30px, 3.6vw, 54px);
+  line-height: 1.14;
+  letter-spacing: -.022em;
+  max-width: 26ch;
   color: var(--ink);
   margin: 0;
+  position: relative;
 }
 
-/* Efecto de tipeo — brief 11-sep v2 §3.
-
-   .type-visible: chars ya escritos.
-   .type-invisible: chars faltantes, ocupan lugar (reservan wrap) sin
-     mostrarse. `visibility: hidden` mantiene layout.
-   .type-cursor: bloque sólido en --signal, blink 530ms, se esconde
-     al terminar via .done.
-
-   Sin la clase .done, el cursor parpadea. Con .done, display:none —
-   no queda titilando (regla dura del brief).
-
-   prefers-reduced-motion se maneja del lado JS: la función setup
-   nunca corre, el H1 queda con el textContent completo del SSR. */
-.home-hero h1 .type-invisible {
+/* Ghost reserva alto y wrap desde el primer frame — invisible pero
+   ocupa la caja completa del texto final. Nunca cambia. */
+.home-hero__h1 .ghost {
   visibility: hidden;
 }
-.home-hero h1 .type-cursor {
+
+/* Layer animada superpuesta al ghost. La copy tipeada y el cursor
+   viven acá. Como es absolute, no empuja layout ni contribuye al
+   alto — el ghost lo hace. */
+.home-hero__h1 .typed {
+  position: absolute;
+  inset: 0;
+}
+
+/* Cursor — bloque sólido en --signal, blink 500ms (--t-3), y
+   desaparece al terminar el tipeo porque el JS deja de renderearlo
+   (no depende de .done). */
+.home-hero__h1 .cursor {
   display: inline-block;
   width: .06em;
   height: .82em;
   background: var(--signal);
   vertical-align: -.04em;
   margin-left: .04em;
-  /* Blink al ritmo de --t-3 (500ms) — el 530ms del brief de art
-     direction redondeado al token más cercano. Fran §7 del motion
-     system: "el cursor pasa a usar los tokens". */
   animation: cruda-type-blink var(--t-3) steps(1) infinite;
 }
-.home-hero h1 .type-cursor.done {
-  display: none;
-}
+
 @keyframes cruda-type-blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }

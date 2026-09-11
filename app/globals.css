@@ -53,16 +53,6 @@
 
   /* Stagger · múltiplos de 75ms, tope en 5 → 375ms. */
   --stagger: 75ms;
-
-  /* Aliases legacy — se migran en pasos 2–6. */
-  --ease-ui:      var(--ease);
-  --ease-overlay: var(--ease-exit);
-  --e:            var(--ease-exit);
-  --e-soft:       var(--ease);
-  --dur-fast:     var(--t-1);
-  --dur-hover:    var(--t-2);
-  --dur-overlay:  var(--t-3);
-  --dur-ui:       var(--t-4);
 }
 
 html {

@@ -3,8 +3,8 @@ import Link from 'next/link'
 /* Card individual de la grilla de Selected Work en la home.
 
    Estructura: nombre arriba (con flecha en hover) · figura 3:4 al
-   medio · empresa abajo en gris. Toda la card es un <Link> al case
-   study — grayscale filter en la foto, hover scale muy suave.
+   medio · empresa abajo en gris. Grayscale filter en la foto, hover
+   scale muy suave.
 
    Placeholder de imagen:
      Cuando `imageSrc` no se declara, se rendereá una figura gris
@@ -20,7 +20,15 @@ import Link from 'next/link'
 
    Card del confidencial:
      `permanentPlaceholder: true` marca que la card no espera foto,
-     nunca la va a tener. Placeholder gris queda como diseño final. */
+     nunca la va a tener. Placeholder gris queda como diseño final.
+
+   Route ausente:
+     Cuando `href` es undefined (BAUHOME y Mistiva mientras no tengan
+     data file ni ruta), la card se rendereá como <div> — no
+     clickable, no afforda navegación. La flecha ↗ no aparece.
+     `data-placeholder-route="true"` marca la card para grep. Cuando
+     Fran migre el case, se agrega el href y la card se vuelve
+     Link automáticamente. */
 export default function WorkCard({
   name,
   company,
@@ -33,7 +41,7 @@ export default function WorkCard({
 }: {
   name: string
   company: string
-  href: string
+  href?: string
   imageSrc?: string
   imageAlt?: string
   nameVerified?: boolean
@@ -51,13 +59,15 @@ export default function WorkCard({
     <span data-placeholder-text="true">{company}</span>
   )
 
-  return (
-    <Link href={href} className="work-card">
+  const inner = (
+    <>
       <p className="work-card__name">
         <span>{nameNode}</span>
-        <span className="work-card__arrow" aria-hidden="true">
-          ↗
-        </span>
+        {href ? (
+          <span className="work-card__arrow" aria-hidden="true">
+            ↗
+          </span>
+        ) : null}
       </p>
       {imageSrc ? (
         <figure className="work-card__figure">
@@ -76,6 +86,19 @@ export default function WorkCard({
         </figure>
       )}
       <p className="work-card__company">{companyNode}</p>
-    </Link>
+    </>
+  )
+
+  if (href) {
+    return (
+      <Link href={href} className="work-card">
+        {inner}
+      </Link>
+    )
+  }
+  return (
+    <div className="work-card" data-placeholder-route="true">
+      {inner}
+    </div>
   )
 }

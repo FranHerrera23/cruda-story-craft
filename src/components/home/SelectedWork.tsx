@@ -20,7 +20,9 @@ import './selected-work.css'
 export type WorkCardData = {
   name: string
   company: string
-  href: string
+  /* href opcional — BAUHOME y Mistiva no tienen ruta todavía y la
+     card se rendereá no-clickable hasta que migren. Ver WorkCard. */
+  href?: string
   imageSrc?: string
   imageAlt?: string
   nameVerified?: boolean

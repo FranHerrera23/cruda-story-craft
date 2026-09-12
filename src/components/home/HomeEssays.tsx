@@ -33,7 +33,7 @@ export default function HomeEssays() {
     <section id="essays" className="home-essays">
       <div className="home-essays__inner in">
         <div className="home-essays__head">
-          <p className="home-essays__eyebrow">Essays</p>
+          <p className="home-essays__eyebrow">Read</p>
           <Link href="/essays" className="home-essays__all">
             All essays ↗
           </Link>

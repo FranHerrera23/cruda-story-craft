@@ -12,7 +12,7 @@
 .home-close {
   background: var(--ink);
   color: var(--paper);
-  padding: clamp(120px, 20vh, 220px) var(--pad);
+  padding: var(--s5) var(--pad);
 }
 .home-close__inner {
   max-width: 1360px;

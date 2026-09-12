@@ -61,6 +61,36 @@
 
   /* Stagger · múltiplos de 75ms, tope en 5 → 375ms. */
   --stagger: 75ms;
+
+  /* ==================================================================
+     Home rework — brief 12-sep · escalas del sitio.
+
+     Regla dura: ningún valor de espaciado, layout o tamaño
+     tipográfico fuera de estas escalas. Si un componente pide un
+     sexto valor, el componente está mal armado.
+     ================================================================== */
+
+  /* Layout — dos anchos de caja permitidos: --measure para prosa
+     corrida, ancho completo del contenedor para grillas. --pad ya
+     vive en case-study.css :root; se preserva su valor. */
+  --measure: 62ch;
+  --gutter:  clamp(20px, 2.5vw, 40px);
+
+  /* Espaciado — cinco valores, cerrada. */
+  --s1: clamp(8px, 1vw, 12px);     /* dentro de un bloque */
+  --s2: clamp(16px, 2vw, 24px);    /* entre elementos hermanos */
+  --s3: clamp(32px, 4vw, 56px);    /* título → cuerpo */
+  --s4: clamp(64px, 8vw, 112px);   /* entre bloques de sección */
+  --s5: clamp(100px, 16vh, 180px); /* padding vertical de sección */
+
+  /* Escala tipográfica — los `--t-*` numéricos siguen siendo motion
+     (duración); estos `--t-*` semánticos son tamaño. Nombres distintos,
+     no colisionan. */
+  --t-display: clamp(30px, 3.6vw, 54px);  /* H1 hero, H2 de sección */
+  --t-lead:    clamp(18px, 1.4vw, 22px);  /* dek, prosa */
+  --t-body:    17px;                       /* card, meta */
+  --t-small:   15px;                       /* línea de card */
+  --t-eyebrow: 13px;                       /* labels */
 }
 
 html {

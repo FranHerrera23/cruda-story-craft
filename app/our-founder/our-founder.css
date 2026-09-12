@@ -38,7 +38,7 @@
    y el bloque "short version"), que se conserva. Filete entre
    bloques via border-top del sistema. */
 .of .of-block {
-  padding: clamp(100px, 16vh, 180px) 0;
+  padding: var(--s5) 0;
 }
 .of .of-block--white { background: var(--paper); color: var(--ink); }
 .of .of-block--ink   { background: var(--ink);   color: var(--paper); }
@@ -99,7 +99,7 @@
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  padding: clamp(80px, 12vh, 160px) var(--gut);
+  padding: var(--s5) var(--gut);
   overflow: hidden;
   position: relative;
 }

@@ -7,7 +7,7 @@
 
 .home-essays {
   background: var(--paper);
-  padding: clamp(100px, 16vh, 180px) var(--pad);
+  padding: var(--s5) var(--pad);
 }
 .home-essays__inner {
   max-width: 1360px;

@@ -11,7 +11,7 @@
 
 .home-work {
   background: var(--paper);
-  padding: clamp(100px, 16vh, 180px) var(--pad);
+  padding: var(--s5) var(--pad);
 }
 
 .home-work__inner {

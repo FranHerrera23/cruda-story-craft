@@ -11,7 +11,7 @@
 
 .why-now {
   background: var(--paper);
-  padding: clamp(120px, 20vh, 220px) var(--pad);
+  padding: var(--s5) var(--pad);
   scroll-margin-top: 64px;
 }
 

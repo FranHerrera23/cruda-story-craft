@@ -10,7 +10,7 @@
 
 .inside-cruda {
   background: var(--paper);
-  padding: clamp(100px, 16vh, 180px) var(--pad);
+  padding: var(--s5) var(--pad);
 }
 .inside-cruda .in {
   max-width: 1360px;
@@ -42,7 +42,7 @@
    filete de Selected Work para leer como un mismo sistema. */
 .ic-row {
   border-top: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-  padding: clamp(32px, 5vh, 56px) 0;
+  padding: var(--s3) 0;
   display: grid;
   gap: 16px;
 }

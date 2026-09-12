@@ -11,7 +11,7 @@
 
 .home-hero {
   background: var(--paper);
-  padding: clamp(120px, 18vh, 200px) var(--pad);
+  padding: var(--s5) var(--pad);
   min-height: auto;
 }
 

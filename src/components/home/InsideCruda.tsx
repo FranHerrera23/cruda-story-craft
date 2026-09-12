@@ -28,9 +28,8 @@ export default function InsideCruda() {
           <div className="ic-row__label">The work</div>
           <div className="ic-row__body">
             <p>
-              The work covers naming and brand strategy, verbal and
-              visual identity, founder narrative, and the writing that
-              carries all of it — essays, long-form pieces, interviews,
+              The work is founder narrative and the writing that
+              carries it — essays, long-form pieces, interviews,
               the argument a company makes in public.
             </p>
           </div>

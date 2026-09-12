@@ -124,9 +124,10 @@ export default function OurFounderPage() {
               <p>
                 A Lima lighting studio entering Miami after 33 years. A
                 hospitality executive of 25 years moving into healthcare. A
-                Guatemalan hardwood founder arriving in the United States. A
-                fashion founder whose company reached $300M in revenue. A
-                design firm handing the work to the next generation.
+                flooring founder opening the US market to brands from
+                outside it. A fashion founder whose company reached
+                $300M in revenue. A design firm handing the work to the
+                next generation.
               </p>
               <p>None of them came for more followers.</p>
             </div>

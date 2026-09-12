@@ -13,8 +13,8 @@
   padding: var(--s5) var(--pad);
 }
 .inside-cruda .in {
-  max-width: 1360px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin-inline: 0;
 }
 
 .inside-cruda__eyebrow {

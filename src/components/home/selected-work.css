@@ -15,8 +15,8 @@
 }
 
 .home-work__inner {
-  max-width: 1360px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin-inline: 0;
 }
 
 /* Filete interno retirado — el filete entre secciones lo pinta

@@ -48,8 +48,8 @@
 }
 
 .of .of-inner {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin-inline: 0;
   padding: 0 var(--gut);
 }
 
@@ -105,8 +105,8 @@
 }
 .of .of-hero-inner {
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin-inline: 0;
 }
 .of .of-hero-h1 {
   color: var(--paper);

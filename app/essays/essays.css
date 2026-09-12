@@ -12,8 +12,9 @@
 }
 
 .ei-head {
-  max-width: 1360px;
-  margin: 0 auto clamp(96px, 12vh, 160px);
+  max-width: 1600px;
+  margin-inline: 0;
+  margin-bottom: var(--s4);
 }
 
 .ei-eyebrow {
@@ -52,8 +53,8 @@
 /* Lista de ensayos: cada uno separado por filete arriba. Sin
    grilla lateral — es un índice de lectura, no una galería. */
 .ei-list {
-  max-width: 1360px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin-inline: 0;
   list-style: none;
   padding: 0;
 }

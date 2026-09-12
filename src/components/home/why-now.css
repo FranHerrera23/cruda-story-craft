@@ -16,8 +16,10 @@
 }
 
 .why-now .in {
-  max-width: 62ch;
-  margin: 0 auto;
+  /* La prosa corrida usa --measure. Margen izq alineado al resto
+     del sitio — sale el margin auto, la caja arranca en --pad. */
+  max-width: var(--measure);
+  margin-inline: 0;
 }
 
 .why-now h2 {

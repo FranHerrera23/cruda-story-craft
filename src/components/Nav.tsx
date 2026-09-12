@@ -173,9 +173,11 @@ export default function Nav() {
         }
         /* reduce global vive en globals.css (motion §6). */
         .cruda-global-nav-in {
-          max-width: var(--max, 1360px);
-          margin: 0 auto;
-          padding: 30px var(--gut, clamp(24px, 5vw, 80px));
+          /* §2 · un solo margen izq en todo el sitio; el nav
+             tampoco se centra. Max-width 1600 como guardia. */
+          max-width: 1600px;
+          margin-inline: 0;
+          padding: 30px var(--pad);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -260,7 +262,7 @@ export default function Nav() {
           background: var(--ink);
         }
         .cruda-global-nav-mobile {
-          padding: 0 var(--gut, clamp(24px, 5vw, 80px)) 24px;
+          padding: 0 var(--pad) 24px;
           display: flex;
           flex-direction: column;
           gap: 16px;

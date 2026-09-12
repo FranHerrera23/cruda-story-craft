@@ -15,8 +15,8 @@
   padding: var(--s5) var(--pad);
 }
 .home-close__inner {
-  max-width: 1360px;
-  margin: 0 auto;
+  max-width: 1600px;
+  margin-inline: 0;
 }
 
 .home-close h2 {

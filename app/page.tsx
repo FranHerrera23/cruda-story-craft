@@ -3,6 +3,7 @@ import HomeHero from '@/components/home/HomeHero';
 import WhyNow from '@/components/home/WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import InsideCruda from '@/components/home/InsideCruda';
+import HomeFirst90 from '@/components/home/HomeFirst90';
 import HomeEssays from '@/components/home/HomeEssays';
 import HomeClose from '@/components/home/HomeClose';
 import HomeChrome from '@/components/home/HomeChrome';
@@ -55,6 +56,7 @@ export default function HomePage() {
       <WhyNow />
       <SelectedWork cards={selectedWorkCards} />
       <InsideCruda />
+      <HomeFirst90 />
       <HomeEssays />
       <HomeClose />
     </>

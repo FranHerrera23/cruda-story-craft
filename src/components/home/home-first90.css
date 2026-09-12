@@ -1,0 +1,110 @@
+/* Home · The First 90 Days — brief 12-sep §6.5.
+
+   Grilla del mismo pariente que inside-cruda: label 1fr, body 1.4fr
+   desde 1000px. Filete entre filas al 14% (--rule). El coda queda
+   con su propio filete arriba, sin la etiqueta de mes — es la
+   coda de la sección. */
+
+.home-first90 {
+  background: var(--paper);
+  padding: var(--s5) var(--pad);
+}
+.home-first90__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+.home-first90__eyebrow {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: var(--t-eyebrow);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 var(--s2);
+}
+
+.home-first90__lede {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: var(--t-display);
+  line-height: 1.14;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0 0 var(--s4);
+}
+
+/* Filas mes por mes. Grid 1fr / 1.4fr desde 1000px, mobile una
+   columna con el label arriba del body. */
+.f9-row {
+  border-top: 1px solid var(--rule);
+  padding: var(--s3) 0;
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 1000px) {
+  .f9-row {
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(40px, 5vw, 96px);
+  }
+}
+
+/* Label: MONTH N + pace debajo. Mismo tratamiento que un eyebrow
+   con subtítulo. El pace lee como tempo: "Three calls a week"
+   baja a "One call a week" — la columna izq leída sola es el
+   argumento. */
+.f9-row__label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+.f9-row__month {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: var(--t-eyebrow);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.f9-row__pace {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-small);
+  color: var(--ink);
+}
+
+/* Body: h3 grande primero (afirmación), párrafo debajo (contexto). */
+.f9-row__body h3 {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: var(--t-body);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  max-width: 40ch;
+  margin: 0 0 var(--s2);
+}
+.f9-row__body p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* Coda: párrafo final con filete arriba. Sin label — es el cierre
+   de la sección, no un cuarto mes. */
+.home-first90__coda {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s3);
+  margin: 0;
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 62ch;
+}

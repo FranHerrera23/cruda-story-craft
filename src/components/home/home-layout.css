@@ -5,8 +5,8 @@
    completo del contenedor. Excepción única: la primera sección
    (hero) no lleva filete arriba.
 
-   Nota 12-sep: el cierre pasa a --paper (§6.8). Ya no es el
-   inverso — ahora lleva filete arriba como cualquier otra sección.
+   Nota 12-sep: entra .home-first90 entre inside-cruda y essays.
+   El cierre pasó a --paper (§6.8) y también lleva filete.
 
    Reset defensivo de margins también para no dejar espacio hueco
    entre secciones (última declaración gana por cascada). */
@@ -15,19 +15,20 @@
 .why-now,
 .home-work,
 .inside-cruda,
+.home-first90,
 .home-essays,
 .home-close {
   margin: 0;
   border-top: 0;
 }
 
-/* Filete entre secciones consecutivas — se aplica al segundo,
-   tercer, cuarto, quinto y sexto bloque de la secuencia. Ninguna
-   excepción, salvo el hero que arranca la página. */
+/* Filete entre secciones consecutivas — se aplica a partir de la
+   segunda. Ninguna excepción, salvo el hero que arranca la página. */
 .home-hero + .why-now,
 .why-now + .home-work,
 .home-work + .inside-cruda,
-.inside-cruda + .home-essays,
+.inside-cruda + .home-first90,
+.home-first90 + .home-essays,
 .home-essays + .home-close {
   border-top: 1px solid var(--rule);
 }

@@ -264,7 +264,7 @@
   text-decoration: underline;
   text-underline-offset: 6px;
   text-decoration-thickness: 1px;
-  transition: opacity var(--t-2) var(--ease);
+  transition: opacity var(--dur-2) var(--ease);
 }
 .of .of-cta:hover,
 .of .of-cta:focus-visible {

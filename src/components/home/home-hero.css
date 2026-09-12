@@ -51,7 +51,7 @@
   background: var(--signal);
   vertical-align: -.04em;
   margin-left: .04em;
-  animation: cruda-type-blink var(--t-3) steps(1) infinite;
+  animation: cruda-type-blink var(--dur-3) steps(1) infinite;
 }
 
 @keyframes cruda-type-blink {

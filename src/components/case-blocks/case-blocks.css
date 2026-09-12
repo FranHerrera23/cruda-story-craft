@@ -422,7 +422,7 @@
   color: var(--ink);
   margin: 0 0 18px;
   max-width: 24ch;
-  transition: color var(--t-2) var(--ease);
+  transition: color var(--dur-2) var(--ease);
 }
 .cb-root .b-passages-excerpt {
   font-family: var(--s);
@@ -495,7 +495,7 @@
   text-decoration: none;
   color: inherit;
   width: 100%;
-  transition: color var(--t-2) var(--ease);
+  transition: color var(--dur-2) var(--ease);
 }
 .cb-root .b-passages-archive li > a:hover {
   color: var(--c-1);
@@ -994,7 +994,7 @@
   letter-spacing: -.03em;
   display: block;
   max-width: 14ch;
-  transition: color var(--t-2) var(--ease);
+  transition: color var(--dur-2) var(--ease);
 }
 .cb-root .b-next em {
   font-style: normal;

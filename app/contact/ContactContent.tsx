@@ -106,7 +106,7 @@ export default function ContactContent() {
           text-decoration: none;
           border-bottom: 1px solid var(--rule);
           padding-bottom: 2px;
-          transition: color var(--t-1) var(--ease), border-color var(--t-1) var(--ease);
+          transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
         }
         .contact-fallback a:hover {
           color: var(--ink);
@@ -135,7 +135,7 @@ export default function ContactContent() {
           border-bottom: 1px solid var(--rule);
           padding-bottom: 4px;
           align-self: flex-start;
-          transition: color var(--t-1) var(--ease), border-color var(--t-1) var(--ease);
+          transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
         }
         .contact-alt-mail:hover {
           color: var(--ink);

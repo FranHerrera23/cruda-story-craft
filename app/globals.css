@@ -54,10 +54,10 @@
   --ease-exit: cubic-bezier(0.33,  1,    0.68,  1);  /* entradas desde máscara */
 
   /* Duración · cuatro, y solo cuatro. */
-  --t-1: 200ms;  /* micro: color, opacidad de un ícono */
-  --t-2: 300ms;  /* hover, cambios de estado */
-  --t-3: 500ms;  /* transición de página, entrada de nav */
-  --t-4: 600ms;  /* reveals de scroll, media, transform grande */
+  --dur-1: 200ms;  /* micro: color, opacidad de un ícono */
+  --dur-2: 300ms;  /* hover, cambios de estado */
+  --dur-3: 500ms;  /* transición de página, entrada de nav */
+  --dur-4: 600ms;  /* reveals de scroll, media, transform grande */
 
   /* Stagger · múltiplos de 75ms, tope en 5 → 375ms. */
   --stagger: 75ms;
@@ -225,9 +225,9 @@ img {
    de translateY, scale ni box-shadow. Cada componente puede añadir
    su propia transición para propiedades específicas (arrow, border). */
 a, button {
-  transition: color var(--t-1) var(--ease),
-              background-color var(--t-1) var(--ease),
-              opacity var(--t-1) var(--ease);
+  transition: color var(--dur-1) var(--ease),
+              background-color var(--dur-1) var(--ease),
+              opacity var(--dur-1) var(--ease);
 }
 
 /* F2 — el naranja (--color-accent = #E8623A) queda para hover de
@@ -270,10 +270,10 @@ a, button {
 /* Motion §3.2 — salida más rápida (--t-1) que entrada (--t-3),
    ambas con --ease. Sin asimetría de easing entre entrada y salida. */
 ::view-transition-old(root) {
-  animation: cruda-page-fade-out var(--t-1) var(--ease) both;
+  animation: cruda-page-fade-out var(--dur-1) var(--ease) both;
 }
 ::view-transition-new(root) {
-  animation: cruda-page-fade-in var(--t-3) var(--ease) both;
+  animation: cruda-page-fade-in var(--dur-3) var(--ease) both;
 }
 @keyframes cruda-page-fade-out {
   from { opacity: 1; }
@@ -293,10 +293,10 @@ a, button {
 }
 [data-page-phase="leaving"] {
   opacity: 0;
-  transition: opacity var(--t-1) var(--ease);
+  transition: opacity var(--dur-1) var(--ease);
 }
 [data-page-phase="entering"] {
-  animation: cruda-page-fade-in var(--t-3) var(--ease) both;
+  animation: cruda-page-fade-in var(--dur-3) var(--ease) both;
 }
 
 /* Motion §3.1 · carga de página.
@@ -312,7 +312,7 @@ a, button {
   .page-root:not(.ready) { opacity: 0; }
   .page-root.ready {
     opacity: 1;
-    transition: opacity var(--t-3) var(--ease);
+    transition: opacity var(--dur-3) var(--ease);
   }
 }
 
@@ -333,7 +333,7 @@ a, button {
 }
 [data-reveal="media"].on {
   clip-path: inset(0 0 0 0);
-  transition: clip-path var(--t-4) var(--ease);
+  transition: clip-path var(--dur-4) var(--ease);
 }
 
 /* ==================================================================
@@ -349,7 +349,7 @@ a, button {
 [data-reveal="text"].on {
   opacity: 1;
   transform: none;
-  transition: opacity var(--t-4) var(--ease), transform var(--t-4) var(--ease);
+  transition: opacity var(--dur-4) var(--ease), transform var(--dur-4) var(--ease);
 }
 
 /* ==================================================================

@@ -36,7 +36,7 @@
   font-size: 14px;
   color: var(--ink);
   text-decoration: none;
-  transition: color var(--t-2) var(--ease);
+  transition: color var(--dur-2) var(--ease);
 }
 .home-essays__all:hover,
 .home-essays__all:focus-visible {
@@ -73,7 +73,7 @@
   display: block;
   text-decoration: none;
   color: inherit;
-  transition: opacity var(--t-2) var(--ease);
+  transition: opacity var(--dur-2) var(--ease);
 }
 .essay-card:hover,
 .essay-card:focus-visible {

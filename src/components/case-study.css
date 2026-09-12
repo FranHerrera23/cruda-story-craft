@@ -149,7 +149,7 @@
   display: inline-block;
   color: inherit;
   text-decoration: none;
-  transition: opacity var(--t-4) var(--ease);
+  transition: opacity var(--dur-4) var(--ease);
 }
 .link::after {
   content: "";
@@ -159,7 +159,7 @@
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform var(--t-4) var(--ease);
+  transition: transform var(--dur-4) var(--ease);
 }
 .link:hover::after {
   transform: scaleX(1);
@@ -320,8 +320,8 @@
   text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: background var(--t-2) var(--ease),
-              color var(--t-2) var(--ease);
+  transition: background var(--dur-2) var(--ease),
+              color var(--dur-2) var(--ease);
 }
 .capture__row button:hover:not(:disabled) {
   /* F2 — hover del botón primario: naranja + texto blanco. */
@@ -349,7 +349,7 @@
 .footnote-ref {
   color: inherit;
   text-decoration: none;
-  transition: opacity var(--t-1) var(--ease);
+  transition: opacity var(--dur-1) var(--ease);
 }
 .footnote-ref:hover { opacity: 0.5; }
 .footnote-ref sup {
@@ -394,7 +394,7 @@
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: opacity var(--t-1) var(--ease);
+  transition: opacity var(--dur-1) var(--ease);
 }
 .essay .e-sources a:hover { opacity: 0.6; }
 
@@ -507,7 +507,7 @@ html { font-size: 17px; }
 .cs-head{padding:clamp(96px,14vh,160px) 0 0}
 /* Brief v5 T7 — back-link a /resources. Ninguna pieza sin salida. */
 .cs-back{display:inline-block;color:var(--ink-2);text-decoration:none;
-  margin-bottom:32px;transition:color var(--t-2) var(--ease)}
+  margin-bottom:32px;transition:color var(--dur-2) var(--ease)}
 .cs-back:hover{color:var(--ink)}
 /* Nota B5.3: .cs-eyebrow eliminado — el chip de vertical salió del
    header del case study. Las categorías viven solo en las cards de
@@ -535,8 +535,8 @@ html { font-size: 17px; }
   padding:6px 14px;
   border:1px solid var(--rule);
   text-decoration:none;
-  transition:border-color var(--t-2) var(--ease),
-             color var(--t-2) var(--ease);
+  transition:border-color var(--dur-2) var(--ease),
+             color var(--dur-2) var(--ease);
 }
 .cs-moment-pill:hover{border-color:var(--ink)}
 
@@ -654,7 +654,7 @@ html { font-size: 17px; }
   letter-spacing:-.014em;margin-bottom:24px}
 .cs-btn{display:inline-block;font-family:var(--mono);font-weight:500;font-size:12px;
   letter-spacing:.16em;text-transform:uppercase;background:var(--ink);color:var(--white);
-  padding:19px 38px;text-decoration:none;transition:background var(--t-2) var(--ease)}
+  padding:19px 38px;text-decoration:none;transition:background var(--dur-2) var(--ease)}
 .cs-btn:hover{background:var(--color-accent);color:var(--paper)}
 
 /* Nota B5: bloque .cb / .cb-head / .cb-body / .cb-cta / .cb-arrow
@@ -737,7 +737,7 @@ html { font-size: 17px; }
 .idx-card:last-child{border-bottom:none}
 .idx-card figure{margin:0;overflow:hidden}
 .idx-card img{width:100%;height:auto;display:block;
-  transition:transform var(--t-2) var(--ease)}
+  transition:transform var(--dur-2) var(--ease)}
 .idx-card:hover img{transform:scale(1.03)}
 .idx-card-eyebrow{font-family:var(--mono);font-weight:500;font-size:11px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px}
@@ -815,7 +815,7 @@ html { font-size: 17px; }
   text-decoration: none;
   color: var(--ink);
   height: 100%;
-  transition: opacity var(--t-2) var(--ease);
+  transition: opacity var(--dur-2) var(--ease);
 }
 .card:hover { opacity: 0.8; }
 
@@ -837,8 +837,8 @@ html { font-size: 17px; }
 .card__arrow {
   opacity: 0;
   transform: translate(-4px, 4px);
-  transition: opacity var(--t-2) var(--ease),
-              transform var(--t-2) var(--ease);
+  transition: opacity var(--dur-2) var(--ease),
+              transform var(--dur-2) var(--ease);
   color: var(--ink);
   font-size: 16px;
 }

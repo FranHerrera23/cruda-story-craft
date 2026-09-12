@@ -165,7 +165,7 @@ export default function Nav() {
              Transform + transition; sin ocupar espacio del layout.
              Motion system: --t-3 y --ease. */
           transform: translateY(0);
-          transition: transform var(--t-3) var(--ease);
+          transition: transform var(--dur-3) var(--ease);
           will-change: transform;
         }
         .cruda-global-nav.away {
@@ -210,7 +210,7 @@ export default function Nav() {
           position: relative;
           transform: translateY(100%);
           /* Motion §3.5 — entrada desde máscara con --ease-exit y --t-3. */
-          transition: transform var(--t-3) var(--ease-exit);
+          transition: transform var(--dur-3) var(--ease-exit);
         }
         .cruda-global-nav.ready .nav__item .link {
           transform: translateY(0);
@@ -235,7 +235,7 @@ export default function Nav() {
           background: currentColor;
           transform: scaleX(0);
           transform-origin: right;
-          transition: transform var(--t-4) var(--ease);
+          transition: transform var(--dur-4) var(--ease);
         }
         .nav__item .link:hover::after,
         .nav__item .link:focus-visible::after {

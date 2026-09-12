@@ -71,7 +71,7 @@
   padding: var(--s3) 0;
   text-decoration: none;
   color: inherit;
-  transition: opacity var(--t-2) var(--ease);
+  transition: opacity var(--dur-2) var(--ease);
 }
 .ei-link:hover,
 .ei-link:focus-visible {

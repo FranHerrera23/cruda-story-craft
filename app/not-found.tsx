@@ -64,7 +64,7 @@ export default function NotFound() {
             padding: '18px 28px',
             borderRadius: '0',
             textDecoration: 'none',
-            transition: 'background var(--t-2) var(--ease)'
+            transition: 'background var(--dur-2) var(--ease)'
           }}
           onMouseEnter={(e) => { e.currentTarget.style.background = '#E8623A'; }}
           onMouseLeave={(e) => { e.currentTarget.style.background = '#000000'; }}

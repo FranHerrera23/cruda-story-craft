@@ -64,8 +64,8 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
             textDecoration: 'none',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(8px)',
-            transition: 'all var(--t-2) var(--ease)',
-            transitionDelay: 'var(--t-1)'
+            transition: 'all var(--dur-2) var(--ease)',
+            transitionDelay: 'var(--dur-1)'
           };
           const onEnter = (e: React.MouseEvent<HTMLAnchorElement>) => {
             e.currentTarget.style.backgroundColor = '#FFFFFF';
@@ -80,7 +80,7 @@ const CTASection = ({ ctaText = "Start a Conversation", ctaHref = "/contact" }: 
               {ctaText}
               <span
                 className="cta-arrow"
-                style={{ fontSize: '18px', transition: 'transform var(--t-2) var(--ease)' }}
+                style={{ fontSize: '18px', transition: 'transform var(--dur-2) var(--ease)' }}
               >
                 →
               </span>

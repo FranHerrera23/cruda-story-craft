@@ -66,7 +66,7 @@
   background: currentColor;
   transform: scaleX(1);
   transform-origin: right;
-  transition: transform var(--t-4) var(--ease);
+  transition: transform var(--dur-4) var(--ease);
 }
 .home-close__mail:hover::after,
 .home-close__mail:focus-visible::after {

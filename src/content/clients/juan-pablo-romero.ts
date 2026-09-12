@@ -13,7 +13,7 @@ export const juanPabloRomero: CaseStudy = {
 
   // Task 7 — one-liner (brief v2).
   oneLiner:
-    'Positioning and brand narrative for a Guatemalan hardwood company entering the United States.',
+    'Positioning and brand narrative for a flooring founder opening the US market to brands from outside it.',
   // Task 8 — moment axis.
   moment: 'market-entry',
 

@@ -16,7 +16,8 @@
   --paper:   #FFFFFF;
   --ink:     #000000;
   --rule:    rgba(0, 0, 0, .14);
-  --signal:  #FF2E63;
+  /* --signal retirado — su único uso era el cursor del tipeo del
+     hero, que sale entero en el brief 12-sep §6.1. */
 
   /* Aliases legacy — mantienen los selectores viejos apuntando a
      los tokens nuevos. Se retiran cuando ningún archivo los

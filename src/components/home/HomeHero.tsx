@@ -1,83 +1,38 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import './home-hero.css'
 
-/* Home · Hero — design system unificado §5.
+/* Home · Hero — brief 12-sep §6.1.
 
-   Peso 500 (no 700), clamp(30, 3.6vw, 54) — el hero deja de ser
-   un cartel y vuelve a leerse como una afirmación. Grot, no serif
-   (la regla de §2: serif solo en títulos ≤6 palabras; el hero
-   tiene 20 palabras). max-width 26ch.
+   Sale entero el tipeo letra por letra: sin useEffect, sin useState,
+   sin ghost span, sin cursor --signal. Componente server, copy nueva
+   servida completa en el HTML.
 
-   Fix del bug de fondo (§5.1): el h1 renderea DOS spans:
-     · .ghost — la copy completa, visibility: hidden. Reserva el
-       alto final desde el primer frame, sin importar cuánto haya
-       tipeado el usuario todavía.
-     · .typed — posición absoluta sobre el ghost, con lo que se
-       está escribiendo + el cursor.
+   H1 en grot 500, --t-display, max-width limitado hasta que la
+   frase rompa en las DOS oraciones que la componen (una por línea
+   en desktop). El punto en el medio manda sobre el número.
 
-   El HTML servido lleva la copy completa en ghost + typed vacío,
-   así que sin JS el visible queda invisible pero el ghost pinta.
-   Al hidratar, JS reemplaza ghost/typed con el ciclo del tipeo.
+   Dek en grot 400, --t-lead, sobre 52ch (más ancho que el H1 pero
+   sigue siendo caja de lectura, no de headline).
 
-   aria-label del h1 tiene la copy completa; ambos spans van con
-   aria-hidden. Screen readers leen el aria-label.
+   Reveal via data-reveal="text" del sistema — RevealScroll global
+   lo encuentra y agrega .on al montar el DOM. */
 
-   Reduced motion: se saltea el tipeo y typed queda con la copy
-   completa desde el mount — el alto es el mismo (ghost lo reserva),
-   solo cambia si hay animación o no. */
-
-const FULL =
+const DEK =
   'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
-const SPEED = 22
-const START_DELAY = 300
 
+/* El H1 se compone de dos oraciones. Un <br/> entre ellas garantiza
+   el corte exacto entre "story." y "We build" — el max-width solo
+   no alcanza porque Archivo 500 es más angosto que el "0" y el
+   navegador siempre encuentra hueco para "We" al final. Para SEO
+   y screen readers el textContent se lee corrido; el <br> es visual. */
 export default function HomeHero() {
-  const [typed, setTyped] = useState('')
-  const [done, setDone] = useState(false)
-
-  useEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reduce) {
-      setTyped(FULL)
-      setDone(true)
-      return
-    }
-
-    let i = 0
-    let cancelled = false
-    let timeoutId: number | undefined
-
-    const tick = () => {
-      if (cancelled) return
-      if (i >= FULL.length) {
-        setDone(true)
-        return
-      }
-      i++
-      setTyped(FULL.slice(0, i))
-      timeoutId = window.setTimeout(tick, SPEED)
-    }
-
-    const startId = window.setTimeout(tick, START_DELAY)
-
-    return () => {
-      cancelled = true
-      window.clearTimeout(startId)
-      if (timeoutId !== undefined) window.clearTimeout(timeoutId)
-    }
-  }, [])
-
   return (
-    <section className="home-hero">
-      <h1 className="home-hero__h1" aria-label={FULL}>
-        <span className="ghost" aria-hidden="true">{FULL}</span>
-        <span className="typed" aria-hidden="true">
-          {typed}
-          {!done && <i className="cursor" />}
-        </span>
+    <section className="home-hero" data-reveal="text">
+      <h1 className="home-hero__h1">
+        Your company outgrew its own story.
+        <br />
+        We build the next one.
       </h1>
+      <p className="home-hero__dek">{DEK}</p>
     </section>
   )
 }

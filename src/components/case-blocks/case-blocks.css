@@ -15,7 +15,7 @@
   --black: #000000;
   --ink: #1A1A1A;
   --rule: rgba(0, 0, 0, .14);
-  --signal: #FF2E63;
+  /* --signal retirado — no se referencia y ya no vive en el sitio. */
 
   /* Fallbacks — el compositor sobrescribe con la identidad del caso
      cuando existe. Girish y confidencial se sostienen en tipografía. */

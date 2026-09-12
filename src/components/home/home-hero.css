@@ -1,13 +1,16 @@
-/* Home · Hero. Design system unificado §5.
+/* Home · Hero — brief 12-sep §6.1.
 
-   Peso 500, clamp(30, 3.6vw, 54) — el hero deja de ser un cartel
-   y vuelve a leerse como afirmación. Grot, no serif (regla §2:
-   serif solo en títulos ≤6 palabras).
+   Layout tipográfico simple: H1 + dek. Sin ghost span, sin
+   posición absoluta, sin animación de tipeo. El fondo de la caja
+   ya no se corta a media altura porque no hay más medición dinámica
+   durante el ciclo — el bug queda arreglado por retiro, no por fix.
 
-   Fix del bug de fondo (§5): el h1 mide desde el primer frame el
-   alto del texto COMPLETO, gracias al ghost span con
-   visibility:hidden. El span animado va superpuesto absolute. Sin
-   salto ni borde cortado al terminar el tipeo. */
+   El H1 rompe entre las dos oraciones que la componen: "Your company
+   outgrew its own story." + "We build the next one." Un <br> entre
+   ellas garantiza el corte exacto — el max-width solo no funciona
+   porque Archivo 500 es angosto y el navegador siempre encuentra
+   hueco para "We" al final de la primera línea. El max-width queda
+   en 40ch como guardia máxima para desktop grande. */
 
 .home-hero {
   background: var(--paper);
@@ -18,43 +21,21 @@
 .home-hero__h1 {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(30px, 3.6vw, 54px);
+  font-size: var(--t-display);
   line-height: 1.14;
   letter-spacing: -.022em;
-  max-width: 26ch;
+  max-width: 40ch;
+  color: var(--ink);
+  margin: 0 0 var(--s3);
+}
+
+.home-hero__dek {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  letter-spacing: 0;
+  max-width: 52ch;
   color: var(--ink);
   margin: 0;
-  position: relative;
-}
-
-/* Ghost reserva alto y wrap desde el primer frame — invisible pero
-   ocupa la caja completa del texto final. Nunca cambia. */
-.home-hero__h1 .ghost {
-  visibility: hidden;
-}
-
-/* Layer animada superpuesta al ghost. La copy tipeada y el cursor
-   viven acá. Como es absolute, no empuja layout ni contribuye al
-   alto — el ghost lo hace. */
-.home-hero__h1 .typed {
-  position: absolute;
-  inset: 0;
-}
-
-/* Cursor — bloque sólido en --signal, blink 500ms (--t-3), y
-   desaparece al terminar el tipeo porque el JS deja de renderearlo
-   (no depende de .done). */
-.home-hero__h1 .cursor {
-  display: inline-block;
-  width: .06em;
-  height: .82em;
-  background: var(--signal);
-  vertical-align: -.04em;
-  margin-left: .04em;
-  animation: cruda-type-blink var(--dur-3) steps(1) infinite;
-}
-
-@keyframes cruda-type-blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
 }

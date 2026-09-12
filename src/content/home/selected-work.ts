@@ -43,6 +43,7 @@ export const selectedWorkCards: WorkCardData[] = [
     name: 'Girish Sehgal',
     company: 'SSMC',
     href: '/work/girish-sehgal',
+    imageSrc: '/girish-sehgal.webp',
     companyVerified: false,
   },
   {
@@ -54,6 +55,7 @@ export const selectedWorkCards: WorkCardData[] = [
     name: 'JP Romero',
     company: 'JURA · Connecting the Dots',
     href: '/work/juan-pablo-romero',
+    imageSrc: '/juan-pablo-romero.webp',
     nameVerified: false,
     companyVerified: false,
   },
@@ -61,11 +63,13 @@ export const selectedWorkCards: WorkCardData[] = [
     name: 'Mike Kaeding',
     company: 'Norhart',
     href: '/work/mike-kaeding',
+    imageSrc: '/mike-kaeding.webp',
   },
   {
     name: 'Karen Mannheim',
     company: 'TRAZZO',
     href: '/work/karen-mannheim',
+    imageSrc: '/karen-mannheim.webp',
     companyVerified: false,
   },
   {

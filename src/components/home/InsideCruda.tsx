@@ -63,8 +63,8 @@ export default function InsideCruda() {
             <p>
               Ten years building brands across three continents,
               in-house and on the agency side, on accounts for
-              TikTok, Oreo, Brahma, PedidosYa, Purina and the
-              United Nations.
+              TikTok, Oreo, Brahma and PedidosYa. Direct work for
+              Purina and the United Nations.
             </p>
             <p>
               CRUDA is what that experience looks like pointed at one

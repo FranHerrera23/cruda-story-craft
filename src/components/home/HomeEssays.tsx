@@ -1,26 +1,30 @@
 import Link from 'next/link'
 import {
   allResources,
-  dedupeByPiece,
   kindLabel,
   languageLabel,
 } from '@/content/resources'
+import { featuredEssaySlugs } from '@/content/home/featured-essays'
 import './home-essays.css'
 
-/* Home · essays — brief 11-sep §A.
+/* Home · essays — curaduría manual.
 
-   Tres essays más recientes desde el data source de /essays.
-   Se dedupe pares bilingües preservando la versión inglesa (mismo
-   criterio que /essays) y se filtra kind === 'essay'. Sin
-   hardcodear títulos — si mañana Fran publica uno nuevo, la home
-   se actualiza sola.
+   Los tres ensayos que se muestran vienen de un array explícito
+   en @/content/home/featured-essays.ts, en el orden en que van a
+   aparecer. Fran los edita ahí — no es filtro automático por
+   fecha ni por idioma, y no hay lógica de dedupe: si querés dos
+   ensayos ES seguidos podés, si querés uno EN y dos ES podés.
 
-   §A.2 · si hay menos de dos publicados la sección se retira
-   entera — una card en grilla de tres se lee como error. */
+   Si un slug del array no matchea un ensayo publicado, se
+   ignora (no rompe la grilla). Si sobran menos de dos ensayos
+   válidos, la sección se retira entera — una card sola en
+   grilla de tres lee como error. */
 
-const RECENT_ESSAYS = dedupeByPiece(allResources, 'en')
-  .filter((r) => r.kind === 'essay')
-  .slice(0, 3)
+const RECENT_ESSAYS = featuredEssaySlugs
+  .map((slug) =>
+    allResources.find((r) => r.kind === 'essay' && r.slug === slug),
+  )
+  .filter((r): r is NonNullable<typeof r> => r !== undefined)
 
 export default function HomeEssays() {
   if (RECENT_ESSAYS.length < 2) return null

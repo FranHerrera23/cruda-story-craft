@@ -1,59 +1,50 @@
-/* Home · Selected Work section.
-   Design system unificado §4 · costura por filete + aire.
+/* Home · Selected Work — brief 12-sep §6.3.
 
-   Padding uniforme arriba y abajo — el filete del sistema
-   (home-layout.css) va PEGADO al borde superior de la sección,
-   no dentro. El eyebrow SELECTED WORK arranca después de ese
-   filete con su propio aire.
-
-   El label pasa a eyebrow: 13px, mayúsculas, tracking .14em,
-   negro puro, peso 600. Sale el "I" con spacer de 20px. */
+   Sección con la escala del sistema (--s5 padding-block), eyebrow
+   + dek + grid. El filete arriba lo pinta home-layout.css entre
+   secciones — sin regla propia. */
 
 .home-work {
   background: var(--paper);
   padding: var(--s5) var(--pad);
 }
-
 .home-work__inner {
   max-width: 1600px;
   margin-inline: 0;
 }
 
-/* Filete interno retirado — el filete entre secciones lo pinta
-   .home-work__inner selectivo de home-layout.css. El eyebrow arranca
-   directo. */
-.home-work__label {
+.home-work__eyebrow {
   font-family: var(--grot);
-  font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: var(--t-eyebrow);
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink);
+  margin: 0 0 var(--s2);
 }
 
-.home-work__grid {
-  margin-top: clamp(96px, 14vh, 160px);
+.home-work__dek {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-lead);
+  line-height: 1.38;
+  color: var(--ink);
+  max-width: 62ch;
+  margin: 0 0 var(--s4);
+}
+
+/* Grid 3/2/1 con align-items:start — el as del brief. Sin esto,
+   cards de alto distinto se estiran y una card sin foto (que es
+   más baja) forzaría a las demás. Con esto conviven al natural. */
+.work-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  column-gap: 20px;
-  row-gap: 96px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4) var(--gutter);
+  align-items: start;
 }
-@media (min-width: 768px) {
-  .home-work__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (min-width: 1024px) {
-  .home-work__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .home-work {
-    padding: 80px var(--pad);
-  }
-  .home-work__grid {
-    row-gap: 64px;
-  }
+@media (max-width: 600px) {
+  .work-grid { grid-template-columns: 1fr; }
 }

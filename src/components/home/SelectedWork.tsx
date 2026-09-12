@@ -2,27 +2,31 @@ import WorkCard from './WorkCard'
 import './work-card.css'
 import './selected-work.css'
 
-/* Home · Selected Work — grilla de nueve retratos.
+/* Home · Selected Work — brief 12-sep §6.3.
 
-   Design system unificado §4 — el filete arriba lo pinta ahora
-   home-layout.css entre secciones, no la sección misma. El eyebrow
-   SELECTED WORK arranca directo dentro del padding uniforme.
+   Estructura:
+     eyebrow  "SELECTED WORK"
+     dek      "Nine founders, each at the point where..."
+     grid     3/2/1 cols con align-items:start (cards de altura
+              distinta no se estiran a la fila entera).
 
-   Entre label y grilla van 160px de aire (mobile: menos). El gap
-   horizontal de la grilla es 20px.
+   Cards con draft:true no se rederean — es el flag para casos
+   como Germán (INOUT) donde falta la cita del cliente. Cuando
+   llegue, se saca el flag y la card entra al orden.
 
-   ID de la sección: `selected-work` — es el ancla al que el ítem
-   WORK del nav apunta desde `/#selected-work`. */
+   ID de la sección: `selected-work` — ancla que apunta el nav y
+   el link "See the work" de /our-founder. */
 
 export type WorkCardData = {
   name: string
   company: string
+  line: string
   href?: string
   imageSrc?: string
   imageAlt?: string
   nameVerified?: boolean
   companyVerified?: boolean
-  permanentPlaceholder?: boolean
+  draft?: boolean
 }
 
 export default function SelectedWork({
@@ -30,13 +34,22 @@ export default function SelectedWork({
 }: {
   cards?: WorkCardData[]
 }) {
+  const visible = cards.filter((c) => !c.draft)
   return (
     <section id="selected-work" className="home-work">
       <div className="home-work__inner">
-        <div className="home-work__label">Selected Work</div>
-        <div className="home-work__grid">
-          {cards.map((card, i) => (
-            <WorkCard key={card.href + i} {...card} />
+        <p className="home-work__eyebrow">Selected Work</p>
+        <p className="home-work__dek">
+          Nine founders, each at the point where what they built
+          stopped explaining itself.
+        </p>
+        <div className="work-grid">
+          {visible.map((card, i) => (
+            <WorkCard
+              key={(card.href ?? card.name) + i}
+              {...card}
+              revealIndex={Math.min(i, 5)}
+            />
           ))}
         </div>
       </div>

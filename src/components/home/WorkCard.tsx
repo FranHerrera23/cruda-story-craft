@@ -1,96 +1,95 @@
 import Link from 'next/link'
 
-/* Card de la grilla de Selected Work en la home.
-   Brief 11-sep §3.
+/* Card de Selected Work — brief 12-sep §6.3.
 
-   Estructura:
-     work-card__head    (flex baseline, name + arrow)
-     work-card__figure  (aspect 4:5)
-     work-card__company (grot 15px gris)
+   Anatomía:
+     [ figure 4:5 · SOLO si hay imageSrc ]
+     [ name  · grot 700 --t-body ]  [ arrow ↗ · SOLO si hay href ]
+     [ company · grot 400 --t-body ]
+     [ line · grot 400 --t-small ]
 
-   El nombre pasa a serif 19px — casi body. La imagen manda; el
-   nombre acompaña. Hover: la CARD ENTERA baja a opacity .8. Ninguna
-   parte cambia de color — el rojo en una grilla de nueve se vuelve
-   ruido.
+   Reglas duras:
+   · El bloque de texto va PEGADO a la imagen — nada de nombre
+     arriba, hueco en el medio y empresa abajo.
+   · Card sin foto NO reserva altura. Sin placeholder gris, sin
+     caja vacía, sin min-height. El texto sube al tope de la celda.
+     El grid usa align-items:start para permitirlo.
+   · Card sin href NO tiene hover, ni flecha, ni cursor pointer.
+   · Sin data-placeholder-text: el flag nameVerified/companyVerified
+     se preserva como grep signal pero no cambia el markup — no hay
+     tratamiento visual distinto por nombre no confirmado.
 
-   Placeholder de imagen (§5 brief 10-sep): cuando `imageSrc` no
-   está, la figura muestra el nombre centrado en gris. La card del
-   confidencial usa placeholder permanente.
+   Hover (solo con href): la imagen escala 1.03 con --dur-3, la
+   flecha aparece desde abajo-izquierda. El texto no se mueve. */
 
-   Placeholder de texto: `data-placeholder-text="true"` cuando
-   name/company no están verificados. Grepeable.
-
-   Route ausente: cuando `href` es undefined, la card se rendereá
-   como <div> no-clickable, sin flecha. `data-placeholder-route`. */
-export default function WorkCard({
-  name,
-  company,
-  href,
-  imageSrc,
-  imageAlt,
-  nameVerified = true,
-  companyVerified = true,
-  permanentPlaceholder = false,
-}: {
+export type WorkCardProps = {
   name: string
   company: string
+  line: string
   href?: string
   imageSrc?: string
   imageAlt?: string
   nameVerified?: boolean
   companyVerified?: boolean
-  permanentPlaceholder?: boolean
-}) {
-  const nameNode = nameVerified ? (
-    <>{name}</>
-  ) : (
-    <span data-placeholder-text="true">{name}</span>
-  )
-  const companyNode = companyVerified ? (
-    <>{company}</>
-  ) : (
-    <span data-placeholder-text="true">{company}</span>
-  )
+  revealIndex?: number
+}
 
+export default function WorkCard({
+  name,
+  company,
+  line,
+  href,
+  imageSrc,
+  imageAlt,
+  revealIndex,
+}: WorkCardProps) {
+  /* Reveal declarado en SSR — motion v2 §4 dice que opacity:0 tiene
+     que estar en el CSS servido, no aplicado por JS después del
+     primer paint. RevealScroll global agrega .on al montar. */
+  const revealProps =
+    revealIndex !== undefined
+      ? {
+          'data-reveal': 'text' as const,
+          'data-stagger': String(revealIndex),
+        }
+      : undefined
   const inner = (
     <>
-      <div className="work-card__head">
-        <span className="work-card__name">{nameNode}</span>
-        {href ? (
-          <span className="work-card__arrow" aria-hidden="true">
-            ↗
-          </span>
-        ) : null}
-      </div>
-      {imageSrc ? (
-        <figure className="work-card__figure">
+      {imageSrc && (
+        <div className="work-card__media">
           <img
             className="work-card__img"
             src={imageSrc}
             alt={imageAlt ?? name}
           />
-        </figure>
-      ) : (
-        <figure
-          className="work-card__figure work-card__figure--placeholder"
-          data-placeholder={permanentPlaceholder ? 'permanent' : 'true'}
-        >
-          <span className="work-card__placeholder-label">{name}</span>
-        </figure>
+        </div>
       )}
-      <p className="work-card__company">{companyNode}</p>
+      <div className="work-card__head">
+        <span className="work-card__name">{name}</span>
+        {href && (
+          <span className="work-card__arrow" aria-hidden="true">
+            ↗
+          </span>
+        )}
+      </div>
+      <p className="work-card__company">{company}</p>
+      <p className="work-card__line">{line}</p>
     </>
   )
 
   if (href) {
     return (
-      <Link href={href} className="work-card">
+      <Link href={href} className="work-card" {...revealProps}>
         {inner}
       </Link>
     )
   }
   return (
-    <div className="work-card" data-placeholder-route="true">
+    <div
+      className="work-card"
+      data-placeholder-route="true"
+      {...revealProps}
+    >
       {inner}
     </div>
   )

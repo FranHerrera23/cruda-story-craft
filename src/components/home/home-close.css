@@ -1,17 +1,17 @@
-/* Home · cierre — brief 11-sep §B / design system unificado §3.
+/* Home · cierre — brief 12-sep §5 + §6.8.
 
-   Fondo --ink, todo el texto en --paper puro. Es la excepción del
-   sitio: el único bloque sobre negro, y el único inverso —por eso
-   funciona—. La jerarquía dentro del bloque la hacen peso y
-   tamaño, no opacidad ni tinte (regla del brief §3).
+   Fondo pasa a --paper y texto a --ink. El inverso de la home lo
+   toma ahora el testimonio nuevo (§6.6); el sitio queda con dos
+   negros —hero de /our-founder y testimonio— uno por página. La
+   copy del cierre no cambia. Solo fondo y color de texto.
 
    El mail lleva subrayado SIEMPRE visible que desaparece en hover.
    Es al revés del nav (que lo revela en hover) — y por eso se nota
    que es el final del sitio, el único elemento con este gesto. */
 
 .home-close {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--paper);
+  color: var(--ink);
   padding: var(--s5) var(--pad);
 }
 .home-close__inner {
@@ -25,7 +25,7 @@
   font-size: clamp(28px, 3vw, 44px);
   line-height: 1.12;
   letter-spacing: -.02em;
-  color: var(--paper);
+  color: var(--ink);
   max-width: 24ch;
   margin: 0 0 clamp(32px, 4vh, 48px);
 }
@@ -36,7 +36,7 @@
   font-size: clamp(20px, 1.8vw, 28px);
   line-height: 1.38;
   letter-spacing: -.008em;
-  color: var(--paper);
+  color: var(--ink);
   max-width: 30ch;
   margin: 0 0 clamp(64px, 10vh, 110px);
 }
@@ -46,7 +46,7 @@
   font-weight: 400;
   font-size: clamp(22px, 2.2vw, 32px);
   letter-spacing: -.01em;
-  color: var(--paper);
+  color: var(--ink);
   text-decoration: none;
   position: relative;
   display: inline-block;

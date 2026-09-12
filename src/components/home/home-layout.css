@@ -1,14 +1,12 @@
 /* Home · layout entre secciones · design system unificado §4.
 
-   El corte de color se retira. Con fondo blanco uniforme, la
-   transición la hace el filete y el aire. Filete de 1px al 14% de
-   negro entre secciones consecutivas, ancho completo del contenedor.
+   Con fondo blanco uniforme la transición la hace el filete y el
+   aire — 1px al 14% de negro entre secciones consecutivas, ancho
+   completo del contenedor. Excepción única: la primera sección
+   (hero) no lleva filete arriba.
 
-   Excepciones:
-     · La primera sección (hero) no lleva filete arriba.
-     · El cierre (home-close, fondo --ink) no lleva filete arriba —
-       el corte de color al negro es la transición ahí, y por eso
-       funciona: es el único inverso del sitio.
+   Nota 12-sep: el cierre pasa a --paper (§6.8). Ya no es el
+   inverso — ahora lleva filete arriba como cualquier otra sección.
 
    Reset defensivo de margins también para no dejar espacio hueco
    entre secciones (última declaración gana por cascada). */
@@ -23,12 +21,13 @@
   border-top: 0;
 }
 
-/* Filete entre secciones consecutivas. Se aplica al segundo, tercer,
-   cuarto y quinto bloque de la secuencia — no al hero (primer bloque)
-   ni al cierre (el corte de color hace la transición). */
+/* Filete entre secciones consecutivas — se aplica al segundo,
+   tercer, cuarto, quinto y sexto bloque de la secuencia. Ninguna
+   excepción, salvo el hero que arranca la página. */
 .home-hero + .why-now,
 .why-now + .home-work,
 .home-work + .inside-cruda,
-.inside-cruda + .home-essays {
+.inside-cruda + .home-essays,
+.home-essays + .home-close {
   border-top: 1px solid var(--rule);
 }

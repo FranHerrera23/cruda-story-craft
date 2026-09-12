@@ -1,28 +1,30 @@
+import WhyNowFocus from './WhyNowFocus'
 import './why-now.css'
 
-/* Home · why-now — design system unificado §6.
+/* Home · why-now — brief 12-sep §6.2.
 
-   Sale la composición de dos columnas con volado a la izquierda —
-   era la firma de la referencia NDS. Entra una estructura de una
-   sola columna, centrada, en medida de lectura (62ch). Es lo que
-   hace Tetragrammaton y no se parece a nada de la referencia
-   anterior.
+   Dos columnas: título sticky a la izquierda mientras los cuatro
+   párrafos pasan a la derecha. Foco por opacidad — el párrafo más
+   cercano al centro del viewport va a --ink, los otros bajan a 28%.
 
-   El título deja de ser "Half the Value¹" con superíndice y pasa
-   a ser una frase completa en serif: "Half the value of your
-   company is not on the balance sheet." Es epígrafe de sección,
-   no headline — por eso la excepción a la regla de "serif solo
-   en títulos ≤6 palabras".
+   Reglas duras:
+   · Sin scroll hijacking. El scroll es el nativo. position:sticky
+     y nada más.
+   · Los cuatro párrafos enteros en el HTML servido. Nada escondido,
+     nada montado por JS.
+   · Sin contador de progreso, sin índice lateral.
 
-   El dato del volado se dice en la prosa. El footnote con el
-   placeholder de fuente se retira entero — sin cita no hay
-   superíndice que sostener, y no queda placeholder en producción. */
+   Abajo de 900px vuelve a una columna y el sticky se desactiva —
+   a ese ancho el titular ocuparía media pantalla y los párrafos
+   no tienen por dónde pasar. */
 
 export default function WhyNow() {
   return (
     <section id="why-now" className="why-now">
       <div className="why-now__in in">
-        <h2>Half the value of your company is not on the balance sheet.</h2>
+        <div className="why-now__head">
+          <h2>Half the value of your company is not on the balance sheet.</h2>
+        </div>
         <div className="why-now__body">
           <p>
             Roughly half of what your company is worth sits in you. Who
@@ -47,6 +49,7 @@ export default function WhyNow() {
           </p>
         </div>
       </div>
+      <WhyNowFocus />
     </section>
   )
 }

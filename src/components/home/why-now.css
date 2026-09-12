@@ -1,13 +1,13 @@
-/* Home · why-now — design system unificado §6.
+/* Home · why-now — brief 12-sep §6.2.
 
-   Una sola columna centrada, medida de lectura (62ch). Sin volado
-   a la izquierda, sin dos columnas, sin footnote — la composición
-   Tetragrammaton en vez de la firma de NDS.
+   Dos columnas: titular sticky a la izquierda mientras los cuatro
+   párrafos pasan a la derecha. Foco por opacidad: el párrafo más
+   cercano al centro del viewport va a --ink, los otros bajan a 28%.
 
-   Título en --serif (Instrument Serif 400) — excepción documentada
-   a la regla de "serif solo en títulos ≤6 palabras": este es
-   epígrafe de sección, no headline, y en serif a 54px sobre una
-   columna angosta se lee como epígrafe de libro. */
+   Es la ÚNICA excepción a la regla de que ningún texto va en gris,
+   y es deliberada: no es color, es estado. Los cuatro párrafos
+   llegan a opacidad plena al pasar. Bajo prefers-reduced-motion
+   todos quedan en 1. */
 
 .why-now {
   background: var(--paper);
@@ -16,32 +16,63 @@
 }
 
 .why-now .in {
-  /* La prosa corrida usa --measure. Margen izq alineado al resto
-     del sitio — sale el margin auto, la caja arranca en --pad. */
-  max-width: var(--measure);
+  max-width: 1600px;
   margin-inline: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
 }
 
-.why-now h2 {
+.why-now__head {
+  position: sticky;
+  top: var(--s4);
+}
+
+.why-now__head h2 {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(30px, 3.6vw, 54px);
+  font-size: var(--t-display);
   line-height: 1.14;
   letter-spacing: -.012em;
   color: var(--ink);
-  margin: 0 0 clamp(48px, 7vh, 80px);
+  margin: 0;
 }
 
 .why-now__body p,
 .why-now p {
   font-family: var(--grot);
   font-weight: 400;
-  font-size: clamp(18px, 1.4vw, 22px);
+  font-size: var(--t-lead);
   line-height: 1.55;
   color: var(--ink);
-  margin: 0 0 1.5em;
+  opacity: .28;
+  transition: opacity var(--dur-3) var(--ease);
+  margin: 0 0 var(--s4);
 }
-.why-now__body p:last-of-type,
-.why-now p:last-of-type {
+.why-now__body p:last-child,
+.why-now p:last-child {
   margin-bottom: 0;
+}
+.why-now p.is-focus {
+  opacity: 1;
+}
+
+/* Mobile: una columna, el sticky se apaga. A ese ancho el titular
+   ocupa media pantalla y los párrafos no tienen por dónde pasar. */
+@media (max-width: 900px) {
+  .why-now .in {
+    grid-template-columns: 1fr;
+  }
+  .why-now__head {
+    position: static;
+  }
+}
+
+/* Reduce: todos los párrafos plenos, sin transición. */
+@media (prefers-reduced-motion: reduce) {
+  .why-now p {
+    opacity: 1;
+    transition: none;
+  }
 }

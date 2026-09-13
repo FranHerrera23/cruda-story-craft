@@ -13,6 +13,25 @@ import PageShell from "@/components/PageShell";
 import RevealScroll from "@/components/RevealScroll";
 import SmoothScroll from "@/components/SmoothScroll";
 import LineReveals from "@/components/LineReveals";
+import Loader from "@/components/Loader";
+
+/* Motion v3 §9 — inline script en el <head> que corre antes del
+   primer paint. Lee sessionStorage y setea data-loader="skip" en
+   <html> si el loader ya se mostró en esta sesión. CSS gate en
+   globals.css (`html[data-loader="skip"] .loader { display:none }`)
+   corta el render antes de pintar. Sin este script el loader
+   flashea 800ms en cada reload dentro de la misma pestaña. */
+const LOADER_GATE_SCRIPT = `
+try {
+  if (sessionStorage.getItem('cruda-loader-shown') === '1') {
+    document.documentElement.dataset.loader = 'skip';
+  } else {
+    document.documentElement.dataset.loader = 'show';
+  }
+} catch (e) {
+  document.documentElement.dataset.loader = 'show';
+}
+`.trim();
 
 /* Brief v2 Task 5 — Organization schema site-wide.
    Emitido en el root layout, dentro del <head>. Todas las páginas
@@ -150,6 +169,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${instrumentSerif.variable} ${archivo.variable}`}>
+      <head>
+        {/* Motion v3 §9 — inline script para el gate del loader. Corre
+            antes de pintar el <body>, evita el flash en cada reload
+            dentro de la misma sesión. Ver LOADER_GATE_SCRIPT arriba. */}
+        <script
+          dangerouslySetInnerHTML={{ __html: LOADER_GATE_SCRIPT }}
+        />
+      </head>
       {/* E1 paso 3 — <link> a EB Garamond + Instrument Sans + preconnects
           a Google Fonts eliminados. About reemplazada, no queda página
           que las consuma. El sistema tipográfico completo se carga via
@@ -169,6 +196,10 @@ export default function RootLayout({
             <Toaster />
             <Sonner />
             <ScrollToTop />
+            {/* Motion v3 §9 — Loader de primera visita de sesión.
+                Va como primer nodo del árbol client para que renderee
+                en el primer paint. Ver Loader.tsx. */}
+            <Loader />
             {/* Brief v4 UX §1.8 — skip link como primer elemento del body. */}
             <a href="#main" className="skip-link">Skip to content</a>
             <Nav />

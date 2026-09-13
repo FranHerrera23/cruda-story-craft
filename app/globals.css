@@ -300,6 +300,78 @@ a, button {
   .route-mask { display: none; }
 }
 
+/* ==================================================================
+   Motion v3 §9 — Loader (primera visita de la sesión).
+
+   La MISMA máscara --ink de §8 en un segundo uso: el telón entra
+   cubierto en el primer paint, el wordmark CRUDA revela letra a
+   letra con stagger 60ms, y a los 500ms el panel sube. Total ~800ms.
+
+   Flash-free en reload: inline script en <head> (layout.tsx) lee
+   sessionStorage y setea data-loader="skip" en <html>. CSS abajo
+   corta el render antes de pintar.
+
+   Animaciones vía keyframes CSS, no transitions. Empiezan con el
+   primer paint, no dependen de hydration — si hydration tarda,
+   el reveal ya arrancó.
+
+   Wordmark en --grot 500, --paper. Escala clamp para móvil→desktop.
+   Cinco letras con clip window individual (overflow:hidden +
+   translateY(100%)→0). animation-delay inline emitido por el JSX,
+   así el stagger vive donde vive el índice. */
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+}
+.loader__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateY(0);
+  will-change: transform;
+  animation: loader-panel-exit 250ms var(--ease-exit) 500ms forwards;
+}
+.loader__word {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.05em;
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(48px, 8vw, 96px);
+  letter-spacing: -.02em;
+  color: var(--paper);
+  line-height: 1;
+  /* Sube junto con el panel; el wordmark no queda flotando cuando
+     el telón se va. */
+  animation: loader-panel-exit 250ms var(--ease-exit) 500ms forwards;
+}
+.loader__letter-clip {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1;
+}
+.loader__letter {
+  display: inline-block;
+  transform: translateY(100%);
+  animation: loader-letter-rise 400ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+@keyframes loader-letter-rise {
+  to { transform: translateY(0); }
+}
+@keyframes loader-panel-exit {
+  to { transform: translateY(-100%); }
+}
+html[data-loader="skip"] .loader { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .loader { display: none; }
+}
+
 /* Motion §3.1 · carga de página.
 
    `.page-root` es opacity 0 al pintarse y sube a 1 al agregarse

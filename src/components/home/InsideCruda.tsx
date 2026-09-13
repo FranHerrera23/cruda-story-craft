@@ -28,9 +28,9 @@ export default function InsideCruda() {
           <div className="ic-row__label">The work</div>
           <div className="ic-row__body">
             <p>
-              The work is founder narrative and the writing that
-              carries it — essays, long-form pieces, interviews,
-              the argument a company makes in public.
+              The work is founder narrative — the argument a
+              company makes in public, and everything that
+              carries it.
             </p>
           </div>
         </div>

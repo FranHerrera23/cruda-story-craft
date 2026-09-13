@@ -238,20 +238,18 @@ const KarenPezetProject = () => {
           <h2 className="mb-8" style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 600, color: '#000000', lineHeight: 1.2 }}>
             See more of Karen's work
           </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* CTA de Calendly retirado — esta página es un proyecto
+              interno de Karen, no una página de venta de CRUDA.
+              El "Start a Conversation" apuntando a Calendly ahí era
+              vender a los invitados del cliente, no a compradores
+              nuevos. Queda solo el back-link. */}
+          <div className="flex justify-center">
             <Link
               href="/work/karen-mannheim#projects"
               className="inline-block px-10 py-4 font-semibold transition-all duration-300 hover:opacity-90"
               style={{ backgroundColor: '#000000', color: '#FFFFFF', borderRadius: '4px', fontSize: '16px' }}
             >
-              ← Back to Karen's Page
-            </Link>
-            <Link
-              href="https://calendly.com/cruda-intro/narrative-sparring-live-1" target="_blank" rel="noopener"
-              className="inline-block px-10 py-4 font-semibold transition-all duration-300"
-              style={{ backgroundColor: 'transparent', color: '#000000', borderRadius: '4px', fontSize: '16px', border: '2px solid #000000' }}
-            >
-              Start a Conversation →
+              ← Back to Karen&apos;s Page
             </Link>
           </div>
         </div>

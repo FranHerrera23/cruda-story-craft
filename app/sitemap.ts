@@ -13,16 +13,11 @@ const BASE = 'https://www.thecruda.com';
    /newsletter queda fuera mientras CAPTURE_ENABLED=false (F0).
 
    Task 8 — cada moment se emite como su propio índice /work/{moment}.
-   Karen sub-projects (/projects/karen-mannheim/*) entran al sitemap
-   por decisión D5. */
 
-const KAREN_PROJECTS = [
-  'pezet',
-  'four-seasons-penthouse',
-  'porsche-flagship',
-  'saadiyat-music-festival',
-  'trazzo-expansion',
-] as const
+   Nota 13-sep · Karen sub-projects (/projects/karen-mannheim/*) YA
+   NO entran al sitemap. Cada page.tsx declara robots noindex a
+   nivel meta y por lo tanto no corresponde re-invitarlos al crawl
+   desde el sitemap — es la señal mixta que Google penaliza. */
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -82,13 +77,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),
-    // Karen sub-projects (D5 — se promueven al sitemap)
-    ...KAREN_PROJECTS.map((p) => ({
-      url: `${BASE}/projects/karen-mannheim/${p}`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.6,
-    })),
+    // Karen sub-projects retirados del sitemap — cada page.tsx
+    // declara robots.index:false y no corresponde re-invitarlos
+    // al crawl desde acá (ver comentario superior).
     // Essays
     ...allEssays.map((e) => ({
       url: `${BASE}/essays/${e.slug}`,
@@ -113,6 +104,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
        - /architecture-design/* (301 → /work | /our-founder)
        - /resources/* (301 → /work | /essays)
        - /thinking/*, /clients/* (301 legacy)
-       - /deck, /crudasports/sfh (privadas, noindex a nivel meta) */
+       - /deck, /crudasports/sfh (privadas, noindex a nivel meta)
+       - /projects/karen-mannheim/* (privadas, noindex a nivel meta) */
   ];
 }

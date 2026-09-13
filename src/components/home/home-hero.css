@@ -1,32 +1,36 @@
-/* Home · Hero — brief 12-sep §6.1.
+/* Home · Hero — motion v3 §7 · más peso visual.
 
-   Layout tipográfico simple: H1 + dek. Sin ghost span, sin
-   posición absoluta, sin animación de tipeo. El fondo de la caja
-   ya no se corta a media altura porque no hay más medición dinámica
-   durante el ciclo — el bug queda arreglado por retiro, no por fix.
+   El tope de 54px se fijó cuando el hero tenía diecisiete palabras.
+   Ahora tiene once, en dos líneas limpias — a ese largo, 54px es
+   chico. El display sube a clamp(40, 6.5vw, 88) y el line-height
+   baja a 1.02: con el interlineado casi cerrado las dos líneas se
+   leen como un bloque sólido; a 1.14 se leían como dos renglones
+   sueltos.
 
-   El H1 rompe entre las dos oraciones que la componen: "Your company
-   outgrew its own story." + "We build the next one." Un <br> entre
-   ellas garantiza el corte exacto — el max-width solo no funciona
-   porque Archivo 500 es angosto y el navegador siempre encuentra
-   hueco para "We" al final de la primera línea. El max-width queda
-   en 40ch como guardia máxima para desktop grande. */
+   Padding-block más generoso que --s5 a propósito — el hero pesa
+   solo, no comparte espacio con nada. El dek baja de jerarquía
+   para que el H1 mande.
+
+   El <br/> explícito del componente se conserva — garantiza el
+   corte entre las dos oraciones ("story." / "We build"), que a
+   escala grande el max-width solo no siempre resuelve. */
 
 .home-hero {
   background: var(--paper);
-  padding: var(--s5) var(--pad);
+  padding-block: clamp(140px, 22vh, 260px);
+  padding-inline: var(--pad);
   min-height: auto;
 }
 
 .home-hero__h1 {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: var(--t-display);
-  line-height: 1.14;
-  letter-spacing: -.022em;
-  max-width: 40ch;
+  font-size: clamp(40px, 6.5vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -.035em;
+  max-width: 18ch;
   color: var(--ink);
-  margin: 0 0 var(--s3);
+  margin: 0;
 }
 
 .home-hero__dek {
@@ -35,7 +39,7 @@
   font-size: var(--t-lead);
   line-height: 1.55;
   letter-spacing: 0;
-  max-width: 52ch;
+  max-width: 46ch;
   color: var(--ink);
-  margin: 0;
+  margin-top: var(--s4);
 }

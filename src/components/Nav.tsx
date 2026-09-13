@@ -45,15 +45,21 @@ export default function Nav() {
     setReady(true)
   }, [])
 
-  /* §5.1 del spec de Task 11 (recortado) — la nav se retira al bajar
-     y vuelve al subir. Umbral 140px para que el gesto inicial de la
-     página no la haga desaparecer. Site-wide: el mismo comportamiento
-     hace legible el 78vh del lead en case studies y no molesta en
-     páginas cortas donde el usuario no llega al umbral.
+  /* Motion v3 §10 — la nav se oculta al bajar y vuelve al subir,
+     umbral de 80px. Antes: 140px. El brief nuevo baja el umbral
+     porque el hero del home ahora tiene padding-block generoso
+     (motion v3 §7) y los 140px dejaban ver el nav durante la
+     primera parte del scroll donde ya empieza el contenido pesado.
 
-     El estado vive en React (no vía classList) — más simple y el
-     ciclo de render de Next se encarga. Passive listener para no
-     bloquear scroll. */
+     El estado activo queda congelado durante la transición de
+     ruta: mientras la máscara (motion v3 §8) está puesta, cualquier
+     recálculo por cambio de pathname no se ve. No hace falta
+     lógica extra — usePathname devuelve el path viejo durante
+     'covering' (router.push corre después de COVER_MS), y en
+     'revealing' el nav ya está tapado.
+
+     Passive listener; el trabajo se agrupa en rAF para no correr
+     por cada evento de scroll. */
   useEffect(() => {
     let last = 0
     let ticking = false
@@ -62,7 +68,7 @@ export default function Nav() {
       ticking = true
       requestAnimationFrame(() => {
         const y = window.scrollY
-        setAway(y > last && y > 140)
+        setAway(y > last && y > 80)
         last = y
         ticking = false
       })

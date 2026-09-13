@@ -2,11 +2,14 @@
 
    Con fondo blanco uniforme la transición la hace el filete y el
    aire — 1px al 14% de negro entre secciones consecutivas, ancho
-   completo del contenedor. Excepción única: la primera sección
-   (hero) no lleva filete arriba.
+   completo del contenedor.
 
-   Nota 12-sep: entra .home-first90 entre inside-cruda y essays.
-   El cierre pasó a --paper (§6.8) y también lleva filete.
+   Excepciones al filete:
+     · La primera sección (hero) no lleva filete arriba.
+     · El testimonio (§6.6) va sobre --ink. El corte de color al
+       negro es la transición ahí — sin filete.
+     · Essays viene después del testimonio: el corte al blanco es
+       la transición — sin filete tampoco.
 
    Reset defensivo de margins también para no dejar espacio hueco
    entre secciones (última declaración gana por cascada). */
@@ -16,19 +19,21 @@
 .home-work,
 .inside-cruda,
 .home-first90,
+.home-testimonial,
 .home-essays,
 .home-close {
   margin: 0;
   border-top: 0;
 }
 
-/* Filete entre secciones consecutivas — se aplica a partir de la
-   segunda. Ninguna excepción, salvo el hero que arranca la página. */
+/* Filete entre secciones consecutivas — solo entre pares del
+   mismo fondo (--paper). Los pares que cruzan color no llevan
+   filete: first-90 → testimonial (blanco → negro) y
+   testimonial → essays (negro → blanco). */
 .home-hero + .why-now,
 .why-now + .home-work,
 .home-work + .inside-cruda,
 .inside-cruda + .home-first90,
-.home-first90 + .home-essays,
 .home-essays + .home-close {
   border-top: 1px solid var(--rule);
 }

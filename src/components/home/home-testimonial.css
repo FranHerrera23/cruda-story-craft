@@ -1,0 +1,70 @@
+/* Home · testimonio — brief 12-sep §6.6.
+
+   Fondo --ink, texto --paper. Único inverso de la home. La escala
+   y el corte de color hacen todo el trabajo: sin comillas
+   decorativas (nada de "«...»"), sin filete vertical a la izq,
+   sin foto.
+
+   La cita en --t-display grot 500 sobre max-width 20ch — deja
+   la caja angosta y respira. La atribución --s4 debajo, en
+   --t-body, sin cursivas y sin decoración. */
+
+.home-testimonial {
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--s5) var(--pad);
+}
+.home-testimonial__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+/* Reset del figure — es solo wrapper semántico. */
+.home-testimonial__figure {
+  margin: 0;
+  padding: 0;
+}
+
+.home-testimonial__quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.home-testimonial__quote p {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: var(--t-display);
+  line-height: 1.14;
+  letter-spacing: -.022em;
+  color: var(--paper);
+  max-width: 20ch;
+  margin: 0 0 var(--s3);
+}
+.home-testimonial__quote p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Attribution: nombre + rol en dos líneas. Ambos sobre --paper
+   puro — es la excepción del sitio (§5 · fondo negro con texto
+   blanco). La jerarquía la hace peso y no color. */
+.home-testimonial__attrib {
+  display: block;
+  margin-top: var(--s4);
+}
+.home-testimonial__name {
+  display: block;
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: var(--t-body);
+  line-height: 1.3;
+  letter-spacing: -.01em;
+  color: var(--paper);
+}
+.home-testimonial__role {
+  display: block;
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-body);
+  line-height: 1.4;
+  color: var(--paper);
+}

@@ -109,8 +109,15 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       }, COVER_MS)
     }
 
-    document.addEventListener('click', onClick)
-    return () => document.removeEventListener('click', onClick)
+    /* Capture phase: document listener corre ANTES del onClick que
+       next/link agrega en el <a>. Sin esto, next/link ya llamó a
+       router.push sincrónicamente para cuando corre nuestro handler
+       — la URL cambió, la comparación con window.location.pathname
+       da igualdad y bailamos sin haber montado la máscara. Con
+       capture, preventDefault corre primero y next/link no llega
+       a disparar. */
+    document.addEventListener('click', onClick, true)
+    return () => document.removeEventListener('click', onClick, true)
   }, [router])
 
   useEffect(() => {

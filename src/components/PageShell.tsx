@@ -89,6 +89,14 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       const url = new URL(href, window.location.href)
       if (url.pathname === window.location.pathname) return
 
+      /* Reduced motion: la máscara ya está en display:none por CSS,
+         pero además no queremos meter un COVER_MS de delay para una
+         nav que va a saltar sin transición. Dejamos que next/link
+         maneje el click normalmente — client nav instantáneo. */
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return
+      }
+
       e.preventDefault()
 
       pendingHref.current = href

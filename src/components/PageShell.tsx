@@ -3,72 +3,74 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-/* Motion §3.2 — Transición de página.
+/* Motion v3 §8 — Transición de ruta con máscara.
 
-   Envuelve el <main> en layout.tsx. Intercepta clicks en cualquier <a>
-   interno (next/link renderea <a>, así que quedan cubiertos) y ejecuta
-   una transición de página opacity-only.
+   Reemplaza la transición opacity-only (motion §3.2 / F3.1). Un
+   panel de ancho completo en --ink entra desde abajo, la ruta
+   cambia detrás, y el panel destapa hacia arriba.
 
-     · Salida: opacity 1→0 en --t-1 (200ms) con --ease
-     · scrollTo(0,0) con behavior:'instant' — bypasea el
-       scroll-behavior:smooth global. Ocurre DURANTE el fade.
-     · Entrada: opacity 0→1 en --t-3 (500ms) con --ease
-     · Sin translate, sin slide, sin scale. Solo opacidad.
+   Reglas duras del brief:
+     · La salida (destape) es más lenta que la entrada (cubrir).
+       Cubrir es funcional; destapar es el momento que se mira.
+       Cubrir --dur-3 con --ease (in); destapar --dur-4 con
+       --ease-exit (out).
+     · El scroll se resetea mientras está cubierto, nunca antes.
+     · Lenis se para durante la transición: lenis.stop() al cubrir,
+       lenis.start() al destapar.
 
-   Dos caminos según soporte del browser:
+   Se dispara sobre clicks internos (next/link renderea <a>, así
+   que quedan cubiertos). Hash-only (misma pathname, cambia hash)
+   se salta — ahí actúa Lenis anchors, no la máscara.
 
-   1. Chrome/Edge/Safari (con document.startViewTransition):
-      Wrap navegación + scroll dentro de startViewTransition. El fade
-      out/in vive en globals.css bajo ::view-transition-old/new(root).
+   Back button del navegador: el `popstate` es fast direct, sin
+   máscara. Cuando la nueva URL llega vía popstate, pendingRef está
+   en null y el useEffect de pathname no dispara 'revealing'. No es
+   una regresión, es una decisión: la máscara marca navegación
+   dirigida, no historial.
 
-   2. Firefox (sin startViewTransition) — F3.1 fallback:
-      Estado local phase = 'idle' | 'leaving' | 'entering'. En
-      'leaving' el wrapper aplica opacity 1→0 vía data-attribute + CSS
-      transition. Setimeout LEAVE_MS hace scroll + push. Cuando cambia
-      pathname, phase pasa a 'entering' (opacity 0→1 vía animation
-      cruda-page-fade-in). Setimeout ENTER_MS vuelve a 'idle'.
+   Motion §3.1 · fade de hidratación en `.page-root` se conserva —
+   no depende de la transición y da la sensación de página que
+   entra al cargar la primera vez.
 
-   Fran: mismo comportamiento en Firefox y en Chrome — no depende del
-   browser.
+   prefers-reduced-motion: la máscara se apaga por CSS
+   (display:none). El click sigue haciendo router.push directo. */
 
-   prefers-reduced-motion cancela ambos caminos (CSS). */
+type State = 'idle' | 'covering' | 'revealing'
 
-type StartViewTransitionFn = (callback: () => void) => { finished: Promise<void> }
-type Phase = 'idle' | 'leaving' | 'entering'
+type LenisApi = {
+  stop?: () => void
+  start?: () => void
+}
 
-/* Motion §3.2 — salida --t-1 (200ms), entrada --t-3 (500ms). Los
-   valores viven acá porque el JS necesita agendar el setTimeout de
-   navegación; los tokens CSS pintan el fade. */
-const LEAVE_MS = 200
-const ENTER_MS = 500
+/* SmoothScroll (motion v3 §4) expone la instancia en window.__lenis.
+   Vive fuera del árbol React; el shell la consume por window. */
+function getLenis(): LenisApi | null {
+  if (typeof window === 'undefined') return null
+  const w = window as unknown as { __lenis?: LenisApi }
+  return w.__lenis ?? null
+}
+
+/* Ventana de cubrir tiene que quedar sincronizada con --dur-3, y
+   ventana de destapar con --dur-4. Si algún día cambian los tokens
+   estos números tienen que seguir. */
+const COVER_MS = 500
+const REVEAL_MS = 600
 
 export default function PageShell({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [phase, setPhase] = useState<Phase>('idle')
+  const [state, setState] = useState<State>('idle')
   const [ready, setReady] = useState(false)
   const pendingHref = useRef<string | null>(null)
   const prevPath = useRef(pathname)
-  const enterTimer = useRef<number | null>(null)
+  const revealTimer = useRef<number | null>(null)
 
-  /* Motion §3.1 · carga de página.
-     `.page-root` arranca en opacity 0 (bajo scripting:enabled) y sube
-     a 1 al agregarse `.ready` en el próximo tick post-hydration. Sin
-     JS, el `.page-root` queda a opacity 1 por default — el fade es
-     progresivo enhancement, no bloqueo. */
   useEffect(() => {
     setReady(true)
   }, [])
 
-  /* Intercept: uso un listener por click con cleanup. Router + hasVT
-     no cambian, así que el effect se monta una sola vez. */
   useEffect(() => {
     if (typeof document === 'undefined') return
-
-    const startViewTransition = (
-      document as unknown as { startViewTransition?: StartViewTransitionFn }
-    ).startViewTransition
-    const hasVT = typeof startViewTransition === 'function'
 
     function onClick(e: MouseEvent) {
       if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return
@@ -82,59 +84,53 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       if (anchor.target && anchor.target !== '_self') return
       if (anchor.hasAttribute('download')) return
 
+      /* Hash-only: misma pathname, cambia solo el fragmento. Lenis
+         anchors se ocupa. La máscara no se dispara. */
+      const url = new URL(href, window.location.href)
+      if (url.pathname === window.location.pathname) return
+
       e.preventDefault()
 
-      if (hasVT) {
-        startViewTransition!(() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-          router.push(href)
-        })
-      } else {
-        /* Fallback: fade-out → nav → fade-in con estado React. */
-        pendingHref.current = href
-        setPhase('leaving')
-        window.setTimeout(() => {
-          window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-          router.push(href)
-          /* No cambiamos phase acá — el effect de pathname lo hace
-             cuando el nuevo path llega. Mientras tanto seguimos en
-             'leaving' (opacity 0), y el nuevo contenido renderea
-             invisible bajo esa opacidad. */
-        }, LEAVE_MS)
-      }
+      pendingHref.current = href
+      setState('covering')
+      getLenis()?.stop?.()
+
+      window.setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+        router.push(href)
+      }, COVER_MS)
     }
 
     document.addEventListener('click', onClick)
-    return () => {
-      document.removeEventListener('click', onClick)
-    }
+    return () => document.removeEventListener('click', onClick)
   }, [router])
 
-  /* Cuando el pathname cambia por el fallback, arrancamos 'entering'.
-     Para Chrome no importa: pendingHref queda null porque VT no lo
-     usa. */
   useEffect(() => {
     if (pendingHref.current && prevPath.current !== pathname) {
       pendingHref.current = null
-      setPhase('entering')
-      if (enterTimer.current) clearTimeout(enterTimer.current)
-      enterTimer.current = window.setTimeout(() => {
-        setPhase('idle')
-        enterTimer.current = null
-      }, ENTER_MS)
+      setState('revealing')
+      getLenis()?.start?.()
+      if (revealTimer.current) window.clearTimeout(revealTimer.current)
+      revealTimer.current = window.setTimeout(() => {
+        setState('idle')
+        revealTimer.current = null
+      }, REVEAL_MS)
     }
     prevPath.current = pathname
     return () => {
-      if (enterTimer.current) {
-        clearTimeout(enterTimer.current)
-        enterTimer.current = null
+      if (revealTimer.current) {
+        window.clearTimeout(revealTimer.current)
+        revealTimer.current = null
       }
     }
   }, [pathname])
 
   return (
-    <div className={`page-root${ready ? ' ready' : ''}`} data-page-phase={phase}>
+    <div className={`page-root${ready ? ' ready' : ''}`}>
       {children}
+      <div className="route-mask" data-state={state} aria-hidden="true">
+        <div className="route-mask__panel" />
+      </div>
     </div>
   )
 }

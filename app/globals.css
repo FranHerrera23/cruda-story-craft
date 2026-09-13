@@ -253,50 +253,51 @@ a, button {
 ::-webkit-scrollbar-thumb:hover { background: rgba(10, 10, 10, 0.3); }
 
 /* ==================================================================
-   F3.1 — Transición de página con la View Transitions API.
+   Motion v3 §8 — Transición de ruta con máscara.
 
-   PageShell (client component) intercepta clicks internos y dispara
-   document.startViewTransition() en browsers que la soportan. El
-   snapshot de la página vieja se enmascara con opacity 1→0 en 300ms,
-   el scroll salta a top DENTRO del callback (durante el fade), y la
-   página nueva entra con opacity 0→1 en 500ms.
+   Reemplaza la transición opacity-only. Un panel de ancho completo
+   en --ink entra desde abajo, la ruta cambia detrás, y el panel
+   destapa hacia arriba. PageShell maneja el estado.
 
-   Regla dura del brief F3: solo opacidad. Cero translate, cero
-   slide, cero scale en el eje Y ni en ningún otro.
+   Cubrir es más rápido y más neutro (--dur-3 con --ease); destapar
+   es más lento y más suelto (--dur-4 con --ease-exit): "cubrir es
+   funcional; destapar es el momento que se mira".
 
-   Fallback: browsers sin startViewTransition (Firefox al 2026)
-   usan [data-page-phase] con opacity toggle desde PageShell.
-   ================================================================== */
-/* Motion §3.2 — salida más rápida (--t-1) que entrada (--t-3),
-   ambas con --ease. Sin asimetría de easing entre entrada y salida. */
-::view-transition-old(root) {
-  animation: cruda-page-fade-out var(--dur-1) var(--ease) both;
-}
-::view-transition-new(root) {
-  animation: cruda-page-fade-in var(--dur-3) var(--ease) both;
-}
-@keyframes cruda-page-fade-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
-@keyframes cruda-page-fade-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
+   El wrapper .route-mask siempre existe (z-index: 9999). El panel
+   interno vive translateY(100%) por default — fuera de vista, no
+   captura pointer events (pointer-events:none redundante pero
+   explícito). Con data-state cambia el transform y aplica la
+   transition apropiada.
 
-/* Fallback para browsers sin View Transitions API (Firefox al 2026).
-   PageShell corre un ciclo con estado React: phase='leaving' baja
-   opacity a 0 con --t-1, phase='entering' la sube a 1 con --t-3.
-   Mismos tiempos que la ruta VT. */
-[data-page-phase] {
-  opacity: 1;
+   Loader (§9) va a reusar esta misma máscara para el primer
+   acceso de la sesión — un componente, dos usos.
+
+   prefers-reduced-motion: máscara desactivada; el click sigue
+   haciendo router.push directo, sin panel. */
+.route-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
 }
-[data-page-phase="leaving"] {
-  opacity: 0;
-  transition: opacity var(--dur-1) var(--ease);
+.route-mask__panel {
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform: translateY(100%);
+  pointer-events: none;
+  will-change: transform;
 }
-[data-page-phase="entering"] {
-  animation: cruda-page-fade-in var(--dur-3) var(--ease) both;
+.route-mask[data-state="covering"] .route-mask__panel {
+  transform: translateY(0);
+  transition: transform var(--dur-3) var(--ease);
+}
+.route-mask[data-state="revealing"] .route-mask__panel {
+  transform: translateY(-100%);
+  transition: transform var(--dur-4) var(--ease-exit);
+}
+@media (prefers-reduced-motion: reduce) {
+  .route-mask { display: none; }
 }
 
 /* Motion §3.1 · carga de página.

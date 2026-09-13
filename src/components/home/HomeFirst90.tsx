@@ -37,7 +37,7 @@ export default function HomeFirst90() {
     <section id="first-90" className="home-first90">
       <div className="home-first90__inner in">
         <p className="home-first90__eyebrow">The First 90 Days</p>
-        <h2 className="home-first90__lede">
+        <h2 className="home-first90__lede" data-reveal="lines">
           One hour a week, talking about what you already know.
         </h2>
 

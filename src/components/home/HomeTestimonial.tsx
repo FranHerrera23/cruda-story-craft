@@ -13,9 +13,11 @@ import './home-testimonial.css'
    Rotable: cuando lleguen los testimonios de Mike, José o Germán,
    esta sección puede alternar. Hoy va Karen sola.
 
-   Motion: data-reveal="text" en la sección. RevealScroll global
-   la observa. Motion v2 §3b va a mejorar esto con revelado por
-   línea cuando llegue su turno. */
+   Motion: cada <p> de la cita lleva `data-reveal="lines"` (motion
+   v3 §6). LineReveals mide el corte real y reescribe con `.rv-line
+   > span` para que las líneas del testimonio suban en stagger. La
+   sección conserva `data-reveal="text"` para el rise del bloque
+   completo (atribución + escala). */
 
 export default function HomeTestimonial() {
   return (
@@ -27,12 +29,12 @@ export default function HomeTestimonial() {
       <div className="home-testimonial__inner in">
         <figure className="home-testimonial__figure">
           <blockquote className="home-testimonial__quote">
-            <p>
+            <p data-reveal="lines">
               Any founder who spent decades building something good
               knows this problem: the work is excellent and nobody
               outside your circle finds out.
             </p>
-            <p>
+            <p data-reveal="lines">
               I had it for twenty-eight years. In early 2021 I
               decided to become visible and I hired Fran. Five years
               later, TRAZZO is not the same company.

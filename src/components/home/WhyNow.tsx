@@ -23,7 +23,9 @@ export default function WhyNow() {
     <section id="why-now" className="why-now">
       <div className="why-now__in in">
         <div className="why-now__head">
-          <h2>Half the value of your company is not on the balance sheet.</h2>
+          <h2 data-reveal="lines">
+            Half the value of your company is not on the balance sheet.
+          </h2>
         </div>
         <div className="why-now__body">
           <p>

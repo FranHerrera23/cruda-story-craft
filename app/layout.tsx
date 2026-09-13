@@ -12,6 +12,7 @@ import Providers from './providers';
 import PageShell from "@/components/PageShell";
 import RevealScroll from "@/components/RevealScroll";
 import SmoothScroll from "@/components/SmoothScroll";
+import LineReveals from "@/components/LineReveals";
 
 /* Brief v2 Task 5 — Organization schema site-wide.
    Emitido en el root layout, dentro del <head>. Todas las páginas
@@ -186,6 +187,7 @@ export default function RootLayout({
               </main>
             </PageShell>
             <RevealScroll />
+            <LineReveals />
             <SmoothScroll />
             <SiteFooter />
           </TooltipProvider>

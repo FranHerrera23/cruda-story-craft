@@ -13,8 +13,14 @@ import './home-hero.css'
    Dek en grot 400, --t-lead, sobre 52ch (más ancho que el H1 pero
    sigue siendo caja de lectura, no de headline).
 
-   Reveal via data-reveal="text" del sistema — RevealScroll global
-   lo encuentra y agrega .on al montar el DOM. */
+   Reveal via data-reveal del sistema — RevealScroll global lo
+   encuentra y agrega .on al montar el DOM.
+
+   Motion v3 §6 — el H1 lleva `data-reveal="lines"`: LineReveals mide
+   el corte real (respetando el <br/> autoral) y reescribe el DOM
+   con `.rv-line > span` para que las dos oraciones suban una detrás
+   de la otra con stagger 90ms. El dek sigue con `data-reveal="text"`
+   (fade + rise en bloque). */
 
 const DEK =
   'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
@@ -26,13 +32,13 @@ const DEK =
    y screen readers el textContent se lee corrido; el <br> es visual. */
 export default function HomeHero() {
   return (
-    <section className="home-hero" data-reveal="text">
-      <h1 className="home-hero__h1">
+    <section className="home-hero">
+      <h1 className="home-hero__h1" data-reveal="lines">
         Your company outgrew its own story.
         <br />
         We build the next one.
       </h1>
-      <p className="home-hero__dek">{DEK}</p>
+      <p className="home-hero__dek" data-reveal="text">{DEK}</p>
     </section>
   )
 }

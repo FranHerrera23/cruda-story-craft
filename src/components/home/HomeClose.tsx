@@ -19,7 +19,7 @@ export default function HomeClose() {
   return (
     <section id="close" className="home-close">
       <div className="home-close__inner in">
-        <h2>
+        <h2 data-reveal="lines">
           One conversation. We ask what you are actually trying to do, and
           what the market currently believes about you.
         </h2>

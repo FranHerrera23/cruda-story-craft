@@ -1,18 +1,34 @@
-/* Home · testimonio — brief 12-sep §6.6.
+/* Home · testimonio — motion v3 §4 (14-sep).
 
    Fondo --ink, texto --paper. Único inverso de la home. La escala
    y el corte de color hacen todo el trabajo: sin comillas
    decorativas (nada de "«...»"), sin filete vertical a la izq,
    sin foto.
 
-   La cita en --t-display grot 500 sobre max-width 20ch — deja
-   la caja angosta y respira. La atribución --s4 debajo, en
-   --t-body, sin cursivas y sin decoración. */
+   ESCALA (fix de error de especificación anterior)
+   La versión previa usaba --t-display (~54px) sobre max-width 20ch.
+   Con una cita de sesenta palabras eso daba más de veinte líneas
+   y tres pantallas. Fue error mío de spec — no de ejecución.
+
+   Ahora:
+     · font-size clamp(26px, 3.2vw, 44px) — 44px de tope, no 54.
+       El testimonio es voz ajena; tiene que pesar menos que el
+       hero, que es la voz del sitio. Si compiten, el hero pierde.
+     · max-width 30ch — a 20 caracteres cualquier cita se vuelve
+       una columna angosta e interminable.
+     · line-height 1.18, letter-spacing -.02em — armónicos con el
+       hero pero sin invadirlo.
+
+   ATRIBUCIÓN
+   Debajo, en --t-body — no en display. Nombre 700, cargo/fecha 400
+   al 60%. Es el único lugar del sitio donde una opacidad sobre
+   texto es correcta, porque es metadato, no argumento. */
 
 .home-testimonial {
   background: var(--ink);
   color: var(--paper);
-  padding: var(--s5) var(--pad);
+  padding-block: clamp(120px, 20vh, 200px);
+  padding-inline: var(--pad);
 }
 .home-testimonial__inner {
   max-width: 1600px;
@@ -33,23 +49,26 @@
 .home-testimonial__quote p {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: var(--t-display);
-  line-height: 1.14;
-  letter-spacing: -.022em;
+  font-size: clamp(26px, 3.2vw, 44px);
+  line-height: 1.18;
+  letter-spacing: -.02em;
   color: var(--paper);
-  max-width: 20ch;
+  max-width: 30ch;
   margin: 0 0 var(--s3);
 }
 .home-testimonial__quote p:last-of-type {
   margin-bottom: 0;
 }
 
-/* Attribution: nombre + rol en dos líneas. Ambos sobre --paper
-   puro — es la excepción del sitio (§5 · fondo negro con texto
-   blanco). La jerarquía la hace peso y no color. */
+/* Atribución · motion v3 §4 (14-sep).
+   Nombre en 700 --t-body. Cargo y fecha en 400 --t-body al 60%.
+   La opacidad acá es correcta porque es metadato — el único lugar
+   del sitio donde texto sobre --paper puro sale con opacidad
+   deliberada. */
 .home-testimonial__attrib {
   display: block;
   margin-top: var(--s4);
+  font-style: normal;
 }
 .home-testimonial__name {
   display: block;
@@ -67,4 +86,5 @@
   font-size: var(--t-body);
   line-height: 1.4;
   color: var(--paper);
+  opacity: .6;
 }

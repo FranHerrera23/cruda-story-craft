@@ -40,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
        responde 308 al ancla /#selected-work. Los case studies
        individuales /work/{slug} y los moment indexes siguen abajo. */
     {
-      url: `${BASE}/approach`,
+      url: `${BASE}/process`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 /* Brief v2 Task 4 — nav de 5 items:
 
-     About  ·  Work  ·  Approach  ·  Essays  ·  Contact
+     About  ·  Work  ·  Process  ·  Essays  ·  Contact
 
    Fuera de la nav: la COMPANIES dropdown entera (retirada), la
    RESOURCES dropdown (colapsada — Essays vive standalone ahora, y
@@ -31,7 +31,10 @@ const NAV_ITEMS = [
      el activo por la regex; en la home el activo lo dispara /work
      via el fragment. */
   { href: '/#selected-work', label: 'Work', match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
-  { href: '/approach', label: 'Approach', match: /^\/approach/ },
+  /* Brief 03 (14-sep) · /approach → /process. El regex incluye
+     el nombre viejo por la ventana de un frame antes de que el
+     301 resuelva (ver docs/decisions.md #nombres-de-rutas-retiradas). */
+  { href: '/process', label: 'Process', match: /^\/(process|approach)/ },
   { href: '/essays', label: 'Essays', match: /^\/(essays|resources\/essays|thinking)/ },
   { href: '/contact', label: 'Contact', match: /^\/contact/ },
 ] as const

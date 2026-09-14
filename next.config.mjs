@@ -111,6 +111,16 @@ const nextConfig = {
         permanent: true,
       },
 
+      // ============ /approach → /process (Brief 03, 14-sep) ============
+      // La página se llamaba `approach` — lo que decía una consultoría
+      // que no quería comprometerse a un orden. Ahora la página tiene
+      // un molde con meses y un proceso nombrado; la ruta lo refleja.
+      {
+        source: '/approach',
+        destination: '/process',
+        permanent: true,
+      },
+
       // ============ Legacy misc ============
       {
         // /book-call era un shell pre-v3 con copy vieja. /contact ya

@@ -33,6 +33,16 @@
   margin: 0;
 }
 
+/* Motion v3 §2 (14-sep) — el H1 va más lento que el resto del sitio.
+   Es el único titular que no compite con nada; a esa escala más
+   rápido se lee como pop. 900ms de duración por línea contra los
+   700ms default de [data-reveal="lines"]. El stagger de 140ms
+   entre línea 1 y línea 2 lo emite LineReveals leyendo el
+   `data-line-stagger` del <h1>. */
+.home-hero__h1 .rv-line > span {
+  transition-duration: 900ms;
+}
+
 .home-hero__dek {
   font-family: var(--grot);
   font-weight: 400;

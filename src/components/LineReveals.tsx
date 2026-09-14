@@ -2,57 +2,67 @@
 
 import { useEffect } from 'react'
 
-/* Revelado por línea — motion v3 §6.
+/* Revelado por línea — motion v3 §6 + orquestador §2 (14-sep).
 
    Mide el corte real de cada línea del texto y reescribe el DOM
-   con `.rv-line > span` para que cada línea se pueda animar como
-   un bloque independiente. El HTML servido queda intacto hasta que
-   este componente monta: el texto entero está en el <h1>/<h2>/<p>
-   correspondiente, sin depender de JS para existir (motion v3 §12).
+   con `.rv-line > span` para que cada línea se anime como bloque.
+   El HTML servido queda intacto hasta que este componente monta:
+   el texto entero está en el <h1>/<h2>/<p> correspondiente antes
+   de que JS corra.
 
-   Va sobre elementos marcados con `data-reveal="lines"`. Cuando
-   RevealScroll agrega `.on` al padre, cada `.rv-line > span` deshace
-   su `translateY(105%)` con transition-delay escalonado (90ms por
-   línea).
+   Orquestador · el bug más grave del rollout de motion v3 era que
+   este componente y RevealScroll corrían en paralelo. LineReveals
+   necesita medir; RevealScroll no. Los cuerpos ganaban la carrera
+   y aparecían antes que los títulos — jerarquía invertida.
 
-   MEDICIÓN
-   Cada palabra se envuelve en un span temporal `data-word` en
-   inline-block y se lee su `offsetTop`. Palabras con el mismo top
-   comparten línea. Un `<br>` en la fuente rompe el grupo y arranca
-   una línea nueva por autoría (el H1 del hero usa esto).
+   Fix: este componente parte TODOS los títulos al montar, y solo
+   entonces marca `html[data-lines-ready="true"]` y dispatchea
+   `cruda:lines-ready`. RevealScroll no registra ningún observer
+   hasta ver ese flag. Del mismo punto de partida, el orden lo
+   decide el stagger de cada sección, no quién arrancó primero.
+
+   Delay compuesto por línea:
+     transition-delay = --seq-delay + --line-index × --line-stagger
+
+   --seq-delay lo pone RevealScroll (delay dentro de la sección).
+   --line-index lo pone acá (posición 0..N de la línea).
+   --line-stagger lo hereda del elemento (default 90ms, hero 140ms
+   via `data-line-stagger`).
 
    RESIZE
-   Se guarda el innerHTML original en `data-lines-original`. En
-   cada resize (debounced 200ms) se restaura y se vuelve a partir.
+   `data-lines-original` guarda el innerHTML crudo. En cada resize
+   de ancho (debounced 200ms) se restaura y se vuelve a partir.
 
    FUENTES
-   Con next/font display:swap Archivo puede tardar unos frames en
-   swapear después del primer paint. Sin esperar `document.fonts.ready`
-   la medición usa la fuente fallback y el corte queda mal. Corremos
-   una partición inicial inmediata (para minimizar el flash de texto
-   raw) y otra al resolver `fonts.ready` para corregir el corte.
+   Con next/font display:swap el corte real depende de que Archivo
+   ya haya swapeado. Esperamos `document.fonts.ready` antes del
+   primer split. Fallback: si el promise no resuelve en 400ms
+   arrancamos con la fuente actual y aceptamos el drift.
 
    REDUCED MOTION
-   No se instala. El texto queda en su forma servida — visible
-   sin animación. */
+   No se instala el splitter. Igual marcamos el flag y disparamos
+   el evento — RevealScroll no puede quedar bloqueado esperando
+   algo que no va a pasar. Bajo reduce el texto queda visible en
+   su forma servida. */
 
 const SELECTOR = '[data-reveal="lines"]'
-const STAGGER_MS = 90
+const DEFAULT_STAGGER_MS = 90
 const SNAPSHOT_ATTR = 'data-lines-original'
+const FONTS_TIMEOUT_MS = 400
 
 type Token = { kind: 'word'; el: HTMLElement } | { kind: 'break' }
 
 function splitElement(el: HTMLElement) {
-  /* Snapshot en primer pass; restaurar en subsiguientes. */
+  const stagger =
+    Number(el.dataset.lineStagger ?? '') || DEFAULT_STAGGER_MS
+  el.style.setProperty('--line-stagger', `${stagger}ms`)
+
   if (!el.hasAttribute(SNAPSHOT_ATTR)) {
     el.setAttribute(SNAPSHOT_ATTR, el.innerHTML)
   } else {
     el.innerHTML = el.getAttribute(SNAPSHOT_ATTR) as string
   }
 
-  /* Reemplazar text nodes por word spans, conservar <br> como
-     marcadores de corte forzado. Otros elementos se copian tal cual
-     (no esperado en H1/H2/P plano, pero no rompe si aparece). */
   const tokens: Token[] = []
   const fragment = document.createDocumentFragment()
 
@@ -88,7 +98,6 @@ function splitElement(el: HTMLElement) {
   el.innerHTML = ''
   el.appendChild(fragment)
 
-  /* Agrupar palabras por offsetTop; los BREAK fuerzan línea nueva. */
   const lines: string[] = []
   let current: string[] = []
   let currentTop: number | null = null
@@ -121,45 +130,75 @@ function splitElement(el: HTMLElement) {
   }
   pushLine()
 
-  /* Rebuild final: `.rv-line > span`, uno por línea. Usa <span> con
-     display:block (via CSS) para no infringir el content model de
-     h1/h2/p con divs. Stagger inline sobre el span interno. */
+  /* Guardo el line-count en dataset — RevealScroll lo lee para
+     calcular el delay del body de la sección (§2: cuerpo = 120ms
+     + lineCount × stagger + 160ms). */
+  el.dataset.lineCount = String(lines.length)
+
   el.innerHTML = ''
   lines.forEach((lineText, idx) => {
     const line = document.createElement('span')
     line.className = 'rv-line'
     const inner = document.createElement('span')
-    inner.style.transitionDelay = `${idx * STAGGER_MS}ms`
+    inner.style.setProperty('--line-index', String(idx))
     inner.textContent = lineText
     line.appendChild(inner)
     el.appendChild(line)
   })
 }
 
+function markReady() {
+  document.documentElement.dataset.linesReady = 'true'
+  document.dispatchEvent(new CustomEvent('cruda:lines-ready'))
+}
+
 export default function LineReveals() {
   useEffect(() => {
     if (typeof window === 'undefined') return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    /* Bajo reduce motion no split, pero SI marcamos el flag —
+       RevealScroll depende de él para arrancar. */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      markReady()
+      return
+    }
 
     const elements = Array.from(
       document.querySelectorAll<HTMLElement>(SELECTOR),
     )
-    if (elements.length === 0) return
 
-    const run = () => elements.forEach(splitElement)
-
-    run()
-    if (document.fonts && typeof document.fonts.ready?.then === 'function') {
-      document.fonts.ready.then(run).catch(() => {})
+    const run = () => {
+      elements.forEach(splitElement)
+      markReady()
     }
 
+    /* fonts.ready con tope de 400ms. Sin cap, un font manifest lento
+       podría bloquear el resto del reveal system. Con cap aceptamos
+       drift de medición al swap y priorizamos que el orden salga. */
+    let dispatched = false
+    const dispatch = () => {
+      if (dispatched) return
+      dispatched = true
+      run()
+    }
+    if (document.fonts?.ready?.then) {
+      document.fonts.ready.then(dispatch).catch(dispatch)
+      window.setTimeout(dispatch, FONTS_TIMEOUT_MS)
+    } else {
+      run()
+    }
+
+    /* Resize: solo en cambios reales de ancho. Los cambios de
+       altura por barras de dirección móvil no cuentan. */
     let resizeTimer: number | undefined
     let lastWidth = window.innerWidth
     const onResize = () => {
       if (window.innerWidth === lastWidth) return
       lastWidth = window.innerWidth
       if (resizeTimer !== undefined) window.clearTimeout(resizeTimer)
-      resizeTimer = window.setTimeout(run, 200)
+      resizeTimer = window.setTimeout(() => {
+        elements.forEach(splitElement)
+      }, 200)
     }
     window.addEventListener('resize', onResize)
 

@@ -217,8 +217,13 @@ export default function RootLayout({
                 {children}
               </main>
             </PageShell>
-            <RevealScroll />
+            {/* Motion v3 §2 (14-sep) · LineReveals monta antes que
+                RevealScroll. Splitear los títulos es una precondición
+                del orquestador — RevealScroll espera el evento
+                `cruda:lines-ready` que dispara LineReveals cuando
+                terminó de partir todos los `[data-reveal="lines"]`. */}
             <LineReveals />
+            <RevealScroll />
             <SmoothScroll />
             <SiteFooter />
           </TooltipProvider>

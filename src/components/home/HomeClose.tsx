@@ -18,16 +18,21 @@ import './home-close.css'
 export default function HomeClose() {
   return (
     <section id="close" className="home-close">
-      <div className="home-close__inner in">
-        <h2 data-reveal="lines">
+      <div className="home-close__inner in" data-reveal-seq>
+        <h2 data-reveal="lines" data-seq="title">
           One conversation. We ask what you are actually trying to do, and
           what the market currently believes about you.
         </h2>
-        <p>
+        <p data-reveal="text" data-seq="body">
           If those two things are the same, you do not need us. If they are
           not, that gap is the work.
         </p>
-        <a href="mailto:fran@thecruda.com" className="home-close__mail">
+        <a
+          href="mailto:fran@thecruda.com"
+          className="home-close__mail"
+          data-reveal="text"
+          data-seq="body"
+        >
           fran@thecruda.com
         </a>
       </div>

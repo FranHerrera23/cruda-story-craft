@@ -10,10 +10,13 @@ import { useEffect } from 'react'
 
    Nota: las work-cards ya declaran data-reveal="text" y data-stagger
    directamente en el JSX (motion v2 §4 — opacity:0 en el CSS
-   servido, no aplicado por JS). Este componente cubre el resto:
+   servido, no aplicado por JS). Este componente cubre:
      · .ic-row      → text · stagger secuencial (inside-cruda)
      · .essay-card  → text · stagger i%3 (grilla essays)
-     · Cierre       → text · stagger secuencial (h2, p, mail) */
+
+   Motion v3 §2 (14-sep) · el cierre migró a data-reveal-seq en JSX
+   (HomeClose.tsx). Este componente ya no lo toca — antes lo
+   sobrescribía y pisaba el `data-reveal="lines"` del H2. */
 
 export default function HomeChrome() {
   useEffect(() => {
@@ -30,16 +33,6 @@ export default function HomeChrome() {
     )
     essayCards.forEach((el, i) => {
       el.setAttribute('data-stagger', String(i % 3))
-      el.setAttribute('data-reveal', 'text')
-    })
-
-    const closeTargets = Array.from(
-      document.querySelectorAll<HTMLElement>(
-        '.home-close h2, .home-close p, .home-close__mail',
-      ),
-    )
-    closeTargets.forEach((el, i) => {
-      el.setAttribute('data-stagger', String(i))
       el.setAttribute('data-reveal', 'text')
     })
   }, [])

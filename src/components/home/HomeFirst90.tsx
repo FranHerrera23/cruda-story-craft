@@ -35,9 +35,19 @@ const ROWS = [
 export default function HomeFirst90() {
   return (
     <section id="first-90" className="home-first90">
-      <div className="home-first90__inner in">
-        <p className="home-first90__eyebrow">The First 90 Days</p>
-        <h2 className="home-first90__lede" data-reveal="lines">
+      <div className="home-first90__inner in" data-reveal-seq>
+        <p
+          className="home-first90__eyebrow"
+          data-reveal="text"
+          data-seq="eyebrow"
+        >
+          The First 90 Days
+        </p>
+        <h2
+          className="home-first90__lede"
+          data-reveal="lines"
+          data-seq="title"
+        >
           One hour a week, talking about what you already know.
         </h2>
 

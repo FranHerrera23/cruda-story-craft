@@ -19,8 +19,15 @@ import './home-hero.css'
    Motion v3 §6 — el H1 lleva `data-reveal="lines"`: LineReveals mide
    el corte real (respetando el <br/> autoral) y reescribe el DOM
    con `.rv-line > span` para que las dos oraciones suban una detrás
-   de la otra con stagger 90ms. El dek sigue con `data-reveal="text"`
-   (fade + rise en bloque). */
+   de la otra.
+
+   Motion v3 §2 (14-sep) — la sección lleva `data-reveal-seq` +
+   `data-hero-entry`: RevealScroll no la observa, se dispara con
+   la salida del loader (evento `cruda:loader-out`). En una visita
+   sin loader arranca a los 120ms. El H1 usa 140ms de stagger
+   (más lento que 90ms del resto) porque a esa escala más rápido
+   se lee como pop. La duración también se estira a 900ms — vive
+   en home-hero.css. */
 
 const DEK =
   'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
@@ -32,13 +39,20 @@ const DEK =
    y screen readers el textContent se lee corrido; el <br> es visual. */
 export default function HomeHero() {
   return (
-    <section className="home-hero">
-      <h1 className="home-hero__h1" data-reveal="lines">
+    <section className="home-hero" data-reveal-seq data-hero-entry>
+      <h1
+        className="home-hero__h1"
+        data-reveal="lines"
+        data-seq="title"
+        data-line-stagger="140"
+      >
         Your company outgrew its own story.
         <br />
         We build the next one.
       </h1>
-      <p className="home-hero__dek" data-reveal="text">{DEK}</p>
+      <p className="home-hero__dek" data-reveal="text" data-seq="body">
+        {DEK}
+      </p>
     </section>
   )
 }

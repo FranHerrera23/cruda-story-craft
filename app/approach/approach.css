@@ -6,7 +6,10 @@
    typographic. Tokens de case-study.css :root. */
 
 .ap {
-  padding-top: var(--space-8);
+  /* Brief 14-sep · --space-8 (244px suelto) sale del sistema, se
+     reemplaza por --s5. Subir el token con regresión de sitio
+     completo queda como fase propia. */
+  padding-top: var(--s5);
   padding-bottom: var(--space-6);
   color: var(--ink);
 }

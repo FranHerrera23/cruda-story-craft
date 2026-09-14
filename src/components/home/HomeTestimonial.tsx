@@ -44,7 +44,7 @@ export default function HomeTestimonial() {
           <figcaption className="home-testimonial__attrib">
             <span className="home-testimonial__name">Karen Mannheim</span>
             <span className="home-testimonial__role">
-              Lighting Designer, Miami. Client. (August 2026)
+              Lighting Designer, Miami. Client, 2021—2026.
             </span>
           </figcaption>
         </figure>

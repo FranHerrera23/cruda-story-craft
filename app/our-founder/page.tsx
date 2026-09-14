@@ -181,7 +181,7 @@ export default function OurFounderPage() {
                 TikTok&apos;s official launch event in Argentina, and an
                 8M awareness campaign for the United Nations. One of the
                 Bushido accounts was TRAZZO — which is how Karen Mannheim
-                hired me in early 2021, and why she is still a client.
+                hired me in early 2021. That engagement ran five years.
                 Dubai from September 2022, building a branding and
                 strategy unit from zero at Luna PR. Then in-house at
                 Norhart in Minnesota, a $1M budget and a CEO on a mission
@@ -228,7 +228,7 @@ export default function OurFounderPage() {
                   data-reveal="text"
                 >
                   <strong>Karen Mannheim</strong> — Lighting Designer,
-                  Miami. Client. <em>(August 2026)</em>
+                  Miami. Client, 2021—2026.
                 </figcaption>
               </figure>
 

@@ -31,11 +31,15 @@ import { usePathname } from 'next/navigation'
    limpia el flag linesReady al cubrir; acá esperamos que LineReveals
    lo vuelva a marcar sobre la ruta nueva.
 
-   Brief 14-sep P0.3 — watchdog de 2000ms, no negociable.
+   Brief 14-sep P0.3 · P0.5 — watchdog de 2000ms ANCLADO AL MOUNT.
    Ningún elemento con `data-reveal` o `data-seq` puede terminar
-   invisible permanente. Al cumplirse 2s desde el montaje forzamos
-   `.on` sobre todo lo que siga sin ella. Esto no es fallback de UX;
-   es seguro de contenido — el copy servido no puede quedar oculto.
+   invisible permanente. El timeout arranca junto con el useEffect
+   (mount de la ruta), NO adentro de setup() — si setup tarda por
+   font.ready lento o cualquier otro motivo, los 2000ms son
+   absolutos y no se corren. Al dispararse fuerza `.on` sobre lo
+   que siga sin ella y setea --seq-delay a 0ms — es seguro de
+   contenido, no animación. Si tuvo que dispararse ya hay algo
+   roto; los delays de secuencia son irrelevantes.
 
    Blocking: no registra nada hasta ver `html[data-lines-ready="true"]`
    o recibir `cruda:lines-ready`. LineReveals lo emite después de
@@ -89,6 +93,33 @@ function fireSection(section: HTMLElement) {
   items.forEach((el) => el.classList.add('on'))
 }
 
+/* Brief P0.5 — watchdog fuerza `.on` con --seq-delay: 0ms. No es
+   animación con delay: es seguro de contenido. Si el watchdog
+   tuvo que dispararse, algo se rompió — el usuario tiene que ver
+   el contenido YA, no en 400ms más. */
+function forceReveal(el: HTMLElement) {
+  el.style.setProperty('--seq-delay', '0ms')
+  el.classList.add('on')
+}
+
+function fireWatchdog() {
+  document
+    .querySelectorAll<HTMLElement>('[data-reveal-seq]:not(.seq-on)')
+    .forEach((section) => {
+      section.style.setProperty('--seq-delay', '0ms')
+      section.classList.add('seq-on')
+      section
+        .querySelectorAll<HTMLElement>('[data-seq]')
+        .forEach(forceReveal)
+    })
+  document
+    .querySelectorAll<HTMLElement>('[data-seq]:not(.on)')
+    .forEach(forceReveal)
+  document
+    .querySelectorAll<HTMLElement>('[data-reveal]:not(.on)')
+    .forEach(forceReveal)
+}
+
 function setup(): Cleanup {
   /* Calcular delays antes de observar — así cada elemento tiene
      su transition-delay listo el instante que le llega `.on`. */
@@ -136,10 +167,9 @@ function setup(): Cleanup {
   /* Hero: no observer. Se encadena a la presencia del Loader en
      el DOM, no al data-loader attribute — ese attr solo lo setea
      el inline script en la primera carga, y queda stale en SPA
-     nav (back button, client-side routing). Fix 14-sep P0: si el
-     .loader está en el DOM, esperar `cruda:loader-out`. Si no
-     está (sesión ya vio el loader, o reduce motion), fallback
-     120ms para arrancar el reveal directo. */
+     nav (back button, client-side routing). Si el .loader está en
+     el DOM, esperar `cruda:loader-out`. Si no está (sesión ya vio
+     el loader, o reduce motion), fallback 120ms. */
   const heroSections = Array.from(
     document.querySelectorAll<HTMLElement>('[data-hero-entry]'),
   )
@@ -163,31 +193,10 @@ function setup(): Cleanup {
     }
   }
 
-  /* Brief P0.3 — watchdog. Después de 2s, nada puede seguir oculto.
-     Cubre secciones seq, elementos data-seq sueltos, reveals
-     individuales, y el hero. Seguro de contenido, no fallback de UX. */
-  const watchdog = window.setTimeout(() => {
-    document
-      .querySelectorAll<HTMLElement>('[data-reveal-seq]:not(.seq-on)')
-      .forEach((section) => {
-        section.classList.add('seq-on')
-        section
-          .querySelectorAll<HTMLElement>('[data-seq]')
-          .forEach((el) => el.classList.add('on'))
-      })
-    document
-      .querySelectorAll<HTMLElement>('[data-seq]:not(.on)')
-      .forEach((el) => el.classList.add('on'))
-    document
-      .querySelectorAll<HTMLElement>('[data-reveal]:not(.on)')
-      .forEach((el) => el.classList.add('on'))
-  }, WATCHDOG_MS)
-
   return () => {
     sectionIO.disconnect()
     singleIO.disconnect()
     heroCleanup.forEach((fn) => fn())
-    window.clearTimeout(watchdog)
   }
 }
 
@@ -197,13 +206,22 @@ export default function RevealScroll() {
   useEffect(() => {
     if (typeof document === 'undefined') return
 
+    /* Watchdog anclado al mount, no al setup — brief P0.5. Los
+       2000ms son absolutos desde el montaje de la ruta. Si setup
+       tarda por font.ready o por race con LineReveals, el watchdog
+       igual dispara a tiempo. */
+    const watchdog = window.setTimeout(fireWatchdog, WATCHDOG_MS)
+
     let cleanup: Cleanup | undefined
     const readyFlag = () =>
       document.documentElement.dataset.linesReady === 'true'
 
     if (readyFlag()) {
       cleanup = setup()
-      return () => cleanup?.()
+      return () => {
+        window.clearTimeout(watchdog)
+        cleanup?.()
+      }
     }
 
     const onReady = () => {
@@ -222,6 +240,7 @@ export default function RevealScroll() {
     })
 
     return () => {
+      window.clearTimeout(watchdog)
       document.removeEventListener('cruda:lines-ready', onReady)
       window.cancelAnimationFrame(raf)
       cleanup?.()

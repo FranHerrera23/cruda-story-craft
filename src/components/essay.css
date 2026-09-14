@@ -76,7 +76,10 @@
   padding-bottom: 96px;
 }
 @media (min-width: 768px) {
-  .essay .e-head { padding-top: var(--space-8); }  /* 244px desktop */
+  /* Brief 14-sep · el 244px de --space-8 sale. Se reemplaza por
+     --s5 (clamp 100–180) del sistema; subir el token con regresión
+     full-site queda como fase propia. */
+  .essay .e-head { padding-top: var(--s5); }
 }
 
 .essay .e-back {

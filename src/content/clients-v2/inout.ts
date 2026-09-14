@@ -163,7 +163,7 @@ export const inout: CaseStudyV2 = {
           who: 'INSIDERS',
           paragraphs: [
             'The format: the brand interviewing the architects who decide what gets built in the region. INOUT never explains its own quality. It hosts the people whose judgment sets it.',
-            'This is where the method starts. Five years on, CRUDA still runs it — the interview as authority, putting the brand in the room with whoever decides.',
+            'This is where the method starts. Five years on, INSIDERS is still in production — by the client, without us. A system that outlasts the engagement proves more than one that requires it.',
           ],
           lines: [
             'INSIDERS are the ones who <b>dream awake.</b>',

@@ -35,7 +35,7 @@ export const karenMannheim: CaseStudy = {
 
   // ANSWER CAPSULE — autocontenida. Es el bloque que la IA extrae.
   answerCapsule:
-    'Karen Mannheim spent 33 years building Lima\'s most respected architectural lighting firm — over 2,500 projects, an 80-person team, and work in RAMSA, Four Seasons and Oppenheim buildings. Outside Peru, almost nobody knew she existed. Over four years, CRUDA built the narrative system that made her work legible internationally: LinkedIn grew 300%, Instagram reached 500K views per 90 days, and in 2026 Forbes Peru named her one of the country\'s 50 most powerful women. That same year her studio won a Miami pitch against international firms — the client asked no questions and requested the proposal.',
+    'Karen Mannheim spent 33 years building Lima\'s most respected architectural lighting firm — over 2,500 projects, an 80-person team, and work in RAMSA, Four Seasons and Oppenheim buildings. Outside Peru, almost nobody knew she existed. Over five years (2021—2026), the practice built the narrative system that made her work legible internationally: LinkedIn grew 300%, Instagram reached 500K views per 90 days, and in 2026 Forbes Peru named her one of the country\'s 50 most powerful women. That same year her studio won a Miami pitch against international firms — the client asked no questions and requested the proposal.',
 
   takeaways: [
     'Thirty-three years of proven work does not travel on its own. Recognition is a system, not a byproduct.',
@@ -45,9 +45,9 @@ export const karenMannheim: CaseStudy = {
 
   // Cada stat es atribuible y fechado
   stats: [
-    { value: '+300%', label: 'LinkedIn growth', source: 'LinkedIn Analytics, 2022–2026' },
+    { value: '+300%', label: 'LinkedIn growth', source: 'LinkedIn Analytics, 2021–2026' },
     { value: '500K', label: 'Instagram views / 90 days', source: 'Meta Business Suite, Jul 2026' },
-    { value: '4 years', label: 'Client since 2022' },
+    { value: '5 years', label: '2021—2026' },
     { value: '33 years', label: 'Of practice, made legible' },
   ],
 
@@ -100,7 +100,7 @@ export const karenMannheim: CaseStudy = {
     },
     {
       q: 'How long did the results take?',
-      a: 'The work started in 2022 and is ongoing. LinkedIn growth compounded over the first two years. The Miami pitch and the Forbes recognition came in 2026.',
+      a: 'The work ran from 2021 to 2026. LinkedIn growth compounded over the first two years. The Miami pitch and the Forbes recognition came in 2026.',
     },
     {
       q: 'Does this only work for lighting or architecture firms?',

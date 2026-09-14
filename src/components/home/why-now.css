@@ -46,16 +46,26 @@
   font-size: var(--t-lead);
   line-height: 1.55;
   color: var(--ink);
-  opacity: .28;
-  transition: opacity var(--dur-3) var(--ease);
+  /* Motion v3 §3 (14-sep) — no enfocados a 22% (era 28%). Más
+     contraste contra el enfocado sin sombras ni tricks. */
+  opacity: .22;
+  transition:
+    opacity var(--dur-3) var(--ease-exit),
+    font-weight var(--dur-3) var(--ease-exit);
   margin: 0 0 var(--s4);
 }
 .why-now__body p:last-child,
 .why-now p:last-child {
   margin-bottom: 0;
 }
+/* Motion v3 §3 — el enfocado a opacidad plena y peso 450.
+   Sin sombras: una sombra sobre texto negro en fondo blanco
+   ensucia el trazo y se lee como error de render. Archivo es
+   variable font, 450 se interpola limpio entre 400 y 500 sin
+   salto de layout. */
 .why-now p.is-focus {
   opacity: 1;
+  font-weight: 450;
 }
 
 /* Mobile: una columna, el sticky se apaga. A ese ancho el titular

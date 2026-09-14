@@ -175,6 +175,22 @@
     top: 110px;
   }
 }
+
+/* Brief 06 P0.2 (15-sep) — banda sin media colapsa a una columna.
+   La prosa mantiene su medida sin dejar la columna 4fr vacía a la
+   derecha. */
+.cb-root .b-band--prose-only {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 1000px) {
+  .cb-root .b-band--prose-only {
+    grid-template-columns: 1fr;
+  }
+  .cb-root .b-band--prose-only .prose {
+    position: static;
+    max-width: var(--measure, 62ch);
+  }
+}
 .cb-root .b-band .media .u {
   height: var(--media);
 }

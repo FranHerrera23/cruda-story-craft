@@ -340,6 +340,57 @@ del §05 de /about (retrato de Fran pendiente).
 
 ---
 
+## 2026-09-15 · No linkeamos al contenido publicado por el cliente desde nuestro portfolio
+
+**Regla:** las páginas de case study **no incluyen enlaces al
+contenido publicado bajo el nombre del cliente**. Sale del molde
+la línea "Read it on LinkedIn ↗" o cualquier variante que apunte
+a superficies donde el cliente firma como autor.
+
+**Razón:** el contenido está publicado bajo el nombre del cliente,
+en su voz. Mandar gente ahí con un link desde el portfolio de
+CRUDA es firmar por debajo algo que él firmó arriba. Toda la
+ética del sitio es que la voz es del cliente. Un link es señalar
+— y CRUDA no señala su propio trabajo por debajo de la firma
+ajena.
+
+**Se queda:** el `AFTER` verbatim adentro del case study. En un
+case study se muestra como lo que escribió el cliente; el sitio
+lo cita como texto en su voz. Un link a la superficie donde
+está publicado es otra cosa.
+
+**Precedente rechazado:** NDS §7.2 del brief 06. La técnica de
+"link to the live work" que usa National Design Studio se ve
+bien y funciona para ellos, pero su portfolio linkea a sitios
+que ellos entregaron — no a contenido publicado bajo el nombre
+del cliente. La analogía falla y la ética no.
+
+**Origen:** Fran, 15 septiembre 2026 · rechazo explícito durante
+la revisión del Brief 06.
+
+---
+
+## 2026-09-15 · Endpoint stub no publica una página con formulario
+
+**Regla:** un `<form>` que devuelve 200 y descarta los datos es
+peor que no tener formulario. La página se ve funcionando, alguien
+escribe en serio, y se pierde. **Sin destino real, la sección con
+formulario no publica.**
+
+**Alcance:** aplica al formulario de intake de `/contact` (Brief
+05 P2) y a cualquier form que se agregue después. El destino
+puede ser mail directo, Notion, un CRM, un endpoint propio —
+pero tiene que existir, cachear y ser recuperable.
+
+**Consecuencia:** `/contact` como página nueva se queda en la
+cola hasta que Fran defina destino. La estructura y el CSS se
+pueden construir; el POST no.
+
+**Origen:** Fran, 15 septiembre 2026 · precisión durante la
+planificación del Brief 05.
+
+---
+
 ## 2026-09-14 · Serif solo hasta seis palabras, sin excepciones
 
 **Regla:** `--serif` (Instrument Serif) se usa exclusivamente en
@@ -370,6 +421,17 @@ es estético, es funcional.
 directa o indirectamente (via `.display`, `.display--sm`, etc.).
 Bylines, atribuciones, decoraciones que no son título display no
 cuentan.
+
+**Brief 06 P3 (15-sep) · aclaración:** el límite de seis palabras
+aplica solo a **títulos display** (H1, H2 al peso display). Deks
+y ledes en serif no tienen límite de palabras — su función no es
+display sino continuación. El dek de Girish (18 palabras en serif)
+se queda por eso.
+
+  ```
+  serif ≤ 6 palabras   → H1 y H2 display
+  serif sin límite     → deks y ledes
+  ```
 
 **Cuándo se puede reabrir:** cuando alguien tenga una razón que
 no sea gusto. Hasta entonces, sigue en pie.

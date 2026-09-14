@@ -1,14 +1,15 @@
 import type { MediaAsset } from './types'
 
-/* §6 · slot de media faltante. Fondo blanco, filete negro 1px,
-   nombre + spec del asset. Le dice a Fran exactamente qué falta.
-   Ningún layout puede depender de que la imagen exista para no
-   romperse. Cuando `asset.src` está, se renderiza la <img>.
+/* Brief 06 P0.1 + P0.2 (15-sep) — sin src, el slot no renderea nada.
+   La versión anterior mostraba una caja con `slotName` + `slotSpec`
+   (nombres internos, en español) como placeholder. En producción
+   esos textos son notas de especificación visibles al usuario, en
+   un sitio en inglés — ergo: bug de producción.
 
-   Ambos caminos aceptan `className` para que el bloque padre
-   asigne la altura vía CSS (`.b-band .media .u` = 68vh) o el
-   componente aplique fill inline (lead = 78vh en el contenedor
-   padre .b-lead). */
+   Ahora: `src` presente → <img>. Sin src → null. Los bloques padre
+   (BlockLead, BlockBand) decidieron qué hacer cuando el slot está
+   vacío — colapsar la reserva de altura y no dibujar caja vacía
+   (regla lockeada del ledger #14). */
 export default function Slot({
   asset,
   fill = false,
@@ -18,21 +19,14 @@ export default function Slot({
   fill?: boolean
   className?: string
 }) {
+  if (!asset.src) return null
   const style = fill ? { height: '100%' } : undefined
-  if (asset.src) {
-    return (
-      <img
-        src={asset.src}
-        alt={asset.alt ?? ''}
-        className={className || undefined}
-        style={style}
-      />
-    )
-  }
   return (
-    <div className={`slot ${className}`.trim()} style={style}>
-      <b>{asset.slotName}</b>
-      <i>{asset.slotSpec}</i>
-    </div>
+    <img
+      src={asset.src}
+      alt={asset.alt ?? ''}
+      className={className || undefined}
+      style={style}
+    />
   )
 }

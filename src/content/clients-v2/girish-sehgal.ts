@@ -26,7 +26,10 @@ export const girishSehgal: CaseStudyV2 = {
       title: 'Girish Sehgal',
       oneLiner:
         'Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find.',
-      tags: ['Category shift', 'Hospitality → Healthcare', 'Abu Dhabi'],
+      /* Brief 06 P0.3 (15-sep) — tags retirado. La misma información
+         (Category shift · Hospitality → Healthcare · Abu Dhabi)
+         estaba abajo del dek Y en la tabla de facts de la derecha.
+         Gana la tabla; la línea de tags sale. */
       facts: [
         { label: 'Moment', value: 'Category shift' },
         { label: 'Sector', value: 'Hospitality → Healthcare' },
@@ -36,10 +39,11 @@ export const girishSehgal: CaseStudyV2 = {
     },
     {
       type: 'lead',
-      asset: {
-        slotName: 'Lead media — retrato',
-        slotSpec: 'Girish en SSMC. 78vh, mínimo 2000px de ancho.',
-      },
+      /* Brief 06 P0.1 (15-sep) — slotName/slotSpec retirados (eran
+         notas internas en español, visibles en prod cuando el
+         asset faltaba). Sin src el Slot devuelve null y BlockLead
+         colapsa el bloque (P0.2). */
+      asset: {},
     },
     {
       type: 'prose',

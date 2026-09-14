@@ -267,10 +267,15 @@ export type Passage = {
 export type MediaAsset = {
   src?: string
   alt?: string
-  /* Cuando el asset no existe todavía, el slot renderiza un
-     placeholder con estos datos. Ver §6. */
-  slotName: string
-  slotSpec: string
+  /* Brief 06 P0.1 (15-sep) — slotName/slotSpec pasaron a optional.
+     La versión anterior los usaba como placeholder visible cuando
+     faltaba el asset; ese placeholder era una nota interna en
+     español visible en producción. Slot.tsx ahora devuelve null
+     sin src, así que estos campos ya no se rendean. Se retiran
+     de los data files uno por uno; el tipo los mantiene optional
+     por si algún caso legacy los sigue trayendo. */
+  slotName?: string
+  slotSpec?: string
 }
 
 export type ProseGroup = {
@@ -320,8 +325,9 @@ export type SystemCell =
   | {
       kind: 'slot'
       wide?: boolean
-      slotName: string
-      slotSpec: string
+      /* Brief 06 P0.1 (15-sep) — mismo cambio que MediaAsset. */
+      slotName?: string
+      slotSpec?: string
     }
   /* DECISION · celda de decisión de diseño. No es un mockup, es
      un dato del manual — construcción del logo, morfología de los

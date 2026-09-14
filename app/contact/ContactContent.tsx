@@ -9,7 +9,12 @@ import Script from 'next/script'
    y el mailto siguen funcionando — cero dead end. */
 
 const CALENDLY = 'https://calendly.com/cruda-intro/narrative-sparring-live-1'
-const HELLO = 'hello@thecruda.com'
+/* Brief 05 P0 (15-sep) — el sitio unifica en fran@thecruda.com.
+   `hello@` era una máscara de agencia que contradecía la tesis
+   del sitio ("la persona de la primera llamada es la que escribe
+   la última línea"). `hello@` queda como alias que reenvía para
+   que ningún link viejo rebote. */
+const HELLO = 'fran@thecruda.com'
 
 // Calendly params — colores del sistema: --ink, --accent, --white.
 const CALENDLY_EMBED =

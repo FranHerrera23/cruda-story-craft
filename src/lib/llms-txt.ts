@@ -30,7 +30,7 @@ const HUBS_SECTION = `## Pages
 - [About CRUDA](${BASE}/about): CRUDA is a narrative practice for founder-led companies. Fran Herrera — 10 years building brands.
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
 - [Pricing](${BASE}/pricing): CRUDA's engagement structure and rates.
-- [Contact](${BASE}/contact): Book a 45-minute conversation or write hello@thecruda.com.
+- [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.
 - [All resources](${BASE}/resources): Every essay and case study in one library.`
 
 function oneLine(text: string, max = 200): string {

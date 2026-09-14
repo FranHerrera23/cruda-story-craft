@@ -4,18 +4,18 @@ import ContactContent from './ContactContent';
 export const metadata: Metadata = {
   title: 'Contact — CRUDA',
   description:
-    'Book a 45-minute conversation, or write hello@thecruda.com. No pitch, no urgency.',
+    'Book a 45-minute conversation, or write fran@thecruda.com. No pitch, no urgency.',
   openGraph: {
     title: 'Contact — CRUDA',
     description:
-      'Book a 45-minute conversation, or write hello@thecruda.com.',
+      'Book a 45-minute conversation, or write fran@thecruda.com.',
     url: 'https://www.thecruda.com/contact',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact — CRUDA',
     description:
-      'Book a 45-minute conversation, or write hello@thecruda.com.',
+      'Book a 45-minute conversation, or write fran@thecruda.com.',
   },
   alternates: {
     canonical: 'https://www.thecruda.com/contact',

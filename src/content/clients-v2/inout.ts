@@ -61,20 +61,14 @@ export const inout: CaseStudyV2 = {
         { label: 'Years', value: '2020–2022' },
       ],
     },
+    /* Brief 06 P0.1 (15-sep) — slot notes retiradas. */
     {
       type: 'lead',
-      asset: {
-        slotName: 'Lead media — producto instalado',
-        slotSpec:
-          'Obra terminada, fotografía original. No render, no catálogo. 78vh, mínimo 2800px.',
-      },
+      asset: {},
     },
     {
       type: 'band',
-      asset: {
-        slotName: 'Instalación — plano general',
-        slotSpec: '68vh.',
-      },
+      asset: {},
       groups: [
         {
           label: 'The moment',
@@ -198,12 +192,10 @@ export const inout: CaseStudyV2 = {
       type: 'line',
       text: 'Toda foto de INOUT se toma desde adentro.',
     },
+    /* Brief 06 P0.1 (15-sep) — slot notes retiradas. */
     {
       type: 'band',
-      asset: {
-        slotName: 'INSIDERS — still',
-        slotSpec: 'Episodio con el arquitecto en pantalla. 68vh.',
-      },
+      asset: {},
       groups: [
         {
           label: 'The intervention',

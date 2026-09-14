@@ -41,13 +41,10 @@ export const mannheimTrading: CaseStudyV2 = {
         { label: 'Year', value: '2025' },
       ],
     },
+    /* Brief 06 P0.1 (15-sep) — slot notes retiradas. */
     {
       type: 'lead',
-      asset: {
-        slotName: 'Key visual — planta con la máscara del isologo',
-        slotSpec:
-          'Foto de fábrica recortada por la geometría de la marca. 78vh, mínimo 2800px.',
-      },
+      asset: {},
     },
     {
       type: 'prose',
@@ -139,17 +136,21 @@ export const mannheimTrading: CaseStudyV2 = {
         "The second problem is harder. José's only commercial asset is his name, and being seen has never been something he wanted. A man like that will not publish a company profile about himself. He will not do a founder video. Ask him to sell and he stops.",
       ],
     },
+    /* Brief 06 P0.4 (15-sep) — slab retirado. La versión anterior
+       envolvía el thesis en fondo --c-1 (azul petróleo del brand
+       book de Mannheim). El brief lockea: la paleta del cliente
+       adentro del bloque `The identity` es correcta (ahí es objeto
+       de estudio); como fondo de una cita de CRUDA no. El texto
+       pasa a negro sobre paper.
+       Cambio de tipo: `line` en vez de `pull`. `pull` requiere
+       verbatim de la prosa de la misma página (§7 regla 1 del
+       CaseComposer), y este texto es prosa nuestra a tamaño
+       display — que es exactamente para lo que existe `line`.
+       La `reading` original se retira; su función era decorativa
+       dentro del slab. */
     {
-      type: 'slab',
-      tone: 'c1',
-      children: [
-        {
-          type: 'thesis',
-          statement:
-            'His only asset was his name, and he had spent sixty years not using it.',
-          reading: 'The problem was never positioning. It was voice.',
-        },
-      ],
+      type: 'line',
+      text: 'His only asset was his name, and he had spent sixty years not using it.',
     },
     {
       type: 'prose',
@@ -206,16 +207,10 @@ export const mannheimTrading: CaseStudyV2 = {
         'She hired CRUDA in 2021 to solve it. The visibility she built then is now the instrument that builds her father’s.',
       ],
     },
+    /* Brief 06 P0.4 (15-sep) — slab retirado, ver arriba. */
     {
-      type: 'slab',
-      tone: 'c1',
-      children: [
-        {
-          type: 'thesis',
-          statement:
-            'One problem, two generations, and the one who solved it first became the way through for the other.',
-        },
-      ],
+      type: 'line',
+      text: 'One problem, two generations, and the one who solved it first became the way through for the other.',
     },
     {
       type: 'system',
@@ -245,18 +240,10 @@ export const mannheimTrading: CaseStudyV2 = {
           ],
           note: 'Geometric sans. Clear at text sizes, strong in caps.',
         },
-        {
-          kind: 'slot',
-          slotName: 'Construcción del isologo',
-          slotSpec:
-            'Vidrio laminado + M + volumen = marca. La lámina del brand book.',
-        },
-        {
-          kind: 'slot',
-          slotName: 'Key visual — versión línea',
-          slotSpec:
-            'La misma planta con el patrón geométrico en línea blanca.',
-        },
+        /* Brief 06 P0.1 (15-sep) — slot notes retiradas de los
+           dos slots de identity. Sin src el Slot devuelve null. */
+        { kind: 'slot' },
+        { kind: 'slot' },
       ],
     },
     {

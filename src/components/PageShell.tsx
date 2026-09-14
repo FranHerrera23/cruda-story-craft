@@ -103,6 +103,17 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       setState('covering')
       getLenis()?.stop?.()
 
+      /* Brief 14-sep P0.1 — el flag linesReady vive en <html> y
+         persiste entre rutas (Next SPA no resetea el nodo). Sin
+         limpiarlo, la ruta nueva monta con el flag en true y
+         RevealScroll cree que LineReveals ya partió sus títulos —
+         pero LineReveals no re-corrió, los títulos nuevos siguen
+         sin partir, y el delay del cuerpo se calcula sobre un
+         lineCount NaN. Resultado: cuerpo invisible para siempre.
+         Se limpia acá, junto con el reset de scroll, no antes de
+         cubrir — así la ruta vieja termina de renderar tranquila. */
+      delete document.documentElement.dataset.linesReady
+
       window.setTimeout(() => {
         window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
         router.push(href)

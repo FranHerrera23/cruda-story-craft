@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 /* Revelado por línea — motion v3 §6 + orquestador §2 (14-sep).
 
@@ -20,6 +21,14 @@ import { useEffect } from 'react'
    `cruda:lines-ready`. RevealScroll no registra ningún observer
    hasta ver ese flag. Del mismo punto de partida, el orden lo
    decide el stagger de cada sección, no quién arrancó primero.
+
+   Brief 14-sep P0 · corre en CADA ruta.
+   Next SPA no remonta el layout: sin usePathname como dep, el
+   useEffect fire solo una vez y las rutas siguientes se quedan
+   sin split. El flag linesReady se limpia en PageShell al cubrir;
+   este componente re-corre con la ruta nueva, splittea sus títulos
+   nuevos, y vuelve a marcar el flag. Es idempotente: nodos ya
+   splitteados se saltan (chequeo de `.rv-line` hijo).
 
    Delay compuesto por línea:
      transition-delay = --seq-delay + --line-index × --line-stagger
@@ -52,7 +61,12 @@ const FONTS_TIMEOUT_MS = 400
 
 type Token = { kind: 'word'; el: HTMLElement } | { kind: 'break' }
 
-function splitElement(el: HTMLElement) {
+/* Split idempotente: si el elemento ya tiene `.rv-line` hijos, ya
+   fue splitteado y se saltea. En resize pasamos `force=true` para
+   restaurar desde snapshot y volver a partir con el ancho nuevo. */
+function splitElement(el: HTMLElement, force = false) {
+  if (!force && el.querySelector('.rv-line')) return
+
   const stagger =
     Number(el.dataset.lineStagger ?? '') || DEFAULT_STAGGER_MS
   el.style.setProperty('--line-stagger', `${stagger}ms`)
@@ -130,9 +144,8 @@ function splitElement(el: HTMLElement) {
   }
   pushLine()
 
-  /* Guardo el line-count en dataset — RevealScroll lo lee para
-     calcular el delay del body de la sección (§2: cuerpo = 120ms
-     + lineCount × stagger + 160ms). */
+  /* Line count al dataset — RevealScroll lo lee para el delay
+     del body (§2: 120ms + lineCount × stagger + 160ms). */
   el.dataset.lineCount = String(lines.length)
 
   el.innerHTML = ''
@@ -153,6 +166,8 @@ function markReady() {
 }
 
 export default function LineReveals() {
+  const pathname = usePathname()
+
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -163,12 +178,13 @@ export default function LineReveals() {
       return
     }
 
-    const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(SELECTOR),
-    )
+    /* Query en cada corrida — el DOM cambió al cambiar la ruta.
+       No podemos cachear la lista entre rutas. */
+    const gather = () =>
+      Array.from(document.querySelectorAll<HTMLElement>(SELECTOR))
 
     const run = () => {
-      elements.forEach(splitElement)
+      gather().forEach((el) => splitElement(el))
       markReady()
     }
 
@@ -189,7 +205,8 @@ export default function LineReveals() {
     }
 
     /* Resize: solo en cambios reales de ancho. Los cambios de
-       altura por barras de dirección móvil no cuentan. */
+       altura por barras de dirección móvil no cuentan. Force=true
+       para volver a medir con el ancho nuevo. */
     let resizeTimer: number | undefined
     let lastWidth = window.innerWidth
     const onResize = () => {
@@ -197,7 +214,7 @@ export default function LineReveals() {
       lastWidth = window.innerWidth
       if (resizeTimer !== undefined) window.clearTimeout(resizeTimer)
       resizeTimer = window.setTimeout(() => {
-        elements.forEach(splitElement)
+        gather().forEach((el) => splitElement(el, true))
       }, 200)
     }
     window.addEventListener('resize', onResize)
@@ -206,7 +223,7 @@ export default function LineReveals() {
       if (resizeTimer !== undefined) window.clearTimeout(resizeTimer)
       window.removeEventListener('resize', onResize)
     }
-  }, [])
+  }, [pathname])
 
   return null
 }

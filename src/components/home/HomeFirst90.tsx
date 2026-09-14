@@ -36,12 +36,16 @@ export default function HomeFirst90() {
   return (
     <section id="first-90" className="home-first90">
       <div className="home-first90__inner in" data-reveal-seq>
+        {/* Brief 04 §4.1b (14-sep, Addendum A) — la sección pasa a
+            llevar el nombre del paquete. `TRANSLATED · THREE MONTHS`
+            reemplaza `The First 90 Days` como eyebrow. El H2 y el
+            resto de la sección no se tocan. */}
         <p
           className="home-first90__eyebrow"
           data-reveal="text"
           data-seq="eyebrow"
         >
-          The First 90 Days
+          TRANSLATED · Three months
         </p>
         <h2
           className="home-first90__lede"
@@ -69,11 +73,26 @@ export default function HomeFirst90() {
           </div>
         ))}
 
-        <p className="home-first90__coda">
-          And after the ninety days, none of it expires. A campaign
-          ends and you are back where you started, paying again. This
-          keeps working while you do nothing.
-        </p>
+        {/* Brief 04 P2 (14-sep) — coda reescrita como ENTRADA al
+            bloque proof que viene abajo, no como cierre.
+            'This keeps working while you do nothing' retirado — la
+            frase se contradecía con el título 'One hour a week' de la
+            propia sección, y era una promesa sin respaldo. La
+            reescritura es dos líneas verbatim del brief; el bloque
+            proof es el pie.
+
+            Wrap con border-top separado del <p>: antes el filete
+            heredaba el max-width:62ch de la coda y terminaba a
+            ~x1322 mientras los filetes de las filas llegaban al
+            borde. Ahora el border vive en el wrapper sin max-width
+            y el texto conserva su medida. */}
+        <div className="home-first90__coda-wrap">
+          <p className="home-first90__coda">
+            And after the ninety days, none of it expires.
+            <br />
+            A campaign ends and you are back where you started.
+          </p>
+        </div>
       </div>
     </section>
   )

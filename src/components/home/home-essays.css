@@ -67,10 +67,21 @@
   .home-essays__grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-/* Card: título 24/700 grot, meta 14 gris. Hover opacity .8 —
-   mismo vocabulario que work-card. Sin --signal en el título. */
+/* Card: título 24/700 grot, meta 14 grot. Hover opacity .8 —
+   mismo vocabulario que work-card. Sin --signal en el título.
+
+   Brief 04 P6 (14-sep) — flex column con space-between para
+   alinear el meta al fondo de la card. Antes el meta pegaba
+   al título con margin-top fijo, así que un título de 2 líneas
+   levantaba el meta y uno de 3 lo bajaba — la grilla perdía
+   el renglón inferior. */
 .essay-card {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--s3);
+  height: 100%;
+  min-height: clamp(140px, 18vh, 200px);
   text-decoration: none;
   color: inherit;
   transition: opacity var(--dur-2) var(--ease);
@@ -97,5 +108,5 @@
   font-size: 14px;
   letter-spacing: .02em;
   color: var(--ink);
-  margin: 16px 0 0;
+  margin: 0;
 }

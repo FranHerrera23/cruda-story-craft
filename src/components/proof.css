@@ -1,0 +1,138 @@
+/* Proof — Karen Mannheim.
+   Brief 03 P3 + Brief 04 P3 (14-sep).
+
+   Fondo blanco. Los números son héroes visuales; el copy los
+   sostiene abajo. En home, tres números en fila. En /process,
+   dos bandas: what we built + the business over the same period. */
+
+.proof {
+  background: var(--paper);
+  color: var(--ink);
+  padding: var(--s5) var(--pad);
+}
+
+.proof__in {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+/* Encabezado — H2 display + atribución con período.
+   El H2 son dos líneas autoradas (regla 9). */
+.proof__header {
+  margin-bottom: clamp(48px, 6vh, 88px);
+}
+
+.proof__h2 {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  max-width: 26ch;
+  margin: 0 0 var(--s3);
+  text-wrap: balance;
+}
+
+.proof__attribution {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s1) clamp(16px, 2vw, 32px);
+  font-family: var(--grot);
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0;
+}
+.proof__client {
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.proof__period {
+  font-weight: 400;
+  color: var(--ink);
+}
+
+/* Banda — label arriba, filas de 3 columnas abajo. Cada banda
+   separada de la siguiente con espacio, no filete. */
+.proof__band {
+  margin-bottom: clamp(64px, 8vh, 120px);
+}
+.proof__band:last-child {
+  margin-bottom: 0;
+}
+
+.proof__band-label {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 clamp(24px, 3vh, 40px);
+}
+
+/* Filas de números. Desktop tres columnas. Mobile una — cada
+   número ocupa su altura natural sin dejar hueco. */
+.proof__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 4vw, 56px) clamp(24px, 3vw, 48px);
+}
+@media (min-width: 720px) {
+  .proof__row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.proof__row + .proof__row {
+  margin-top: clamp(32px, 4vh, 56px);
+}
+
+/* Cada stat: value héroe, label debajo, detail más chico. */
+.proof__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+.proof__value {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.proof__label {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(15px, 1.1vw, 17px);
+  line-height: 1.35;
+  color: var(--ink);
+  max-width: 24ch;
+}
+.proof__detail {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: .01em;
+  color: var(--ink);
+  max-width: 24ch;
+  /* El único texto de gris permitido en el bloque — es metadato
+     de la métrica, misma excepción semántica que la atribución
+     del testimonio (ver docs/decisions.md #fechas-de-engagement,
+     y regla del testimonio del brief 12-sep). */
+  opacity: .6;
+}
+
+/* Densidad reducida · home. Tres números en una fila, sin
+   encabezado si el consumer lo apaga (showHeader=false). El
+   layout es una sola fila que en mobile pasa a una columna. */
+.proof--compact .proof__compact {
+  display: block;
+}
+
+/* Densidad completa · /process. Bandas apiladas con separación. */
+.proof--full .proof__bands {
+  display: block;
+}

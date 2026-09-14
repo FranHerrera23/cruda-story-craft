@@ -1,4 +1,4 @@
-/* Home · layout entre secciones · design system unificado §4.
+/* Home · layout entre secciones · Brief 04 rebuild (14-sep).
 
    Con fondo blanco uniforme la transición la hace el filete y el
    aire — 1px al 14% de negro entre secciones consecutivas, ancho
@@ -6,19 +6,24 @@
 
    Excepciones al filete:
      · La primera sección (hero) no lleva filete arriba.
-     · El testimonio (§6.6) va sobre --ink. El corte de color al
-       negro es la transición ahí — sin filete.
+     · El testimonio va sobre --ink. El corte de color al negro es
+       la transición ahí — sin filete.
      · Essays viene después del testimonio: el corte al blanco es
        la transición — sin filete tampoco.
+
+   Orden Brief 04 §4.4:
+     hero → every-company → home-work → tip → home-first90 →
+     proof → testimonial → home-essays → home-close
 
    Reset defensivo de margins también para no dejar espacio hueco
    entre secciones (última declaración gana por cascada). */
 
 .home-hero,
-.why-now,
+.every-company,
 .home-work,
-.inside-cruda,
+.tip,
 .home-first90,
+.proof,
 .home-testimonial,
 .home-essays,
 .home-close {
@@ -28,12 +33,13 @@
 
 /* Filete entre secciones consecutivas — solo entre pares del
    mismo fondo (--paper). Los pares que cruzan color no llevan
-   filete: first-90 → testimonial (blanco → negro) y
-   testimonial → essays (negro → blanco). */
-.home-hero + .why-now,
-.why-now + .home-work,
-.home-work + .inside-cruda,
-.inside-cruda + .home-first90,
+   filete: proof → testimonial (blanco → negro) y
+   testimonial → home-essays (negro → blanco). */
+.home-hero + .every-company,
+.every-company + .home-work,
+.home-work + .tip,
+.tip + .home-first90,
+.home-first90 + .proof,
 .home-essays + .home-close {
   border-top: 1px solid var(--rule);
 }

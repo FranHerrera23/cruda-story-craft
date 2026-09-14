@@ -78,6 +78,10 @@ export const selectedWorkCards: WorkCardData[] = [
     // href intencionalmente omitido — sin caso todavía.
     nameVerified: false,
     companyVerified: false,
+    /* Brief 04 P5 (14-sep) — sin foto, la card floteaba desalineada
+       en la grilla. draft:true hasta que llegue el retrato. Consecuencia:
+       el H2 pasa de 'Nine founders' a 'Eight founders' hasta entonces. */
+    draft: true,
   },
   {
     name: 'Germán Noël',

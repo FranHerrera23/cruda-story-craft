@@ -53,4 +53,34 @@
   max-width: 46ch;
   color: var(--ink);
   margin-top: var(--s4);
+  /* Brief 04 P0 · lede termina con `itself.` huérfano si se rompe
+     mal. text-wrap: pretty le da el mejor corte disponible. */
+  text-wrap: pretty;
+}
+
+/* Brief 04 §4.1a (Addendum A) · línea TRANSLATED bajo el lede.
+   Link, no CTA. Sin caja, sin botón, sin card. Tratamiento de
+   eyebrow — grot 500 caps con tracking .14em, mismo lenguaje que
+   los eyebrow del sitio. El underline hover es la única affordance. */
+.home-hero__translated {
+  margin-top: var(--s4);
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.home-hero__translated a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--dur-2) var(--ease),
+    opacity var(--dur-2) var(--ease);
+}
+.home-hero__translated a:hover,
+.home-hero__translated a:focus-visible {
+  border-bottom-color: var(--ink);
 }

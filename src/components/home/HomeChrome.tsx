@@ -11,8 +11,10 @@ import { useEffect } from 'react'
    Nota: las work-cards ya declaran data-reveal="text" y data-stagger
    directamente en el JSX (motion v2 §4 — opacity:0 en el CSS
    servido, no aplicado por JS). Este componente cubre:
-     · .ic-row      → text · stagger secuencial (inside-cruda)
      · .essay-card  → text · stagger i%3 (grilla essays)
+
+   Brief 04 (14-sep) — inside-cruda retirado. El bloque .ic-row
+   ya no existe en la home; el chrome de .ic-row se retiró con él.
 
    Motion v3 §2 (14-sep) · el cierre migró a data-reveal-seq en JSX
    (HomeClose.tsx). Este componente ya no lo toca — antes lo
@@ -20,14 +22,6 @@ import { useEffect } from 'react'
 
 export default function HomeChrome() {
   useEffect(() => {
-    const icRows = Array.from(
-      document.querySelectorAll<HTMLElement>('.ic-row'),
-    )
-    icRows.forEach((el, i) => {
-      el.setAttribute('data-stagger', String(i))
-      el.setAttribute('data-reveal', 'text')
-    })
-
     const essayCards = Array.from(
       document.querySelectorAll<HTMLElement>('.essay-card'),
     )

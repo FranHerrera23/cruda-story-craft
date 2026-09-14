@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
 import HomeHero from '@/components/home/HomeHero';
-import WhyNow from '@/components/home/WhyNow';
+import EveryCompany from '@/components/home/EveryCompany';
 import SelectedWork from '@/components/home/SelectedWork';
-import InsideCruda from '@/components/home/InsideCruda';
+import TranslationInPractice from '@/components/home/TranslationInPractice';
 import HomeFirst90 from '@/components/home/HomeFirst90';
+import Proof from '@/components/Proof';
 import HomeTestimonial from '@/components/home/HomeTestimonial';
 import HomeEssays from '@/components/home/HomeEssays';
 import HomeClose from '@/components/home/HomeClose';
@@ -12,19 +13,26 @@ import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). Brief 10-sep.
+   CRUDA — Home (`/`). Brief 04 · rebuild 14-sep + Addendum A §4.
 
-   Estructura:
-     hero · why-now · selected-work · inside-cruda · essays · cierre
+   Orden nuevo (Addendum §4.4):
+     1. hero               ← + línea TRANSLATED bajo el lede
+     2. every-company      ← ex why-now, copy y mecánica nuevas
+     3. selected-work
+     4. translation-in-practice  ← NUEVO, reemplaza inside-cruda
+     5. first-90           ← eyebrow TRANSLATED · Three months
+     6. proof              ← NUEVO, densidad compact
+     7. testimonial        ← NEGRO
+     8. essays             ← ex Read
+     9. close
 
-   Este archivo cablea las secciones. Cada una vive en su propio
-   componente con su propio CSS. La costura entre secciones es
-   cambio de fondo a sangre — sin border-top, sin <hr>, sin margen
-   entre secciones (§4 del brief).
+   inside-cruda retirado entero. La definición ya la cubre la línea
+   TRANSLATED del hero; la fila `The structure` se mudó a /about §04;
+   la bio de Fran vive solo en /about.
 
-   Hero v1 preservado en content/orphaned/home-hero-v1.md.
-   home.css retirado — sus estilos vivían al servicio del hero v1
-   y ninguno se reusa acá.
+   Cambio de fondo a sangre entre secciones — sin border-top, sin
+   <hr>, sin margen entre secciones (§4 del brief 10-sep). El único
+   inverso de la home es `testimonial`.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
@@ -54,10 +62,15 @@ export default function HomePage() {
     <>
       <HomeChrome />
       <HomeHero />
-      <WhyNow />
+      <EveryCompany />
       <SelectedWork cards={selectedWorkCards} />
-      <InsideCruda />
+      <TranslationInPractice />
       <HomeFirst90 />
+      {/* Proof en densidad compact — tres números en fila. La
+          densidad full vive en /process. Una sola fuente de datos.
+          showHeader default true — el encabezado 'The three months
+          build the system' entra como pie de la coda del first-90. */}
+      <Proof variant="compact" />
       <HomeTestimonial />
       <HomeEssays />
       <HomeClose />

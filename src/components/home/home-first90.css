@@ -96,10 +96,16 @@
 }
 
 /* Coda: párrafo final con filete arriba. Sin label — es el cierre
-   de la sección, no un cuarto mes. */
-.home-first90__coda {
+   de la sección, no un cuarto mes.
+
+   Brief 04 P2 (14-sep) — el filete vive en un wrapper sin
+   max-width, para que llegue al borde derecho como los filetes
+   de las f9-row. La medida de lectura se aplica al <p> interno. */
+.home-first90__coda-wrap {
   border-top: 1px solid var(--rule);
   padding-top: var(--s3);
+}
+.home-first90__coda {
   margin: 0;
   font-family: var(--grot);
   font-weight: 400;

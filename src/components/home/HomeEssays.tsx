@@ -32,8 +32,12 @@ export default function HomeEssays() {
   return (
     <section id="essays" className="home-essays">
       <div className="home-essays__inner in">
+        {/* Brief 04 P6 (14-sep) — la sección se llamaba `Read` y la
+            página se llama `Essays`. `Read` era instrucción al lector;
+            `Essays` nombra la cosa. Alinea con el nav, el footer y
+            la URL. */}
         <div className="home-essays__head">
-          <p className="home-essays__eyebrow">Read</p>
+          <p className="home-essays__eyebrow">Essays</p>
           <Link href="/essays" className="home-essays__all">
             All essays ↗
           </Link>

@@ -40,7 +40,7 @@ export default function SelectedWork({
       <div className="home-work__inner">
         <p className="home-work__eyebrow">Selected Work</p>
         <p className="home-work__dek">
-          Nine founders, each at the point where what they built
+          Eight founders, each at the point where what they built
           stopped explaining itself.
         </p>
         <div className="work-grid">

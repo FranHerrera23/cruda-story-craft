@@ -1,0 +1,122 @@
+/* Home · The Translation in Practice — Brief 04 §4.3 (Addendum A).
+   Reemplaza inside-cruda. Girish verbatim.
+
+   La asimetría 1 · 1.6 es lo que hace funcionar el bloque. El
+   BEFORE es una línea en gris, chico; el AFTER son cinco párrafos
+   en negro, grandes. Si pesan igual, la sección no dice nada. */
+
+.tip {
+  background: var(--paper);
+  color: var(--ink);
+  padding: var(--s5) var(--pad);
+}
+
+.tip__in {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+.tip__eyebrow {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 clamp(48px, 6vh, 96px);
+}
+
+.tip__case {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s3);
+  margin-bottom: var(--s5);
+}
+.tip__case:last-child {
+  margin-bottom: 0;
+}
+
+.tip__who {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 12px;
+  font-family: var(--grot);
+  font-size: 15px;
+  color: var(--ink);
+  margin: 0 0 clamp(48px, 6vh, 96px);
+}
+.tip__who b {
+  font-weight: 700;
+}
+.tip__who span {
+  color: var(--ink);
+  opacity: .55;
+}
+
+/* La grilla asimétrica del par BEFORE/AFTER. Mobile: una columna,
+   BEFORE arriba (§8 de verificación del Brief 04). */
+.tip__pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(32px, 5vh, 64px);
+}
+@media (min-width: 1000px) {
+  .tip__pair {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+    gap: clamp(32px, 4vw, 64px) clamp(48px, 6vw, 120px);
+    align-items: start;
+  }
+}
+
+.tip__side-label {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin: 0 0 var(--s2);
+}
+.tip__side--before .tip__side-label {
+  color: var(--ink);
+  opacity: .5;
+}
+
+.tip__side blockquote {
+  margin: 0;
+  padding: 0;
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+.tip__side blockquote p {
+  font-family: var(--grot);
+  margin: 0;
+}
+.tip__side blockquote p + p {
+  margin-top: 1.1em;
+}
+
+/* BEFORE: gris, chico. Una línea contra cinco párrafos. */
+.tip__side--before blockquote p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink);
+  opacity: .5;
+}
+
+/* AFTER: negro, grande. El peso desigual es el argumento. */
+.tip__side--after blockquote p {
+  font-size: clamp(19px, 1.6vw, 22px);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.tip__note {
+  margin-top: clamp(48px, 6vh, 88px);
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.25;
+  letter-spacing: -.012em;
+  color: var(--ink);
+  max-width: 26ch;
+  text-wrap: balance;
+}

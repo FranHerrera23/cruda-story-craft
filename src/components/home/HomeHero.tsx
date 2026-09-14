@@ -1,49 +1,38 @@
+import Link from 'next/link'
 import './home-hero.css'
 
-/* Home · Hero — brief 12-sep §6.1.
+/* Home · Hero — brief 12-sep §6.1 + Brief 04 P0 (14-sep).
 
-   Sale entero el tipeo letra por letra: sin useEffect, sin useState,
-   sin ghost span, sin cursor --signal. Componente server, copy nueva
-   servida completa en el HTML.
+   H1 en grot 500, --t-display. Copy servida completa en el HTML.
 
-   H1 en grot 500, --t-display, max-width limitado hasta que la
-   frase rompa en las DOS oraciones que la componen (una por línea
-   en desktop). El punto en el medio manda sobre el número.
+   Brief 04 P0 (14-sep) — corte del H1 pasa a TRES líneas autoradas.
+   La versión anterior tenía solo un <br/> después de 'story.', así
+   que el primer corte lo hacía el browser: salían tres líneas con
+   rag 100%/35%/90% (una línea corta en el medio) y `LineReveals`
+   medía lo que el browser producía, así que el delay del cuerpo
+   cambiaba con el viewport.
 
-   Dek en grot 400, --t-lead, sobre 52ch (más ancho que el H1 pero
-   sigue siendo caja de lectura, no de headline).
+   Fix: tres <br/> autorados. 'Your company' como primera línea
+   abre mejor que 'Your company outgrew', que deja al lector
+   colgado de un verbo. Rag ~45%/85%/90%.
 
-   Reveal via data-reveal del sistema — RevealScroll global lo
-   encuentra y agrega .on al montar el DOM.
+   Regla lockeada — ver docs/decisions.md #cortes-de-titulos-display.
 
-   Motion v3 §6 — el H1 lleva `data-reveal="lines"`: LineReveals mide
-   el corte real (respetando el <br/> autoral) y reescribe el DOM
-   con `.rv-line > span` para que las dos oraciones suban una detrás
-   de la otra.
+   Brief 04 §4.1a (14-sep, Addendum A) · la línea TRANSLATED bajo
+   el lede. Link, no CTA — sin caja, sin botón, sin card. Es dónde
+   se nombra el paquete en la home. Nunca front-cargar la venta
+   antes del argumento.
 
-   Motion v3 §2 (14-sep) — la sección lleva `data-reveal-seq` +
+   Motion v3 §2 — la sección lleva `data-reveal-seq` +
    `data-hero-entry`: RevealScroll no la observa, se dispara con
-   la salida del loader (evento `cruda:loader-out`). En una visita
-   sin loader arranca a los 120ms. El H1 usa 140ms de stagger
-   (más lento que 90ms del resto) porque a esa escala más rápido
-   se lee como pop. La duración también se estira a 900ms — vive
-   en home-hero.css. */
+   la salida del loader. */
 
 const DEK =
   'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
 
-/* El H1 se compone de dos oraciones. Un <br/> entre ellas garantiza
-   el corte exacto entre "story." y "We build" — el max-width solo
-   no alcanza porque Archivo 500 es más angosto que el "0" y el
-   navegador siempre encuentra hueco para "We" al final. Para SEO
-   y screen readers el textContent se lee corrido; el <br> es visual.
+/* Copy del TRANSLATED line · verbatim del Addendum A §4.1a. */
+const TRANSLATED_LINE = 'TRANSLATED — three months. Your expertise, translated.'
 
-   Regla lockeada — ver docs/decisions.md #cortes-de-titulos-display.
-   Los cortes de línea de cualquier H1/H2 display van autorados con
-   <br/> cuando la lectura del titular depende de ellos. Si el número
-   de líneas cambia entre breakpoints por wrapping natural es un bug.
-   LineReveals mide el corte real y anima línea por línea — el timing
-   queda inconsistente si el corte cambia entre viewports. */
 export default function HomeHero() {
   return (
     <section className="home-hero" data-reveal-seq data-hero-entry>
@@ -53,12 +42,21 @@ export default function HomeHero() {
         data-seq="title"
         data-line-stagger="140"
       >
-        Your company outgrew its own story.
+        Your company
+        <br />
+        outgrew its own story.
         <br />
         We build the next one.
       </h1>
       <p className="home-hero__dek" data-reveal="text" data-seq="body">
         {DEK}
+      </p>
+      <p
+        className="home-hero__translated"
+        data-reveal="text"
+        data-seq="body"
+      >
+        <Link href="/process">{TRANSLATED_LINE}</Link>
       </p>
     </section>
   )

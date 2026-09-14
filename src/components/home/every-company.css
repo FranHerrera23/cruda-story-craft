@@ -1,0 +1,146 @@
+/* Home · every-company (ex why-now) — Brief 04 P1 (14-sep).
+
+   Layout: dos columnas 1fr / 1.4fr desde 1000px, misma proporción
+   que la why-now anterior. Título sticky arriba de la secuencia
+   de frames. Cinco párrafos en la segunda columna con opacidad
+   atada al scrub — la meseta la maneja EveryCompanyFocus.
+
+   MESETA por CSS
+   Los párrafos arrancan en opacity 0. EveryCompanyFocus les setea
+   opacity inline en función del progress del scrub. Bajo reduce
+   motion o si el scrub no se registra, el fallback deja los cinco
+   párrafos en opacity 1 (ver bloque final del archivo).
+
+   FRAMES
+   Seis <img> apilados con position:absolute. La primera arranca a
+   opacity 1 (fallback estático); las otras cinco a 0. El scrub las
+   crossfade. Sin scrub, el usuario ve el primer frame y los cinco
+   párrafos legibles. Cero placeholder, cero altura reservada con
+   vh (ver docs/decisions.md #grillas-se-encienden-por-has). */
+
+.every-company {
+  background: var(--paper);
+  padding: var(--s5) var(--pad);
+  scroll-margin-top: 64px;
+}
+
+.every-company .in {
+  max-width: 1600px;
+  margin-inline: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+
+/* Columna izquierda — sticky title arriba, frames debajo. */
+.every-company__head {
+  position: sticky;
+  top: var(--s4);
+  grid-column: 1;
+  grid-row: 2;
+}
+.every-company__head h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--t-display);
+  line-height: 1.06;
+  letter-spacing: -.012em;
+  color: var(--ink);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Frames apilados. El wrapper reserva su lugar en la grilla pero
+   NO reserva altura con vh — se ajusta al contenido de la <img>.
+   Sin las imágenes el wrapper colapsa a 0. Regla del ledger. */
+.every-company__frames {
+  position: sticky;
+  top: calc(var(--s4) + clamp(64px, 12vh, 140px));
+  grid-column: 1;
+  grid-row: 1;
+  aspect-ratio: 3 / 4;
+  max-width: 320px;
+  width: 100%;
+  margin-bottom: var(--s4);
+}
+.every-company__frames > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 250ms linear;
+  /* Fallback: si no hay JS, mostramos el primer frame. Los otros
+     quedan a 0. El scrub reasigna opacities cuando corre. */
+}
+.every-company__frames > img:first-child {
+  opacity: 1;
+}
+
+/* Cuerpo — cinco párrafos en la columna derecha. Estado inicial
+   arranca en opacity 1 (fallback estático). EveryCompanyFocus les
+   setea el inline style cuando el scrub arranca. */
+.every-company__body {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 48px);
+}
+.every-company__body p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 46ch;
+  margin: 0;
+  text-wrap: pretty;
+}
+.every-company__body em {
+  font-style: italic;
+}
+.every-company__body .nowrap {
+  white-space: nowrap;
+}
+
+/* Mobile: una columna, el sticky se apaga. A ese ancho el título
+   ocupa media pantalla y los párrafos no tienen por dónde pasar.
+   Los frames se apilan bajo el título en su tamaño natural. */
+@media (max-width: 900px) {
+  .every-company .in {
+    grid-template-columns: 1fr;
+  }
+  .every-company__head,
+  .every-company__frames {
+    position: static;
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .every-company__body {
+    grid-column: 1;
+    grid-row: auto;
+  }
+  .every-company__frames {
+    max-width: 260px;
+  }
+}
+
+/* Reduce motion: todos los párrafos plenos, primer frame visible,
+   los otros a cero. El scrub no se registra en EveryCompanyFocus,
+   así que las opacities inline nunca se aplican y este bloque
+   gobierna. */
+@media (prefers-reduced-motion: reduce) {
+  .every-company__body p {
+    opacity: 1 !important;
+  }
+  .every-company__frames > img {
+    opacity: 0;
+    transition: none;
+  }
+  .every-company__frames > img:first-child {
+    opacity: 1;
+  }
+}

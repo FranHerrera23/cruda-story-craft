@@ -59,8 +59,10 @@
   --space-5:  64px;
   --space-6:  96px;
   --space-7:  160px;
-  /* --space-8 (244px suelto) retirado brief 14-sep. Los dos usos
-     — essay.css head y approach padding-top — pasaron a --s5. */
+  /* --space-8 (244px suelto) retirado brief 14-sep · Brief 03 P4.
+     Los dos usos — essay.css head y approach padding-top — pasaron
+     a --s5. Subir --s5 al valor 244 con regresión de sitio completo
+     queda como fase propia. Ver docs/decisions.md. */
 
   /* -------- Motion — sistema en globals.css --------
      --ease, --ease-exit, --t-1..4 y --stagger viven en globals.css.

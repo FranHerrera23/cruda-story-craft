@@ -133,8 +133,13 @@ function setup(): Cleanup {
   )
   singleTargets.forEach((el) => singleIO.observe(el))
 
-  /* Hero: no observer. Se dispara con la salida del loader, o a
-     120ms cuando la sesión ya vio el loader (data-loader="skip"). */
+  /* Hero: no observer. Se encadena a la presencia del Loader en
+     el DOM, no al data-loader attribute — ese attr solo lo setea
+     el inline script en la primera carga, y queda stale en SPA
+     nav (back button, client-side routing). Fix 14-sep P0: si el
+     .loader está en el DOM, esperar `cruda:loader-out`. Si no
+     está (sesión ya vio el loader, o reduce motion), fallback
+     120ms para arrancar el reveal directo. */
   const heroSections = Array.from(
     document.querySelectorAll<HTMLElement>('[data-hero-entry]'),
   )
@@ -144,9 +149,9 @@ function setup(): Cleanup {
 
     const reduce =
       window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const loaderState = document.documentElement.dataset.loader
+    const loaderPresent = !!document.querySelector('.loader')
 
-    if (reduce || loaderState === 'skip' || loaderState === undefined) {
+    if (reduce || !loaderPresent) {
       const t = window.setTimeout(fireHero, HERO_FALLBACK_DELAY_MS)
       heroCleanup.push(() => window.clearTimeout(t))
     } else {

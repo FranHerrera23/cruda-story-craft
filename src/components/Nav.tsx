@@ -14,7 +14,15 @@ import { useEffect, useState } from 'react'
    devuelven 410 desde middleware.ts.
 
    About → /about (Brief 02, 14-sep · /our-founder redirige 301
-   permanente). Nav flat, sin dropdowns. */
+   permanente). Nav flat, sin dropdowns.
+
+   Regla lockeada — ver docs/decisions.md #nombres-de-rutas-retiradas.
+   El regex `match: /^\/(about|our-founder)/` mantiene el nombre
+   viejo (`our-founder`) como matcher. El 308 dispara desde el
+   servidor, pero durante el frame antes de que resuelva,
+   usePathname() del cliente devuelve la URL vieja. Sin ese matcher
+   el estado activo se pierde por un frame. NO LIMPIAR mientras
+   exista el redirect. */
 
 const NAV_ITEMS = [
   { href: '/about', label: 'About', match: /^\/(about|our-founder)/ },

@@ -216,10 +216,16 @@
   margin: 0 0 clamp(32px, 5vh, 56px);
 }
 
-/* Cuando el retrato llegue: agregar <img class="ab-who__portrait">
-   al DOM y encender esta grilla — dos columnas, retrato 3:4 en
-   la primera, bio en la segunda. Sin retrato el selector no
-   matchea y el layout queda como una columna. */
+/* Regla lockeada — ver docs/decisions.md #grillas-se-encienden-por-has.
+   Cuando el retrato llegue, se agrega <img class="ab-who__portrait">
+   al DOM y esta grilla enciende — dos columnas, retrato 3:4 en la
+   primera, bio en la segunda. Sin retrato el selector :has() no
+   matchea y el layout queda como una columna. Cero altura reservada,
+   cero placeholder — el hueco no se dibuja.
+
+   El mismo mecanismo va a servir para §06 · Team cuando lleguen
+   tres personas: la grilla 3-up se enciende cuando hay 3+ children
+   con .ab-team__card, no antes. */
 .ab-who:has(.ab-who__portrait) {
   grid-template-columns: minmax(0, 1fr);
 }

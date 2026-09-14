@@ -256,3 +256,84 @@ o mientras haya dudas, se trata como cerrado por defecto.
 
 **Origen:** Fran, 14 septiembre 2026 · lockeada tras el barrido de
 precisión que cerró Karen y INOUT.
+
+---
+
+## 2026-09-14 · Nombres de rutas retiradas viven en los regex de match del nav
+
+**Regla:** cuando una ruta se retira y queda con redirect
+permanente hacia su canónica nueva, el nombre viejo se conserva en
+la regex de `match` del `NAV_ITEMS` correspondiente. La regex
+matchea AMBAS: la canónica actual y la ruta retirada.
+
+**Por qué:** el redirect 308 dispara desde el servidor, pero
+durante el frame antes de que resuelva, el `usePathname()` del
+cliente devuelve la URL vieja. Sin el nombre viejo en la regex, el
+estado activo del nav queda sin match por ese frame — el elemento
+correspondiente se ve inactivo aunque el usuario esté navegando
+hacia él.
+
+**Ejemplo actual:**
+
+```ts
+{ href: '/about', label: 'About', match: /^\/(about|our-founder)/ }
+```
+
+`about` es la canónica desde el Brief 02 (14-sep). `our-founder`
+es la ruta retirada. La regex mantiene ambas.
+
+**Prohibido:** limpiar el regex retirando el nombre viejo por
+"orden". El comentario en `Nav.tsx` apunta a esta entrada
+específicamente para frenar esa limpieza. Si el nombre viejo se
+saca, el nav pierde su estado activo durante el frame de
+transición.
+
+**Cuándo se retira del regex:** solo cuando la URL vieja deja de
+existir en la web pública — es decir, cuando el redirect se retira
+también. Mientras haya un `301`/`308` sirviendo esa URL, el
+nombre se queda en el regex.
+
+**Origen:** Fran, 14 septiembre 2026 · lockeada durante el rollout
+del Brief 02 (/our-founder → /about).
+
+---
+
+## 2026-09-14 · Grillas se encienden por `:has()`, no por placeholder
+
+**Regla:** cuando una grilla depende de un asset opcional
+(retrato, foto de team, imagen de card), el layout se activa via
+`:has()` sobre la presencia del asset en el DOM — no reservando
+altura vacía con `vh` ni mostrando un placeholder.
+
+**Por qué:** un placeholder o un `min-height: Xvh` reservado deja
+un agujero en la página cuando el asset no llegó. Ese fue el bug
+de las cards de la home donde Jack Yaeger sin foto rompía el
+renglón. La solución es no dibujar el hueco.
+
+**Cómo se implementa:**
+
+```css
+.ab-who {
+  /* Sin retrato: una columna, layout fluido. */
+  display: grid;
+  gap: clamp(24px, 4vh, 48px);
+}
+.ab-who:has(.ab-who__portrait) {
+  /* Con retrato: dos columnas, retrato 3:4 en col 1. */
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
+}
+```
+
+El JSX renderea el `<img>` solo cuando la ruta existe. Sin el
+`<img>` el `:has()` no matchea y el layout cae al default de una
+columna. Con el `<img>` el `:has()` matchea y la grilla se
+enciende sin cambios de otras medidas.
+
+**Alcance:** el mismo patrón sirve para la sección `06 · Team`
+del `/about` cuando lleguen tres personas — la grilla 3-up se
+enciende cuando hay 3+ children con `.ab-team__card` (o el
+selector equivalente), no antes. Y también para cualquier card
+del sitio que tenga foto opcional.
+
+**Origen:** Fran, 14 septiembre 2026 · lockeada durante el rollout
+del §05 de /about (retrato de Fran pendiente).

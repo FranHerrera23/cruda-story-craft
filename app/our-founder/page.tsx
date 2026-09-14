@@ -86,15 +86,30 @@ export default function OurFounderPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
       />
       <div className="of">
-        {/* HERO — ink */}
-        <section id="hero" data-section="hero" className="of-hero-ink">
+        {/* HERO — ink · brief 14-sep P1 · seq con H1 como title */}
+        <section
+          id="hero"
+          data-section="hero"
+          className="of-hero-ink"
+          data-reveal-seq
+        >
           <div className="of-hero-inner">
-            <h1 className="of-hero-h1">Fran Herrera</h1>
-            <p className="of-hero-kicker">
+            <h1
+              className="of-hero-h1"
+              data-seq="title"
+              data-reveal="lines"
+            >
+              Fran Herrera
+            </h1>
+            <p
+              className="of-hero-kicker"
+              data-seq="body"
+              data-reveal="text"
+            >
               Founder &amp; CEO, CRUDA. Abu Dhabi.
             </p>
             <div className="of-hero-body">
-              <p>
+              <p data-seq="body" data-reveal="text">
                 I&apos;ve spent ten years helping companies say what they
                 actually do.
               </p>
@@ -102,16 +117,22 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 01 — WHAT I DO NOW */}
+        {/* 01 — WHAT I DO NOW · seq sin título (eyebrow + body) */}
         <section
           id="now"
           data-section="now"
-          data-reveal="text"
           className="of-block"
+          data-reveal-seq
         >
           <div className="of-inner">
-            <p className="of-eyebrow">What I do now</p>
-            <div className="of-reading of-body">
+            <p
+              className="of-eyebrow"
+              data-seq="eyebrow"
+              data-reveal="text"
+            >
+              What I do now
+            </p>
+            <div className="of-reading of-body" data-seq="body" data-reveal="text">
               <p>
                 CRUDA works with founder-led companies at a point of
                 inflection: a new market, a new category, a leadership
@@ -134,16 +155,22 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 02 — BEFORE CRUDA */}
+        {/* 02 — BEFORE CRUDA · seq sin título */}
         <section
           id="before"
           data-section="before"
-          data-reveal="text"
           className="of-block of-block--white"
+          data-reveal-seq
         >
           <div className="of-inner">
-            <p className="of-eyebrow">Before CRUDA</p>
-            <div className="of-reading of-body">
+            <p
+              className="of-eyebrow"
+              data-seq="eyebrow"
+              data-reveal="text"
+            >
+              Before CRUDA
+            </p>
+            <div className="of-reading of-body" data-seq="body" data-reveal="text">
               <p>
                 Events first, in Salta and then Buenos Aires — Fuckup
                 Nights, Endeavor, twenty-plus theatre and comedy shows at
@@ -165,31 +192,41 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 03 — WHAT PEOPLE I'VE WORKED FOR SAY */}
+        {/* 03 — WHAT PEOPLE SAY · seq · cita lleva line-reveal, atribución no */}
         <section
           id="voices"
           data-section="voices"
-          data-reveal="text"
           className="of-block"
+          data-reveal-seq
         >
           <div className="of-inner">
-            <p className="of-eyebrow">What people say</p>
+            <p
+              className="of-eyebrow"
+              data-seq="eyebrow"
+              data-reveal="text"
+            >
+              What people say
+            </p>
 
             <div className="of-testimonials">
               <figure className="of-testimonial">
                 <blockquote>
-                  <p>
+                  <p data-seq="body" data-reveal="lines">
                     Any founder who spent decades building something good
                     knows this problem: the work is excellent and nobody
                     outside your circle finds out.
                   </p>
-                  <p>
+                  <p data-seq="body" data-reveal="lines">
                     I had it for twenty-eight years. In early 2021 I decided
                     to become visible and I hired Fran. Five years later,
                     TRAZZO is not the same company.
                   </p>
                 </blockquote>
-                <figcaption className="of-testimonial-attrib">
+                <figcaption
+                  className="of-testimonial-attrib"
+                  data-seq="body"
+                  data-reveal="text"
+                >
                   <strong>Karen Mannheim</strong> — Lighting Designer,
                   Miami. Client. <em>(August 2026)</em>
                 </figcaption>
@@ -207,17 +244,23 @@ export default function OurFounderPage() {
           </div>
         </section>
 
-        {/* 04 — THE SHORT VERSION */}
+        {/* 04 — THE SHORT VERSION · seq sin título */}
         <section
           id="short"
           data-section="short"
-          data-reveal="text"
           className="of-block"
+          data-reveal-seq
         >
           <div className="of-inner">
-            <p className="of-eyebrow">The short version</p>
+            <p
+              className="of-eyebrow"
+              data-seq="eyebrow"
+              data-reveal="text"
+            >
+              The short version
+            </p>
 
-            <div className="of-short-body">
+            <div className="of-short-body" data-seq="body" data-reveal="text">
               <p>
                 Born in Salta, in the north of Argentina, to a
                 working-class family. Dropped out of university after six

@@ -19,15 +19,35 @@ export default function ContactContent() {
   return (
     <div className="contact-root">
       <main className="contact-shell">
-        <section data-reveal="text" className="contact-lede">
-          <p className="mono contact-eyebrow">Contact</p>
-          <h1 className="display--sm contact-h1">Let&apos;s talk about your story.</h1>
-          <p className="contact-sub">
+        {/* Brief 14-sep P1 — lede como seq: eyebrow, H1 con
+            line-reveal, sub como body. */}
+        <section data-reveal-seq className="contact-lede">
+          <p
+            className="mono contact-eyebrow"
+            data-seq="eyebrow"
+            data-reveal="text"
+          >
+            Contact
+          </p>
+          <h1
+            className="display--sm contact-h1"
+            data-seq="title"
+            data-reveal="lines"
+          >
+            Let&apos;s talk about your story.
+          </h1>
+          <p
+            className="contact-sub"
+            data-seq="body"
+            data-reveal="text"
+          >
             Forty-five minutes on the calendar. No pitch. Pick a slot below, or
             write and we&apos;ll take it from there.
           </p>
         </section>
 
+        {/* Calendly fuera de la secuencia — nota del brief P1. Se
+            conserva con reveal individual del bloque. */}
         <section data-reveal="text" className="contact-calendly">
           <div
             className="calendly-inline-widget"
@@ -42,12 +62,29 @@ export default function ContactContent() {
           </p>
         </section>
 
-        <section data-reveal="text" className="contact-email">
-          <p className="mono contact-alt-label">Or write</p>
-          <a href={`mailto:${HELLO}`} className="contact-alt-mail">
+        {/* Email block como seq · sin H2, eyebrow + body con
+            fallback de 400ms para el delay del body. */}
+        <section data-reveal-seq className="contact-email">
+          <p
+            className="mono contact-alt-label"
+            data-seq="eyebrow"
+            data-reveal="text"
+          >
+            Or write
+          </p>
+          <a
+            href={`mailto:${HELLO}`}
+            className="contact-alt-mail"
+            data-seq="body"
+            data-reveal="text"
+          >
             {HELLO}
           </a>
-          <p className="contact-alt-note">
+          <p
+            className="contact-alt-note"
+            data-seq="body"
+            data-reveal="text"
+          >
             For press, hiring, or anything that isn&apos;t a discovery call.
           </p>
         </section>

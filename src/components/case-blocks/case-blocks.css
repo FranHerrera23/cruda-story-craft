@@ -64,8 +64,13 @@
   color: inherit;
 }
 
+/* Foco visible es affordance global, no dirección de arte. Va en
+   --color-focus (amarillo #FFD200) — el mismo token que usa el
+   resto del sitio en :focus-visible. Antes iba en var(--c-1); en
+   un caso sin identidad declarada --c-1 cae al default negro y el
+   outline se pierde contra el texto. Eso es a11y, no estética. */
 .cb-root :focus-visible {
-  outline: 2px solid var(--c-1);
+  outline: 2px solid var(--color-focus);
   outline-offset: 4px;
 }
 

@@ -40,9 +40,12 @@ export const inout: CaseStudyV2 = {
       boldWeight: 600,
       boldTracking: '.1em',
     },
+    /* cellAspect 1/1 — decisión de diseño (fichas cuadradas para
+       INOUT). Sin cellBg: cae al default --paper del sistema. El
+       #F7F7F7 anterior era el último gris tibio del sitio, residuo
+       previo al design system unificado. */
     system: {
       cellAspect: '1 / 1',
-      cellBg: '#F7F7F7',
     },
   },
   blocks: [

@@ -485,7 +485,7 @@ export default function PricingContent() {
               color: '#E8623A',
               marginTop: '24px'
             }}>
-              — Mike Kaeding, CEO, Norhart
+              — Mike Kaeding, CEO, Norhart. Client.
             </p>
           </div>
 

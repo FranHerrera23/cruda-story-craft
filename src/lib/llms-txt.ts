@@ -27,7 +27,7 @@ const COMPANIES_SECTION = `## Companies
 
 const HUBS_SECTION = `## Pages
 
-- [About the founder](${BASE}/our-founder): Fran Herrera — 10 years building brands across 14 industries.
+- [About CRUDA](${BASE}/about): CRUDA is a narrative practice for founder-led companies. Fran Herrera — 10 years building brands.
 - [Pricing](${BASE}/pricing): CRUDA's engagement structure and rates.
 - [Contact](${BASE}/contact): Book a 45-minute conversation or write hello@thecruda.com.
 - [All resources](${BASE}/resources): Every essay and case study in one library.`

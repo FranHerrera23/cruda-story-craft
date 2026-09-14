@@ -102,7 +102,7 @@ const AUTHOR = {
   name: 'Fran Herrera',
   role: 'Founder, CRUDA',
   photo: '/fran-herrera.png',
-  url: 'https://www.thecruda.com/our-founder',
+  url: 'https://www.thecruda.com/about',
 }
 
 function fmt(iso: string) {

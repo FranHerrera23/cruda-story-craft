@@ -52,7 +52,7 @@ const ORG_SCHEMA = {
   url: 'https://www.thecruda.com',
   logo: 'https://www.thecruda.com/logo.png',
   foundingDate: '2024-02',
-  founder: { '@id': 'https://www.thecruda.com/our-founder#person' },
+  founder: { '@id': 'https://www.thecruda.com/about#person' },
   sameAs: [
     'https://www.linkedin.com/company/thecrudaspace',
   ],
@@ -113,7 +113,7 @@ export const metadata: Metadata = {
      bylines de essay/case study + alt text + figcaption ya migraron
      a "Fran Herrera" (A.1.2b). Publisher se queda como CRUDA
      (organización). */
-  authors: [{ name: 'Fran Herrera', url: 'https://www.thecruda.com/our-founder' }],
+  authors: [{ name: 'Fran Herrera', url: 'https://www.thecruda.com/about' }],
   creator: 'Fran Herrera',
   publisher: 'CRUDA',
   formatDetection: {

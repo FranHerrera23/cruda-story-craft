@@ -1,0 +1,284 @@
+/* /about — Brief 02 (14-sep). Página de empresa que reemplaza a
+   /our-founder. La empresa es el sujeto; las personas, la prueba.
+
+   Tokens de globals + case-study.css. Sin cargar fuentes propias.
+
+   Regla dura: un solo bloque inverso — §01. Ningún gris de texto
+   en la página. Ningún gray tint suelto. */
+
+.ab {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--grot);
+  -webkit-font-smoothing: antialiased;
+}
+
+.ab *,
+.ab *::before,
+.ab *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ═════════ Block frame ═════════
+   Cada sección va como .ab-block, con variante paper o ink. La
+   sección de close usa el mismo bloque paper con un padding-bottom
+   más chico. */
+.ab-block {
+  padding: var(--s5) 0;
+}
+.ab-block--paper {
+  background: var(--paper);
+  color: var(--ink);
+}
+.ab-block--ink {
+  background: var(--ink);
+  color: var(--paper);
+  /* §01 hero — el único inverso. Que ocupe al menos 100dvh en
+     desktop para que domine sin competir con nada abajo. */
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+}
+
+/* Filete entre bloques paper — mismo lenguaje de /our-founder y
+   de home. No entre paper e ink (el corte de color es más fuerte
+   que cualquier filete). */
+.ab-block + .ab-block--paper {
+  border-top: 1px solid var(--rule);
+}
+
+.ab-inner {
+  max-width: 1600px;
+  margin-inline: 0;
+  padding: 0 var(--pad);
+  width: 100%;
+}
+
+/* ═════════ Eyebrow ═════════
+   Igual patrón que /our-founder y home: grot 13/600 upper con
+   tracking .14em. Sobre ink cambia a --paper. */
+.ab-eyebrow {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: clamp(48px, 7vh, 88px);
+}
+.ab-eyebrow--on-ink {
+  color: var(--paper);
+}
+
+/* ═════════ Labels ═════════
+   Version más chica del eyebrow para las secciones de prosa
+   (§02, §04, §05). Mismo tratamiento que el label de inside-cruda
+   y de los case study blocks. */
+.ab-label {
+  font-family: var(--grot);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-bottom: clamp(32px, 5vh, 56px);
+}
+
+/* ═════════ H1 (§01) ═════════
+   Instrument Serif 400 en display. Cumple regla §2 del sistema
+   ("serif solo en títulos ≤6 palabras" — 'CRUDA is a narrative
+   practice for founder-led companies' pasa por la excepción de
+   epígrafe, misma que why-now).
+
+   Regla lockeada — ver docs/decisions.md #cortes-de-titulos-display.
+   El <br/> autoral entre 'practice' y 'for founder-led companies'
+   es intencional: la primera línea nombra la cosa, la segunda la
+   cualifica. Reader ritmo. */
+.ab-h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(38px, 5.5vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: var(--paper);
+  max-width: 22ch;
+  margin: 0 0 clamp(40px, 5vh, 72px);
+}
+
+/* ═════════ H2 (§03) ═════════
+   Grot 700 como el resto de los H2 del sitio (home, why-now,
+   /approach, etc.). */
+.ab-h2 {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  max-width: 22ch;
+  margin: 0 0 clamp(64px, 9vh, 110px);
+}
+
+/* ═════════ Lede + prose ═════════
+   62ch para la caja de lectura. Mismo tamaño y line-height que
+   home + why-now. */
+.ab-lede {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: var(--t-lead);
+  line-height: 1.55;
+  color: var(--ink);
+  max-width: 62ch;
+  margin: 0;
+}
+.ab-lede--on-ink {
+  color: var(--paper);
+}
+
+.ab-prose {
+  max-width: 62ch;
+}
+.ab-prose p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0;
+}
+.ab-prose p + p {
+  margin-top: clamp(16px, 2vh, 24px);
+}
+
+/* ═════════ §03 · principles rows ═════════
+   Mismo componente que .ic-row de inside-cruda. Filete al 20%,
+   grilla 1fr / 1.4fr desde 1000px. */
+.ab-principles {
+  display: block;
+}
+.ab-row {
+  border-top: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+  padding: var(--s3) 0;
+  display: grid;
+  gap: 16px;
+}
+@media (min-width: 1000px) {
+  .ab-row {
+    grid-template-columns: 1fr 1.4fr;
+    gap: clamp(40px, 5vw, 96px);
+  }
+}
+.ab-row__label {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -.012em;
+  color: var(--ink);
+  max-width: 26ch;
+}
+.ab-row__body p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 46ch;
+  margin: 0;
+}
+
+/* ═════════ §05 · Who runs it ═════════
+   Sin retrato hoy. Cuando el retrato llegue, esta sección se
+   convierte en grilla 1 col (retrato aspect 3:4) + col 6-11
+   (bio). Hoy es una columna sola. NO se reserva altura con vh
+   para el retrato ausente. */
+.ab-who {
+  display: grid;
+  gap: clamp(24px, 4vh, 48px);
+}
+.ab-who__body {
+  max-width: 62ch;
+}
+.ab-who__name {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(28px, 2.6vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.ab-who__role {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0 0 clamp(32px, 5vh, 56px);
+}
+
+/* Cuando el retrato llegue: agregar <img class="ab-who__portrait">
+   al DOM y encender esta grilla — dos columnas, retrato 3:4 en
+   la primera, bio en la segunda. Sin retrato el selector no
+   matchea y el layout queda como una columna. */
+.ab-who:has(.ab-who__portrait) {
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 1000px) {
+  .ab-who:has(.ab-who__portrait) {
+    grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
+    gap: clamp(48px, 6vw, 96px);
+    align-items: start;
+  }
+}
+.ab-who__portrait {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1);
+}
+
+/* ═════════ §07 · Close ═════════ */
+.ab-block--close {
+  padding-block: clamp(80px, 12vh, 140px);
+}
+.ab-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(24px, 4vw, 40px);
+  align-items: center;
+}
+.ab-cta {
+  display: inline-block;
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  padding: 0;
+  border: 0;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: opacity var(--dur-2) var(--ease);
+}
+.ab-cta:hover,
+.ab-cta:focus-visible {
+  opacity: .7;
+}
+
+/* ═════════ Mobile ═════════ */
+@media (max-width: 860px) {
+  .ab-h1 {
+    max-width: none;
+  }
+  .ab-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ab-cta {
+    text-align: center;
+  }
+}

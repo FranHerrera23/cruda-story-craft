@@ -13,10 +13,11 @@ import { useEffect, useState } from 'react'
    Work vive standalone también). Fuera del sitio: /sports y /systems
    devuelven 410 desde middleware.ts.
 
-   About → /our-founder (D2). Nav flat, sin dropdowns. */
+   About → /about (Brief 02, 14-sep · /our-founder redirige 301
+   permanente). Nav flat, sin dropdowns. */
 
 const NAV_ITEMS = [
-  { href: '/our-founder', label: 'About', match: /^\/(our-founder|about)/ },
+  { href: '/about', label: 'About', match: /^\/(about|our-founder)/ },
   /* Home · Selected Work (brief 10-sep §9 paso 5) — WORK apunta al
      ancla en la home. Las rutas hijas /work/[slug] siguen matcheando
      el activo por la regex; en la home el activo lo dispara /work

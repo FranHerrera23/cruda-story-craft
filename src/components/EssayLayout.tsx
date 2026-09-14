@@ -85,11 +85,11 @@ const AUTHOR = {
   /* A.1.2b — public name "Fran Herrera" en byline visible y en el
      author.name del Article JSON-LD que este componente emite.
      "Francisco" solo vive como alternateName del Person schema en
-     /our-founder. */
+     /about (migrado desde /our-founder por Brief 02, 14-sep). */
   name: 'Fran Herrera',
   role: 'Founder, CRUDA',
   photo: '/fran-herrera.png',
-  url: 'https://www.thecruda.com/our-founder',
+  url: 'https://www.thecruda.com/about',
 }
 
 function fmt(iso: string, locale: string) {
@@ -139,7 +139,7 @@ function schema(es: Essay) {
     },
     {
       '@type': 'Person',
-      '@id': `${base}/our-founder#person`,
+      '@id': `${base}/about#person`,
       name: AUTHOR.name,
       jobTitle: AUTHOR.role,
       url: AUTHOR.url,

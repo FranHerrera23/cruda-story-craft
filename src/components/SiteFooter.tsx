@@ -41,7 +41,7 @@ export default function SiteFooter() {
         </nav>
 
         <nav className="site-footer__nav site-footer__nav--2" aria-label="About">
-          <Link href="/our-founder" className="link">About</Link>
+          <Link href="/about" className="link">About</Link>
           <Link href="/contact" className="link">Contact</Link>
         </nav>
 

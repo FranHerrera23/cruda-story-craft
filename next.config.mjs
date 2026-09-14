@@ -60,7 +60,7 @@ const nextConfig = {
       },
       {
         source: '/architecture-design/about',
-        destination: '/our-founder',
+        destination: '/about',
         permanent: true,
       },
       {
@@ -101,10 +101,13 @@ const nextConfig = {
         permanent: true,
       },
 
-      // ============ About → /our-founder (D2) ============
+      // ============ /our-founder → /about (Brief 02, 14-sep) ============
+      // La página de empresa se muda a /about (canónica). /our-founder
+      // era la URL vieja mientras la página tenía a Fran como sujeto.
+      // Ahora la empresa es el sujeto, y la ruta lo refleja.
       {
-        source: '/about',
-        destination: '/our-founder',
+        source: '/our-founder',
+        destination: '/about',
         permanent: true,
       },
 

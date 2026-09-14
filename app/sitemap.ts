@@ -28,9 +28,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 1,
     },
-    // Task 4 nav pages
+    // Task 4 nav pages · /about es la canónica (Brief 02, 14-sep).
+    // /our-founder redirige 301 permanente a /about — fuera del sitemap.
     {
-      url: `${BASE}/our-founder`,
+      url: `${BASE}/about`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
@@ -101,7 +102,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       : []),
     /* Fuera del sitemap deliberadamente:
        - /sports, /systems (410, retiradas)
-       - /architecture-design/* (301 → /work | /our-founder)
+       - /architecture-design/* (301 → /work | /about)
+       - /our-founder (301 → /about, Brief 02 · 14-sep)
        - /resources/* (301 → /work | /essays)
        - /thinking/*, /clients/* (301 legacy)
        - /deck, /crudasports/sfh (privadas, noindex a nivel meta)

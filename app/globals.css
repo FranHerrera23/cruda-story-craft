@@ -301,24 +301,39 @@ a, button {
 }
 
 /* ==================================================================
-   Motion v3 §9 — Loader (primera visita de la sesión).
+   Motion v3 §1 (14-sep) · Loader — versión nueva.
 
    La MISMA máscara --ink de §8 en un segundo uso: el telón entra
-   cubierto en el primer paint, el wordmark CRUDA revela letra a
-   letra con stagger 60ms, y a los 500ms el panel sube. Total ~800ms.
+   cubierto en el primer paint, el wordmark revela letra a letra,
+   la tagline aparece abajo, y a los 1400ms el panel sube.
 
-   Flash-free en reload: inline script en <head> (layout.tsx) lee
-   sessionStorage y setea data-loader="skip" en <html>. CSS abajo
-   corta el render antes de pintar.
+   La versión anterior era 500ms de wordmark y nada más — se leía
+   como parpadeo. El fix no es acortarlo; es darle al ojo algo
+   que mirar mientras el sitio termina de cargar.
 
-   Animaciones vía keyframes CSS, no transitions. Empiezan con el
-   primer paint, no dependen de hydration — si hydration tarda,
-   el reveal ya arrancó.
+   TIMING
+   t=0        wordmark empieza (letra 0)
+   t=280ms    última letra empieza (4 × 70)
+   t=420ms    tagline empieza fade-in
+   t=900ms    wordmark completo
+   t=920ms    tagline visible al 40%
+   t=1400ms   panel arranca a salir (--dur-4 · --ease-exit)
+   t=2000ms   panel fuera; JS dispatcha cruda:loader-out
+   t=2050ms   nodo desmontado
 
-   Wordmark en --grot 500, --paper. Escala clamp para móvil→desktop.
-   Cinco letras con clip window individual (overflow:hidden +
-   translateY(100%)→0). animation-delay inline emitido por el JSX,
-   así el stagger vive donde vive el índice. */
+   ESTRUCTURA
+   Un solo wrapper `.loader__stage` sale del viewport de una vez.
+   Adentro: panel de fondo, wordmark centrado, tagline abajo. Cada
+   uno con su propia entrada; la salida es común y compartida.
+
+   Flash-free en reload: inline script en <head> setea
+   data-loader="skip" antes del primer paint. CSS gate corta el
+   render en reloads posteriores.
+
+   Animaciones vía keyframes, no transitions triggereadas por JS.
+   Arrancan en el primer paint, no esperan hydration. El único rol
+   de JS es dispatchear cruda:loader-out a los 2000ms y desmontar
+   el nodo a los 2050ms. */
 .loader {
   position: fixed;
   inset: 0;
@@ -326,13 +341,16 @@ a, button {
   pointer-events: none;
   overflow: hidden;
 }
+.loader__stage {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  animation: loader-panel-exit var(--dur-4) var(--ease-exit) 1400ms forwards;
+}
 .loader__panel {
   position: absolute;
   inset: 0;
   background: var(--ink);
-  transform: translateY(0);
-  will-change: transform;
-  animation: loader-panel-exit 250ms var(--ease-exit) 500ms forwards;
 }
 .loader__word {
   position: absolute;
@@ -343,13 +361,10 @@ a, button {
   gap: 0.05em;
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(48px, 8vw, 96px);
-  letter-spacing: -.02em;
+  font-size: clamp(48px, 8vw, 88px);
+  letter-spacing: -.03em;
   color: var(--paper);
   line-height: 1;
-  /* Sube junto con el panel; el wordmark no queda flotando cuando
-     el telón se va. */
-  animation: loader-panel-exit 250ms var(--ease-exit) 500ms forwards;
 }
 .loader__letter-clip {
   display: inline-block;
@@ -359,10 +374,28 @@ a, button {
 .loader__letter {
   display: inline-block;
   transform: translateY(100%);
-  animation: loader-letter-rise 400ms cubic-bezier(.16, 1, .3, 1) forwards;
+  animation: loader-letter-rise 620ms cubic-bezier(.16, 1, .3, 1) forwards;
+}
+.loader__line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(32px, 6vh, 64px);
+  text-align: center;
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0;
+  animation: loader-line-in 500ms ease-out 420ms forwards;
 }
 @keyframes loader-letter-rise {
   to { transform: translateY(0); }
+}
+@keyframes loader-line-in {
+  to { opacity: .4; }
 }
 @keyframes loader-panel-exit {
   to { transform: translateY(-100%); }

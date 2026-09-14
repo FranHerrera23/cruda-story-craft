@@ -36,7 +36,14 @@ const DEK =
    el corte exacto entre "story." y "We build" — el max-width solo
    no alcanza porque Archivo 500 es más angosto que el "0" y el
    navegador siempre encuentra hueco para "We" al final. Para SEO
-   y screen readers el textContent se lee corrido; el <br> es visual. */
+   y screen readers el textContent se lee corrido; el <br> es visual.
+
+   Regla lockeada — ver docs/decisions.md #cortes-de-titulos-display.
+   Los cortes de línea de cualquier H1/H2 display van autorados con
+   <br/> cuando la lectura del titular depende de ellos. Si el número
+   de líneas cambia entre breakpoints por wrapping natural es un bug.
+   LineReveals mide el corte real y anima línea por línea — el timing
+   queda inconsistente si el corte cambia entre viewports. */
 export default function HomeHero() {
   return (
     <section className="home-hero" data-reveal-seq data-hero-entry>

@@ -75,7 +75,7 @@ export default function PricingContent() {
     {
       question: "What results should I expect?",
       paragraphs: [
-        { text: "By month three, your presence shifts. Prospects reference your content before meetings. Referrals arrive warmer. By month six, your reputation is working in markets you haven't physically entered yet. Over the five years the work ran (2021—2026), Karen Mannheim closed projects across Florida, UAE, and Spain. Mike Kaeding walks into investor meetings where they already know the Norhart story.", emphasis: false }
+        { text: "By month three, your presence shifts. Prospects reference your content before meetings. Referrals arrive warmer. By month six, your reputation is working in markets you haven't physically entered yet. Karen Mannheim closed projects across Florida, UAE, and Spain. Mike Kaeding walked into investor meetings where they already knew the Norhart story.", emphasis: false }
       ]
     },
     {

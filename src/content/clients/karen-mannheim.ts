@@ -45,9 +45,9 @@ export const karenMannheim: CaseStudy = {
 
   // Cada stat es atribuible y fechado
   stats: [
-    { value: '+300%', label: 'LinkedIn growth', source: 'LinkedIn Analytics, 2021–2026' },
+    { value: '+300%', label: 'LinkedIn growth', source: 'LinkedIn Analytics' },
     { value: '500K', label: 'Instagram views / 90 days', source: 'Meta Business Suite, Jul 2026' },
-    { value: '5 years', label: '2021—2026' },
+    { value: '5 years', label: 'Engagement' },
     { value: '33 years', label: 'Of practice, made legible' },
   ],
 

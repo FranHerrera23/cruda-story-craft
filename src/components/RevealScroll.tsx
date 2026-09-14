@@ -93,10 +93,13 @@ function fireSection(section: HTMLElement) {
   items.forEach((el) => el.classList.add('on'))
 }
 
-/* Brief P0.5 — watchdog fuerza `.on` con --seq-delay: 0ms. No es
-   animación con delay: es seguro de contenido. Si el watchdog
-   tuvo que dispararse, algo se rompió — el usuario tiene que ver
-   el contenido YA, no en 400ms más. */
+/* Watchdog — SEGURO DE CONTENIDO, no animación.
+   Regla lockeada — ver docs/decisions.md #watchdog-seguro-de-contenido.
+
+   Prohibido bajar el timeout, retirar el setTimeout, anclarlo al setup
+   en vez del mount, o aplicar --seq-delay distinto de 0 cuando dispara.
+   Si el watchdog tuvo que dispararse, algo se rompió; el usuario tiene
+   que ver el contenido YA, no 400ms después. */
 function forceReveal(el: HTMLElement) {
   el.style.setProperty('--seq-delay', '0ms')
   el.classList.add('on')

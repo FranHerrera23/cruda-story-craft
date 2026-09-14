@@ -32,6 +32,10 @@
      el H2 de why-now es una frase completa en serif porque es
      epígrafe de sección, no headline).
      --grot en todo lo demás. */
+  /* Regla lockeada — ver docs/decisions.md
+     #serif-solo-hasta-seis-palabras. --serif es SOLO para títulos
+     display de seis palabras o menos. Por encima de seis, el
+     título va en --grot. Sin excepciones nuevas. */
   --serif:  var(--font-instrument-serif), 'Iowan Old Style', 'Palatino', Georgia, serif;
   --grot:   var(--font-archivo), 'Archivo', system-ui, -apple-system, sans-serif;
 

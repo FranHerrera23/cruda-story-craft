@@ -337,3 +337,46 @@ del sitio que tenga foto opcional.
 
 **Origen:** Fran, 14 septiembre 2026 · lockeada durante el rollout
 del §05 de /about (retrato de Fran pendiente).
+
+---
+
+## 2026-09-14 · Serif solo hasta seis palabras, sin excepciones
+
+**Regla:** `--serif` (Instrument Serif) se usa exclusivamente en
+títulos display de **seis palabras o menos**. Por encima de seis,
+el título va en `--grot` (Archivo).
+
+**Sin excepciones nuevas.** Ni epígrafe de sección, ni "lo pide
+el rythm", ni "queda mejor con dos líneas". Cualquier razón para
+subir el límite se cruza con esta entrada primero.
+
+**Casos históricos que cayeron:**
+
+- `why-now` H2 (12 palabras) — flagged en Brief 04 P1.
+- `/about` §01 H1 (8 palabras) — flagged por Fran durante el
+  rollout de Brief 02, rationalizada como excepción de epígrafe
+  y corregida el mismo día.
+
+Las dos veces la razón fue "se veía bien en serif". Es
+exactamente el marker que la regla existe para frenar.
+
+**Por qué el límite es seis:** más allá de seis palabras el
+tracking negativo (-.02 a -.025em) del serif display se acumula
+sobre demasiada distancia horizontal, y la línea deja de leerse
+como titular y pasa a leerse como cita mal armada. El límite no
+es estético, es funcional.
+
+**Alcance:** todo H1, H2, H3 que use `font-family: var(--serif)`
+directa o indirectamente (via `.display`, `.display--sm`, etc.).
+Bylines, atribuciones, decoraciones que no son título display no
+cuentan.
+
+**Cuándo se puede reabrir:** cuando alguien tenga una razón que
+no sea gusto. Hasta entonces, sigue en pie.
+
+**Implementación:** el token `--serif` vive en
+`src/components/case-study.css:35`. El comentario en esa línea
+apunta a esta entrada.
+
+**Origen:** Fran, 14 septiembre 2026 · lockeada tras la segunda
+caída (H1 de /about durante el rollout de Brief 02).

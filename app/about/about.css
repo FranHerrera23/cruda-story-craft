@@ -85,21 +85,25 @@
 }
 
 /* ═════════ H1 (§01) ═════════
-   Instrument Serif 400 en display. Cumple regla §2 del sistema
-   ("serif solo en títulos ≤6 palabras" — 'CRUDA is a narrative
-   practice for founder-led companies' pasa por la excepción de
-   epígrafe, misma que why-now).
+   Grot 500, no serif. Regla lockeada — ver docs/decisions.md
+   #serif-solo-hasta-seis-palabras. El H1 tiene ocho palabras
+   ('CRUDA is a narrative practice for founder-led companies');
+   la primera versión de esta página lo puso en serif rationalizando
+   una excepción de epígrafe, y Fran lo cazó porque es la misma
+   violación que la de why-now (12 palabras) que motivó la regla.
+
+   Sin excepciones nuevas.
 
    Regla lockeada — ver docs/decisions.md #cortes-de-titulos-display.
    El <br/> autoral entre 'practice' y 'for founder-led companies'
    es intencional: la primera línea nombra la cosa, la segunda la
-   cualifica. Reader ritmo. */
+   cualifica. Cortes autorados en todo título display. */
 .ab-h1 {
-  font-family: var(--serif);
-  font-weight: 400;
+  font-family: var(--grot);
+  font-weight: 500;
   font-size: clamp(38px, 5.5vw, 76px);
   line-height: 1.06;
-  letter-spacing: -.02em;
+  letter-spacing: -.025em;
   color: var(--paper);
   max-width: 22ch;
   margin: 0 0 clamp(40px, 5vh, 72px);

@@ -99,12 +99,11 @@ const FRAMES: FramePeak[] = [
 
 /* Los seis PNG en public/why-now/ (bust-01-dense.png,
    bust-02-mid.png, bust-03-min.png, book-01-dense.png,
-   book-02-mid.png, book-03-min.png). Los archivos entran por git
-   — el runtime remoto no acepta attachments de chat como archivos.
-   Cuando estén en el repo, flip a true y la placa se renderea con
-   las imágenes adentro. Sin archivos: cero <img>, cero placa
-   (regla 14 del ledger). */
-const FRAMES_AVAILABLE = false
+   book-02-mid.png, book-03-min.png). Están en el repo
+   (Fran push 15-sep). Comprimidos a 1024x1024 mode=P 8 colores,
+   pipeline Pillow(L)+pngquant+optipng: ~10.6MB → ~540KB total,
+   todos <150KB individual. Placa activa. */
+const FRAMES_AVAILABLE = true
 
 /* ═══ Component ═══ */
 

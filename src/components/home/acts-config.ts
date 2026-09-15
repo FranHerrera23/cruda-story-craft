@@ -118,11 +118,52 @@ export const ACT2_BEATS: Beat[] = [
 ]
 
 /* ══════════ Arts · dibujos del acto 2 ══════════
-   Seis capas apiladas · opacity como función de p con rampas de
-   entrada [in0, in1] y de salida [out0, out1]. Continuo, no
-   salta con el beat (Brief 07 §3). Peaks entre bust-01-dense
-   (dense) y book-03-min (min) — la línea pierde densidad de
-   forma continua a lo largo del acto. */
+   Motion v5 · Fase 3A (15-sep). Cinco capas apiladas, opacity
+   como función de p con rampas de entrada [in0, in1] y salida
+   [out0, out1] alineadas a los cinco beats.
+
+   ORDEN CORREGIDO (Motion v5 §1). Dos rampas ascendentes.
+   Dentro de cada sujeto la tinta solo suma:
+
+       01  bust  line art limpio    ░       (el contorno)
+       02  bust  grabado denso     ███      (grabado completo)
+       ╎  corte de sujeto en el hueco 02→03 ╎
+       03  book  line art limpio    ░       (el contorno)
+       04  book  denso + fantasma  ██▓      (entra la trama)
+       05  book  grabado denso     ███      (volumen terminado)
+
+   Mapping de los nombres descriptivos del brief a los archivos
+   reales del repo (comprobado por lectura visual · Motion v5 §1
+   verificación 3 · ningún archivo se borra):
+
+       bust · line    → public/why-now/bust-03-min.png
+       bust · dense   → public/why-now/bust-02-mid.png
+                        (el naming del archivo miente ·
+                        `mid` es el más denso de los tres,
+                        con puntillismo tupido y hatching cerrado)
+       book · line    → public/why-now/book-03-min.png
+       book · ghost   → public/why-now/book-02-mid.png
+       book · dense   → public/why-now/book-01-dense.png
+
+   `bust-01-dense.png` queda en el repo (regla del brief) pero
+   fuera del array — es la variante intermedia del busto y
+   ninguno de los cinco slots la usa.
+
+   RANGOS. Alineados a los beats de ACT2_BEATS:
+       beat 01  0.00 ─ 0.20    ⇢ art 01
+       hueco    0.20 ─ 0.24    ⇢ cross-fade 01→02
+       beat 02  0.24 ─ 0.40    ⇢ art 02
+       hueco    0.40 ─ 0.44    ⇢ cross-fade 02→03 (corte de sujeto)
+       beat 03  0.44 ─ 0.60    ⇢ art 03
+       hueco    0.60 ─ 0.64    ⇢ cross-fade 03→04
+       beat 04  0.64 ─ 0.80    ⇢ art 04
+       hueco    0.80 ─ 0.84    ⇢ cross-fade 04→05
+       beat 05  0.84 ─ 1.00    ⇢ art 05
+
+   Motion v5 Fase 3B (todavía sin arrancar) convierte el
+   cross-fade del corte de sujeto (02→03) en corte duro dentro
+   del hueco, sin fundido. Para 3A queda cross-fade en todos —
+   "un array, nada más" (Motion v5 §1 implementación). */
 
 export type Art = {
   name: string
@@ -133,10 +174,9 @@ export type Art = {
 }
 
 export const ACT2_ARTS: Art[] = [
-  { name: 'bust-01-dense', in0: 0.00, in1: 0.02, out0: 0.14, out1: 0.20 },
-  { name: 'bust-02-mid',   in0: 0.14, in1: 0.20, out0: 0.30, out1: 0.36 },
-  { name: 'bust-03-min',   in0: 0.30, in1: 0.36, out0: 0.46, out1: 0.52 },
-  { name: 'book-01-dense', in0: 0.46, in1: 0.52, out0: 0.62, out1: 0.68 },
-  { name: 'book-02-mid',   in0: 0.62, in1: 0.68, out0: 0.78, out1: 0.84 },
-  { name: 'book-03-min',   in0: 0.78, in1: 0.84, out0: 1.00, out1: 1.01 },
+  { name: 'bust-03-min',   in0: 0.00, in1: 0.00, out0: 0.20, out1: 0.24 },
+  { name: 'bust-02-mid',   in0: 0.20, in1: 0.24, out0: 0.40, out1: 0.44 },
+  { name: 'book-03-min',   in0: 0.40, in1: 0.44, out0: 0.60, out1: 0.64 },
+  { name: 'book-02-mid',   in0: 0.60, in1: 0.64, out0: 0.80, out1: 0.84 },
+  { name: 'book-01-dense', in0: 0.80, in1: 0.84, out0: 1.00, out1: 1.01 },
 ]

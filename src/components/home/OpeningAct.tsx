@@ -97,9 +97,13 @@ const FRAMES: FramePeak[] = [
   { name: 'book-03-min', peak: 0.93, width: 0.10 },
 ]
 
-/* Los seis PNG en public/why-now/ no existen todavía. Cuando
-   Fran los pushee, flip a true — el `<img>` renderea. Sin
-   archivos: cero <img>, cero cajas (regla 14 del ledger). */
+/* Los seis PNG en public/why-now/ (bust-01-dense.png,
+   bust-02-mid.png, bust-03-min.png, book-01-dense.png,
+   book-02-mid.png, book-03-min.png). Los archivos entran por git
+   — el runtime remoto no acepta attachments de chat como archivos.
+   Cuando estén en el repo, flip a true y la placa se renderea con
+   las imágenes adentro. Sin archivos: cero <img>, cero placa
+   (regla 14 del ledger). */
 const FRAMES_AVAILABLE = false
 
 /* ═══ Component ═══ */
@@ -142,11 +146,19 @@ export default function OpeningAct() {
       if (p === lastP) return
       lastP = p
 
-      /* Beats · fill por línea del beat activo. Cada beat con
-         local ∈ [0,1], subdividido en N líneas. */
+      /* Beats · Un solo beat en pantalla a la vez (Fran fix
+         15-sep). Fuera de rango: data-active="false", CSS lo
+         apaga con visibility:hidden. Entre beats la pantalla
+         queda vacía — eso es descanso, no bug. Dentro del rango
+         del beat, la lit se rellena línea por línea con --fill. */
       BEATS.forEach((beat, i) => {
         const el = beatsRefs.current[i]
         if (!el) return
+        const active = p >= beat.from && p <= beat.to
+        if (el.dataset.active !== String(active)) {
+          el.dataset.active = String(active)
+        }
+        if (!active) return
         const local = clamp((p - beat.from) / (beat.to - beat.from), 0, 1)
         const litLines = el.querySelectorAll<HTMLElement>(
           '.beat__lit .rv-line > span',
@@ -214,8 +226,15 @@ export default function OpeningAct() {
           <span className="stage__counter-label">Story</span>
         </p>
 
+        {/* Placa clara (#F2F2F0) que flota adentro del escenario —
+            marco de dispositivo tipo zerasoftwarestudio.com/build.
+            SOLO se renderea si los seis PNG existen. Sin archivos:
+            ni caja ni borde, la izquierda queda como negativo del
+            escenario (regla 14 del ledger). Los PNG entran sin
+            filtro — línea negra sobre blanco, como fueron
+            diseñados; nada de invert + mix-blend-mode. */}
         {FRAMES_AVAILABLE && (
-          <div className="stage__frames" aria-hidden="true">
+          <div className="stage__plate" aria-hidden="true">
             {FRAMES.map((frame, i) => (
               <img
                 key={frame.name}

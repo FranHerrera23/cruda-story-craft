@@ -1,11 +1,26 @@
-/* Home · Opening Act — Brief 07 v2 (15-sep).
+/* Home · Opening Act — Brief 07 v2 + Brief 07b wireframes (15-sep).
 
    Escenario oscuro con siete beats. Scrub puro — cero transition,
    cero animation dentro del escenario. Cualquier movimiento acá
    es función del progreso del scroll, escrita cada frame en línea
    por JS (OpeningAct.tsx).
 
-   Test binario: frenar el scroll a mitad de un relleno. Se queda
+   MEDIDAS DURAS (Brief 07b §1):
+     placa   x: 8vw → 42vw    · 34vw ancho · ratio 3:4
+     beat    x: 52vw → 92vw   · 40vw máx (con placa)
+     canal   42vw → 52vw      · 10vw de aire, vacío siempre
+     Sin PNG: beat de 8vw → 62vw (ocupa el lugar que la placa
+     dejaría vacío).
+
+   REGLAS (Brief 07b §2, §5):
+     · Un solo beat en pantalla. Los otros seis con visibility:
+       hidden — NO existen en pantalla, no van atenuados.
+     · Placa sin borde, sin sombra, esquinas rectas.
+     · PNG SIN filtro · sin invert, sin blend-mode. Línea negra
+       sobre blanco como fueron diseñados.
+     · Sin PNG · la placa no se renderea. Ni caja ni borde.
+
+   TEST BINARIO: frenar el scroll a mitad de un relleno queda
    congelado → scrub. Termina solo → evento (mal). */
 
 /* ═══ Track + Stage ═══ */
@@ -25,12 +40,9 @@
   display: block;
 }
 
-/* ═══ Grilla técnica ═══ */
-
-/* Líneas de crema al 5% con cruces en las intersecciones. Casi
-   invisible; agrega oficio percibido sin costo. Fondo sobre el
-   escenario oscuro. Continua después con --grid-bg en el resto
-   del sitio (Brief 08 §P1). Los tokens viven en case-study.css. */
+/* ═══ Grilla técnica ═══
+   Líneas de crema al 5% cubren TODO el escenario (Brief 07b §1).
+   Los tokens viven en case-study.css. */
 .stage__grid {
   position: absolute;
   inset: 0;
@@ -39,8 +51,9 @@
   background-size: var(--grid-size) var(--grid-size);
 }
 
-/* ═══ Counter ═══ */
-
+/* ═══ Counter ═══
+   Arriba a la izq: 01/07. Etiqueta a la derecha: STORY.
+   11px caps tracking .14em, crema 55%. */
 .stage__counter {
   position: absolute;
   top: clamp(24px, 3vh, 40px);
@@ -69,61 +82,73 @@
   margin-left: auto;
 }
 
-/* ═══ Frames — solo si FRAMES_AVAILABLE ═══ */
-
-/* Las capas apiladas ocupan el lado izquierdo del escenario en
-   desktop, y pasan a fondo (detrás del texto) en móvil. Cada
-   <img> tiene opacity 0 por default; el scrub la setea en cada
-   frame. Filtro: invertir línea negra sobre blanco a línea crema
-   sobre transparente para que legible sobre el escenario oscuro. */
-.stage__frames {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  display: block;
-}
-.stage__frame {
+/* ═══ Placa clara · marco tipo device frame (Brief 07b §5) ═══
+   #F2F2F0 flotando adentro del escenario. Sin borde, sin sombra,
+   esquinas rectas. Ratio 3:4, centrada vertical, ocupa x:8vw→42vw.
+   Solo se renderea si los seis PNG existen (React: FRAMES_AVAILABLE
+   = true). Sin archivos ni caja ni borde — cero reservado. */
+.stage__plate {
   position: absolute;
   top: 50%;
-  left: clamp(24px, 5vw, 80px);
   transform: translateY(-50%);
-  width: min(38vw, 480px);
-  height: auto;
+  left: 8vw;
+  width: 34vw;
+  aspect-ratio: 3 / 4;
+  background: #F2F2F0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Los PNG entran SIN filtro (Brief 07b §5). Línea negra sobre
+   blanco como fueron diseñados. `invert(1) + mix-blend-mode` se
+   retira — la placa ES el fondo blanco. Opacity 0 por default;
+   el scrub la setea por frame. */
+.stage__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   opacity: 0;
-  filter: invert(1) sepia(.14) brightness(.96);
-  mix-blend-mode: screen;
-}
-@media (max-width: 900px) {
-  .stage__frame {
-    top: 0;
-    left: 0;
-    right: 0;
-    transform: none;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 0;
-  }
-  .stage__frames { opacity: .3; }
 }
 
-/* ═══ Beats — dim + lit overlap ═══ */
+/* ═══ Beats — dim + lit overlap, solo el activo se ve ═══
+   Brief 07b §1 + §2:
+     · Con placa · beat en 52vw→92vw, alineado a la izq del bloque.
+     · Sin placa · beat en 8vw→62vw (más ancho, ocupa el lugar que
+       la placa dejaría vacío).
+     · Fuera de rango · visibility:hidden. Los otros seis no
+       existen en pantalla.
 
+   :has(.stage__plate) diferencia los dos escenarios. Sin JS y sin
+   los PNG, el selector no matchea y el beat ancho (default) queda
+   activo — el escenario funciona solo con tipografía. */
 .stage__beats {
   position: absolute;
   inset: 0;
   display: block;
+  pointer-events: none;
 }
 
 .beat {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: min(720px, 90vw);
-  max-width: 22ch;
+  transform: translateY(-50%);
+  left: 8vw;
+  right: 38vw; /* = 100 - 62. Ocupa 8vw → 62vw = 54vw ancho. */
   padding: 0;
-  /* La dim y la lit se apilan; la lit va absolute sobre la dim. */
+  visibility: hidden;
+  text-align: left;
+}
+
+/* Con placa · beat en su columna derecha. */
+.stage:has(.stage__plate) .beat {
+  left: 52vw;
+  right: 8vw;
+}
+
+.beat[data-active="true"] {
+  visibility: visible;
 }
 
 .beat__dim,
@@ -132,10 +157,8 @@
   font-family: var(--serif);
   font-weight: 400;
   /* Brief 07 v2 §P4 pide peso 300. Instrument Serif solo trae
-     400 en next/font (única weight publicada por Google Fonts).
-     Frozen hasta que Fran elija otra serif con 300, o confirme
-     que 400 es aceptable. Ledger #15 en modo retirado (v2 §P4).
-     Ver docs/decisions.md. */
+     400 en next/font. Frozen hasta que Fran elija otra serif
+     con 300 o confirme 400. Ledger #15. */
   font-size: clamp(30px, 4.4vw, 62px);
   line-height: 1.12;
   letter-spacing: -.02em;
@@ -151,7 +174,7 @@
    (LineReveals parte en .rv-line > span) — el scrub setea
    --fill en cada span de la lit.
 
-   PRE-SPLIT · LineReveals todavía no partió el nodo. La lit
+   PRE-SPLIT · antes de que LineReveals parta el nodo, la lit
    entera queda clippeada para no mostrarse encima de la dim
    durante el flash del primer paint. Una vez que
    html[data-lines-ready="true"], la clip del container se libera
@@ -170,24 +193,19 @@ html[data-lines-ready="true"] .beat__lit {
   clip-path: none;
 }
 
-/* Sobrescribe el sistema global de LineReveals dentro de un beat.
-   No queremos translateY inicial ni transition — la mecánica del
-   escenario es 100% scrub. */
+/* Sobrescribe LineReveals dentro de un beat — no queremos
+   translateY inicial ni transition. Mecánica 100% scrub. */
 .beat [data-reveal="lines"] .rv-line > span {
   transform: none !important;
   transition: none !important;
   will-change: auto;
 }
 
-/* CLIP-PATH POR LÍNEA sobre la lit. Cada línea de la lit lleva
-   `--fill` seteado inline por el scrub (0% a 100%). Sin
-   transition — el estilo es función del progreso, no un evento
-   con easing. */
+/* CLIP-PATH POR LÍNEA sobre la lit. Cada línea lleva `--fill`
+   seteado inline por el scrub (0% a 100%). Sin transition. */
 .beat__lit .rv-line > span {
   clip-path: inset(0 calc(100% - var(--fill, 0%)) 0 0);
 }
-
-/* La dim NO se clipea — es la copia base siempre visible. */
 .beat__dim .rv-line > span {
   clip-path: none !important;
 }
@@ -208,12 +226,48 @@ html[data-lines-ready="true"] .beat__lit {
   left: clamp(24px, 5vw, 80px);
   font-family: var(--grot);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 18px;
   letter-spacing: .04em;
   color: var(--cream);
 }
 
-/* ═══ Reduced motion — sin sticky, sin scrub, todo en flujo ═══ */
+/* ═══ Mobile · 900px y abajo (Brief 07b §6) ═══
+   Placa full-width menos padding, ratio 1:1. Beat DEBAJO, no
+   al lado. Font más chico. */
+@media (max-width: 900px) {
+  .stage__plate {
+    top: clamp(24px, 6vh, 60px);
+    transform: none;
+    left: clamp(24px, 5vw, 40px);
+    right: clamp(24px, 5vw, 40px);
+    width: auto;
+    aspect-ratio: 1 / 1;
+  }
+  .beat,
+  .stage:has(.stage__plate) .beat {
+    left: clamp(24px, 5vw, 40px);
+    right: clamp(24px, 5vw, 40px);
+  }
+  /* Sin placa (móvil): beat centrado vertical. Con placa: beat
+     baja para dejar la placa arriba. */
+  .stage:has(.stage__plate) .beat {
+    top: auto;
+    bottom: clamp(80px, 14vh, 140px);
+    transform: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .beat__dim,
+  .beat__lit {
+    font-size: clamp(22px, 7vw, 30px);
+  }
+}
+
+/* ═══ Reduced motion (Brief 07b §7) ═══
+   Sin sticky, sin scrub, todo en flujo. Una sola imagen estática
+   (el primer frame), sin contador, sin grilla animada. Los siete
+   beats bajan como bloques, crema 100%. */
 
 @media (prefers-reduced-motion: reduce) {
   .act {
@@ -225,9 +279,27 @@ html[data-lines-ready="true"] .beat__lit {
     padding: var(--s5) var(--pad);
   }
   .stage__grid,
-  .stage__counter,
-  .stage__frames {
+  .stage__counter {
     display: none;
+  }
+  /* Placa estática — solo el primer frame se lee, el resto queda
+     escondido. Si no hay PNG (FRAMES_AVAILABLE=false) la placa
+     no está en el DOM y no pasa nada. */
+  .stage__plate {
+    position: static;
+    transform: none;
+    left: auto;
+    right: auto;
+    top: auto;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 0 var(--s4);
+  }
+  .stage__frame {
+    opacity: 0 !important;
+  }
+  .stage__frame:first-child {
+    opacity: 1 !important;
   }
   .stage__beats {
     position: static;
@@ -237,12 +309,16 @@ html[data-lines-ready="true"] .beat__lit {
     max-width: 1600px;
     margin-inline: 0;
   }
-  .beat {
+  .beat,
+  .stage:has(.stage__plate) .beat {
     position: static;
     transform: none;
     top: auto;
     left: auto;
+    right: auto;
+    bottom: auto;
     width: auto;
+    visibility: visible;
   }
   .beat__dim {
     opacity: 1;
@@ -253,18 +329,5 @@ html[data-lines-ready="true"] .beat__lit {
   .stage__logo {
     position: static;
     margin-top: var(--s4);
-  }
-}
-
-/* ═══ Mobile · beat ocupa más del ancho ═══ */
-
-@media (max-width: 700px) {
-  .beat {
-    width: 90vw;
-    max-width: none;
-  }
-  .beat__dim,
-  .beat__lit {
-    font-size: clamp(24px, 6.5vw, 40px);
   }
 }

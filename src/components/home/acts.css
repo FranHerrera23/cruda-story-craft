@@ -37,6 +37,22 @@
   display: block;
 }
 
+/* El stage sticky crea stacking context propio; sin fondo declarado,
+   mix-blend-mode: multiply del acto 2 no encuentra un backdrop sólido
+   contra el cual componer y el blanco del PNG se ve como rectángulo.
+   Le damos su propio color de fondo — igual al del track — para que
+   el multiply componga contra el papel real. Isolation explícita para
+   que la garantía no dependa de que sticky sea stacking context en
+   cada motor de render. */
+.act1__stage {
+  background: #0E1113;
+  isolation: isolate;
+}
+.act2__stage {
+  background: #F2F2F0;
+  isolation: isolate;
+}
+
 /* ══════════ Grilla técnica ══════════
    Act 1 · líneas crema al 5% sobre negro (grid-bg-dark).
    Act 2 · líneas negras al 3.5% sobre paper (grid-bg).
@@ -177,8 +193,16 @@
 
 .act2__arts {
   position: absolute;
+  /* Centrado vertical SIN transform. `transform: translateY(-50%)`
+     crea un stacking context propio en `.act2__arts`; el hijo
+     .act2__art con mix-blend-mode: multiply blendea contra el
+     backdrop de ese stacking context — transparente — y el blanco
+     del PNG queda visible como rectángulo. Con margin-top negativo
+     no hay stacking context, la multiply blendea contra el paper
+     del stage (isolation isolate) y el blanco desaparece.
+     `aspect-ratio: 3/4` → alto = ancho * 4/3, medio alto = ancho * 2/3. */
   top: 50%;
-  transform: translateY(-50%);
+  margin-top: calc(-34vw * 2 / 3);
   left: 8vw;
   width: 34vw;
   aspect-ratio: 3 / 4;
@@ -217,10 +241,11 @@
   }
 
   /* Act 2 · arts en su propia zona arriba, ratio 1:1. Beat baja
-     al centro-abajo. */
+     al centro-abajo. margin-top se resetea porque desktop lo usa
+     para centrar vertical (ver comentario en .act2__arts). */
   .act2__arts {
     top: clamp(24px, 6vh, 60px);
-    transform: none;
+    margin-top: 0;
     left: clamp(24px, 5vw, 40px);
     right: clamp(24px, 5vw, 40px);
     width: auto;

@@ -50,19 +50,31 @@ export type Beat = {
   lines: string[]
 }
 
-/* Acto 1 · hero negro. Dos beats. Cero imagen. */
+/* Acto 1 · hero negro. Dos beats. Cero imagen.
+   Motion v4 §1 — beat 1 arranca en 0, sin offset de entrada. Con
+   from=0 el motor pinta el beat activo desde el primer frame,
+   antes de cualquier scroll. Sin baseline visible al cargar era
+   un bug de estado inicial: el copy existía en el DOM pero
+   quedaba con visibility hidden y el watchdog no lo cazaba
+   porque a los 2000ms el elemento ya estaba "técnicamente
+   visible". */
 export const ACT1_BEATS: Beat[] = [
-  { from: 0.06, to: 0.34, lines: ['Your company outgrew its own story.'] },
+  { from: 0.00, to: 0.34, lines: ['Your company outgrew its own story.'] },
   { from: 0.50, to: 0.78, lines: ['We build the next one.'] },
 ]
 
 /* Acto 2 · why-now paper. Cinco beats.
    `To Himself` va en <em class="nowrap"> — no se puede partir.
    El em-dash lleva &nbsp; adelante (§5 del brief).
-   Apóstrofes tipográficos con &rsquo;. */
+   Apóstrofes tipográficos con &rsquo;.
+
+   Motion v4 §1 — beat 1 arranca en 0. Mismo motivo que act 1:
+   al entrar al acto (rect.top ≈ 0), p=0 y el beat 01 tiene que
+   estar en rango. Antes empezaba en 0.04 y la primera pantalla
+   del acto quedaba muerta hasta el primer flick. */
 export const ACT2_BEATS: Beat[] = [
   {
-    from: 0.04,
+    from: 0.00,
     to: 0.20,
     lines: [
       'Marcus Aurelius ran the Roman Empire for nineteen years.',

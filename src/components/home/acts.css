@@ -120,7 +120,15 @@
   top: 50%;
   transform: translateY(-50%);
   padding: 0;
-  visibility: hidden;
+  /* Motion v4 §1 — el HTML servido tiene los dos beats de #act1 y
+     los cinco de #act2 con opacidad 1 (regla dura del brief). El
+     motor apaga los beats fuera de rango por inline style después
+     de la primera medición, no la CSS. Sin JS el copy sigue
+     legible; con JS el toggle inline sobrescribe. El flash de
+     hidratación (todos visibles por un frame antes del primer
+     draw) es aceptable vs. la alternativa de contenido invisible
+     al cargar. */
+  visibility: visible;
   text-align: left;
 }
 

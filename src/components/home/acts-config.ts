@@ -133,21 +133,27 @@ export const ACT2_BEATS: Beat[] = [
        05  book  grabado denso     ███      (volumen terminado)
 
    Mapping de los nombres descriptivos del brief a los archivos
-   reales del repo (comprobado por lectura visual · Motion v5 §1
-   verificación 3 · ningún archivo se borra):
+   reales del repo (comprobado midiendo densidad de tinta · Fran
+   addendum 15-sep · ningún archivo se borra):
 
-       bust · line    → public/why-now/bust-03-min.png
-       bust · dense   → public/why-now/bust-02-mid.png
-                        (el naming del archivo miente ·
-                        `mid` es el más denso de los tres,
-                        con puntillismo tupido y hatching cerrado)
-       book · line    → public/why-now/book-03-min.png
-       book · ghost   → public/why-now/book-02-mid.png
-       book · dense   → public/why-now/book-01-dense.png
+       bust · line    → public/why-now/bust-03-min.png    · 10.1% dark
+       bust · dense   → public/why-now/bust-01-dense.png  · 30.8% dark
+       book · line    → public/why-now/book-03-min.png    ·  3.0% dark
+       book · ghost   → public/why-now/book-02-mid.png    ·  6.7% dark
+       book · dense   → public/why-now/book-01-dense.png  · 69.1% dark
 
-   `bust-01-dense.png` queda en el repo (regla del brief) pero
-   fuera del array — es la variante intermedia del busto y
-   ninguno de los cinco slots la usa.
+   Los sufijos de archivo NO mienten · la densidad se verifica
+   midiendo área oscura, no a ojo. `bust-02-mid` parece más
+   denso al ojo porque tiene detalle fino (puntillismo), pero
+   cubre menos área oscura que `bust-01-dense`. El commit
+   anterior (3253008) dejó escrito "el naming miente" — estaba
+   mal y quedó ahí un tramo de rampa invisible: min→mid iba de
+   10.1% a 12.3%, dos puntos de diferencia, se leía como la
+   misma imagen dos veces. Con min→dense la rampa va de 10.1%
+   a 30.8% y sí se ve.
+
+   `bust-02-mid.png` queda en el repo (regla del brief) pero
+   fuera del array — es la variante intermedia que sale ahora.
 
    RANGOS. Alineados a los beats de ACT2_BEATS:
        beat 01  0.00 ─ 0.20    ⇢ art 01
@@ -175,7 +181,7 @@ export type Art = {
 
 export const ACT2_ARTS: Art[] = [
   { name: 'bust-03-min',   in0: 0.00, in1: 0.00, out0: 0.20, out1: 0.24 },
-  { name: 'bust-02-mid',   in0: 0.20, in1: 0.24, out0: 0.40, out1: 0.44 },
+  { name: 'bust-01-dense', in0: 0.20, in1: 0.24, out0: 0.40, out1: 0.44 },
   { name: 'book-03-min',   in0: 0.40, in1: 0.44, out0: 0.60, out1: 0.64 },
   { name: 'book-02-mid',   in0: 0.60, in1: 0.64, out0: 0.80, out1: 0.84 },
   { name: 'book-01-dense', in0: 0.80, in1: 0.84, out0: 1.00, out1: 1.01 },

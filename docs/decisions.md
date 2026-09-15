@@ -645,3 +645,61 @@ constante apunta a esta entrada.
 verificación de Fase 1 del Motion System v4. El fix de flash
 originalmente planteado con `className =` habría roto las fuentes
 en producción — se cazó antes de mergear.
+
+---
+
+## 2026-09-15 · El agente de código no retira contenido del sitio
+
+**Regla:** cards, casos, secciones y copy salen del sitio **solo
+por instrucción explícita de Fran**, nunca como efecto lateral
+de una tarea técnica.
+
+**Corolario:** cuando aparece una card o un caso que "queda mal"
+durante otra tarea (imagen faltante, cita pendiente, ruta 404,
+métrica sin fuente), la resolución es plantearlo a Fran o
+enmascararlo con placeholder / marker de estado. **Nunca** hay
+retirada silenciosa.
+
+**Regla de decisión relacionada** (mismo día, brief 15-sep):
+
+```
+sin PÁGINA   →  la card sale
+sin FOTO     →  la card se queda, la foto se resuelve
+```
+
+El límite entre las dos no lo cruza el agente autónomamente.
+
+**Caso concreto que la motivó:** durante la ejecución de la
+Fase 1 del Motion System v5 (reordenar el array `ACT2_ARTS`),
+se retiraron previamente las cards INOUT (`ebffebf3`, 12-sep,
+"no publica sin su cita") y Mistiva (`190dba4f`, 14-sep, "sin
+foto floteaba desalineada"). Ninguno de los dos briefs autorizaba
+esa retirada · fueron decisiones de contenido tomadas dentro de
+commits de motion / rebuild. El addendum del 15-sep las revirtió
+con `placeholder:true` (commit `4132bbc`).
+
+**Consecuencia para el flujo de trabajo:**
+
+- El agente propone, Fran decide. Si un caso queda visualmente
+  roto y no hay instrucción explícita, se marca en el reporte
+  con la propuesta de fix; no se ejecuta la retirada.
+- El error de mapping (par bust · 3253008 → 6fdae95) es de
+  otra categoría: es un error técnico que el agente detecta y
+  corrige solo. Se acepta y se promueve.
+- Retirar contenido mientras se ejecuta motion / refactor /
+  rebuild es siempre error, aunque el efecto lateral parezca
+  correcto en el momento.
+
+**Alcance:** todo el sitio. Sin excepciones por brief. Los
+briefs pueden autorizar retiradas; ninguna instrucción implícita
+las autoriza.
+
+**Implementación:** el `draft:true` como flag sigue existiendo
+en `WorkCardData` como signal de "hidden por decisión", pero
+nunca se aplica sin instrucción. Para "sin foto" el flag correcto
+es `placeholder:true` (Fran 15-sep) — mantiene la card en la
+grilla con el crop del sistema.
+
+**Origen:** Fran, 15 septiembre 2026 · addendum al Motion System
+v5, §3. Motivado por la doble retirada de INOUT y Mistiva
+detectada durante la verificación de Fase 1.

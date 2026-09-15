@@ -515,6 +515,34 @@ rigor del resto.
 
 ---
 
+## 2026-09-15 · Un scrub por superficie · reemplaza "un scrub por sitio"
+
+**Corrección al Brief 08:** la regla no es *un scrub por sitio*.
+La regla es **un scrub por superficie**.
+
+**Consecuencia práctica:**
+
+- La HOME tiene su scrub en el acto de apertura (`opening-act`).
+  El acto de papel de la home NO puede tener otro scrub — dos
+  scrubs en una misma superficie compiten y desordenan la
+  jerarquía. Regla lockeada.
+- `/process` puede tener su propio scrub en el futuro. Nunca dos
+  en la misma página.
+- Cada case study puede tener su propio scrub más adelante.
+  Nunca dos en la misma página.
+
+**Qué NO cambia:**
+
+- El acto de papel de la HOME sigue sin scrub — la home ya
+  gastó su scrub en el acto de apertura.
+- El resto del sitio sigue con el revelado uniforme (entrada
+  anterior · 600ms tope, timing igual por sección).
+
+**Origen:** Fran, 15 septiembre 2026 · corrección al Brief 08
+minutos después de escribirlo, aclarando el alcance real.
+
+---
+
 ## 2026-09-14 · Serif solo hasta seis palabras, sin excepciones
 
 **Regla:** `--serif` (Instrument Serif) se usa exclusivamente en

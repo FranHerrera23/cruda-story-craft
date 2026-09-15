@@ -118,6 +118,14 @@ export const PROOF_FULL: ProofBand[] = [
   },
 ]
 
+/* Brief 08 P4 · fuentes citadas (P7.1 del Brief 06 aprobado).
+   Debajo de la grilla, al 55%, tamaño meta. Un sitio que cita
+   sus fuentes es un sitio que las máquinas citan — es la tesis
+   de AEO del proyecto aplicada. Misma cadena para las dos
+   densidades. */
+export const PROOF_SOURCES =
+  'LinkedIn Analytics, August 2026 · TRAZZO internal review, 2025'
+
 /* Densidad reducida · home P3. Tres números.
    Si va idéntico entre home y /process, alguien que pasa de una
    a la otra lo ve repetido en dos minutos. Los tres de la home

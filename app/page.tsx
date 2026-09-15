@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import HomeHero from '@/components/home/HomeHero';
-import EveryCompany from '@/components/home/EveryCompany';
+import OpeningAct from '@/components/home/OpeningAct';
 import SelectedWork from '@/components/home/SelectedWork';
 import TranslationInPractice from '@/components/home/TranslationInPractice';
 import HomeFirst90 from '@/components/home/HomeFirst90';
@@ -13,36 +12,34 @@ import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). Brief 04 · rebuild 14-sep + Addendum A §4.
+   CRUDA — Home (`/`). Brief 07 v2 · rebuild 15-sep.
 
-   Orden nuevo (Addendum §4.4):
-     1. hero               ← + línea TRANSLATED bajo el lede
-     2. every-company      ← ex why-now, copy y mecánica nuevas
-     3. selected-work
-     4. translation-in-practice  ← NUEVO, reemplaza inside-cruda
-     5. first-90           ← eyebrow TRANSLATED · Three months
-     6. proof              ← NUEVO, densidad compact
-     7. testimonial        ← NEGRO
-     8. essays             ← ex Read
-     9. close
+   El hero y `every-company` dejan de ser dos secciones. Se
+   reemplazan por un solo escenario oscuro con siete beats
+   (`OpeningAct`), que ocupa la apertura entera. Estructura de
+   dos actos: negro conduce, papel demuestra.
 
-   inside-cruda retirado entero. La definición ya la cubre la línea
-   TRANSLATED del hero; la fila `The structure` se mudó a /about §04;
-   la bio de Fran vive solo en /about.
+   Orden nuevo:
+     1. opening-act        ← NEGRO · scrub · siete beats
+     2. selected-work
+     3. translation-in-practice
+     4. first-90
+     5. proof
+     6. testimonial        ← NEGRO · segundo bloque inverso
+     7. essays
+     8. close
 
-   Cambio de fondo a sangre entre secciones — sin border-top, sin
-   <hr>, sin margen entre secciones (§4 del brief 10-sep). El único
-   inverso de la home es `testimonial`.
+   Dos bloques inversos por página (§P5.bis del brief) — la
+   apertura y la voz del cliente. Regla lockeada nueva en el
+   ledger. Ver docs/decisions.md.
+
+   Cambio de fondo a sangre entre secciones. La transición del
+   escenario a selected-work es el pivot de la página.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
   'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
 
-/* Title de la home. "CRUDA" solo era genérico en SERPs y en previews
-   de link compartido (Fran flag post-§2). Sub-línea con la marca
-   adelante, punto medio, y "Narrative for founder-led companies" —
-   44 char, hace eco del H1 sin repetirlo. Si cambia, cambia acá y en
-   openGraph.title juntos. */
 const HOME_TITLE = 'CRUDA · Narrative for founder-led companies'
 
 export const metadata: Metadata = {
@@ -61,15 +58,10 @@ export default function HomePage() {
   return (
     <>
       <HomeChrome />
-      <HomeHero />
-      <EveryCompany />
+      <OpeningAct />
       <SelectedWork cards={selectedWorkCards} />
       <TranslationInPractice />
       <HomeFirst90 />
-      {/* Proof en densidad compact — tres números en fila. La
-          densidad full vive en /process. Una sola fuente de datos.
-          showHeader default true — el encabezado 'The three months
-          build the system' entra como pie de la coda del first-90. */}
       <Proof variant="compact" />
       <HomeTestimonial />
       <HomeEssays />

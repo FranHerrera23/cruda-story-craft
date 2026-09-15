@@ -28,7 +28,16 @@ const ROWS = [
     month: 'Month 3',
     pace: 'One call a week',
     head: 'You stop hoping the right people see it and start deciding.',
-    body: 'Paid extends what is already working. Media budget is yours and sits outside the fee.',
+    /* Brief 08 P4 · first-90 mes 3 (15-sep) — copy nuevo verbatim.
+       La cápsula del título ('you stop hoping... start deciding')
+       no la sostenía el cuerpo anterior, que hablaba solo de
+       presupuesto de medios. Ahora el argumento va primero
+       (outreach con señal) y el presupuesto queda como última
+       línea. También migra 'outside the fee' → 'outside the
+       engagement' — Fran unifica el vocabulario, ver ledger #5
+       (excepción retirada). */
+    body:
+      'Full cadence across channels. Email to a list you now own. And outreach aimed at the people who already read you — the ones who opened it, commented on it, sent it to someone. Paid extends what is already working. The media budget is yours and sits outside the engagement.',
   },
 ] as const
 

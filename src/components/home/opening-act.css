@@ -1,0 +1,272 @@
+/* Home · Opening Act — Brief 07 v2 (15-sep).
+
+   Escenario oscuro con siete beats. Scrub puro — cero transition,
+   cero animation dentro del escenario. Cualquier movimiento acá
+   es función del progreso del scroll, escrita cada frame en línea
+   por JS (OpeningAct.tsx).
+
+   Test binario: frenar el scroll a mitad de un relleno. Se queda
+   congelado → scrub. Termina solo → evento (mal). */
+
+/* ═══ Track + Stage ═══ */
+
+.act {
+  height: 700vh;
+  background: var(--ink-deep);
+  color: var(--cream);
+  position: relative;
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: block;
+}
+
+/* ═══ Grilla técnica ═══ */
+
+/* Líneas de crema al 5% con cruces en las intersecciones. Casi
+   invisible; agrega oficio percibido sin costo. Fondo sobre el
+   escenario oscuro. Continua después con --grid-paper en el
+   resto del sitio (Brief 08 P1). */
+.stage__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(239, 235, 223, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(239, 235, 223, 0.05) 1px, transparent 1px);
+  background-size: clamp(48px, 6vw, 96px) clamp(48px, 6vw, 96px);
+}
+
+/* ═══ Counter ═══ */
+
+.stage__counter {
+  position: absolute;
+  top: clamp(24px, 3vh, 40px);
+  left: clamp(24px, 5vw, 80px);
+  right: clamp(24px, 5vw, 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--grot);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: .55;
+  margin: 0;
+}
+.stage__counter-num {
+  font-variant-numeric: tabular-nums;
+}
+.stage__counter-slash {
+  margin-right: auto;
+  padding-left: 4px;
+}
+.stage__counter-label {
+  margin-left: auto;
+}
+
+/* ═══ Frames — solo si FRAMES_AVAILABLE ═══ */
+
+/* Las capas apiladas ocupan el lado izquierdo del escenario en
+   desktop, y pasan a fondo (detrás del texto) en móvil. Cada
+   <img> tiene opacity 0 por default; el scrub la setea en cada
+   frame. Filtro: invertir línea negra sobre blanco a línea crema
+   sobre transparente para que legible sobre el escenario oscuro. */
+.stage__frames {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  display: block;
+}
+.stage__frame {
+  position: absolute;
+  top: 50%;
+  left: clamp(24px, 5vw, 80px);
+  transform: translateY(-50%);
+  width: min(38vw, 480px);
+  height: auto;
+  opacity: 0;
+  filter: invert(1) sepia(.14) brightness(.96);
+  mix-blend-mode: screen;
+}
+@media (max-width: 900px) {
+  .stage__frame {
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+  }
+  .stage__frames { opacity: .3; }
+}
+
+/* ═══ Beats — dim + lit overlap ═══ */
+
+.stage__beats {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.beat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(720px, 90vw);
+  max-width: 22ch;
+  padding: 0;
+  /* La dim y la lit se apilan; la lit va absolute sobre la dim. */
+}
+
+.beat__dim,
+.beat__lit {
+  display: block;
+  font-family: var(--serif);
+  font-weight: 400;
+  /* Brief 07 v2 §P4 pide peso 300. Instrument Serif solo trae
+     400 en next/font (única weight publicada por Google Fonts).
+     Frozen hasta que Fran elija otra serif con 300, o confirme
+     que 400 es aceptable. Ledger #15 en modo retirado (v2 §P4).
+     Ver docs/decisions.md. */
+  font-size: clamp(30px, 4.4vw, 62px);
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  color: var(--cream);
+}
+
+.beat__dim {
+  position: relative;
+  opacity: .22;
+}
+
+/* Overlap exacto sobre la dim. clip-path se maneja por línea
+   (LineReveals parte en .rv-line > span) — el scrub setea
+   --fill en cada span de la lit.
+
+   PRE-SPLIT · LineReveals todavía no partió el nodo. La lit
+   entera queda clippeada para no mostrarse encima de la dim
+   durante el flash del primer paint. Una vez que
+   html[data-lines-ready="true"], la clip del container se libera
+   y cada `.rv-line > span` toma la suya.
+
+   Sin JS · el flag no se setea y la lit queda oculta permanente.
+   La dim se lee normal — regla 11 del ledger cumplida sin
+   depender del observer. */
+.beat__lit {
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  clip-path: inset(0 100% 0 0);
+}
+html[data-lines-ready="true"] .beat__lit {
+  clip-path: none;
+}
+
+/* Sobrescribe el sistema global de LineReveals dentro de un beat.
+   No queremos translateY inicial ni transition — la mecánica del
+   escenario es 100% scrub. */
+.beat [data-reveal="lines"] .rv-line > span {
+  transform: none !important;
+  transition: none !important;
+  will-change: auto;
+}
+
+/* CLIP-PATH POR LÍNEA sobre la lit. Cada línea de la lit lleva
+   `--fill` seteado inline por el scrub (0% a 100%). Sin
+   transition — el estilo es función del progreso, no un evento
+   con easing. */
+.beat__lit .rv-line > span {
+  clip-path: inset(0 calc(100% - var(--fill, 0%)) 0 0);
+}
+
+/* La dim NO se clipea — es la copia base siempre visible. */
+.beat__dim .rv-line > span {
+  clip-path: none !important;
+}
+
+/* La italic de "To Himself" no puede partirse. */
+.beat .nowrap {
+  white-space: nowrap;
+}
+.beat em {
+  font-style: italic;
+}
+
+/* ═══ Logo abajo a la izquierda ═══ */
+
+.stage__logo {
+  position: absolute;
+  bottom: clamp(24px, 3vh, 40px);
+  left: clamp(24px, 5vw, 80px);
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .04em;
+  color: var(--cream);
+}
+
+/* ═══ Reduced motion — sin sticky, sin scrub, todo en flujo ═══ */
+
+@media (prefers-reduced-motion: reduce) {
+  .act {
+    height: auto;
+  }
+  .stage {
+    position: static;
+    height: auto;
+    padding: var(--s5) var(--pad);
+  }
+  .stage__grid,
+  .stage__counter,
+  .stage__frames {
+    display: none;
+  }
+  .stage__beats {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s4);
+    max-width: 1600px;
+    margin-inline: 0;
+  }
+  .beat {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    width: auto;
+  }
+  .beat__dim {
+    opacity: 1;
+  }
+  .beat__lit {
+    display: none;
+  }
+  .stage__logo {
+    position: static;
+    margin-top: var(--s4);
+  }
+}
+
+/* ═══ Mobile · beat ocupa más del ancho ═══ */
+
+@media (max-width: 700px) {
+  .beat {
+    width: 90vw;
+    max-width: none;
+  }
+  .beat__dim,
+  .beat__lit {
+    font-size: clamp(24px, 6.5vw, 40px);
+  }
+}

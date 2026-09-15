@@ -75,8 +75,15 @@
   /* -------- Alias legacy adicionales -------- */
   --white:  var(--paper);
   --ink-2:  var(--ink);
-  --cream:  var(--paper);
   --rule-2: var(--rule);
+  /* Brief 07 v2 §P5.bis (15-sep) — --cream se redefine como
+     #EFEBDF (texto y logo sobre --ink-deep del escenario). Las
+     dos superficies legacy que usaban `var(--cream)` como fondo
+     de card (cs-takeaways + contact-alt-mail) migran a
+     `var(--paper)` en el mismo commit — su intención era
+     'fondo blanco', no una crema deliberada. */
+  --cream:      #EFEBDF;
+  --ink-deep:   #0E1113;
 
   --fs-display:     var(--text-display);
   --fs-display-sm:  var(--text-display);
@@ -564,7 +571,7 @@ html { font-size: 17px; }
 @media (max-width:767px){.cs-capsule{grid-column:1 / -1}}
 
 /* TAKEAWAYS */
-.cs-takeaways{background:var(--cream);padding:32px 40px 40px;margin-bottom:64px}
+.cs-takeaways{background:var(--paper);padding:32px 40px 40px;margin-bottom:64px}
 .cs-label{font-family:var(--mono);font-weight:500;font-size:12px;
   letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px}
 .cs-takeaways ul{list-style:none;padding:0}

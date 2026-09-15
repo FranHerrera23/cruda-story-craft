@@ -1,25 +1,21 @@
-/* Home · layout entre secciones · Brief 04 rebuild (14-sep).
+/* Home · layout entre secciones · Brief 07 v2 (15-sep).
 
-   Con fondo blanco uniforme la transición la hace el filete y el
-   aire — 1px al 14% de negro entre secciones consecutivas, ancho
-   completo del contenedor.
+   Escenario oscuro (`.act`) al principio, papel para el resto.
+   El corte del negro al blanco en el paso de opening-act →
+   selected-work es el pivot visual del sitio. No lleva filete —
+   el cambio de color lo hace la transición.
 
-   Excepciones al filete:
-     · La primera sección (hero) no lleva filete arriba.
-     · El testimonio va sobre --ink. El corte de color al negro es
-       la transición ahí — sin filete.
-     · Essays viene después del testimonio: el corte al blanco es
-       la transición — sin filete tampoco.
+   Orden Brief 07 v2 + Brief 04 §4.4 remainder:
+     .act → .home-work → .tip → .home-first90 → .proof →
+     .home-testimonial → .home-essays → .home-close
 
-   Orden Brief 04 §4.4:
-     hero → every-company → home-work → tip → home-first90 →
-     proof → testimonial → home-essays → home-close
+   Filete entre pares de paper. No entre pares que cruzan color:
+     proof → testimonial (blanco → negro): sin filete
+     testimonial → essays (negro → blanco): sin filete
 
-   Reset defensivo de margins también para no dejar espacio hueco
-   entre secciones (última declaración gana por cascada). */
+   Reset defensivo de margins también. */
 
-.home-hero,
-.every-company,
+.act,
 .home-work,
 .tip,
 .home-first90,
@@ -32,11 +28,14 @@
 }
 
 /* Filete entre secciones consecutivas — solo entre pares del
-   mismo fondo (--paper). Los pares que cruzan color no llevan
-   filete: proof → testimonial (blanco → negro) y
-   testimonial → home-essays (negro → blanco). */
-.home-hero + .every-company,
-.every-company + .home-work,
+   mismo fondo (--paper). */
+.act + .home-work,
+.home-work + .tip,
+.tip + .home-first90,
+.home-first90 + .proof,
+.home-essays + .home-close {
+  /* Opening-act → selected-work: sin filete, corte de color. */
+}
 .home-work + .tip,
 .tip + .home-first90,
 .home-first90 + .proof,

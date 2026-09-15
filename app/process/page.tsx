@@ -120,7 +120,11 @@ const BLOCKS: ProcessBlock[] = [
     title: 'You stop hoping the right people see it.',
     body: [
       'Full cadence across channels. Email to a list you now own. And outreach aimed at the people who already read you — the ones who opened it, commented on it, sent it to someone — instead of a cold list nobody asked to be on.',
-      'Paid extends what is already working. The media budget is yours and sits outside the fee.',
+      /* Brief 08 mes 3 body unifica el vocabulario: 'outside the
+         engagement' en vez de 'outside the fee'. La excepción de
+         ledger #5 queda retirada — el sitio entero usa 'the
+         engagement'. */
+      'Paid extends what is already working. The media budget is yours and sits outside the engagement.',
     ],
     closingNumber: {
       value: '80,000',

@@ -157,7 +157,7 @@ export default function ContactContent() {
 
         .contact-email {
           margin-top: clamp(64px, 10vh, 120px);
-          background: var(--cream);
+          background: var(--paper);
           padding: clamp(32px, 5vw, 56px);
           display: flex;
           flex-direction: column;

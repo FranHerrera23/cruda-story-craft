@@ -391,6 +391,130 @@ planificación del Brief 05.
 
 ---
 
+## 2026-09-15 · Regla 15 retirada · registro reemplaza conteo de palabras
+
+**Regla nueva:** el uso de `--serif` vs `--grot` se decide por
+**registro**, no por cantidad de palabras.
+
+  ```
+  SERIF      la tesis · el argumento · la voz de la marca
+  GROTESCA   lo operativo · nav · grillas · números · specs
+  ```
+
+**Qué cambia:** el límite anterior de ≤ 6 palabras para serif
+(entrada 15) se retira. Un titular display en serif puede tener
+la extensión que necesite si es tesis. Un nombre corto en serif
+sigue estando bien; una cita de 40 palabras en serif también, si
+la cita es la voz de la marca.
+
+**Qué NO cambia:** el rechazo a agregar familias tipográficas.
+Sistema sigue con Instrument Serif + Archivo. Cualquier tercera
+familia se cruza con esta entrada primero.
+
+**Casos actualizados:**
+
+  · Beats del escenario de apertura (siete beats, hasta 40
+    palabras cada uno): serif liviana, cream sobre ink-deep.
+  · why-now H2 de 12 palabras (antes flagged): ahora está bien
+    si la sección se llama argumento. La versión actual de la
+    home retira why-now entera per Brief 07 v2 — el caso ya no
+    aplica, pero la regla lo permitiría si volviera.
+
+**Origen:** Brief 07 v2 §P4 (15-sep) · Fran retira la regla del
+conteo de palabras y sube el registro como criterio.
+
+---
+
+## 2026-09-15 · Dos bloques inversos permitidos en la home
+
+**Regla:** la home puede tener **dos zonas oscuras**, no una:
+
+  1. `opening-act` (el escenario de apertura, ink-deep +
+     cream + grilla oscura).
+  2. `testimonial` (la voz del cliente, mismos tokens).
+
+Los dos comparten `#0E1113` + `#EFEBDF` + grilla oscura — se
+leen como pariente, no como islas negras. El testimonio adopta
+el sistema del escenario para reforzar el marco.
+
+**Qué NO cambia:** el resto del sitio sigue con la regla de un
+solo bloque inverso por página. `/about §01` es el único inverso
+de esa página. Los case studies no llevan inverso.
+
+**Origen:** Brief 07 v2 §P5.bis (15-sep) — cambio explícito de
+la regla anterior.
+
+---
+
+## 2026-09-15 · Regla 5 · excepción de `outside the fee` retirada
+
+**Cambio:** la excepción que permitía la frase "media budget
+sits outside the fee" queda retirada. El sitio unifica en `the
+engagement` en toda superficie, incluida la línea del media
+budget.
+
+  ```
+  Antes:  Media budget is yours and sits outside the fee.
+  Ahora:  The media budget is yours and sits outside the engagement.
+  ```
+
+Aplica a home `first-90` mes 3, `/process` block 03, y cualquier
+uso futuro. Grep de `outside the fee` debe devolver cero.
+
+**Origen:** Brief 08 (15-sep) · Fran unifica el vocabulario en
+un solo commit. El fee ya no aparece.
+
+---
+
+## 2026-09-15 · Grilla técnica continua sobre todo el sitio
+
+**Regla:** una grilla de líneas sutiles con cruces en las
+intersecciones se aplica a **todas las secciones del sitio**,
+oscura sobre negro y clara sobre papel.
+
+  ```
+  --grid-dark:   rgba(239,235,223,.05)   sobre --ink-deep
+  --grid-paper:  rgba(0,0,0,.035)        sobre --paper
+  ```
+
+Misma medida de módulo (~64-96px según viewport). Cruza el corte
+de color sin romperse — es lo que hace que las dos mitades del
+sitio se lean como un solo objeto y no como dos páginas pegadas.
+
+**Alcance:** las nueve secciones de la home, `/about`, `/process`
+y (en fase propia) los case studies. Todas usan el mismo
+tratamiento, aunque a diferentes opacidades.
+
+**Origen:** Brief 08 §P1 (15-sep) · Fran lo llama "el cambio
+con mejor relación esfuerzo/resultado del brief".
+
+---
+
+## 2026-09-15 · Un solo lenguaje de revelado fuera del escenario
+
+**Regla:** todo el sitio excepto el escenario de apertura usa
+**el mismo timing de revelado, sin excepciones por sección**:
+
+  ```
+  eyebrow  delay 0
+  título   delay 120ms   line-reveal, 90ms por línea
+  cuerpo   delay 120ms + (líneas × 90ms) + 160ms
+  media    con el cuerpo
+  ```
+
+**Regla de contención:** ninguna transición fuera del escenario
+puede durar más de **600ms**. Lo que tarde más compite con el
+scrub del escenario y desordena la jerarquía.
+
+**El escenario es la excepción única** — allí el estilo es
+función pura del progreso del scroll, sin transition ni
+animation. El scrub es la firma; el revelado uniforme es el
+rigor del resto.
+
+**Origen:** Brief 08 §P3 (15-sep).
+
+---
+
 ## 2026-09-14 · Serif solo hasta seis palabras, sin excepciones
 
 **Regla:** `--serif` (Instrument Serif) se usa exclusivamente en

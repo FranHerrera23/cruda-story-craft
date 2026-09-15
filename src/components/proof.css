@@ -136,3 +136,18 @@
 .proof--full .proof__bands {
   display: block;
 }
+
+/* Fuentes citadas — Brief 08 P4. Al 55%, tamaño meta. Debajo
+   de la grilla, un renglón. Es la superficie del sitio donde
+   las máquinas ven que se cita fuente. */
+.proof__sources {
+  margin-top: clamp(32px, 4vh, 56px);
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: .01em;
+  color: var(--ink);
+  opacity: .55;
+  max-width: none;
+}

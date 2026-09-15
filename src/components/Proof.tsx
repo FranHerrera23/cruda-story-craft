@@ -2,6 +2,7 @@ import {
   PROOF_HEADER,
   PROOF_FULL,
   PROOF_COMPACT,
+  PROOF_SOURCES,
   type ProofStat,
   type ProofBand,
 } from '@/content/proof/karen'
@@ -124,6 +125,16 @@ export default function Proof({
             <BandRow row={PROOF_COMPACT} />
           </div>
         )}
+
+        {/* Fuentes citadas — Brief 08 P4. Van bajo la grilla, al
+            55%, tamaño meta. Aplica a las dos densidades. */}
+        <p
+          className="proof__sources"
+          data-seq="body"
+          data-reveal="text"
+        >
+          {PROOF_SOURCES}
+        </p>
       </div>
     </section>
   )

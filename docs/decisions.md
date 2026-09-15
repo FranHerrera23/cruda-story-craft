@@ -594,3 +594,54 @@ apunta a esta entrada.
 
 **Origen:** Fran, 14 septiembre 2026 · lockeada tras la segunda
 caída (H1 de /about durante el rollout de Brief 02).
+
+---
+
+## 2026-09-15 · `className +=`, nunca asignación, sobre `<html>` en el layout server component
+
+**Regla:** cualquier script inline que corra antes del primer
+paint y toque `document.documentElement.className` usa
+`className +=` (append), nunca `className =` (asignación).
+
+**Por qué:** `next/font` (`Archivo`, `Instrument_Serif`) expone
+sus fuentes como CSS variables (`--font-archivo`,
+`--font-instrument-serif`) inyectando esas variables como
+**clases** en `<html>` desde el layout server component:
+
+```tsx
+<html lang="en" className={`${instrumentSerif.variable} ${archivo.variable}`}>
+```
+
+Esas clases (con nombres autogenerados tipo `__variable_315a98`)
+son el hook que las hojas de estilo usan para resolver `var(--serif)`
+y `var(--grot)`. Si un script pre-paint asigna `className =`, las
+pisa. Resultado: todo el sitio cae a la fuente default del sistema,
+sin previo aviso, sin error en consola.
+
+**Caso concreto:** Motion v4 §1 no-flash gate. El script inline en
+`app/layout.tsx` agrega `js` a la clase de `<html>` para que el
+CSS `.js #act1 .beat:not([data-beat="1"]) { visibility: hidden }`
+tome antes del primer paint. Se usa `+=`, no `=`.
+
+```js
+// bien
+document.documentElement.className += ' js';
+
+// mal · rompe las fuentes en silencio
+document.documentElement.className = 'js';
+```
+
+**Alternativa igualmente segura:** `dataset` cuando lo que se
+quiere es un flag y no una clase. `document.documentElement.dataset.foo = 'bar'`
+no toca `className` y el CSS matchea por `[data-foo="bar"]`. El
+loader gate del mismo archivo va por ahí (`dataset.loader = 'skip'`)
+porque no necesita una clase.
+
+**Implementación:** el script vive en
+`app/layout.tsx:LOADER_GATE_SCRIPT`. El comentario en esa
+constante apunta a esta entrada.
+
+**Origen:** Fran, 15 septiembre 2026 · flagged durante la
+verificación de Fase 1 del Motion System v4. El fix de flash
+originalmente planteado con `className =` habría roto las fuentes
+en producción — se cazó antes de mergear.

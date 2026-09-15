@@ -34,10 +34,16 @@ import Loader from "@/components/Loader";
        la clase está antes de que se pinte, así que cero flash
        de siete beats apilados en la hidratación.
 
-   La clase se agrega con `className +=` para preservar las
-   variables tipográficas que Next.js pone en <html> vía
-   next/font (--font-instrument-serif, --font-archivo). Sobre-
-   escribir className los pierde y las fuentes fallan. */
+   Regla lockeada — ver docs/decisions.md
+   #classname-nunca-asignacion. La clase se agrega con
+   `className +=` (append), NUNCA con `className =` (asignación).
+   next/font (Archivo, Instrument Serif) inyecta sus CSS variables
+   como clases autogeneradas en <html> vía el layout server
+   component. Sobre-escribir className las pisa y todo el sitio
+   cae a la fuente default del sistema sin previo aviso, sin
+   error en consola. Alternativa si sólo se necesita un flag y
+   no una clase real: `document.documentElement.dataset.foo`
+   (así hace el loader gate de arriba). */
 const LOADER_GATE_SCRIPT = `
 try {
   if (sessionStorage.getItem('cruda-loader-shown') === '1') {

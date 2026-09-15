@@ -15,12 +15,29 @@ import SmoothScroll from "@/components/SmoothScroll";
 import LineReveals from "@/components/LineReveals";
 import Loader from "@/components/Loader";
 
-/* Motion v3 §9 — inline script en el <head> que corre antes del
-   primer paint. Lee sessionStorage y setea data-loader="skip" en
-   <html> si el loader ya se mostró en esta sesión. CSS gate en
-   globals.css (`html[data-loader="skip"] .loader { display:none }`)
-   corta el render antes de pintar. Sin este script el loader
-   flashea 800ms en cada reload dentro de la misma pestaña. */
+/* Motion v3 §9 + Motion v4 §1 — inline script en el <head> que
+   corre antes del primer paint.
+
+   1 · Loader gate · lee sessionStorage y setea data-loader='skip'
+       en <html> si el loader ya se mostró en esta sesión. CSS
+       gate en globals.css (html[data-loader="skip"] .loader
+       { display:none }) corta el render antes de pintar. Sin este
+       script el loader flashea 800ms en cada reload dentro de la
+       misma pestaña.
+
+   2 · Motion v4 §1 no-flash · agrega la clase `js` al
+       documentElement. acts.css usa `.js` como gate para ocultar
+       todos los beats menos el 01 de cada acto ANTES del primer
+       paint. Sin JS la clase nunca se setea y el CSS default
+       deja los siete beats con visibility:visible — el copy es
+       legible en HTML servido (Motion v4 §1 punto 3). Con JS,
+       la clase está antes de que se pinte, así que cero flash
+       de siete beats apilados en la hidratación.
+
+   La clase se agrega con `className +=` para preservar las
+   variables tipográficas que Next.js pone en <html> vía
+   next/font (--font-instrument-serif, --font-archivo). Sobre-
+   escribir className los pierde y las fuentes fallan. */
 const LOADER_GATE_SCRIPT = `
 try {
   if (sessionStorage.getItem('cruda-loader-shown') === '1') {
@@ -31,6 +48,7 @@ try {
 } catch (e) {
   document.documentElement.dataset.loader = 'show';
 }
+document.documentElement.className += ' js';
 `.trim();
 
 /* Brief v2 Task 5 — Organization schema site-wide.

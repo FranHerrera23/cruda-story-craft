@@ -90,7 +90,8 @@ export default function Act2WhyNow() {
 
         <div className="act__beats act2__beats">
           {ACT2_BEATS.map((beat, i) => (
-            <div key={i} className="beat beat--paper" data-beat={i}>
+            /* data-beat 1-indexed · ver comentario en Act1Hero.tsx. */
+            <div key={i} className="beat beat--paper" data-beat={i + 1}>
               {beat.lines.map((html, j) => (
                 <div key={j} className="beat__line" data-line>
                   <span

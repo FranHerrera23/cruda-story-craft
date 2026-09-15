@@ -62,7 +62,11 @@ export default function Act1Hero() {
         <div className="act__grid" aria-hidden="true" />
         <div className="act__beats">
           {ACT1_BEATS.map((beat, i) => (
-            <div key={i} className="beat beat--dark" data-beat={i}>
+            /* data-beat es 1-indexed · Motion v4 §1 no-flash usa
+               `[data-beat="1"]` como selector del primer beat. El
+               motor querySelectorAll('[data-beat]') no depende del
+               valor, sólo de la presencia del atributo. */
+            <div key={i} className="beat beat--dark" data-beat={i + 1}>
               {beat.lines.map((html, j) => (
                 <div key={j} className="beat__line" data-line>
                   <span

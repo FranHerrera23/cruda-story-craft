@@ -1,0 +1,316 @@
+/* Home · Acts · CSS
+   Brief 07 definitivo (15-sep).
+
+   Dos actos. Uno negro (hero), otro paper (why-now). Mismo motor,
+   mismo lenguaje. Cero transition y cero animation en TODO el
+   archivo (§9 regla 1). Todo el movimiento va por scrub desde JS.
+
+   Grep-safe: si `transition:` o `animation:` aparecen en este
+   archivo (fuera de los tokens de duración de globals), la regla
+   está rota. */
+
+/* ══════════ Track base ══════════ */
+
+.act {
+  position: relative;
+}
+
+.act1 {
+  /* Punto de partida 400vh · 200vh por beat. §12 calibración. */
+  height: 400vh;
+  background: #0E1113;
+  color: #EFEBDF;
+}
+
+.act2 {
+  /* Punto de partida 1100vh · ~220vh por beat. §12 calibración. */
+  height: 1100vh;
+  background: #F2F2F0;
+  color: #0E1113;
+}
+
+.act__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  display: block;
+}
+
+/* ══════════ Grilla técnica ══════════
+   Act 1 · líneas crema al 5% sobre negro (grid-bg-dark).
+   Act 2 · líneas negras al 3.5% sobre paper (grid-bg).
+   Tokens en case-study.css :root. */
+.act__grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-size: var(--grid-size) var(--grid-size);
+}
+.act1 .act__grid {
+  background-image: var(--grid-bg-dark);
+}
+.act__grid--paper {
+  background-image: var(--grid-bg);
+}
+
+/* ══════════ Counter + label (solo act 2) ══════════ */
+
+.act__counter,
+.act__label {
+  position: absolute;
+  top: clamp(24px, 3vh, 40px);
+  font-family: var(--grot);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #0E1113;
+  opacity: .55;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.act__counter {
+  left: clamp(24px, 5vw, 80px);
+}
+.act__label {
+  right: clamp(24px, 5vw, 80px);
+}
+
+/* ══════════ Logo (solo act 1) ══════════ */
+
+.act__logo {
+  position: absolute;
+  bottom: clamp(24px, 3vh, 40px);
+  left: clamp(24px, 5vw, 80px);
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .04em;
+  color: #EFEBDF;
+}
+
+/* ══════════ Beats ══════════ */
+
+.act__beats {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.beat {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  visibility: hidden;
+  text-align: left;
+}
+
+/* Act 1 · x: 8vw, ancho máx 54vw (deja aire a la derecha). */
+.act1 .beat {
+  left: 8vw;
+  max-width: 54vw;
+  right: auto;
+  width: auto;
+}
+.act1 .beat .dim,
+.act1 .beat .lit {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(38px, 5.4vw, 76px);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  color: #EFEBDF;
+}
+
+/* Act 2 · beat en su columna derecha, x: 52vw → 92vw. Canal
+   42vw → 52vw vacío siempre (§9 regla 4). */
+.act2 .beat {
+  left: 52vw;
+  right: 8vw;
+  width: auto;
+}
+.act2 .beat .dim,
+.act2 .beat .lit {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3.4vw, 46px);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+  color: #0E1113;
+}
+
+/* La línea es el bloque relative — la lit se posiciona absolute
+   sobre el dim. Cada [data-line] recibe --fill del motor y su lit
+   se clipea por línea, en orden. */
+.beat__line {
+  position: relative;
+  display: block;
+}
+.beat__line .dim {
+  display: block;
+  opacity: .22;
+}
+.beat__line .lit {
+  position: absolute;
+  inset: 0;
+  display: block;
+  opacity: 1;
+  clip-path: inset(0 calc(100% - var(--fill, 0%)) 0 0);
+}
+
+/* La italic de "To Himself" no puede partirse. */
+.beat .nowrap {
+  white-space: nowrap;
+}
+.beat em {
+  font-style: italic;
+}
+
+/* ══════════ Arts · solo act 2 ══════════
+   Seis capas apiladas en la columna izquierda del escenario.
+   x: 8vw → 42vw (34vw ancho), ratio 3:4, centrado vertical.
+   mix-blend-mode: multiply borra el blanco del PNG contra el
+   paper y deja solo la línea. Sin filter, sin invert (§6). */
+
+.act2__arts {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 8vw;
+  width: 34vw;
+  aspect-ratio: 3 / 4;
+  pointer-events: none;
+}
+.act2__art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  mix-blend-mode: multiply;
+}
+
+/* ══════════ Mobile · 900px y abajo ══════════
+   §10. Act 1 · frase centrada horizontal en el ancho útil.
+   Act 2 · dibujo arriba (ratio 1:1), texto abajo. */
+
+@media (max-width: 900px) {
+  .act1 .beat,
+  .act2 .beat {
+    left: clamp(24px, 5vw, 40px);
+    right: clamp(24px, 5vw, 40px);
+    max-width: none;
+    width: auto;
+  }
+
+  .act1 .beat .dim,
+  .act1 .beat .lit {
+    font-size: clamp(28px, 8vw, 40px);
+  }
+  .act2 .beat .dim,
+  .act2 .beat .lit {
+    font-size: clamp(20px, 6vw, 28px);
+  }
+
+  /* Act 2 · arts en su propia zona arriba, ratio 1:1. Beat baja
+     al centro-abajo. */
+  .act2__arts {
+    top: clamp(24px, 6vh, 60px);
+    transform: none;
+    left: clamp(24px, 5vw, 40px);
+    right: clamp(24px, 5vw, 40px);
+    width: auto;
+    max-width: 340px;
+    aspect-ratio: 1 / 1;
+  }
+  .act2 .beat {
+    top: auto;
+    bottom: clamp(80px, 14vh, 140px);
+    transform: none;
+  }
+}
+
+/* ══════════ Alturas mobile ══════════
+   §10. Act 1 a 320vh, act 2 a 900vh — el scroll es más corto
+   por gesto en móvil. */
+
+@media (max-width: 700px) {
+  .act1 {
+    height: 320vh;
+  }
+  .act2 {
+    height: 900vh;
+  }
+}
+
+/* ══════════ Reduced motion ══════════
+   §11. Sin sticky, sin scrub, sin clip-path. Act 1 · las dos
+   frases en flujo, crema 100%. Act 2 · un dibujo estático
+   (bust-01-dense) + los cinco beats en flujo, negro 100%. */
+
+@media (prefers-reduced-motion: reduce) {
+  .act1,
+  .act2 {
+    height: auto;
+  }
+  .act__stage {
+    position: static;
+    height: auto;
+    padding: var(--s5) var(--pad);
+  }
+  .act__grid,
+  .act__counter,
+  .act__label {
+    display: none;
+  }
+  .act__beats {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s4);
+    max-width: 1600px;
+    margin-inline: 0;
+  }
+  .beat {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    visibility: visible;
+  }
+  .beat__line .dim {
+    opacity: 1;
+  }
+  .beat__line .lit {
+    display: none;
+  }
+  .act__logo {
+    position: static;
+    margin-top: var(--s4);
+  }
+  /* Act 2 · un solo dibujo estático (el primero). */
+  .act2__arts {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1;
+    margin: 0 0 var(--s4);
+  }
+  .act2__art {
+    opacity: 0;
+  }
+  .act2__art:first-child {
+    opacity: 1;
+  }
+}

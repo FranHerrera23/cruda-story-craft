@@ -5,7 +5,10 @@
    secciones — sin regla propia. */
 
 .home-work {
-  background: var(--paper);
+  /* Brief 08 §P1 · grilla técnica continua sobre paper. */
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
   padding: var(--s5) var(--pad);
 }
 .home-work__inner {
@@ -47,4 +50,29 @@
 }
 @media (max-width: 600px) {
   .work-grid { grid-template-columns: 1fr; }
+}
+
+/* Brief 08 §P3 (15-sep) — cuando se hovera una card, las otras
+   siete bajan al 40%. Foco en la cosa que se está mirando; el
+   resto no desaparece del todo (una grilla sola con una card
+   viva es antipática), sino que se corre a segundo plano.
+
+   Se activa vía :has() a nivel del grid — sin JS, sin observer.
+   En touch (no hover) el selector no matchea y las cards viven
+   todas al 100%. Cards sin href (placeholder) no gatillan el
+   fade — su hover no es un evento.
+
+   Transición sobre opacity con --dur-3 · igual duración que el
+   scale de la imagen, pero desincronizada porque salen de
+   estados distintos. */
+.work-grid .work-card {
+  transition: opacity var(--dur-3) var(--ease);
+}
+@media (hover: hover) {
+  .work-grid:has(.work-card:hover) .work-card:not(:hover):not([data-placeholder-route]) {
+    opacity: .4;
+  }
+  .work-grid:has(.work-card[data-placeholder-route]:hover) .work-card {
+    opacity: 1;
+  }
 }

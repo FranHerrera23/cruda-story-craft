@@ -48,6 +48,7 @@ export default function SelectedWork({
             <WorkCard
               key={(card.href ?? card.name) + i}
               {...card}
+              ordinal={String(i + 1).padStart(2, '0')}
               revealIndex={Math.min(i, 5)}
             />
           ))}

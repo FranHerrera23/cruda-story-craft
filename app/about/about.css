@@ -28,15 +28,22 @@
 .ab-block {
   padding: var(--s5) 0;
 }
+/* Brief 08 §P1 · grilla técnica sobre paper. Cruza de la home
+   sin quiebre. */
 .ab-block--paper {
-  background: var(--paper);
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
   color: var(--ink);
 }
+/* Brief 08 §P5 · §01 adopta los tokens del escenario de apertura
+   (--ink-deep + --cream) más la grilla oscura. Se lee como
+   pariente del opening act de la home, no como isla negra. */
 .ab-block--ink {
-  background: var(--ink);
-  color: var(--paper);
-  /* §01 hero — el único inverso. Que ocupe al menos 100dvh en
-     desktop para que domine sin competir con nada abajo. */
+  background-color: var(--ink-deep);
+  background-image: var(--grid-bg-dark);
+  background-size: var(--grid-size) var(--grid-size);
+  color: var(--cream);
   min-height: 100dvh;
   display: flex;
   align-items: center;
@@ -69,7 +76,8 @@
   margin-bottom: clamp(48px, 7vh, 88px);
 }
 .ab-eyebrow--on-ink {
-  color: var(--paper);
+  /* Brief 08 §P5 — la crema del escenario, no paper puro. */
+  color: var(--cream);
 }
 
 /* ═════════ Labels ═════════
@@ -104,7 +112,9 @@
   font-size: clamp(38px, 5.5vw, 76px);
   line-height: 1.06;
   letter-spacing: -.025em;
-  color: var(--paper);
+  /* Brief 08 §P5 · crema, no paper. Emparejado con el escenario
+     de apertura. */
+  color: var(--cream);
   max-width: 22ch;
   margin: 0 0 clamp(40px, 5vh, 72px);
 }
@@ -136,7 +146,8 @@
   margin: 0;
 }
 .ab-lede--on-ink {
-  color: var(--paper);
+  /* Brief 08 §P5 — la crema del escenario, no paper puro. */
+  color: var(--cream);
 }
 
 .ab-prose {

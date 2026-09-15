@@ -21,18 +21,15 @@
    escenario. */
 
 .home-testimonial {
-  background: var(--ink-deep);
   color: var(--cream);
   padding-block: clamp(120px, 20vh, 200px);
   padding-inline: var(--pad);
   position: relative;
   /* Grilla oscura de continuidad con el escenario — Brief 08 §P1.
-     Misma medida de módulo. */
-  background-image:
-    linear-gradient(to right, rgba(239, 235, 223, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(239, 235, 223, 0.05) 1px, transparent 1px);
-  background-size: clamp(48px, 6vw, 96px) clamp(48px, 6vw, 96px);
+     Misma medida de módulo, mismos tokens. */
   background-color: var(--ink-deep);
+  background-image: var(--grid-bg-dark);
+  background-size: var(--grid-size) var(--grid-size);
 }
 .home-testimonial__inner {
   max-width: 1600px;

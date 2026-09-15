@@ -41,7 +41,14 @@
 
   /* Easing local retirado — usa --ease del motion system (globals). */
 
-  background: var(--paper);
+  /* Brief 08 §P1 (15-sep) · grilla técnica continua sobre paper.
+     Los slabs de identidad (--c-1, --c-2) tienen su propio fondo
+     opaco, así que la grilla queda tapada por debajo de las bandas
+     de color — se lee solo en las superficies paper del case study
+     (head, prose, credits, cierre), que es donde tiene que estar. */
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
   color: var(--ink);
   font-family: var(--s);
   font-size: 18px;

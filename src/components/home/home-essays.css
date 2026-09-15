@@ -6,7 +6,10 @@
    título es el gancho. */
 
 .home-essays {
-  background: var(--paper);
+  /* Brief 08 §P1 · grilla técnica continua sobre paper. */
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
   padding: var(--s5) var(--pad);
 }
 .home-essays__inner {

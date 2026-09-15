@@ -85,6 +85,21 @@
   --cream:      #EFEBDF;
   --ink-deep:   #0E1113;
 
+  /* Brief 08 §P1 (15-sep) — grilla técnica continua. Las líneas
+     son las mismas en toda la página y cruzan el corte de color;
+     lo que las hace legibles es la variable --grid-line, que se
+     redefine en las superficies inversas. Aplicada a las nueve
+     secciones de la home, /about y /process. */
+  --grid-line:      rgba(0, 0, 0, .035);
+  --grid-line-dark: rgba(239, 235, 223, .05);
+  --grid-size:      clamp(48px, 6vw, 96px);
+  --grid-bg:
+    linear-gradient(to right,  var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  --grid-bg-dark:
+    linear-gradient(to right,  var(--grid-line-dark) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line-dark) 1px, transparent 1px);
+
   --fs-display:     var(--text-display);
   --fs-display-sm:  var(--text-display);
   --fs-h1:          var(--text-display);

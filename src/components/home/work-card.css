@@ -17,6 +17,15 @@
   color: inherit;
 }
 
+/* Ordinal — Brief 08 §P2. Arriba de la imagen, a la izquierda.
+   Cuando no hay imagen, se pega al head del texto sin dejar hueco.
+   El componente <Ordinal> ya se encarga del tratamiento tipo (grot
+   11px, tracking .14em, opacidad 40%); este contenedor solo maneja
+   el spacing y el punto de anclaje. */
+.work-card__ord {
+  margin-bottom: var(--s2);
+}
+
 /* Card SIN href — el <div> no promete lo que no puede cumplir. */
 .work-card[data-placeholder-route] {
   cursor: default;

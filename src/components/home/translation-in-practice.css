@@ -6,7 +6,10 @@
    en negro, grandes. Si pesan igual, la sección no dice nada. */
 
 .tip {
-  background: var(--paper);
+  /* Brief 08 §P1 · grilla técnica continua sobre paper. */
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
   color: var(--ink);
   padding: var(--s5) var(--pad);
 }

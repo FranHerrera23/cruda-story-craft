@@ -1,8 +1,10 @@
 import Link from 'next/link'
+import Ordinal from '@/components/Ordinal'
 
-/* Card de Selected Work — brief 12-sep §6.3.
+/* Card de Selected Work — brief 12-sep §6.3 + Brief 08 §P2.
 
    Anatomía:
+     [ ordinal · 01, 02, ...   · arriba a la izquierda ]
      [ figure 4:5 · SOLO si hay imageSrc ]
      [ name  · grot 700 --t-body ]  [ arrow ↗ · SOLO si hay href ]
      [ company · grot 400 --t-body ]
@@ -19,6 +21,11 @@ import Link from 'next/link'
      se preserva como grep signal pero no cambia el markup — no hay
      tratamiento visual distinto por nombre no confirmado.
 
+   Ordinal · Brief 08 §P2 (15-sep). El número de card (01, 02...)
+   se dibuja con <Ordinal>, mismo lenguaje que meses del first-90
+   y bloques de /process. Se preserva como signal de orden — la
+   grilla es una secuencia, no una nube.
+
    Hover (solo con href): la imagen escala 1.03 con --dur-3, la
    flecha aparece desde abajo-izquierda. El texto no se mueve. */
 
@@ -32,6 +39,7 @@ export type WorkCardProps = {
   nameVerified?: boolean
   companyVerified?: boolean
   revealIndex?: number
+  ordinal?: string
 }
 
 export default function WorkCard({
@@ -42,6 +50,7 @@ export default function WorkCard({
   imageSrc,
   imageAlt,
   revealIndex,
+  ordinal,
 }: WorkCardProps) {
   /* Reveal declarado en SSR — motion v2 §4 dice que opacity:0 tiene
      que estar en el CSS servido, no aplicado por JS después del
@@ -55,6 +64,11 @@ export default function WorkCard({
       : undefined
   const inner = (
     <>
+      {ordinal && (
+        <div className="work-card__ord">
+          <Ordinal>{ordinal}</Ordinal>
+        </div>
+      )}
       {imageSrc && (
         <div className="work-card__media">
           <img

@@ -1,6 +1,6 @@
 import type { WorkCardData } from '@/components/home/SelectedWork'
 
-/* Home · Selected Work — brief 12-sep §6.3.
+/* Home · Selected Work — brief 12-sep §6.3 + Fran addendum 15-sep.
 
    Estructura de cada card:
      nombre    (grot 700 --t-body)
@@ -12,10 +12,9 @@ import type { WorkCardData } from '@/components/home/SelectedWork'
    ese patrón hacía que "INOUT" leyera contra "JP Romero" en la
    grilla anterior.
 
-   Orden — los seis con retrato primero, después las tipográficas:
-     José · Girish · JP · Mike · Karen · Jack · Germán · Arman · Confidential
-   (Jack sube cuando llegue su foto con el re-do; Germán y Arman
-   cuando lleguen las suyas.)
+   Orden (nueve cards):
+     José · Girish · JP · Mike · Karen · Jack · Germán · Arman ·
+     Confidential
 
    Correcciones §6.3:
      · JURA → JURA PLANK
@@ -23,13 +22,25 @@ import type { WorkCardData } from '@/components/home/SelectedWork'
      · JP tiene DOS empresas: "JURA PLANK · Connecting the Dots".
        El separador se lee como dos, no como marca con bajada.
 
-   draft:true en Germán — INOUT no publica sin su cita. Con el
-   flag la card no se renderea; cuando llegue la cita se saca el
-   flag y sube al orden con foto.
+   Regla nueva (Fran 15-sep · ledger 23) · "sin PÁGINA la card
+   sale, sin FOTO la card se queda y la foto se resuelve".
+   Aplicada acá:
 
-   Cards sin route (Arman, Jack): href omitido — WorkCard renderea
-   como <div> no clickable, sin hover, sin flecha, sin cursor
-   pointer (brief §6.3). */
+     · INOUT (Germán) · tiene página (/work/inout). draft:true
+       retirado. placeholder:true hasta que llegue la foto.
+     · Mistiva (Jack) · no tiene página todavía. draft:true
+       retirado igual — Fran decide restaurarla con placeholder.
+       href omitido, sin arrow, sin hover — comportamiento
+       de "card muerta" del brief §6.3.
+     · Arman / BAUHOME · sin foto ni href. Se queda como está
+       (decisión de Fran · el retiro arrastra el dek "Eight
+       founders"). Sin placeholder, sin cambios en esta pasada.
+
+   Los draft:true anteriores venían de commits previos:
+     · ebffebf3 (2026-09-12) · INOUT · "no publica sin su cita"
+     · 190dba4f (2026-09-14) · Mistiva · "sin foto la card
+       floteaba desalineada"
+   Ambos motivos los cubre ahora el placeholder + la regla nueva. */
 
 export const selectedWorkCards: WorkCardData[] = [
   {
@@ -78,19 +89,20 @@ export const selectedWorkCards: WorkCardData[] = [
     // href intencionalmente omitido — sin caso todavía.
     nameVerified: false,
     companyVerified: false,
-    /* Brief 04 P5 (14-sep) — sin foto, la card floteaba desalineada
-       en la grilla. draft:true hasta que llegue el retrato. Consecuencia:
-       el H2 pasa de 'Nine founders' a 'Eight founders' hasta entonces. */
-    draft: true,
+    /* placeholder:true (Fran 15-sep · ledger 23) · el crop del
+       sistema 4:5 en gris mantiene la alineación de la grilla sin
+       borrar el caso. Sale cuando llegue el retrato. */
+    placeholder: true,
   },
   {
     name: 'Germán Noël',
     company: 'INOUT',
     line: "Built one of Argentina's leading glass companies — airports, towers. Then patented a frameless sliding door and started over with it.",
     href: '/work/inout',
-    /* §6.3 — INOUT no publica sin la cita de Germán. Card
-       oculta hasta que llegue. */
-    draft: true,
+    /* placeholder:true · mismo tratamiento que Mistiva. INOUT sí
+       tiene página (/work/inout) — la card linkea normal, la
+       flecha aparece en hover, sólo falta la foto. */
+    placeholder: true,
   },
   {
     name: 'Arman Keshishian',

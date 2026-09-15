@@ -6,16 +6,23 @@ import './selected-work.css'
 
    Estructura:
      eyebrow  "SELECTED WORK"
-     dek      "Nine founders, each at the point where..."
+     dek      "Eight founders, each at the point where..."
      grid     3/2/1 cols con align-items:start (cards de altura
               distinta no se estiran a la fila entera).
 
-   Cards con draft:true no se rederean — es el flag para casos
-   como Germán (INOUT) donde falta la cita del cliente. Cuando
-   llegue, se saca el flag y la card entra al orden.
+   Cards con draft:true no se rederean — el flag sigue existiendo
+   por si un caso hay que ocultar en el futuro, pero las cards sin
+   foto ya no se marcan como draft: van con placeholder:true (Fran
+   15-sep · ledger 23 · "sin FOTO la card se queda").
 
    ID de la sección: `selected-work` — ancla que apunta el nav y
-   el link "See the work" de /our-founder. */
+   el link "See the work" de /our-founder.
+
+   Contradicción viva con el dek · con INOUT y Mistiva restauradas
+   (addendum 15-sep) hoy hay 9 cards visibles y el dek dice
+   "Eight founders". Bug vivo del §9 del v5 · no se corrige acá
+   porque el número final depende de si Arman/BAUHOME queda o
+   sale (decisión de Fran, arrastra el dek). */
 
 export type WorkCardData = {
   name: string
@@ -27,6 +34,7 @@ export type WorkCardData = {
   nameVerified?: boolean
   companyVerified?: boolean
   draft?: boolean
+  placeholder?: boolean
 }
 
 export default function SelectedWork({

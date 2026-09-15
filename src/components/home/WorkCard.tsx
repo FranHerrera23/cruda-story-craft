@@ -13,9 +13,15 @@ import Ordinal from '@/components/Ordinal'
    Reglas duras:
    · El bloque de texto va PEGADO a la imagen — nada de nombre
      arriba, hueco en el medio y empresa abajo.
-   · Card sin foto NO reserva altura. Sin placeholder gris, sin
-     caja vacía, sin min-height. El texto sube al tope de la celda.
+   · Card sin foto ni placeholder NO reserva altura. Sin caja
+     vacía, sin min-height. El texto sube al tope de la celda.
      El grid usa align-items:start para permitirlo.
+   · Card con `placeholder: true` (y sin imageSrc): renderea un
+     cuadrado gris con el crop del sistema (4:5). Fran 15-sep ·
+     regla nueva "sin FOTO, la card se queda y la foto se resuelve"
+     (ledger). Antes se ocultaban con draft:true — se retira ese
+     patrón: el placeholder mantiene la alineación de la grilla sin
+     borrar el caso del portfolio.
    · Card sin href NO tiene hover, ni flecha, ni cursor pointer.
    · Sin data-placeholder-text: el flag nameVerified/companyVerified
      se preserva como grep signal pero no cambia el markup — no hay
@@ -40,6 +46,10 @@ export type WorkCardProps = {
   companyVerified?: boolean
   revealIndex?: number
   ordinal?: string
+  /* Muestra un cuadrado gris 4:5 en lugar de la foto ausente ·
+     ledger nuevo "sin FOTO la card se queda". Se ignora si hay
+     imageSrc — la foto real siempre gana. */
+  placeholder?: boolean
 }
 
 export default function WorkCard({
@@ -51,6 +61,7 @@ export default function WorkCard({
   imageAlt,
   revealIndex,
   ordinal,
+  placeholder,
 }: WorkCardProps) {
   /* Reveal declarado en SSR — motion v2 §4 dice que opacity:0 tiene
      que estar en el CSS servido, no aplicado por JS después del
@@ -69,7 +80,7 @@ export default function WorkCard({
           <Ordinal>{ordinal}</Ordinal>
         </div>
       )}
-      {imageSrc && (
+      {imageSrc ? (
         <div className="work-card__media">
           <img
             className="work-card__img"
@@ -77,7 +88,16 @@ export default function WorkCard({
             alt={imageAlt ?? name}
           />
         </div>
-      )}
+      ) : placeholder ? (
+        /* Sin foto pero con placeholder: cuadrado gris 4:5 con el
+           crop del sistema, alineado con las cards que sí llevan
+           imagen. Sin foto NI placeholder (Arman): el texto sube
+           al tope, comportamiento histórico. */
+        <div
+          className="work-card__media work-card__media--placeholder"
+          aria-hidden="true"
+        />
+      ) : null}
       <div className="work-card__head">
         <span className="work-card__name">{name}</span>
         {href && (

@@ -38,6 +38,7 @@ import Ordinal from '@/components/Ordinal'
 export type WorkCardProps = {
   name: string
   company: string
+  location: string
   line: string
   href?: string
   imageSrc?: string
@@ -50,11 +51,15 @@ export type WorkCardProps = {
      ledger nuevo "sin FOTO la card se queda". Se ignora si hay
      imageSrc — la foto real siempre gana. */
   placeholder?: boolean
+  /* v6 §1 · scope[0] es siempre la constante NARRATIVE & BRAND
+     STRATEGY. scope[1..] las superficies. */
+  scope: string[]
 }
 
 export default function WorkCard({
   name,
   company,
+  location,
   line,
   href,
   imageSrc,
@@ -62,6 +67,7 @@ export default function WorkCard({
   revealIndex,
   ordinal,
   placeholder,
+  scope,
 }: WorkCardProps) {
   /* Reveal declarado en SSR — motion v2 §4 dice que opacity:0 tiene
      que estar en el CSS servido, no aplicado por JS después del
@@ -107,7 +113,19 @@ export default function WorkCard({
         )}
       </div>
       <p className="work-card__company">{company}</p>
+      <p className="work-card__location">{location}</p>
       <p className="work-card__line">{line}</p>
+      {/* v6 §1 · scope block. En reposo opacity 0 pero reserva
+          altura (calculada sobre Karen · 5 superficies + 1 constante).
+          En hover entra con transición 400ms. En touch va siempre
+          visible (media query en el CSS). Separador y niveles de
+          opacidad se controlan por CSS. */}
+      <div className="work-card__scope" aria-label="Scope">
+        <div className="work-card__scope-constant">{scope[0]}</div>
+        <div className="work-card__scope-surfaces">
+          {scope.slice(1).join(' · ')}
+        </div>
+      </div>
     </>
   )
 

@@ -52,27 +52,46 @@
   .work-grid { grid-template-columns: 1fr; }
 }
 
-/* Brief 08 §P3 (15-sep) — cuando se hovera una card, las otras
-   siete bajan al 40%. Foco en la cosa que se está mirando; el
-   resto no desaparece del todo (una grilla sola con una card
-   viva es antipática), sino que se corre a segundo plano.
+/* v6 §1 · cross-dim al hoverar una card.
+   Reemplaza el 0.4 blanket del brief 08 §P3 · dos niveles ahora,
+   medidos sobre Zera: imagen 0.35, texto 0.30. Card activa 100%.
+   Curva easeOutQuint 400ms, la única del sitio.
 
-   Se activa vía :has() a nivel del grid — sin JS, sin observer.
-   En touch (no hover) el selector no matchea y las cards viven
-   todas al 100%. Cards sin href (placeholder) no gatillan el
-   fade — su hover no es un evento.
+   Cambio de política vs. §P3: TODAS las cards participan del
+   cross-dim, incluyendo las que no tienen href (Arman, Mistiva).
+   Con el scope siempre presente, la información en las otras
+   cards ya no depende de si linkean o no, y el foco pierde
+   sentido si algunas cards se quedan a 100% mientras las demás
+   bajan.
 
-   Transición sobre opacity con --dur-3 · igual duración que el
-   scale de la imagen, pero desincronizada porque salen de
-   estados distintos. */
-.work-grid .work-card {
-  transition: opacity var(--dur-3) var(--ease);
-}
+   En touch el selector :has(:hover) no matchea → todas las cards
+   viven al 100%. */
 @media (hover: hover) {
-  .work-grid:has(.work-card:hover) .work-card:not(:hover):not([data-placeholder-route]) {
-    opacity: .4;
+  .work-grid .work-card__media,
+  .work-grid .work-card__head,
+  .work-grid .work-card__company,
+  .work-grid .work-card__location,
+  .work-grid .work-card__line {
+    transition: opacity 400ms cubic-bezier(.22, 1, .36, 1);
   }
-  .work-grid:has(.work-card[data-placeholder-route]:hover) .work-card {
-    opacity: 1;
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__media {
+    opacity: .35;
+  }
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__head,
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__company,
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__location,
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__line {
+    opacity: .30;
+  }
+}
+
+/* Reduced motion · sin atenuación. */
+@media (prefers-reduced-motion: reduce) {
+  .work-grid .work-card__media,
+  .work-grid .work-card__head,
+  .work-grid .work-card__company,
+  .work-grid .work-card__location,
+  .work-grid .work-card__line {
+    transition: none;
   }
 }

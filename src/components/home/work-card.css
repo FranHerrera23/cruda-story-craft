@@ -128,3 +128,88 @@
   color: var(--ink);
   margin: var(--s1) 0 0;
 }
+
+/* ═════════ Location · v6 §1 ═════════
+   Debajo de la empresa, siempre visible. Prueba de alcance
+   real — se lee sin interacción. Mismo registro operativo que
+   los eyebrows del sitio y los tags de /process. */
+.work-card__location {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  margin: 4px 0 0;
+}
+
+/* ═════════ Scope · v6 §1 ═════════
+   El bloque siempre existe en el layout — no hay salto en el
+   hover. En reposo opacity 0; en hover de la card la opacidad
+   sube a 1 con la curva única del sitio (easeOutQuint, medida
+   sobre el HTML de Zera).
+
+   La altura reservada se calcula sobre Karen (el caso más largo:
+   5 superficies · la línea envuelve a ~4 líneas en col de grid).
+   Se usa min-height en em para que escale con el font-size del
+   scope. No hay transform, no hay height animation — solo
+   opacidad, como pide el brief.
+
+   Separador: border-top al 12% del ink, ancho del bloque. */
+.work-card__scope {
+  margin-top: var(--s2);
+  padding-top: 10px;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 400ms cubic-bezier(.22, 1, .36, 1);
+  /* Reserva de altura para el caso más largo (Karen) · 1 constante
+     + separador + hasta 4 líneas de superficies con line-height 1.5
+     a font-size 11px. */
+  min-height: calc(11px * 1.5 * 5 + 10px + 1px);
+}
+.work-card:hover .work-card__scope,
+.work-card:focus-visible .work-card__scope,
+.work-card:focus-within .work-card__scope {
+  opacity: 1;
+}
+.work-card__scope-constant,
+.work-card__scope-surfaces {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 11px;
+  line-height: 1.5;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+/* La constante pesa más (60%). Las superficies al 40%. Dos niveles
+   de opacidad, no dos tipografías (v6 §1). */
+.work-card__scope-constant {
+  opacity: .60;
+  margin-bottom: 2px;
+}
+.work-card__scope-surfaces {
+  opacity: .40;
+  text-wrap: balance;
+}
+
+/* Mobile / touch · el scope va siempre visible, no depende de
+   hover. Si el scope solo existiera en hover, la mitad de los
+   visitantes no vería la información. */
+@media (hover: none) {
+  .work-card__scope {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Reduced motion · scope siempre visible, sin transición. */
+@media (prefers-reduced-motion: reduce) {
+  .work-card__scope {
+    opacity: 1;
+    transition: none;
+  }
+}

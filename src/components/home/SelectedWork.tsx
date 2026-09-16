@@ -27,6 +27,9 @@ import './selected-work.css'
 export type WorkCardData = {
   name: string
   company: string
+  /* v6 §1 · ciudad + región · siempre visible en la card. Formato
+     dictado por Fran: neighborhood optional, city, region. */
+  location: string
   line: string
   href?: string
   imageSrc?: string
@@ -35,6 +38,11 @@ export type WorkCardData = {
   companyVerified?: boolean
   draft?: boolean
   placeholder?: boolean
+  /* v6 §1 · scope[0] es SIEMPRE 'NARRATIVE & BRAND STRATEGY' —
+     la constante del sistema. scope[1..] son las superficies del
+     caso en el orden del brief. Se muestra en hover; en touch va
+     siempre visible. */
+  scope: string[]
 }
 
 export default function SelectedWork({

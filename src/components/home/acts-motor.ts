@@ -114,7 +114,17 @@ function snapToWord(el: HTMLElement, raw: number): number {
   return snap
 }
 
-/* Invalidación global al resize. Los actos comparten el listener. */
+/* Invalidación global en dos eventos: resize (viewport cambió) y
+   font-load (las métricas de texto cambiaron después del primer
+   paint). Los actos comparten el listener.
+
+   font-loading race: el motor mide boundaries en el primer draw
+   con las fuentes de fallback (system-ui, sans-serif). Cuando
+   Instrument Serif y Archivo terminan de cargar, el texto reflow
+   pero el cache queda con los valores viejos → fills que no
+   caen en bordes de palabra. document.fonts.ready dispara una
+   vez, incrementa la versión y el próximo hit re-mide contra
+   la geometría real. */
 let resizeInstalled = false
 function installResizeListener() {
   if (resizeInstalled) return
@@ -122,6 +132,17 @@ function installResizeListener() {
   window.addEventListener('resize', () => {
     boundariesVersion++
   })
+  if (typeof document !== 'undefined' && document.fonts?.ready) {
+    document.fonts.ready
+      .then(() => {
+        boundariesVersion++
+      })
+      .catch(() => {
+        /* Safari privado o CSP raro que rompe la promise ·
+           el cache queda con los valores de fallback y algún
+           borde puede fallar. No es fatal. */
+      })
+  }
 }
 
 /* ══════════ Lenis quiet mode · interpolación 400ms ══════════

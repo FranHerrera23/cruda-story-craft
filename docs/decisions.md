@@ -703,3 +703,138 @@ grilla con el crop del sistema.
 **Origen:** Fran, 15 septiembre 2026 · addendum al Motion System
 v5, §3. Motivado por la doble retirada de INOUT y Mistiva
 detectada durante la verificación de Fase 1.
+
+---
+
+## 2026-09-16 · Regla 4 · reemplazada · el precio del engagement es público
+
+**Regla nueva:** el precio del engagement (TRANSLATED · tres
+meses) es público y vive en `/process`. El scope detallado por
+cliente y toda cotización siguen fuera del sitio.
+
+**Antes:** "Precio y scope detallado fuera del sitio público."
+(entrada del 14-sep, línea 76 del ledger).
+
+**Qué cambia:** el número del engagement pasa a la superficie
+pública. El lector puede filtrarse solo sin tener que escribir.
+
+**Qué NO cambia:** el scope por cliente sigue fuera del sitio
+(vive en la propuesta y en la página del caso, no en el pricing
+público). Las cotizaciones custom siguen fuera.
+
+**Regla 1 vigente:** cero múltiplos o ratios contra el fee. El
+precio se publica como fee, no como fee × N o fee ÷ N.
+
+**Implementación:** el número entra en la tabla de pricing de
+`/process` en la Fase 6 del brief 16-sep.
+
+**Origen:** Fran, 16 septiembre 2026 · brief de reconstrucción v1.
+
+---
+
+## 2026-09-16 · Regla 18 · reemplazada · la serif es la voz de un cliente
+
+**Regla nueva:** la serif se usa **únicamente** en testimonios y
+citas textuales atribuidas. Todo lo demás es grotesca.
+
+**Antes:** "Serif vs grotesca por REGISTRO (tesis vs operativo)."
+(entrada del 15-sep, línea 394 · "Regla 15 retirada · registro
+reemplaza conteo de palabras"). Esa regla permitía la serif en
+la tesis del sitio · titulares, argumentos, la voz de la marca.
+
+**Qué cambia:** el registro deja de ser el criterio. La serif
+pierde el papel de "voz de la marca" y pasa a ser exclusivamente
+"voz de un cliente". Todos los titulares display, los eyebrows,
+los principios operativos y el copy declarativo son grotesca.
+
+**Casos afectados (Fase 7 del brief 16-sep):**
+
+  · Los siete beats de #act1 y #act2 dejan de ser serif · pasan
+    a Archivo con peso 200 a -0.02em.
+  · Los H1 display de todas las páginas.
+  · Los principios operativos de /about.
+  · El header del bloque de proof en /process.
+
+**Qué queda serif:**
+
+  · Testimonio de Karen en la home.
+  · Testimonio de Mike en /process (cuando llegue).
+  · Cualquier cita textual atribuida en un case study.
+
+**Qué NO cambia:** el rechazo a agregar familias tipográficas
+(entrada anterior del 15-sep). Si un titular display no aguanta
+Archivo 200 a la escala requerida, el ajuste va por peso y
+tamaño, no por familia.
+
+**Origen:** Fran, 16 septiembre 2026 · brief de reconstrucción v1,
+Fase 7 §7.1.
+
+---
+
+## 2026-09-16 · Regla 24 · nueva · data is directional at best
+
+**Regla:** todo número publicado en el sitio es evidencia
+direccional, **no** condición de existencia. Toda cifra lleva
+fuente y período. Ninguna cifra se agrega entre clientes ni se
+convierte en múltiplo contra el fee (regla 1 sigue vigente).
+
+**Reemplaza el principio operativo publicado:** "If it isn't
+measured, it didn't happen." Esa formulación convertía el
+número en filtro binario · lo que no se midió, no existe. Esa
+posición es incompatible con lo que Fran vende · varias de las
+cosas que importan en los casos no se cuentan y no se dejan de
+hacer por eso.
+
+**Nueva formulación pública:** *"Data is directional at best.
+Some of what matters cannot be counted, and some of what gets
+counted does not matter. We bring the figures we have and we do
+not dress up the rest."*
+
+**Reglas técnicas para publicar números:**
+
+  · Fuente explícita (LinkedIn Analytics, TRAZZO internal
+    review, Meta Ads Manager, etc.).
+  · Período explícito con fechas o con ventana.
+  · Cero agregación entre clientes (no se suman impresiones
+    de Karen + Mike para reportar "1.2M impresiones para
+    nuestros clientes"). Cada número queda atribuido.
+  · Cero conversión a ratio contra el fee (regla 1).
+
+**Implementación:** el principio operativo 05 de `/about` pasa
+de "If it isn't measured" a "Data is directional at best". El
+copy que acompaña se reescribe en la Fase 5 del brief 16-sep.
+
+**Origen:** Fran, 16 septiembre 2026 · brief de reconstrucción v1.
+
+---
+
+## 2026-09-16 · Regla 25 · nueva · nunca contar en prosa
+
+**Regla:** todo conteo de casos, founders, ciudades o países que
+aparezca en copy público **se deriva de la fuente de datos**,
+nunca se escribe a mano.
+
+**Ejemplo canónico:** el bloque TRANSLATED de la home dice
+*"Nine founders. Eight cities. Five countries."* Esas tres
+cifras las computa el componente sobre
+`selectedWorkCards` — cuenta cards visibles, cuenta ciudades
+únicas del campo `location`, cuenta países únicos. Si mañana
+sale una card, los tres números se ajustan solos.
+
+**Por qué:** dos veces en las últimas semanas la prosa contó
+mal contra la grilla · "Eight founders" con siete cards, después
+"Eight founders" con nueve. La única defensa contra ese bug es
+no escribir el número, computarlo.
+
+**Alcance:** todo número que se pueda derivar de un array de
+datos existente. Los números manuales quedan solo para cosas
+que no se derivan (métricas de un caso, precios, fechas).
+
+**Implementación:** el dek de `selected-work` deja de decir
+"Eight founders" y pasa a un template que consume el count del
+array visible. El bloque TRANSLATED (Fase 4 del brief 16-sep)
+usa el mismo mecanismo.
+
+**Origen:** Fran, 16 septiembre 2026 · brief de reconstrucción
+v1. Motivado por dos incidencias del dek "Eight founders"
+descontexto de la grilla real.

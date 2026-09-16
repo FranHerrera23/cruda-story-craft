@@ -132,16 +132,28 @@
 /* ═════════ Location · v6 §1 ═════════
    Debajo de la empresa, siempre visible. Prueba de alcance
    real — se lee sin interacción. Mismo registro operativo que
-   los eyebrows del sitio y los tags de /process. */
+   los eyebrows del sitio y los tags de /process.
+
+   Tracking .55em (no .05em) · es el que hace que lo operativo se
+   lea como instrumento, no como nav de agencia. Sale del HTML
+   servido de Zera, es la firma del sistema. Si una locación
+   larga (Design District, Miami, FL) rompe el ancho, la salida
+   es bajar el font-size, nunca el tracking. */
 .work-card__location {
   font-family: var(--grot);
   font-weight: 300;
-  font-size: 13px;
+  /* 11px, no 13px · a 13px la locación más larga
+     (SHERMAN OAKS, LOS ANGELES, CA · 29 chars) rompe el ancho
+     de la card y wrappea a dos líneas. Fran directive: la
+     salida es bajar font-size, no tracking. A 11px las nueve
+     locaciones caben en una sola línea. */
+  font-size: 11px;
   line-height: 1.4;
-  letter-spacing: .05em;
+  letter-spacing: .55em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--ink) 45%, transparent);
   margin: 4px 0 0;
+  text-wrap: balance;
 }
 
 /* ═════════ Scope · v6 §1 ═════════
@@ -180,7 +192,9 @@
   font-weight: 300;
   font-size: 11px;
   line-height: 1.5;
-  letter-spacing: .05em;
+  /* Tracking .55em · el que hace que lo operativo se lea como
+     instrumento. Ver comentario en .work-card__location. */
+  letter-spacing: .55em;
   text-transform: uppercase;
   color: var(--ink);
   margin: 0;

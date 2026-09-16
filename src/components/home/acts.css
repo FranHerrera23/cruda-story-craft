@@ -15,16 +15,19 @@
   position: relative;
 }
 
+/* Motion v6 F2 · alturas dictadas por el brief de reconstrucción.
+   Se mantienen en sync con acts-config.ts (ACT1_HEIGHT_VH y
+   ACT2_HEIGHT_VH). Si cambia acá tiene que cambiar allá y
+   viceversa. */
+
 .act1 {
-  /* Punto de partida 400vh · 200vh por beat. §12 calibración. */
-  height: 400vh;
+  height: 1200vh;
   background: #0E1113;
   color: #EFEBDF;
 }
 
 .act2 {
-  /* Punto de partida 1100vh · ~220vh por beat. §12 calibración. */
-  height: 1100vh;
+  height: 2100vh;
   background: #F2F2F0;
   color: #0E1113;
 }
@@ -234,6 +237,17 @@
   object-fit: contain;
   opacity: 0;
   mix-blend-mode: multiply;
+  /* F2 §2.5 · el motor setea `transform: scale(X)` inline en cada
+     frame. Nada de transition · el estilo es función pura de p.
+     transform-origin depende del sujeto — el rostro del busto vs.
+     el lomo del libro. */
+  transform: scale(1);
+}
+.act2__art--bust {
+  transform-origin: 50% 28%;
+}
+.act2__art--book {
+  transform-origin: 42% 45%;
 }
 
 /* ══════════ Mobile · 900px y abajo ══════════
@@ -283,10 +297,10 @@
 
 @media (max-width: 700px) {
   .act1 {
-    height: 320vh;
+    height: 960vh;
   }
   .act2 {
-    height: 900vh;
+    height: 1680vh;
   }
 }
 

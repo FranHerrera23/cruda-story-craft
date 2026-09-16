@@ -72,14 +72,19 @@ export default function Act2WhyNow() {
           Story
         </p>
 
-        {/* Dibujo · seis capas sobre el papel, sin caja ni borde.
-            mix-blend-mode: multiply lleva el blanco a transparente. */}
+        {/* Dibujo · cinco capas sobre el papel, sin caja ni borde.
+            mix-blend-mode: multiply lleva el blanco a transparente.
+            F2 §2.5 · corte duro entre archivos (opacity 0/1) +
+            escala continua atada al progreso del acto. El
+            transform-origin lo dicta data-subject (bust · 50% 28%,
+            book · 42% 45%). */}
         <div className="act2__arts" aria-hidden="true">
           {ACT2_ARTS.map((a, i) => (
             <img
               key={a.name}
-              className="act2__art"
+              className={`act2__art act2__art--${a.subject}`}
               data-art={i}
+              data-subject={a.subject}
               src={`/why-now/${a.name}.png`}
               alt=""
               loading={i === 0 ? 'eager' : 'lazy'}

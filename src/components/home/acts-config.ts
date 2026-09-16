@@ -1,46 +1,68 @@
 /* Home · Acts · calibración
-   Brief 07 definitivo (15-sep) · §12 CALIBRACIÓN.
+   Brief de reconstrucción v1 (16-sep) · F2.
 
-   Los tres números que producen la sensación de peso viven acá,
+   Los números que producen la sensación de peso viven acá,
    juntos y comentados. Se ajustan mirando, no calculando.
 
-   ACT1_HEIGHT_VH   Altura del track del acto 1 (hero negro, dos
-                    beats). Punto de partida 400vh · 200vh por beat.
-                    → Se siente rápido = subir.
-                    → Se siente lento  = bajar.
+   ═══ Alturas ═══
 
-   ACT2_HEIGHT_VH   Altura del track del acto 2 (why-now paper,
-                    cinco beats). Punto de partida 1100vh · ~220vh
-                    por beat.
-                    → Igual que acto 1.
+   ACT1_HEIGHT_VH   1200vh · 2 beats.
+                    Geometría F2 §2.3:
+                      p 0.00 – 0.06   beat 1 settle
+                      p 0.06 – 0.44   beat 1 relleno
+                      p 0.44 – 0.52   hueco
+                      p 0.52 – 0.58   beat 2 settle
+                      p 0.58 – 0.92   beat 2 relleno
+                      p 0.92 – 1.00   salida
+                    Cero pantallas muertas salvo el hueco de 96vh.
 
-   FILL_PORTION     Fracción del rango del beat que consume el
-                    relleno. El 60% restante el beat queda quieto
-                    y lleno — la meseta que hace que la frase
-                    tenga tiempo (§4 del brief).
-                    → Punto de partida 0.4.
-                    → El beat se va apenas se llena = subir.
-                    → El beat se queda demasiado tiempo = bajar.
+   ACT2_HEIGHT_VH   2100vh · 5 beats · 420vh cada uno.
+                    F2 §2.4. Distribución interna:
+                      5 beats × 16% + 4 huecos × 5% = 100%
+                    Beats en [0.00, 0.16], [0.21, 0.37], [0.42, 0.58],
+                    [0.63, 0.79], [0.84, 1.00]. Huecos de 5% entre
+                    cada par.
 
-   Mobile · alturas más chicas porque el scroll es más corto por
-   gesto. Los rangos [from, to] son los mismos — el motor los lee
-   proporcionalmente al alto total del track. */
+   Mobile: alturas más chicas · gesto de scroll más corto. Los
+   rangos [from, to] son proporcionales al alto del track.
 
-export const ACT1_HEIGHT_VH = 400
-export const ACT2_HEIGHT_VH = 1100
-export const ACT1_HEIGHT_VH_MOBILE = 320
-export const ACT2_HEIGHT_VH_MOBILE = 900
+   ═══ Mecánica de relleno (F2 §2.1) ═══
 
-export const FILL_PORTION = 0.4
+   Dentro de la ventana de un beat con N líneas:
+     p_beat  0.00 – 0.08   settle · nada se mueve
+             0.08 – 0.92   relleno · N tramos iguales SIN SOLAPE
+             0.92 – 1.00   hold · todas al 100%
 
-/* ══════════ Copy · verbatim del Brief 07 §5 ══════════
+   línea i  inicio = 0.08 + 0.84 · (i     / N)
+            fin    = 0.08 + 0.84 · ((i+1) / N)
+
+   INVARIANTE: en cualquier p existe como máximo UNA línea con
+   --fill entre 0% y 100%. Ese es el test binario de F2.
+
+   FILL_PORTION se retira · era la meseta simétrica del brief 07
+   (fase 3B), reemplazada por settle/relleno/hold explícitos.
+
+   ═══ Cámara (F2 §2.5) ═══
+
+   La imagen cambia en el borde del beat, dentro del hueco.
+   La cámara se mueve todo el tiempo, atada al progreso del ACTO,
+   incluso en los tramos sin texto. Sin transition, sin animation.
+   Reset de escala al cambiar de archivo en el mismo frame que el
+   swap · corte duro, cero interpolación entre 1.45 y 1.85. */
+
+export const ACT1_HEIGHT_VH = 1200
+export const ACT2_HEIGHT_VH = 2100
+export const ACT1_HEIGHT_VH_MOBILE = 960
+export const ACT2_HEIGHT_VH_MOBILE = 1680
+
+/* ══════════ Copy · beats ══════════
    Cada beat es un array de líneas autorales. El motor genera un
    [data-line] por línea; el relleno barre línea a línea dentro
-   del rango del beat.
+   de la ventana [0.08, 0.92] del beat.
 
-   Las líneas ya están cortadas como Fran las escribió — el
-   quiebre autoral es intencional. En viewports muy chicos alguna
-   línea puede envolver visualmente; el clip-path aplica al
+   Las líneas están cortadas como Fran las escribió — el quiebre
+   autoral es intencional. En viewports muy chicos alguna línea
+   puede envolver visualmente; el clip-path del motor aplica al
    contenedor de la línea, así que el envuelto se rellena
    coherente. */
 
@@ -51,39 +73,39 @@ export type Beat = {
 }
 
 /* Acto 1 · hero negro. Dos beats. Cero imagen.
-   Motion v4 §1 — beat 1 arranca en 0, sin offset de entrada. Con
-   from=0 el motor pinta el beat activo desde el primer frame,
-   antes de cualquier scroll. Sin baseline visible al cargar era
-   un bug de estado inicial: el copy existía en el DOM pero
-   quedaba con visibility hidden y el watchdog no lo cazaba
-   porque a los 2000ms el elemento ya estaba "técnicamente
-   visible". */
+   Geometría F2 §2.3 · beat 1 [0.00, 0.44], beat 2 [0.52, 0.92].
+   Beat 1 arranca en 0 (Motion v4 §1) · sin baseline visible al
+   cargar era un bug de estado inicial. */
 export const ACT1_BEATS: Beat[] = [
-  { from: 0.00, to: 0.34, lines: ['Your company outgrew its own story.'] },
-  { from: 0.50, to: 0.78, lines: ['We build the next one.'] },
+  { from: 0.00, to: 0.44, lines: ['Your company outgrew its own story.'] },
+  { from: 0.52, to: 0.92, lines: ['We build the next one.'] },
 ]
 
 /* Acto 2 · why-now paper. Cinco beats.
    `To Himself` va en <em class="nowrap"> — no se puede partir.
-   El em-dash lleva &nbsp; adelante (§5 del brief).
+   El em-dash lleva &nbsp; adelante.
    Apóstrofes tipográficos con &rsquo;.
 
-   Motion v4 §1 — beat 1 arranca en 0. Mismo motivo que act 1:
-   al entrar al acto (rect.top ≈ 0), p=0 y el beat 01 tiene que
-   estar en rango. Antes empezaba en 0.04 y la primera pantalla
-   del acto quedaba muerta hasta el primer flick. */
+   Geometría F2 · 5 beats de 0.16 + 4 huecos de 0.05.
+
+   COPY · beat 1 línea 2 (F2 §2.7).
+   "Wars, plague, the whole weight of it." → "He was at war for
+   fourteen of them." Verificación histórica: Guerras Marcomanas
+   166–180 d.C. son 14 años. Reinado 161–180, 19 años. La guerra
+   pártica (161–166) se solapa pero es previa — la cifra
+   subestima. Publicable. */
 export const ACT2_BEATS: Beat[] = [
   {
     from: 0.00,
-    to: 0.20,
+    to: 0.16,
     lines: [
       'Marcus Aurelius ran the Roman Empire for nineteen years.',
-      'Wars, plague, the whole weight of it.',
+      'He was at war for fourteen of them.',
     ],
   },
   {
-    from: 0.24,
-    to: 0.40,
+    from: 0.21,
+    to: 0.37,
     lines: [
       'What survived isn&rsquo;t the empire. It&rsquo;s twelve notebooks he wrote in',
       'Greek and titled <em class="nowrap">To&nbsp;Himself</em>&nbsp;&mdash; not philosophy, just a man working',
@@ -91,8 +113,8 @@ export const ACT2_BEATS: Beat[] = [
     ],
   },
   {
-    from: 0.44,
-    to: 0.60,
+    from: 0.42,
+    to: 0.58,
     lines: [
       'You have a version of that. It lives in your head, in rooms you&rsquo;ve',
       'walked into, in decisions you made so long ago you stopped',
@@ -100,8 +122,8 @@ export const ACT2_BEATS: Beat[] = [
     ],
   },
   {
-    from: 0.64,
-    to: 0.80,
+    from: 0.63,
+    to: 0.79,
     lines: [
       'And you&rsquo;re too close to see it. Anyone who does something',
       'exceptional every day eventually files it under normal.',
@@ -118,71 +140,71 @@ export const ACT2_BEATS: Beat[] = [
 ]
 
 /* ══════════ Arts · dibujos del acto 2 ══════════
-   Motion v5 · Fase 3A (15-sep). Cinco capas apiladas, opacity
-   como función de p con rampas de entrada [in0, in1] y salida
-   [out0, out1] alineadas a los cinco beats.
+   F2 §2.5 · corte duro entre archivos + escala continua sobre p
+   del acto.
 
-   ORDEN CORREGIDO (Motion v5 §1). Dos rampas ascendentes.
-   Dentro de cada sujeto la tinta solo suma:
-
-       01  bust  line art limpio    ░       (el contorno)
-       02  bust  grabado denso     ███      (grabado completo)
-       ╎  corte de sujeto en el hueco 02→03 ╎
-       03  book  line art limpio    ░       (el contorno)
-       04  book  denso + fantasma  ██▓      (entra la trama)
-       05  book  grabado denso     ███      (volumen terminado)
-
-   Mapping de los nombres descriptivos del brief a los archivos
-   reales del repo (comprobado midiendo densidad de tinta · Fran
-   addendum 15-sep · ningún archivo se borra):
-
-       bust · line    → public/why-now/bust-03-min.png    · 10.1% dark
-       bust · dense   → public/why-now/bust-01-dense.png  · 30.8% dark
-       book · line    → public/why-now/book-03-min.png    ·  3.0% dark
-       book · ghost   → public/why-now/book-02-mid.png    ·  6.7% dark
-       book · dense   → public/why-now/book-01-dense.png  · 69.1% dark
+   Mapping de nombres descriptivos a archivos reales del repo
+   (comprobado midiendo densidad de tinta · 15-sep):
+     bust · line    → public/why-now/bust-03-min.png    · 10.1% dark
+     bust · dense   → public/why-now/bust-01-dense.png  · 30.8% dark
+     book · line    → public/why-now/book-03-min.png    ·  3.0% dark
+     book · ghost   → public/why-now/book-02-mid.png    ·  6.7% dark
+     book · dense   → public/why-now/book-01-dense.png  · 69.1% dark
 
    Los sufijos de archivo NO mienten · la densidad se verifica
-   midiendo área oscura, no a ojo. `bust-02-mid` parece más
-   denso al ojo porque tiene detalle fino (puntillismo), pero
-   cubre menos área oscura que `bust-01-dense`. El commit
-   anterior (3253008) dejó escrito "el naming miente" — estaba
-   mal y quedó ahí un tramo de rampa invisible: min→mid iba de
-   10.1% a 12.3%, dos puntos de diferencia, se leía como la
-   misma imagen dos veces. Con min→dense la rampa va de 10.1%
-   a 30.8% y sí se ve.
+   midiendo área oscura, no a ojo.
 
-   `bust-02-mid.png` queda en el repo (regla del brief) pero
-   fuera del array — es la variante intermedia que sale ahora.
-
-   RANGOS. Alineados a los beats de ACT2_BEATS:
-       beat 01  0.00 ─ 0.20    ⇢ art 01
-       hueco    0.20 ─ 0.24    ⇢ cross-fade 01→02
-       beat 02  0.24 ─ 0.40    ⇢ art 02
-       hueco    0.40 ─ 0.44    ⇢ cross-fade 02→03 (corte de sujeto)
-       beat 03  0.44 ─ 0.60    ⇢ art 03
-       hueco    0.60 ─ 0.64    ⇢ cross-fade 03→04
-       beat 04  0.64 ─ 0.80    ⇢ art 04
-       hueco    0.80 ─ 0.84    ⇢ cross-fade 04→05
-       beat 05  0.84 ─ 1.00    ⇢ art 05
-
-   Motion v5 Fase 3B (todavía sin arrancar) convierte el
-   cross-fade del corte de sujeto (02→03) en corte duro dentro
-   del hueco, sin fundido. Para 3A queda cross-fade en todos —
-   "un array, nada más" (Motion v5 §1 implementación). */
+   ═══ Rangos y escalas ═══
+   Cada art es activo desde su `start` hasta el `start` del
+   siguiente (o 1.01 para el último). Dentro de esa ventana la
+   escala interpola linealmente de startScale a endScale. Reset
+   al cambio de archivo en el mismo frame · corte duro. */
 
 export type Art = {
   name: string
-  in0: number
-  in1: number
-  out0: number
-  out1: number
+  subject: 'bust' | 'book'
+  start: number
+  end: number
+  startScale: number
+  endScale: number
 }
 
 export const ACT2_ARTS: Art[] = [
-  { name: 'bust-03-min',   in0: 0.00, in1: 0.00, out0: 0.20, out1: 0.24 },
-  { name: 'bust-01-dense', in0: 0.20, in1: 0.24, out0: 0.40, out1: 0.44 },
-  { name: 'book-03-min',   in0: 0.40, in1: 0.44, out0: 0.60, out1: 0.64 },
-  { name: 'book-02-mid',   in0: 0.60, in1: 0.64, out0: 0.80, out1: 0.84 },
-  { name: 'book-01-dense', in0: 0.80, in1: 0.84, out0: 1.00, out1: 1.01 },
+  { name: 'bust-03-min',   subject: 'bust', start: 0.00, end: 0.21, startScale: 1.90, endScale: 1.55 },
+  { name: 'bust-01-dense', subject: 'bust', start: 0.21, end: 0.42, startScale: 1.85, endScale: 1.45 },
+  { name: 'book-03-min',   subject: 'book', start: 0.42, end: 0.63, startScale: 1.80, endScale: 1.50 },
+  { name: 'book-02-mid',   subject: 'book', start: 0.63, end: 0.84, startScale: 1.40, endScale: 1.20 },
+  { name: 'book-01-dense', subject: 'book', start: 0.84, end: 1.01, startScale: 1.00, endScale: 1.00 },
 ]
+
+/* ══════════ Cámara · orígenes por sujeto (F2 §2.5) ══════════
+   El punto de interés del busto es el rostro; el del libro, el
+   lomo. Se ajustan mirando, no calculando. */
+
+export const CAMERA_ORIGIN = {
+  bust: '50% 28%',
+  book: '42% 45%',
+} as const
+
+/* ══════════ Lenis · parámetros (F2 §2.6) ══════════
+   wheelMultiplier NO se toca (queda en 0.35).
+   duration en el acto · 2.00.
+   duration fuera del acto · 1.70.
+   lerp · 0.075 (nuevo).
+
+   Interpolación entre juegos de parámetros sobre 400ms al
+   entrar/salir del acto. Motor la maneja. */
+
+export const LENIS_IN_ACT = {
+  wheelMultiplier: 0.35,
+  duration: 2.0,
+  lerp: 0.075,
+} as const
+
+export const LENIS_OUT_ACT = {
+  wheelMultiplier: 0.9,
+  duration: 1.7,
+  lerp: 0.075,
+} as const
+
+export const LENIS_INTERP_MS = 400

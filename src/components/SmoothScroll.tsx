@@ -41,8 +41,15 @@ export default function SmoothScroll() {
       history.scrollRestoration = 'manual'
     }
 
+    /* Motion v6 F2 §2.6 — parámetros globales fuera del acto:
+         duration 1.7 (subió de 1.4), wheelMultiplier 0.9 (queda),
+         lerp 0.075 (nuevo).
+       Dentro del acto el motor los baja a 0.35 / 2.0 / 0.075 con
+       interpolación 400ms. Los valores acá son la base a la que
+       la interpolación vuelve al salir. */
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 1.7,
+      lerp: 0.075,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       wheelMultiplier: 0.9,

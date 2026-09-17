@@ -179,9 +179,13 @@
   color: #0E1113;
 }
 
-/* La línea es el bloque relative — la lit se posiciona absolute
-   sobre el dim. Cada [data-line] recibe --fill del motor y su lit
-   se clipea por línea, en orden. */
+/* La línea autoral es el bloque relative — la lit se posiciona
+   absolute sobre el dim. F2-FIX bug 1 (17-sep) · el clip-path
+   pasa del .lit al .rv-line. Sin ese cambio el clip aplicaba al
+   bloque envuelto entero (una banda vertical que cortaba todas
+   las visual lines en el mismo X), causando "línea 1 encendida,
+   línea 2 a medias, línea 3 encendida" en beats con líneas que
+   envolvían. */
 .beat__line {
   position: relative;
   display: block;
@@ -195,7 +199,30 @@
   inset: 0;
   display: block;
   opacity: 1;
+}
+
+/* Cada .rv-line (producida por LineReveals) es una visual line
+   real, con su propio ancho medido al renderizar. clip-path va
+   aquí, no en .lit. El motor setea --fill sobre esta .rv-line.
+   El fallback var(--fill, 0%) es intencional: mientras
+   LineReveals no partió el .lit (frames iniciales, sin JS,
+   reduced motion), no hay .rv-line y no pasa nada · el .dim
+   queda visible en su 22% y el copy se lee. */
+.beat__line .lit .rv-line {
+  display: block;
   clip-path: inset(0 calc(100% - var(--fill, 0%)) 0 0);
+}
+/* El span interno que agrega LineReveals no debe agregar layout ·
+   los actos no usan el translateY/opacity de los reveals globales.
+   Motion v4 §3B (retirado en v5) ya había desarmado la transición
+   para el escenario; para F2-FIX repetimos la limpieza sobre el
+   nuevo split. */
+.beat__line .lit .rv-line > span {
+  display: block;
+  transform: none;
+  transition: none;
+  opacity: 1;
+  will-change: auto;
 }
 
 /* La italic de "To Himself" no puede partirse. */

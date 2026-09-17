@@ -156,14 +156,13 @@ function installResizeListener() {
 type LenisOptions = {
   wheelMultiplier: number
   duration: number
-  lerp?: number
 }
 
 let actsInView = 0
 let interpFrom: LenisOptions = { ...LENIS_OUT_ACT }
 let interpAnimId: number | null = null
 
-type LenisRef = { options: { wheelMultiplier: number; duration: number; lerp?: number } }
+type LenisRef = { options: { wheelMultiplier: number; duration: number } }
 
 function getLenis(): LenisRef | null {
   if (typeof window === 'undefined') return null
@@ -176,7 +175,6 @@ function setLenisRaw(opts: LenisOptions) {
   if (!lenis?.options) return
   lenis.options.wheelMultiplier = opts.wheelMultiplier
   lenis.options.duration = opts.duration
-  if (opts.lerp !== undefined) lenis.options.lerp = opts.lerp
 }
 
 function interpolateLenis(to: LenisOptions) {
@@ -186,17 +184,12 @@ function interpolateLenis(to: LenisOptions) {
   const step = () => {
     const now = performance.now()
     const t = Math.min(1, (now - start) / LENIS_INTERP_MS)
-    /* easeOutCubic · rápido al arranque, se asienta suave. */
     const ease = 1 - Math.pow(1 - t, 3)
     const current: LenisOptions = {
       wheelMultiplier:
         from.wheelMultiplier +
         (to.wheelMultiplier - from.wheelMultiplier) * ease,
       duration: from.duration + (to.duration - from.duration) * ease,
-      lerp:
-        from.lerp !== undefined && to.lerp !== undefined
-          ? from.lerp + (to.lerp - from.lerp) * ease
-          : to.lerp,
     }
     setLenisRaw(current)
     interpFrom = current
@@ -264,7 +257,18 @@ export function runAct({ track, beats, arts = [], totalBeats }: RunActOptions) {
 
     let active = -1
 
-    /* ── Beats · fill secuencial con snap a palabra ── */
+    /* ── Beats · fill secuencial con snap a palabra ──
+       F2-FIX bug 1 (17-sep) · iteración pasa de `[data-line]`
+       (línea autoral) a `.lit .rv-line` (visual line real medida
+       por LineReveals). Cada .rv-line recibe su propio --fill y
+       su clip-path aplica sobre su propio bounding box · nunca
+       una banda compartida.
+
+       Antes de que LineReveals split-tee las .lit, el motor no
+       encuentra .rv-line y no setea nada · el .dim queda visible
+       en su 22% y el copy se lee. Cuando LineReveals termina
+       (evento cruda:lines-ready o resize), la próxima frame de
+       scroll ya escribe los fills. */
     beats.forEach((b, i) => {
       const el = beatEls[i]
       if (!el) return
@@ -274,8 +278,8 @@ export function runAct({ track, beats, arts = [], totalBeats }: RunActOptions) {
       active = i
 
       const localP = clamp((p - b.from) / (b.to - b.from), 0, 1)
-      const lines = el.querySelectorAll<HTMLElement>('[data-line]')
-      const N = lines.length
+      const visualLines = el.querySelectorAll<HTMLElement>('.lit .rv-line')
+      const N = visualLines.length
       if (N === 0) return
 
       let phase: 'settle' | 'relleno' | 'hold'
@@ -290,7 +294,7 @@ export function runAct({ track, beats, arts = [], totalBeats }: RunActOptions) {
           (localP - SETTLE_END) / (RELLENO_END - SETTLE_END)
       }
 
-      lines.forEach((ln, j) => {
+      visualLines.forEach((rvLine, j) => {
         let rawFill: number
         if (phase === 'settle') {
           rawFill = 0
@@ -306,10 +310,10 @@ export function runAct({ track, beats, arts = [], totalBeats }: RunActOptions) {
               ((rellenoLocal - lineStart) / (lineEnd - lineStart)) * 100
         }
 
-        /* Snap a borde de palabra sobre la copia .lit. */
-        const litEl = ln.querySelector<HTMLElement>('.lit')
-        const snapped = litEl ? snapToWord(litEl, rawFill) : rawFill
-        ln.style.setProperty('--fill', snapped + '%')
+        /* Snap a borde de palabra sobre la .rv-line misma · sus
+           bounds coinciden con su ancho renderizado. */
+        const snapped = snapToWord(rvLine, rawFill)
+        rvLine.style.setProperty('--fill', snapped + '%')
       })
     })
 

@@ -73,9 +73,18 @@ export default function Act1Hero() {
                     className="dim"
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
+                  {/* F2-FIX bug 1 · data-reveal="lines" hace que
+                      LineReveals parta el .lit en <span class="rv-line">
+                      por VISUAL line real (medido al ancho renderizado),
+                      no por línea autoral. Cada .rv-line recibe su
+                      propio --fill y su propio clip-path. Sin este split
+                      el clip-path aplica al bloque entero de la línea
+                      autoral y produce el bug del corte mid-palabra en
+                      líneas envueltas. */}
                   <span
                     className="lit"
                     aria-hidden="true"
+                    data-reveal="lines"
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
                 </div>

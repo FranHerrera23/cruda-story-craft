@@ -141,7 +141,23 @@ export const ACT2_BEATS: Beat[] = [
 
 /* ══════════ Arts · dibujos del acto 2 ══════════
    F2 §2.5 · corte duro entre archivos + escala continua sobre p
-   del acto.
+   del acto DENTRO DE CADA BEAT. F2-FIX bug 3 (17-sep) · la
+   escala es constante DENTRO DE CADA FAMILIA (busto vs. libro).
+   Antes cada beat tenía su propia escala descendente a lo largo
+   del acto (1.90, 1.85, 1.80...) · eso rompía la ilusión central:
+   la imagen se leía como cinco dibujos distintos en lugar de un
+   dibujo que gana detalle.
+
+   Ahora todos los busts comparten (startScale, endScale) y todos
+   los books comparten otro (startScale, endScale). El salto entre
+   beats es de DETALLE (line → dense), no de ENCUADRE.
+
+   Valores elegidos para que el dibujo entre completo en el
+   viewport pero con una cámara viva:
+     bust  1.20 → 1.05   pull-back del 15% dentro de cada beat
+     book  1.20 → 1.05   idem
+   Iguales entre familias · el sistema no distingue busto de
+   libro por escala, solo por transform-origin.
 
    Mapping de nombres descriptivos a archivos reales del repo
    (comprobado midiendo densidad de tinta · 15-sep):
@@ -152,13 +168,7 @@ export const ACT2_BEATS: Beat[] = [
      book · dense   → public/why-now/book-01-dense.png  · 69.1% dark
 
    Los sufijos de archivo NO mienten · la densidad se verifica
-   midiendo área oscura, no a ojo.
-
-   ═══ Rangos y escalas ═══
-   Cada art es activo desde su `start` hasta el `start` del
-   siguiente (o 1.01 para el último). Dentro de esa ventana la
-   escala interpola linealmente de startScale a endScale. Reset
-   al cambio de archivo en el mismo frame · corte duro. */
+   midiendo área oscura, no a ojo. */
 
 export type Art = {
   name: string
@@ -170,11 +180,11 @@ export type Art = {
 }
 
 export const ACT2_ARTS: Art[] = [
-  { name: 'bust-03-min',   subject: 'bust', start: 0.00, end: 0.21, startScale: 1.90, endScale: 1.55 },
-  { name: 'bust-01-dense', subject: 'bust', start: 0.21, end: 0.42, startScale: 1.85, endScale: 1.45 },
-  { name: 'book-03-min',   subject: 'book', start: 0.42, end: 0.63, startScale: 1.80, endScale: 1.50 },
-  { name: 'book-02-mid',   subject: 'book', start: 0.63, end: 0.84, startScale: 1.40, endScale: 1.20 },
-  { name: 'book-01-dense', subject: 'book', start: 0.84, end: 1.01, startScale: 1.00, endScale: 1.00 },
+  { name: 'bust-03-min',   subject: 'bust', start: 0.00, end: 0.21, startScale: 1.20, endScale: 1.05 },
+  { name: 'bust-01-dense', subject: 'bust', start: 0.21, end: 0.42, startScale: 1.20, endScale: 1.05 },
+  { name: 'book-03-min',   subject: 'book', start: 0.42, end: 0.63, startScale: 1.20, endScale: 1.05 },
+  { name: 'book-02-mid',   subject: 'book', start: 0.63, end: 0.84, startScale: 1.20, endScale: 1.05 },
+  { name: 'book-01-dense', subject: 'book', start: 0.84, end: 1.01, startScale: 1.20, endScale: 1.05 },
 ]
 
 /* ══════════ Cámara · orígenes por sujeto (F2 §2.5) ══════════
@@ -186,11 +196,16 @@ export const CAMERA_ORIGIN = {
   book: '42% 45%',
 } as const
 
-/* ══════════ Lenis · parámetros (F2 §2.6) ══════════
-   wheelMultiplier NO se toca (queda en 0.35).
+/* ══════════ Lenis · parámetros (F2 §2.6 · corregido F2-FIX 17-sep) ══════════
+   wheelMultiplier NO se toca (0.35 dentro / 0.9 fuera).
    duration en el acto · 2.00.
    duration fuera del acto · 1.70.
-   lerp · 0.075 (nuevo).
+
+   `lerp` SE RETIRA (F2-FIX bug 2). En Lenis, lerp y duration son
+   mutuamente excluyentes; con lerp presente, duration se ignora
+   y el scroll pasa a interpolación exponencial asintótica. Con
+   wheelMultiplier: 0.35 eso da la sensación de "traba y queda a
+   mitad de letra". El peso del scroll viene de duration.
 
    Interpolación entre juegos de parámetros sobre 400ms al
    entrar/salir del acto. Motor la maneja. */
@@ -198,13 +213,11 @@ export const CAMERA_ORIGIN = {
 export const LENIS_IN_ACT = {
   wheelMultiplier: 0.35,
   duration: 2.0,
-  lerp: 0.075,
 } as const
 
 export const LENIS_OUT_ACT = {
   wheelMultiplier: 0.9,
   duration: 1.7,
-  lerp: 0.075,
 } as const
 
 export const LENIS_INTERP_MS = 400

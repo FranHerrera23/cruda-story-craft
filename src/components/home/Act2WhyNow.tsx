@@ -103,9 +103,14 @@ export default function Act2WhyNow() {
                     className="dim"
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
+                  {/* F2-FIX bug 1 · ver comentario en Act1Hero.tsx.
+                      LineReveals parte el .lit en .rv-line por línea
+                      visual real, cada una con su clip-path y su
+                      ventana temporal. */}
                   <span
                     className="lit"
                     aria-hidden="true"
+                    data-reveal="lines"
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
                 </div>

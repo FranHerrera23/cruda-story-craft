@@ -1,28 +1,23 @@
 import WorkCard from './WorkCard'
+import { computeWorkStats } from '@/content/home/stats'
 import './work-card.css'
 import './selected-work.css'
 
-/* Home · Selected Work — brief 12-sep §6.3.
+/* Home · Selected Work — brief 12-sep §6.3 · v6 F4 (17-sep).
 
    Estructura:
      eyebrow  "SELECTED WORK"
-     dek      "Eight founders, each at the point where..."
-     grid     3/2/1 cols con align-items:start (cards de altura
-              distinta no se estiran a la fila entera).
+     dek      "N founders, each at the point where..."  (derivado)
+     grid     3/2/1 cols con align-items:start.
 
-   Cards con draft:true no se rederean — el flag sigue existiendo
-   por si un caso hay que ocultar en el futuro, pero las cards sin
-   foto ya no se marcan como draft: van con placeholder:true (Fran
-   15-sep · ledger 23 · "sin FOTO la card se queda").
+   Rule 25 (ledger, 16-sep) · el dek deriva el número de
+   founders del count de cards visibles. Antes decía "Eight
+   founders" con 9 cards renderizando · ese era el bug canónico
+   que motivó la regla. Ahora el número se ajusta solo si una
+   card entra o sale.
 
-   ID de la sección: `selected-work` — ancla que apunta el nav y
-   el link "See the work" de /our-founder.
-
-   Contradicción viva con el dek · con INOUT y Mistiva restauradas
-   (addendum 15-sep) hoy hay 9 cards visibles y el dek dice
-   "Eight founders". Bug vivo del §9 del v5 · no se corrige acá
-   porque el número final depende de si Arman/BAUHOME queda o
-   sale (decisión de Fran, arrastra el dek). */
+   Cards con draft:true no se rederean. Las cards sin foto van
+   con placeholder:true (Fran 15-sep · ledger 23). */
 
 export type WorkCardData = {
   name: string
@@ -51,13 +46,14 @@ export default function SelectedWork({
   cards?: WorkCardData[]
 }) {
   const visible = cards.filter((c) => !c.draft)
+  const stats = computeWorkStats(cards)
   return (
     <section id="selected-work" className="home-work">
       <div className="home-work__inner">
         <p className="home-work__eyebrow">Selected Work</p>
         <p className="home-work__dek">
-          Eight founders, each at the point where what they built
-          stopped explaining itself.
+          {stats.foundersWord} founders, each at the point where what
+          they built stopped explaining itself.
         </p>
         <div className="work-grid">
           {visible.map((card, i) => (

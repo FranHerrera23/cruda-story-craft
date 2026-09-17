@@ -1,0 +1,74 @@
+/* Home · LEGACY (v6 F4 §4.2)
+   Retrato + copy. Grilla técnica continua sobre paper (§P1). */
+
+.home-legacy {
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: var(--s5) var(--pad);
+  color: var(--ink);
+}
+.home-legacy__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 80px);
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .home-legacy__inner {
+    grid-template-columns: 1fr;
+    gap: var(--s3);
+  }
+}
+
+/* 4:5 vertical, mismo crop que las cards de work (WorkCard §6.3).
+   La imagen ocupa ~180-240px de ancho, no media pantalla. Escala
+   de firma, no de portada. */
+.home-legacy__portrait {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.home-legacy__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  filter: grayscale(1);
+  display: block;
+}
+
+.home-legacy__body {
+  max-width: 62ch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+.home-legacy__name {
+  font-family: var(--grot);
+  font-weight: 700;
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+  color: var(--ink);
+  margin: 0;
+}
+.home-legacy__role {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  margin: 0 0 var(--s2);
+}
+.home-legacy__copy {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  max-width: 60ch;
+}

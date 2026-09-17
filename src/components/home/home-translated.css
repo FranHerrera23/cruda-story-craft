@@ -1,0 +1,142 @@
+/* Home · TRANSLATED (v6 F4 §4.3)
+   Bloque de posicionamiento largo. Grilla técnica continua. */
+
+.home-translated {
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: var(--s5) var(--pad);
+  color: var(--ink);
+}
+.home-translated__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+.home-translated__eyebrow {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 var(--s3);
+}
+
+.home-translated__h2 {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 52px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0 0 clamp(32px, 4vh, 64px);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+.home-translated__prose {
+  max-width: 62ch;
+}
+.home-translated__prose p {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 var(--s2);
+}
+.home-translated__prose p:last-child {
+  margin-bottom: 0;
+}
+.home-translated__prose--tight p {
+  margin-bottom: 0;
+}
+.home-translated__prose--close p {
+  font-size: clamp(18px, 1.3vw, 22px);
+}
+
+/* Rule del sistema · separa cada sub-bloque del brief.
+   1px al 12% del ink · patrón consistente con proof, /process. */
+.home-translated__rule {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  margin: clamp(40px, 6vh, 80px) 0;
+}
+
+.home-translated__section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vh, 24px);
+}
+
+.home-translated__section-label {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 60%, transparent);
+  margin: 0;
+}
+
+.home-translated__count {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 1.3;
+  color: var(--ink);
+  margin: var(--s1) 0 0;
+}
+
+/* Números de Karen · tres celdas en fila. */
+.home-translated__numbers {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  margin: var(--s1) 0 var(--s2);
+}
+@media (min-width: 720px) {
+  .home-translated__numbers {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.home-translated__num {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+.home-translated__num-value {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.home-translated__num-label {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.home-translated__attribution {
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+.home-translated__sources {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink);
+  opacity: .55;
+  margin: 0;
+}

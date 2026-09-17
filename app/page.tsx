@@ -2,43 +2,49 @@ import type { Metadata } from 'next';
 import Act1Hero from '@/components/home/Act1Hero';
 import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
-import TranslationInPractice from '@/components/home/TranslationInPractice';
+import HomeLegacy from '@/components/home/HomeLegacy';
+import HomeTranslated from '@/components/home/HomeTranslated';
+import HomeWhatOthers from '@/components/home/HomeWhatOthers';
+import HomeFit from '@/components/home/HomeFit';
 import HomeFirst90 from '@/components/home/HomeFirst90';
 import Proof from '@/components/Proof';
 import HomeTestimonial from '@/components/home/HomeTestimonial';
-import HomeEssays from '@/components/home/HomeEssays';
 import HomeClose from '@/components/home/HomeClose';
 import HomeChrome from '@/components/home/HomeChrome';
 import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). Brief 07 definitivo · rebuild 15-sep.
+   CRUDA — Home (`/`). v6 F4 · orden nuevo (17-sep).
 
-   Dos actos, no uno. El brief 07 (v1 + v2 + b + c) queda anulado
-   por Brief 07 definitivo. El escenario único con siete beats se
-   parte en dos:
-     · Act 1 · hero negro · 400vh · 2 beats · sin imagen
-     · Act 2 · why-now paper · 1100vh · 5 beats · seis dibujos
-       con mix-blend-mode: multiply sobre el papel
+   Cambia el orden y agrega cuatro bloques nuevos. Retira ESSAYS
+   de la home (autorizado por Fran, v6 F4 §4.1; /essays sigue
+   como página y en el footer). Retira TranslationInPractice (lo
+   reemplaza TRANSLATED).
 
-   La meseta (Brief 07 §4). El relleno de cada beat consume solo
-   FILL_PORTION del rango; el resto el beat queda quieto y lleno.
-   Esa quietud le da tiempo a la frase.
+   Orden:
+     1.  act 1              NEGRO · scrub · hero (2 beats)
+     2.  act 2              PAPER · scrub · why-now (5 beats)
+     3.  selected-work
+     4.  LEGACY             ← NUEVO · retrato de Fran + lista
+                              in-house/agency (v6 F4 §4.2)
+     5.  TRANSLATED         ← NUEVO · reemplaza translation-in-practice
+                              (v6 F4 §4.3)
+     6.  WHAT OTHERS        ← NUEVO · cobertura ganada
+                              (v6 F4 §4.4)
+     7.  FIT                ← NUEVO · registro de observación
+                              (v6 F4 §4.5)
+     8.  first-90
+     9.  proof (compact)
+     10. testimonial        NEGRO · segundo bloque inverso
+     11. close
 
-   Orden nuevo:
-     1. act 1              ← NEGRO · scrub · hero
-     2. act 2              ← PAPER · scrub · why-now
-     3. selected-work
-     4. translation-in-practice
-     5. first-90
-     6. proof
-     7. testimonial        ← NEGRO · segundo bloque inverso
-     8. essays
-     9. close
+   ESSAYS · sale de la home (v6 F4 §4.1 · instrucción explícita
+   de retiro, regla 23 respetada con brief). /essays sigue en el
+   footer.
 
-   Dos bloques inversos por página siguen siendo la regla (act 1
-   y testimonial). Ledger #19.
+   Dos bloques inversos por página siguen siendo la regla
+   (act 1 y testimonial). Ledger #19.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
@@ -65,11 +71,13 @@ export default function HomePage() {
       <Act1Hero />
       <Act2WhyNow />
       <SelectedWork cards={selectedWorkCards} />
-      <TranslationInPractice />
+      <HomeLegacy />
+      <HomeTranslated />
+      <HomeWhatOthers />
+      <HomeFit />
       <HomeFirst90 />
       <Proof variant="compact" />
       <HomeTestimonial />
-      <HomeEssays />
       <HomeClose />
     </>
   );

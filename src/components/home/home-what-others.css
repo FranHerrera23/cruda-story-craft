@@ -1,0 +1,98 @@
+/* Home · WHAT OTHER PEOPLE STARTED SAYING (v6 F4 §4.4) */
+
+.home-what-others {
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: var(--s5) var(--pad);
+  color: var(--ink);
+}
+.home-what-others__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+.home-what-others__eyebrow {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 var(--s3);
+}
+
+.home-what-others__rule {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  margin: clamp(32px, 4vh, 56px) 0;
+}
+
+.home-what-others__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+}
+
+.home-what-others__prose {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* Logos como slot marcado con corchetes. El slot renderea como
+   texto placeholder hasta que llegue el asset. El brief autoriza
+   este formato · no se descarga logo de internet, no se estiliza
+   texto para que parezca logo. */
+.home-what-others__logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(16px, 2vw, 32px);
+  align-items: center;
+  margin-top: var(--s1);
+}
+.home-what-others__logo {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  padding: 12px 20px;
+  border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+}
+.home-what-others__logo--img {
+  padding: 4px;
+  border: 0;
+}
+.home-what-others__logo--img img {
+  height: 32px;
+  width: auto;
+  display: block;
+  filter: grayscale(1);
+}
+
+.home-what-others__meta {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.4;
+  color: var(--ink);
+  margin: 0;
+}
+
+.home-what-others__attribution {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: .05em;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  margin: 0;
+}

@@ -6,15 +6,20 @@ import { runAct, enterAct, leaveAct } from './acts-motor'
 import './acts.css'
 
 /* Home · Act 1 · Hero
-   Brief 07 definitivo (15-sep) · §2.
+   Brief F8 (17-sep) · §1 · modelo phrase.
 
-   Fondo #0E1113 con grilla técnica. Sticky 100svh. Dos beats con
-   copy verbatim del §5. Sin imagen, sin contador, sin etiqueta.
-   Solo la frase.
+   Fondo #0E1113 con grilla técnica. Sticky 100svh. Dos beats
+   con copy verbatim. Sin imagen, sin contador, sin etiqueta.
 
-   SSR — los dos beats van en el HTML servido con su copia dim
-   (§9 regla 11). El lit se rellena por scrub cuando el JS carga;
-   sin JS el dim se lee y el sitio funciona. */
+   Modelo phrase (F8 §1) · cada beat es una frase completa que
+   entra, se sostiene y sale por opacity + translateY, atado al
+   scroll. Sin `.dim`/`.lit`, sin clip-path, sin snap a palabra,
+   sin LineReveals. La frase o está o no está.
+
+   SSR · las dos frases van en el HTML servido. Sin JS el CSS
+   fallback las deja en opacity 1 (todo el copy legible). Con
+   JS, .js .act1 .beat arranca en opacity 0 y el motor pinta el
+   primer frame en menos de un rAF. */
 
 export default function Act1Hero() {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -29,9 +34,12 @@ export default function Act1Hero() {
     const track = trackRef.current
     if (!track) return
 
-    const cleanup = runAct({ track, beats: ACT1_BEATS })
+    const cleanup = runAct({
+      track,
+      beats: ACT1_BEATS,
+      mode: 'phrase',
+    })
 
-    /* Lenis quiet mientras el acto está en viewport (§8). */
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -46,8 +54,6 @@ export default function Act1Hero() {
     return () => {
       cleanup()
       io.disconnect()
-      /* Si el componente se desmonta con el acto en viewport,
-         soltamos el contador para no dejar Lenis en modo quiet. */
       leaveAct()
     }
   }, [])
@@ -62,32 +68,16 @@ export default function Act1Hero() {
         <div className="act__grid" aria-hidden="true" />
         <div className="act__beats">
           {ACT1_BEATS.map((beat, i) => (
-            /* data-beat es 1-indexed · Motion v4 §1 no-flash usa
-               `[data-beat="1"]` como selector del primer beat. El
-               motor querySelectorAll('[data-beat]') no depende del
-               valor, sólo de la presencia del atributo. */
+            /* data-beat 1-indexed · el motor querySelectorAll(
+               '[data-beat]') encuentra el elemento y le aplica
+               opacity + --ty por scroll. */
             <div key={i} className="beat beat--dark" data-beat={i + 1}>
               {beat.lines.map((html, j) => (
-                <div key={j} className="beat__line" data-line>
-                  <span
-                    className="dim"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                  />
-                  {/* F2-FIX bug 1 · data-reveal="lines" hace que
-                      LineReveals parta el .lit en <span class="rv-line">
-                      por VISUAL line real (medido al ancho renderizado),
-                      no por línea autoral. Cada .rv-line recibe su
-                      propio --fill y su propio clip-path. Sin este split
-                      el clip-path aplica al bloque entero de la línea
-                      autoral y produce el bug del corte mid-palabra en
-                      líneas envueltas. */}
-                  <span
-                    className="lit"
-                    aria-hidden="true"
-                    data-reveal="lines"
-                    dangerouslySetInnerHTML={{ __html: html }}
-                  />
-                </div>
+                <p
+                  key={j}
+                  className="beat__phrase"
+                  dangerouslySetInnerHTML={{ __html: html }}
+                />
               ))}
             </div>
           ))}

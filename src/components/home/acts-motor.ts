@@ -1,37 +1,39 @@
 /* Home · Acts · motor
-   Brief de reconstrucción v1 (16-sep) · F2.
+   Brief F8 (17-sep) · dos modos en un motor.
 
-   Uno por acto, mismo código. Cero transition y cero animation
-   en el CSS de los actos. Todo el movimiento es función de `p`
-   sobre el track, escrito cada frame.
+   Cero transition y cero animation en el CSS de los actos. Todo
+   el movimiento es función de `p` sobre el track, escrito cada
+   frame.
 
-   ═══ Relleno secuencial (F2 §2.1) ═══
+   ═══ Modo 'phrase' · act 1 (F8 §1) ═══
 
-   Dentro de la ventana de un beat con N líneas:
-     p_beat  0.00 – 0.08   settle · nada se mueve
-             0.08 – 0.92   relleno · N tramos iguales SIN SOLAPE
-             0.92 – 1.00   hold · todas al 100%
+   Cada beat es una frase completa. Dentro de la ventana
+   [from, to] del beat, con local p:
+       0.00 – 0.15   enter · opacity 0→1, ty +16px→0
+       0.15 – 0.85   hold  · opacity 1, ty 0
+       0.85 – 1.00   exit  · opacity 1→0, ty 0→-16px
+   Fuera de la ventana · opacity 0. Sin fill, sin snap, sin
+   LineReveals · una sola opacidad por beat.
+
+   ═══ Modo 'progressive' · act 2 (F2 §2.1) ═══
+
+   Relleno secuencial dentro de la ventana [from, to] del beat
+   con N líneas visuales:
+     local p  0.00 – 0.08   settle · nada se mueve
+              0.08 – 0.92   relleno · N tramos SIN SOLAPE
+              0.92 – 1.00   hold · todas al 100%
 
      línea i  inicio_relleno_local = i     / N
               fin_relleno_local    = (i+1) / N
 
-   INVARIANTE: en cualquier p existe como máximo UNA línea con
-   --fill entre 0% y 100%. Ese es el test binario de F2.
+   Snap a borde de palabra sobre la .rv-line (medido con Range
+   API, cacheado, invalidado en resize + document.fonts.ready).
 
-   ═══ Quantización a borde de palabra (F2 §2.2) ═══
-
-   El relleno crudo (0..100) se snapea al borde derecho de la
-   palabra más cercana por debajo. Se mide con Range API en el
-   texto de la copia .lit de cada línea, se cachea, se
-   recalcula solo en resize. El fill avanza a saltos de palabra.
-
-   ═══ Cámara (F2 §2.5) ═══
+   ═══ Cámara (F2 §2.5 · solo act 2) ═══
 
    Cada art tiene [start, end] sobre p del acto y (startScale,
    endScale). Solo el art activo se pinta (opacity 1); los otros
-   opacity 0 · corte duro entre archivos. Escala interpola
-   linealmente dentro de [start, end] · sin transition, sin
-   animation.
+   opacity 0 · corte duro entre archivos.
 
    ═══ Lenis (F2 §2.6) ═══
 
@@ -227,14 +229,26 @@ export function leaveAct() {
 const SETTLE_END = 0.08
 const RELLENO_END = 0.92
 
+/* Phrase mode · umbrales de enter/exit dentro del beat. */
+const PHRASE_ENTER_END = 0.15
+const PHRASE_EXIT_START = 0.85
+const PHRASE_TY_PX = 16
+
 export type RunActOptions = {
   track: HTMLElement
   beats: Beat[]
   arts?: Art[]
+  mode?: 'progressive' | 'phrase'
   totalBeats?: number
 }
 
-export function runAct({ track, beats, arts = [], totalBeats }: RunActOptions) {
+export function runAct({
+  track,
+  beats,
+  arts = [],
+  mode = 'progressive',
+  totalBeats,
+}: RunActOptions) {
   installResizeListener()
 
   const beatEls = Array.from(
@@ -257,65 +271,99 @@ export function runAct({ track, beats, arts = [], totalBeats }: RunActOptions) {
 
     let active = -1
 
-    /* ── Beats · fill secuencial con snap a palabra ──
-       F2-FIX bug 1 (17-sep) · iteración pasa de `[data-line]`
-       (línea autoral) a `.lit .rv-line` (visual line real medida
-       por LineReveals). Cada .rv-line recibe su propio --fill y
-       su clip-path aplica sobre su propio bounding box · nunca
-       una banda compartida.
-
-       Antes de que LineReveals split-tee las .lit, el motor no
-       encuentra .rv-line y no setea nada · el .dim queda visible
-       en su 22% y el copy se lee. Cuando LineReveals termina
-       (evento cruda:lines-ready o resize), la próxima frame de
-       scroll ya escribe los fills. */
-    beats.forEach((b, i) => {
-      const el = beatEls[i]
-      if (!el) return
-      const on = p >= b.from && p <= b.to
-      el.style.visibility = on ? 'visible' : 'hidden'
-      if (!on) return
-      active = i
-
-      const localP = clamp((p - b.from) / (b.to - b.from), 0, 1)
-      const visualLines = el.querySelectorAll<HTMLElement>('.lit .rv-line')
-      const N = visualLines.length
-      if (N === 0) return
-
-      let phase: 'settle' | 'relleno' | 'hold'
-      let rellenoLocal = 0
-      if (localP < SETTLE_END) {
-        phase = 'settle'
-      } else if (localP >= RELLENO_END) {
-        phase = 'hold'
-      } else {
-        phase = 'relleno'
-        rellenoLocal =
-          (localP - SETTLE_END) / (RELLENO_END - SETTLE_END)
-      }
-
-      visualLines.forEach((rvLine, j) => {
-        let rawFill: number
-        if (phase === 'settle') {
-          rawFill = 0
-        } else if (phase === 'hold') {
-          rawFill = 100
+    if (mode === 'phrase') {
+      /* ── Modo phrase · una frase por beat, opacity + ty por
+         scroll dentro de [from, to]. F8 §1. ── */
+      beats.forEach((b, i) => {
+        const el = beatEls[i]
+        if (!el) return
+        const inRange = p >= b.from && p <= b.to
+        if (!inRange) {
+          el.style.opacity = '0'
+          el.style.setProperty('--ty', '0px')
+          return
+        }
+        active = i
+        const localP = clamp((p - b.from) / (b.to - b.from), 0, 1)
+        let opacity: number
+        let ty: number
+        if (localP < PHRASE_ENTER_END) {
+          const t = localP / PHRASE_ENTER_END
+          opacity = t
+          ty = PHRASE_TY_PX * (1 - t)
+        } else if (localP > PHRASE_EXIT_START) {
+          const t =
+            (localP - PHRASE_EXIT_START) / (1 - PHRASE_EXIT_START)
+          opacity = 1 - t
+          ty = -PHRASE_TY_PX * t
         } else {
-          const lineStart = j / N
-          const lineEnd = (j + 1) / N
-          if (rellenoLocal < lineStart) rawFill = 0
-          else if (rellenoLocal >= lineEnd) rawFill = 100
-          else
-            rawFill =
-              ((rellenoLocal - lineStart) / (lineEnd - lineStart)) * 100
+          opacity = 1
+          ty = 0
+        }
+        el.style.opacity = opacity.toFixed(3)
+        el.style.setProperty('--ty', ty.toFixed(2) + 'px')
+      })
+    } else {
+      /* ── Modo progressive · fill secuencial con snap a palabra.
+         F2-FIX bug 1 (17-sep) · iteración pasa de `[data-line]`
+         (línea autoral) a `.lit .rv-line` (visual line real
+         medida por LineReveals). Cada .rv-line recibe su propio
+         --fill y su clip-path aplica sobre su propio bounding
+         box · nunca una banda compartida.
+
+         Antes de que LineReveals split-tee las .lit, el motor no
+         encuentra .rv-line y no setea nada · el .dim queda
+         visible en su 22% y el copy se lee. Cuando LineReveals
+         termina (evento cruda:lines-ready o resize), la próxima
+         frame de scroll ya escribe los fills. ── */
+      beats.forEach((b, i) => {
+        const el = beatEls[i]
+        if (!el) return
+        const on = p >= b.from && p <= b.to
+        el.style.visibility = on ? 'visible' : 'hidden'
+        if (!on) return
+        active = i
+
+        const localP = clamp((p - b.from) / (b.to - b.from), 0, 1)
+        const visualLines = el.querySelectorAll<HTMLElement>('.lit .rv-line')
+        const N = visualLines.length
+        if (N === 0) return
+
+        let phase: 'settle' | 'relleno' | 'hold'
+        let rellenoLocal = 0
+        if (localP < SETTLE_END) {
+          phase = 'settle'
+        } else if (localP >= RELLENO_END) {
+          phase = 'hold'
+        } else {
+          phase = 'relleno'
+          rellenoLocal =
+            (localP - SETTLE_END) / (RELLENO_END - SETTLE_END)
         }
 
-        /* Snap a borde de palabra sobre la .rv-line misma · sus
-           bounds coinciden con su ancho renderizado. */
-        const snapped = snapToWord(rvLine, rawFill)
-        rvLine.style.setProperty('--fill', snapped + '%')
+        visualLines.forEach((rvLine, j) => {
+          let rawFill: number
+          if (phase === 'settle') {
+            rawFill = 0
+          } else if (phase === 'hold') {
+            rawFill = 100
+          } else {
+            const lineStart = j / N
+            const lineEnd = (j + 1) / N
+            if (rellenoLocal < lineStart) rawFill = 0
+            else if (rellenoLocal >= lineEnd) rawFill = 100
+            else
+              rawFill =
+                ((rellenoLocal - lineStart) / (lineEnd - lineStart)) * 100
+          }
+
+          /* Snap a borde de palabra sobre la .rv-line misma · sus
+             bounds coinciden con su ancho renderizado. */
+          const snapped = snapToWord(rvLine, rawFill)
+          rvLine.style.setProperty('--fill', snapped + '%')
+        })
       })
-    })
+    }
 
     /* ── Counter · último beat activo, nunca 00 ── */
     if (counter) {

@@ -121,26 +121,36 @@
 .beat {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  /* --ty lo escribe el motor en modo phrase (act 1). En modo
+     progressive (act 2) el motor no lo toca y default 0 lo deja
+     centrado como antes. */
+  transform: translateY(calc(-50% + var(--ty, 0px)));
   padding: 0;
   /* Motion v4 §1 · default sin gate. El HTML servido queda con
-     los siete beats en visibility:visible — regla dura §1 punto 3:
+     los beats en visibility:visible — regla dura §1 punto 3:
      sin JS todo el copy legible. */
   visibility: visible;
   text-align: left;
 }
 
-/* Motion v4 §1 no-flash gate. La clase `js` la agrega el script
-   inline en layout.tsx antes del primer paint. Cuando está, todos
-   los beats menos el 01 de cada acto quedan hidden desde el
-   primer paint — cero flash de siete beats apilados en la
-   hidratación. El motor sobrescribe con inline style después de
-   medir, así que fuera de rango sigue funcionando el ciclo
-   normal. Si el script no llega a correr (adblocker rompe todo
-   JS, network cortada mid-load) la clase no está y el fallback
-   es "todo el copy legible" — misma situación que sin JS,
-   aceptable. */
-.js #act1 .beat:not([data-beat="1"]),
+/* F8 §1 · act 1 modelo phrase.
+   Bajo JS, todas las frases arrancan en opacity 0 y el motor
+   sube la del beat activo en el primer rAF. Sin JS, opacity 1
+   deja todo el copy legible (mismo contrato de fallback que
+   Motion v4 §1). No hace falta visibility:hidden porque las
+   frases ya no compiten por espacio · el opacity gate es
+   suficiente. */
+.act1 .beat {
+  opacity: 1;
+}
+.js .act1 .beat {
+  opacity: 0;
+}
+
+/* Motion v4 §1 no-flash gate para act 2 · el fill mechanic
+   necesita esconder los beats que no están en rango porque
+   quedan apilados en el mismo espacio absoluto. Act 1 ya no
+   entra en este gate (se resuelve por opacity). */
 .js #act2 .beat:not([data-beat="1"]) {
   visibility: hidden;
 }
@@ -152,14 +162,15 @@
   right: auto;
   width: auto;
 }
-.act1 .beat .dim,
-.act1 .beat .lit {
+.act1 .beat__phrase {
   font-family: var(--serif);
   font-weight: 400;
   font-size: clamp(38px, 5.4vw, 76px);
   line-height: 1.06;
   letter-spacing: -.02em;
   color: #EFEBDF;
+  margin: 0;
+  text-wrap: pretty;
 }
 
 /* Act 2 · beat en su columna derecha, x: 52vw → 92vw. Canal
@@ -333,8 +344,9 @@
 
 /* ══════════ Reduced motion ══════════
    §11. Sin sticky, sin scrub, sin clip-path. Act 1 · las dos
-   frases en flujo, crema 100%. Act 2 · un dibujo estático
-   (bust-01-dense) + los cinco beats en flujo, negro 100%. */
+   frases en flujo, crema 100% (F8 §1 · con markup phrase). Act
+   2 · un dibujo estático (primer art) + los cinco beats en
+   flujo, negro 100%. */
 
 @media (prefers-reduced-motion: reduce) {
   .act1,
@@ -369,6 +381,10 @@
     width: auto;
     max-width: none;
     visibility: visible;
+    opacity: 1;
+  }
+  .beat__phrase {
+    opacity: 1;
   }
   .beat__line .dim {
     opacity: 1;

@@ -57,30 +57,50 @@ export default function Nav() {
     setReady(true)
   }, [])
 
-  /* Motion v3 §10 — la nav se oculta al bajar y vuelve al subir,
-     umbral de 80px. Antes: 140px. El brief nuevo baja el umbral
-     porque el hero del home ahora tiene padding-block generoso
-     (motion v3 §7) y los 140px dejaban ver el nav durante la
-     primera parte del scroll donde ya empieza el contenido pesado.
+  /* Motion v3 §10 · brief F8 §3 (17-sep) — la nav se oculta al
+     bajar y vuelve al subir. Dos correcciones sobre la versión
+     anterior:
 
-     El estado activo queda congelado durante la transición de
-     ruta: mientras la máscara (motion v3 §8) está puesta, cualquier
-     recálculo por cambio de pathname no se ve. No hace falta
-     lógica extra — usePathname devuelve el path viejo durante
-     'covering' (router.push corre después de COVER_MS), y en
-     'revealing' el nav ya está tapado.
+     1 · umbral de delta acumulado. Antes: `y > last` con estricta
+         desigualdad. Con Lenis smooth-scroll el `scrollY` se
+         interpola cada frame y el sample rAF ve deltas de 1–3px.
+         Al scrollear despacio dentro de un acto (wheelMultiplier
+         0.35), la dirección instantánea entre frames se puede
+         invertir por el jitter de la interpolación y `.away`
+         togglea varias veces por segundo · la nav parece saltar
+         entre subir y bajar. Con delta acumulado de DELTA_MIN
+         (12px) la dirección requerida es real, no ruido.
 
-     Passive listener; el trabajo se agrupa en rAF para no correr
-     por cada evento de scroll. */
+     2 · inicialización de `last` con la posición actual al
+         montar. Antes arrancaba en 0; si la página se refresca
+         en scrollY alto, el primer sample daba delta enorme y
+         forzaba `.away` aunque el usuario no hubiera scrolleado
+         todavía.
+
+     Passive listener; el trabajo se agrupa en rAF para no
+     correr por cada evento de scroll. */
   useEffect(() => {
-    let last = 0
+    const HIDE_AFTER = 80
+    const DELTA_MIN = 12
+    let last = window.scrollY
     let ticking = false
     const onScroll = () => {
       if (ticking) return
       ticking = true
       requestAnimationFrame(() => {
         const y = window.scrollY
-        setAway(y > last && y > 80)
+        const delta = y - last
+        if (Math.abs(delta) < DELTA_MIN) {
+          ticking = false
+          return
+        }
+        if (y <= HIDE_AFTER) {
+          setAway(false)
+        } else if (delta > 0) {
+          setAway(true)
+        } else {
+          setAway(false)
+        }
         last = y
         ticking = false
       })

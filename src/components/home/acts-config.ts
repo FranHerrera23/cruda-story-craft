@@ -1,23 +1,28 @@
 /* Home · Acts · calibración
-   Brief de reconstrucción v1 (16-sep) · F2.
+   Brief F8 (17-sep) · corrección de F2.
 
    Los números que producen la sensación de peso viven acá,
    juntos y comentados. Se ajustan mirando, no calculando.
 
    ═══ Alturas ═══
 
-   ACT1_HEIGHT_VH   1200vh · 2 beats.
-                    Geometría F2 §2.3:
-                      p 0.00 – 0.06   beat 1 settle
-                      p 0.06 – 0.44   beat 1 relleno
-                      p 0.44 – 0.52   hueco
-                      p 0.52 – 0.58   beat 2 settle
-                      p 0.58 – 0.92   beat 2 relleno
+   ACT1_HEIGHT_VH   400vh · 2 beats. F8 §1 · el modelo de relleno
+                    progresivo se abandona; cada frase entra
+                    completa, se sostiene, y sale. 400vh alcanza
+                    porque una frase completa no necesita tres
+                    pantallas de scroll para "llenarse". Vuelve
+                    al orden de magnitud del brief 07 original,
+                    previo a F2 (que la había subido a 1200vh
+                    para el settle/relleno/hold, ahora retirado).
+
+                    Distribución sobre p del track:
+                      p 0.00 – 0.44   beat 1 (enter · hold · exit)
+                      p 0.44 – 0.52   hueco vacío
+                      p 0.52 – 0.92   beat 2 (enter · hold · exit)
                       p 0.92 – 1.00   salida
-                    Cero pantallas muertas salvo el hueco de 96vh.
 
    ACT2_HEIGHT_VH   2100vh · 5 beats · 420vh cada uno.
-                    F2 §2.4. Distribución interna:
+                    F2 §2.4 (sin cambio). Distribución interna:
                       5 beats × 16% + 4 huecos × 5% = 100%
                     Beats en [0.00, 0.16], [0.21, 0.37], [0.42, 0.58],
                     [0.63, 0.79], [0.84, 1.00]. Huecos de 5% entre
@@ -26,7 +31,18 @@
    Mobile: alturas más chicas · gesto de scroll más corto. Los
    rangos [from, to] son proporcionales al alto del track.
 
-   ═══ Mecánica de relleno (F2 §2.1) ═══
+   ═══ Mecánica de act 1 (F8 §1 · modelo phrase) ═══
+
+   La frase está o no está. Dentro de la ventana [from, to] del
+   beat, con local p (0..1):
+       0.00 – 0.15   enter · opacity 0→1, ty +16px→0
+       0.15 – 0.85   hold  · opacity 1, ty 0
+       0.85 – 1.00   exit  · opacity 1→0, ty 0→-16px
+   Fuera de la ventana · opacity 0. Nada de clip-path, nada de
+   snap a palabra, nada de LineReveals. Una sola opacidad por
+   beat, atada al scroll.
+
+   ═══ Mecánica de act 2 (F2 §2.1 · sigue igual) ═══
 
    Dentro de la ventana de un beat con N líneas:
      p_beat  0.00 – 0.08   settle · nada se mueve
@@ -37,12 +53,9 @@
             fin    = 0.08 + 0.84 · ((i+1) / N)
 
    INVARIANTE: en cualquier p existe como máximo UNA línea con
-   --fill entre 0% y 100%. Ese es el test binario de F2.
+   --fill entre 0% y 100%.
 
-   FILL_PORTION se retira · era la meseta simétrica del brief 07
-   (fase 3B), reemplazada por settle/relleno/hold explícitos.
-
-   ═══ Cámara (F2 §2.5) ═══
+   ═══ Cámara (F2 §2.5 · solo act 2) ═══
 
    La imagen cambia en el borde del beat, dentro del hueco.
    La cámara se mueve todo el tiempo, atada al progreso del ACTO,
@@ -50,9 +63,9 @@
    Reset de escala al cambiar de archivo en el mismo frame que el
    swap · corte duro, cero interpolación entre 1.45 y 1.85. */
 
-export const ACT1_HEIGHT_VH = 1200
+export const ACT1_HEIGHT_VH = 400
 export const ACT2_HEIGHT_VH = 2100
-export const ACT1_HEIGHT_VH_MOBILE = 960
+export const ACT1_HEIGHT_VH_MOBILE = 320
 export const ACT2_HEIGHT_VH_MOBILE = 1680
 
 /* ══════════ Copy · beats ══════════
@@ -159,16 +172,33 @@ export const ACT2_BEATS: Beat[] = [
    Iguales entre familias · el sistema no distingue busto de
    libro por escala, solo por transform-origin.
 
-   Mapping de nombres descriptivos a archivos reales del repo
-   (comprobado midiendo densidad de tinta · 15-sep):
+   ORDEN F8 §2 (17-sep) · se restaura el orden anterior a
+   6fdae95. La densidad medida a ojo (área oscura ponderada por
+   contraste percibido) no coincide con la densidad de píxeles
+   dark:
+
+     bust-02-mid · 12.3% de área dark · pero el detalle es fino
+                   (puntillismo + hatching cerrado) · a ojo se
+                   lee como "el grabado denso" que sigue al line
+                   art. Va en el slot 2.
+     bust-01-dense · 30.8% de área dark · pero grandes zonas de
+                   negro plano · lee como "sombra" no como
+                   "grabado que sumó detalle". Queda en el repo
+                   fuera del array.
+
+   Fran cortó el diagnóstico A/B en F8: en pantalla la sensación
+   correcta es "líneas → hatching denso → corte a libro". El
+   sufijo de archivo se puede leer como fuente de verdad para el
+   área dark, pero la lectura del sujeto la dicta el ojo.
+
+   Mapping definitivo:
      bust · line    → public/why-now/bust-03-min.png    · 10.1% dark
-     bust · dense   → public/why-now/bust-01-dense.png  · 30.8% dark
+     bust · dense   → public/why-now/bust-02-mid.png    · 12.3% dark
      book · line    → public/why-now/book-03-min.png    ·  3.0% dark
      book · ghost   → public/why-now/book-02-mid.png    ·  6.7% dark
      book · dense   → public/why-now/book-01-dense.png  · 69.1% dark
 
-   Los sufijos de archivo NO mienten · la densidad se verifica
-   midiendo área oscura, no a ojo. */
+   bust-01-dense.png queda en el repo pero fuera del array. */
 
 export type Art = {
   name: string
@@ -181,7 +211,7 @@ export type Art = {
 
 export const ACT2_ARTS: Art[] = [
   { name: 'bust-03-min',   subject: 'bust', start: 0.00, end: 0.21, startScale: 1.20, endScale: 1.05 },
-  { name: 'bust-01-dense', subject: 'bust', start: 0.21, end: 0.42, startScale: 1.20, endScale: 1.05 },
+  { name: 'bust-02-mid',   subject: 'bust', start: 0.21, end: 0.42, startScale: 1.20, endScale: 1.05 },
   { name: 'book-03-min',   subject: 'book', start: 0.42, end: 0.63, startScale: 1.20, endScale: 1.05 },
   { name: 'book-02-mid',   subject: 'book', start: 0.63, end: 0.84, startScale: 1.20, endScale: 1.05 },
   { name: 'book-01-dense', subject: 'book', start: 0.84, end: 1.01, startScale: 1.20, endScale: 1.05 },

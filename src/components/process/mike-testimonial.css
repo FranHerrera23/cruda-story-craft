@@ -1,0 +1,56 @@
+/* /process · Mike testimonial (v6 F6 §6.3)
+   Molde idéntico al testimonio de Karen en la home · negro,
+   serif. */
+
+.mike-testimonial {
+  background-color: var(--ink-deep);
+  background-image: var(--grid-bg-dark);
+  background-size: var(--grid-size) var(--grid-size);
+  color: var(--cream);
+  padding: clamp(120px, 20vh, 200px) var(--pad);
+}
+.mike-testimonial__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+.mike-testimonial__figure {
+  margin: 0;
+  padding: 0;
+}
+.mike-testimonial__quote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.mike-testimonial__quote p {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(26px, 3.2vw, 44px);
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  color: var(--cream);
+  max-width: 30ch;
+  margin: 0;
+}
+.mike-testimonial__attrib {
+  display: block;
+  margin-top: var(--s4);
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: var(--t-body);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--cream);
+  font-style: normal;
+}
+
+/* Pending state · marcador visible sólo para el equipo, no para
+   el visitante público. Opacidad baja para que no lea como copy. */
+.mike-testimonial--pending .mike-testimonial__quote p {
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--cream) 25%, transparent);
+}

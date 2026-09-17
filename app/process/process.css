@@ -18,6 +18,16 @@
   color: var(--ink);
   font-family: var(--grot);
   -webkit-font-smoothing: antialiased;
+  /* v6 F6 §6.1 · el rail TRANSLATED es position:fixed a 42px
+     del borde izquierdo. Padding compensa para que el contenido
+     no quede detrás del rail. Los pr-head y pr-block ya tienen
+     su propio var(--pad), pero necesitan arrancar más adentro. */
+  padding-left: 42px;
+}
+@media (max-width: 720px) {
+  .pr {
+    padding-left: 32px;
+  }
 }
 
 .pr *,

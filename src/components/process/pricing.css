@@ -1,0 +1,126 @@
+/* /process · Pricing (v6 F6 §6.2) */
+
+.pricing {
+  padding: var(--s5) var(--pad);
+  max-width: 1600px;
+  margin-inline: 0;
+  color: var(--ink);
+}
+.pricing__inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vh, 40px);
+}
+
+.pricing__eyebrow {
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+.pricing__h2 {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(32px, 4vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 24ch;
+}
+
+.pricing__rule {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  margin: 0;
+}
+
+.pricing__lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: end;
+}
+@media (min-width: 720px) {
+  .pricing__lead {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.pricing__price {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(40px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -.025em;
+  color: var(--ink);
+}
+.pricing__price-note {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.4;
+  color: color-mix(in srgb, var(--ink) 60%, transparent);
+  margin-top: var(--s1);
+}
+.pricing__label {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 1.2;
+  color: color-mix(in srgb, var(--ink) 60%, transparent);
+}
+
+.pricing__rows {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2vh, 28px);
+}
+.pricing__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 32px);
+  padding: clamp(12px, 1.5vh, 20px) 0;
+  border-bottom: 1px dashed color-mix(in srgb, var(--ink) 10%, transparent);
+}
+@media (min-width: 720px) {
+  .pricing__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.pricing__row:last-child {
+  border-bottom: 0;
+}
+.pricing__col {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.5;
+  color: var(--ink);
+}
+.pricing__col--other {
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+}
+
+.pricing__payment {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 13px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin: 0;
+}
+
+.pricing__media {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--ink) 70%, transparent);
+  margin: 0;
+  max-width: 62ch;
+}

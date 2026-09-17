@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
 import Proof from '@/components/Proof'
+import TranslatedRail from '@/components/process/TranslatedRail'
+import Pricing from '@/components/process/Pricing'
+import MikeTestimonial from '@/components/process/MikeTestimonial'
 import './process.css'
 
 /* /process — Brief 03 (14-sep) + Addendum A §3.
@@ -220,10 +223,20 @@ export default function ProcessPage() {
       {/* Bloque de prueba, densidad completa. Misma fuente de
           datos que la home; acá se renderean las dos bandas.
 
-          /process cierra en el Proof — Brief 03 no especifica una
-          sección close, y cualquier copy adicional sería no
-          verbatim. El nav global cubre el contacto. */}
+          v6 F6 (17-sep) · después del proof va la tabla de pricing
+          y el testimonio de Mike. La tabla lleva el precio del
+          engagement · $19,500 flat + $6,500 monthly con la línea
+          de pago abajo. El testimonio de Mike queda con hueco
+          reservado hasta que Fran pase el copy (v6 F6 §6.3
+          bloqueado). */}
       <Proof variant="full" />
+      <Pricing />
+      <MikeTestimonial />
+
+      {/* Riel TRANSLATED · vertical-rl a la izquierda, barra scaleY
+          atada al scroll. v6 F6 §6.1 · convierte el rótulo en
+          marca de la superficie. */}
+      <TranslatedRail />
     </article>
   )
 }

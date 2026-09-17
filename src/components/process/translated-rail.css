@@ -1,0 +1,54 @@
+/* /process · TRANSLATED rail (v6 F6 §6.1)
+   Columna vertical fija de 42px pegada al borde izquierdo del
+   viewport. La palabra TRANSLATED en vertical-rl. Barra de 2px
+   scaleY-scroll pegada al borde derecho de la columna. */
+
+.translated-rail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 42px;
+  border-right: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.translated-rail__word {
+  position: absolute;
+  bottom: clamp(24px, 4vh, 56px);
+  left: 50%;
+  transform: translateX(-50%);
+  writing-mode: vertical-rl;
+  font-family: var(--grot);
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.translated-rail__bar {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 2px;
+  height: 100%;
+  background: var(--ink);
+  transform-origin: top;
+  transform: scaleY(0);
+  /* Cero transition · scaleY se escribe cada frame por rAF. */
+}
+
+/* Mobile · el rail queda pero se hace un poco más chico y la
+   palabra se acorta a T (unica letra vertical) para no comerse
+   el ancho del texto. */
+@media (max-width: 720px) {
+  .translated-rail {
+    width: 32px;
+  }
+  .translated-rail__word {
+    font-size: 11px;
+    letter-spacing: .35em;
+  }
+}

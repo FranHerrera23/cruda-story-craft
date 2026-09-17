@@ -1,8 +1,12 @@
 import './home-fit.css'
 
-/* Home · FIT (v6 F4 §4.5)
+/* Home · FIT (v6 F4 §4.5 · F8 §9.3 corrección 17-sep)
    Registro de observación. Cero imperativos, cero condicionales,
-   cero CTA. Cinco síntomas de compañías donde CRUDA aplica.
+   cero CTA. Los cinco síntomas de compañías donde CRUDA aplica.
+
+   F8 §9.3 · el lede "We do not ask about revenue, industry or
+   geography. We ask where the company is standing." se mueve a
+   /contact. FIT sigue en la home con los dos grupos y el cierre.
 
    Copy · VERBATIM del brief v6 F4 §4.5. */
 
@@ -10,13 +14,6 @@ export default function HomeFit() {
   return (
     <section id="fit" className="home-fit">
       <div className="home-fit__inner">
-        <p className="home-fit__lede">
-          We do not ask about revenue, industry or geography.
-          We ask where the company is standing.
-        </p>
-
-        <hr className="home-fit__rule" aria-hidden="true" />
-
         <div className="home-fit__group">
           <p className="home-fit__head">
             Something is about to change, or already has.

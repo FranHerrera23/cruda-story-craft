@@ -3,10 +3,8 @@ import Act1Hero from '@/components/home/Act1Hero';
 import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import HomeLegacy from '@/components/home/HomeLegacy';
-import HomeTranslated from '@/components/home/HomeTranslated';
 import HomeWhatOthers from '@/components/home/HomeWhatOthers';
 import HomeFit from '@/components/home/HomeFit';
-import HomeFirst90 from '@/components/home/HomeFirst90';
 import Proof from '@/components/Proof';
 import HomeTestimonial from '@/components/home/HomeTestimonial';
 import HomeClose from '@/components/home/HomeClose';
@@ -15,36 +13,42 @@ import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). v6 F4 · orden nuevo (17-sep).
+   CRUDA — Home (`/`). Brief F8 §9 (17-sep) · sale de home.
 
-   Cambia el orden y agrega cuatro bloques nuevos. Retira ESSAYS
-   de la home (autorizado por Fran, v6 F4 §4.1; /essays sigue
-   como página y en el footer). Retira TranslationInPractice (lo
-   reemplaza TRANSLATED).
+   Cambios sobre v6 F4:
 
-   Orden:
-     1.  act 1              NEGRO · scrub · hero (2 beats)
-     2.  act 2              PAPER · scrub · why-now (5 beats)
+     · TRANSLATED (HomeTranslated) sale de home · vive sólo en
+       /process. DATA IS DIRECTIONAL AT BEST (sub-sección de
+       TRANSLATED) también sale · principio 05 de /about es la
+       única superficie donde se declara.
+     · TRANSLATED · Three months (HomeFirst90) sale de home · el
+       argumento de tres meses queda anclado en la case study de
+       Karen (proof/karen.ts §46 "The three months build the
+       system").
+
+   FIT · sub-lede "We do not ask about revenue, industry or
+   geography. We ask where the company is standing." se muda a
+   /contact (v6 F8 §9.3). El resto de FIT queda en la home.
+
+   WHAT OTHERS · queda como está mientras Fran decide entre
+   carousel con imágenes reales (A) o retirar la sección (B).
+
+   Orden vigente:
+     1.  act 1              NEGRO · phrase mode
+     2.  act 2              PAPER · progressive fill
      3.  selected-work
-     4.  LEGACY             ← NUEVO · retrato de Fran + lista
-                              in-house/agency (v6 F4 §4.2)
-     5.  TRANSLATED         ← NUEVO · reemplaza translation-in-practice
-                              (v6 F4 §4.3)
-     6.  WHAT OTHERS        ← NUEVO · cobertura ganada
-                              (v6 F4 §4.4)
-     7.  FIT                ← NUEVO · registro de observación
-                              (v6 F4 §4.5)
-     8.  first-90
-     9.  proof (compact)
-     10. testimonial        NEGRO · segundo bloque inverso
-     11. close
-
-   ESSAYS · sale de la home (v6 F4 §4.1 · instrucción explícita
-   de retiro, regla 23 respetada con brief). /essays sigue en el
-   footer.
+     4.  LEGACY
+     5.  WHAT OTHERS        (pendiente decisión A/B)
+     6.  FIT                (sin lede)
+     7.  proof (compact)
+     8.  testimonial        NEGRO
+     9.  close
 
    Dos bloques inversos por página siguen siendo la regla
    (act 1 y testimonial). Ledger #19.
+
+   Los componentes HomeTranslated y HomeFirst90 quedan en el
+   repo · el brief pide retirarlos de la home, no eliminarlos.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
@@ -72,10 +76,8 @@ export default function HomePage() {
       <Act2WhyNow />
       <SelectedWork cards={selectedWorkCards} />
       <HomeLegacy />
-      <HomeTranslated />
       <HomeWhatOthers />
       <HomeFit />
-      <HomeFirst90 />
       <Proof variant="compact" />
       <HomeTestimonial />
       <HomeClose />

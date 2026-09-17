@@ -55,6 +55,18 @@ export default function ContactContent() {
             Forty-five minutes. No pitch. Write and we&apos;ll find a
             time.
           </p>
+          {/* Brief F8 §9.3 (17-sep) · la frase venía como lede de
+              FIT en la home. Es más útil acá: quien está por
+              escribir necesita saber que no lo van a filtrar por
+              revenue/industry/geography antes de la primera llamada. */}
+          <p
+            className="contact-note"
+            data-seq="body"
+            data-reveal="text"
+          >
+            We do not ask about revenue, industry or geography. We
+            ask where the company is standing.
+          </p>
         </section>
 
         {/* Calendly fuera de la secuencia — nota del brief P1. Se
@@ -136,6 +148,15 @@ export default function ContactContent() {
         }
         .contact-sub {
           font-size: clamp(17px, 1.6vw, 20px);
+          line-height: 1.55;
+          color: var(--ink-2);
+          max-width: 56ch;
+        }
+        /* F8 §9.3 · nota migrada desde FIT · misma tipografía que
+           el sub pero tono más contenido, no encabezado. */
+        .contact-note {
+          margin-top: clamp(20px, 2.4vh, 32px);
+          font-size: clamp(16px, 1.4vw, 18px);
           line-height: 1.55;
           color: var(--ink-2);
           max-width: 56ch;

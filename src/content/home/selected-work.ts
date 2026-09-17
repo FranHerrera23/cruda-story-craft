@@ -123,7 +123,11 @@ export const selectedWorkCards: WorkCardData[] = [
   {
     name: 'Karen Mannheim',
     company: 'TRAZZO',
-    location: 'Design District, Miami, FL',
+    /* v6 F4 · rule 25 normalización (17-sep) · el campo de ciudad
+       lleva SÓLO la ciudad. El barrio ("Design District") va
+       aparte o no va. Antes se contaba como ciudad propia y le
+       rompía el count de rule 25. */
+    location: 'Miami, FL',
     line: "Latin America's leading lighting designer, on houses up to $200M with Robert A.M. Stern and Oppenheim Architecture.",
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',
@@ -142,7 +146,10 @@ export const selectedWorkCards: WorkCardData[] = [
   {
     name: 'Jack Yaeger',
     company: 'Mistiva',
-    location: 'Midtown Miami, FL',
+    /* v6 F4 · rule 25 normalización (17-sep) · antes decía
+       "Midtown Miami, FL" · el parser lo tomaba como una ciudad
+       propia ("Midtown Miami") en vez de contarlo como Miami. */
+    location: 'Miami, FL',
     line: 'Trained architect, software entrepreneur, M&A CEO. After a seven-figure exit and five years sailing, building a lighting company in Miami.',
     // href intencionalmente omitido — sin caso todavía.
     nameVerified: false,

@@ -118,9 +118,13 @@ const PRINCIPLES = [
       "No urgency, no scarcity, no last chance. If it isn't a fit, it isn't a fit.",
   },
   {
-    principle: "If it isn't measured, it didn't happen.",
+    /* v6 F5 §5.1 (17-sep) · reemplaza "If it isn't measured, it
+       didn't happen." Ledger 24 · el número es evidencia
+       direccional, no condición de existencia. Toda cifra
+       publicada lleva fuente y período. */
+    principle: 'Data is directional at best.',
     consequence:
-      'Every engagement carries numbers the client can check. A result without a figure is an opinion.',
+      'Some of what matters cannot be counted, and some of what gets counted does not matter. We bring the figures we have and we do not dress up the rest.',
   },
 ] as const
 
@@ -304,6 +308,16 @@ export default function AboutPage() {
               Who runs it
             </p>
             <div className="ab-who__body">
+              {/* v6 F5 §5.3 · el retrato entra en el bloque Who
+                  runs it. El CSS ya soporta el :has(.ab-who__portrait)
+                  encendiendo grilla 2-col. Fran encontrado en
+                  /public/fran-herrera.webp (grep de F4.2 · el mismo
+                  archivo que consume el bloque LEGACY de la home). */}
+              <img
+                className="ab-who__portrait"
+                src="/fran-herrera.webp"
+                alt="Fran Herrera"
+              />
               <h3
                 className="ab-who__name"
                 data-seq="title"
@@ -311,18 +325,26 @@ export default function AboutPage() {
               >
                 Fran Herrera
               </h3>
-              <p className="ab-who__role">Founder &middot; Abu Dhabi</p>
+              {/* v6 F5 §5.5 · corrección de contexto · "Founder ·
+                  Abu Dhabi" → "Founder · Between UAE and Russia". */}
+              <p className="ab-who__role">
+                Founder &middot; Between UAE and Russia
+              </p>
               <div
                 className="ab-prose"
                 data-seq="body"
                 data-reveal="text"
               >
+                {/* v6 F5 §5.5 · lista de clientes alineada con la
+                    LEGACY de la home. TikTok, Oreo, Brahma, PedidosYa,
+                    Purina retirados · Mondelez, AB InBev, Delivery
+                    Hero, Nestlé, TikTok y UN según brief. */}
                 <p>
                   Ten years building brands across three continents,
                   in-house and on the agency side, on accounts for
-                  TikTok, Oreo, Brahma and PedidosYa. Direct work for
-                  Purina and the United Nations. Born in Salta, in the
-                  north of Argentina.
+                  Mondelez, AB InBev, Delivery Hero, Nestlé and
+                  TikTok. Direct work for the United Nations. Born in
+                  Salta, in the north of Argentina.
                 </p>
                 <p>
                   CRUDA is what that experience looks like pointed at

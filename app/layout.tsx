@@ -113,12 +113,15 @@ const archivo = Archivo({
    openGraph, twitter. Home tiene su propia HOME_DESCRIPTION en
    app/page.tsx (A.1.1) — ese string describe a Fran, este describe
    a CRUDA. */
-/* La lista de marcas nombradas acá tiene que respetar la regla de voz:
-   solo clientes donde el trabajo se hizo directamente. Brahma fue
-   cuenta de Mate.Cool (agencia); NO va acá. Purina, CCU y la ONU
-   fueron freelance directo — sí van. */
+/* La lista de marcas nombradas acá tiene que respetar la regla de
+   voz: solo clientes donde el trabajo se hizo directamente. La
+   lista se alinea con la que aparece en el bloque LEGACY de la home
+   y en el bloque "Who runs it" de /about (v6 F5 §5.5 · 17-sep):
+   Mondelez, AB InBev, Delivery Hero, Nestlé, TikTok, the United
+   Nations. CCU se retira (no está en ningún registro y no pasa
+   verificación de atribución). */
 const SITE_DESCRIPTION =
-  'CRUDA. Narrative and brand work for founder-led companies — Purina, CCU, the United Nations, and independent studios across the Americas and Europe.'
+  'CRUDA. Narrative and brand work for founder-led companies — Mondelez, AB InBev, Delivery Hero, Nestlé, TikTok, the United Nations, and independent studios across the Americas and Europe.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.thecruda.com'),

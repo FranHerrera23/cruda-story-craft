@@ -838,3 +838,48 @@ usa el mismo mecanismo.
 **Origen:** Fran, 16 septiembre 2026 · brief de reconstrucción
 v1. Motivado por dos incidencias del dek "Eight founders"
 descontexto de la grilla real.
+
+---
+
+## 2026-09-17 · Motion v3 §12 reemplazada · un indicador por superficie
+
+**Regla nueva:** cada superficie del sitio puede llevar **un
+solo** indicador de progreso o posición. Nunca dos en la misma
+página.
+
+**Antes:** `cruda-cc-motion-system-v3.md` §12 prohibía todo
+indicador de progreso o índice de secciones ("Indicador de
+progreso o índice de secciones · no van").
+
+**Qué cambia:** la prohibición absoluta se retira. Cada
+superficie puede tener un indicador si aporta al argumento de
+esa superficie · un solo indicador, sin excepciones.
+
+**Aplicación al estado actual:**
+
+  · `#act2` de la home · contador `01/05` de los cinco beats.
+    QUEDA. Lleva más tiempo en producción y nadie lo cuestionó.
+
+  · `/process` · riel TRANSLATED con barra scaleY atada al
+    scroll de la página. QUEDA. Es lo que convierte TRANSLATED
+    de rótulo (aparición aislada) en marca (presente todo el
+    scroll). Aporta directo al argumento de esa página.
+
+  · `/process` · contadores `(01 / 03)` de cada hoja. SALE.
+    No están construidos hoy (las hojas de v5 F7 nunca se
+    construyeron), pero cuando se construyan van sin contador.
+    Con tres hojas pineadas ya se siente dónde estás.
+
+**Regla operativa:** cuando alguien proponga un nuevo indicador
+en una superficie, hay que verificar primero si esa superficie
+ya tiene uno. Dos indicadores en la misma superficie hoy leen
+como sistema desordenado.
+
+**Superficies que hoy NO llevan indicador:** home (fuera de
+`#act2`), `/about`, `/essays`, `/contact`, case studies. La
+regla permite agregar UNO si aporta al argumento; no exige
+agregarlo.
+
+**Origen:** Fran, 17 septiembre 2026 · firma explícita después
+del pushback de `#8` en v6 F6. Se resuelve la contradicción
+entre v3 §12 y F4/F6 del brief de reconstrucción.

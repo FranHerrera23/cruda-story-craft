@@ -41,13 +41,19 @@ export default function ContactContent() {
           >
             Let&apos;s talk about your story.
           </h1>
+          {/* Fran directive (17-sep) · el copy anterior prometía
+              "Pick a slot below" y abajo no había nada · promesa
+              incumplida en la página donde alguien decide escribir.
+              Hasta que exista el calendario embebido, la línea
+              refleja lo que la página realmente hace. Regla 17 ·
+              no publicar promesas que la superficie no cumple. */}
           <p
             className="contact-sub"
             data-seq="body"
             data-reveal="text"
           >
-            Forty-five minutes on the calendar. No pitch. Pick a slot below, or
-            write and we&apos;ll take it from there.
+            Forty-five minutes. No pitch. Write and we&apos;ll find a
+            time.
           </p>
         </section>
 

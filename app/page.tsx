@@ -78,7 +78,16 @@ export default function HomePage() {
       <HomeLegacy />
       <HomeWhatOthers />
       <HomeFit />
-      <Proof variant="compact" />
+      {/* showHeader={false} · brief F8 §9.4 retiró HomeFirst90 de
+          la home, pero el header del componente compartido `Proof`
+          seguía rendereando "The three months build the system"
+          en el home. Como la coda del first-90 que lo introducía
+          ya no existe, la H2 quedaba huérfana. Bug detectado en
+          verificación 18-sep pedida por Fran. La frase queda en
+          Karen case study (proof/karen.ts §46) donde pertenece,
+          y en /process (variant="full") donde el header sí
+          contextualiza la banda de números. */}
+      <Proof variant="compact" showHeader={false} />
       <HomeTestimonial />
       <HomeClose />
     </>

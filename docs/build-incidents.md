@@ -432,3 +432,90 @@ ahora inyecta `font-family` directamente sobre `.act1
 computado del elemento medido antes de reportar cada punto, y
 agrega el test cruzado de scrollWidth a font-size fijo como
 sanity check.
+
+---
+
+## 2026-09-19 · Naming debt · un prefijo que nombra algo que ya no existe
+
+Cuando una sección se renombra pero el prefijo CSS y el nombre
+del archivo se mantienen "para que el diff sea legible", queda
+un mismatch semántico. El componente hace X pero se llama Y.
+
+**Casos documentados en esta base:**
+
+- `.cs-btn` en `case-study.css` · nombra un botón de case
+  study que no se usa en ningún JSX (0 refs en .tsx). Dead
+  CSS. Consumía `var(--color-accent)` que tampoco existe.
+- `--color-accent` en `case-study.css` · usado en 2 lugares
+  pero nunca declarado. Fallback silencioso.
+- `home-first90.css` + `.home-first90__*` · el componente
+  `HomeFirst90` se retiró del render en F8 §9.4 y se borró en
+  Commit 3. El CSS se borró con él en el mismo commit.
+- `.home-legacy__*` prefix + `HomeLegacy.tsx` filename · la
+  sección se renombró a OUR FOUNDER en Commit 5 F9.3 con id
+  nuevo `#our-founder`. El prefijo y el nombre del archivo
+  quedan por decisión firmada de mantener el diff legible.
+
+**Patrón.** Cuatro instancias del mismo bug family. La deuda
+se acumula porque cada rename se justifica localmente ("el
+diff es más legible") pero el efecto agregado es un vocabulario
+donde los nombres no matchean lo que representan.
+
+Fran (19-sep) · "Un prefijo que nombra algo que ya no existe
+es deuda, y es exactamente cómo aparecieron `.cs-btn` y
+`--color-accent`."
+
+**Regla nueva del protocolo.**
+
+Cuando un rename semántico se pospone "para que el diff sea
+legible":
+
+1. **Se registra como deuda** en el design-system doc §Decisiones
+   agregadas, con el motivo del posponemiento y la sección o
+   componente afectados.
+2. **Se planea el cleanup como una fase propia**, no como una
+   nota que "algún día se hace". Sin fase, la deuda se olvida.
+3. **El nombre del archivo, la clase CSS y el id del elemento
+   deben ser coherentes en un solo commit**. Si el id ya
+   cambió (`#our-founder`), el archivo, la clase, el
+   filename del CSS y el nombre del componente son la lista
+   completa a alinear.
+
+**Cuando corre esta regla.** Antes de firmar cualquier rename
+que no toca todo el vocabulario a la vez. Registra la deuda,
+no la escondas.
+
+---
+
+## 2026-09-19 · `SelectedWork` · la única sección de la mitad de arriba que nadie diseñó
+
+Registro operativo · no es un bug pero es la misma familia:
+algo que está en producción y ningún brief resuelve.
+
+**Los hechos.** `SelectedWork` (tira de tres retratos con las
+work-cards) vive en el render de la home desde antes del
+wireframe lock del 17-sep. Los dos wireframes (home + /process)
+la marcan como pendiente en §1 y ninguno la resuelve. F9 la
+omite del mapeo §2.0. Sigue ahí porque nadie la retira.
+
+Fran (19-sep) · "Una cosa del reporte que no estaba en el brief
+y hay que registrar: SelectedWork está en el orden... es la
+única sección de la home que nadie diseñó."
+
+**Estado abierto (docs/cruda-design-system.md §6.b #15).**
+Fran decide su lugar y tratamiento, o la sección se va a
+`/work`. Hasta la firma, se queda donde está y NO se toca.
+
+**Lección operativa.** Un brief no cubre lo que no menciona.
+Cuando un brief redefine el orden de una superficie ("mapa de
+pantallas · las 11 posiciones"), es necesario chequear las
+POSICIONES ACTUALES contra el nuevo mapa · lo que sobra o
+falta se enumera y se lleva a firma. F9 §2.0 dio un mapa de 11
+posiciones y omitió SelectedWork · el desajuste se detectó
+recién al reportar el reorden de F9.3, no al recibir el brief.
+
+**Cómo evitarlo.** Al recibir un brief que redefine orden o
+mapa, primer paso · producir un diff explícito contra el
+estado actual (secciones presentes vs secciones mencionadas)
+antes de ejecutar. Lo que no aparece en ninguna de las dos
+listas se reporta como pendiente firmable.

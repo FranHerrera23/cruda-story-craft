@@ -599,6 +599,16 @@ pesos      400, 500, 600
 
 **Ninguna decisión se ejecuta hasta firma de Fran ítem por ítem.**
 
+### 6.b · Decisiones agregadas en la ejecución
+
+Ítems que aparecieron mientras se ejecutaba F9 y quedan
+abiertos.
+
+| # | Decisión                                                                         | Estado |
+|---|---------------------------------------------------------------------------------|--------|
+| 15 | `SelectedWork` (tira de tres retratos) · lugar y tratamiento en la home. Está en producción entre `Act2WhyNow` y `HomeTestimonial` desde antes del wireframe lock. Los dos wireframes (home + /process) marcan la sección como pendiente en §1 y ninguno la resuelve. Es la única sección de la mitad de arriba que nadie diseñó. | **Abierto** · Fran (19-sep) · "se decide su lugar y tratamiento, o se va a /work". No se toca hasta firma. |
+| 16 | Naming debt · prefijo `.home-legacy__` sigue en HomeLegacy.tsx + home-legacy.css aunque la sección se renombró a OUR FOUNDER (id `#our-founder`) en Commit 5 F9.3. Un prefijo que nombra algo que ya no existe es deuda · misma familia que `.cs-btn` (dead), `--color-accent` (usado sin declarar) y `home-first90.css` (borrado). | **Abierto** · Fran (19-sep) · "de acuerdo con mantenerlo para que el diff sea legible, pero que quede en el registro". Cleanup pendiente cuando termine F9. |
+
 ---
 
 ### 6.a · Decisión 6 · FIRMADA · Archivo (19-sep)

@@ -15,9 +15,9 @@
 
 .home-translated__eyebrow {
   font-family: var(--grot);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 13px;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink);
   margin: 0 0 var(--s3);
@@ -72,9 +72,9 @@
 
 .home-translated__section-label {
   font-family: var(--grot);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11px;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--ink) 60%, transparent);
   margin: 0;
@@ -124,7 +124,7 @@
 
 .home-translated__attribution {
   font-family: var(--grot);
-  font-weight: 600;
+  font-weight: 500;
   font-size: 13px;
   letter-spacing: .14em;
   text-transform: uppercase;

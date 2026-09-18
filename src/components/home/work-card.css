@@ -141,7 +141,7 @@
    es bajar el font-size, nunca el tracking. */
 .work-card__location {
   font-family: var(--grot);
-  font-weight: 300;
+  font-weight: 500;
   /* 11px, no 13px · a 13px la locación más larga
      (SHERMAN OAKS, LOS ANGELES, CA · 29 chars) rompe el ancho
      de la card y wrappea a dos líneas. Fran directive: la
@@ -149,7 +149,7 @@
      locaciones caben en una sola línea. */
   font-size: 11px;
   line-height: 1.4;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--ink) 45%, transparent);
   margin: 4px 0 0;
@@ -189,12 +189,12 @@
 .work-card__scope-constant,
 .work-card__scope-surfaces {
   font-family: var(--grot);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11px;
   line-height: 1.5;
   /* Tracking .55em · el que hace que lo operativo se lea como
      instrumento. Ver comentario en .work-card__location. */
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink);
   margin: 0;

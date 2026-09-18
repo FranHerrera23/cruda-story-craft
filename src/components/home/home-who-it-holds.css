@@ -24,7 +24,7 @@
   font-family: var(--grot);
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink-2);
   margin: 0 0 clamp(24px, 3vh, 40px);
@@ -107,7 +107,8 @@
   font-family: var(--grot);
   font-weight: 500;
   font-size: clamp(14px, 1.1vw, 16px);
-  letter-spacing: .04em;
+  /* Commit 6 · 19-sep · numeración canónica .14em (era .04em). */
+  letter-spacing: .14em;
   color: var(--ink-2);
   font-variant-numeric: tabular-nums;
   flex-shrink: 0;

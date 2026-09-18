@@ -22,7 +22,7 @@
 .tip__eyebrow {
   font-family: var(--grot);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink);
@@ -73,7 +73,7 @@
 .tip__side-label {
   font-family: var(--grot);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
   margin: 0 0 var(--s2);

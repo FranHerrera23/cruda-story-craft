@@ -47,7 +47,7 @@
   margin: 0;
 }
 .proof__client {
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
 }
@@ -68,7 +68,7 @@
 .proof__band-label {
   font-family: var(--grot);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink);
@@ -118,7 +118,9 @@
   font-weight: 400;
   font-size: 13px;
   line-height: 1.4;
-  letter-spacing: .01em;
+  /* Commit 6 · 19-sep · meta tracking canónico normal (0) ·
+     era .01em, off-system. */
+  letter-spacing: normal;
   color: var(--ink);
   max-width: 24ch;
   /* El único texto de gris permitido en el bloque — es metadato
@@ -149,7 +151,8 @@
   font-size: 13px;
   font-weight: 400;
   line-height: 1.5;
-  letter-spacing: .01em;
+  /* Commit 6 · 19-sep · meta canónico normal (era .01em). */
+  letter-spacing: normal;
   color: var(--ink);
   opacity: .55;
   max-width: none;

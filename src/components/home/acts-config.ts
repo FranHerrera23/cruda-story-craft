@@ -297,28 +297,42 @@ export const CAMERA_ORIGIN = {
   book: '42% 45%',
 } as const
 
-/* ══════════ Lenis · parámetros (F2 §2.6 · corregido F2-FIX 17-sep) ══════════
+/* ══════════ Lenis · parámetros (F2 §2.6 · F9 §2.2 · Commit 6 · 19-sep) ══════════
    wheelMultiplier NO se toca (0.35 dentro / 0.9 fuera).
-   duration en el acto · 2.00.
-   duration fuera del acto · 1.70.
 
-   `lerp` SE RETIRA (F2-FIX bug 2). En Lenis, lerp y duration son
-   mutuamente excluyentes; con lerp presente, duration se ignora
-   y el scroll pasa a interpolación exponencial asintótica. Con
-   wheelMultiplier: 0.35 eso da la sensación de "traba y queda a
-   mitad de letra". El peso del scroll viene de duration.
+   F9 §2.2 · Fran (18-sep) · el scroll se sentía trabado, no
+   lento. La lentitud implementada como LAG (wheelMultiplier bajo
+   + duration larga) daba un scroll asintótico "barato". El
+   modelo correcto: el scroll responde inmediato, lo que dura
+   es el contenido. `duration` es cuánto tarda el scroll en
+   alcanzar su destino tras cada gesto · 2.0s produce arrastre.
+
+   Ambas duration bajan a 1.1 (Fran, 19-sep). Estimación tuya ·
+   si en incógnito se siente apurada, subir a 1.3. Las dos
+   constantes quedan expuestas · un solo lugar para ajustar.
+
+   `lerp` SE RETIRA (F2-FIX bug 2 · 17-sep). En Lenis, lerp y
+   duration son mutuamente excluyentes; con lerp presente,
+   duration se ignora y el scroll pasa a interpolación
+   exponencial asintótica. Con wheelMultiplier: 0.35 eso daba
+   la sensación de "traba y queda a mitad de letra". El peso
+   del scroll viene de duration.
 
    Interpolación entre juegos de parámetros sobre 400ms al
    entrar/salir del acto. Motor la maneja. */
 
+/* Constante expuesta para tuneo rápido en incógnito. Cambia a
+   1.3 si a 1.1 se siente apurada. Aplica a los dos juegos. */
+const LENIS_DURATION = 1.1
+
 export const LENIS_IN_ACT = {
   wheelMultiplier: 0.35,
-  duration: 2.0,
+  duration: LENIS_DURATION,
 } as const
 
 export const LENIS_OUT_ACT = {
   wheelMultiplier: 0.9,
-  duration: 1.7,
+  duration: LENIS_DURATION,
 } as const
 
 export const LENIS_INTERP_MS = 400

@@ -38,7 +38,9 @@
   font-weight: 400;
   font-size: clamp(20px, 1.8vw, 28px);
   line-height: 1.38;
-  letter-spacing: -.008em;
+  /* Commit 6 · 19-sep · heading tracking canónico -.015em
+     (era -.008em, off-system). Aplica al lead/display tamaño 20-28px. */
+  letter-spacing: -.015em;
   color: var(--ink);
   max-width: 30ch;
   margin: 0 0 clamp(64px, 10vh, 110px);

@@ -75,7 +75,9 @@
   font-weight: 500;
   font-size: var(--t-body);
   line-height: 1.3;
-  letter-spacing: .04em;
+  /* Commit 6 · 19-sep · label uppercase en tracking canónico
+     .14em (era .04em, off-system). */
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--cream);
 }

@@ -581,14 +581,16 @@ html { font-size: 17px; }
 /* ANSWER CAPSULE — el bloque que la IA levanta. Breakout col 3-11
    (9 cols), mismo tratamiento que .e-capsule en el essay. Sin
    max-width propio: la columna grid ya lo constrañe. */
+/* Commit 6 · 19-sep · lead canónico -.015em (era -.008em). */
 .cs-capsule{grid-column:3 / span 9;font-size:clamp(20px,2.2vw,27px);
-  line-height:1.42;font-weight:500;margin:56px 0 48px;letter-spacing:-.008em}
+  line-height:1.42;font-weight:500;margin:56px 0 48px;letter-spacing:-.015em}
 @media (max-width:767px){.cs-capsule{grid-column:1 / -1}}
 
 /* TAKEAWAYS */
 .cs-takeaways{background:var(--paper);padding:32px 40px 40px;margin-bottom:64px}
+/* Commit 6 · 19-sep · label canónico .14em (era .2em). */
 .cs-label{font-family:var(--mono);font-weight:500;font-size:12px;
-  letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px}
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:20px}
 .cs-takeaways ul{list-style:none;padding:0}
 .cs-takeaways li{position:relative;padding-left:26px;font-size:17.5px;
   line-height:1.5;max-width:66ch}
@@ -614,8 +616,9 @@ html { font-size: 17px; }
 .cs-stat:last-child{border-right:none}
 .cs-stat-v{display:block;font-size:clamp(34px,4vw,52px);font-weight:700;
   letter-spacing:-.028em;line-height:1;margin-bottom:12px}
+/* Commit 6 · 19-sep · label canónico .14em (era .16em). */
 .cs-stat-l{display:block;font-family:var(--mono);font-size:11px;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2)}
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 .cs-stat-s{display:block;font-size:12px;color:var(--ink-2);margin-top:8px;opacity:.75}
 
 /* BODY — prosa a 6 columnas (4/span 6), mismo tratamiento que
@@ -645,8 +648,9 @@ html { font-size: 17px; }
    página pero visualmente distinto del body corrido: un motor de
    respuesta ve el <p class="cs-answer"> como bloque atómico y lo
    puede citar solo, sin necesidad del párrafo siguiente. */
+/* Commit 6 · 19-sep · heading canónico -.015em (era -.006em). */
 .cs-answer{font-size:var(--fs-lead);line-height:1.5;font-weight:500;
-  color:var(--ink);letter-spacing:-.006em;max-width:68ch;
+  color:var(--ink);letter-spacing:-.015em;max-width:68ch;
   margin:0 0 24px;padding:0 0 0 16px;border-left:2px solid var(--rule)}
 .cs-section p{font-size:18px;line-height:1.62;color:var(--ink-2)}
 .cs-section p+p{margin-top:20px}
@@ -669,8 +673,11 @@ html { font-size: 17px; }
 .cs-faq h2{font-size:var(--fs-h2);font-weight:700;
   letter-spacing:var(--track-heading,-.02em);margin-bottom:32px}
 .cs-faq details{border-bottom:1px solid var(--rule-2)}
+/* Commit 6 · 19-sep · heading canónico -.015em (era -.006em).
+   weight 600 se queda · summary es excepción firmada por Fran
+   (junto con .cs-author y CTAs). */
 .cs-faq summary{cursor:pointer;list-style:none;padding:26px 44px 26px 0;
-  position:relative;font-weight:600;font-size:19px;letter-spacing:-.006em}
+  position:relative;font-weight:600;font-size:19px;letter-spacing:-.015em}
 .cs-faq summary::-webkit-details-marker{display:none}
 .cs-faq summary::after{content:'+';position:absolute;right:6px;top:50%;
   transform:translateY(-50%);font-family:var(--mono);font-size:20px;color:var(--ink-2)}

@@ -169,10 +169,17 @@
   width: auto;
 }
 .act1 .beat__phrase {
-  font-family: var(--serif);
+  /* F9 §2.1 · Commit 6 (19-sep) · el hero pasa de --serif a
+     --grot. Regla 18 · la serif es voz de cliente (testimonios y
+     citas atribuidas). El hero no es ninguna de las dos. #act2
+     sigue como excepción firmada (es cita de Marco Aurelio). */
+  font-family: var(--grot);
   font-weight: 400;
   /* CSS declara la escala máxima; el auto-fit en Act1Hero baja
-     el tamaño hasta que la frase entra en UN line-box. */
+     el tamaño hasta que la frase entra en UN line-box. Con
+     grotesca (Archivo) las métricas del texto cambian · el
+     auto-fit converge a valores distintos que con serif. Ver
+     medición firmada en design-system §6.a. */
   font-size: clamp(38px, 5.4vw, 76px);
   line-height: 1.06;
   letter-spacing: -.02em;

@@ -599,6 +599,25 @@ pesos      400, 500, 600
 
 **Ninguna decisión se ejecuta hasta firma de Fran ítem por ítem.**
 
+### 6.a.bis · Excepciones firmadas del sistema (19-sep)
+
+Valores fuera de la escala canónica que quedan explícitamente
+permitidos por decisión firmada, con motivo.
+
+| # | Selector / propiedad                    | Valor    | Motivo (firma Fran) |
+|---|-----------------------------------------|----------|---------------------|
+| 1 | `.pr-block__number` letter-spacing      | `-0.04em` | 18-sep · display 115px · el tracking negativo fuerte es correcto a ese tamaño. |
+| 2 | `.cruda-global-nav-brand` letter-spacing | `0.04em`  | **19-sep** · wordmark CRUDA en el nav (5 páginas). "La marca no es un rótulo · su tracking es parte de su dibujo." Seis apariciones consistentes en el sitio · decisión que alguien tomó bien y nunca se había escrito. |
+| 3 | `.act__logo` letter-spacing              | `0.04em`  | **19-sep** · misma decisión que el nav-brand. El CRUDA del hero comparte tratamiento con la marca del nav. |
+| 4 | `.ab-cta` font-weight                    | `600`     | 18-sep · CTAs se quedan en 600 (no bajan a 500 como los labels). |
+| 5 | `.contact-alt-mail` font-weight          | `600`     | 18-sep · link tipo CTA · mismo criterio que `.ab-cta`. |
+| 6 | `.cs-author` font-weight                 | `600`     | 18-sep · firma del autor de la case study. |
+| 7 | `summary` (case study FAQ) font-weight   | `600`     | 18-sep · pregunta interactiva · componente de UI, no rótulo. |
+
+**Regla del sistema.** Todo lo demás fuera de la escala canónica
+se reporta como deviation y se corrige o se firma acá con motivo.
+Sin motivo escrito · no es excepción, es deuda.
+
 ### 6.b · Decisiones agregadas en la ejecución
 
 Ítems que aparecieron mientras se ejecutaba F9 y quedan

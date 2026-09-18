@@ -21,9 +21,9 @@
   transform: translateX(-50%);
   writing-mode: vertical-rl;
   font-family: var(--grot);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 13px;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
   color: color-mix(in srgb, var(--ink) 45%, transparent);
 }

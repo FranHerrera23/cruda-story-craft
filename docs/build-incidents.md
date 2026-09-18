@@ -519,3 +519,65 @@ mapa, primer paso · producir un diff explícito contra el
 estado actual (secciones presentes vs secciones mencionadas)
 antes de ejecutar. Lo que no aparece en ninguna de las dos
 listas se reporta como pendiente firmable.
+
+---
+
+## 2026-09-19 · `font-weight: 300` en un peso que no se carga · texto renderizando fantasma
+
+Durante Commit 6 (barrido §2 post-F9.3), el fix de nueve
+selectores con `font-weight: 300` reveló algo peor que "off-
+system": Archivo carga sólo 400/500/600/700 desde next/font.
+El peso 300 no existe en el disco. Cuando el CSS pide 300,
+el navegador:
+
+- sintetiza el peso (fake-light) con blur/estirado, o
+- cae al peso cargado más cercano (400), o
+- usa el 300 del stack de fallback (system-ui, Archivo local
+  si el usuario la tiene, o `sans-serif` genérica)
+
+Cada motor de render lo resuelve distinto. El texto no era
+sólo "off-system" · era **invisible en cuanto a fidelidad**.
+Nunca supimos exactamente qué peso estaba renderizando en
+cada navegador. Explica la sensación de inconsistencia entre
+secciones que Fran había reportado.
+
+Fran (19-sep) · "el `font-weight: 300` estaba en cinco archivos
+y Archivo no carga ese peso. O sea que todo ese texto venía
+renderizando con el peso sintético del navegador o cayendo al
+400 según el motor. No era sólo una desviación de sistema:
+era un valor que no existía."
+
+**Los cinco archivos afectados** · antes de Commit 6:
+
+- `src/components/home/work-card.css` · `.work-card__location`, `.work-card__scope-constant`, `.work-card__scope-surfaces` (3 selectores · 9 ocurrencias en 9 cards)
+- `src/components/home/home-translated.css` · `.home-translated__eyebrow`, `.home-translated__section-label` (dead code)
+- `src/components/process/pricing.css` · `.pricing__eyebrow`
+- `src/components/process/translated-rail.css` · `.translated-rail__word`
+- `src/components/process/mike-testimonial.css` · `.mike-testimonial__label`
+
+Todos renombrados a `500` en Commit 6.
+
+**Regla nueva del protocolo.**
+
+Todo `font-weight` declarado en CSS del sitio tiene que ser un
+peso que la fuente actual CARGA (verificable en el loader ·
+`app/layout.tsx` para Archivo, Instrument Serif).
+
+**Chequeo automatizable.**
+
+1. Leer el manifest de fuentes cargadas (`app/layout.tsx` ·
+   `Archivo({weight: [...]}` y `Instrument_Serif({weight: [...]})`.
+2. Grep de `font-weight:` en todo el CSS del repo.
+3. Cualquier peso declarado que no esté en el manifest de
+   la fuente que consume ese selector · falla el check.
+
+**Corolario.** Cargar MÁS pesos "por las dudas" (100/200/300/
+800/900) infla el bundle sin resolver el problema · si el CSS
+no pide un peso, no vale la pena cargarlo. Lo correcto es
+alinear el CSS al set canónico del sistema: `{400, 500, 700}`
++ excepción firmada 600 en `.cs-author`, `summary`, CTAs.
+
+Esta regla se suma al set de tres trampas de tipografía del
+17-18 sep · `scrollWidth` sobre nowrap, `letter-spacing: 0` →
+`normal`, y override en el ancestor. Cuatro casos, misma
+familia: **la métrica computada no es la métrica escrita**.

@@ -1,5 +1,8 @@
-/* Home · LEGACY (v6 F4 §4.2)
-   Retrato + copy. Grilla técnica continua sobre paper (§P1). */
+/* Home · LEGACY · CSS
+   Wireframe LOCK · home §10 · fase E1 (18-sep).
+
+   Molde tabla Pentagram · rótulo izquierda + dato derecha,
+   regla horizontal entre filas. */
 
 .home-legacy {
   background-color: var(--paper);
@@ -23,9 +26,7 @@
   }
 }
 
-/* 4:5 vertical, mismo crop que las cards de work (WorkCard §6.3).
-   La imagen ocupa ~180-240px de ancho, no media pantalla. Escala
-   de firma, no de portada. */
+/* Retrato · 4:5, escala de firma, b/n. Sin cambio. */
 .home-legacy__portrait {
   aspect-ratio: 4 / 5;
   overflow: hidden;
@@ -45,30 +46,85 @@
   flex-direction: column;
   gap: var(--s2);
 }
+
+/* Nombre · h-section del sistema (§2.1 · "titular de bloque").
+   Reemplaza el weight 700/24px del ejec anterior · h-section del
+   sistema es weight 500 en la escala mayor. */
 .home-legacy__name {
   font-family: var(--grot);
-  font-weight: 700;
-  font-size: clamp(20px, 1.6vw, 24px);
-  line-height: 1.2;
-  letter-spacing: -.01em;
+  font-weight: 500;
+  font-size: clamp(28px, 3vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
   color: var(--ink);
   margin: 0;
 }
+
+/* Role · label del sistema · §2.2 · font-weight 500 (era 300, bug
+   del mismo tipo que el eyebrow de WHAT OTHERS · corregido). */
 .home-legacy__role {
   font-family: var(--grot);
-  font-weight: 300;
+  font-weight: 500;
   font-size: 11px;
   letter-spacing: .55em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--ink) 45%, transparent);
-  margin: 0 0 var(--s2);
+  color: var(--ink-2);
+  margin: 0 0 clamp(16px, 2vh, 24px);
 }
-.home-legacy__copy {
+
+/* Tabla · rótulo izquierda + dato derecha, regla entre filas
+   (§10.2 wireframe). */
+.home-legacy__table {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.home-legacy__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 160px) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(16px, 2vh, 24px) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  align-items: baseline;
+}
+@media (max-width: 720px) {
+  .home-legacy__row {
+    grid-template-columns: 1fr;
+    gap: var(--s1);
+  }
+}
+.home-legacy__row-label {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0;
+}
+.home-legacy__row-body {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  max-width: 60ch;
+}
+.home-legacy__row-body--slot {
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  font-style: italic;
+}
+
+/* Frase vieja · fase E1 la mantiene debajo de la tabla. Fase E2
+   la retira (junto con C2). El estilo replica el `.home-legacy__copy`
+   original para preservar peso visual mientras vive. */
+.home-legacy__legacy-line {
   font-family: var(--grot);
   font-weight: 400;
   font-size: clamp(16px, 1.2vw, 18px);
   line-height: 1.5;
   color: var(--ink);
-  margin: 0;
+  margin: clamp(24px, 3vh, 40px) 0 0;
   max-width: 60ch;
 }

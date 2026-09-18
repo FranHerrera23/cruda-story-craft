@@ -117,3 +117,80 @@ boundaries. Un test que codifica la INTENCIÓN (cero pantalla
 vacía, cero line-box mayor a 1) sobrevive a la refactorización.
 Antes de escribir el assert, preguntar "¿qué está midiendo esto,
 la geometría o el resultado?"
+
+---
+
+## 2026-09-18 · `letter-spacing: 0` en CSS compila a `normal` en computed style
+
+Fase D · WHAT OTHERS · el test binario contra tracking de un
+attribution medía `parseFloat(getComputedStyle(el).letterSpacing)`
+y devolvía `NaN` cuando el CSS declaraba `letter-spacing: 0`.
+
+Causa · el CSS `letter-spacing: 0` es válido, pero el user
+agent lo colapsa al keyword `normal` en la representación
+computada. `getComputedStyle` devuelve la string `"normal"`, y
+`parseFloat("normal")` es `NaN`.
+
+Misma familia que la trampa de `scrollWidth` sobre `<p>`
+block-level con `nowrap`: el valor escrito y el valor computado
+no coinciden.
+
+**Fix.** Comparar contra ambos representaciones válidas:
+
+    const ls = getComputedStyle(el).letterSpacing
+    const px = ls === 'normal' ? 0 : parseFloat(ls)
+    // asserto sobre `px`
+
+**Dónde vuelve a morder.** Cualquier test que lea propiedades
+CSS "opcionales" con valor cero: `letter-spacing`, `word-spacing`,
+`line-height`, `column-gap` cuando no está en un contenedor
+flex/grid, `text-indent` en algunos motores. La regla general
+· lee la string, si es `normal`/`auto`/`inherit`, tratala como 0
+o como el default esperado.
+
+---
+
+## 2026-09-18 · `font-weight: 300` en un rótulo fuera de sistema · alguien lo decidió en el momento
+
+Fase D · WHAT OTHERS · el eyebrow tenía `font-weight: 300`
+(light). El sistema §2 declara peso 500 para los labels. Nadie
+lo había pedido en un brief · alguien lo eligió al escribir el
+CSS.
+
+Fase E · LEGACY · el `.home-legacy__role` con el mismo tratamiento
+`font-weight: 300`. Segundo hallazgo del mismo tipo en dos
+commits consecutivos.
+
+Fran (18-sep) · "Si aparecieron dos en un solo bloque, hay más
+en el resto de la home. Cuando E cierre, un barrido de toda la
+superficie contra §2 —pesos, tracking, tamaños fuera de escala—
+probablemente encuentre otros tres."
+
+**Aprendizaje.** El sistema de diseño no se aplica revisando cada
+archivo cuando lo tocás por otra razón · un archivo que no se
+edita sigue con el peso equivocado. Necesita un barrido explícito.
+
+**Barrido tipo.** Un test que enumere selectores con propiedades
+del sistema (color, font-weight, font-size, letter-spacing,
+line-height) y los compare contra la escala firmada. Cualquier
+valor fuera de la escala se reporta.
+
+Selectores a auditar (mínimo):
+  · cualquier `.*__eyebrow`, `.*__label`
+  · cualquier `.*__role`
+  · cualquier `.*__meta`, `.*__attribution`, `.*__caption`
+  · cualquier `.*__num`, `.*__value`
+  · cualquier `.*__head`, `.*__title`, `.*__h1`, `.*__h2`
+
+Propiedades a comparar:
+  · font-weight: sólo {400, 500, 700} en el sistema · nada
+    fuera de eso.
+  · letter-spacing en labels: exactamente .55em (44% de font-size
+    en px, con tolerancia de 5%).
+  · letter-spacing en meta/body: `normal` (o 0, ver entrada
+    anterior).
+  · font-size: dentro de la escala h-display / h-section / h-sub
+    / body / label / meta.
+
+**Cuando corre.** Antes de firmar cada fase de home o /process.
+Reemplaza la revisión manual, que ya se probó porosa.

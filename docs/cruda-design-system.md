@@ -587,7 +587,7 @@ pesos      400, 500, 600
 | 3 | Grey            | inline `color-mix`         | `#6E6B65` firmado | Abierto |
 | 4 | Orange          | `#E8623A` en comentarios, `--color-accent` no declarado | `#FF5A00` firmado por wireframe | **Recomendación: declarar `--color-accent: #FF5A00`** |
 | 5 | `--cream`, `--ink-deep` (hero) | valores actuales | no ataca | Se quedan |
-| 6 | Familia grotesca | Archivo                   | Inter Tight       | Abierto · Fran (19-sep): "renderizar prototipo con Archivo y comparar" |
+| 6 | Familia grotesca | Archivo                   | Inter Tight       | **FIRMADA · Archivo** · medición 19-sep (tabla abajo) |
 | 7 | Pesos canónicos | 400/500/600/700           | 400/500/600       | **Recomendación: 400/500/700 · el 600 queda para `cs-author`, `summary`, CTAs** |
 | 8 | Serif           | Instrument Serif           | (no ataca)        | Se queda |
 | 9 | Mono            | scope-limitado             | (no ataca)        | Mover a `:root` global |
@@ -598,6 +598,66 @@ pesos      400, 500, 600
 | 14 | Comment obsoleto `--color-accent = #E8623A` en `globals.css` | vigente | (no ataca) | Retirar |
 
 **Ninguna decisión se ejecuta hasta firma de Fran ítem por ítem.**
+
+---
+
+### 6.a · Decisión 6 · FIRMADA · Archivo (19-sep)
+
+**Regla del test.** Fran (19-sep) · "Δ ≤ 2px, Archivo se queda.
+Δ ≥ 6px, Inter Tight gana. Entre medio, decisión abierta." Test
+sobre el hero real con auto-fit activo, dos frases y cuatro
+anchos.
+
+**Metodología.** `scratchpad/font-test.mjs` · Playwright sobre
+dev server local. Descarga Inter Tight 400 TTF via curl (Google
+Fonts CDN accesible por curl aunque `page.addStyleTag(url)` da
+egress error), inyecta como data URI, override `font-family` sobre
+`.act1 .beat__phrase` en ambas familias (baseline y test),
+trigger resize para que el auto-fit re-corra, mide el font-size
+al que converge.
+
+**Cross-check** · scrollWidth de las dos frases a font-size fijo
+50px. Verifica que el swap efectivamente aplique · Inter Tight
+tiene que renderear más angosta si Fran tenía razón visual.
+
+**Tabla de medición · font-size al que converge el auto-fit.**
+
+| Frase                                    | Ancho | Archivo   | Inter Tight | Δ (px)   | Lectura |
+|------------------------------------------|-------|-----------|-------------|----------|---------|
+| "Your company outgrew its own story."    | 1440  | 49.62 px  | 51.15 px    | +1.53    | ≤ 2px   |
+| "Your company outgrew its own story."    | 1024  | 36.10 px  | 36.10 px    | 0        | ≤ 2px   |
+| "Your company outgrew its own story."    | 768   | 40.00 px  | 40.00 px    | 0        | ≤ 2px   |
+| "Your company outgrew its own story."    | 390   | 22.32 px  | 22.32 px    | 0        | ≤ 2px   |
+| "We build the next one."                 | 1440  | 76.00 px  | 76.00 px    | 0        | ≤ 2px   |
+| "We build the next one."                 | 1024  | 55.30 px  | 55.30 px    | 0        | ≤ 2px   |
+| "We build the next one."                 | 768   | 40.00 px  | 40.00 px    | 0        | ≤ 2px   |
+| "We build the next one."                 | 390   | 31.20 px  | 31.20 px    | 0        | ≤ 2px   |
+
+**Cross-check · ancho del texto a font-size fijo 50px** (menor
+= más angosta):
+
+| Frase                                    | Archivo    | Inter Tight | Δ (px)  | Δ (%)   |
+|------------------------------------------|------------|-------------|---------|---------|
+| "Your company outgrew its own story."    | 765.4 px   | 757.8 px    | −7.6    | −1.0%   |
+| "We build the next one."                 | 462.7 px   | 452.6 px    | −10.1   | −2.2%   |
+
+**Lectura.** Inter Tight ES 1-2% más angosta a font-size fijo
+(cross-check lo confirma). Ese margen NO se traduce en beneficio
+visible del auto-fit del hero · sólo phrase 1 a 1440 muestra
++1.53 px de font-size, dentro del umbral ≤ 2px. En los otros 7
+puntos ambas familias convergen al mismo tope (por el paso
+0.97 del auto-fit o por el clamp inferior). Regla firmada por
+Fran cumple · **Archivo se queda**.
+
+**Costo del cambio (que se evita).** Cargar Inter Tight vía
+next/font en `app/layout.tsx`, eliminar `Archivo`, actualizar
+las 5 declaraciones de `--grot` y `--sans`, revisar cada CSS
+que use `var(--font-archivo)` directamente. Trabajo transversal
+a cambio de un píxel y medio en un breakpoint.
+
+**Beneficio del cambio (que se evita perseguir).** 1-2% más de
+compresión horizontal. Imperceptible en el auto-fit del hero,
+imperceptible en cualquier título que quepa en su contenedor.
 
 ---
 

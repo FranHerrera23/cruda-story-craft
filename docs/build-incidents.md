@@ -360,3 +360,75 @@ que existen". Deben estar sincronizadas. Un componente adicional
 que consumen ambas fuentes (por ejemplo un `ROUTES` firmado en
 `src/content/routes.ts` con estado por ruta) sería el fix
 estructural. Fase futura, no scope de este commit.
+
+---
+
+## 2026-09-19 · El test de tipografía forzó familia en :root y midió lo mismo dos veces
+
+Fase decisión 6 · comparar Archivo vs Inter Tight sobre el hero.
+Primera corrida del script `scratchpad/font-test.mjs` devolvió
+Δ 0 en los 8 puntos de medición. Un resultado que parecía
+limpio, y no medía nada.
+
+**La causa.** El script inyectaba el swap sobrescribiendo
+`--grot` en `:root`. Pero el hero HOY renderea con `--serif`
+(Instrument Serif · el cambio a grotesca es F9.1, todavía
+pendiente). El override sobre `--grot` no afectaba al elemento
+medido, porque el elemento consumía otra variable. Baseline y
+test midieron lo mismo · serif contra serif.
+
+Recién con debug output (fontFamily del computed style sobre el
+elemento medido) se detectó · en las dos corridas el elemento
+seguía en `__Instrument_Serif_315a98`, no en Archivo ni en Inter
+Tight.
+
+**Es la tercera vez.** Misma familia de trampa que:
+
+- `scrollWidth` sobre `<p>` block-level con `nowrap` (entrada
+  del 18-sep) · devuelve `max(clientWidth, contentWidth)`, no
+  el ancho del texto.
+- `letter-spacing: 0` compila a `normal` en computed style
+  (entrada del 18-sep) · `parseFloat("normal")` da `NaN`.
+- El override en el ancestor cuando el elemento medido usa otra
+  variable (esta entrada).
+
+Todas comparten el patrón: **la métrica leída no es lo que
+parece**. La suposición implícita del test no matchea la
+mecánica real del CSS.
+
+Fran (19-sep) · "Un resultado que parecía limpio y no medía
+nada. Es la misma familia de problema que el `scrollWidth` y
+el `letter-spacing: normal` — la tercera vez en dos días que
+una métrica devuelve algo que no es lo que parece."
+
+**Regla nueva del protocolo.**
+
+Todo test que compara una propiedad tipográfica (tamaño, ancho,
+familia, tracking, height) entre dos configuraciones tiene que:
+
+1. **Forzar el swap sobre el selector que se mide**, no sobre
+   un ancestor o un token. Si el elemento usa `var(--serif)` y
+   el swap es `var(--grot)`, el elemento no se toca.
+2. **Verificar el valor computado del elemento antes de confiar
+   en la medición.** El `computedStyle(el).fontFamily`,
+   `fontSize`, etc. tienen que reflejar el swap · si no, el
+   test está midiendo el estado viejo.
+3. **Doble baseline · misma configuración corrida dos veces.**
+   Si baseline vs baseline devuelve Δ 0, el test funciona.
+   Si baseline vs test devuelve Δ 0, o el swap no aplicó o
+   las dos configuraciones son iguales · hay que distinguir.
+4. **Cross-check con una métrica directa.** Si el swap dice
+   "Inter Tight es más angosta", el ancho del texto a font-size
+   fijo tiene que ser menor. Si no, el swap no aplicó · el auto-
+   fit sí converge al mismo punto porque midió la misma familia.
+
+**Cuando corre esta regla.** Cualquier test comparativo sobre
+propiedad tipográfica. Antes de reportar el resultado, chequear
+los cuatro puntos.
+
+**Fix documentado en el script.** `scratchpad/font-test.mjs`
+ahora inyecta `font-family` directamente sobre `.act1
+.beat__phrase` en ambas familias, imprime el `fontFamily`
+computado del elemento medido antes de reportar cada punto, y
+agrega el test cruzado de scrollWidth a font-size fijo como
+sanity check.

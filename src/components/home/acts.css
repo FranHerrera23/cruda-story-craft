@@ -21,7 +21,10 @@
    viceversa. */
 
 .act1 {
-  height: 1200vh;
+  /* Wireframe LOCK · home §4.3 · 17-sep. Se abandonó el 1200vh
+     del brief F2 (settle/relleno/hold). Con crossfade solapado
+     entre dos frases completas alcanza con 260vh. */
+  height: 260vh;
   background: #0E1113;
   color: #EFEBDF;
 }
@@ -155,22 +158,30 @@
   visibility: hidden;
 }
 
-/* Act 1 · x: 8vw, ancho máx 54vw (deja aire a la derecha). */
+/* Act 1 · wireframe §4 · frase única en la mitad izquierda.
+   Se usa left/right en vez de max-width para que el ancho del
+   contenedor sea determinístico (el auto-fit del motor mide
+   contra este ancho). */
 .act1 .beat {
   left: 8vw;
-  max-width: 54vw;
-  right: auto;
+  right: 38vw;
+  max-width: none;
   width: auto;
 }
 .act1 .beat__phrase {
   font-family: var(--serif);
   font-weight: 400;
+  /* CSS declara la escala máxima; el auto-fit en Act1Hero baja
+     el tamaño hasta que la frase entra en UN line-box. */
   font-size: clamp(38px, 5.4vw, 76px);
   line-height: 1.06;
   letter-spacing: -.02em;
   color: #EFEBDF;
   margin: 0;
-  text-wrap: pretty;
+  /* Wireframe §4.2 · nunca dos líneas. No es contradictorio
+     con auto-fit: el fit chequea scrollWidth y baja el font-size
+     hasta que la frase entra. */
+  white-space: nowrap;
 }
 
 /* Act 2 · beat en su columna derecha, x: 52vw → 92vw. Canal
@@ -301,8 +312,7 @@
     width: auto;
   }
 
-  .act1 .beat .dim,
-  .act1 .beat .lit {
+  .act1 .beat__phrase {
     font-size: clamp(28px, 8vw, 40px);
   }
   .act2 .beat .dim,
@@ -335,7 +345,9 @@
 
 @media (max-width: 700px) {
   .act1 {
-    height: 960vh;
+    /* Wireframe §4.3 · misma altura que desktop. El auto-fit
+       ajusta el tamaño de fuente al ancho, no la altura. */
+    height: 260vh;
   }
   .act2 {
     height: 1680vh;

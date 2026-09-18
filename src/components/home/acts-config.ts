@@ -1,71 +1,58 @@
 /* Home · Acts · calibración
-   Brief F8 (17-sep) · corrección de F2.
+   Wireframe LOCK · home §4 (17-sep) — reemplaza F8 §1.
 
    Los números que producen la sensación de peso viven acá,
    juntos y comentados. Se ajustan mirando, no calculando.
 
    ═══ Alturas ═══
 
-   ACT1_HEIGHT_VH   400vh · 2 beats. F8 §1 · el modelo de relleno
-                    progresivo se abandona; cada frase entra
-                    completa, se sostiene, y sale. 400vh alcanza
-                    porque una frase completa no necesita tres
-                    pantallas de scroll para "llenarse". Vuelve
-                    al orden de magnitud del brief 07 original,
-                    previo a F2 (que la había subido a 1200vh
-                    para el settle/relleno/hold, ahora retirado).
+   ACT1_HEIGHT_VH   260vh · 2 beats · crossfade solapado.
+                    Wireframe home §4.3 explícito. La frase
+                    entrante empieza su fade-in cuando la
+                    saliente está al 40% de opacidad — nunca
+                    hay un frame con la pantalla vacía. Esto
+                    reemplaza el modelo con hueco negro entre
+                    frases del ejec anterior de F8.
 
-                    Distribución sobre p del track:
-                      p 0.00 – 0.44   beat 1 (enter · hold · exit)
-                      p 0.44 – 0.52   hueco vacío
-                      p 0.52 – 0.92   beat 2 (enter · hold · exit)
-                      p 0.92 – 1.00   salida
+                    Distribución sobre p del track (§4.3):
+                      0.00 – 0.45   beat 1 hold (opacity 1)
+                      0.45 – 0.60   beat 1 exit (1 → 0)
+                      0.54 – 0.65   beat 2 enter (0 → 1)
+                      0.65 – 1.00   beat 2 hold (opacity 1)
+                    Overlap 0.54 – 0.60 · ambas frases parciales.
+
+                    Beat 1 no tiene enter · arranca visible al
+                    top del acto para evitar el "hueco negro
+                    antes de la primera frase" (§4.4).
+                    Beat 2 no tiene exit · queda visible al fin
+                    del acto para evitar el "hueco negro después
+                    de la segunda" (§4.4). La transición al
+                    #act2 la maneja el borde entre secciones.
 
    ACT2_HEIGHT_VH   2100vh · 5 beats · 420vh cada uno.
-                    F2 §2.4 (sin cambio). Distribución interna:
-                      5 beats × 16% + 4 huecos × 5% = 100%
-                    Beats en [0.00, 0.16], [0.21, 0.37], [0.42, 0.58],
-                    [0.63, 0.79], [0.84, 1.00]. Huecos de 5% entre
-                    cada par.
+                    F2 §2.4 (sin cambio · el lock declara #act2
+                    "no change" en el modelo de fill por línea).
 
    Mobile: alturas más chicas · gesto de scroll más corto. Los
    rangos [from, to] son proporcionales al alto del track.
 
-   ═══ Mecánica de act 1 (F8 §1 · modelo phrase) ═══
+   ═══ Mecánica de act 1 (wireframe §4.3 · modelo phrase con overlap) ═══
 
-   La frase está o no está. Dentro de la ventana [from, to] del
-   beat, con local p (0..1):
-       0.00 – 0.15   enter · opacity 0→1, ty +16px→0
-       0.15 – 0.85   hold  · opacity 1, ty 0
-       0.85 – 1.00   exit  · opacity 1→0, ty 0→-16px
-   Fuera de la ventana · opacity 0. Nada de clip-path, nada de
-   snap a palabra, nada de LineReveals. Una sola opacidad por
-   beat, atada al scroll.
+   Cada beat tiene una ventana [from, to] global sobre p. El
+   motor calcula opacity + ty por beat según:
 
-   ═══ Mecánica de act 2 (F2 §2.1 · sigue igual) ═══
+     · Primer beat  · sin enter · hold hasta to − exitWidth,
+                                  exit lineal hasta to
+     · Último beat  · enter lineal desde from hasta
+                                  from + enterWidth, luego hold
+     · Beats medios · enter, hold, exit dentro de [from, to]
 
-   Dentro de la ventana de un beat con N líneas:
-     p_beat  0.00 – 0.08   settle · nada se mueve
-             0.08 – 0.92   relleno · N tramos iguales SIN SOLAPE
-             0.92 – 1.00   hold · todas al 100%
+   Con dos beats solamente, no hay medio. Constantes de
+   enter/exit width viven en acts-motor.ts. */
 
-   línea i  inicio = 0.08 + 0.84 · (i     / N)
-            fin    = 0.08 + 0.84 · ((i+1) / N)
-
-   INVARIANTE: en cualquier p existe como máximo UNA línea con
-   --fill entre 0% y 100%.
-
-   ═══ Cámara (F2 §2.5 · solo act 2) ═══
-
-   La imagen cambia en el borde del beat, dentro del hueco.
-   La cámara se mueve todo el tiempo, atada al progreso del ACTO,
-   incluso en los tramos sin texto. Sin transition, sin animation.
-   Reset de escala al cambiar de archivo en el mismo frame que el
-   swap · corte duro, cero interpolación entre 1.45 y 1.85. */
-
-export const ACT1_HEIGHT_VH = 400
+export const ACT1_HEIGHT_VH = 260
 export const ACT2_HEIGHT_VH = 2100
-export const ACT1_HEIGHT_VH_MOBILE = 320
+export const ACT1_HEIGHT_VH_MOBILE = 260
 export const ACT2_HEIGHT_VH_MOBILE = 1680
 
 /* ══════════ Copy · beats ══════════
@@ -85,13 +72,21 @@ export type Beat = {
   lines: string[]
 }
 
-/* Acto 1 · hero negro. Dos beats. Cero imagen.
-   Geometría F2 §2.3 · beat 1 [0.00, 0.44], beat 2 [0.52, 0.92].
-   Beat 1 arranca en 0 (Motion v4 §1) · sin baseline visible al
-   cargar era un bug de estado inicial. */
+/* Acto 1 · hero negro. Dos beats con ventanas SOLAPADAS.
+   Wireframe LOCK · home §4.3 (17-sep).
+
+   Beat 1 [0.00, 0.60] · sin fade-in (arranca visible al top del
+   acto, evita el hueco negro previo a la primera frase). Fade-
+   out en su último 25% de ventana.
+
+   Beat 2 [0.54, 1.00] · sin fade-out (queda visible al fin del
+   acto, evita el hueco negro posterior a la segunda frase). Su
+   fade-in arranca cuando beat 1 pasa por opacity 0.4 · overlap
+   real 0.54-0.60 con ambas frases parciales, cero pantalla
+   vacía. */
 export const ACT1_BEATS: Beat[] = [
-  { from: 0.00, to: 0.44, lines: ['Your company outgrew its own story.'] },
-  { from: 0.52, to: 0.92, lines: ['We build the next one.'] },
+  { from: 0.00, to: 0.60, lines: ['Your company outgrew its own story.'] },
+  { from: 0.54, to: 1.00, lines: ['We build the next one.'] },
 ]
 
 /* Acto 2 · why-now paper. Cinco beats.

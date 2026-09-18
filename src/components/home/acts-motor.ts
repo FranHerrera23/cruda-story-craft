@@ -229,10 +229,14 @@ export function leaveAct() {
 const SETTLE_END = 0.08
 const RELLENO_END = 0.92
 
-/* Phrase mode · umbrales de enter/exit dentro del beat. */
-const PHRASE_ENTER_END = 0.15
-const PHRASE_EXIT_START = 0.85
-const PHRASE_TY_PX = 16
+/* Phrase mode · anchos de enter/exit en unidades de track-p.
+   Wireframe home §4.3 · 17-sep.
+   El primer beat no tiene enter (arranca visible al top). El
+   último beat no tiene exit (queda visible al fin del acto). Los
+   beats intermedios (no aplica con 2 beats) tendrían ambos. */
+const PHRASE_ENTER_WIDTH_P = 0.11
+const PHRASE_EXIT_WIDTH_P = 0.15
+const PHRASE_TY_PX = 40
 
 export type RunActOptions = {
   track: HTMLElement
@@ -272,34 +276,57 @@ export function runAct({
     let active = -1
 
     if (mode === 'phrase') {
-      /* ── Modo phrase · una frase por beat, opacity + ty por
-         scroll dentro de [from, to]. F8 §1. ── */
+      /* ── Modo phrase con overlap · wireframe home §4.3 ──
+         Cada beat tiene una ventana [from, to] sobre p del track.
+         Dentro de esa ventana:
+           · Primer beat  · sin enter (arranca en 1) · exit en el
+                            último PHRASE_EXIT_WIDTH_P
+           · Último beat  · enter en el primer PHRASE_ENTER_WIDTH_P
+                            · sin exit (queda en 1)
+           · Beats medios · enter + hold + exit
+         Fuera de la ventana · el primer beat quedaría en 1 hacia
+         atrás (never sucede porque from=0 del primero), el
+         último en 1 hacia adelante (p clamped a 1 lo cubre), y
+         los medios en 0.
+         Las ventanas SE SOLAPAN a propósito para que en el
+         cruce ambas frases estén parciales · CERO frames con
+         pantalla vacía. */
+      const lastIdx = beats.length - 1
       beats.forEach((b, i) => {
         const el = beatEls[i]
         if (!el) return
-        const inRange = p >= b.from && p <= b.to
-        if (!inRange) {
-          el.style.opacity = '0'
-          el.style.setProperty('--ty', '0px')
-          return
-        }
-        active = i
-        const localP = clamp((p - b.from) / (b.to - b.from), 0, 1)
-        let opacity: number
-        let ty: number
-        if (localP < PHRASE_ENTER_END) {
-          const t = localP / PHRASE_ENTER_END
-          opacity = t
-          ty = PHRASE_TY_PX * (1 - t)
-        } else if (localP > PHRASE_EXIT_START) {
-          const t =
-            (localP - PHRASE_EXIT_START) / (1 - PHRASE_EXIT_START)
-          opacity = 1 - t
-          ty = -PHRASE_TY_PX * t
+        const isFirst = i === 0
+        const isLast = i === lastIdx
+        let opacity = 0
+        let ty = 0
+        if (p < b.from) {
+          opacity = 0
+          ty = PHRASE_TY_PX
+        } else if (p > b.to) {
+          if (isLast) {
+            opacity = 1
+            ty = 0
+          } else {
+            opacity = 0
+            ty = -PHRASE_TY_PX
+          }
         } else {
-          opacity = 1
-          ty = 0
+          const enterEnd = isFirst ? b.from : b.from + PHRASE_ENTER_WIDTH_P
+          const exitStart = isLast ? b.to : b.to - PHRASE_EXIT_WIDTH_P
+          if (p < enterEnd) {
+            const t = (p - b.from) / (enterEnd - b.from)
+            opacity = t
+            ty = PHRASE_TY_PX * (1 - t)
+          } else if (p > exitStart) {
+            const t = (p - exitStart) / (b.to - exitStart)
+            opacity = 1 - t
+            ty = -PHRASE_TY_PX * t
+          } else {
+            opacity = 1
+            ty = 0
+          }
         }
+        if (opacity > 0) active = i
         el.style.opacity = opacity.toFixed(3)
         el.style.setProperty('--ty', ty.toFixed(2) + 'px')
       })

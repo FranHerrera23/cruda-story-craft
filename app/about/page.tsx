@@ -19,9 +19,9 @@ import './about.css'
      07 · CLOSE               (blanco · dos CTAs)
 
    Copy en tercera persona. La sección `04` arranca por el hecho
-   de CRUDA — 'The person on the first call is the person who
-   writes the last line' — no por la descalificación de la
-   competencia.
+   estructural de CRUDA (execution layer machine-assisted,
+   judgment layer human) · el párrafo inicial Ogilvy-era salió en
+   Commit 3 (19-sep) por F8 §4 + F9.
 
    Cinco operating principles, no seis: el sexto original ('the
    machine executes, the judgment doesn't') era el contenido de
@@ -273,11 +273,11 @@ export default function AboutPage() {
               data-seq="body"
               data-reveal="text"
             >
-              <p>
-                The person on the first call is the person who writes
-                the last line. Nothing is briefed down, because there
-                is no one to brief it down to.
-              </p>
+              {/* Retirado (Commit 3 · 19-sep) · el párrafo inicial
+                  con el posicionamiento Ogilvy-era salió · F8 §4 lo
+                  flageó, F9 lo confirma como retiro sin decisión
+                  pendiente. La sección arranca ahora por el segundo
+                  párrafo (execution layer machine-assisted). */}
               <p>
                 That is only possible because the execution layer is
                 machine-assisted and the judgment layer is not. The

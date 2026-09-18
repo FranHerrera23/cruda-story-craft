@@ -14,26 +14,36 @@ import { allEssays } from '@/content/essays'
 
 const BASE = 'https://www.thecruda.com'
 
+/* Fran directive (19-sep) · el archivo servido a los crawlers
+   de IA tenía tres problemas graves:
+   · /sports y /systems declaradas como Companies · devuelven 410
+     Gone via middleware.ts. Retiradas.
+   · /resources listada como hub · redirige 308 a /work. Retirada.
+   · Header, /work y /about con descripciones del posicionamiento
+     viejo (Ogilvy-era "three companies, one method" · nicho
+     cerrado de "Architecture & Design" · frase de /about que F9
+     §2.4 marca para reemplazo por QUÉ ES CRUDA).
+
+   Las descripciones corregidas quedan como slot [PENDIENTE · FRAN]
+   hasta que llegue el copy nuevo. Fran (19-sep) · "preferible un
+   /llms.txt con menos líneas que uno con líneas falsas".
+
+   Regla nueva del protocolo (Fran, 19-sep) · cada vez que se
+   retira o agrega una ruta del sitio, se revisan /llms.txt y
+   /ai.txt. Registrado en docs/build-incidents.md.
+
+   /pricing salió en commit f25ff69 (18-sep · Commit 1). */
+
 const HEADER = `# CRUDA
 
-> Brand building group for founders whose work is better than their reputation.
-> Three companies, one method. Marketing built around the founder, not the logo.`
+> [ Description · PENDIENTE · FRAN ]`
 
-const COMPANIES_SECTION = `## Companies
-
-- [CRUDA for Architecture & Design](${BASE}/work): Brand building for founders and studios in architecture, construction and design.
-- [CRUDA for Sports](${BASE}/sports): Narrative infrastructure for athletes and sports organizations (coming soon).
-- [CRUDA Systems](${BASE}/systems): Custom internal AI systems for studios that need to remember what the founder knows.`
-
-/* Fran directive (18-sep) · /pricing muere. La ruta y toda
-   referencia externa salen del sitio. El engagement fee vive en
-   /process, no en una página aparte. */
 const HUBS_SECTION = `## Pages
 
-- [About CRUDA](${BASE}/about): CRUDA is a narrative practice for founder-led companies. Fran Herrera — 10 years building brands.
+- [About CRUDA](${BASE}/about): [ PENDIENTE · FRAN ]
+- [Work](${BASE}/work): [ PENDIENTE · FRAN ]
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
-- [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.
-- [All resources](${BASE}/resources): Every essay and case study in one library.`
+- [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.`
 
 function oneLine(text: string, max = 200): string {
   const flat = text.replace(/\s+/g, ' ').trim()
@@ -75,7 +85,6 @@ export function generateLlmsTxt(): string {
     HEADER,
     caseStudiesSection(),
     essaysSection(),
-    COMPANIES_SECTION,
     HUBS_SECTION,
     '',
   ].join('\n\n')

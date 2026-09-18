@@ -148,8 +148,7 @@ function setup(): Cleanup {
 
   /* Reveals sueltos: los que no tienen data-seq. Los que están
      DENTRO de una sección seq pero no marcados con data-seq (ej:
-     las f9-row de HomeFirst90 con su propio stagger, las
-     work-cards de selected-work) siguen con reveal individual. */
+     las work-cards de selected-work) siguen con reveal individual. */
   const singleTargets = Array.from(
     document.querySelectorAll<HTMLElement>(
       '[data-reveal]:not(.on):not([data-seq])',

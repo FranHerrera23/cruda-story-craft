@@ -1,24 +1,13 @@
 /* Home · layout entre secciones · Brief 07 v2 (15-sep).
+   Cleanup Commit 3 (19-sep) · .home-first90 retirado (HomeFirst90
+   borrado en este commit). Las reglas de layout que lo mencionan
+   se dejan sin efecto sobre el nuevo orden.
 
-   Escenario oscuro (`.act`) al principio, papel para el resto.
-   El corte del negro al blanco en el paso de opening-act →
-   selected-work es el pivot visual del sitio. No lleva filete —
-   el cambio de color lo hace la transición.
-
-   Orden Brief 07 v2 + Brief 04 §4.4 remainder:
-     .act → .home-work → .tip → .home-first90 → .proof →
-     .home-testimonial → .home-essays → .home-close
-
-   Filete entre pares de paper. No entre pares que cruzan color:
-     proof → testimonial (blanco → negro): sin filete
-     testimonial → essays (negro → blanco): sin filete
-
-   Reset defensivo de margins también. */
+   Reset defensivo de margins entre secciones. */
 
 .act,
 .home-work,
 .tip,
-.home-first90,
 .proof,
 .home-testimonial,
 .home-essays,
@@ -27,18 +16,9 @@
   border-top: 0;
 }
 
-/* Filete entre secciones consecutivas — solo entre pares del
+/* Filete entre secciones consecutivas · sólo entre pares del
    mismo fondo (--paper). */
-.act + .home-work,
 .home-work + .tip,
-.tip + .home-first90,
-.home-first90 + .proof,
-.home-essays + .home-close {
-  /* Opening-act → selected-work: sin filete, corte de color. */
-}
-.home-work + .tip,
-.tip + .home-first90,
-.home-first90 + .proof,
 .home-essays + .home-close {
   border-top: 1px solid var(--rule);
 }

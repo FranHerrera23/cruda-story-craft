@@ -295,3 +295,68 @@ la fuente de verdad de los valores. El brief es la fuente de
 verdad de la intención y la estructura. Si los dos se contradicen
 en el momento de la ejecución, el agente detiene y reporta ·
 Fran decide cuál gana.
+
+---
+
+## 2026-09-19 · `/llms.txt` y `/ai.txt` deben revisarse en cada retiro/agregado de ruta
+
+En dos días distintos, `/llms.txt` (y su gemelo `/ai.txt`)
+sirvió a los crawlers de IA rutas retiradas o inexistentes:
+
+**18-sep · commit `f25ff69`** · `/pricing` estaba listada como
+hub en `HUBS_SECTION` (`- [Pricing](/pricing): CRUDA's engagement
+structure and rates.`) cuando el directorio se borró. Detectado
+en el reconocimiento del Commit 1 · cleanup en el mismo commit.
+
+**19-sep · Commit 3** · `/sports` y `/systems` estaban listadas
+como Companies en `COMPANIES_SECTION` cuando `middleware.ts`
+las retornaba 410 Gone. `/resources` estaba listada como hub
+cuando redirige 308 a `/work`. **Peor caso posible** · le decíamos
+a los modelos "acá hay dos empresas de CRUDA" y cuando iban a
+buscarlas no existían. Es una afirmación falsa sobre la
+compañía, servida específicamente para consumo de IA. Y encima
+había un tercer link `/resources` que redirigía.
+
+Fran (19-sep) · "Que `llms.txt` y `ai.txt` entren al protocolo:
+cada vez que se retira o agrega una ruta, se revisan los dos.
+Ya nos pasó dos veces en dos días."
+
+**Regla nueva del protocolo.**
+
+Cualquier commit que:
+- borre un directorio de ruta (`rm -rf app/route-name/`)
+- agregue una ruta nueva (`app/new-route/`)
+- cambie el estado de una ruta (301/308 redirect, 410 Gone,
+  noindex, feature-flag apagado)
+
+**tiene que incluir la revisión de `src/lib/llms-txt.ts` y las
+routes `app/llms.txt/route.ts` + `app/ai.txt/route.ts`.**
+
+Chequeos automatizables:
+
+1. `grep -o "\.thecruda\.com/[a-z][a-z0-9-]*" src/lib/llms-txt.ts`
+   enumera todas las rutas declaradas al crawler.
+2. Cada una tiene que resolver con status 200 (o estar autorizada
+   como redirect en el sitemap con destino coherente).
+3. Cada URL en el sitemap tiene que aparecer o justificar su
+   ausencia en `llms.txt`. Cada URL en `llms.txt` tiene que ser
+   servida (no 410, no dead flag).
+
+**Cómo se aplica.**
+
+Verificación post-build (nueva disciplina firmada 19-sep):
+
+    grep -o "\.thecruda\.com/[^)]*" .next/server/app/llms.txt.body
+    // → enumerá las URLs listadas
+    // cada una tiene que existir en el bundle (.next/server/app/)
+    // o estar en next.config.mjs redirects con destino vivo.
+
+Este check corre antes de firmar cualquier retiro de ruta.
+
+**Corolario.** Los dos surfaces (sitemap y llms/ai) sirven
+audiencias distintas — buscadores tradicionales vs modelos de
+IA — pero son la misma pregunta: "qué páginas dice el sitio
+que existen". Deben estar sincronizadas. Un componente adicional
+que consumen ambas fuentes (por ejemplo un `ROUTES` firmado en
+`src/content/routes.ts` con estado por ruta) sería el fix
+estructural. Fase futura, no scope de este commit.

@@ -127,14 +127,12 @@ export default function HomeTranslated() {
           </p>
         </div>
 
-        <hr className="home-translated__rule" aria-hidden="true" />
-
-        <div className="home-translated__prose home-translated__prose--close">
-          <p>
-            Ten to twelve engagements a year. Never more. Nothing here
-            expires on day ninety.
-          </p>
-        </div>
+        {/* Cierre retirado (Commit 3 · 19-sep) · el párrafo
+            final con la capacidad hardcoded y la coda de
+            "day ninety" salió · unsigned capacity claim + coda
+            del HomeFirst90 (retirado en F8 §9.4). Este componente
+            queda fuera del render de la home desde F8 §9.1; el
+            retiro de esta línea es cleanup del dead code. */}
       </div>
     </section>
   )

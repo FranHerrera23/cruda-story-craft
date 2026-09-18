@@ -1,31 +1,25 @@
 import './home-legacy.css'
 
 /* Home · LEGACY
-   Wireframe LOCK · home §10 (17-sep) · fase E1 (18-sep).
+   Wireframe LOCK · home §10 (17-sep) · fase E1 · E2 · Commit 3 (19-sep).
 
-   Molde nuevo · tabla Pentagram. Rótulo izquierda, dato derecha,
-   regla entre filas. Cuatro filas fijas:
+   Molde tabla Pentagram. Cuatro filas fijas:
 
-     EXPERIENCE      copy firmado (era el primer párrafo)
-     LEGACY          seis holdings separados por · (sin DirecTV
-                     ni Natura hasta que Fran confirme)
+     EXPERIENCE      copy firmado
+     LEGACY          seis holdings separados por ·
      PRACTICE        slot [PENDIENTE · FRAN]
      THE TEAM        slot [PENDIENTE · FRAN]
 
-   Retiro en dos pasos (regla 23 aplicada con criterio, mismo
-   patrón que WHO IT HOLDS FOR fase C):
+   Fase E2 · retirado (Commit 3 · 19-sep). El párrafo viejo con
+   la capacidad hardcoded y la formulación del posicionamiento
+   Ogilvy-era salió · era copy sin firma (regla 25 · capacidad
+   no derivable) + posicionamiento viejo (F8 §4). No se
+   reemplaza · el rework de OUR FOUNDER en F9 §2.7.4 introduce
+   un titular nuevo firmado por Fran.
 
-     E1 · construye la tabla con las cuatro filas. La frase
-          vieja "the person on your first call writes your last
-          line" QUEDA como párrafo debajo de la tabla, intacta.
-          La home no pierde lo que decía.
-
-     E2 · cuando Fran firme THE TEAM (y decida sobre
-          "ten to twelve founders a year"), la frase vieja sale
-          en su propio commit · va junto con C2.
-
-   El retrato entra desde `/fran-herrera.webp` como estaba · b/n,
-   4:5, escala de firma (~180-240px). Sin cambios. */
+   Retrato en /fran-herrera.webp · b/n, 4:5, escala de firma.
+   F9 §2.7.4 (post-Commit-3) redisea esta sección · negro,
+   retrato a sangre, rótulo OUR FOUNDER, nombre baja al pie. */
 
 const LEGACY_HOLDINGS = [
   'Mondelez',
@@ -84,16 +78,6 @@ export default function HomeLegacy() {
               </dd>
             </div>
           </dl>
-
-          {/* Fase E1 · el párrafo viejo queda hasta que Fran firme
-              THE TEAM (fase E2). Sin él, la home dice menos de lo
-              que decía · directiva 18-sep. Contiene además "ten to
-              twelve founders a year" que hoy es hardcode (regla 25)
-              · reportado por separado para decisión de Fran. */}
-          <p className="home-legacy__legacy-line">
-            Now ten to twelve founders a year, and the person on your
-            first call writes your last line.
-          </p>
         </div>
       </div>
     </section>

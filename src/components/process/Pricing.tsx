@@ -5,21 +5,38 @@ import './pricing.css'
    bloque de Karen. Ledger 4 (16-sep) · el precio del engagement
    es público y vive en /process.
 
-   Copy VERBATIM del brief v6 F6 §6.2. Cinco filas de comparación
-   contra "Agencies", línea de pago abajo con registro operativo,
-   y el statement de media budget al final.
-
    Regla 1 vigente · cero múltiplos o ratios contra el fee. El
-   precio se publica como fee, no como fee × N o fee ÷ N. */
+   precio se publica como fee, no como fee × N o fee ÷ N.
+
+   Retiro autorizado (Fran, 18-sep) · el barrido transversal del
+   posicionamiento viejo (F8 §4 punto 8 nunca corrido fuera de
+   home) encontró tres filas del Bucket A · CONTRADICTS NEW
+   POSITIONING acá adentro. Salen entera cada una:
+
+     · 'Ten to twelve a year'                       (línea 16 pre-retiro)
+     · 'The person on your first call writes your
+        last line'                                  (línea 18 pre-retiro)
+     · 'Nothing expires on day ninety'              (línea 22 pre-retiro)
+
+   Este archivo es el peor lugar posible para el posicionamiento
+   viejo: no es prosa suelta, es una ventaja declarada frente a
+   la competencia en una tabla pública. Estuvo desde el F8 (v6
+   F6 §6.2 · "cinco filas verbatim del brief") y el punto 8 de
+   verificación nunca se corrió acá.
+
+   La comparación queda con UNA fila. La regla 23 aplicada por
+   Fran en fase C1 vuelve a aplicar acá · "si al armar la tabla
+   queda corta, no se rellena: queda corta". Cuando corra el
+   rework de /process (wireframe /process · F1-F7), Fran decide
+   si sale la comparación entera o si vuelve con filas nuevas
+   firmadas.
+
+   Los tres pares se retiran completos (CRUDA y Agencies) porque
+   la comparación es una tupla · sin la cara CRUDA la cara
+   Agencies no tiene con qué comparar. */
 
 const ROWS: [string, string][] = [
-  ['Ten to twelve a year', 'As many as fit'],
-  [
-    'The person on your first call writes your last line',
-    'An account manager',
-  ],
   ['Surfaces chosen in month one', 'Surfaces sold to you'],
-  ['Nothing expires on day ninety', 'The campaign ends'],
 ]
 
 export default function Pricing() {

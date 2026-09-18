@@ -148,68 +148,144 @@ export const ACT2_BEATS: Beat[] = [
 ]
 
 /* ══════════ Arts · dibujos del acto 2 ══════════
-   F2 §2.5 · corte duro entre archivos + escala continua sobre p
-   del acto DENTRO DE CADA BEAT. F2-FIX bug 3 (17-sep) · la
-   escala es constante DENTRO DE CADA FAMILIA (busto vs. libro).
-   Antes cada beat tenía su propia escala descendente a lo largo
-   del acto (1.90, 1.85, 1.80...) · eso rompía la ilusión central:
-   la imagen se leía como cinco dibujos distintos en lugar de un
-   dibujo que gana detalle.
+   Wireframe LOCK · home §5 (17-sep). Reemplaza la disposición
+   de F8 §2 y la cláusula de hard-cut de F2 §2.5.
 
-   Ahora todos los busts comparten (startScale, endScale) y todos
-   los books comparten otro (startScale, endScale). El salto entre
-   beats es de DETALLE (line → dense), no de ENCUADRE.
+   ARGUMENTO. El busto se BORRA mientras el copy dice que el
+   imperio no sobrevivió. El libro aparece en su lugar. Esa
+   transición ES la sección · sin ella el bloque es una galería
+   de ilustraciones al lado de texto.
 
-   Valores elegidos para que el dibujo entre completo en el
-   viewport pero con una cámara viva:
-     bust  1.20 → 1.05   pull-back del 15% dentro de cada beat
-     book  1.20 → 1.05   idem
-   Iguales entre familias · el sistema no distingue busto de
-   libro por escala, solo por transform-origin.
+   MAPEO SEMÁNTICO ↔ ARCHIVO (verificado por medición de pixels
+   sobre el binario · scratchpad/inspect-arts.py · 18-sep):
 
-   ORDEN F8 §2 (17-sep) · se restaura el orden anterior a
-   6fdae95. La densidad medida a ojo (área oscura ponderada por
-   contraste percibido) no coincide con la densidad de píxeles
-   dark:
+     nombre wireframe   archivo físico            dark %
+     bust-03-dense  →   bust-01-dense.png         13.5%
+     bust-02-mid    →   bust-02-mid.png            6.0%
+     bust-01-thin   →   bust-03-min.png            5.5%
+     book-01-thin   →   book-03-min.png            1.7%
+     book-02-mid    →   book-02-mid.png            3.3%
+     book-03-dense  →   book-01-dense.png         24.9%
 
-     bust-02-mid · 12.3% de área dark · pero el detalle es fino
-                   (puntillismo + hatching cerrado) · a ojo se
-                   lee como "el grabado denso" que sigue al line
-                   art. Va en el slot 2.
-     bust-01-dense · 30.8% de área dark · pero grandes zonas de
-                   negro plano · lee como "sombra" no como
-                   "grabado que sumó detalle". Queda en el repo
-                   fuera del array.
+   Los archivos numeran de denso a mínimo. El wireframe numera
+   de mínimo a denso. Inversión limpia · seis archivos, seis
+   filas · confirmado en incógnito por Fran (18-sep).
 
-   Fran cortó el diagnóstico A/B en F8: en pantalla la sensación
-   correcta es "líneas → hatching denso → corte a libro". El
-   sufijo de archivo se puede leer como fuente de verdad para el
-   área dark, pero la lectura del sujeto la dicta el ojo.
+   SECUENCIA (wireframe §5.3 + §5.4). Global p sobre el acto 2:
 
-   Mapping definitivo:
-     bust · line    → public/why-now/bust-03-min.png    · 10.1% dark
-     bust · dense   → public/why-now/bust-02-mid.png    · 12.3% dark
-     book · line    → public/why-now/book-03-min.png    ·  3.0% dark
-     book · ghost   → public/why-now/book-02-mid.png    ·  6.7% dark
-     book · dense   → public/why-now/book-01-dense.png  · 69.1% dark
+     beat 01  [0.00, 0.16]   bust dense              (bust-01-dense.png)
+     hueco    [0.16, 0.21]   bust dense sostenido
+     beat 02  [0.21, 0.37]   ↓ LA TRANSICIÓN ↓
+        local 0.00-0.25      bust dense visible
+        local 0.25-0.45      bust dense → bust mid crossfade
+        local 0.45-0.60      bust mid → bust thin crossfade
+        local 0.60-0.70      bust thin → 0 · book thin 0 → parcial
+        local 0.60-0.80      book thin entra
+        local 0.80-1.00      book thin sostenido
+     hueco    [0.37, 0.42]   book thin → book mid crossfade
+     beat 03  [0.42, 0.58]   book mid                (book-02-mid.png)
+     hueco    [0.58, 0.63]   book mid → book dense crossfade
+     beat 04  [0.63, 0.79]   book dense              (book-01-dense.png)
+     hueco    [0.79, 0.84]   book dense sostenido
+     beat 05  [0.84, 1.00]   book dense              (book-01-dense.png)
 
-   bust-01-dense.png queda en el repo pero fuera del array. */
+   Todos los locales de beat 02 convertidos a global p (window
+   0.16 = to − from = 0.37 − 0.21):
+
+     local  0.00 → global  0.210
+     local  0.25 → global  0.250
+     local  0.45 → global  0.282
+     local  0.60 → global  0.306
+     local  0.70 → global  0.322
+     local  0.80 → global  0.338
+     local  1.00 → global  0.370
+
+   CROSSFADE. F2 §2.5 pedía hard-cut entre archivos. El
+   wireframe lo anula para #act2 (aprobado por Fran, 18-sep) ·
+   sin el cruce el argumento del beat 02 no existe. Sólo aplica
+   a #act2. El resto de F2 §2.5 (motor sin transition/animation,
+   todo función de p) sigue vigente.
+
+   ARTE. Cada art declara cuatro puntos de p:
+     in0  cuando arranca a subir opacity desde 0
+     in1  cuando llega a 1
+     out0 cuando arranca a bajar desde 1
+     out1 cuando termina en 0
+
+   Con in0=in1 y out0=out1 el art se comporta como hard-cut
+   (compatibilidad con la semántica original). Con separación
+   entre in0/in1 y out0/out1 hay crossfade lineal atado al scroll.
+
+   ESCALA. La escala interpola desde startScale (en in0) a
+   endScale (en out1). El pull-back sigue existiendo dentro
+   del rango visible del art, pero acumula suavemente durante
+   los cruces. */
 
 export type Art = {
   name: string
   subject: 'bust' | 'book'
-  start: number
-  end: number
+  in0: number
+  in1: number
+  out0: number
+  out1: number
   startScale: number
   endScale: number
 }
 
 export const ACT2_ARTS: Art[] = [
-  { name: 'bust-03-min',   subject: 'bust', start: 0.00, end: 0.21, startScale: 1.20, endScale: 1.05 },
-  { name: 'bust-02-mid',   subject: 'bust', start: 0.21, end: 0.42, startScale: 1.20, endScale: 1.05 },
-  { name: 'book-03-min',   subject: 'book', start: 0.42, end: 0.63, startScale: 1.20, endScale: 1.05 },
-  { name: 'book-02-mid',   subject: 'book', start: 0.63, end: 0.84, startScale: 1.20, endScale: 1.05 },
-  { name: 'book-01-dense', subject: 'book', start: 0.84, end: 1.01, startScale: 1.20, endScale: 1.05 },
+  /* Beat 01 + hueco + inicio de beat 02 · bust dense sostenido.
+     Fade-out durante local 0.25-0.45 de beat 02 (global
+     0.250-0.282) hacia bust-mid. */
+  {
+    name: 'bust-01-dense', subject: 'bust',
+    in0: 0.000, in1: 0.000,
+    out0: 0.250, out1: 0.282,
+    startScale: 1.20, endScale: 1.08,
+  },
+  /* Bust mid · entra por crossfade con dense, sostiene poco, y
+     cede a thin en local 0.45-0.60 (global 0.282-0.306). */
+  {
+    name: 'bust-02-mid', subject: 'bust',
+    in0: 0.250, in1: 0.282,
+    out0: 0.282, out1: 0.306,
+    startScale: 1.15, endScale: 1.08,
+  },
+  /* Bust thin · dominante en el pico del "borrado". Empieza a
+     desaparecer en local 0.60 (global 0.306), termina en 0.70
+     (global 0.322). Coincide con la entrada del libro-thin. */
+  {
+    name: 'bust-03-min', subject: 'bust',
+    in0: 0.282, in1: 0.306,
+    out0: 0.306, out1: 0.322,
+    startScale: 1.10, endScale: 1.05,
+  },
+  /* Book thin · entra por overlap con bust thin (local 0.60 =
+     global 0.306). Domina hasta el fin de beat 02 (0.37) y
+     mantiene durante el hueco. Fade out hacia book-mid al
+     comienzo de beat 03 (0.40-0.42). */
+  {
+    name: 'book-03-min', subject: 'book',
+    in0: 0.306, in1: 0.322,
+    out0: 0.400, out1: 0.420,
+    startScale: 1.20, endScale: 1.08,
+  },
+  /* Book mid · el arte de beat 03. Fade-in tail del hueco
+     (0.40-0.42), sostiene todo el beat, cede a book-dense en el
+     hueco 0.58-0.68 (crossfade largo · el detalle sube). */
+  {
+    name: 'book-02-mid', subject: 'book',
+    in0: 0.400, in1: 0.420,
+    out0: 0.630, out1: 0.680,
+    startScale: 1.15, endScale: 1.05,
+  },
+  /* Book dense · beats 04 + 05. Entra por crossfade con book-mid
+     en 0.63-0.68 y queda hasta el fin del acto. */
+  {
+    name: 'book-01-dense', subject: 'book',
+    in0: 0.630, in1: 0.680,
+    out0: 1.010, out1: 1.020,
+    startScale: 1.10, endScale: 1.00,
+  },
 ]
 
 /* ══════════ Cámara · orígenes por sujeto (F2 §2.5) ══════════

@@ -401,33 +401,53 @@ export function runAct({
       }
     }
 
-    /* ── Arts · corte duro + escala continua ── */
-    if (arts.length > 0) {
-      let activeArtIdx = -1
-      for (let i = 0; i < arts.length; i++) {
-        if (p >= arts[i].start && p < arts[i].end) {
-          activeArtIdx = i
-          break
-        }
-      }
-      /* Si p está más allá del último art.end (p ≥ 1.01 nunca ocurre;
-         p ≥ 1 sí), el último queda activo. */
-      if (activeArtIdx === -1 && p >= arts[arts.length - 1].start) {
-        activeArtIdx = arts.length - 1
-      }
+    /* ── Arts · crossfade suave + escala interpolada por art ──
+       Wireframe home §5 (17-sep). Reemplaza el hard-cut de F2
+       §2.5 SOLO para #act2. Cada art declara [in0, in1, out0,
+       out1] y su opacity es función de p:
 
+         p ≤ in0                 → 0
+         in0 < p ≤ in1           → lineal 0..1
+         in1 < p ≤ out0          → 1
+         out0 < p ≤ out1         → lineal 1..0
+         p > out1                → 0
+
+       Con in0==in1 y out0==out1 el comportamiento colapsa a
+       hard-cut · retro-compatible.
+
+       Múltiples arts pueden tener opacity > 0 simultáneamente
+       (en los cruces). Cada uno con su propia escala. La escala
+       interpola linealmente desde startScale (en in0) a endScale
+       (en out1) sobre el rango del art. ── */
+    if (arts.length > 0) {
       artEls.forEach((el, i) => {
-        if (i === activeArtIdx) {
-          const a = arts[i]
-          const t = clamp((p - a.start) / (a.end - a.start), 0, 1)
-          const scale = a.startScale + (a.endScale - a.startScale) * t
-          el.style.opacity = '1'
+        const a = arts[i]
+        let opacity: number
+        /* Trampa medida (18-sep) · con in0=in1=0 la comparación
+           `p <= in0` daba opacity 0 en p=0, dejando el primer
+           arte apagado el frame inicial. Con `p < in0` estricto
+           el caso hard-cut (in0==in1) cae al branch siguiente y
+           el ternario devuelve 1 sin dividir por 0. */
+        if (p < a.in0) opacity = 0
+        else if (p <= a.in1) {
+          opacity = a.in1 === a.in0 ? 1 : (p - a.in0) / (a.in1 - a.in0)
+        } else if (p <= a.out0) opacity = 1
+        else if (p <= a.out1) {
+          opacity = a.out1 === a.out0 ? 0 : 1 - (p - a.out0) / (a.out1 - a.out0)
+        } else opacity = 0
+
+        /* Escala sobre el rango visible del art [in0, out1] · el
+         "pull-back" acumula continuo a lo largo del tiempo total
+         del art, incluso durante los crossfades. */
+        const span = a.out1 - a.in0
+        const t = span > 0 ? clamp((p - a.in0) / span, 0, 1) : 0
+        const scale = a.startScale + (a.endScale - a.startScale) * t
+
+        if (opacity > 0) {
+          el.style.opacity = opacity.toFixed(3)
           el.style.transform = `scale(${scale.toFixed(4)})`
         } else {
           el.style.opacity = '0'
-          /* Sin reset explícito del transform · el próximo frame
-             sobre este art lo va a sobrescribir. Dejarlo colgado
-             es benigno mientras opacity=0. */
         }
       })
     }

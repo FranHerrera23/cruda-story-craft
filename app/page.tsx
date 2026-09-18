@@ -4,6 +4,7 @@ import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import HomeLegacy from '@/components/home/HomeLegacy';
 import HomeWhatOthers from '@/components/home/HomeWhatOthers';
+import HomeWhoItHoldsFor from '@/components/home/HomeWhoItHoldsFor';
 import HomeFit from '@/components/home/HomeFit';
 import Proof from '@/components/Proof';
 import HomeTestimonial from '@/components/home/HomeTestimonial';
@@ -33,16 +34,27 @@ import '@/components/home/home-layout.css';
    WHAT OTHERS · queda como está mientras Fran decide entre
    carousel con imágenes reales (A) o retirar la sección (B).
 
-   Orden vigente:
-     1.  act 1              NEGRO · phrase mode
-     2.  act 2              PAPER · progressive fill
+   Orden vigente · fase C1 (18-sep):
+     1.  act 1              NEGRO · phrase mode + crossfade
+     2.  act 2              PAPER · fill + soft crossfade
      3.  selected-work
      4.  LEGACY
      5.  WHAT OTHERS        (pendiente decisión A/B)
-     6.  FIT                (sin lede)
-     7.  proof (compact)
-     8.  testimonial        NEGRO
-     9.  close
+     6.  WHO IT HOLDS FOR   NUEVO · grilla 2×2 con slots
+     7.  FIT                (queda debajo hasta fase C2)
+     8.  proof (compact, showHeader false)
+     9.  testimonial        NEGRO
+     10. close
+
+   Fase C1 · construye HomeWhoItHoldsFor con slots
+   `[PENDIENTE · FRAN]`. HomeFit permanece DEBAJO intacto para
+   que la home no pierda el registro de observación hasta que
+   Fran firme el copy nuevo. Regla 23 aplicada con criterio: el
+   retiro está autorizado por el wireframe home §5, pero no
+   antes de que exista el reemplazo.
+
+   Fase C2 · cuando el copy esté firmado, entra en
+   HomeWhoItHoldsFor y HomeFit sale.
 
    Dos bloques inversos por página siguen siendo la regla
    (act 1 y testimonial). Ledger #19.
@@ -77,6 +89,11 @@ export default function HomePage() {
       <SelectedWork cards={selectedWorkCards} />
       <HomeLegacy />
       <HomeWhatOthers />
+      {/* Fase C1 (18-sep) · HomeWhoItHoldsFor construido con slots
+          `[PENDIENTE · FRAN]` para el criterio y las cuatro
+          situaciones. Coexiste con HomeFit abajo hasta que Fran
+          firme el copy (fase C2 lo retira). */}
+      <HomeWhoItHoldsFor />
       <HomeFit />
       {/* showHeader={false} · brief F8 §9.4 retiró HomeFirst90 de
           la home, pero el header del componente compartido `Proof`

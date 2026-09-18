@@ -1,0 +1,135 @@
+/* Home · WHO IT HOLDS FOR · CSS
+   Wireframe LOCK · home §5 · fase C1.
+
+   Molde: label + criterion (h-section) + regla + grilla 2×2
+   con números + regla + corte final. Cero cajas con border
+   conteniendo texto (§2.3 prohibido). Separadores por regla
+   horizontal de 1px. */
+
+.home-whi {
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: var(--s5) var(--pad);
+  color: var(--ink);
+}
+.home-whi__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+}
+
+/* Label · mayúsculas, tracking .55em (§2.2, ledger 26). No es
+   .05em · esa era la trampa medida antes. */
+.home-whi__label {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 clamp(24px, 3vh, 40px);
+}
+
+/* Criterion · h-section del sistema, alineado con los otros
+   títulos de bloque de la home. */
+.home-whi__criterion {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 48px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.home-whi__rule {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  margin: clamp(40px, 5vh, 72px) 0;
+  width: 100%;
+}
+
+/* Grilla · 2×2 en desktop, 1 columna en mobile. Cada celda es
+   "número + una línea" en una sola fila flex. La regla que
+   separa filas verticalmente vive como `border-bottom` sobre la
+   celda, con `:nth-last-child(-n+2)` retirando el border en la
+   fila final para no doblar con `.home-whi__rule`. */
+.home-whi__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+@media (min-width: 900px) {
+  .home-whi__grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: clamp(32px, 4vw, 72px);
+  }
+}
+
+.home-whi__cell {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 1.6vw, 24px);
+  padding: clamp(20px, 2.4vh, 32px) 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+/* En desktop, la primera fila (celdas 1 y 2) heredan el border
+   top de la celda; para que las dos columnas empiecen alineadas
+   sin doble regla arriba, ocultamos el border-top de las
+   celdas que están sobre la línea de la regla horizontal
+   principal. Esa regla principal ya la pinta `.home-whi__rule`. */
+.home-whi__cell:nth-child(-n+2) {
+  border-top: 0;
+}
+/* En mobile (single-column) la regla top de la celda 2 sí
+   existe · las celdas 3-4 también. Simetría única. */
+@media (max-width: 899px) {
+  .home-whi__cell:nth-child(-n+2) {
+    border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+  .home-whi__cell:first-child {
+    border-top: 0;
+  }
+}
+
+.home-whi__num {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(14px, 1.1vw, 16px);
+  letter-spacing: .04em;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+  min-width: 3ch;
+}
+
+.home-whi__line {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.4;
+  color: var(--ink);
+  max-width: 46ch;
+}
+
+.home-whi__cut {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(20px, 1.6vw, 26px);
+  line-height: 1.35;
+  color: var(--ink);
+  margin: 0;
+  max-width: 40ch;
+  text-wrap: balance;
+}
+
+/* Slots marcados como pendientes · quedan visibles en el gris
+   medio del sistema para señalar que el copy no está firmado.
+   No usan color aparte · el estilo lo hereda de la clase padre
+   y los brackets son parte del texto (§0 · "se deja el slot
+   marcado y visible"). */

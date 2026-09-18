@@ -1,36 +1,25 @@
 import './home-what-others.css'
 
-/* Home · WHAT OTHER PEOPLE STARTED SAYING (v6 F4 §4.4)
+/* Home · WHAT OTHER PEOPLE STARTED SAYING
+   Wireframe LOCK · home §9 (17-sep) · fase D.
+
    Cobertura ganada · Forbes Perú (Karen), ABC/Fox/CBS (Mike),
    Drapers (Confidential).
 
-   Los logos son placeholders con la clase `.home-what-others__logo`
-   que renderea el nombre entre corchetes. Si los archivos SVG/PNG
-   llegan al repo, se cambia el markup para usar <img>.
+   Corrección estructural (18-sep):
 
-   Regla del brief · "Si los archivos no están, el bloque se
-   construye con los contenedores vacíos marcados. No se descargan
-   de internet ni se sustituyen por texto estilizado." Los
-   corchetes son el marcado. */
+     · Salen las cajas con border 1px conteniendo texto (§2.3
+       prohibido). Los medios pasan a TEXTO EN ESCALA LABEL
+       separados por punto medio · un elemento por unidad de
+       cobertura, no una caja por medio.
+     · La unidad de cobertura se separa de la siguiente por
+       regla horizontal de 1px al ancho de columna.
+     · Sin excepción para DRAPERS (Fran, 18-sep). Si queda
+       raro visualmente, se reporta antes de improvisar.
 
-type LogoSlot = { name: string; src?: string }
-
-function Logo({ name, src }: LogoSlot) {
-  if (src) {
-    return (
-      <span className="home-what-others__logo home-what-others__logo--img">
-        <img src={src} alt={name} />
-      </span>
-    )
-  }
-  /* Contenedor marcado con el nombre entre corchetes. El brief
-     autoriza este formato explícitamente. */
-  return (
-    <span className="home-what-others__logo" data-slot={name}>
-      [ {name} ]
-    </span>
-  )
-}
+   §9.3 · si Fran sube las cuatro imágenes de prensa, el
+   bloque pasa a carrusel · esa mecánica se escribe cuando las
+   imágenes existan, no ahora. */
 
 export default function HomeWhatOthers() {
   return (
@@ -49,10 +38,9 @@ export default function HomeWhatOthers() {
             mujeres m&aacute;s poderosas de Per&uacute; en 2026.&rdquo; No
             pitch, no placement.
           </p>
-          <div className="home-what-others__logos">
-            <Logo name="FORBES" />
-            <Logo name="ARCHITECTURAL DIGEST" />
-          </div>
+          <p className="home-what-others__media-label">
+            FORBES · ARCHITECTURAL DIGEST
+          </p>
         </div>
 
         <hr className="home-what-others__rule" aria-hidden="true" />
@@ -63,11 +51,9 @@ export default function HomeWhatOthers() {
             Mike Kaeding went from a builder nobody outside Minnesota
             had heard of to a source three networks call.
           </p>
-          <div className="home-what-others__logos">
-            <Logo name="ABC" />
-            <Logo name="FOX NEWS" />
-            <Logo name="CBS" />
-          </div>
+          <p className="home-what-others__media-label">
+            ABC · FOX NEWS · CBS
+          </p>
           <p className="home-what-others__meta">
             56,000 followers · 2M impressions generated per year
           </p>
@@ -78,11 +64,12 @@ export default function HomeWhatOthers() {
 
         <hr className="home-what-others__rule" aria-hidden="true" />
 
-        {/* Confidential · Drapers */}
+        {/* Confidential · Drapers · el bloque sin prose. El slot
+            [ Confidential ] preserva la unidad como estructura,
+            sin caja. */}
         <div className="home-what-others__item">
-          <div className="home-what-others__logos">
-            <Logo name="DRAPERS" />
-          </div>
+          <p className="home-what-others__slot">[ Confidential ]</p>
+          <p className="home-what-others__media-label">DRAPERS</p>
           <p className="home-what-others__attribution">
             Confidential · Dubai, UAE · 2026
           </p>

@@ -1,4 +1,9 @@
-/* Home · WHAT OTHER PEOPLE STARTED SAYING (v6 F4 §4.4) */
+/* Home · WHAT OTHER PEOPLE STARTED SAYING · CSS
+   Wireframe LOCK · home §9 · fase D (18-sep).
+
+   Retira las cajas con border · normaliza tipografía al sistema
+   §2. Cero borders conteniendo texto. Regla horizontal como
+   único separador entre unidades. */
 
 .home-what-others {
   background-color: var(--paper);
@@ -12,20 +17,25 @@
   margin-inline: 0;
 }
 
+/* Eyebrow · label del sistema · §2.2 · font-weight 500 (era 300,
+   corregido). Tracking .55em confirmado. */
 .home-what-others__eyebrow {
   font-family: var(--grot);
-  font-weight: 300;
-  font-size: 13px;
+  font-weight: 500;
+  font-size: 11px;
   letter-spacing: .55em;
   text-transform: uppercase;
-  color: var(--ink);
-  margin: 0 0 var(--s3);
+  color: var(--ink-2);
+  margin: 0 0 clamp(24px, 3vh, 40px);
 }
 
+/* Regla al 100% del ancho de columna · único separador entre
+   unidades (§2.3). */
 .home-what-others__rule {
   border: 0;
   border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-  margin: clamp(32px, 4vh, 56px) 0;
+  margin: clamp(40px, 5vh, 64px) 0;
+  width: 100%;
 }
 
 .home-what-others__item {
@@ -34,6 +44,7 @@
   gap: var(--s2);
 }
 
+/* Cuerpo · body del sistema. */
 .home-what-others__prose {
   font-family: var(--grot);
   font-weight: 400;
@@ -44,55 +55,53 @@
   max-width: 62ch;
 }
 
-/* Logos como slot marcado con corchetes. El slot renderea como
-   texto placeholder hasta que llegue el asset. El brief autoriza
-   este formato · no se descarga logo de internet, no se estiliza
-   texto para que parezca logo. */
-.home-what-others__logos {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(16px, 2vw, 32px);
-  align-items: center;
-  margin-top: var(--s1);
-}
-.home-what-others__logo {
-  font-family: var(--grot);
-  font-weight: 300;
-  font-size: 13px;
-  letter-spacing: .55em;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--ink) 45%, transparent);
-  padding: 12px 20px;
-  border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-  display: inline-flex;
-  align-items: center;
-  min-height: 40px;
-}
-.home-what-others__logo--img {
-  padding: 4px;
-  border: 0;
-}
-.home-what-others__logo--img img {
-  height: 32px;
-  width: auto;
-  display: block;
-  filter: grayscale(1);
-}
-
-.home-what-others__meta {
+/* Medios como TEXTO EN ESCALA LABEL (§2.1 · §9.2 wireframe
+   home). Sin caja, sin border, sin padding decorativo. Los
+   nombres van separados por ` · ` como parte del texto, no como
+   glyph agregado. */
+.home-what-others__media-label {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.4;
-  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: .55em;
+  text-transform: uppercase;
+  color: var(--ink-2);
   margin: 0;
 }
 
+/* Slot marcado con corchetes · convención del sistema para
+   prose PENDIENTE. En el bloque Confidential la prose no existe
+   (por definición del cliente), y el slot preserva la unidad
+   estructural sin ocupar altura innecesaria. */
+.home-what-others__slot {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  margin: 0;
+  font-style: italic;
+}
+
+/* Meta · números y contexto · §2.1 (fila meta gris). */
+.home-what-others__meta {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(14px, 1vw, 16px);
+  line-height: 1.4;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* Attribution · meta con fuente y período (regla 24). §2.2
+   dice explícito: cero tracking .05em. Va con letter-spacing
+   normal · sistema de meta. */
 .home-what-others__attribution {
   font-family: var(--grot);
   font-weight: 400;
-  font-size: 13px;
-  letter-spacing: .05em;
+  font-size: clamp(13px, 0.95vw, 14px);
+  letter-spacing: 0;
+  line-height: 1.4;
   color: color-mix(in srgb, var(--ink) 55%, transparent);
   margin: 0;
 }

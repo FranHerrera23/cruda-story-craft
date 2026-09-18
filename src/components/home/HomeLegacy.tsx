@@ -1,25 +1,28 @@
 import './home-legacy.css'
 
-/* Home · LEGACY
-   Wireframe LOCK · home §10 (17-sep) · fase E1 · E2 · Commit 3 (19-sep).
+/* Home · OUR FOUNDER
+   Wireframe LOCK · home §10 + F9 §2.7.4 · Commit 5 F9.3 (19-sep).
 
-   Molde tabla Pentagram. Cuatro filas fijas:
+   Rediseño completo respecto de fase E1:
 
-     EXPERIENCE      copy firmado
-     LEGACY          seis holdings separados por ·
-     PRACTICE        slot [PENDIENTE · FRAN]
-     THE TEAM        slot [PENDIENTE · FRAN]
+     · Ground · negro (`--ink-deep`, era `--paper`)
+     · Rótulo · "OUR FOUNDER" (era "FOUNDER · BETWEEN UAE AND RUSSIA")
+     · Retrato · a sangre por el borde izquierdo, top-to-bottom
+                 de la sección (era 4:5 escala de firma)
+     · Titular · afirmación sobre cómo está organizada la
+                 empresa · slot [PENDIENTE · FRAN] · NO es el nombre
+     · Nombre · baja al pie en escala label, no como titular
 
-   Fase E2 · retirado (Commit 3 · 19-sep). El párrafo viejo con
-   la capacidad hardcoded y la formulación del posicionamiento
-   Ogilvy-era salió · era copy sin firma (regla 25 · capacidad
-   no derivable) + posicionamiento viejo (F8 §4). No se
-   reemplaza · el rework de OUR FOUNDER en F9 §2.7.4 introduce
-   un titular nuevo firmado por Fran.
+   Referencia (Fran, 19-sep) · "You work with the founder — and
+   with a team small enough to move." · propuesta de Stone & Us.
+   Cuando llegue el copy firmado, entra al slot.
 
-   Retrato en /fran-herrera.webp · b/n, 4:5, escala de firma.
-   F9 §2.7.4 (post-Commit-3) redisea esta sección · negro,
-   retrato a sangre, rótulo OUR FOUNDER, nombre baja al pie. */
+   Regla del sistema · el nombre del founder acredita el trabajo,
+   no lo titula. Molde Pentagram (Fran, 19-sep).
+
+   Mobile · el retrato a sangre por el borde izquierdo se come
+   media pantalla en 390. Este componente lo rota a banner-top
+   en < 720px · reportado a Fran en Commit 5. */
 
 const LEGACY_HOLDINGS = [
   'Mondelez',
@@ -30,23 +33,26 @@ const LEGACY_HOLDINGS = [
   'United Nations',
 ]
 
+const CREDIT = 'Fran Herrera · Founder · between UAE and Russia'
+
 export default function HomeLegacy() {
   return (
-    <section id="legacy" className="home-legacy">
+    <section id="our-founder" className="home-legacy home-legacy--dark">
       <div className="home-legacy__inner">
-        <div className="home-legacy__portrait">
+        <div className="home-legacy__portrait" aria-hidden="true">
           <img
             src="/fran-herrera.webp"
-            alt="Fran Herrera"
+            alt=""
             className="home-legacy__img"
           />
         </div>
 
         <div className="home-legacy__body">
-          <h2 className="home-legacy__name">Fran Herrera</h2>
-          <p className="home-legacy__role">
-            FOUNDER · BETWEEN UAE AND RUSSIA
-          </p>
+          <p className="home-legacy__label">OUR FOUNDER</p>
+
+          <h2 className="home-legacy__headline">
+            [ PENDIENTE · FRAN ]
+          </h2>
 
           <dl className="home-legacy__table">
             <div className="home-legacy__row">
@@ -78,6 +84,8 @@ export default function HomeLegacy() {
               </dd>
             </div>
           </dl>
+
+          <p className="home-legacy__credit">{CREDIT}</p>
         </div>
       </div>
     </section>

@@ -30,24 +30,27 @@
   margin: 0 0 clamp(24px, 3vh, 40px);
 }
 
-/* Criterion · h-section del sistema, alineado con los otros
-   títulos de bloque de la home. */
+/* Criterion · h-section del sistema (F9 §2.7.2 · Commit 5, 19-sep
+   · densidad · bajó de h-display a h-section). Alineado con
+   otros títulos de bloque. */
 .home-whi__criterion {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(28px, 3.4vw, 48px);
-  line-height: 1.15;
-  letter-spacing: -.02em;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -.015em;
   color: var(--ink);
   margin: 0;
-  max-width: 26ch;
+  max-width: 32ch;
   text-wrap: balance;
 }
 
+/* F9 §2.7.2 · densidad · huecos ≤ --space-4 (40px). Antes
+   llegaba a 72px por regla · dejaba respirar demasiado. */
 .home-whi__rule {
   border: 0;
   border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-  margin: clamp(40px, 5vh, 72px) 0;
+  margin: clamp(24px, 3vh, 40px) 0;
   width: 100%;
 }
 
@@ -71,11 +74,14 @@
   }
 }
 
+/* F9 §2.7.2 · celda densa · alto por contenido, no por mínimo
+   fijo. Padding vertical bajó de 32 a 20 tope · huecos internos
+   respetan el máximo de --space-3 (24px). */
 .home-whi__cell {
   display: flex;
   align-items: baseline;
   gap: clamp(16px, 1.6vw, 24px);
-  padding: clamp(20px, 2.4vh, 32px) 0;
+  padding: clamp(14px, 1.6vh, 20px) 0;
   border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
 }
 /* En desktop, la primera fila (celdas 1 y 2) heredan el border

@@ -45,18 +45,22 @@ export default function HomeWhatOthers() {
 
         <hr className="home-what-others__rule" aria-hidden="true" />
 
-        {/* Mike · triple network */}
+        {/* Mike · triple network · F9 §2.7.3 · media + meta van
+            en la misma línea cuando entran (flex-wrap · en mobile
+            stack). Attribution queda debajo. */}
         <div className="home-what-others__item">
           <p className="home-what-others__prose">
             Mike Kaeding went from a builder nobody outside Minnesota
             had heard of to a source three networks call.
           </p>
-          <p className="home-what-others__media-label">
-            ABC · FOX NEWS · CBS
-          </p>
-          <p className="home-what-others__meta">
-            56,000 followers · 2M impressions generated per year
-          </p>
+          <div className="home-what-others__media-row">
+            <p className="home-what-others__media-label">
+              ABC · FOX NEWS · CBS
+            </p>
+            <p className="home-what-others__meta">
+              56,000 followers · 2M impressions generated per year
+            </p>
+          </div>
           <p className="home-what-others__attribution">
             Mike Kaeding · Norhart · July 2023 — October 2024
           </p>

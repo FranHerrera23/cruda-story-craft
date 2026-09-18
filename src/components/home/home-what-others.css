@@ -29,19 +29,20 @@
   margin: 0 0 clamp(24px, 3vh, 40px);
 }
 
-/* Regla al 100% del ancho de columna · único separador entre
-   unidades (§2.3). */
+/* F9 §2.7.3 · densidad · huecos entre unidades bajaron de
+   40-64px a 24-40px. Alto de cada unidad definido por su
+   contenido, no por altura mínima. */
 .home-what-others__rule {
   border: 0;
   border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-  margin: clamp(40px, 5vh, 64px) 0;
+  margin: clamp(24px, 3vh, 40px) 0;
   width: 100%;
 }
 
 .home-what-others__item {
   display: flex;
   flex-direction: column;
-  gap: var(--s2);
+  gap: var(--s1);
 }
 
 /* Cuerpo · body del sistema. */
@@ -81,6 +82,20 @@
   color: color-mix(in srgb, var(--ink) 45%, transparent);
   margin: 0;
   font-style: italic;
+}
+
+/* F9 §2.7.3 · fila que junta media-label y meta en la misma
+   línea cuando entran · en viewport chico se apilan. */
+.home-what-others__media-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: clamp(12px, 1.5vw, 24px);
+  margin-top: var(--s1);
+}
+.home-what-others__media-row .home-what-others__media-label,
+.home-what-others__media-row .home-what-others__meta {
+  margin: 0;
 }
 
 /* Meta · números y contexto · §2.1 (fila meta gris). */

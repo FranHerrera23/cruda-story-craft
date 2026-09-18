@@ -1,39 +1,40 @@
+import { PROOF_COMPACT, PROOF_SOURCES } from '@/content/proof/karen'
 import './home-testimonial.css'
 
-/* Home · testimonio — brief 12-sep §6.6.
+/* Home · testimonio + LA PRUEBA (F9 §2.7.1, Commit 5, 19-sep).
 
-   Sección nueva. Va después de The First 90 Days, antes de essays.
-   Fondo --ink, texto --paper. Es el ÚNICO inverso de la home — el
-   cierre pasó a --paper (§6.8) para que este sea el corte único.
+   Antes: el testimonio de Karen vivía en un bloque negro y las
+   tres cifras (605,050 · 96x · $380K) vivían en un `<Proof
+   variant="compact">` aparte sobre papel. Al retirar la H2
+   huérfana del Proof en `3c2285d` (18-sep), la banda quedó
+   flotando sin contexto.
 
-   Sin foto, sin comillas decorativas, sin filete vertical. La
-   escala y el inverso hacen todo el trabajo. Cita íntegra, sin
-   recortar.
+   Ahora los dos ítems son un solo bloque negro continuo:
 
-   Rotable: cuando lleguen los testimonios de Mike, José o Germán,
-   esta sección puede alternar. Hoy va Karen sola.
+     cita (serif) → atribución (label + meta) → regla →
+     tres cifras (grot) → fuentes (meta)
 
-   Brief 02 (14-sep) — la cita completa vuelve a la home. El primer
-   párrafo vivía íntegro en /our-founder mientras esa página existía;
-   con /our-founder retirado a favor de /about (donde una página de
-   empresa no lleva testimonios), la cita completa vuelve acá. Brief
-   04 va a reposicionar la sección después del bloque de prueba, pero
-   por ahora se queda en su ubicación actual.
+   Karen dice qué pasó, los números lo confirman. Juntos son
+   prueba. Separados, la cita es opinión y las cifras son
+   adorno.
 
-   Motion: cada <p> lleva `data-reveal="lines"`. LineReveals mide el
-   corte real y reescribe con `.rv-line > span` para que las líneas
-   suban en stagger. */
+   Data de las cifras viene de `PROOF_COMPACT` (proof/karen.ts),
+   misma fuente que la banda de /process. Un solo lugar para
+   editar los números. */
 
 export default function HomeTestimonial() {
   return (
     <section
       id="testimonial"
       className="home-testimonial"
-      data-reveal="text"
+      data-reveal-seq
     >
       <div className="home-testimonial__inner in">
         <figure className="home-testimonial__figure">
-          <blockquote className="home-testimonial__quote">
+          <blockquote
+            className="home-testimonial__quote"
+            data-seq="body"
+          >
             <p data-reveal="lines">
               Any founder who spent decades building something good
               knows this problem: the work is excellent and nobody
@@ -45,13 +46,51 @@ export default function HomeTestimonial() {
               later, TRAZZO is not the same company.
             </p>
           </blockquote>
-          <figcaption className="home-testimonial__attrib">
+          <figcaption
+            className="home-testimonial__attrib"
+            data-reveal="text"
+            data-seq="body"
+          >
             <span className="home-testimonial__name">Karen Mannheim</span>
             <span className="home-testimonial__role">
               Lighting Designer, Miami. Client, 2021—2026.
             </span>
           </figcaption>
         </figure>
+
+        <hr className="home-testimonial__rule" aria-hidden="true" />
+
+        {/* LA PRUEBA · tres cifras dentro del mismo bloque negro.
+            F9 §2.7.1 · las celdas entran de a una izq→der.
+            Data de PROOF_COMPACT · una sola fuente entre home y
+            /process. */}
+        <div
+          className="home-testimonial__proof"
+          data-reveal="text"
+          data-seq="body"
+        >
+          {PROOF_COMPACT.map((stat, i) => (
+            <div
+              key={i}
+              className="home-testimonial__stat"
+              data-stagger={String(i)}
+            >
+              <div className="home-testimonial__value">{stat.value}</div>
+              <div className="home-testimonial__label">{stat.label}</div>
+              {stat.detail && (
+                <div className="home-testimonial__detail">{stat.detail}</div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <p
+          className="home-testimonial__sources"
+          data-reveal="text"
+          data-seq="body"
+        >
+          {PROOF_SOURCES}
+        </p>
       </div>
     </section>
   )

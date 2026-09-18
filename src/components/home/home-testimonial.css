@@ -88,3 +88,70 @@
   color: var(--cream);
   opacity: .55;
 }
+
+/* LA PRUEBA · dentro del mismo bloque negro (F9 §2.7.1 · Commit 5).
+   Antes vivía como <Proof variant="compact"> en un bloque separado
+   sobre papel. Al fusionar con el testimonio, la prueba usa el
+   mismo ground negro y el mismo idioma tipográfico. */
+
+.home-testimonial__rule {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
+  margin: clamp(40px, 5vh, 64px) 0;
+  width: 100%;
+}
+
+.home-testimonial__proof {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(24px, 3vw, 40px);
+  margin-bottom: clamp(24px, 3vh, 40px);
+}
+@media (min-width: 720px) {
+  .home-testimonial__proof {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(24px, 3vw, 48px);
+  }
+}
+
+.home-testimonial__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+.home-testimonial__value {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--cream);
+}
+.home-testimonial__label {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.4;
+  color: var(--cream);
+  opacity: .85;
+}
+.home-testimonial__detail {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.4;
+  color: var(--cream);
+  opacity: .55;
+}
+
+/* Fuentes citadas · meta gris al pie · misma escala que el detail.
+   Regla 24 vigente · toda cifra publicada lleva fuente y período. */
+.home-testimonial__sources {
+  margin: 0;
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.5;
+  color: var(--cream);
+  opacity: .55;
+}

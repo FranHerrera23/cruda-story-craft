@@ -1,90 +1,122 @@
-/* Home · LEGACY · CSS
-   Wireframe LOCK · home §10 · fase E1 (18-sep).
+/* Home · OUR FOUNDER · CSS
+   Wireframe LOCK · home §10 + F9 §2.7.4 · Commit 5 F9.3 (19-sep).
 
-   Molde tabla Pentagram · rótulo izquierda + dato derecha,
-   regla horizontal entre filas. */
+   Ground negro (segundo bloque inverso permitido de la home ·
+   ledger #19). Retrato a sangre por el borde izquierdo de la
+   sección (desktop) · banner top en mobile. Molde tabla queda
+   con las cuatro filas de fase E1, más un rótulo arriba, un
+   titular slot (h-section) y el crédito al pie. */
 
 .home-legacy {
-  background-color: var(--paper);
-  background-image: var(--grid-bg);
+  background-color: var(--ink-deep);
+  background-image: var(--grid-bg-dark);
   background-size: var(--grid-size) var(--grid-size);
-  padding: var(--s5) var(--pad);
-  color: var(--ink);
+  color: var(--cream);
+  padding: 0;
+  position: relative;
+  isolation: isolate;
 }
+
 .home-legacy__inner {
   max-width: 1600px;
   margin-inline: 0;
   display: grid;
-  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
-  gap: clamp(32px, 5vw, 80px);
-  align-items: start;
+  /* Retrato · 40% del ancho a sangre. Contenido · 60%. Sin gap ·
+     el retrato toca al pad. */
+  grid-template-columns: minmax(320px, 40%) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: clamp(560px, 78vh, 820px);
 }
 @media (max-width: 720px) {
+  /* Mobile · retrato pasa a banner top a sangre horizontal · el
+     alto se limita para no comerse media pantalla. Reportado a
+     Fran en Commit 5 · queda como default hasta que él decida
+     otro tratamiento. */
   .home-legacy__inner {
     grid-template-columns: 1fr;
-    gap: var(--s3);
+    min-height: auto;
   }
 }
 
-/* Retrato · 4:5, escala de firma, b/n. Sin cambio. */
+/* Retrato · a sangre · borde izquierdo desktop / banner top mobile. */
 .home-legacy__portrait {
-  aspect-ratio: 4 / 5;
   overflow: hidden;
+  min-height: clamp(560px, 78vh, 820px);
+}
+@media (max-width: 720px) {
+  .home-legacy__portrait {
+    min-height: auto;
+    aspect-ratio: 3 / 2;
+    max-height: 60vh;
+  }
 }
 .home-legacy__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 20%;
   filter: grayscale(1);
   display: block;
 }
 
+/* Body · padding vertical de sección + horizontal contra el pad
+   del sitio (respetando el retrato a sangre a la izquierda). */
 .home-legacy__body {
-  max-width: 62ch;
+  padding: var(--s5) var(--pad);
   display: flex;
   flex-direction: column;
-  gap: var(--s2);
+  gap: clamp(24px, 3vh, 40px);
+  max-width: 62ch;
+}
+@media (max-width: 720px) {
+  .home-legacy__body {
+    padding: clamp(48px, 8vh, 96px) var(--pad);
+  }
 }
 
-/* Nombre · h-section del sistema (§2.1 · "titular de bloque").
-   Reemplaza el weight 700/24px del ejec anterior · h-section del
-   sistema es weight 500 en la escala mayor. */
-.home-legacy__name {
-  font-family: var(--grot);
-  font-weight: 500;
-  font-size: clamp(28px, 3vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -.02em;
-  color: var(--ink);
-  margin: 0;
-}
-
-/* Role · label del sistema · §2.2 · font-weight 500 (era 300, bug
-   del mismo tipo que el eyebrow de WHAT OTHERS · corregido). */
-.home-legacy__role {
+/* Rótulo · label del sistema · .14em firmado por Fran (canonical). */
+.home-legacy__label {
   font-family: var(--grot);
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--ink-2);
-  margin: 0 0 clamp(16px, 2vh, 24px);
+  color: color-mix(in srgb, var(--cream) 55%, transparent);
+  margin: 0;
 }
 
-/* Tabla · rótulo izquierda + dato derecha, regla entre filas
-   (§10.2 wireframe). */
+/* Titular · h-section del sistema · slot [PENDIENTE · FRAN]
+   marcado explícito. Cuando llegue el copy firmado, se reemplaza
+   el string dentro del <h2>. */
+.home-legacy__headline {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  color: var(--cream);
+  margin: 0;
+  max-width: 28ch;
+  text-wrap: balance;
+  /* Cuando el slot esté con [PENDIENTE · FRAN], el italic
+     comunica visualmente que es placeholder. */
+  font-style: italic;
+  opacity: .55;
+}
+
+/* Tabla · rótulo izquierda + dato derecha, regla entre filas.
+   Densidad F9 §2.7.2 alineada · huecos ≤ --space-4. */
 .home-legacy__table {
   margin: 0;
   padding: 0;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
 }
 .home-legacy__row {
   display: grid;
   grid-template-columns: minmax(120px, 160px) minmax(0, 1fr);
   gap: clamp(20px, 3vw, 40px);
-  padding: clamp(16px, 2vh, 24px) 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  padding: clamp(14px, 1.8vh, 24px) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
   align-items: baseline;
 }
 @media (max-width: 720px) {
@@ -97,9 +129,9 @@
   font-family: var(--grot);
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: .55em;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--ink-2);
+  color: color-mix(in srgb, var(--cream) 55%, transparent);
   margin: 0;
 }
 .home-legacy__row-body {
@@ -107,14 +139,24 @@
   font-weight: 400;
   font-size: clamp(16px, 1.2vw, 20px);
   line-height: 1.5;
-  color: var(--ink);
+  color: var(--cream);
   margin: 0;
   max-width: 60ch;
 }
 .home-legacy__row-body--slot {
-  color: color-mix(in srgb, var(--ink) 45%, transparent);
+  color: color-mix(in srgb, var(--cream) 45%, transparent);
   font-style: italic;
 }
 
-/* .home-legacy__legacy-line retirado en Commit 3 (19-sep) ·
-   el párrafo viejo que estilaba se retiró con fase E2. */
+/* Crédito al pie · label del sistema. Molde Pentagram · el
+   founder acredita el trabajo, no lo titula. */
+.home-legacy__credit {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--cream) 55%, transparent);
+  margin: 0;
+  padding-top: clamp(16px, 2vh, 24px);
+}

@@ -194,3 +194,47 @@ Propiedades a comparar:
 
 **Cuando corre.** Antes de firmar cada fase de home o /process.
 Reemplaza la revisión manual, que ya se probó porosa.
+
+---
+
+## 2026-09-18 · El peso 300 aparece cuando el sistema no está escrito
+
+Un aprendizaje, no un bug puntual. Se registra acá porque va a
+volver a aparecer en cualquier repo que empiece a escalar antes
+de tener el sistema declarado.
+
+**Los hechos.** Dos fases consecutivas (D y E1) corrigieron
+`.home-what-others__eyebrow` y `.home-legacy__role`, ambos
+declarados con `font-weight: 300`. Fran pidió el barrido §2
+después. El barrido enumeró **seis selectores distintos** con
+peso 300 en la superficie del sitio (home, /about, /process,
+/contact, molde de caso).
+
+Seis ocurrencias del mismo peso "fuera de sistema" no son seis
+descuidos aislados. Es un patrón. Un peso liviano no aparece
+por error de tipeo · aparece porque alguien lo eligió al escribir
+el CSS de ese componente, buscando que se viera delicado.
+
+**El diagnóstico.** Cuando el sistema visual vive sólo en el
+código, cada componente tiene la libertad de inventar su propia
+elegancia. La coherencia depende de que quien lo escribe consulte
+otro archivo del repo · y esa consulta no ocurre bajo presión.
+El resultado es N micro-inventos que suman divergencia sin que
+nadie firme la divergencia.
+
+**El remedio.** Un doc del sistema (`docs/cruda-design-system.md`
+· creado 18-sep) reemplaza la consulta al código con la consulta
+a un archivo destinado a eso. Y un barrido automatizado (§2 ·
+`scratchpad/audit-type.mjs`) chequea la divergencia como paso
+firmable, no como revisión manual.
+
+**Lo que hay que agarrar.** El sistema declarado NO impide que
+alguien elija `font-weight: 300` para el próximo componente. Lo
+que impide es que esa elección pase sin verse. El barrido tiene
+que correr antes de firmar cada fase, y el commit debe reportar
+"cero deviation" o listar las excepciones firmadas.
+
+**Corolario.** Todo axis del sistema tiene el mismo riesgo:
+color inventado, tracking off-system, tamaño fuera de escala.
+El barrido cubre los tres. Cuando aparezca la cuarta ocurrencia
+del mismo patrón en un axis nuevo, esta entrada se referencia.

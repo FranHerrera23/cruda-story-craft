@@ -67,6 +67,19 @@ Los dos sistemas conviven. Ejemplo:
 
 pero NO está DEFINIDO en ningún `:root`. Los comentarios de `globals.css:17` y `:233` lo mencionan como `#E8623A` (la naranja vieja de CRUDA) pero nadie la declara. En runtime, esas dos superficies fallan silenciosas al fallback CSS (nada / transparente).
 
+**Verificación en runtime (18-sep, `scratchpad/check-accent.mjs`)**:
+
+- `getComputedStyle(document.documentElement).getPropertyValue('--color-accent')` → cadena vacía `""` · el token no existe en el árbol.
+- `.cs-btn` · grep en `.tsx/.ts` · **0 usos**. Es dead CSS · ningún JSX renderea un elemento con esa clase.
+- `.capture__row button` · `src/lib/flags.ts:22` declara `CAPTURE_ENABLED = false` · el `<CaptureForm>` devuelve `null` en todas sus ubicaciones. La superficie no se renderea.
+
+**Conclusión** · el token roto NO produce un bug visible en producción porque las dos superficies que lo consumen están muertas (una por clase huérfana, otra por feature flag apagado). Pero es un landmine:
+
+- Si alguien reactiva `CAPTURE_ENABLED`, el hover del botón cae al fallback transparente.
+- Si alguien reintroduce `.cs-btn` en un JSX, mismo problema.
+
+**Recomendación** · declarar `--color-accent: #FF5A00` en `:root` (alineado con wireframe home §3.2) o retirar los dos usos huérfanos. El comentario de `globals.css` sobre `#E8623A` queda desactualizado y se corrige en el mismo pase.
+
 **Grises** · no hay token dedicado. El repo produce grises con `color-mix(in srgb, var(--ink) 45%, transparent)` inline en cada componente. Ejemplos: `.home-fit__list li`, `.home-what-others__attribution`, `.home-legacy__row-label`.
 
 ### 1.3 · Tipografía · familias

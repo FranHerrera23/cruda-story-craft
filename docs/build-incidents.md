@@ -238,3 +238,60 @@ que correr antes de firmar cada fase, y el commit debe reportar
 color inventado, tracking off-system, tamaño fuera de escala.
 El barrido cubre los tres. Cuando aparezca la cuarta ocurrencia
 del mismo patrón en un axis nuevo, esta entrada se referencia.
+
+---
+
+## 2026-09-19 · Un brief no puede declarar un valor de sistema
+
+Fase C1, D y E1 crearon rótulos con `letter-spacing: .55em`
+porque el wireframe LOCK · home §2.2 lo declaró como el sistema:
+"rótulos: mayúsculas, tracking .55em, gris medio". El agente
+ejecutó el brief al pie de la letra en tres fases.
+
+El barrido §2 del 18-sep encontró que `.55em` **no existía en
+el código previamente**. Los 20 selectores de rótulos que
+vivían en el resto del sitio usaban `.14em` (medido, no
+declarado). El brief había declarado un valor de sistema que
+nadie verificó contra el repo, y como el brief manda, el valor
+falso se propagó a cada componente nuevo creado bajo él.
+
+**El error es del brief, no del agente.** Fran (19-sep) · "vos
+ejecutaste C1, D y E1 siguiéndolo al pie de la letra. Hiciste
+lo correcto".
+
+**Lo que revela.** Un brief puede declarar un valor de sistema
+que no existe en el repo, y como el brief manda, el valor falso
+se propaga a cada componente nuevo. Tres fases lo replicaron.
+
+**Regla nueva del protocolo (Fran, 19-sep).**
+
+> Un brief no puede declarar un valor de sistema. Sólo puede
+> declarar la intención — "rótulo", "display", "cuerpo" — y el
+> valor sale del design-system doc. Si un brief trae un número
+> que el doc no tiene, se reporta antes de ejecutar, no después.
+
+**Cómo se aplica.**
+
+Cuando un brief trae un valor concreto (`.55em`, `#FF5A00`,
+`44px`, `weight 500`, `clamp(...)`) para una propiedad del
+sistema (color, tipografía, spacing, motion, tracking):
+
+1. Consultar `docs/cruda-design-system.md` primero.
+2. Si el valor está declarado ahí, ejecutar.
+3. Si el valor NO está declarado ahí, **detener y reportar**:
+   - "El brief trae X para PROPIEDAD. El design-system doc no lo
+     declara. ¿Se agrega al sistema (y en ese caso hay que
+     firmar la adición) o se corrige contra el sistema vigente?"
+4. Recién con firma de Fran (agregar o corregir) se ejecuta.
+
+**Caso testigo · registrado con este aprendizaje.** El `.55em`
+se corrige a `.14em` en Commit 4 · las tres fases (C1, D, E1)
+tienen selectores concretos a normalizar: `.home-whi__label`,
+`.home-legacy__role`, `.home-legacy__row-label`,
+`.home-what-others__eyebrow`, `.home-what-others__media-label`.
+
+**Efecto de este aprendizaje.** El design-system doc pasa a ser
+la fuente de verdad de los valores. El brief es la fuente de
+verdad de la intención y la estructura. Si los dos se contradicen
+en el momento de la ejecución, el agente detiene y reporta ·
+Fran decide cuál gana.

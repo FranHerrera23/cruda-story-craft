@@ -5,7 +5,9 @@ import { MetadataRoute } from 'next';
    single source of truth (no more static/dynamic collision).
    1.2 — AI answer bots are named explicitly. The whole site is written
    for AEO; if they can't crawl, the strategy is moot.
-   1.3 — /pricing leaves noindex and is allowed here.
+   1.3 — retirada · /pricing borrada del repo (18-sep). La nota
+   original decía "leaves noindex and is allowed here"; con la ruta
+   fuera del código no hay policy que mantener.
    1.4 — sitemap referenced. */
 
 const CRAWL_ALLOW_ALL = [

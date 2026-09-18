@@ -25,11 +25,13 @@ const COMPANIES_SECTION = `## Companies
 - [CRUDA for Sports](${BASE}/sports): Narrative infrastructure for athletes and sports organizations (coming soon).
 - [CRUDA Systems](${BASE}/systems): Custom internal AI systems for studios that need to remember what the founder knows.`
 
+/* Fran directive (18-sep) · /pricing muere. La ruta y toda
+   referencia externa salen del sitio. El engagement fee vive en
+   /process, no en una página aparte. */
 const HUBS_SECTION = `## Pages
 
 - [About CRUDA](${BASE}/about): CRUDA is a narrative practice for founder-led companies. Fran Herrera — 10 years building brands.
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
-- [Pricing](${BASE}/pricing): CRUDA's engagement structure and rates.
 - [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.
 - [All resources](${BASE}/resources): Every essay and case study in one library.`
 

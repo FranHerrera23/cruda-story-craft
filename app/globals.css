@@ -41,12 +41,10 @@
    not-found, essays.
 
    Fuera del barrido, intencional:
-     · app/pricing/PricingContent.tsx — inline transitionDelay
-       stagger 100/200/300/700ms (no múltiplos de 75). La ruta es
-       noindex, fuera del nav y fuera del sitemap (L12); nadie la
-       ve. Reescala si algún día vuelve a producto.
      · app/crudasports/sfh y app/deck — cubic-bezier literales.
        Propuestas one-off, no forman parte del sitio.
+   /pricing salió del repo (18-sep, Fran) · su bullet queda
+   retirado del listado.
    ================================================================== */
 :root {
   /* Easing · dos, y solo dos. */

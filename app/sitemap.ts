@@ -88,9 +88,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly' as const,
       priority: 0.7,
     })),
-    /* A.2.1 — /pricing fuera del sitemap. La ruta sigue viva pero
-       responde noindex a nivel meta hasta que la decisión sobre
-       rate card público esté cerrada. */
+    /* Fran directive (18-sep) · /pricing borrada del repo. Estaba
+       fuera del sitemap desde A.2.1 y noindex a nivel meta · con
+       el retiro del componente entero la nota queda como registro
+       histórico. */
     // Newsletter — F0 flag: sale del sitemap mientras esté apagado.
     ...(CAPTURE_ENABLED
       ? [{

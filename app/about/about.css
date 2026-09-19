@@ -111,14 +111,20 @@
 .ab-h1 {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(38px, 5.5vw, 76px);
-  line-height: 1.06;
-  letter-spacing: -.025em;
+  /* F9.4 · 19-sep · escala ajustada para el copy firmado
+     "We translate cultures into business." · 36 chars, tiene
+     que entrar en una línea 1440/1024/768 y romper en dos en
+     390 (por el <span class="ab-nobreak"> alrededor de
+     "into business."). */
+  font-size: clamp(32px, 5vw, 68px);
+  line-height: 1.08;
+  letter-spacing: -.02em;
   /* Brief 08 §P5 · crema, no paper. Emparejado con el escenario
      de apertura. */
   color: var(--cream);
-  max-width: 22ch;
+  max-width: 40ch;
   margin: 0 0 clamp(40px, 5vh, 72px);
+  text-wrap: balance;
 }
 
 /* ═════════ H2 (§03) ═════════
@@ -150,6 +156,65 @@
 .ab-lede--on-ink {
   /* Brief 08 §P5 — la crema del escenario, no paper puro. */
   color: var(--cream);
+}
+
+/* ═════════ §01 · sub + distances (F9.4 · 19-sep) ═════════
+   QUÉ ES CRUDA FIRMADO · el bloque §01 se reescribe con el mismo
+   copy que home §02 (HomeWhatCrudaIs). El eyebrow WHAT CRUDA IS
+   más el sub "CRUDA is a communications company." arman la lectura
+   antes del h1 display "We translate cultures into business.".
+   Después, tres distancias como párrafos separados por regla.
+
+   Regla del hero · una-frase-por-pantalla · aplica al act 1 de
+   home. §01 de /about es de lectura estructurada, no de hero. */
+
+.ab-sub {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.3;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  margin: 0 0 clamp(24px, 3vh, 40px);
+  max-width: 42ch;
+}
+.ab-sub--on-ink {
+  color: var(--cream);
+}
+
+/* Nobreak · fuerza el corte de mobile antes de "into", no entre
+   "into" y "business" · idéntico a .home-wci__nobreak. */
+.ab-nobreak {
+  white-space: nowrap;
+}
+
+/* Distances · tres frases separadas por regla, cada una en su
+   propia línea. Reemplazan la lede sencilla en §01. */
+.ab-distances {
+  display: flex;
+  flex-direction: column;
+  max-width: 62ch;
+  margin: 0;
+}
+.ab-distance {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  padding: clamp(16px, 2vh, 24px) 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+}
+.ab-distance:last-child {
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
+}
+.ab-distances--on-ink .ab-distance {
+  color: var(--cream);
+  border-top-color: color-mix(in srgb, var(--cream) 20%, transparent);
+}
+.ab-distances--on-ink .ab-distance:last-child {
+  border-bottom-color: color-mix(in srgb, var(--cream) 20%, transparent);
 }
 
 .ab-prose {

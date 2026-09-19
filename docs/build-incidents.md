@@ -11,6 +11,70 @@ vive en el project knowledge del proyecto
 
 ---
 
+## Índice · patrón "la API devuelve algo distinto de lo que el nombre sugiere"
+
+Fran (19-sep) nombra el patrón que agrupa **seis** trampas del
+17–19 sep. Todas comparten forma: **una API (JS, DOM, CSS, o
+un test propio) devuelve o consume algo distinto de lo que el
+nombre sugiere.** Nadie miente · el nombre es engañoso y el
+programador confía en él.
+
+Las seis, ordenadas por fecha:
+
+1. **`scrollWidth` sobre nowrap** (17-sep) · el nombre dice
+   "ancho del contenido", pero cuando el elemento tiene
+   `white-space: nowrap`, `scrollWidth` devuelve el ancho ya
+   cortado por el clip del contenedor, no el ancho real del
+   texto. Auto-fit medía chico y elegía font-size chica.
+   Fix · `getBoundingClientRect().width` con `width:max-content`.
+2. **`letter-spacing: 0` vs `normal`** (17-sep) · escritas
+   distinto en el CSS y en el `getComputedStyle` (`0px` vs
+   `"normal"`), aunque visualmente son iguales. El audit las
+   contaba distinto porque el string no matcheaba.
+   Fix · comparar por px calculado, no por string.
+3. **`--color-accent` sin declarar** (17-sep) · una CSS custom
+   property que se usaba en tres selectores sin nunca haberse
+   declarado. El navegador la resolvía al fallback (heredado)
+   y nadie notaba el bug. El nombre sugería "es un token del
+   sistema", pero no existía.
+   Fix · declarada en `:root` con valor firmado.
+4. **Font-weight 300 fantasma** (18-sep) · `next/font` cargó
+   Archivo con `{400,500,700}`. El CSS pedía `font-weight: 300`
+   en varios selectores. El navegador no falla · genera un peso
+   sintético (Firefox) o cae al 400 (Chromium). "Peso 300" en
+   el CSS no era "peso 300" en pantalla.
+   Fix · alinear CSS al set canónico, o cargar el peso.
+5. **Test que medía Archivo contra Archivo** (19-sep) · el
+   script forzaba `font-family` en `:root` para el baseline,
+   pero el hero medido (`.beat__phrase`) usaba `var(--serif)`
+   propia, no la del ancestor. El baseline "Inter Tight" era
+   Inter Tight en `<html>` pero seguía siendo Serif en el hero.
+   Delta reportado 0px = "las dos fuentes son idénticas" ·
+   falso · nunca se testeó Inter Tight.
+   Fix · forzar la familia en el selector medido, no en el
+   ancestor.
+6. **`LineReveals` tira los hijos no-BR** (19-sep) · el nombre
+   sugiere "revela por línea", pero al reconstruir cada línea
+   usa `textContent = lineText` · **cualquier hijo HTML que no
+   sea `<br>` desaparece.** El `<span class="__nobreak">` de
+   F9.4 se perdía · la mitad del titular no aparecía en pantalla.
+   Workaround · `data-reveal="text"` (no "lines"). Fix real
+   deferred.
+
+**Regla del sistema · verificar la API antes de confiar en el
+nombre.** Cuando una medición o una render devuelve algo raro,
+primera pregunta: ¿qué está midiendo/renderizando de verdad ·
+no lo que su nombre sugiere? Cuatro de las seis trampas se
+resolvieron en menos de una hora una vez formulada esa
+pregunta · las otras dos requirieron reproducir con un caso
+mínimo.
+
+**Corolario · registrar el patrón en cada incidente nuevo del
+mismo tipo.** Si aparece la séptima, se agrega acá y se linkea
+desde su entrada específica.
+
+---
+
 ## 2026-09-16 · Cuatro de cinco imágenes de #act2 reportadas como rotas
 
 El repo estaba limpio: los cinco archivos tracked, los cinco
@@ -581,3 +645,64 @@ Esta regla se suma al set de tres trampas de tipografía del
 17-18 sep · `scrollWidth` sobre nowrap, `letter-spacing: 0` →
 `normal`, y override en el ancestor. Cuatro casos, misma
 familia: **la métrica computada no es la métrica escrita**.
+
+## 2026-09-19 · `LineReveals` tira los hijos que no son `<br>` al partir
+
+**Contexto.** Commit 7 F9.4 · el titular firmado
+"We translate cultures into business." se protege del corte de
+mobile con `<span class="home-wci__nobreak">into business.</span>`.
+En pantalla desktop el screenshot muestra "We translate cultures"
+· la mitad de la frase falta.
+
+**Diagnóstico.** `src/components/LineReveals.tsx` procesa el
+DOM así:
+1. Recorre `childNodes`.
+2. Texto suelto → tokeniza cada palabra en un `<span data-word>`,
+   tracked en un array `tokens`.
+3. `<br>` → guarda un token `{ kind: 'break' }`.
+4. Cualquier OTRO elemento (Element node ≠ `<br>`) →
+   `fragment.appendChild(node.cloneNode(true))` **pero no lo
+   agrega a `tokens`**.
+5. Mide `.offsetTop` de cada word-span, agrupa por línea.
+6. `el.innerHTML = ''` → limpia el fragment.
+7. Reconstruye cada línea con `document.createElement('span')` +
+   `inner.textContent = lineText` → **texto plano, hijos perdidos**.
+
+El span nobreak sobrevive al clone (paso 4), pero es tirado
+en el paso 6 y no re-inyectado en el paso 7 porque el
+reconstructor sólo usa texto.
+
+**Impacto.** Cualquier `data-reveal="lines"` con hijo HTML
+distinto de `<br>` pierde ese hijo. Casos actuales del repo:
+por ahora sólo el titular de F9.4. Casos futuros: cualquier
+diseño que quiera forzar un no-break con `<span>` o resaltar
+una palabra con `<em>`/`<strong>`.
+
+**Workaround.** Para F9.4 · usar `data-reveal="text"` en vez
+de `data-reveal="lines"` en los dos titulares afectados
+(HomeWhatCrudaIs y /about §01 h1). Se pierde el stagger por
+línea, pero el bloque revela como unidad y el `nobreak` se
+respeta. Registrado como comentario in-line en ambos JSX.
+
+**Fix real (deferred).** Extender `LineReveals.splitElement` ·
+en el paso 4, empujar un token `{ kind: 'element', el: cloned }`.
+En el paso 5, medir `.offsetTop` del elemento clone igual que un
+word-span. En el paso 7, al reconstruir cada línea, en vez de
+`textContent = lineText` usar un DocumentFragment que preserve
+elementos con su tipo. Test: agregar caso al fixture con un
+`<span>` inline dentro de un titular splitteado.
+
+**Regla que se agrega al sistema.**
+- `data-reveal="lines"` sólo se puede usar en nodos cuyo único
+  hijo es texto plano o `<br>`.
+- Cualquier titular con hijos HTML no-BR debe usar
+  `data-reveal="text"` hasta que se aplique el fix real.
+- Al escribir un nuevo titular con `<span>` o `<em>` inline,
+  el linter debería negarse cuando el atributo `data-reveal`
+  vale `"lines"`. (Deferred · no hay linter para reveals · vale
+  como regla escrita para review humano.)
+
+Es la primera vez que un componente de motion pisa un
+componente de tipografía. Hasta ahora el conflicto había sido
+entre CSS y measurement · esta vez el JS de motion reemplazó
+la estructura semántica.

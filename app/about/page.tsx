@@ -38,12 +38,12 @@ const BASE = 'https://www.thecruda.com'
 export const metadata: Metadata = {
   title: 'About — CRUDA',
   description:
-    'CRUDA is a narrative practice for founder-led companies. We work with companies whose reputation was built in person and now has to travel without them.',
+    'CRUDA is a communications company. We translate cultures into business.',
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
     title: 'About — CRUDA',
     description:
-      'CRUDA is a narrative practice for founder-led companies.',
+      'CRUDA is a communications company. We translate cultures into business.',
     url: `${BASE}/about`,
     type: 'website',
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About — CRUDA',
     description:
-      'CRUDA is a narrative practice for founder-led companies.',
+      'CRUDA is a communications company. We translate cultures into business.',
     images: [`${BASE}/logo.png`],
   },
 }
@@ -152,25 +152,52 @@ export default function AboutPage() {
               data-seq="eyebrow"
               data-reveal="text"
             >
-              CRUDA
+              WHAT CRUDA IS
             </p>
+            {/* Copy FIRMADO · 19-sep · idéntico a home §02
+                (HomeWhatCrudaIs) y a /services plano 00. Se
+                escribe una vez y aparece en tres lugares. El
+                <span class="ab-nobreak"> alrededor de "into
+                business." fuerza el corte de mobile antes de
+                "into", no entre "into" y "business". */}
+            <p
+              className="ab-sub ab-sub--on-ink"
+              data-seq="eyebrow"
+              data-reveal="text"
+            >
+              CRUDA is a communications company.
+            </p>
+            {/* data-reveal="text" (no "lines") — LineReveals TIRA
+                los elementos hijos que no son <br> (los reemplaza
+                al reconstruir línea por texto plano). El
+                <span class="ab-nobreak"> tiene que sobrevivir al
+                reveal. Bug LineReveals · registrar en
+                build-incidents. */}
             <h1
               className="ab-h1"
               data-seq="title"
-              data-reveal="lines"
+              data-reveal="text"
             >
-              CRUDA is a narrative practice
-              <br />
-              for founder-led companies.
+              We translate cultures{' '}
+              <span className="ab-nobreak">into business.</span>
             </h1>
-            <p
-              className="ab-lede ab-lede--on-ink"
+            <div
+              className="ab-distances ab-distances--on-ink"
               data-seq="body"
               data-reveal="text"
             >
-              We work with companies whose reputation was built in
-              person and now has to travel without them.
-            </p>
+              <p className="ab-distance">
+                Between a founder and a market that never heard
+                of them.
+              </p>
+              <p className="ab-distance">
+                Between a company and its own people.
+              </p>
+              <p className="ab-distance">
+                Between capital from one part of the world and
+                the country it just landed in.
+              </p>
+            </div>
           </div>
         </section>
 

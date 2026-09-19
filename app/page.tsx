@@ -8,41 +8,42 @@ import HomeWhatOthers from '@/components/home/HomeWhatOthers';
 import HomeTestimonial from '@/components/home/HomeTestimonial';
 import HomeClose from '@/components/home/HomeClose';
 import HomeChrome from '@/components/home/HomeChrome';
+import HomeWhatCrudaIs from '@/components/home/HomeWhatCrudaIs';
+import HomeServices from '@/components/home/HomeServices';
 import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). Brief F9 · Commit 5 F9.3 (19-sep).
+   CRUDA — Home (`/`). Brief F9 · Commit 7 F9.4 (19-sep).
 
-   REORDEN · F9 §2.0 + §2.7 "un dispositivo por sección"
+   REORDEN · F9 §2.0 + §2.4 + §2.5 · "un dispositivo por sección"
 
      1.  act 1                                    NEGRO · phrase mode
-     2.  act 2                                    PAPER · fill + crossfade
-     3.  selected-work                            PAPER
-     4.  testimonial (con LA PRUEBA merged)       NEGRO · F9 §2.7.1
-     5.  WHO IT HOLDS FOR (densidad)              PAPER · F9 §2.7.2
-     6.  WHAT OTHERS (densidad)                   PAPER · F9 §2.7.3
-     7.  OUR FOUNDER (retrato a sangre)           NEGRO · F9 §2.7.4
-     8.  close                                    PAPER
+     2.  QUÉ ES CRUDA (F9 §2.4)                   PAPER · lectura
+     3.  act 2                                    PAPER · fill + crossfade
+     4.  selected-work                            PAPER
+     5.  testimonial (con LA PRUEBA merged)       NEGRO · F9 §2.7.1
+     6.  WHO IT HOLDS FOR (densidad)              PAPER · F9 §2.7.2
+     7.  WHAT OTHERS (densidad)                   PAPER · F9 §2.7.3
+     8.  OUR FOUNDER (retrato a sangre)           NEGRO · F9 §2.7.4
+     9.  LOS SERVICIOS (F9 §2.5 · propuesto)      PAPER · plano 00
+    10.  close                                    PAPER
 
-   Alternancia · negro-papel-papel-papel-negro. Dos negros
+   Alternancia · negro-papel-papel-papel-negro-papel. Dos negros
    nunca adyacentes.
 
-   Cambios respecto del estado anterior:
-     · HomeFit sale del render. El grid nuevo (HomeWhoItHoldsFor)
-       reemplaza el registro de observación. HomeFit queda en el
-       repo como dead code (fase C1 pattern).
-     · Proof compact absorbed por HomeTestimonial. Las tres
-       cifras viven ahora dentro del mismo bloque negro que la
-       cita de Karen · F9 §2.7.1 · resuelve el huérfano del
-       commit 3c2285d.
-     · HomeLegacy · rediseñado como OUR FOUNDER. Cambio de ground
-       (papel → negro), rótulo, retrato a sangre, jerarquía.
+   F9.4 (Commit 7, 19-sep) · dos bloques nuevos:
+     · Posición 02 · QUÉ ES CRUDA · copy FIRMADO
+     · Posición 09 · LOS SERVICIOS · copy PROPUESTO (marcado
+                     visualmente como slot italic-gris hasta firma)
 
-   F9.4 (commit siguiente) agrega los dos bloques nuevos:
-     · Posición 02 · QUÉ ES CRUDA (papel)
-     · Posición 09 · LOS SERVICIOS (papel)
-   Y cambia el nav a SERVICES.
+   Nav change · PROCESS → SERVICES (esperando firma A/B/C del
+   target del link).
+
+   Estado anterior (Commit 5 F9.3):
+     · HomeFit sale del render. HomeWhoItHoldsFor reemplaza.
+     · Proof compact absorbed por HomeTestimonial.
+     · HomeLegacy · rediseñado como OUR FOUNDER (ground negro).
 
    Componentes en el repo fuera del render:
      · HomeFit (dead code post-Commit-5)
@@ -54,9 +55,9 @@ import '@/components/home/home-layout.css';
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
-  'CRUDA builds the narrative that founder-led companies need at the point where what they built stopped explaining itself.'
+  'CRUDA is a communications company. We translate cultures into business.'
 
-const HOME_TITLE = 'CRUDA · Narrative for founder-led companies'
+const HOME_TITLE = 'CRUDA · Communications for founder-led companies'
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -75,12 +76,14 @@ export default function HomePage() {
     <>
       <HomeChrome />
       <Act1Hero />
+      <HomeWhatCrudaIs />
       <Act2WhyNow />
       <SelectedWork cards={selectedWorkCards} />
       <HomeTestimonial />
       <HomeWhoItHoldsFor />
       <HomeWhatOthers />
       <HomeLegacy />
+      <HomeServices />
       <HomeClose />
     </>
   );

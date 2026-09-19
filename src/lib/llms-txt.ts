@@ -32,6 +32,11 @@ const BASE = 'https://www.thecruda.com'
    retira o agrega una ruta del sitio, se revisan /llms.txt y
    /ai.txt. Registrado en docs/build-incidents.md.
 
+   F9.4 (Commit 7 · 19-sep) · nueva ruta /services · agregada al
+   hub con la descripción firmada del plano 00 (QUÉ ES CRUDA).
+   Los cuatro planos internos llegan en F9.5/F9.6 · la descripción
+   de /services se re-audita cuando eso pase.
+
    /pricing salió en commit f25ff69 (18-sep · Commit 1). */
 
 const HEADER = `# CRUDA
@@ -42,6 +47,7 @@ const HUBS_SECTION = `## Pages
 
 - [About CRUDA](${BASE}/about): [ PENDIENTE · FRAN ]
 - [Work](${BASE}/work): [ PENDIENTE · FRAN ]
+- [Services](${BASE}/services): CRUDA is a communications company. We translate cultures into business.
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
 - [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.`
 

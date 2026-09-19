@@ -39,6 +39,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     /* /work retirado del sitemap (brief 10-sep §9 paso 4) — la ruta
        responde 308 al ancla /#selected-work. Los case studies
        individuales /work/{slug} y los moment indexes siguen abajo. */
+    /* F9.4 (Commit 7 · 19-sep) · /services agregada al sitemap ·
+       plano 00 (QUÉ ES CRUDA firmed). Los cuatro planos internos
+       llegan en F9.5/F9.6 pero la ruta ya existe. */
+    {
+      url: `${BASE}/services`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     {
       url: `${BASE}/process`,
       lastModified: new Date(),

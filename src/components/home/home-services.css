@@ -1,0 +1,122 @@
+/* Home · LOS SERVICIOS · CSS
+   F9 §2.5 · posición 09 · Commit 7 F9.4 (19-sep).
+
+   Ground papel. Molde tabla · label + h-section + banda
+   PROVISORIO + cuatro filas puerta.
+
+   Marcado visual · toda la sección respira "no firmado" mientras
+   Fran no firme:
+     · h-section en italic con opacity reducida (mismo tratamiento
+       que headline slot en LEGACY)
+     · row body en `--slot` (italic + gris) para las cuatro filas
+     · banda visible "COPY PROPUESTO · PENDIENTE FIRMA" arriba de
+       la tabla · uppercase label · no gets lost al scroll.
+
+   Cuando llegue firma, `--slot` sale de las filas y se retira
+   la banda + el italic del headline. */
+
+.home-services {
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: var(--s5) var(--pad);
+  color: var(--ink);
+}
+
+.home-services__inner {
+  max-width: 1600px;
+  margin-inline: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.4vh, 32px);
+}
+
+.home-services__label {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* h-section · con italic + opacity mientras está provisorio.
+   Mismo patrón que LEGACY headline slot. */
+.home-services__headline {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  margin: 0;
+  max-width: 28ch;
+  text-wrap: balance;
+  font-style: italic;
+  opacity: .55;
+}
+
+/* Banda visible · señalización explícita de estado "propuesto".
+   Se lee como label del sistema pero en un color que contrasta
+   distinto (rojo señal · --signal-red del sistema shadcn ya está
+   registrado). Evita que un lector visual crea que esto ya
+   estaba firmado. */
+.home-services__provisorio {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: hsl(var(--signal-red));
+  margin: 0;
+}
+
+.home-services__table {
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.home-services__row {
+  display: grid;
+  grid-template-columns: minmax(140px, 180px) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(16px, 2vh, 28px) 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  align-items: baseline;
+}
+@media (max-width: 720px) {
+  .home-services__row {
+    grid-template-columns: 1fr;
+    gap: var(--s1);
+  }
+}
+
+.home-services__row-label {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+.home-services__row-body {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 20px);
+  line-height: 1.5;
+  color: var(--ink);
+  margin: 0;
+  max-width: 60ch;
+}
+
+/* Slot · patrón del sistema para copy PROPUESTO/PENDIENTE ·
+   italic + opacity para señalar que no está firmado. Cuando
+   Fran firme, sale de las filas. */
+.home-services__row-body--slot {
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  font-style: italic;
+}

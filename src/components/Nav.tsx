@@ -4,9 +4,14 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-/* Brief v2 Task 4 — nav de 5 items:
+/* Nav de 5 items:
 
-     About  ·  Work  ·  Process  ·  Essays  ·  Contact
+     About  ·  Work  ·  Services  ·  Essays  ·  Contact
+
+   F9.4 (Commit 7 · 19-sep) · PROCESS → SERVICES · nav apunta a
+   /services · página nueva con plano 00 (QUÉ ES CRUDA firmed) ·
+   los cuatro planos internos (F9.5/F9.6) llegan en commits
+   siguientes.
 
    Fuera de la nav: la COMPANIES dropdown entera (retirada), la
    RESOURCES dropdown (colapsada — Essays vive standalone ahora, y
@@ -22,7 +27,8 @@ import { useEffect, useState } from 'react'
    servidor, pero durante el frame antes de que resuelva,
    usePathname() del cliente devuelve la URL vieja. Sin ese matcher
    el estado activo se pierde por un frame. NO LIMPIAR mientras
-   exista el redirect. */
+   exista el redirect. Mismo patrón se aplica a /process (queda como
+   matcher aunque el link ya sea /services · el 301 llega abajo). */
 
 const NAV_ITEMS = [
   { href: '/about', label: 'About', match: /^\/(about|our-founder)/ },
@@ -31,10 +37,12 @@ const NAV_ITEMS = [
      el activo por la regex; en la home el activo lo dispara /work
      via el fragment. */
   { href: '/#selected-work', label: 'Work', match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
-  /* Brief 03 (14-sep) · /approach → /process. El regex incluye
-     el nombre viejo por la ventana de un frame antes de que el
-     301 resuelva (ver docs/decisions.md #nombres-de-rutas-retiradas). */
-  { href: '/process', label: 'Process', match: /^\/(process|approach)/ },
+  /* F9.4 (19-sep) · SERVICES apunta a /services (plano 00). El
+     regex incluye /process y /approach como matchers heredados ·
+     por si Fran decide después un 301 /process → /services (no
+     está hecho en este commit · el link a /process sigue
+     funcionando). */
+  { href: '/services', label: 'Services', match: /^\/(services|process|approach)/ },
   { href: '/essays', label: 'Essays', match: /^\/(essays|resources\/essays|thinking)/ },
   { href: '/contact', label: 'Contact', match: /^\/contact/ },
 ] as const

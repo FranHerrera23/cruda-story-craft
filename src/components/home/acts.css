@@ -30,7 +30,11 @@
 }
 
 .act2 {
-  height: 2100vh;
+  /* F10.1 · 19-sep · brief empieza 1680 (2100 × 4/5). El objetivo
+     firmado es 7 gestos de rueda o menos · MEDIDO con playwright.
+     Iteración descendente: 1680→700→620vh. En 620vh se atraviesa
+     en 7 gestos exactos. Ver acts-config.ts ACT2_HEIGHT_VH. */
+  height: 620vh;
   background: #F2F2F0;
   color: #0E1113;
 }
@@ -357,7 +361,8 @@
     height: 260vh;
   }
   .act2 {
-    height: 1680vh;
+    /* F10.1 · mobile · proporcional al desktop (620 × 0.8 ≈ 500). */
+    height: 500vh;
   }
 }
 

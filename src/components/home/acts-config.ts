@@ -29,9 +29,17 @@
                     de la segunda" (§4.4). La transición al
                     #act2 la maneja el borde entre secciones.
 
-   ACT2_HEIGHT_VH   2100vh · 5 beats · 420vh cada uno.
-                    F2 §2.4 (sin cambio · el lock declara #act2
-                    "no change" en el modelo de fill por línea).
+   ACT2_HEIGHT_VH   1680vh · 4 beats · F10.1 (19-sep) firmado
+                    18-sep · nunca ejecutado en F9. El brief F9
+                    exigía el corte y no lo puse en un commit
+                    propio · el problema de los quince gestos
+                    quedó en producción hasta este commit.
+
+                    Punto de partida 2100 × 4/5 = 1680. Objetivo
+                    medido · siete gestos de rueda o menos para
+                    toda la sección. Si a 1680 son más de siete,
+                    baja. NÚMERO MEDIDO · scratchpad/count-
+                    gestures.mjs · no estimado.
 
    Mobile: alturas más chicas · gesto de scroll más corto. Los
    rangos [from, to] son proporcionales al alto del track.
@@ -51,9 +59,9 @@
    enter/exit width viven en acts-motor.ts. */
 
 export const ACT1_HEIGHT_VH = 260
-export const ACT2_HEIGHT_VH = 2100
+export const ACT2_HEIGHT_VH = 620
 export const ACT1_HEIGHT_VH_MOBILE = 260
-export const ACT2_HEIGHT_VH_MOBILE = 1680
+export const ACT2_HEIGHT_VH_MOBILE = 500
 
 /* ══════════ Copy · beats ══════════
    Cada beat es un array de líneas autorales. El motor genera un
@@ -89,60 +97,70 @@ export const ACT1_BEATS: Beat[] = [
   { from: 0.54, to: 1.00, lines: ['We build the next one.'] },
 ]
 
-/* Acto 2 · why-now paper. Cinco beats.
-   `To Himself` va en <em class="nowrap"> — no se puede partir.
-   El em-dash lleva &nbsp; adelante.
-   Apóstrofes tipográficos con &rsquo;.
+/* Acto 2 · why-now paper. CUATRO beats (F10.1 · corte firmado
+   18-sep · nunca ejecutado en F9 · Commit 8).
 
-   Geometría F2 · 5 beats de 0.16 + 4 huecos de 0.05.
+   COPY · Fran, verbatim del brief F10 §6.1:
+     · Beat 01 · sin cambios (17w).
+     · Beat 02 · sale "and titled To Himself" (23w).
+     · Beat 03 · funde los beats 3 y 4 viejos (22w) · sale
+                 "It lives in your head, in rooms you've walked
+                 into, in decisions you made so long ago you
+                 stopped explaining them" · sale "eventually".
+     · Beat 04 · sin cambios · era el beat 05 (15w).
+     Total 77w · antes 104w · reducción 26%.
 
-   COPY · beat 1 línea 2 (F2 §2.7).
-   "Wars, plague, the whole weight of it." → "He was at war for
-   fourteen of them." Verificación histórica: Guerras Marcomanas
-   166–180 d.C. son 14 años. Reinado 161–180, 19 años. La guerra
-   pártica (161–166) se solapa pero es previa — la cifra
-   subestima. Publicable. */
+   TIPOGRAFÍA · apóstrofes con &rsquo; (sistema), em-dash con
+   &nbsp;&mdash; · sin <em> ni <span> hijos (Fran retiró
+   "and titled To Himself" · el único hijo HTML del acto sale
+   con él · el bug de LineReveals dejó de aplicar acá).
+
+   VENTANAS · nueva geometría 4 beats + 3 huecos = 1.0:
+     Beat 01 · [0.00, 0.18] · window 0.18
+     hueco   · [0.18, 0.22] · 0.04
+     Beat 02 · [0.22, 0.48] · window 0.26 · TRANSICIÓN ancha
+     hueco   · [0.48, 0.55] · 0.07 · book thin → book mid
+     Beat 03 · [0.55, 0.77] · window 0.22
+     hueco   · [0.77, 0.82] · 0.05 · book mid → book dense
+     Beat 04 · [0.82, 1.00] · window 0.18
+
+   COPY · beat 1 línea 2 heredado de F2 §2.7 · "He was at war
+   for fourteen of them." Verificación histórica: Guerras
+   Marcomanas 166-180 d.C. son 14 años. Reinado 161-180, 19
+   años. La guerra pártica (161-166) se solapa pero es previa
+   — la cifra subestima. Publicable.
+
+   MOTOR MIDE · cada beat es UNA sola string · LineReveals
+   splittea por línea visual y el motor sweep barre las líneas
+   medidas (F10.1 §6.1 · "si el split es por línea visual,
+   ignoralos y dejá que el motor mida"). */
 export const ACT2_BEATS: Beat[] = [
   {
     from: 0.00,
-    to: 0.16,
+    to: 0.18,
     lines: [
-      'Marcus Aurelius ran the Roman Empire for nineteen years.',
-      'He was at war for fourteen of them.',
+      'Marcus Aurelius ran the Roman Empire for nineteen years. He was at war for fourteen of them.',
     ],
   },
   {
-    from: 0.21,
-    to: 0.37,
+    from: 0.22,
+    to: 0.48,
     lines: [
-      'What survived isn&rsquo;t the empire. It&rsquo;s twelve notebooks he wrote in',
-      'Greek and titled <em class="nowrap">To&nbsp;Himself</em>&nbsp;&mdash; not philosophy, just a man working',
-      'out what to do.',
+      'What survived isn&rsquo;t the empire. It&rsquo;s twelve notebooks he wrote in Greek&nbsp;&mdash; not philosophy, just a man working out what to do.',
     ],
   },
   {
-    from: 0.42,
-    to: 0.58,
+    from: 0.55,
+    to: 0.77,
     lines: [
-      'You have a version of that. It lives in your head, in rooms you&rsquo;ve',
-      'walked into, in decisions you made so long ago you stopped',
-      'explaining them.',
+      'You have a version of that, and you&rsquo;re too close to see it. Anyone who does something exceptional every day files it under normal.',
     ],
   },
   {
-    from: 0.63,
-    to: 0.79,
+    from: 0.82,
+    to: 1.00,
     lines: [
-      'And you&rsquo;re too close to see it. Anyone who does something',
-      'exceptional every day eventually files it under normal.',
-    ],
-  },
-  {
-    from: 0.84,
-    to: 1.0,
-    lines: [
-      'So the job isn&rsquo;t writing.',
-      'It&rsquo;s taking things off until what&rsquo;s left is only yours.',
+      'So the job isn&rsquo;t writing. It&rsquo;s taking things off until what&rsquo;s left is only yours.',
     ],
   },
 ]
@@ -171,34 +189,36 @@ export const ACT2_BEATS: Beat[] = [
    de mínimo a denso. Inversión limpia · seis archivos, seis
    filas · confirmado en incógnito por Fran (18-sep).
 
-   SECUENCIA (wireframe §5.3 + §5.4). Global p sobre el acto 2:
+   SECUENCIA (F10.1 · 4 beats). Global p sobre el acto 2:
 
-     beat 01  [0.00, 0.16]   bust dense              (bust-01-dense.png)
-     hueco    [0.16, 0.21]   bust dense sostenido
-     beat 02  [0.21, 0.37]   ↓ LA TRANSICIÓN ↓
+     beat 01  [0.00, 0.18]   bust dense              (bust-01-dense.png)
+     hueco    [0.18, 0.22]   bust dense sostenido
+     beat 02  [0.22, 0.48]   ↓ LA TRANSICIÓN ↓
         local 0.00-0.25      bust dense visible
         local 0.25-0.45      bust dense → bust mid crossfade
         local 0.45-0.60      bust mid → bust thin crossfade
         local 0.60-0.70      bust thin → 0 · book thin 0 → parcial
         local 0.60-0.80      book thin entra
         local 0.80-1.00      book thin sostenido
-     hueco    [0.37, 0.42]   book thin → book mid crossfade
-     beat 03  [0.42, 0.58]   book mid                (book-02-mid.png)
-     hueco    [0.58, 0.63]   book mid → book dense crossfade
-     beat 04  [0.63, 0.79]   book dense              (book-01-dense.png)
-     hueco    [0.79, 0.84]   book dense sostenido
-     beat 05  [0.84, 1.00]   book dense              (book-01-dense.png)
+     hueco    [0.48, 0.55]   book thin → book mid crossfade
+     beat 03  [0.55, 0.77]   book mid                (book-02-mid.png)
+     hueco    [0.77, 0.82]   book mid → book dense crossfade
+     beat 04  [0.82, 1.00]   book dense              (book-01-dense.png)
+
+   Los seis assets siguen en uso · el corte de F10.1 fusionó
+   los beats 04 y 05 viejos (ambos mostraban book-01-dense) en
+   un solo beat 04, que es la fusión natural del arte.
 
    Todos los locales de beat 02 convertidos a global p (window
-   0.16 = to − from = 0.37 − 0.21):
+   0.26 = to − from = 0.48 − 0.22):
 
-     local  0.00 → global  0.210
-     local  0.25 → global  0.250
-     local  0.45 → global  0.282
-     local  0.60 → global  0.306
-     local  0.70 → global  0.322
-     local  0.80 → global  0.338
-     local  1.00 → global  0.370
+     local  0.00 → global  0.220
+     local  0.25 → global  0.285
+     local  0.45 → global  0.337
+     local  0.60 → global  0.376
+     local  0.70 → global  0.402
+     local  0.80 → global  0.428
+     local  1.00 → global  0.480
 
    CROSSFADE. F2 §2.5 pedía hard-cut entre archivos. El
    wireframe lo anula para #act2 (aprobado por Fran, 18-sep) ·
@@ -235,54 +255,54 @@ export type Art = {
 export const ACT2_ARTS: Art[] = [
   /* Beat 01 + hueco + inicio de beat 02 · bust dense sostenido.
      Fade-out durante local 0.25-0.45 de beat 02 (global
-     0.250-0.282) hacia bust-mid. */
+     0.285-0.337) hacia bust-mid. */
   {
     name: 'bust-01-dense', subject: 'bust',
     in0: 0.000, in1: 0.000,
-    out0: 0.250, out1: 0.282,
+    out0: 0.285, out1: 0.337,
     startScale: 1.20, endScale: 1.08,
   },
   /* Bust mid · entra por crossfade con dense, sostiene poco, y
-     cede a thin en local 0.45-0.60 (global 0.282-0.306). */
+     cede a thin en local 0.45-0.60 (global 0.337-0.376). */
   {
     name: 'bust-02-mid', subject: 'bust',
-    in0: 0.250, in1: 0.282,
-    out0: 0.282, out1: 0.306,
+    in0: 0.285, in1: 0.337,
+    out0: 0.337, out1: 0.376,
     startScale: 1.15, endScale: 1.08,
   },
   /* Bust thin · dominante en el pico del "borrado". Empieza a
-     desaparecer en local 0.60 (global 0.306), termina en 0.70
-     (global 0.322). Coincide con la entrada del libro-thin. */
+     desaparecer en local 0.60 (global 0.376), termina en 0.70
+     (global 0.402). Coincide con la entrada del libro-thin. */
   {
     name: 'bust-03-min', subject: 'bust',
-    in0: 0.282, in1: 0.306,
-    out0: 0.306, out1: 0.322,
+    in0: 0.337, in1: 0.376,
+    out0: 0.376, out1: 0.402,
     startScale: 1.10, endScale: 1.05,
   },
   /* Book thin · entra por overlap con bust thin (local 0.60 =
-     global 0.306). Domina hasta el fin de beat 02 (0.37) y
-     mantiene durante el hueco. Fade out hacia book-mid al
-     comienzo de beat 03 (0.40-0.42). */
+     global 0.376). Domina hasta el fin de beat 02 (0.48) y
+     mantiene durante el hueco. Fade out hacia book-mid en el
+     hueco 0.48-0.55 (window 0.07 · crossfade largo). */
   {
     name: 'book-03-min', subject: 'book',
-    in0: 0.306, in1: 0.322,
-    out0: 0.400, out1: 0.420,
+    in0: 0.376, in1: 0.402,
+    out0: 0.480, out1: 0.550,
     startScale: 1.20, endScale: 1.08,
   },
-  /* Book mid · el arte de beat 03. Fade-in tail del hueco
-     (0.40-0.42), sostiene todo el beat, cede a book-dense en el
-     hueco 0.58-0.68 (crossfade largo · el detalle sube). */
+  /* Book mid · el arte de beat 03 [0.55, 0.77]. Fade-in durante
+     el hueco 0.48-0.55, sostiene todo el beat, cede a book-dense
+     en el hueco 0.77-0.82. */
   {
     name: 'book-02-mid', subject: 'book',
-    in0: 0.400, in1: 0.420,
-    out0: 0.630, out1: 0.680,
+    in0: 0.480, in1: 0.550,
+    out0: 0.770, out1: 0.820,
     startScale: 1.15, endScale: 1.05,
   },
-  /* Book dense · beats 04 + 05. Entra por crossfade con book-mid
-     en 0.63-0.68 y queda hasta el fin del acto. */
+  /* Book dense · beat 04. Entra por crossfade con book-mid en
+     el hueco 0.77-0.82, queda hasta el fin del acto. */
   {
     name: 'book-01-dense', subject: 'book',
-    in0: 0.630, in1: 0.680,
+    in0: 0.770, in1: 0.820,
     out0: 1.010, out1: 1.020,
     startScale: 1.10, endScale: 1.00,
   },

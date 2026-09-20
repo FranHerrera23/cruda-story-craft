@@ -1,54 +1,52 @@
+import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-what-others.css'
 
-/* Home · WHAT OTHER PEOPLE STARTED SAYING
-   Wireframe LOCK · home §9 (17-sep) · fase D.
+/* Home · WHAT OTHER PEOPLE STARTED SAYING (F10 §9 · Commit 11 F10.3)
 
-   Cobertura ganada · Forbes Perú (Karen), ABC/Fox/CBS (Mike),
-   Drapers (Confidential).
+   Dispositivo A (AnchorAdvance):
+     · ANCLA · rótulo WHAT OTHER PEOPLE STARTED SAYING
+     · ITEMS · 3 unidades de cobertura
+              - Karen · Forbes Perú
+              - Mike · triple network
+              - Confidential · Drapers
 
-   Corrección estructural (18-sep):
+   Copy heredado del molde F9.4 · verbatim. Los medios van como
+   TEXTO EN ESCALA LABEL (no cajas · brief §9.2 · las cajas con
+   border conteniendo texto quedan retiradas desde fase D).
 
-     · Salen las cajas con border 1px conteniendo texto (§2.3
-       prohibido). Los medios pasan a TEXTO EN ESCALA LABEL
-       separados por punto medio · un elemento por unidad de
-       cobertura, no una caja por medio.
-     · La unidad de cobertura se separa de la siguiente por
-       regla horizontal de 1px al ancho de columna.
-     · Sin excepción para DRAPERS (Fran, 18-sep). Si queda
-       raro visualmente, se reporta antes de improvisar.
-
-   §9.3 · si Fran sube las cuatro imágenes de prensa, el
-   bloque pasa a carrusel · esa mecánica se escribe cuando las
-   imágenes existan, no ahora. */
+   §9.3 · si Fran sube las cuatro imágenes de prensa, el bloque
+   pasa a carrusel · esa mecánica se escribe cuando las imágenes
+   existan, no ahora. */
 
 export default function HomeWhatOthers() {
   return (
-    <section id="what-others" className="home-what-others">
-      <div className="home-what-others__inner">
+    <AnchorAdvance
+      id="what-others"
+      className="home-what-others"
+      threshold={220}
+      readingZone={0.6}
+    >
+      <Anchor className="home-what-others__anchor">
         <p className="home-what-others__eyebrow">
           WHAT OTHER PEOPLE STARTED SAYING
         </p>
+      </Anchor>
 
-        <hr className="home-what-others__rule" aria-hidden="true" />
-
+      <div className="home-what-others__items">
         {/* Karen · Forbes */}
-        <div className="home-what-others__item">
+        <Item className="home-what-others__item">
           <p className="home-what-others__prose">
-            Karen Mannheim was named to Forbes Perú&rsquo;s &ldquo;Las 50
-            mujeres m&aacute;s poderosas de Per&uacute; en 2026.&rdquo; No
-            pitch, no placement.
+            Karen Mannheim was named to Forbes Per&uacute;&rsquo;s
+            &ldquo;Las 50 mujeres m&aacute;s poderosas de Per&uacute; en
+            2026.&rdquo; No pitch, no placement.
           </p>
           <p className="home-what-others__media-label">
             FORBES · ARCHITECTURAL DIGEST
           </p>
-        </div>
+        </Item>
 
-        <hr className="home-what-others__rule" aria-hidden="true" />
-
-        {/* Mike · triple network · F9 §2.7.3 · media + meta van
-            en la misma línea cuando entran (flex-wrap · en mobile
-            stack). Attribution queda debajo. */}
-        <div className="home-what-others__item">
+        {/* Mike · triple network */}
+        <Item className="home-what-others__item">
           <p className="home-what-others__prose">
             Mike Kaeding went from a builder nobody outside Minnesota
             had heard of to a source three networks call.
@@ -64,21 +62,17 @@ export default function HomeWhatOthers() {
           <p className="home-what-others__attribution">
             Mike Kaeding · Norhart · July 2023 — October 2024
           </p>
-        </div>
+        </Item>
 
-        <hr className="home-what-others__rule" aria-hidden="true" />
-
-        {/* Confidential · Drapers · el bloque sin prose. El slot
-            [ Confidential ] preserva la unidad como estructura,
-            sin caja. */}
-        <div className="home-what-others__item">
+        {/* Confidential · Drapers */}
+        <Item className="home-what-others__item">
           <p className="home-what-others__slot">[ Confidential ]</p>
           <p className="home-what-others__media-label">DRAPERS</p>
           <p className="home-what-others__attribution">
             Confidential · Dubai, UAE · 2026
           </p>
-        </div>
+        </Item>
       </div>
-    </section>
+    </AnchorAdvance>
   )
 }

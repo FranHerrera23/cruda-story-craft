@@ -1,96 +1,83 @@
+import Link from 'next/link'
+import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-services.css'
 
-/* Home · LOS SERVICIOS (F9 §2.5 · posición 09 · Commit 7 F9.4)
+/* Home · LOS SERVICIOS (F10 §11 · posición 08 · Commit 11 F10.3)
 
-   COPY PROPUESTO · 19-sep · marcado provisorio · toda la sección
-   entra al bundle en italic-gris (patrón slot) para señalar que
-   nada de esto está firmado. Cuando Fran firme, se retira el
-   modificador `--slot` de las filas y la sección pasa a plena.
+   Dispositivo A (AnchorAdvance):
+     · ANCLA · label WHAT WE DO + h-sub "Four doors. The same
+       skill, at four distances." (headline firmado F9.4 con
+       corrección · sigue en producción)
+     · ITEMS · las 4 puertas · rótulo + body
+     · CTA al fondo · link a /services
 
-   Las cuatro puertas viven acá como plano cero del sistema. En
-   /services (F9.5 / F9.6) cada una se expande a su plano propio.
-
-   Molde · tabla igual que OUR FOUNDER (§10) pero con puertas
-   como rótulo · cada puerta abre a un plano. Ground papel.
-
-   Regla del sistema · cero copy nuevo sin firma. Este bloque
-   respeta la regla por marcado visual, no por retiro. */
+   COPY PROPUESTO · brief F10 §11 · marcado provisorio. Las
+   cuatro líneas de las puertas son propuesta · CC construye
+   marcado, Fran firma o rompe. Hasta que llegue firma, cada
+   body va en italic-gris (patrón --slot). */
 
 const DOORS: ReadonlyArray<{ key: string; label: string; body: string }> = [
   {
     key: 'translated',
     label: 'TRANSLATED',
     body:
-      'The founder’s story rebuilt for a market that never sat across from them.',
+      'Twelve weeks to build the system a company uses to say what it is.',
   },
   {
     key: 'transmission',
     label: 'TRANSMISSION',
     body:
-      'The company’s own people hearing the same version the market hears.',
+      'The system, run every week, so it stops depending on the founder.',
   },
   {
     key: 'interpreted',
     label: 'INTERPRETED',
     body:
-      'Capital and culture crossing a border without losing what made them worth crossing.',
+      'Two sides with capital and capability, made legible to each other.',
   },
   {
     key: 'the-read',
     label: 'THE READ',
     body:
-      'A diagnostic before the work · what the market thinks you are, versus what you built.',
+      'One session. What an outsider sees, said plainly.',
   },
 ]
 
 export default function HomeServices() {
   return (
-    <section
+    <AnchorAdvance
       id="services"
       className="home-services"
-      data-reveal-seq
+      threshold={200}
+      readingZone={0.6}
     >
-      <div className="home-services__inner">
-        <p
-          className="home-services__label"
-          data-reveal="text"
-          data-seq="eyebrow"
-        >
-          THE SERVICES
-        </p>
+      <Anchor className="home-services__anchor">
+        <div className="home-services__anchor-inner">
+          <p className="home-services__label">WHAT WE DO</p>
+          <h2 className="home-services__headline">
+            Four doors. The same skill, at four distances.
+          </h2>
+          <p className="home-services__provisorio">
+            [ COPY PROPUESTO · PENDIENTE FIRMA ]
+          </p>
+        </div>
+      </Anchor>
 
-        {/* Titular · corregido por Fran (19-sep, F9.4 firma con
-            corrección): "The same skill, at four distances." conecta
-            con las tres distancias del bloque QUÉ ES CRUDA arriba,
-            y evita reintroducir "practice" · palabra que estamos
-            sacando de /about. */}
-        <h2
-          className="home-services__headline"
-          data-reveal="lines"
-          data-seq="title"
-        >
-          Four doors. The same skill, at four distances.
-        </h2>
-
-        <p
-          className="home-services__provisorio"
-          data-reveal="text"
-          data-seq="eyebrow"
-        >
-          [ COPY PROPUESTO · PENDIENTE FIRMA ]
-        </p>
-
-        <dl className="home-services__table" data-seq="body">
-          {DOORS.map(door => (
-            <div key={door.key} className="home-services__row" data-reveal="text">
-              <dt className="home-services__row-label">{door.label}</dt>
-              <dd className="home-services__row-body home-services__row-body--slot">
-                {door.body}
-              </dd>
-            </div>
-          ))}
-        </dl>
+      <div className="home-services__items">
+        {DOORS.map(door => (
+          <Item key={door.key} className="home-services__row">
+            <p className="home-services__row-label">{door.label}</p>
+            <p className="home-services__row-body">
+              {door.body}
+            </p>
+          </Item>
+        ))}
+        <div className="home-services__cta-row">
+          <Link href="/services" className="home-services__cta">
+            See how each one works &nbsp;→
+          </Link>
+        </div>
       </div>
-    </section>
+    </AnchorAdvance>
   )
 }

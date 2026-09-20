@@ -1,53 +1,64 @@
 /* Home · OUR FOUNDER · CSS
-   Wireframe LOCK · home §10 + F9 §2.7.4 · Commit 5 F9.3 (19-sep).
+   F10 §10 · Commit 11 F10.3 (20-sep).
 
-   Ground negro (segundo bloque inverso permitido de la home ·
-   ledger #19). Retrato a sangre por el borde izquierdo de la
-   sección (desktop) · banner top en mobile. Molde tabla queda
-   con las cuatro filas de fase E1, más un rótulo arriba, un
-   titular slot (h-section) y el crédito al pie. */
+   Ground negro (--ink-deep). Segundo bloque inverso permitido
+   (ledger #19). Dispositivo A (AnchorAdvance):
+     · Ancla · retrato + label + titular
+     · Items · 4 filas de tabla
+     · Crédito al pie
+
+   Layout del ancla:
+     · Desktop · retrato a sangre por borde izq (40% ancho) +
+       body a la derecha. Ancla mide como el body.
+     · Mobile (≤720px) · retrato pasa a banner-top a sangre
+       horizontal · el ancla es más baja · readingZone se
+       ajusta en el JSX. */
 
 .home-legacy {
   background-color: var(--ink-deep);
   background-image: var(--grid-bg-dark);
   background-size: var(--grid-size) var(--grid-size);
   color: var(--cream);
-  padding: 0;
-  position: relative;
-  isolation: isolate;
 }
 
-.home-legacy__inner {
+/* ═════════ ANCLA ═════════
+   Fondo negro opaco · los items scrollean detrás y quedan
+   cubiertos por el ancla. */
+.home-legacy__anchor {
+  background-color: var(--ink-deep);
+}
+
+.home-legacy__anchor-inner {
   max-width: 1600px;
   margin-inline: 0;
   display: grid;
-  /* Retrato · 40% del ancho a sangre. Contenido · 60%. Sin gap ·
-     el retrato toca al pad. */
   grid-template-columns: minmax(320px, 40%) minmax(0, 1fr);
-  align-items: stretch;
-  min-height: clamp(560px, 78vh, 820px);
+  /* F10.3 verify (20-sep) · con align-items: stretch la grilla
+     tomaba la altura intrínseca de la img (~890px en 1440) y
+     el ancla ocupaba 99% del viewport. Con align-items: start
+     y altura fija en el retrato, la fila queda bounded y el
+     ancla mide lo que su contenido pide (~380-480px). */
+  align-items: start;
 }
+
 @media (max-width: 720px) {
-  /* Mobile · retrato pasa a banner top a sangre horizontal · el
-     alto se limita para no comerse media pantalla. Reportado a
-     Fran en Commit 5 · queda como default hasta que él decida
-     otro tratamiento. */
-  .home-legacy__inner {
+  .home-legacy__anchor-inner {
     grid-template-columns: 1fr;
-    min-height: auto;
   }
 }
 
-/* Retrato · a sangre · borde izquierdo desktop / banner top mobile. */
+/* Retrato · a sangre · desktop izq / mobile top.
+   ALTURA EXPLÍCITA (no min-height) · sin esto la img intrínseca
+   estira la grilla. */
 .home-legacy__portrait {
   overflow: hidden;
-  min-height: clamp(560px, 78vh, 820px);
+  height: clamp(360px, 46vh, 520px);
 }
 @media (max-width: 720px) {
   .home-legacy__portrait {
-    min-height: auto;
+    height: auto;
     aspect-ratio: 3 / 2;
-    max-height: 60vh;
+    max-height: 38vh;
   }
 }
 .home-legacy__img {
@@ -59,22 +70,14 @@
   display: block;
 }
 
-/* Body · padding vertical de sección + horizontal contra el pad
-   del sitio (respetando el retrato a sangre a la izquierda). */
-.home-legacy__body {
-  padding: var(--s5) var(--pad);
+.home-legacy__anchor-body {
+  padding: clamp(64px, 8vh, 96px) var(--pad) clamp(32px, 4vh, 48px);
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3vh, 40px);
+  gap: clamp(20px, 2.6vh, 32px);
   max-width: 62ch;
 }
-@media (max-width: 720px) {
-  .home-legacy__body {
-    padding: clamp(48px, 8vh, 96px) var(--pad);
-  }
-}
 
-/* Rótulo · label del sistema · .14em firmado por Fran (canonical). */
 .home-legacy__label {
   font-family: var(--grot);
   font-weight: 500;
@@ -85,39 +88,53 @@
   margin: 0;
 }
 
-/* Titular · h-section del sistema · slot [PENDIENTE · FRAN]
-   marcado explícito. Cuando llegue el copy firmado, se reemplaza
-   el string dentro del <h2>. */
+/* Titular · propuesto · marcado visualmente como provisorio ·
+   italic + opacity (patrón slot). Cuando Fran firme, se retira. */
 .home-legacy__headline {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(24px, 2.8vw, 40px);
-  line-height: 1.2;
+  font-size: clamp(22px, 2.6vw, 36px);
+  line-height: 1.25;
   letter-spacing: -.015em;
   color: var(--cream);
   margin: 0;
-  max-width: 28ch;
+  max-width: 30ch;
   text-wrap: balance;
-  /* Cuando el slot esté con [PENDIENTE · FRAN], el italic
-     comunica visualmente que es placeholder. */
   font-style: italic;
-  opacity: .55;
+  opacity: .70;
 }
 
-/* Tabla · rótulo izquierda + dato derecha, regla entre filas.
-   Densidad F9 §2.7.2 alineada · huecos ≤ --space-4. */
-.home-legacy__table {
+.home-legacy__provisorio {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: hsl(var(--signal-red));
   margin: 0;
-  padding: 0;
-  border-top: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
 }
+
+/* ═════════ ITEMS ═════════
+   Cuatro filas de tabla, cada una un Item del dispositivo A.
+   Layout · rótulo izq (120-160px) + body al costado. Retrato
+   NO acompaña acá · queda arriba en el ancla y el body de la
+   sección arranca ancho completo debajo. */
+.home-legacy__items {
+  padding: 4vh var(--pad) 15vh;
+}
+
 .home-legacy__row {
+  max-width: 1600px;
+  margin-inline: 0;
   display: grid;
   grid-template-columns: minmax(120px, 160px) minmax(0, 1fr);
   gap: clamp(20px, 3vw, 40px);
-  padding: clamp(14px, 1.8vh, 24px) 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
+  padding: clamp(20px, 3vh, 32px) 0;
+  border-top: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
   align-items: baseline;
+}
+.home-legacy__row:last-of-type {
+  border-bottom: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
 }
 @media (max-width: 720px) {
   .home-legacy__row {
@@ -125,6 +142,7 @@
     gap: var(--s1);
   }
 }
+
 .home-legacy__row-label {
   font-family: var(--grot);
   font-weight: 500;
@@ -134,6 +152,7 @@
   color: color-mix(in srgb, var(--cream) 55%, transparent);
   margin: 0;
 }
+
 .home-legacy__row-body {
   font-family: var(--grot);
   font-weight: 400;
@@ -148,9 +167,9 @@
   font-style: italic;
 }
 
-/* Crédito al pie · label del sistema. Molde Pentagram · el
-   founder acredita el trabajo, no lo titula. */
+/* Crédito al pie · label del sistema. Molde Pentagram. */
 .home-legacy__credit {
+  max-width: 1600px;
   font-family: var(--grot);
   font-weight: 500;
   font-size: 11px;
@@ -158,5 +177,12 @@
   text-transform: uppercase;
   color: color-mix(in srgb, var(--cream) 55%, transparent);
   margin: 0;
-  padding-top: clamp(16px, 2vh, 24px);
+  padding-top: clamp(24px, 3vh, 40px);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .home-legacy__items {
+    padding: clamp(24px, 4vh, 40px) var(--pad);
+  }
 }

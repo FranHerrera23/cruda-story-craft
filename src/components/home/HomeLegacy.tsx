@@ -1,28 +1,28 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-legacy.css'
 
-/* Home · OUR FOUNDER
-   Wireframe LOCK · home §10 + F9 §2.7.4 · Commit 5 F9.3 (19-sep).
+/* Home · OUR FOUNDER (F10 §10 · posición 07 · Commit 11 F10.3)
 
-   Rediseño completo respecto de fase E1:
+   Dispositivo A (AnchorAdvance):
+     · ANCLA · retrato a sangre (borde izq desktop · banner-top
+       mobile) + label OUR FOUNDER + titular (PROVISORIO)
+     · ITEMS · 4 filas de tabla · EXPERIENCE · LEGACY · PRACTICE
+              · THE TEAM
+     · Crédito al pie · Fran Herrera · Founder · between UAE and
+       Russia
 
-     · Ground · negro (`--ink-deep`, era `--paper`)
-     · Rótulo · "OUR FOUNDER" (era "FOUNDER · BETWEEN UAE AND RUSSIA")
-     · Retrato · a sangre por el borde izquierdo, top-to-bottom
-                 de la sección (era 4:5 escala de firma)
-     · Titular · afirmación sobre cómo está organizada la
-                 empresa · slot [PENDIENTE · FRAN] · NO es el nombre
-     · Nombre · baja al pie en escala label, no como titular
+   El ancla es ALTA (retrato + titular) · readingZone tiene que
+   ir bajo el ancla, no al centro. En desktop el retrato ocupa
+   40% del ancho, no altura extra · el ancla mide como el body
+   (~50vh). En mobile el retrato pasa a banner-top a sangre, el
+   ancla mide ~60vh (retrato + label + titular) · readingZone
+   distinto.
 
-   Referencia (Fran, 19-sep) · "You work with the founder — and
-   with a team small enough to move." · propuesta de Stone & Us.
-   Cuando llegue el copy firmado, entra al slot.
-
-   Regla del sistema · el nombre del founder acredita el trabajo,
-   no lo titula. Molde Pentagram (Fran, 19-sep).
-
-   Mobile · el retrato a sangre por el borde izquierdo se come
-   media pantalla en 390. Este componente lo rota a banner-top
-   en < 720px · reportado a Fran en Commit 5. */
+   Regla Fran 20-sep · en 390 el ancla es el banner-top, más
+   baja · readingZone distinto. Detección por matchMedia. */
 
 const LEGACY_HOLDINGS = [
   'Mondelez',
@@ -35,59 +35,86 @@ const LEGACY_HOLDINGS = [
 
 const CREDIT = 'Fran Herrera · Founder · between UAE and Russia'
 
+/* Titular · propuesto, marcado provisorio en producción · brief
+   F10 §10.3. Línea de la propuesta de Stone & Us, textual.
+   Fran firma, ajusta o rompe. */
+const HEADLINE_PROVISORIO =
+  'You work with the founder — and with a team small enough to move.'
+
 export default function HomeLegacy() {
+  /* Fran 20-sep · el ancla desktop es distinta a la mobile (banner
+     vs retrato a sangre) · readingZone tiene que ser distinto.
+     Detectamos por matchMedia y ajustamos. */
+  const [readingZone, setReadingZone] = useState(0.72)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mql = window.matchMedia('(max-width: 720px)')
+    const update = () => setReadingZone(mql.matches ? 0.78 : 0.72)
+    update()
+    mql.addEventListener('change', update)
+    return () => mql.removeEventListener('change', update)
+  }, [])
+
   return (
-    <section id="our-founder" className="home-legacy home-legacy--dark">
-      <div className="home-legacy__inner">
-        <div className="home-legacy__portrait" aria-hidden="true">
-          <img
-            src="/fran-herrera.webp"
-            alt=""
-            className="home-legacy__img"
-          />
+    <AnchorAdvance
+      id="our-founder"
+      className="home-legacy home-legacy--dark"
+      threshold={200}
+      readingZone={readingZone}
+    >
+      <Anchor className="home-legacy__anchor">
+        <div className="home-legacy__anchor-inner">
+          <div className="home-legacy__portrait" aria-hidden="true">
+            <img
+              src="/fran-herrera.webp"
+              alt=""
+              className="home-legacy__img"
+            />
+          </div>
+          <div className="home-legacy__anchor-body">
+            <p className="home-legacy__label">OUR FOUNDER</p>
+            <h2 className="home-legacy__headline">
+              {HEADLINE_PROVISORIO}
+            </h2>
+            <p className="home-legacy__provisorio">
+              [ TITULAR PROPUESTO · PENDIENTE FIRMA ]
+            </p>
+          </div>
         </div>
+      </Anchor>
 
-        <div className="home-legacy__body">
-          <p className="home-legacy__label">OUR FOUNDER</p>
+      <div className="home-legacy__items">
+        <Item className="home-legacy__row">
+          <p className="home-legacy__row-label">EXPERIENCE</p>
+          <p className="home-legacy__row-body">
+            Ten years building brands across three continents,
+            in-house and agency side.
+          </p>
+        </Item>
 
-          <h2 className="home-legacy__headline">
+        <Item className="home-legacy__row">
+          <p className="home-legacy__row-label">LEGACY</p>
+          <p className="home-legacy__row-body">
+            {LEGACY_HOLDINGS.join(' · ')}
+          </p>
+        </Item>
+
+        <Item className="home-legacy__row">
+          <p className="home-legacy__row-label">PRACTICE</p>
+          <p className="home-legacy__row-body home-legacy__row-body--slot">
             [ PENDIENTE · FRAN ]
-          </h2>
+          </p>
+        </Item>
 
-          <dl className="home-legacy__table">
-            <div className="home-legacy__row">
-              <dt className="home-legacy__row-label">EXPERIENCE</dt>
-              <dd className="home-legacy__row-body">
-                Ten years building brands across three continents,
-                in-house and agency side.
-              </dd>
-            </div>
+        <Item className="home-legacy__row">
+          <p className="home-legacy__row-label">THE TEAM</p>
+          <p className="home-legacy__row-body home-legacy__row-body--slot">
+            [ PENDIENTE · FRAN ]
+          </p>
+        </Item>
 
-            <div className="home-legacy__row">
-              <dt className="home-legacy__row-label">LEGACY</dt>
-              <dd className="home-legacy__row-body">
-                {LEGACY_HOLDINGS.join(' · ')}
-              </dd>
-            </div>
-
-            <div className="home-legacy__row">
-              <dt className="home-legacy__row-label">PRACTICE</dt>
-              <dd className="home-legacy__row-body home-legacy__row-body--slot">
-                [ PENDIENTE · FRAN ]
-              </dd>
-            </div>
-
-            <div className="home-legacy__row">
-              <dt className="home-legacy__row-label">THE TEAM</dt>
-              <dd className="home-legacy__row-body home-legacy__row-body--slot">
-                [ PENDIENTE · FRAN ]
-              </dd>
-            </div>
-          </dl>
-
-          <p className="home-legacy__credit">{CREDIT}</p>
-        </div>
+        <p className="home-legacy__credit">{CREDIT}</p>
       </div>
-    </section>
+    </AnchorAdvance>
   )
 }

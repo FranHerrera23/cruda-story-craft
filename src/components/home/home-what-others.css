@@ -1,24 +1,27 @@
 /* Home · WHAT OTHER PEOPLE STARTED SAYING · CSS
-   Wireframe LOCK · home §9 · fase D (18-sep).
+   F10 §9 · Commit 11 F10.3 (20-sep).
 
-   Retira las cajas con border · normaliza tipografía al sistema
-   §2. Cero borders conteniendo texto. Regla horizontal como
-   único separador entre unidades. */
+   Ground papel. Dispositivo A (AnchorAdvance):
+     · Ancla · eyebrow WHAT OTHER PEOPLE STARTED SAYING
+     · Items · 3 unidades de cobertura, separadas por regla
+
+   Fondo del ancla · paper opaco. */
 
 .home-what-others {
   background-color: var(--paper);
   background-image: var(--grid-bg);
   background-size: var(--grid-size) var(--grid-size);
-  padding: var(--s5) var(--pad);
   color: var(--ink);
 }
-.home-what-others__inner {
-  max-width: 1600px;
-  margin-inline: 0;
+
+/* ═════════ ANCLA ═════════
+   Sólo el eyebrow · corto. Su altura es baja · readingZone puede
+   quedarse cerca de 0.6. */
+.home-what-others__anchor {
+  background-color: var(--paper);
+  padding: clamp(80px, 12vh, 140px) var(--pad) clamp(20px, 3vh, 32px);
 }
 
-/* Eyebrow · label del sistema · §2.2 · font-weight 500 (era 300,
-   corregido). Tracking .55em confirmado. */
 .home-what-others__eyebrow {
   font-family: var(--grot);
   font-weight: 500;
@@ -26,23 +29,27 @@
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--ink-2);
-  margin: 0 0 clamp(24px, 3vh, 40px);
+  margin: 0;
+  max-width: 1600px;
+  margin-inline: 0;
 }
 
-/* F9 §2.7.3 · densidad · huecos entre unidades bajaron de
-   40-64px a 24-40px. Alto de cada unidad definido por su
-   contenido, no por altura mínima. */
-.home-what-others__rule {
-  border: 0;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-  margin: clamp(24px, 3vh, 40px) 0;
-  width: 100%;
+/* ═════════ ITEMS ═════════ */
+.home-what-others__items {
+  padding: 3vh var(--pad) 15vh;
 }
 
 .home-what-others__item {
+  max-width: 1600px;
+  margin-inline: 0;
+  padding: clamp(20px, 3vh, 32px) 0;
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
   display: flex;
   flex-direction: column;
   gap: var(--s1);
+}
+.home-what-others__item:last-of-type {
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
 }
 
 /* Cuerpo · body del sistema. */
@@ -56,10 +63,6 @@
   max-width: 62ch;
 }
 
-/* Medios como TEXTO EN ESCALA LABEL (§2.1 · §9.2 wireframe
-   home). Sin caja, sin border, sin padding decorativo. Los
-   nombres van separados por ` · ` como parte del texto, no como
-   glyph agregado. */
 .home-what-others__media-label {
   font-family: var(--grot);
   font-weight: 500;
@@ -70,10 +73,6 @@
   margin: 0;
 }
 
-/* Slot marcado con corchetes · convención del sistema para
-   prose PENDIENTE. En el bloque Confidential la prose no existe
-   (por definición del cliente), y el slot preserva la unidad
-   estructural sin ocupar altura innecesaria. */
 .home-what-others__slot {
   font-family: var(--grot);
   font-weight: 400;
@@ -84,8 +83,6 @@
   font-style: italic;
 }
 
-/* F9 §2.7.3 · fila que junta media-label y meta en la misma
-   línea cuando entran · en viewport chico se apilan. */
 .home-what-others__media-row {
   display: flex;
   flex-wrap: wrap;
@@ -98,7 +95,6 @@
   margin: 0;
 }
 
-/* Meta · números y contexto · §2.1 (fila meta gris). */
 .home-what-others__meta {
   font-family: var(--grot);
   font-weight: 400;
@@ -108,9 +104,6 @@
   margin: 0;
 }
 
-/* Attribution · meta con fuente y período (regla 24). §2.2
-   dice explícito: cero tracking .05em. Va con letter-spacing
-   normal · sistema de meta. */
 .home-what-others__attribution {
   font-family: var(--grot);
   font-weight: 400;
@@ -119,4 +112,11 @@
   line-height: 1.4;
   color: color-mix(in srgb, var(--ink) 55%, transparent);
   margin: 0;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .home-what-others__items {
+    padding: clamp(24px, 4vh, 40px) var(--pad);
+  }
 }

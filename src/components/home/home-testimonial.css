@@ -1,43 +1,34 @@
-/* Home · testimonio — Brief 08 §P4 (15-sep).
+/* Home · TESTIMONIO + LA PRUEBA · CSS
+   F10 §7 · Commit 11 F10.3 (20-sep).
 
-   Segundo bloque inverso de la home. Va emparentado con el
-   escenario de apertura: mismo `#0E1113` de fondo, misma
-   `#EFEBDF` de texto, misma grilla oscura. Se lee como pariente,
-   no como isla negra.
+   Ground negro (--ink-deep). Dispositivo A (AnchorAdvance):
+     · Ancla · cita serif + atribución
+     · Items · 2 grupos con rótulo propio, 3 celdas cada uno
+     · Regla lockeada · dos bloques inversos permitidos por
+       página (opening act + testimonial). Ver docs/decisions.md
+       #dos-bloques-inversos.
 
-   La cita en serif liviana, como los beats — es la voz y es
-   tesis. La atribución en grotesca al 55%.
-
-   Regla lockeada: dos bloques inversos permitidos (opening-act
-   + testimonial). Ver docs/decisions.md #dos-bloques-inversos.
-
-   ESCALA
-   clamp(26px, 3.2vw, 44px) — 44px de tope, no 54. El testimonio
-   es voz ajena; tiene que pesar menos que el hero, que es la
-   voz del sitio.
-   max-width 30ch — a 20 caracteres cualquier cita se vuelve
-   una columna angosta.
-   line-height 1.18, letter-spacing -.02em — armónicos con el
-   escenario. */
+   FONDO DEL ANCLA · --ink-deep opaco. Los items scrolleando
+   detrás del ancla quedan cubiertos por el ground negro. */
 
 .home-testimonial {
   color: var(--cream);
-  padding-block: clamp(120px, 20vh, 200px);
-  padding-inline: var(--pad);
-  position: relative;
-  /* Grilla oscura de continuidad con el escenario — Brief 08 §P1.
-     Misma medida de módulo, mismos tokens. */
   background-color: var(--ink-deep);
   background-image: var(--grid-bg-dark);
   background-size: var(--grid-size) var(--grid-size);
 }
-.home-testimonial__inner {
-  max-width: 1600px;
-  margin-inline: 0;
+
+/* ═════════ ANCLA ═════════
+   F10.3 verify (20-sep) · padding-top bajado de clamp(80,12vh,140)
+   a clamp(56,7vh,88) porque el ancla tomaba 66% del viewport en
+   1440. Ahora ~55% con la cita completa igual. */
+.home-testimonial__anchor {
+  background-color: var(--ink-deep);
+  padding: clamp(56px, 7vh, 88px) var(--pad) clamp(28px, 3.5vh, 44px);
 }
 
-/* Reset del figure — es solo wrapper semántico. */
 .home-testimonial__figure {
+  max-width: 1600px;
   margin: 0;
   padding: 0;
 }
@@ -50,23 +41,20 @@
 .home-testimonial__quote p {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(26px, 3.2vw, 44px);
-  line-height: 1.2;
+  font-size: clamp(22px, 2.6vw, 36px);
+  line-height: 1.22;
   letter-spacing: -.015em;
   color: var(--cream);
-  max-width: 30ch;
-  margin: 0 0 var(--s3);
+  max-width: 32ch;
+  margin: 0 0 clamp(18px, 2.4vh, 32px);
 }
 .home-testimonial__quote p:last-of-type {
   margin-bottom: 0;
 }
 
-/* Atribución · Brief 08 §P4.
-   Nombre en 500 --t-body en cream puro. Cargo y fecha en 400
-   --t-body al 55% — mismo lenguaje que el counter del escenario. */
 .home-testimonial__attrib {
   display: block;
-  margin-top: var(--s4);
+  margin-top: clamp(24px, 3vh, 40px);
   font-style: normal;
 }
 .home-testimonial__name {
@@ -75,8 +63,6 @@
   font-weight: 500;
   font-size: var(--t-body);
   line-height: 1.3;
-  /* Commit 6 · 19-sep · label uppercase en tracking canónico
-     .14em (era .04em, off-system). */
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--cream);
@@ -91,44 +77,75 @@
   opacity: .55;
 }
 
-/* LA PRUEBA · dentro del mismo bloque negro (F9 §2.7.1 · Commit 5).
-   Antes vivía como <Proof variant="compact"> en un bloque separado
-   sobre papel. Al fusionar con el testimonio, la prueba usa el
-   mismo ground negro y el mismo idioma tipográfico. */
+/* ═════════ ITEMS ═════════
+   Dos grupos · WHAT WE BUILT + THE BUSINESS. Cada grupo un
+   Item del dispositivo A · el rótulo TITULA la fila, regla
+   debajo, tres celdas en grid.
 
-.home-testimonial__rule {
-  border: 0;
+   NUNCA rótulo encima de números (Fran, 20-sep) · el rótulo
+   está claramente separado del número por la regla. */
+.home-testimonial__items {
+  padding: 4vh var(--pad) 15vh;
+}
+
+.home-testimonial__group {
+  max-width: 1600px;
+  margin-inline: 0;
+  padding: clamp(32px, 4.5vh, 56px) 0;
+}
+.home-testimonial__group + .home-testimonial__group {
   border-top: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
-  margin: clamp(40px, 5vh, 64px) 0;
+}
+
+.home-testimonial__group-label {
+  font-family: var(--grot);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: .85;
+  margin: 0 0 clamp(12px, 1.6vh, 20px);
+}
+
+.home-testimonial__group-rule {
+  border: 0;
+  border-top: 1px solid color-mix(in srgb, var(--cream) 30%, transparent);
+  margin: 0 0 clamp(24px, 3vh, 40px);
   width: 100%;
 }
 
-.home-testimonial__proof {
+.home-testimonial__cells {
   display: grid;
   grid-template-columns: 1fr;
   gap: clamp(24px, 3vw, 40px);
-  margin-bottom: clamp(24px, 3vh, 40px);
+  /* align-items: start · la celda del media value en WHAT WE
+     BUILT es más alta (narrativa + fuentes técnicas). Las otras
+     celdas anclan arriba y no se estiran verticalmente. */
+  align-items: start;
 }
 @media (min-width: 720px) {
-  .home-testimonial__proof {
+  .home-testimonial__cells {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(24px, 3vw, 48px);
   }
 }
 
-.home-testimonial__stat {
+.home-testimonial__cell {
   display: flex;
   flex-direction: column;
   gap: var(--s1);
 }
+
 .home-testimonial__value {
   font-family: var(--grot);
   font-weight: 500;
-  font-size: clamp(36px, 4.4vw, 60px);
+  font-size: clamp(32px, 4.2vw, 56px);
   line-height: 1;
   letter-spacing: -.02em;
   color: var(--cream);
 }
+
 .home-testimonial__label {
   font-family: var(--grot);
   font-weight: 400;
@@ -137,6 +154,7 @@
   color: var(--cream);
   opacity: .85;
 }
+
 .home-testimonial__detail {
   font-family: var(--grot);
   font-weight: 400;
@@ -146,14 +164,49 @@
   opacity: .55;
 }
 
-/* Fuentes citadas · meta gris al pie · misma escala que el detail.
-   Regla 24 vigente · toda cifra publicada lleva fuente y período. */
-.home-testimonial__sources {
-  margin: 0;
+/* Narrativa · sólo en la celda del media value. Explica el
+   número en prosa · escala body chica · cream 80%. Va DENTRO
+   de la celda, no en el pie del bloque. */
+.home-testimonial__narrative {
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.55;
+  color: var(--cream);
+  opacity: .80;
+  margin: clamp(16px, 2vh, 24px) 0 0;
+  max-width: 38ch;
+}
+
+/* Sources técnicas de la celda · CPMs + fuentes. Escala meta
+   más chica que la narrativa. Se distingue del pie general del
+   bloque porque es específica de esta celda. */
+.home-testimonial__cell-sources {
   font-family: var(--grot);
   font-weight: 400;
   font-size: clamp(12px, 0.9vw, 14px);
   line-height: 1.5;
   color: var(--cream);
   opacity: .55;
+  margin: clamp(12px, 1.6vh, 20px) 0 0;
+  max-width: 38ch;
+}
+
+/* Fuentes citadas + banda de estado provisorio. */
+.home-testimonial__sources {
+  max-width: 1600px;
+  margin: clamp(40px, 5vh, 64px) 0 0;
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.5;
+  color: var(--cream);
+  opacity: .55;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .home-testimonial__items {
+    padding: clamp(24px, 4vh, 40px) var(--pad);
+  }
 }

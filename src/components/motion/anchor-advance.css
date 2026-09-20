@@ -1,0 +1,39 @@
+/* AnchorAdvance · CSS · dispositivo A del brief F10 §2.1.
+
+   El componente sólo maneja la mecánica · el ground, el typography
+   y el spacing los pone la sección hospedante. Este CSS solo
+   declara lo estrictamente necesario:
+
+     · .aa            posición relativa · contenedor del sticky
+     · .aa__anchor    position: sticky · top 0 · z-index 1
+     · .aa__item      base sin transition · opacity la escribe JS
+
+   Reduced motion apaga sticky + fija todos los items a opacity 1
+   por CSS (JS ni siquiera se instala · brief F10 §12 punto 8). */
+
+.aa {
+  position: relative;
+}
+
+.aa__anchor {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  /* El fondo (paper o negro) lo declara la sección hospedante.
+     Sin bg acá, los items scrolleando detrás asomarían. */
+}
+
+.aa__item {
+  /* Sin transition · el valor sale del rAF cada frame. Los items
+     empiezan a 0.35 desde el server (style inline) para que el
+     primer paint sin JS ya se vea coherente. */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aa__anchor {
+    position: static;
+  }
+  .aa__item {
+    opacity: 1 !important;
+  }
+}

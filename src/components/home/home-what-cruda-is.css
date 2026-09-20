@@ -1,38 +1,45 @@
 /* Home · QUÉ ES CRUDA · CSS
-   F9 §2.4 · posición 02 · Commit 7 F9.4 (19-sep).
+   F10 §5 · posición 02 · Commit 9 F10.2 (20-sep).
 
-   Ground papel. Molde:
-     · label WHAT CRUDA IS         (label del sistema · .14em)
-     · sub  CRUDA is a communications company.  (h-sub · grot 500)
-     · display h-display "We translate cultures into business."
-       (clamp ~44-70px · sin nowrap · sin auto-fit · máximo 2 líneas
-        forzadas por el <span class="__nobreak"> alrededor de
-        "into business.")
-     · tres distancias en dl/dd, separadas por regla horizontal.
+   Ground papel. La sección usa AnchorAdvance (dispositivo A):
+     · label + sub + display en el ANCLA (sticky top)
+     · tres distancias en ITEMS que avanzan con opacidad
 
-   Reveals · el bloque hereda `data-reveal-seq` con eyebrow →
-   title → body como el resto del sistema (Act2, Whi, etc.).
+   Este CSS declara:
+     · Ground de la sección y ground del ancla (paper opaco · los
+       items scrollean detrás del ancla y quedan cubiertos)
+     · Layout interno del ancla y de cada item
+     · Espaciado vertical de los items para que cada uno tenga
+       lugar de scroll para llegar a la zona viva
 
-   Este NO es hero · la regla "una frase por pantalla" no aplica.
-   Es lectura densa con jerarquía interna. */
+   Regla del hero NO aplica acá · esta sección es de lectura,
+   no de una-frase-por-pantalla. */
 
 .home-wci {
   background-color: var(--paper);
   background-image: var(--grid-bg);
   background-size: var(--grid-size) var(--grid-size);
-  padding: var(--s5) var(--pad);
   color: var(--ink);
 }
 
-.home-wci__inner {
+/* ═════════ ANCLA ═════════
+   El bloque label + sub + display se fija. Ground paper OPACO ·
+   sin este bg, los items scrolleando detrás del ancla asomarían.
+   Height auto pero con padding vertical parecido a var(--s5) para
+   respirar arriba y abajo dentro del sticky. */
+.home-wci__anchor {
+  background-color: var(--paper);
+  padding: clamp(80px, 12vh, 140px) var(--pad) clamp(32px, 4vh, 48px);
+}
+
+.home-wci__anchor-inner {
   max-width: 1600px;
   margin-inline: 0;
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3vh, 40px);
+  gap: clamp(16px, 2vh, 24px);
 }
 
-/* Label del sistema · .14em canónico firmado. */
 .home-wci__label {
   font-family: var(--grot);
   font-weight: 500;
@@ -43,7 +50,6 @@
   margin: 0;
 }
 
-/* Sub · h-sub del sistema · grot medium · una línea sola. */
 .home-wci__sub {
   font-family: var(--grot);
   font-weight: 500;
@@ -55,17 +61,8 @@
   max-width: 42ch;
 }
 
-/* Display · h-display. Escala mediana (no hero) · queda
-   claramente por encima del sub y por debajo del hero act 1.
-   Sin nowrap externo · sin auto-fit · sin max-width (el
-   contenedor decide). El corte de mobile lo fuerza el
-   <span class="__nobreak"> alrededor de "into business." ·
-   el navegador sólo puede quebrar antes de "into", no entre
-   "into" y "business".
-
-   Clamp calibrado 19-sep · verificado con Playwright:
-     1440/1024/768 · una sola línea (el nobreak se preserva).
-     390 · dos líneas (corta en el space previo a "into"). */
+/* Display · h-display · verificado 1 línea en 1440/1024/768,
+   2 líneas en 390 (con corte forzado en __nobreak). */
 .home-wci__display {
   font-family: var(--grot);
   font-weight: 500;
@@ -80,18 +77,26 @@
   white-space: nowrap;
 }
 
-/* Distancias · dl como estructura semántica (definition list),
-   pero visualmente se lee como tres frases separadas por regla.
-   Los <dd> viven en filas independientes con border-top. */
-.home-wci__distances {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+/* ═════════ ITEMS ═════════
+   El wireframe F10 §5.1 muestra los tres items visibles
+   simultáneamente debajo del ancla · uno vivo (opacity 1), dos
+   atenuados (0.35). Los items son COMPACTOS entre sí.
+
+   El scroll length lo da el padding-bottom del contenedor, no el
+   spacing entre items · el sticky del ancla sigue enganchado
+   mientras los tres items scrollean juntos por la zona viva. */
+.home-wci__items {
+  /* padding-bottom mide el scroll extra después de que el
+     último item pasó por la zona viva. Calibrado 20-sep para
+     que el último item pique cerca del fin de la sección · sin
+     scroll muerto con el ancla todavía enganchada. */
+  padding: 6vh var(--pad) 15vh;
 }
 
 .home-wci__row {
-  padding: clamp(18px, 2vh, 28px) 0;
+  max-width: 1600px;
+  margin-inline: 0;
+  padding: clamp(20px, 3vh, 32px) 0;
   border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
 }
 .home-wci__row:last-child {
@@ -101,9 +106,18 @@
 .home-wci__row-body {
   font-family: var(--grot);
   font-weight: 400;
-  font-size: clamp(18px, 1.4vw, 22px);
-  line-height: 1.45;
+  font-size: clamp(20px, 1.8vw, 28px);
+  line-height: 1.4;
   color: var(--ink);
   margin: 0;
-  max-width: 52ch;
+  max-width: 62ch;
+}
+
+/* Reduced motion · el JS no corre, el ancla pierde sticky, los
+   items van todos a opacity 1. Retiramos el padding-bottom
+   amplio · lectura lineal sin necesidad de scroll extra. */
+@media (prefers-reduced-motion: reduce) {
+  .home-wci__items {
+    padding: clamp(24px, 4vh, 40px) var(--pad);
+  }
 }

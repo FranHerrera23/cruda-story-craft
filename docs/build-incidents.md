@@ -11,6 +11,64 @@ vive en el project knowledge del proyecto
 
 ---
 
+## 2026-09-20 · La altura en `vh` no predice el esfuerzo de scroll
+
+**Contexto.** F10.1 · corte de `#act2` de 5 a 4 beats. El brief
+llegó con la cuenta proporcional escrita: `2100 × 4/5 = 1680vh`.
+Objetivo firmado: siete gestos de rueda o menos para atravesar
+la sección al 100%. Cuenta obvia · números sanos.
+
+**El resultado medido.** Iteración descendente con playwright,
+un gesto = un wheel-flick de 800px con 800ms de espera para
+que Lenis se establezca:
+
+  2100vh · 26 gestos    ← estado en producción antes del cambio
+  1680vh · ~21 gestos   ← lo que la cuenta proporcional predecía
+   700vh · 8 gestos
+   620vh · 7 gestos ✓   ← objetivo alcanzado
+
+**El bug conceptual.** La altura en `vh` mide el largo del
+track, no el trabajo que el navegador exige para atravesarlo.
+Entre el track y el gesto se interponen tres cosas:
+
+  1 · `wheelMultiplier` de Lenis · un input de 800px produce
+      280px de scroll a 0.35. Cambiar este número mueve la
+      escala sin que la altura cambie.
+  2 · `duration` de Lenis · momentum + interpolación siguen
+      moviendo el scroll DESPUÉS del último frame de input.
+      Un gesto termina scrolleando más que su delta puro.
+  3 · Tamaño del viewport · la fórmula `vh` escala con la
+      altura de pantalla, pero el gesto (pixels de rueda o
+      del trackpad) no.
+
+Ninguno de los tres factores está en el número `vh`. Un
+brief que dice "1680vh" está pidiendo un track ancho, no
+un track de siete gestos. Los dos objetivos son diferentes.
+
+**Regla del sistema · el contador de gestos corre en cada
+fase que toca un acto.** Si un beat nuevo entra, un
+`wheelMultiplier` cambia, o Lenis cambia de duración, el
+número de gestos se mueve. Nadie se entera por leer el
+código · sale sólo del test.
+
+**Chequeo automatizable.**
+
+  1 · Script en `scratchpad/count-gestures.mjs` · playwright
+      abre la home, hace scroll hasta el top de `#act2`,
+      dispatch de wheels de 800px cada 800ms, cuenta hasta
+      salir del track. Falla si el número supera el firmado.
+  2 · Cada brief que toca un acto declara el objetivo de
+      gestos como número medido, no como altura estimada.
+
+**Corolario.** El punto de partida del brief (`vh`
+proporcional) es útil como orden de magnitud · no como
+objetivo. El objetivo se mide, se ajusta y se firma.
+
+Se suma a las trampas del set del 17-19 sep, misma
+familia · **una API mide algo distinto de lo que su unidad
+sugiere.** `vh` sugiere "escala de scroll" y en un acto
+atado a Lenis mide otra cosa.
+
 ## Índice · patrón "la API devuelve algo distinto de lo que el nombre sugiere"
 
 Fran (19-sep) nombra el patrón que agrupa **seis** trampas del

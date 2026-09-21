@@ -78,6 +78,32 @@ Cambios:
 · "Essays" → "Thinking" (href `/thinking`). El redirect
   `/thinking → /essays` sigue vigente hasta F14b.1.
 
+## F11.3 · SELECTED WORK · Server Component · 6 links + 3 div · ✓
+commit   (pendiente)
+checks   build ✓ · curl / | grep -c 'class="wcard"' → 9 (6 <a> + 3 <div>) · innerHTML en el bundle de la home = 0 · /work/karen-mannheim /work/mike-kaeding /work/girish-sehgal /work/mannheim-trading /work/confidential-fashion-founder /work/inout → todos 200 · /clients/karen-mannheim → 308 (301 permanent) · playwright 390 + 1440 sin errores, nojs 4683 chars legible
+shots    docs/F11-shots/F11.3/
+Cambios:
+· `SelectedWork.tsx` reescrito como Server Component sin datos
+  externos. 9 wcards inline en el mismo orden y con los slugs
+  del prototipo home-v3 §selected-work.
+· Dek locked: "Nine founders. Six cities. Four countries."
+· `Wcard` interna: `<a>` cuando hay href, `<div>` cuando no.
+· Assets · Karen · Mike · Girish · José tienen imagen. Jack,
+  Saracco, Confidential, INOUT, Arman van sin `.wcard__m`
+  (regla §2 · asset no existe → el bloque va sin imagen).
+· `@/content/home/selected-work.ts` queda como dead code (el
+  tipo `WorkCardData` sigue re-exportado desde `SelectedWork.tsx`
+  para no romper `stats.ts` / `HomeTranslated.tsx` dead code).
+
+DECISIÓN: "Confidential" en la card 07 · en el data anterior el
+name era "An on-demand fashion founder" (más largo). El prototipo
+firmado dice "Confidential" · se respeta el prototipo.
+DECISIÓN: "Germán Saracco" (proto) vs "Germán Noël" (data
+previa). Prototipo firmado gana.
+DECISIÓN: "Jack Yeager" (proto) vs "Jack Yaeger" (data previa).
+Prototipo firmado gana.
+
+
 
 
 

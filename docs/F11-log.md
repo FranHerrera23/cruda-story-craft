@@ -178,6 +178,23 @@ Cambios:
 · `.on-black` marca las secciones oscuras · el Nav global las
   detecta con su regla F11.2 y aplica `bar--dark`.
 
+## F14a · /contact · contact-v1 · filtro ICP · ✓
+commit   (pendiente)
+checks   build ✓ · h1 en /contact.html = 1 · markers 0 · "We do
+not ask about revenue" = 0 hits (retirada, contradecía Q04) ·
+playwright 390 + 1440 sin errores, nojs 1246 chars legible ·
+curl /contact = 200
+shots    docs/F11-shots/F14a/
+Cambios:
+· `app/contact/page.tsx` metadata + `ContactContent` cliente.
+· Tres secciones (apertura negro, filtro paper, corte negro).
+· Filtro de 5 preguntas · Q01 multi-select, Q02-Q04 single, Q05
+  dos inputs. Botón habilitado sólo con las 5 respondidas y
+  email válido. Cero backend · `mailto:` con las respuestas.
+· Copy textual del prototipo. Línea vieja "We do not ask about
+  revenue, industry or geography" fuera (contradecía Q04).
+
+
 
 
 

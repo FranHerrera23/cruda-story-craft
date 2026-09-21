@@ -1,27 +1,40 @@
-import type { Metadata } from 'next';
-import ContactContent from './ContactContent';
+import type { Metadata } from 'next'
+import ContactContent from './ContactContent'
+import './contact.css'
+
+/* /contact · F14a · 21-sep · autónomo · prototipo contact-v1.
+
+   Tres secciones + filtro ICP (5 preguntas).
+   La línea vieja "We do not ask about revenue, industry or geography"
+   está retirada (contradecía la Q04 del filtro sobre budget). El
+   prototipo firmado no la incluye. */
+
+const BASE = 'https://www.thecruda.com'
+
+const META_DESCRIPTION =
+  'One conversation. Forty-five minutes. No pitch.'
 
 export const metadata: Metadata = {
   title: 'Contact — CRUDA',
-  description:
-    'Book a 45-minute conversation, or write fran@thecruda.com. No pitch, no urgency.',
+  description: META_DESCRIPTION,
+  alternates: { canonical: `${BASE}/contact` },
   openGraph: {
     title: 'Contact — CRUDA',
-    description:
-      'Book a 45-minute conversation, or write fran@thecruda.com.',
-    url: 'https://www.thecruda.com/contact',
+    description: META_DESCRIPTION,
+    url: `${BASE}/contact`,
+    type: 'website',
+    images: [
+      { url: `${BASE}/logo.png`, width: 1080, height: 1080, alt: 'CRUDA' },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Contact — CRUDA',
-    description:
-      'Book a 45-minute conversation, or write fran@thecruda.com.',
+    description: META_DESCRIPTION,
+    images: [`${BASE}/logo.png`],
   },
-  alternates: {
-    canonical: 'https://www.thecruda.com/contact',
-  },
-};
+}
 
 export default function ContactPage() {
-  return <ContactContent />;
+  return <ContactContent />
 }

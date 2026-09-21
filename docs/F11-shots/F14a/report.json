@@ -1,0 +1,17 @@
+{
+  "phase": "F14a",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/contact"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /contact @ 390 · ok",
+    "nojs /contact @ 390 · body text length 1246",
+    "nojs /contact @ 390 · ok",
+    "js /contact @ 1440 · ok",
+    "nojs /contact @ 1440 · body text length 1246",
+    "nojs /contact @ 1440 · ok"
+  ]
+}

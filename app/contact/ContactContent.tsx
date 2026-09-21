@@ -1,233 +1,260 @@
 'use client'
 
-import Script from 'next/script'
+import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 
-/* /contact — brief v5, tarea 3.
-   Calendly embebido como primario. Email en texto con mailto.
-   Sin formulario. Sin urgencia, sin escasez. Voz de la casa.
-   Si el embed no carga (JS off, adblock), el link "Open in a new tab"
-   y el mailto siguen funcionando — cero dead end. */
+/* /contact content · F14a · 21-sep · autónomo · contact-v1.
 
-const CALENDLY = 'https://calendly.com/cruda-intro/narrative-sparring-live-1'
-/* Brief 05 P0 (15-sep) — el sitio unifica en fran@thecruda.com.
-   `hello@` era una máscara de agencia que contradecía la tesis
-   del sitio ("la persona de la primera llamada es la que escribe
-   la última línea"). `hello@` queda como alias que reenvía para
-   que ningún link viejo rebote. */
-const HELLO = 'fran@thecruda.com'
+   Tres secciones: apertura (negro) + filtro (paper) + corte (negro).
+   El filtro son cinco preguntas, sin backend: el botón compone un
+   mailto con las respuestas escritas. Cero caja con borde+radio.
 
-// Calendly params — colores del sistema: --ink, --accent, --white.
-const CALENDLY_EMBED =
-  `${CALENDLY}?hide_gdpr_banner=1&background_color=ffffff&text_color=0a0a0a&primary_color=e8623a`
+   Q01 The gap · multi-select (data-multi=1)
+   Q02 Who runs it today · single
+   Q03 Closest door · single (nombres de las 4 puertas + Not sure)
+   Q04 Set aside · single (rangos de budget)
+   Q05 You · dos inputs (nombre/empresa/ciudad + email)
+
+   El botón se habilita cuando Q01-Q04 tienen valor y los dos
+   inputs son válidos (email regex).
+
+   `on-black` marca las secciones oscuras: el Nav global (F11.2)
+   las detecta y aplica `.bar--dark`. */
+
+type Answers = {
+  challenge: string[]
+  team: string | null
+  door: string | null
+  budget: string | null
+}
+
+const EMAIL_RE = /.+@.+\..+/
 
 export default function ContactContent() {
+  const [challenge, setChallenge] = useState<string[]>([])
+  const [team, setTeam] = useState<string | null>(null)
+  const [door, setDoor] = useState<string | null>(null)
+  const [budget, setBudget] = useState<string | null>(null)
+  const [who, setWho] = useState('')
+  const [mail, setMail] = useState('')
+
+  const ready = useMemo(() => {
+    return (
+      challenge.length > 0 &&
+      !!team &&
+      !!door &&
+      !!budget &&
+      who.trim().length > 0 &&
+      EMAIL_RE.test(mail.trim())
+    )
+  }, [challenge, team, door, budget, who, mail])
+
+  const toggleChallenge = (opt: string) => {
+    setChallenge(prev =>
+      prev.includes(opt) ? prev.filter(o => o !== opt) : [...prev, opt],
+    )
+  }
+
+  const submit = () => {
+    if (!ready) return
+    const body = [
+      'The gap: ' + challenge.join(' / '),
+      'Communications today: ' + team,
+      'Closest door: ' + door,
+      'Set aside: ' + budget,
+      '',
+      who.trim(),
+      mail.trim(),
+    ].join('\n')
+    const url =
+      'mailto:fran@thecruda.com' +
+      '?subject=' +
+      encodeURIComponent('One conversation — ' + who.trim()) +
+      '&body=' +
+      encodeURIComponent(body)
+    window.location.href = url
+  }
+
   return (
-    <div className="contact-root">
-      <main className="contact-shell">
-        {/* Brief 14-sep P1 — lede como seq: eyebrow, H1 con
-            line-reveal, sub como body. */}
-        <section data-reveal-seq className="contact-lede">
-          <p
-            className="mono contact-eyebrow"
-            data-seq="eyebrow"
-            data-reveal="text"
+    <>
+      {/* 01 · APERTURA */}
+      <section className="contact-sec contact-sec--black on-black">
+        <p className="contact-eyebrow">Contact</p>
+        <h1 className="contact-name">One conversation.</h1>
+        <div className="contact-rule" />
+        <p className="contact-lede">Forty-five minutes. No pitch.</p>
+        <div className="contact-data">
+          <div className="contact-cell">
+            <p className="contact-cell__l">Length</p>
+            <p className="contact-cell__v">Forty-five minutes</p>
+            <p className="contact-cell__n">One call, with Fran</p>
+          </div>
+          <div className="contact-cell">
+            <p className="contact-cell__l">Cost</p>
+            <p className="contact-cell__v">None</p>
+            <p className="contact-cell__n">And no pitch at the end of it</p>
+          </div>
+          <div className="contact-cell">
+            <p className="contact-cell__l">What we ask</p>
+            <p className="contact-cell__v">Where the company is standing</p>
+            <p className="contact-cell__n">Not where you want it to be</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 · EL FILTRO */}
+      <section className="contact-sec">
+        <p className="contact-eyebrow">Before we talk</p>
+        <h2 className="contact-name contact-name--sm">Five questions first.</h2>
+        <div className="contact-rule" />
+
+        <div className="q">
+          <div className="qrow">
+            <span className="qrow__o">01</span>
+            <p className="qrow__q">The gap</p>
+            <div className="opts">
+              {[
+                'Nobody knows us',
+                'We say it differently every time',
+                'It all depends on the founder',
+                "Two sides that don't understand",
+              ].map(opt => (
+                <button
+                  key={opt}
+                  type="button"
+                  className="opt"
+                  aria-pressed={challenge.includes(opt)}
+                  onClick={() => toggleChallenge(opt)}
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="qrow">
+            <span className="qrow__o">02</span>
+            <p className="qrow__q">Who runs it today</p>
+            <div className="opts">
+              {['The founder', 'One person', 'A team', 'An agency'].map(opt => (
+                <button
+                  key={opt}
+                  type="button"
+                  className="opt"
+                  aria-pressed={team === opt}
+                  onClick={() => setTeam(team === opt ? null : opt)}
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="qrow">
+            <span className="qrow__o">03</span>
+            <p className="qrow__q">Closest door</p>
+            <div className="opts">
+              {[
+                'Translated',
+                'Transmission',
+                'Interpreted',
+                'The Read',
+                'Not sure',
+              ].map(opt => (
+                <button
+                  key={opt}
+                  type="button"
+                  className="opt"
+                  aria-pressed={door === opt}
+                  onClick={() => setDoor(door === opt ? null : opt)}
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="qrow">
+            <span className="qrow__o">04</span>
+            <p className="qrow__q">Set aside</p>
+            <div className="opts">
+              {['Under $20K', '$20—50K', 'Over $50K', 'Nothing yet'].map(opt => (
+                <button
+                  key={opt}
+                  type="button"
+                  className="opt"
+                  aria-pressed={budget === opt}
+                  onClick={() => setBudget(budget === opt ? null : opt)}
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="qrow">
+            <span className="qrow__o">05</span>
+            <p className="qrow__q">You</p>
+            <div className="opts" style={{ gap: '10px 24px' }}>
+              <input
+                className="inp"
+                type="text"
+                placeholder="Name, company, city"
+                autoComplete="organization"
+                value={who}
+                onChange={e => setWho(e.target.value)}
+              />
+              <input
+                className="inp"
+                type="email"
+                placeholder="Email"
+                autoComplete="email"
+                value={mail}
+                onChange={e => setMail(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="send">
+          <button
+            type="button"
+            className="btn"
+            disabled={!ready}
+            onClick={submit}
           >
-            Contact
+            Send it →
+          </button>
+          <p className="sendnote">
+            {ready
+              ? 'Opens your mail client with the five answers already written.'
+              : 'Answer the five and the button opens your mail client with the answers already written.'}
           </p>
-          <h1
-            className="display--sm contact-h1"
-            data-seq="title"
-            data-reveal="lines"
-          >
-            Let&apos;s talk about your story.
-          </h1>
-          {/* Fran directive (17-sep) · el copy anterior prometía
-              "Pick a slot below" y abajo no había nada · promesa
-              incumplida en la página donde alguien decide escribir.
-              Hasta que exista el calendario embebido, la línea
-              refleja lo que la página realmente hace. Regla 17 ·
-              no publicar promesas que la superficie no cumple. */}
-          <p
-            className="contact-sub"
-            data-seq="body"
-            data-reveal="text"
-          >
-            Forty-five minutes. No pitch. Write and we&apos;ll find a
-            time.
-          </p>
-          {/* Brief F8 §9.3 (17-sep) · la frase venía como lede de
-              FIT en la home. Es más útil acá: quien está por
-              escribir necesita saber que no lo van a filtrar por
-              revenue/industry/geography antes de la primera llamada. */}
-          <p
-            className="contact-note"
-            data-seq="body"
-            data-reveal="text"
-          >
-            We do not ask about revenue, industry or geography. We
-            ask where the company is standing.
-          </p>
-        </section>
+        </div>
 
-        {/* Calendly fuera de la secuencia — nota del brief P1. Se
-            conserva con reveal individual del bloque. */}
-        <section data-reveal="text" className="contact-calendly">
-          <div
-            className="calendly-inline-widget"
-            data-url={CALENDLY_EMBED}
-            style={{ minWidth: '320px', height: '720px' }}
-          />
-          <p className="contact-fallback mono">
-            Widget not loading?{' '}
-            <a href={CALENDLY} target="_blank" rel="noopener">
-              Open Calendly in a new tab →
-            </a>
-          </p>
-        </section>
+        <p className="out">
+          Fees are public on <Link href="/services">services</Link>. If none
+          of this fits, write anyway —{' '}
+          <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>
+        </p>
+      </section>
 
-        {/* Email block como seq · sin H2, eyebrow + body con
-            fallback de 400ms para el delay del body. */}
-        <section data-reveal-seq className="contact-email">
-          <p
-            className="mono contact-alt-label"
-            data-seq="eyebrow"
-            data-reveal="text"
-          >
-            Or write
-          </p>
-          <a
-            href={`mailto:${HELLO}`}
-            className="contact-alt-mail"
-            data-seq="body"
-            data-reveal="text"
-          >
-            {HELLO}
-          </a>
-          <p
-            className="contact-alt-note"
-            data-seq="body"
-            data-reveal="text"
-          >
-            For press, hiring, or anything that isn&apos;t a discovery call.
-          </p>
-        </section>
-      </main>
-
-      <Script
-        src="https://assets.calendly.com/assets/external/widget.js"
-        strategy="lazyOnload"
-      />
-
-      <style jsx>{`
-        .contact-root {
-          background: var(--white);
-          color: var(--ink);
-          font-family: var(--font-archivo), -apple-system, sans-serif;
-          -webkit-font-smoothing: antialiased;
-        }
-        .contact-shell {
-          max-width: 1080px;
-          margin: 0 auto;
-          padding: calc(96px + 8vh) clamp(24px, 5vw, 72px) 120px;
-        }
-        .mono {
-          font-family: 'IBM Plex Mono', monospace;
-          font-weight: 500;
-          font-size: 11px;
-          letter-spacing: var(--track-mono, 0.12em);
-          text-transform: uppercase;
-        }
-        .contact-eyebrow {
-          color: var(--ink-2);
-          margin-bottom: 28px;
-        }
-        .contact-h1 {
-          color: var(--ink);
-          max-width: 22ch;
-          margin-bottom: 24px;
-        }
-        .contact-sub {
-          font-size: clamp(17px, 1.6vw, 20px);
-          line-height: 1.55;
-          color: var(--ink-2);
-          max-width: 56ch;
-        }
-        /* F8 §9.3 · nota migrada desde FIT · misma tipografía que
-           el sub pero tono más contenido, no encabezado. */
-        .contact-note {
-          margin-top: clamp(20px, 2.4vh, 32px);
-          font-size: clamp(16px, 1.4vw, 18px);
-          line-height: 1.55;
-          color: var(--ink-2);
-          max-width: 56ch;
-        }
-
-        .contact-calendly {
-          margin-top: clamp(56px, 8vh, 96px);
-        }
-        .contact-fallback {
-          color: var(--ink-2);
-          margin-top: 16px;
-          text-align: center;
-        }
-        .contact-fallback a {
-          color: var(--ink);
-          text-decoration: none;
-          border-bottom: 1px solid var(--rule);
-          padding-bottom: 2px;
-          transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
-        }
-        .contact-fallback a:hover {
-          color: var(--ink);
-          border-bottom-color: var(--ink);
-        }
-
-        .contact-email {
-          margin-top: clamp(64px, 10vh, 120px);
-          background: var(--paper);
-          padding: clamp(32px, 5vw, 56px);
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-        .contact-alt-label {
-          color: var(--ink-2);
-        }
-        .contact-alt-mail {
-          font-family: var(--font-archivo), -apple-system, sans-serif;
-          font-weight: 600;
-          font-size: clamp(24px, 2.4vw, 32px);
-          line-height: 1.15;
-          letter-spacing: -0.015em;
-          color: var(--ink);
-          text-decoration: none;
-          border-bottom: 1px solid var(--rule);
-          padding-bottom: 4px;
-          align-self: flex-start;
-          transition: color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease);
-        }
-        .contact-alt-mail:hover {
-          color: var(--ink);
-          border-color: var(--ink);
-        }
-        .contact-alt-note {
-          font-size: 15px;
-          line-height: 1.55;
-          color: var(--ink-2);
-          max-width: 40ch;
-        }
-
-        :global(.contact-root) :focus-visible {
-          outline: 2px solid var(--color-focus);
-          outline-offset: 4px;
-        }
-
-        @media (max-width: 900px) {
-          .contact-shell {
-            padding-top: 120px;
-          }
-        }
-      `}</style>
-    </div>
+      {/* 03 · EL CORTE */}
+      <section className="contact-sec contact-sec--black on-black">
+        <p className="contact-eyebrow">What happens next</p>
+        <h2 className="contact-name contact-name--sm">
+          If those two things are the same, you do not need us.
+        </h2>
+        <div className="contact-rule" />
+        <p className="contact-body" style={{ maxWidth: '52ch' }}>
+          We ask what you are actually trying to do, and what the market
+          currently believes about you. If they are not the same, that gap
+          is the work.
+        </p>
+        <a className="contact-mail" href="mailto:fran@thecruda.com">
+          fran@thecruda.com
+        </a>
+      </section>
+    </>
   )
 }

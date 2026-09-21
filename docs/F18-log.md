@@ -143,6 +143,32 @@ Cambios:
 · `HomeWhatOthers.tsx` · Karen y Mike linkean a sus `/work/*`.
   Copy textual del prototipo home-v3 §11.
 
+## F18.5 · indexación · ✓
+commit   (pendiente)
+checks   build ✓ · og:image de las 7 URLs /work · Karen/Mike/
+Girish/José usan imagen real · INOUT/Confidential/JPR caen a
+`/opengraph-image` (200 · type image/png) · nunca logo.png ·
+llms.txt ahora emite una línea por caso con `client · door · dek
+· proof` desde `content/work` · 13 URLs `/work/*` en el sitemap
+Cambios:
+· `app/opengraph-image.tsx` · nueva ruta site-wide tipográfica
+  (paper + Archivo + "We translate cultures into business." +
+  rule naranja). Cero logo.png.
+· `src/lib/llms-txt.ts` · `caseStudiesSection()` lee de
+  `content/work` (allWork con capsule.length > 0, orden asc).
+  Línea = `client · door · dek · proof`.
+· `app/layout.tsx` · `SITE_DESCRIPTION` retira la lista "Mondelez,
+  AB InBev, Delivery Hero, Nestlé, TikTok, UN…" que se leía como
+  listado de clientes de CRUDA. La lista sigue viva en OUR
+  FOUNDER (home) y "Who runs it" (/about) donde está en contexto.
+· `<title>` de cada /work/* = `metaTitle` de content/work (único
+  por caso).
+
+DECISIÓN: /, /services, /about, /thinking siguen con la misma
+descripción site-wide. §7 · "titles y meta description · quedan
+los actuales" · las que quiera personalizar Fran las pasa.
+
+
 
 
 

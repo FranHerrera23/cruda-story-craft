@@ -107,21 +107,14 @@ const archivo = Archivo({
   variable: '--font-archivo',
 });
 
-/* A.3.1 — description site-wide para rutas donde el sujeto es CRUDA
-   (Fran responde en /). Reemplaza la copy retirada "Nobody buys the
-   company — they buy you". Una constante, tres salidas: metadata,
-   openGraph, twitter. Home tiene su propia HOME_DESCRIPTION en
-   app/page.tsx (A.1.1) — ese string describe a Fran, este describe
-   a CRUDA. */
-/* La lista de marcas nombradas acá tiene que respetar la regla de
-   voz: solo clientes donde el trabajo se hizo directamente. La
-   lista se alinea con la que aparece en el bloque LEGACY de la home
-   y en el bloque "Who runs it" de /about (v6 F5 §5.5 · 17-sep):
-   Mondelez, AB InBev, Delivery Hero, Nestlé, TikTok, the United
-   Nations. CCU se retira (no está en ningún registro y no pasa
-   verificación de atribución). */
+/* F18.5 · 21-sep · autónomo · brief §F18.5.
+   La lista "Mondelez, AB InBev…" se leía como listado de clientes
+   de CRUDA y confundía al buyer. Se retira del twitter/og
+   descriptions y del meta description site-wide. La lista de
+   trabajo previo de Fran sigue viva en OUR FOUNDER (home) y en
+   "Who runs it" (/about) donde está en contexto. */
 const SITE_DESCRIPTION =
-  'CRUDA. Narrative and brand work for founder-led companies — Mondelez, AB InBev, Delivery Hero, Nestlé, TikTok, the United Nations, and independent studios across the Americas and Europe.'
+  'CRUDA is a communications company. We translate cultures into business.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.thecruda.com'),

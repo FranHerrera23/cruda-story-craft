@@ -1,5 +1,7 @@
 import { allClients } from '@/content/clients'
 import { allEssays } from '@/content/essays'
+import { selectedWork, allWork } from '@/content/work'
+import { doorSpec } from '@/content/services/doors'
 
 /* Brief v12 T5 — llms.txt / ai.txt generator.
 
@@ -66,11 +68,23 @@ function oneLine(text: string, max = 200): string {
 }
 
 function caseStudiesSection(): string {
-  const rows = allClients
-    .map((c) => {
-      const label = `${c.client.name} — ${c.client.company}`
-      const url = `${BASE}/work/${c.slug}`
-      return `- [${label}](${url}): ${oneLine(c.answerCapsule)}`
+  /* F18.5 · fuente única · una línea por caso = client · door ·
+     dek · proof (si aplica). Incluye JPR (order > 100) pero fuera
+     de SELECTED WORK. */
+  const cases = allWork
+    .filter(w => w.capsule.length > 0)
+    .sort((a, b) => a.order - b.order)
+  const rows = cases
+    .map(w => {
+      const doorLabel = doorSpec(w.door.primary).label
+      const proof = w.proof
+        ? w.proof.type === 'metric'
+          ? ` · ${w.proof.value} ${w.proof.label} (${w.proof.period})`
+          : ` · ${w.proof.text}`
+        : ''
+      const label = w.confidential ? w.client.company : `${w.client.name} — ${w.client.company}`
+      const url = `${BASE}/work/${w.slug}`
+      return `- [${label}](${url}): ${doorLabel} · ${oneLine(w.dek)}${proof}`
     })
     .join('\n')
   return `## Case studies\n\n${rows}`

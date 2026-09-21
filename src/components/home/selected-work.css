@@ -1,4 +1,4 @@
-/* Home · SELECTED WORK · F21 · 21-sep · grilla de 3 (Pentagram).
+/* Home · SELECTED WORK · F21 FINAL v2 · 21-sep · 9 cards en grilla.
    Sólo toca #selected-work. Prefix `sw-`. */
 
 .sw {
@@ -28,9 +28,7 @@
   margin: 20px 0 0;
 }
 
-/* Grilla F21 · repeat(3, 1fr) · col-gap 12 · row-gap 72.
-   La última fila queda alineada a la izquierda cuando la celda 3
-   está vacía (comportamiento nativo del grid: no rellena). */
+/* Grilla · 3 columnas · 3 filas · col-gap 12 · row-gap 72. */
 .sw-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -38,7 +36,6 @@
   row-gap: 72px;
   margin-top: clamp(48px, 8vh, 96px);
   align-items: start;
-  justify-content: start;
 }
 
 .sw-card {
@@ -46,21 +43,47 @@
   color: inherit;
   text-decoration: none;
 }
+.sw-card--flat { cursor: default; }
+
+/* Marco 3:2 · aloja foto o portada tipográfica. */
 .sw-card__m {
   aspect-ratio: 3 / 2;
   overflow: hidden;
   background: #DEDAD2;
 }
-.sw-card__img {
+
+/* Media (foto o portada) · comparten transform de hover. */
+.sw-card__img,
+.sw-card__cover {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
   display: block;
-  opacity: 1;
   transform: translateZ(0);
   transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
 }
+.sw-card__img {
+  object-fit: cover;
+  object-position: center 25%;
+  opacity: 1;
+}
+.sw-card__cover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--black, #000);
+  color: var(--white, #FAF9F7);
+  padding: 0 clamp(16px, 2vw, 28px);
+  text-align: center;
+}
+.sw-card__cover-t {
+  font-family: var(--grot);
+  font-weight: 600;
+  font-size: clamp(28px, 3vw, 44px);
+  letter-spacing: -.01em;
+  line-height: 1.05;
+}
+
+/* Text bloque bajo el marco. */
 .sw-card__n {
   margin: 14px 0 0;
   font-family: var(--grot);
@@ -69,87 +92,85 @@
   line-height: 1.25;
   color: var(--ink, #0D0D0D);
 }
-.sw-card__d {
+.sw-card__meta {
   margin: 4px 0 0;
   font-family: var(--grot);
   font-size: 15px;
   line-height: 1.35;
   color: var(--grey, #6E6B65);
 }
+.sw-card__desc {
+  margin: 6px 0 0;
+  font-family: var(--grot);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink, #0D0D0D);
+  max-width: 42ch;
+}
 
-/* Servicio · rótulo del sistema · aparece bajo la card y en la fila. */
+/* Servicio · slot con altura reservada + reveal desde abajo. */
+.sw-service-slot {
+  display: block;
+  overflow: hidden;
+  margin-top: 10px;
+  font-size: 10px;
+  line-height: 1.35;
+  min-height: 1.35em;
+}
 .sw-service {
   display: block;
-  margin-top: 10px;
   font-family: var(--grot);
-  font-size: 10px;
   font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--grey, #6E6B65);
+  transform: translateY(100%);
+  transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
 }
 
-/* Hover · sólo la card marcada, sólo su foto scale 1.03. */
+/* Hover (desktop):
+   · Scale 1.03 sólo en cards con link (Jack/Arman no escalan).
+   · Reveal del servicio en cualquier card con :hover (incluye Jack). */
 @media (hover: hover) {
-  .sw-card:hover .sw-card__img {
+  .sw-card--link:hover .sw-card__img,
+  .sw-card--link:hover .sw-card__cover {
     transform: scale(1.03);
   }
-}
-
-/* Índice · gap 96 antes del primer hairline */
-.sw-index {
-  margin-top: 96px;
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-}
-.sw-irow {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr) auto;
-  column-gap: 24px;
-  align-items: baseline;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-  color: inherit;
-  text-decoration: none;
-  transition: color 200ms;
-}
-.sw-irow__n {
-  font-family: var(--grot);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ink, #0D0D0D);
-}
-.sw-irow__d {
-  font-family: var(--grot);
-  font-size: 15px;
-  line-height: 1.35;
-  color: var(--grey, #6E6B65);
-}
-.sw-irow .sw-service {
-  margin-top: 0;
-  text-align: right;
-}
-@media (hover: hover) {
-  .sw-irow--link:hover .sw-irow__n { color: var(--orange, #FF5A00); }
-}
-.sw-irow--flat { cursor: default; }
-
-/* Responsive */
-@media (max-width: 1199px) {
-  .sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; }
-}
-@media (max-width: 699px) {
-  .sw-grid { grid-template-columns: 1fr; column-gap: 0; row-gap: 48px; }
-  .sw-irow {
-    grid-template-columns: 1fr;
-    gap: 4px;
-    padding: 16px 0;
+  .sw-card:hover .sw-service {
+    transform: translateY(0);
   }
-  .sw-irow .sw-service { text-align: left; margin-top: 4px; }
+}
+
+/* Touch · servicio siempre visible sin animación. */
+@media (hover: none) {
+  .sw-service { transform: translateY(0); }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .sw-card__img { transition: none; }
-  .sw-card:hover .sw-card__img { transform: none; }
+  .sw-card__img,
+  .sw-card__cover,
+  .sw-service {
+    transition: none;
+  }
+  .sw-card--link:hover .sw-card__img,
+  .sw-card--link:hover .sw-card__cover {
+    transform: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1199px) {
+  .sw-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 12px;
+  }
+}
+@media (max-width: 699px) {
+  .sw-grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 48px;
+  }
+  .sw-service { transform: translateY(0); }
 }

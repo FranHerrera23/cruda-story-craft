@@ -1,52 +1,48 @@
 import Link from 'next/link'
 import './selected-work.css'
 
-/* Home · SELECTED WORK · F21 · 21-sep · diseño nuevo.
+/* Home · SELECTED WORK · F21 FINAL v2 · 21-sep.
 
-   Toca SOLO la sección #selected-work de la home. Nada más de la
-   home cambia.
+   Toca SOLO la sección #selected-work de la home.
+   9 cards en la grilla, sin lista debajo.
 
-   Layout · brief F21 §2:
-     h2 "Selected work." · regla naranja 2px
-     Fila 1 · 4 cards con foto (Karen · Mike · Girish · José)
-       repeat(4, 1fr) · col-gap 16 · foto 4:5 · a color siempre
-     Fila 2 (gap 96) · índice de 4 filas con hairline
-       Germán Noel · Confidential · Jack · Arman · Bauhome
+   Grilla · 3 columnas · 3 filas · col-gap 12 · row-gap 72.
+   Orden:
+     Karen · Mike · Girish
+     José · Confidential · JP Romero
+     Germán Noel · Jack Yeager · Arman
 
-   Cards con foto: sin ordinal, sin flecha, sin descripción, sin
-   prueba. Toda la card es un solo <a>.
+   Imagen: foto real 3:2 o portada tipográfica (fondo black, nombre
+   de la empresa en blanco, Archivo 600 · clamp 28-44 · -.01em).
+   JP Romero: hasta que Fran apruebe un retrato → portada 'JURA · CTD'.
 
-   Filas sin foto: nombre · sector · ciudad · servicio a la derecha.
-   Con página → <a>. Sin página → <div>, sin hover. */
+   Text bloque: Nombre · Empresa·ciudad · Descripción · Servicio.
+   Servicio en desktop aparece SOLO en hover (slot con altura
+   reservada, translateY 100% → 0 · 400ms). En mobile/touch se
+   ve siempre.
+
+   Link: toda la card es un solo <a>. Jack y Arman: <div>, sin link,
+   sin scale · Jack sí revela servicio en hover, Arman no tiene. */
 
 type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'THE READ'
 
-type PhotoCard = {
+type Card = {
   name: string
   meta: string
-  service: Door[]
-  href: string
-  imageSrc: string
-  /* Puntualiza `object-position` de la foto en el crop 3:2.
-     Default `center 25%` (regla F21 · rostro en tercio superior). */
-  objectPosition?: string
-}
-
-type IndexRow = {
-  name: string
-  meta: string
+  description: string
   service?: Door[]
   href?: string
+  imageSrc?: string
+  objectPosition?: string
+  coverText?: string
 }
 
-/* Datos F21 · Regla de fotos + decisión Fran (21-sep).
-   Cards con foto real: Karen · Mike · Girish · José · Confidential.
-   object-position por foto para dejar la cara / centro visual en el
-   tercio superior del crop 3:2. */
-const PHOTO_CARDS: PhotoCard[] = [
+const CARDS: Card[] = [
   {
     name: 'Karen Mannheim',
-    meta: 'Lighting · Miami',
+    meta: 'TRAZZO Lighting · Miami',
+    description:
+      "Lights ten to two hundred million dollar homes; one of Forbes Perú's 50 most powerful women, 2026.",
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',
@@ -54,7 +50,9 @@ const PHOTO_CARDS: PhotoCard[] = [
   },
   {
     name: 'Mike Kaeding',
-    meta: 'Multifamily · Minneapolis',
+    meta: 'Norhart · Minneapolis',
+    description:
+      'CEO of Norhart, a $230M construction company on a mission to halve the cost of housing.',
     service: ['TRANSMISSION'],
     href: '/work/mike-kaeding',
     imageSrc: '/mike-kaeding.webp',
@@ -62,7 +60,9 @@ const PHOTO_CARDS: PhotoCard[] = [
   },
   {
     name: 'Girish Sehgal',
-    meta: 'Hospitality · Abu Dhabi',
+    meta: 'Sheikh Shakhbout Medical City · Abu Dhabi',
+    description:
+      "Former Four Seasons GM, bringing hospitality into the UAE's biggest medical city.",
     service: ['TRANSLATED'],
     href: '/work/girish-sehgal',
     imageSrc: '/girish-sehgal.webp',
@@ -70,87 +70,126 @@ const PHOTO_CARDS: PhotoCard[] = [
   },
   {
     name: 'José Mannheim',
-    meta: 'Trading · Panamá City',
+    meta: 'MTC · Panamá City',
+    description:
+      'Founder of AGP, maker of armored glass for the Pentagon, Tesla and Audi.',
     service: ['TRANSLATED'],
     href: '/work/mannheim-trading',
     imageSrc: '/jose-mannheim.webp',
-    /* F21 · ajuste Fran: pelo entero con aire arriba. */
     objectPosition: 'center 12%',
   },
   {
     name: 'Confidential',
-    meta: 'Fashion · Dubai',
+    meta: 'Dubai',
+    description:
+      'Built a $300M on-demand fashion group, lost it, and built it again.',
     service: ['INTERPRETED'],
     href: '/work/confidential-fashion-founder',
     imageSrc: '/confidential-hero.jpg',
     objectPosition: 'center 40%',
   },
-]
-
-const INDEX_ROWS: IndexRow[] = [
+  {
+    name: 'JP Romero',
+    meta: 'JURA · CTD · Miami',
+    description:
+      'Takes European architecture and design brands into the US market.',
+    service: ['TRANSLATED', 'TRANSMISSION'],
+    href: '/work/juan-pablo-romero',
+    /* Sin retrato aprobado aún · portada tipográfica de arranque. */
+    coverText: 'JURA · CTD',
+  },
   {
     name: 'Germán Noel',
-    meta: 'Architecture · Salta',
+    meta: 'INOUT · Salta',
+    description:
+      "Founder of northern Argentina's leading glass manufacturer, now launching a frameless door line.",
     service: ['TRANSLATED'],
     href: '/work/inout',
+    coverText: 'INOUT',
   },
   {
     name: 'Jack Yeager',
-    meta: 'Lighting · Midtown Miami',
+    meta: 'Mistiva · Midtown Miami',
+    description:
+      'Sold his first company for seven figures, sailed the world, and came back to build a lighting business in Miami.',
     service: ['TRANSLATED', 'TRANSMISSION'],
+    coverText: 'Mistiva',
   },
   {
-    name: 'Arman · BAUHOME',
-    meta: 'Residential · Jacksonville',
+    name: 'Arman',
+    meta: 'BAUHOME · Jacksonville',
+    description:
+      "Former Director of Operations at Santa Monica's biggest hospital, now building a luxury kitchen cabinet company.",
+    coverText: 'BAUHOME',
   },
 ]
 
+/* ServiceLine · slot con altura reservada de 1 línea (10px · 1.35).
+   El texto entra desde abajo en hover; el slot NO cambia altura, por
+   lo que el layout de la card queda fijo. */
 function ServiceLine({ service }: { service?: Door[] }) {
   if (!service || service.length === 0) return null
   return (
-    <span className="sw-service">{service.join(' · ')}</span>
+    <span className="sw-service-slot">
+      <span className="sw-service">{service.join(' · ')}</span>
+    </span>
   )
 }
 
-function PhotoCardEl({ card }: { card: PhotoCard }) {
+function CardMedia({ card }: { card: Card }) {
+  if (card.imageSrc) {
+    return (
+      <img
+        className="sw-card__img"
+        src={card.imageSrc}
+        alt=""
+        loading="lazy"
+        style={
+          card.objectPosition
+            ? { objectPosition: card.objectPosition }
+            : undefined
+        }
+      />
+    )
+  }
   return (
-    <Link className="sw-card" href={card.href} aria-label={card.name}>
+    <div className="sw-card__cover">
+      <span className="sw-card__cover-t">{card.coverText}</span>
+    </div>
+  )
+}
+
+function CardBody({ card }: { card: Card }) {
+  return (
+    <>
       <div className="sw-card__m">
-        <img
-          className="sw-card__img"
-          src={card.imageSrc}
-          alt=""
-          loading="lazy"
-          style={
-            card.objectPosition
-              ? { objectPosition: card.objectPosition }
-              : undefined
-          }
-        />
+        <CardMedia card={card} />
       </div>
       <h3 className="sw-card__n">{card.name}</h3>
-      <p className="sw-card__d">{card.meta}</p>
+      <p className="sw-card__meta">{card.meta}</p>
+      <p className="sw-card__desc">{card.description}</p>
       <ServiceLine service={card.service} />
-    </Link>
+    </>
   )
 }
 
-function IndexRowEl({ row }: { row: IndexRow }) {
-  const inner = (
-    <>
-      <span className="sw-irow__n">{row.name}</span>
-      <span className="sw-irow__d">{row.meta}</span>
-      <ServiceLine service={row.service} />
-    </>
-  )
-  if (row.href) {
+function CardEl({ card }: { card: Card }) {
+  if (card.href) {
     return (
-      <Link className="sw-irow sw-irow--link" href={row.href}>
-        {inner}
+      <Link
+        className="sw-card sw-card--link"
+        href={card.href}
+        aria-label={card.name}
+      >
+        <CardBody card={card} />
       </Link>
     )
   }
-  return <div className="sw-irow sw-irow--flat">{inner}</div>
+  return (
+    <div className="sw-card sw-card--flat">
+      <CardBody card={card} />
+    </div>
+  )
 }
 
 export default function SelectedWork() {
@@ -161,14 +200,8 @@ export default function SelectedWork() {
         <div className="sw-title-rule" aria-hidden="true" />
 
         <div className="sw-grid">
-          {PHOTO_CARDS.map(c => (
-            <PhotoCardEl key={c.href} card={c} />
-          ))}
-        </div>
-
-        <div className="sw-index">
-          {INDEX_ROWS.map(r => (
-            <IndexRowEl key={r.name} row={r} />
+          {CARDS.map(c => (
+            <CardEl key={c.name} card={c} />
           ))}
         </div>
       </div>

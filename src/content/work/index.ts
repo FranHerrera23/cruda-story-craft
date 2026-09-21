@@ -34,19 +34,6 @@ export function findWork(slug: string): Work | null {
   return allWork.find(w => w.slug === slug) ?? null
 }
 
-/* Ciudades / países únicos para el titular de SELECTED WORK. */
-export function workGeoStats() {
-  const cities = new Set<string>()
-  const countries = new Set<string>()
-  for (const w of selectedWork) {
-    if (w.place.city) cities.add(w.place.city)
-    if (w.place.country) countries.add(w.place.country)
-  }
-  return {
-    founders: selectedWork.length,
-    cities: cities.size,
-    countries: countries.size,
-    cityList: Array.from(cities),
-    countryList: Array.from(countries),
-  }
-}
+/* Enmienda 3 · el conteo (founders/cities/countries) se retira.
+   place.city/place.country siguen vivos en la data para las cards
+   y el schema, pero no alimentan ningún titular. */

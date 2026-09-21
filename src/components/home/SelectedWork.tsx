@@ -26,40 +26,10 @@ import './selected-work.css'
 
 const PLANE_TOKEN = '#selected-work'
 
-export type WorkTitle = {
-  founders: string
-  cities: number
-  countries: number
-}
-
-function foundersWord(n: number): string {
-  const words = [
-    'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
-    'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve',
-  ]
-  return words[n] ?? String(n)
-}
-function citiesWord(n: number): string {
-  const words = [
-    'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
-    'Eight', 'Nine', 'Ten',
-  ]
-  return words[n] ?? String(n)
-}
-function countriesWord(n: number): string {
-  return citiesWord(n)
-}
-
-/* Titular calculado. */
-function selectedTitle(cases: Work[]): string {
-  const cities = new Set<string>()
-  const countries = new Set<string>()
-  for (const w of cases) {
-    if (w.place.city) cities.add(w.place.city)
-    if (w.place.country) countries.add(w.place.country)
-  }
-  return `${foundersWord(cases.length)} founders. ${citiesWord(cities.size)} cities. ${countriesWord(countries.size)} countries.`
-}
+/* Enmienda 3 · F18.3 §G · sin conteo. El titular es "Selected work."
+   invariable · no se deriva de data. Los conteos y helpers salieron.
+   `place.city` / `place.country` siguen en la data (cards + schema),
+   pero acá no se usan. */
 
 function ProofLine({ proof }: { proof: Proof | undefined }) {
   if (!proof) return null
@@ -191,17 +161,14 @@ function layoutImaged(items: Work[]): Array<{ w: Work; spanTwo: boolean }> {
 
 export default function SelectedWork() {
   const cases = selectedWork
-  const title = selectedTitle(cases)
   const imaged = cases.filter(w => !!w.image)
   const unimaged = cases.filter(w => !w.image)
   const grid = layoutImaged(imaged)
 
   return (
     <section id="selected-work" className="work">
-      <p className="eyebrow">Selected work</p>
-      <h2 className="name name--sm" style={{ marginTop: 14 }}>
-        {title}
-      </h2>
+      {/* Enmienda 3 · sin rótulo "SELECTED WORK" · h2 fijo. */}
+      <h2 className="name" style={{ marginTop: 0 }}>Selected work.</h2>
       <div className="rule" style={{ width: '100%', maxWidth: 560 }} />
 
       {grid.length > 0 && (

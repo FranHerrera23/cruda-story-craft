@@ -245,6 +245,38 @@ DECISIÓN: F18.9 sacó del render el corte 06 en /services. El h2
 "If none of this is you, this is not for you." es copy firmado
 pero sin body no cumple regla §2. Espera pass de Fran.
 
+## Enmienda 3 · SELECTED WORK sin conteo · ✓
+commit   (pendiente)
+checks   build ✓ · grep `Eight founders|Seven cities|Four
+countries` en / = 0 · grep del eyebrow "Selected work" separado
+del h2 = 0 · el h2 renderiza `Selected work.` invariable · regla
+naranja queda
+Cambios:
+· `SelectedWork.tsx` retira `selectedTitle()`, `foundersWord`,
+  `citiesWord`, `countriesWord`, tipo `WorkTitle`. El eyebrow
+  "Selected work" se borra; h2 fijo "Selected work.".
+· `content/work/index.ts` retira `workGeoStats()`.
+· `place.city` / `place.country` siguen en `Work` (schema y
+  cards los usan).
+
+## F18.10 · Contact corto + Calendly · saltado · ✓
+commit   —
+CALENDLY_URL vacío en el header del brief. Per instrucción
+explícita: "vacío → F18.10 se saltea". Se anota y se cierra la
+tanda.
+
+Cuando llegue la URL:
+· opener actual (rótulo Contact + h1 + regla + lede "Forty-five
+  minutes. No pitch.")
+· split 50/50: izq Calendly inline embed (min-height 700) · der
+  Name · Email · "What are you trying to do?" (textarea opcional)
+  + botón "Send it →" con mailto (sin backend)
+· SALEN las 3 celdas Length/Cost/What we ask y el filtro de 5
+  filas
+· Línea al pie "Fees are public on services. If none of this
+  fits, write anyway — fran@thecruda.com"
+
+
 
 
 

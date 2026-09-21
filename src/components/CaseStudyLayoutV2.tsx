@@ -87,11 +87,60 @@ function Evidence({ e }: { e: CaseSectionEvidence }) {
   )
 }
 
+function schema(data: CaseStudyData) {
+  const base = 'https://www.thecruda.com'
+  const article: Record<string, unknown> = {
+    '@type': 'Article',
+    '@id': `${base}/work/${data.slug}#article`,
+    headline: data.h1,
+    description: data.capsule[0] ?? '',
+    datePublished: data.meta.dateISO,
+    author: {
+      '@type': 'Person',
+      name: 'Fran Herrera',
+      jobTitle: 'Founder',
+      worksFor: { '@type': 'Organization', name: 'CRUDA' },
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'CRUDA',
+      url: base,
+      logo: { '@type': 'ImageObject', url: `${base}/logo.png` },
+    },
+    about: {
+      '@type': 'Organization',
+      name: data.meta.client + (data.meta.clientRole ? ` — ${data.meta.clientRole}` : ''),
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${base}/work/${data.slug}`,
+    },
+  }
+  if (data.hero?.img) article.image = `${base}${data.hero.img}`
+  const graph: unknown[] = [article]
+  if (data.faqs && data.faqs.length > 0) {
+    graph.push({
+      '@type': 'FAQPage',
+      '@id': `${base}/work/${data.slug}#faq`,
+      mainEntity: data.faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    })
+  }
+  return { '@context': 'https://schema.org', '@graph': graph }
+}
+
 export default function CaseStudyLayout({ data }: { data: CaseStudyData }) {
   const evidenceCount = (s: CaseSection) =>
     (s.evidence || []).filter(e => !!e.img).length
   return (
     <article className="cs">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(data)) }}
+      />
       {/* 01 · TÍTULO */}
       <header className="cs-top cs-wrap">
         <Link className="cs-back" href="/#selected-work">

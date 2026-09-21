@@ -1,0 +1,17 @@
+{
+  "phase": "F17.1",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/work/karen-mannheim"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /work/karen-mannheim @ 390 · ok",
+    "nojs /work/karen-mannheim @ 390 · body text length 4098",
+    "nojs /work/karen-mannheim @ 390 · ok",
+    "js /work/karen-mannheim @ 1440 · ok",
+    "nojs /work/karen-mannheim @ 1440 · body text length 4098",
+    "nojs /work/karen-mannheim @ 1440 · ok"
+  ]
+}

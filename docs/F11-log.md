@@ -278,6 +278,36 @@ nuevo v3 (CaseStudyLayoutV2) según qué data source hace match.
 Renombre a `CaseStudyLayout` puede ocurrir en un cleanup
 posterior una vez migrados todos los casos.
 
+## F17.1 · /work/karen-mannheim en el molde nuevo · ✓
+commit   (pendiente)
+checks   build ✓ · /work/karen-mannheim → 200 ·
+/clients/karen-mannheim → 308 (301 permanent) · extractable
+blocks presentes (título · capsule · takeaway · cifras +300%
+500K 5 years 33 years con fuente · h2 · FAQ · byline · fecha ·
+testimonial · serif del testimonial · schema Article · schema
+FAQPage) · playwright 390 + 1440 sin errores, nojs 4098 chars
+legible
+shots    docs/F11-shots/F17.1/
+Cambios:
+· `src/content/clients-v3/karen-mannheim.ts` · data del caso en
+  formato `CaseStudyData` (C1 cifras lockeadas, C2 capsule
+  reordenado firmado).
+· `src/content/clients-v3/index.ts` · index + `findClientV3`.
+· `app/work/[slug]/page.tsx` · resolver ampliado: v3 → v2 →
+  legacy → 404. Metadata equivalente.
+
+DECISIÓN: `LinkedIn Analytics` como fuente del +300% sin período
+específico. El slot "período · C1" del prototipo no tiene dato
+firmado; §5.4 prohíbe inventar. Cuando Fran entregue el período,
+se actualiza la fuente.
+DECISIÓN: `moreFrom: []` · PEZET y Saadiyat esperan capturas
+retomadas (§7). Cuando lleguen se agregan al array; la sección
+"More from this engagement" no renderiza sin items.
+DECISIÓN: `evidence: []` en cada una de las 4 secciones · los
+assets reales de PEZET / Porsche / Saadiyat / SPOTLIGHT / Deck /
+Forbes esperan (§7). Regla §2: sin asset, sin bloque.
+
+
 
 
 

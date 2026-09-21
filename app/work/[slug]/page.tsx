@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import CaseStudyLayout from '@/components/CaseStudyLayout'
+import CaseStudyLayoutV2 from '@/components/CaseStudyLayoutV2'
 import CaseComposer from '@/components/case-blocks/CaseComposer'
 import MomentIndex from '@/components/MomentIndex'
 import { allClients } from '@/content/clients'
 import { allClientsV2, findClientV2 } from '@/content/clients-v2'
+import { allClientsV3, findClientV3 } from '@/content/clients-v3'
 import { MOMENTS, MOMENT_LABEL, MOMENT_DESC, type Moment } from '@/content/moments'
 
 const BASE = 'https://www.thecruda.com'
@@ -30,6 +32,7 @@ function isMoment(s: string): s is Moment {
 
 export function generateStaticParams() {
   return [
+    ...allClientsV3.map((c) => ({ slug: c.slug })),
     ...allClientsV2.map((c) => ({ slug: c.slug })),
     ...allClients.map((c) => ({ slug: c.slug })),
     ...MOMENTS.map((m) => ({ slug: m })),
@@ -61,6 +64,37 @@ export async function generateMetadata(
         title: `${label} — CRUDA Work`,
         description: desc,
         images: [`${BASE}/logo.png`],
+      },
+    }
+  }
+
+  // Case v3 metadata · molde firmado F17. Los <title> y meta
+  // description quedan como estaban (§7 esperando a Fran), así que
+  // se derivan del H1 humano y de la capsule.
+  const v3 = findClientV3(slug)
+  if (v3) {
+    const desc = v3.capsule[0] ?? ''
+    return {
+      title: `${v3.h1} | CRUDA`,
+      description: desc.slice(0, 200),
+      alternates: { canonical: `${BASE}/work/${v3.slug}` },
+      openGraph: {
+        title: v3.h1,
+        description: desc,
+        url: `${BASE}/work/${v3.slug}`,
+        type: 'article',
+        publishedTime: v3.meta.dateISO,
+        images: [
+          v3.hero?.img ? `${BASE}${v3.hero.img}` : `${BASE}/logo.png`,
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: v3.h1,
+        description: desc.slice(0, 200),
+        images: [
+          v3.hero?.img ? `${BASE}${v3.hero.img}` : `${BASE}/logo.png`,
+        ],
       },
     }
   }
@@ -134,7 +168,11 @@ export default async function Page(
   const { slug } = await params
   if (isMoment(slug)) return <MomentIndex moment={slug} />
 
-  // V2 primero — case migrado al modelo de bloques.
+  // V3 primero · molde firmado F17 (Karen y siguientes casos migrados).
+  const v3 = findClientV3(slug)
+  if (v3) return <CaseStudyLayoutV2 data={v3} />
+
+  // V2 · case migrado al modelo de bloques.
   const v2 = findClientV2(slug)
   if (v2) return <CaseComposer cs={v2} />
 

@@ -2,7 +2,7 @@ import type { Work } from './types'
 
 export const mikeKaeding: Work = {
   slug: 'mike-kaeding',
-  order: 2,
+  order: 3,
   title:
     'A construction CEO with $200M in assets and a mission to cut housing costs in half — turned from best-kept secret into a voice policymakers take calls from',
   metaTitle: 'Mike Kaeding · Norhart — CRUDA',

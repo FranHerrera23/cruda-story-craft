@@ -51,6 +51,7 @@ function ProofLine({ proof }: { proof: Proof | undefined }) {
 }
 
 function Chips({ w }: { w: Work }) {
+  if (w.hideChip) return null
   const primary = doorSpec(w.door.primary)
   const secondary = w.door.secondary ? doorSpec(w.door.secondary) : null
   return (
@@ -74,15 +75,29 @@ function CardArticle({
   w: Work
   spanTwo?: boolean
 }) {
+  const label = w.confidential ? w.dek : w.client.name
   return (
     <article className={`wcell${spanTwo ? ' wcell--x2' : ''}`}>
-      <Link className="wcard" href={`/work/${w.slug}`} aria-label={w.client.name}>
-        <div className="wcard__m">
+      <Link className="wcard" href={`/work/${w.slug}`} aria-label={label}>
+        <div
+          className={`wcard__m${w.cardTile ? ' wcard__m--tile' : ''}`}
+        >
           {w.image ? (
             <img src={w.image} alt="" loading="lazy" />
+          ) : w.cardTile ? (
+            <div className="wcard__tile">
+              <span className="wcard__tile__primary">
+                {w.cardTile.primary}
+              </span>
+              <span className="wcard__tile__secondary">
+                {w.cardTile.secondary}
+              </span>
+            </div>
           ) : null}
         </div>
-        <h3 className="wcard__n">{w.client.name}</h3>
+        <h3 className="wcard__n">
+          {w.confidential ? 'Confidential' : w.client.name}
+        </h3>
         <p className="wcard__d">{w.dek}</p>
         <ProofLine proof={w.proof} />
       </Link>
@@ -93,16 +108,34 @@ function CardArticle({
 
 function IndexRow({ w, i }: { w: Work; i: number }) {
   const n = String(i + 1).padStart(2, '0')
-  const primary = w.door ? doorSpec(w.door.primary) : null
+  const primary = w.door && !w.hideChip ? doorSpec(w.door.primary) : null
+  const secondary =
+    w.door.secondary && !w.hideChip ? doorSpec(w.door.secondary) : null
   const hasPage = w.capsule.length > 0
   const proof = w.proof
 
+  const chipEls = primary ? (
+    <div className="irow-chips">
+      <Link className="chip" href={primary.href}>
+        {primary.label}
+      </Link>
+      {secondary && (
+        <Link className="chip" href={secondary.href}>
+          {secondary.label}
+        </Link>
+      )}
+    </div>
+  ) : null
+
   if (!hasPage) {
     return (
-      <div className="irow" role="listitem">
-        <span className="irow__o">{n}</span>
-        <span className="irow__n">{w.client.name}</span>
-        <span className="irow__d">{w.dek}</span>
+      <div className="irow-wrap" role="listitem">
+        <div className="irow irow--flat">
+          <span className="irow__o">{n}</span>
+          <span className="irow__n">{w.client.name}</span>
+          <span className="irow__d">{w.dek}</span>
+        </div>
+        {chipEls}
       </div>
     )
   }
@@ -119,13 +152,7 @@ function IndexRow({ w, i }: { w: Work; i: number }) {
             : w.dek}
         </span>
       </Link>
-      {primary && (
-        <div className="irow-chips">
-          <Link className="chip" href={primary.href}>
-            {primary.label}
-          </Link>
-        </div>
-      )}
+      {chipEls}
     </div>
   )
 }
@@ -161,8 +188,11 @@ function layoutImaged(items: Work[]): Array<{ w: Work; spanTwo: boolean }> {
 
 export default function SelectedWork() {
   const cases = selectedWork
-  const imaged = cases.filter(w => !!w.image)
-  const unimaged = cases.filter(w => !w.image)
+  /* Enmienda 6-B · a la grilla van las cards con `image` o
+     `cardTile` (Confidential entra por tile tipográfico). El
+     resto queda en el índice inferior. */
+  const imaged = cases.filter(w => !!(w.image || w.cardTile))
+  const unimaged = cases.filter(w => !w.image && !w.cardTile)
   const grid = layoutImaged(imaged)
 
   return (
@@ -182,7 +212,9 @@ export default function SelectedWork() {
       {unimaged.length > 0 && (
         <div className="windex" role="list">
           {cases.map((w, i) =>
-            !w.image ? <IndexRow key={w.slug} w={w} i={i} /> : null,
+            !w.image && !w.cardTile ? (
+              <IndexRow key={w.slug} w={w} i={i} />
+            ) : null,
           )}
         </div>
       )}

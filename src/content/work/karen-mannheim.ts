@@ -10,6 +10,7 @@ import saadiyatCard from '@/assets/saadiyat-hero-new.jpg'
 
 export const karenMannheim: Work = {
   slug: 'karen-mannheim',
+  /* Enmienda 6-B · orden nuevo · Karen ×2 col en la grilla. */
   order: 1,
   title:
     'How a Lima lighting studio went from zero Miami presence to winning pitches against international firms',
@@ -30,7 +31,8 @@ export const karenMannheim: Work = {
   },
   period: { start: '2021', end: '2026' },
   via: 'Bushido 2021–2024 · CRUDA 2024–2026',
-  door: { primary: 'transmission', secondary: 'translated' },
+  /* Enmienda 5-A · Translated primero, Transmission secundario. */
+  door: { primary: 'translated', secondary: 'transmission' },
   axis: 'across',
   moment: 'market-entry',
 
@@ -127,7 +129,7 @@ export const karenMannheim: Work = {
       h2: 'When the work is told well, the room stops asking questions.',
       body: [
         'In high-end A&D, a single deck decides a multi-million dollar project — and most decks in the category enumerate instead of telling. We built the presentation system her team now runs in-house: structure, master template, and the rules for assembling any pitch.',
-        'Decks that took the team weeks now take an afternoon. In 2026, KMLS won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
+        'Decks that took the team weeks now take an afternoon. In 2026, TRAZZO won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
       ],
     },
     {

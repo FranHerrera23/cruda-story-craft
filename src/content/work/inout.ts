@@ -3,11 +3,13 @@ import type { Work } from './types'
 export const inout: Work = {
   slug: 'inout',
   order: 6,
+  /* Enmienda 6-B · INOUT queda en el índice (sin imagen ni tile). */
   title:
     'Brand and narrative system for a frameless door line built by the founder of the leading glass manufacturer in northern Argentina',
   metaTitle: 'Germán Noel · INOUT — CRUDA',
   dek:
     'Brand and narrative system for INOUT — a frameless door line built by the founder of the leading glass manufacturer in northern Argentina.',
+  /* Enmienda 6-B · display "Germán Noel" en SELECTED WORK índice. */
   client: { name: 'Germán Noel', role: 'Founder', company: 'INOUT · Cristalizando' },
   confidential: false,
   place: { to: 'Salta, Argentina', city: 'Salta', country: 'Argentina' },

@@ -25,8 +25,9 @@ import './about.css'
 
 const BASE = 'https://www.thecruda.com'
 
+/* Enmienda 6-E · meta description exacta. */
 const META_DESCRIPTION =
-  'CRUDA is a communications company. We translate cultures into business.'
+  'CRUDA is a communications company founded by Fran Herrera. First client in 2021, registered in 2024.'
 
 export const metadata: Metadata = {
   title: 'About — CRUDA',
@@ -237,7 +238,7 @@ export default function AboutPage() {
               </div>
             </div>
             <p className="about-cell__n about-credit">
-              Fran Herrera · Founder · between UAE and Russia
+              Fran Herrera · Founder · born in Salta, Argentina
             </p>
           </div>
         </div>
@@ -256,11 +257,15 @@ export default function AboutPage() {
           If those two things are the same, you do not need us. If they are
           not, that gap is the work.
         </p>
+        {/* Enmienda 5-F · Book the call como link primario. */}
         <Link className="about-mail" href="/contact">
-          Start a conversation
+          Book the call →
         </Link>
-        <br />
-        <Link className="about-go" href="/#selected-work">
+        <p className="about-mail-secondary">
+          or write to{' '}
+          <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>
+        </p>
+        <Link className="about-go" href="/#selected-work" style={{ marginTop: 'clamp(24px, 4vh, 40px)' }}>
           See the work →
         </Link>
       </section>

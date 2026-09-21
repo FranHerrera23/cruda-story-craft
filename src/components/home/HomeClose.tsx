@@ -31,12 +31,15 @@ export default function HomeClose() {
             If those two things are the same, you do not need us. If
             they are not, that gap is the work.
           </p>
-          <a
-            href="mailto:fran@thecruda.com"
-            className="mail"
-          >
-            fran@thecruda.com
+          {/* Enmienda 5-F · un solo CTA de conversación · Book the call
+              como link primario → /contact. Email queda secundario. */}
+          <a href="/contact" className="mail">
+            Book the call →
           </a>
+          <p className="home-close__mail-secondary">
+            or write to{' '}
+            <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>
+          </p>
         </div>
       </div>
     </section>

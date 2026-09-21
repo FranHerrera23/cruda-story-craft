@@ -9,8 +9,9 @@ export const armanKeshishian: Work = {
   title: 'Arman · BAUHOME',
   metaTitle: 'Arman · BAUHOME — CRUDA',
   dek: 'Residential · Jacksonville',
+  /* Enmienda 6-A · display "Arman · BAUHOME" en SELECTED WORK. */
   client: {
-    name: 'Arman Keshishian',
+    name: 'Arman · BAUHOME',
     role: 'Founder',
     company: 'BAUHOME',
   },
@@ -23,6 +24,8 @@ export const armanKeshishian: Work = {
   period: { start: '2025', end: '2025' },
   via: 'CRUDA',
   door: { primary: 'translated' },
+  /* Enmienda 6-A · Arman sin chip hasta que Fran lo defina. */
+  hideChip: true,
   axis: 'outward',
   capsule: [],
   takeaways: [],

@@ -76,7 +76,7 @@ export const karenMannheim: CaseStudy = {
       body: [
         'The second surface was presentations. In high-end A&D, a single deck decides a multi-million dollar project — and most decks in the category enumerate instead of telling.',
         'We built the presentation system her team now runs in-house: structure, master template, and the rules for assembling any pitch. Decks that took the team weeks now take an afternoon.',
-        'In 2026, KMLS won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
+        'In 2026, TRAZZO won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
       ],
     },
     {

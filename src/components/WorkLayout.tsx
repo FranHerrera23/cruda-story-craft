@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { Work, WorkBlock, WorkMetric } from '@/content/work/types'
-import { DOORS, doorSpec, axisLabel } from '@/content/services/doors'
+import { DOORS, doorSpec, axisLabel, EXTERNAL_COSTS_NOTE } from '@/content/services/doors'
 import { selectedWork } from '@/content/work'
 import './case-study-layout-v2.css'
 import './work-layout.css'
@@ -394,10 +394,15 @@ export default function WorkLayout({ w }: { w: Work }) {
         </section>
       )}
 
-      {/* 09 · Cierre de PUERTA · estilo Primary, sin escasez */}
+      {/* 09 · Cierre de PUERTA · estilo Primary, sin escasez.
+          Enmienda 5-A · Karen (translated + transmission) muestra las
+          DOS filas, Translated primero. El resto muestra solo
+          door.primary.
+          Enmienda 7 · nota de costos externos debajo del precio. */}
       <section className="wl-door-close cs-wrap">
         <DoorRow spec={primary} />
         {secondary && <DoorRow spec={secondary} />}
+        <p className="wl-door-close__external">{EXTERNAL_COSTS_NOTE}</p>
       </section>
 
       {/* 10 · Next case */}
@@ -412,9 +417,14 @@ export default function WorkLayout({ w }: { w: Work }) {
           We ask what you are actually trying to do, and what the market
           currently believes about you.
         </p>
+        {/* Enmienda 5-F · Book the call primario · email secundario. */}
         <Link className="cs-mail" href="/contact">
-          Start a conversation
+          Book the call →
         </Link>
+        <p className="wl-mail-secondary">
+          or write to{' '}
+          <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>
+        </p>
       </section>
     </article>
   )

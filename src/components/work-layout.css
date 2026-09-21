@@ -187,6 +187,31 @@
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+/* Enmienda 5-F · email secundario debajo de "Book the call →". */
+.wl-mail-secondary {
+  margin-top: 14px;
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  line-height: 1.4;
+}
+.wl-mail-secondary a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.wl-mail-secondary a:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+
+/* Enmienda 7 · costos externos, debajo de los precios de puerta. */
+.wl-door-close__external {
+  margin-top: clamp(16px, 2vh, 24px);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--grey, #6E6B65);
+  max-width: 60ch;
+}
 @media (max-width: 760px) {
   .wl-door-row {
     grid-template-columns: 1fr auto;

@@ -2,7 +2,7 @@ import type { Work } from './types'
 
 export const mannheimTrading: Work = {
   slug: 'mannheim-trading',
-  order: 5,
+  order: 4,
   title:
     'Narrative and positioning for a new company founded by a man whose name has carried an industry for sixty years — and who has never wanted to be seen',
   metaTitle: 'José Mannheim · Mannheim Trading Corp — CRUDA',

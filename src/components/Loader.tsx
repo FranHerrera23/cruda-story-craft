@@ -53,7 +53,8 @@ const SESSION_KEY = 'cruda-loader-shown'
 const LETTER_STAGGER_MS = 70
 
 const WORDMARK = ['C', 'R', 'U', 'D', 'A'] as const
-const TAGLINE = 'Narrative for founder-led companies'
+/* Enmienda 5-E · tagline site-wide. */
+const TAGLINE = 'We translate cultures into business.'
 
 function dispatchLoaderOut() {
   document.dispatchEvent(new CustomEvent('cruda:loader-out'))

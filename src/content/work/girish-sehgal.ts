@@ -2,7 +2,7 @@ import type { Work } from './types'
 
 export const girishSehgal: Work = {
   slug: 'girish-sehgal',
-  order: 3,
+  order: 5,
   title:
     'Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find',
   metaTitle: 'Girish Sehgal · SSMC — CRUDA',

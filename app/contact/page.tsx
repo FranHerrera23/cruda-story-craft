@@ -11,8 +11,9 @@ import './contact.css'
 
 const BASE = 'https://www.thecruda.com'
 
+/* Enmienda 6-E · meta description exacta. */
 const META_DESCRIPTION =
-  'One conversation. Forty-five minutes. No pitch.'
+  'Book a 45-minute call with Fran Herrera, founder of CRUDA, or write to fran@thecruda.com.'
 
 export const metadata: Metadata = {
   title: 'Contact — CRUDA',

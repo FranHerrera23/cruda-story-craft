@@ -1,0 +1,61 @@
+/* /services · F12 · 21-sep · autónomo.
+   El grueso de la anatomía vive en planes.css. Este archivo trae
+   las tres piezas que sólo aparecen en /services: el índice de
+   precios de la apertura, el fee en naranja, y el mail del cierre. */
+
+.services-open .services-index {
+  margin-top: clamp(30px, 5vh, 60px);
+  border-top: 1px solid #272727;
+}
+.services-open .irow {
+  display: grid;
+  grid-template-columns: 44px 1fr auto;
+  gap: clamp(16px, 2.4vw, 40px);
+  align-items: baseline;
+  padding: clamp(16px, 2.6vh, 28px) 0;
+  border-bottom: 1px solid #272727;
+}
+.services-open .irow__o {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--orange, #FF5A00);
+}
+.services-open .irow__n {
+  font-size: clamp(17px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1;
+}
+.services-open .irow__p {
+  font-size: 13px;
+  color: var(--grey-dark, #8A867E);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .services-open .irow {
+    grid-template-columns: 32px 1fr;
+    gap: 6px 14px;
+  }
+  .services-open .irow__p { grid-column: 2; }
+}
+
+/* Fee en naranja · sólo en /services. */
+.plane .cell__fee { color: var(--orange, #FF5A00); }
+
+.services-mail {
+  display: inline-block;
+  margin-top: 26px;
+  font-size: clamp(18px, 2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 6px;
+}
+.services-mail:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}

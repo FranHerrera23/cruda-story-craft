@@ -1,0 +1,17 @@
+{
+  "phase": "F12",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/services"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /services @ 390 · ok",
+    "nojs /services @ 390 · body text length 2228",
+    "nojs /services @ 390 · ok",
+    "js /services @ 1440 · ok",
+    "nojs /services @ 1440 · body text length 2228",
+    "nojs /services @ 1440 · ok"
+  ]
+}

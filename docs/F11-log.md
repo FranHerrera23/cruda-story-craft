@@ -142,6 +142,27 @@ Estado: la retirada de Drapers y el paso a dos items ya se hizo
 en F11.0 (marcador `[ Confidential ]` disparaba el grep del §4).
 Esta fase queda como verificación · sin diff funcional.
 
+## F12 · /services · services-v4 · 7 planos · ✓
+commit   (pendiente)
+checks   build ✓ · h1 en /services.html = 1 · markers (PENDIENTE
+· PROPUESTO · RETRATO · slot) = 0 · grep viejos precios "1,750"
+"45,000" "Three months" = 0 · precios firmados presentes ·
+$19,500 $2,200 $55,000 "On request" · playwright 390 + 1440
+sin errores, nojs 2228 chars legible · curl /services = 200
+shots    docs/F11-shots/F12/
+Cambios:
+· `app/services/page.tsx` reescrito con los 7 planos del prototipo
+  services-v4: apertura + 4 puertas + corte + cierre.
+· `PlanesStack` motor global monta acá también (los planos son
+  siempre children de `<main class="stack" id="stack">`).
+· Precios §2 hard-coded en la apertura (índice negro) y en la
+  celda `.cell__fee` de cada puerta.
+· CTAs · sólo Translated apunta a otra página (`/process`). Los
+  otros tres van a `/contact` (§2 · brief F11 §12 lo dice).
+· mix-blend-mode del prototipo NO se replica (§2). Contador
+  NN/07 tampoco.
+
+
 
 
 

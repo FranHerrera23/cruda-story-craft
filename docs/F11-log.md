@@ -256,6 +256,29 @@ URL de LinkedIn). Brief §7 "sameAs del schema · URLs de LinkedIn"
 = item que espera a Fran. La forma del objeto se conserva para
 que agregar handles no rompa entity resolvers.
 
+## F17.0 · CaseStudyLayoutV2 · molde firmado · ✓
+commit   (pendiente)
+checks   build ✓
+Cambios:
+· `src/components/CaseStudyLayoutV2.tsx` · componente nuevo que
+  renderiza el molde case-molde-v1 desde `CaseStudyData`:
+  h1 · hero · capsule + takeaways + meta · stats 4-col · sections
+  con h2 y evidencia · testimonio en serif · FAQ nativo · sub-cases
+  · cierre. Cero componentes nuevos aparte del layout.
+· `case-study-layout-v2.css` · prefix `cs-` · tokens del design
+  system + fallbacks locales.
+· El legacy `CaseStudyLayout` (usado en `app/work/[slug]/page.tsx`
+  para los case studies actuales) se conserva sin tocar. F17.1
+  cablea Karen al nuevo layout.
+
+DECISIÓN: nombre `CaseStudyLayoutV2` en lugar de `CaseStudyLayout`
+por convivencia con el legacy · el mismo `/work/[slug]/page.tsx`
+resuelve v1 (CaseComposer), v2 (CaseStudyLayout legacy) y el
+nuevo v3 (CaseStudyLayoutV2) según qué data source hace match.
+Renombre a `CaseStudyLayout` puede ocurrir en un cleanup
+posterior una vez migrados todos los casos.
+
+
 
 
 

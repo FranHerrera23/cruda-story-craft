@@ -1,5 +1,5 @@
-/* Home · SELECTED WORK · F21 · 21-sep · diseño nuevo.
-   Sólo toca #selected-work. Prefix `sw-` para no colisionar. */
+/* Home · SELECTED WORK · F21 · 21-sep · grilla de 3 (Pentagram).
+   Sólo toca #selected-work. Prefix `sw-`. */
 
 .sw {
   background: var(--paper, #F1EFEB);
@@ -28,14 +28,17 @@
   margin: 20px 0 0;
 }
 
-/* Fila 1 · 4 cards con foto */
+/* Grilla F21 · repeat(3, 1fr) · col-gap 12 · row-gap 72.
+   La última fila queda alineada a la izquierda cuando la celda 3
+   está vacía (comportamiento nativo del grid: no rellena). */
 .sw-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  column-gap: 16px;
-  row-gap: 48px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 12px;
+  row-gap: 72px;
   margin-top: clamp(48px, 8vh, 96px);
   align-items: start;
+  justify-content: start;
 }
 
 .sw-card {
@@ -44,7 +47,7 @@
   text-decoration: none;
 }
 .sw-card__m {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: #DEDAD2;
 }
@@ -52,14 +55,14 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center 25%;
   display: block;
   opacity: 1;
   transform: translateZ(0);
   transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
 }
 .sw-card__n {
-  margin: 16px 0 0;
+  margin: 14px 0 0;
   font-family: var(--grot);
   font-size: 17px;
   font-weight: 500;
@@ -86,15 +89,14 @@
   color: var(--grey, #6E6B65);
 }
 
-/* Hover · sólo la card marcada, sólo su foto scale 1.03.
-   Las otras cards no cambian. */
+/* Hover · sólo la card marcada, sólo su foto scale 1.03. */
 @media (hover: hover) {
   .sw-card:hover .sw-card__img {
     transform: scale(1.03);
   }
 }
 
-/* Fila 2 · índice · gap 96 antes del primer hairline */
+/* Índice · gap 96 antes del primer hairline */
 .sw-index {
   margin-top: 96px;
   border-top: 1px solid var(--paper-line, #D9D5CD);
@@ -132,23 +134,18 @@
 }
 .sw-irow--flat { cursor: default; }
 
-/* Responsive · 900–1199 · 4 columnas más angostas (se conserva la grilla) */
+/* Responsive */
 @media (max-width: 1199px) {
-  .sw-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 12px; }
+  .sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; }
 }
-/* <900 · 2 columnas · foto sigue 4:5 */
-@media (max-width: 899px) {
-  .sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; row-gap: 40px; }
+@media (max-width: 699px) {
+  .sw-grid { grid-template-columns: 1fr; column-gap: 0; row-gap: 48px; }
   .sw-irow {
     grid-template-columns: 1fr;
     gap: 4px;
     padding: 16px 0;
   }
   .sw-irow .sw-service { text-align: left; margin-top: 4px; }
-}
-/* <480 · misma grilla 2 columnas */
-@media (max-width: 479px) {
-  .sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 12px; }
 }
 
 /* Reduced motion */

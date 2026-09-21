@@ -27,6 +27,9 @@ type PhotoCard = {
   service: Door[]
   href: string
   imageSrc: string
+  /* Puntualiza `object-position` de la foto en el crop 3:2.
+     Default `center 25%` (regla F21 · rostro en tercio superior). */
+  objectPosition?: string
 }
 
 type IndexRow = {
@@ -36,8 +39,10 @@ type IndexRow = {
   href?: string
 }
 
-/* Datos F21. Karen usa /karen-mannheim.webp (único retrato en
-   /public/). Nunca la foto de Pezet. */
+/* Datos F21 · Regla de fotos + decisión Fran (21-sep).
+   Cards con foto real: Karen · Mike · Girish · José · Confidential.
+   object-position por foto para dejar la cara / centro visual en el
+   tercio superior del crop 3:2. */
 const PHOTO_CARDS: PhotoCard[] = [
   {
     name: 'Karen Mannheim',
@@ -45,6 +50,7 @@ const PHOTO_CARDS: PhotoCard[] = [
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',
+    objectPosition: 'center 25%',
   },
   {
     name: 'Mike Kaeding',
@@ -52,6 +58,7 @@ const PHOTO_CARDS: PhotoCard[] = [
     service: ['TRANSMISSION'],
     href: '/work/mike-kaeding',
     imageSrc: '/mike-kaeding.webp',
+    objectPosition: 'center 30%',
   },
   {
     name: 'Girish Sehgal',
@@ -59,6 +66,7 @@ const PHOTO_CARDS: PhotoCard[] = [
     service: ['TRANSLATED'],
     href: '/work/girish-sehgal',
     imageSrc: '/girish-sehgal.webp',
+    objectPosition: 'center 20%',
   },
   {
     name: 'José Mannheim',
@@ -66,6 +74,15 @@ const PHOTO_CARDS: PhotoCard[] = [
     service: ['TRANSLATED'],
     href: '/work/mannheim-trading',
     imageSrc: '/jose-mannheim.webp',
+    objectPosition: 'center 30%',
+  },
+  {
+    name: 'Confidential',
+    meta: 'Fashion · Dubai',
+    service: ['INTERPRETED'],
+    href: '/work/confidential-fashion-founder',
+    imageSrc: '/confidential-hero.jpg',
+    objectPosition: 'center 40%',
   },
 ]
 
@@ -75,12 +92,6 @@ const INDEX_ROWS: IndexRow[] = [
     meta: 'Architecture · Salta',
     service: ['TRANSLATED'],
     href: '/work/inout',
-  },
-  {
-    name: 'Confidential',
-    meta: 'Fashion · Dubai',
-    service: ['INTERPRETED'],
-    href: '/work/confidential-fashion-founder',
   },
   {
     name: 'Jack Yeager',
@@ -109,6 +120,11 @@ function PhotoCardEl({ card }: { card: PhotoCard }) {
           src={card.imageSrc}
           alt=""
           loading="lazy"
+          style={
+            card.objectPosition
+              ? { objectPosition: card.objectPosition }
+              : undefined
+          }
         />
       </div>
       <h3 className="sw-card__n">{card.name}</h3>

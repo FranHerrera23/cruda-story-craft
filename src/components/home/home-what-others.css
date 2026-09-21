@@ -1,126 +1,47 @@
-/* Home · WHAT OTHER PEOPLE STARTED SAYING · CSS
-   F10 §9 · Commit 11 F10.3 (20-sep).
+/* Home · WHAT OTHERS · plano paper · F11.0.
+   La anatomía general vive en planes.css. Las tarjetas de prensa
+   (.press · .pitem) son propias de esta sección. */
 
-   Ground papel. Dispositivo A (AnchorAdvance):
-     · Ancla · eyebrow WHAT OTHER PEOPLE STARTED SAYING
-     · Items · 3 unidades de cobertura, separadas por regla
-
-   Fondo del ancla · paper opaco. */
-
-.home-what-others {
-  background-color: var(--paper);
-  background-image: var(--grid-bg);
-  background-size: var(--grid-size) var(--grid-size);
-  color: var(--ink);
+.home-what-others .press {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap, clamp(20px, 4.5vw, 72px));
+  margin-top: clamp(24px, 3.6vh, 44px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+  padding-top: clamp(20px, 3vh, 34px);
 }
-
-/* ═════════ ANCLA ═════════
-   Sólo el eyebrow · corto. Su altura es baja · readingZone puede
-   quedarse cerca de 0.6. */
-.home-what-others__anchor {
-  background-color: var(--paper);
-  padding: clamp(80px, 12vh, 140px) var(--pad) clamp(20px, 3vh, 32px);
+.home-what-others .pitem {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: opacity .35s cubic-bezier(.16, 1, .3, 1);
 }
-
-.home-what-others__eyebrow {
-  font-family: var(--grot);
+.home-what-others .pitem__src {
+  font-size: 10px;
   font-weight: 500;
-  font-size: 11px;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--ink-2);
-  margin: 0;
-  max-width: 1600px;
-  margin-inline: 0;
+  color: var(--orange, #FF5A00);
 }
-
-/* ═════════ ITEMS ═════════ */
-.home-what-others__items {
-  padding: 3vh var(--pad) 15vh;
+.home-what-others .pitem__h {
+  font-size: clamp(17px, 1.85vw, 26px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+  margin-top: 10px;
+  max-width: 22ch;
 }
-
-.home-what-others__item {
-  max-width: 1600px;
-  margin-inline: 0;
-  padding: clamp(20px, 3vh, 32px) 0;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
-  display: flex;
-  flex-direction: column;
-  gap: var(--s1);
+.home-what-others .pitem__m {
+  font-size: 12px;
+  color: var(--grey, #6E6B65);
+  margin-top: 10px;
+  line-height: 1.45;
 }
-.home-what-others__item:last-of-type {
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+@media (hover: hover) {
+  .home-what-others .press:hover .pitem { opacity: .5; }
+  .home-what-others .press .pitem:hover { opacity: 1; }
 }
-
-/* Cuerpo · body del sistema. */
-.home-what-others__prose {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(16px, 1.2vw, 20px);
-  line-height: 1.55;
-  color: var(--ink);
-  margin: 0;
-  max-width: 62ch;
-}
-
-.home-what-others__media-label {
-  font-family: var(--grot);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  margin: 0;
-}
-
-/* H0 (21-sep) · clase renombrada de __slot a __confidential ·
-   el naming heredaba del patrón de marcadores de build que H0
-   retira. El contenido "[ Confidential ]" es copy firmado
-   (F11 §3.7 · prensa Drapers · confidencialidad del cliente). */
-.home-what-others__confidential {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.5;
-  color: color-mix(in srgb, var(--ink) 45%, transparent);
-  margin: 0;
-  font-style: italic;
-}
-
-.home-what-others__media-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: clamp(12px, 1.5vw, 24px);
-  margin-top: var(--s1);
-}
-.home-what-others__media-row .home-what-others__media-label,
-.home-what-others__media-row .home-what-others__meta {
-  margin: 0;
-}
-
-.home-what-others__meta {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(14px, 1vw, 16px);
-  line-height: 1.4;
-  color: var(--ink-2);
-  margin: 0;
-}
-
-.home-what-others__attribution {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(13px, 0.95vw, 14px);
-  letter-spacing: 0;
-  line-height: 1.4;
-  color: color-mix(in srgb, var(--ink) 55%, transparent);
-  margin: 0;
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .home-what-others__items {
-    padding: clamp(24px, 4vh, 40px) var(--pad);
-  }
+@media (max-width: 760px) {
+  .home-what-others .press { grid-template-columns: 1fr; gap: 28px; }
+  .home-what-others .pitem__h { max-width: none; }
 }

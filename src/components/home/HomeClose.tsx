@@ -1,40 +1,43 @@
 import './home-close.css'
 
-/* Home · cierre — brief 11-sep §B.
+/* Home · CONTACT · plano paper · F11.0 (21-sep · autónomo).
 
-   Último bloque de la home, sobre --color-ink. Va ARRIBA del footer
-   existente, no lo reemplaza. Copy verbatim del cierre de /approach
-   —§B.2, tres líneas—. Sin CTA button, sin "Get in touch", sin
-   "Start a conversation". El mail es el call to action y se muestra
-   como lo que es.
-
-   Provisorio por diseño: cuando exista el formulario de intake, el
-   mail se reemplaza por el link al formulario y este bloque no
-   cambia nada más.
-
-   Movimiento §B.5: h2, p y mail con data-reveal="text" y stagger
-   0/1/2. HomeChrome los observa. */
+   Refactor al apilado. Copy del prototipo home-v3 §13, textual:
+     eyebrow "Start here"
+     name    "One conversation."
+     lede    "We ask what you are actually trying to do, and what
+              the market currently believes about you."
+     body    "If those two things are the same, you do not need us.
+              If they are not, that gap is the work."
+     mail    fran@thecruda.com */
 
 export default function HomeClose() {
   return (
-    <section id="close" className="home-close">
-      <div className="home-close__inner in" data-reveal-seq>
-        <h2 data-reveal="lines" data-seq="title">
-          One conversation. We ask what you are actually trying to do, and
-          what the market currently believes about you.
-        </h2>
-        <p data-reveal="text" data-seq="body">
-          If those two things are the same, you do not need us. If they are
-          not, that gap is the work.
-        </p>
-        <a
-          href="mailto:fran@thecruda.com"
-          className="home-close__mail"
-          data-reveal="text"
-          data-seq="body"
-        >
-          fran@thecruda.com
-        </a>
+    <section
+      className="plane plane--paper home-close"
+      id="close"
+      data-plane
+    >
+      <div className="plane__in">
+        <div className="plane__top">
+          <p className="eyebrow">Start here</p>
+          <h2 className="name">One conversation.</h2>
+          <div className="rule" />
+          <p className="lede">
+            We ask what you are actually trying to do, and what the
+            market currently believes about you.
+          </p>
+          <p className="body">
+            If those two things are the same, you do not need us. If
+            they are not, that gap is the work.
+          </p>
+          <a
+            href="mailto:fran@thecruda.com"
+            className="mail"
+          >
+            fran@thecruda.com
+          </a>
+        </div>
       </div>
     </section>
   )

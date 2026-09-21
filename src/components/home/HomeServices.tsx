@@ -1,81 +1,83 @@
 import Link from 'next/link'
-import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-services.css'
 
-/* Home · LOS SERVICIOS (F10 §11 · posición 08 · H0 · 21-sep)
+/* Home · WHAT WE DO · plano paper · F11.0 (21-sep · autónomo).
 
-   H0 hotfix (21-sep · Fran F1):
-     · Sale la banda roja "COPY PROPUESTO · PENDIENTE FIRMA"
-     · Sale el modifier --slot / italic + opacity de las puertas
-     · El copy de las 4 puertas es el del prototipo home-v3
-       (F5 firmado) · las líneas quedan planas y en producción
-     · Estructura NO se toca acá · eso es F11.0
+   AnchorAdvance retirado. Estructura del prototipo home-v3 §12:
+   eyebrow · lede · rule · index (cuatro filas · link a /services).
 
-   Dispositivo A (AnchorAdvance) · vigente hasta F11.0:
-     · ANCLA · label WHAT WE DO + h-sub "Four doors. The same
-       skill, at four distances."
-     · ITEMS · 4 puertas
-     · CTA al fondo · link a /services */
+   DECISIÓN F11.0 · el CTA final del prototipo dice "See how each
+   one works →" y apunta a /process (§2). Como /process ya existe
+   en producción, se conserva el destino /process. Tabla precios
+   §2 en /services (F12). */
 
-const DOORS: ReadonlyArray<{ key: string; label: string; body: string }> = [
+const DOORS: ReadonlyArray<{
+  key: string
+  n: string
+  label: string
+  body: string
+}> = [
   {
     key: 'translated',
-    label: 'TRANSLATED',
+    n: '01',
+    label: 'Translated',
     body:
       'Twelve weeks to build the system a company uses to say what it is.',
   },
   {
     key: 'transmission',
-    label: 'TRANSMISSION',
+    n: '02',
+    label: 'Transmission',
     body:
       'The system, run every week, so it stops depending on the founder.',
   },
   {
     key: 'interpreted',
-    label: 'INTERPRETED',
+    n: '03',
+    label: 'Interpreted',
     body:
       'Two sides with capital and capability, made legible to each other.',
   },
   {
     key: 'the-read',
-    label: 'THE READ',
-    body:
-      'One session. What an outsider sees, said plainly.',
+    n: '04',
+    label: 'The Read',
+    body: 'One session. What an outsider sees, said plainly.',
   },
 ]
 
 export default function HomeServices() {
   return (
-    <AnchorAdvance
+    <section
+      className="plane plane--paper home-services"
       id="services"
-      className="home-services"
-      threshold={200}
-      readingZone={0.6}
+      data-plane
     >
-      <Anchor className="home-services__anchor">
-        <div className="home-services__anchor-inner">
-          <p className="home-services__label">WHAT WE DO</p>
-          <h2 className="home-services__headline">
+      <div className="plane__in">
+        <div className="plane__top">
+          <p className="eyebrow">What we do</p>
+          <p className="lede home-services__lede">
             Four doors. The same skill, at four distances.
-          </h2>
+          </p>
+          <div className="rule" />
         </div>
-      </Anchor>
-
-      <div className="home-services__items">
-        {DOORS.map(door => (
-          <Item key={door.key} className="home-services__row">
-            <p className="home-services__row-label">{door.label}</p>
-            <p className="home-services__row-body">
-              {door.body}
-            </p>
-          </Item>
-        ))}
-        <div className="home-services__cta-row">
-          <Link href="/services" className="home-services__cta">
-            See how each one works &nbsp;→
-          </Link>
+        <div className="index">
+          {DOORS.map(door => (
+            <Link
+              key={door.key}
+              href="/services"
+              className="irow"
+            >
+              <span className="irow__o">{door.n}</span>
+              <span className="irow__n">{door.label}</span>
+              <span className="irow__d">{door.body}</span>
+            </Link>
+          ))}
         </div>
+        <Link href="/process" className="go">
+          See how each one works →
+        </Link>
       </div>
-    </AnchorAdvance>
+    </section>
   )
 }

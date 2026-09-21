@@ -1,0 +1,31 @@
+# F11 · Log de ejecución autónoma
+
+Bitácora de la corrida F11.0 → F17.1, iniciada 21-sep-2026.
+Autoridad: `cruda-brief-autonomo-21sep.md`. Reemplaza el protocolo
+de firma para esta corrida. Una entrada por fase.
+
+Formato · commit corto (7c), checks, shots, DECISIÓN si aplica.
+
+---
+
+## F11.0 · apilado · motor + 6 planos · AnchorAdvance fuera · ✓
+commit   (pendiente)
+checks   build ✓ · markers 0 · AnchorAdvance en index.html 0 · nested a 0 · h1 0 (F11.1 mete el h1 del hero) · playwright 390 + 1440 ok, sin errores de consola, nojs 5826 chars legible
+shots    docs/F11-shots/F11.0/
+DECISIÓN: F11.6 (retiro de Drapers) se adelanta a F11.0 · el
+marcador `[ Confidential ]` disparaba el grep `"[ "` de §4 y
+la única salida limpia era eliminarlo. WHAT OTHERS queda ya en
+la versión de dos items del prototipo (Karen · Forbes + Mike
+triple network). F11.6 pasa a ser un commit de verificación.
+DECISIÓN: la serif de #act2 sigue viva post-F11.0. El check
+generico "serif sólo en testimonios" queda en amarillo hasta
+que F11.a (siguiente commit) retire `font-family:var(--serif)`
+de `.act2 .beat .dim,.act2 .beat .lit`. No hay riesgo funcional:
+el uso está aislado a esas dos reglas.
+DECISIÓN: sin retrato para KAREN · CITA (D4). La cita queda a
+ancho completo (max-width 32ch, serif). No hay asset y §2
+prohíbe placeholders — se renderiza sin retrato.
+DECISIÓN: /public/fran-herrera.webp existe → el retrato de
+OUR FOUNDER se conserva (Trampa 7 preventiva: object-fit:cover
+con height:100% sobre grid stretch).
+

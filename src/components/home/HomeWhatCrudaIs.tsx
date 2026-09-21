@@ -1,67 +1,55 @@
-import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-what-cruda-is.css'
 
-/* Home · QUÉ ES CRUDA (F10 §5 · posición 02 · Commit 9 · F10.2)
+/* Home · QUÉ ES CRUDA · plano 01 · F11.0 (21-sep · autónomo).
 
-   Copy FIRMADO · 19-sep · se usa TEXTUAL.
-   Se escribe una vez y aparece en TRES lugares:
-     1  home · posición 02       ← este componente
-     2  /services · plano 00     ← reusa este componente
-     3  /about · §01 (h1 + lede)
+   AnchorAdvance retirado. La sección es un plano del apilado:
+   .plane.plane--paper con .plane__in centrado, anatomía fija:
+   eyebrow · name · rule · lede · celdas de dato al pie.
 
-   F10.2 (20-sep) · reemplaza el molde estático de F9.4 por el
-   DISPOSITIVO A (AnchorAdvance):
-     · ANCLA · label + h-sub + h-display · sticky mientras dura
-       la sección.
-     · ITEMS · las tres distancias · avanzan debajo · la que
-       está en la zona viva pasa a opacidad 1, las otras 0.35.
-     · Sin desplazamiento vertical, sin escala, sin color · sólo
-       opacidad · brief F10 §2.1.
+   Copy · prototipo home-v3 firmado, textual.
+     eyebrow "What CRUDA is"
+     name    "We translate cultures into business."
+     lede    "CRUDA is a communications company."
+     data    Outward · Inward · Across (celdas del prototipo).
 
-   Wrapping · el h-display ("We translate cultures into
-   business.") va en UNA línea en 1440/1024/768 y DOS líneas en
-   390. El corte de mobile se fuerza envolviendo "into business."
-   en un <span> con white-space: nowrap. */
+   Reveal + escala + fade los mete el motor (PlanesStack). */
 
 export default function HomeWhatCrudaIs() {
   return (
-    <AnchorAdvance
+    <section
+      className="plane plane--paper home-wci"
       id="what-cruda-is"
-      className="home-wci"
-      threshold={220}
-      readingZone={0.62}
+      data-plane
     >
-      <Anchor className="home-wci__anchor">
-        <div className="home-wci__anchor-inner">
-          <p className="home-wci__label">WHAT CRUDA IS</p>
-          <p className="home-wci__sub">
-            CRUDA is a communications company.
-          </p>
-          <h2 className="home-wci__display">
-            We translate cultures{' '}
-            <span className="home-wci__nobreak">into business.</span>
-          </h2>
+      <div className="plane__in">
+        <div className="plane__top">
+          <p className="eyebrow">What CRUDA is</p>
+          <h2 className="name">We translate cultures into business.</h2>
+          <div className="rule" />
+          <p className="lede">CRUDA is a communications company.</p>
         </div>
-      </Anchor>
-
-      <div className="home-wci__items">
-        <Item className="home-wci__row">
-          <p className="home-wci__row-body">
-            Between a founder and a market that never heard of them.
-          </p>
-        </Item>
-        <Item className="home-wci__row">
-          <p className="home-wci__row-body">
-            Between a company and its own people.
-          </p>
-        </Item>
-        <Item className="home-wci__row">
-          <p className="home-wci__row-body">
-            Between capital from one part of the world and the
-            country it just landed in.
-          </p>
-        </Item>
+        <div className="data">
+          <div className="cell">
+            <p className="cell__l">Outward</p>
+            <p className="cell__v">
+              Between a founder and a market that never heard of them.
+            </p>
+          </div>
+          <div className="cell">
+            <p className="cell__l">Inward</p>
+            <p className="cell__v">
+              Between a company and its own people.
+            </p>
+          </div>
+          <div className="cell">
+            <p className="cell__l">Across</p>
+            <p className="cell__v">
+              Between capital from one part of the world and the country
+              it just landed in.
+            </p>
+          </div>
+        </div>
       </div>
-    </AnchorAdvance>
+    </section>
   )
 }

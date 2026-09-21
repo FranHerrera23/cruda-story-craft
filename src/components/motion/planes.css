@@ -1,0 +1,163 @@
+/* Apilado · brief F11.0 (21-sep · autónomo).
+   Motor + primitivas · reemplaza AnchorAdvance en las 5 secciones
+   marcadas por el prototipo home-v3.
+
+   Un plano = un <section class="plane"> a 100svh, position:sticky
+   top:0, que se pega, se achica al 96,5% y baja al 45% cuando el
+   siguiente plano lo cubre. Anatomía fija: eyebrow · name · rule
+   naranja · lede · body · celdas al pie. z-index se asigna por
+   orden de DOM (motor). El scroll es reversible: al volver, los
+   textos re-entran.
+
+   PROHIBICIONES · brief F11 §5
+     · mix-blend-mode:difference · fuera (peleaba con stacking).
+     · IntersectionObserver de is-live · fuera (trazaba antes).
+     · marcadores textuales visibles en producción.
+*/
+
+.stack { position: relative; }
+
+.plane {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 560px;
+  overflow: hidden;
+  display: flex;
+}
+.plane--paper { background: var(--paper, #F1EFEB); color: var(--ink, #0D0D0D); }
+.plane--black { background: var(--black, #000);   color: var(--white, #FAF9F7); }
+
+.plane__in {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(96px, 13vh, 140px) var(--gap, clamp(20px,4.5vw,72px)) clamp(56px, 9vh, 96px);
+  will-change: transform, opacity;
+}
+.plane__top { margin-top: 0; }
+
+/* Reveal · escalonado por hijo, atado al scroll (motor). */
+.js [data-r] {
+  opacity: 0;
+  transform: translateY(22px);
+  will-change: opacity, transform;
+}
+
+/* Anatomía compartida entre planos. */
+.plane .eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+}
+.plane--black .eyebrow { color: var(--grey-dark, #8A867E); }
+
+.plane .name {
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.04;
+  margin-top: 16px;
+}
+.plane .name--sm { font-size: clamp(22px, 2.8vw, 36px); line-height: 1.1; }
+
+.plane .rule {
+  height: 2px;
+  width: 0;
+  background: var(--orange, #FF5A00);
+  margin-top: 20px;
+  max-width: 560px;
+}
+
+.plane .lede {
+  font-size: clamp(15px, 1.5vw, 21px);
+  line-height: 1.4;
+  letter-spacing: -.012em;
+  max-width: 30ch;
+  margin-top: 20px;
+}
+.plane .body {
+  font-size: clamp(13px, 1.15vw, 16px);
+  line-height: 1.55;
+  max-width: 60ch;
+  margin-top: 16px;
+  color: var(--grey, #6E6B65);
+}
+.plane--black .body { color: var(--grey-dark, #8A867E); }
+
+/* Celdas de dato al pie. */
+.plane .data {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(26px, 4.4vh, 54px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.plane--black .data { border-top-color: #272727; }
+.plane .data--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.plane .cell { padding: 15px 22px 0 0; }
+.plane .cell__l {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+}
+.plane--black .cell__l { color: var(--grey-dark, #8A867E); }
+.plane .cell__v {
+  font-size: clamp(15px, 1.45vw, 20px);
+  font-weight: 500;
+  letter-spacing: -.015em;
+  margin-top: 8px;
+  line-height: 1.25;
+}
+.plane .cell__n {
+  font-size: 12px;
+  color: var(--grey, #6E6B65);
+  margin-top: 5px;
+  line-height: 1.4;
+}
+.plane--black .cell__n { color: var(--grey-dark, #8A867E); }
+.plane .cell__big {
+  font-size: clamp(26px, 3.2vw, 44px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--orange, #FF5A00);
+}
+.plane--paper .cell__big { color: var(--ink, #0D0D0D); }
+.plane--paper .cell__big em { font-style: normal; color: var(--orange, #FF5A00); }
+
+/* Link inferior. */
+.plane .go {
+  display: inline-block;
+  margin-top: clamp(20px, 3.2vh, 36px);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: inherit;
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+}
+.plane .go:hover { color: var(--orange, #FF5A00); border-bottom-color: var(--orange, #FF5A00); }
+
+/* Mobile. */
+@media (max-width: 760px) {
+  .plane .data { grid-template-columns: 1fr; }
+  .plane .cell { padding: 13px 0 0; border-top: 1px solid var(--paper-line, #D9D5CD); }
+  .plane .cell:first-child { border-top: 0; }
+  .plane--black .cell { border-top-color: #272727; }
+  .plane__top { padding-top: 80px; }
+}
+
+/* Reduced motion · anular sticky, mostrar todo lineal. */
+@media (prefers-reduced-motion: reduce) {
+  .plane { position: static; height: auto; min-height: 0; }
+  .plane__in { transform: none !important; opacity: 1 !important; }
+  .plane .rule { width: 100% !important; }
+  [data-r] { opacity: 1 !important; transform: none !important; }
+}

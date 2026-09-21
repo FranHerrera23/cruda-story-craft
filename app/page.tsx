@@ -4,47 +4,42 @@ import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import HomeLegacy from '@/components/home/HomeLegacy';
 import HomeWhatOthers from '@/components/home/HomeWhatOthers';
-import HomeTestimonial from '@/components/home/HomeTestimonial';
+import HomeKarenQuote from '@/components/home/HomeKarenQuote';
+import HomeKarenProof from '@/components/home/HomeKarenProof';
 import HomeClose from '@/components/home/HomeClose';
 import HomeChrome from '@/components/home/HomeChrome';
 import HomeWhatCrudaIs from '@/components/home/HomeWhatCrudaIs';
 import HomeServices from '@/components/home/HomeServices';
+import PlanesStack from '@/components/motion/PlanesStack';
 import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). H0 hotfix · 21-sep · Fran F1.
+   CRUDA — Home (`/`). F11.0 · 21-sep · autónomo.
 
-   Orden vigente post-H0:
+   Apilado firmado. AnchorAdvance retirado.
 
-     1.  act 1                        NEGRO · phrase mode
-     2.  QUÉ ES CRUDA                 PAPER
-     3.  act 2                        PAPER · fill + crossfade
-     4.  selected-work                PAPER
-     5.  testimonial (con LA PRUEBA)  NEGRO
-     6.  WHAT OTHERS                  PAPER
-     7.  OUR FOUNDER                  NEGRO
-     8.  LOS SERVICIOS                PAPER
-     9.  close                        PAPER
+   Orden vigente F11.0:
 
-   H0 (21-sep) · Fran F1:
-     · WHO IT HOLDS FOR retirada entera de la home. El corte se
-       muda a /services (F12). Componente + CSS quedan en el
-       repo como dead code hasta F12.
-     · Bandas provisorio y modificadores --slot fuera.
-     · OUR FOUNDER · PRACTICE y THE TEAM salen (H0). Rename
-       .home-legacy__ → .home-founder__ es F11.0.
+     hero                                          NEGRO · propio
+     <main id="stack">
+       01  WHAT CRUDA IS                           PAPER · plano
+       02  #act2 · WHY NOW                         PAPER · propio
+       03  SELECTED WORK                           PAPER · propio
+       04  KAREN · CITA                            NEGRO · plano
+       05  LA PRUEBA                               NEGRO · plano
+       06  WHAT OTHERS                             PAPER · plano
+       07  OUR FOUNDER                             NEGRO · plano
+       08  WHAT WE DO                              PAPER · plano
+       09  CONTACT                                 PAPER · plano
+     </main>
 
-   El orden final de la home (con WHAT WE DO subiendo a posición
-   03) llega en F11.4. Hasta entonces el orden vigente se mantiene
-   con WHO IT HOLDS FOR retirada.
+   El orden final con WHAT WE DO subiendo a posición 03 llega en
+   F11.4. Hasta entonces se mantiene el orden vigente.
 
-   Componentes en el repo fuera del render:
-     · HomeWhoItHoldsFor (dead code post-H0)
-     · HomeFit (dead code post-Commit-5)
-     · HomeTranslated (dead desde F8 §9.1)
-
-   Dos bloques inversos por página · act 1 y testimonial.
+   Componentes fuera del render, se conservan como dead code hasta
+   F12/F13: HomeTestimonial (split), HomeWhoItHoldsFor (H0),
+   HomeFit (Commit 5), HomeTranslated (F8 §9.1), HomeEssays.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
@@ -68,15 +63,19 @@ export default function HomePage() {
   return (
     <>
       <HomeChrome />
+      <PlanesStack />
       <Act1Hero />
-      <HomeWhatCrudaIs />
-      <Act2WhyNow />
-      <SelectedWork cards={selectedWorkCards} />
-      <HomeTestimonial />
-      <HomeWhatOthers />
-      <HomeLegacy />
-      <HomeServices />
-      <HomeClose />
+      <main className="stack" id="stack">
+        <HomeWhatCrudaIs />
+        <Act2WhyNow />
+        <SelectedWork cards={selectedWorkCards} />
+        <HomeKarenQuote />
+        <HomeKarenProof />
+        <HomeWhatOthers />
+        <HomeLegacy />
+        <HomeServices />
+        <HomeClose />
+      </main>
     </>
   );
 }

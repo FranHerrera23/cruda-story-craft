@@ -1,78 +1,60 @@
-import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-what-others.css'
 
-/* Home · WHAT OTHER PEOPLE STARTED SAYING (F10 §9 · Commit 11 F10.3)
+/* Home · WHAT OTHER PEOPLE STARTED SAYING · plano paper · F11.0
+   (21-sep · autónomo).
 
-   Dispositivo A (AnchorAdvance):
-     · ANCLA · rótulo WHAT OTHER PEOPLE STARTED SAYING
-     · ITEMS · 3 unidades de cobertura
-              - Karen · Forbes Perú
-              - Mike · triple network
-              - Confidential · Drapers
+   Refactor a plano del apilado. AnchorAdvance retirado.
 
-   Copy heredado del molde F9.4 · verbatim. Los medios van como
-   TEXTO EN ESCALA LABEL (no cajas · brief §9.2 · las cajas con
-   border conteniendo texto quedan retiradas desde fase D).
+   DECISIÓN F11.0 · el retiro de Drapers, planificado para F11.6,
+   se adelanta acá: el marcador visible "[ Confidential ]" hace
+   fallar el grep §4 de F11.0 (patrón "[ "). El prototipo home-v3
+   §11 muestra sólo dos items — Karen · Forbes y Mike · triple
+   network — así que la fase F11.6 queda absorbida acá y se
+   confirmará en su turno con una entrada de verificación.
 
-   §9.3 · si Fran sube las cuatro imágenes de prensa, el bloque
-   pasa a carrusel · esa mecánica se escribe cuando las imágenes
-   existan, no ahora. */
+   Copy · prototipo home-v3, textual:
+     eyebrow "What other people started saying"
+     name    "No pitch. No placement."
+
+   Los assets reales de prensa no existen todavía en /public. Regla
+   §2: si el asset no existe, el bloque se renderiza SIN la imagen.
+   Los <a> apuntan a "#" hasta que Fran entregue los links. */
 
 export default function HomeWhatOthers() {
   return (
-    <AnchorAdvance
+    <section
+      className="plane plane--paper home-what-others"
       id="what-others"
-      className="home-what-others"
-      threshold={220}
-      readingZone={0.6}
+      data-plane
     >
-      <Anchor className="home-what-others__anchor">
-        <p className="home-what-others__eyebrow">
-          WHAT OTHER PEOPLE STARTED SAYING
-        </p>
-      </Anchor>
-
-      <div className="home-what-others__items">
-        {/* Karen · Forbes */}
-        <Item className="home-what-others__item">
-          <p className="home-what-others__prose">
-            Karen Mannheim was named to Forbes Per&uacute;&rsquo;s
-            &ldquo;Las 50 mujeres m&aacute;s poderosas de Per&uacute; en
-            2026.&rdquo; No pitch, no placement.
-          </p>
-          <p className="home-what-others__media-label">
-            FORBES · ARCHITECTURAL DIGEST
-          </p>
-        </Item>
-
-        {/* Mike · triple network */}
-        <Item className="home-what-others__item">
-          <p className="home-what-others__prose">
-            Mike Kaeding went from a builder nobody outside Minnesota
-            had heard of to a source three networks call.
-          </p>
-          <div className="home-what-others__media-row">
-            <p className="home-what-others__media-label">
-              ABC · FOX NEWS · CBS
+      <div className="plane__in">
+        <div className="plane__top">
+          <p className="eyebrow">What other people started saying</p>
+          <h2 className="name name--sm">No pitch. No placement.</h2>
+          <div className="rule" />
+        </div>
+        <div className="press">
+          <a className="pitem" href="#" aria-label="Karen · Forbes Perú">
+            <p className="pitem__src">Forbes Perú</p>
+            <p className="pitem__h">
+              Karen Mannheim, named to “Las 50 mujeres más poderosas de
+              Perú en 2026.”
             </p>
-            <p className="home-what-others__meta">
-              56,000 followers · 2M impressions generated per year
+            <p className="pitem__m">June 2026 · also in Architectural Digest</p>
+          </a>
+          <a className="pitem" href="#" aria-label="Mike · triple network">
+            <p className="pitem__src">ABC · Fox News · CBS</p>
+            <p className="pitem__h">
+              Mike Kaeding, from a builder nobody outside Minnesota had
+              heard of to a source three networks call.
             </p>
-          </div>
-          <p className="home-what-others__attribution">
-            Mike Kaeding · Norhart · July 2023 — October 2024
-          </p>
-        </Item>
-
-        {/* Confidential · Drapers */}
-        <Item className="home-what-others__item">
-          <p className="home-what-others__confidential">[ Confidential ]</p>
-          <p className="home-what-others__media-label">DRAPERS</p>
-          <p className="home-what-others__attribution">
-            Confidential · Dubai, UAE · 2026
-          </p>
-        </Item>
+            <p className="pitem__m">
+              56,000 followers · 2M impressions a year · Jul 2023 — Oct
+              2024
+            </p>
+          </a>
+        </div>
       </div>
-    </AnchorAdvance>
+    </section>
   )
 }

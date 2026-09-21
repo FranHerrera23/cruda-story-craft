@@ -1,0 +1,18 @@
+/* Home · KAREN · LA CITA · plano negro · F11.0.
+   Sin retrato (D4). La cita queda a ancho completo, límite propio.
+
+   La serif la trae la variable --serif definida en globals; en este
+   plano se aplica a .quote y sólo a .quote — regla §2 (serif un solo
+   lugar en todo el sitio: los testimonios). */
+
+.home-karen-quote .quote {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(24px, 3vw, 42px);
+  line-height: 1.18;
+  letter-spacing: -.01em;
+  max-width: 32ch;
+  color: var(--white, #FAF9F7);
+  margin-top: 20px;
+}
+.home-karen-quote .quote + .quote { margin-top: 22px; }
+.home-karen-quote__body { max-width: none; }

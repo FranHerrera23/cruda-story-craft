@@ -115,22 +115,10 @@ export type Work = {
   via: string
 
   door: { primary: Door; secondary?: Door }
-  /* Enmienda 6-A · Arman se queda en SELECTED WORK sin chip hasta
-     que Fran lo defina. Cuando `hideChip` está en true, la card /
-     fila de índice no renderiza chips. */
-  hideChip?: boolean
   axis: Axis
   moment?: string
 
   image?: string
-  /* Enmienda 6-B · tile tipográfico para cards sin foto disponible.
-     Renderiza en la grilla sin `<img>`: fondo --black, `primary`
-     como cifra naranja Archivo 600 y `secondary` como línea de
-     rótulo blanco. Alternativa a `image` cuando no hay retrato. */
-  cardTile?: {
-    primary: string
-    secondary: string
-  }
   proof?: Proof
 
   capsule: string[]        // 2–3 párrafos

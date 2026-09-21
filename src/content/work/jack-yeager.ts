@@ -6,9 +6,7 @@ import type { Work } from './types'
 
 export const jackYeager: Work = {
   slug: 'jack-yeager',
-  /* Enmienda 6-A · Jack se queda en SELECTED WORK · índice · sin
-     página · chips Translated + Transmission (Translated primero). */
-  order: 7,
+  order: 4,
   title: 'Jack Yeager',
   metaTitle: 'Jack Yeager — CRUDA',
   dek: 'Lighting · Midtown Miami',
@@ -17,7 +15,7 @@ export const jackYeager: Work = {
   place: { to: 'Miami, Florida', city: 'Miami', country: 'United States' },
   period: { start: '2025', end: '2025' },
   via: 'CRUDA',
-  door: { primary: 'translated', secondary: 'transmission' },
+  door: { primary: 'translated' },
   axis: 'outward',
   capsule: [],
   takeaways: [],

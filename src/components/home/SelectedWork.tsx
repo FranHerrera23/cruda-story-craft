@@ -26,10 +26,40 @@ import './selected-work.css'
 
 const PLANE_TOKEN = '#selected-work'
 
-/* Enmienda 3 · F18.3 §G · sin conteo. El titular es "Selected work."
-   invariable · no se deriva de data. Los conteos y helpers salieron.
-   `place.city` / `place.country` siguen en la data (cards + schema),
-   pero acá no se usan. */
+export type WorkTitle = {
+  founders: string
+  cities: number
+  countries: number
+}
+
+function foundersWord(n: number): string {
+  const words = [
+    'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
+    'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve',
+  ]
+  return words[n] ?? String(n)
+}
+function citiesWord(n: number): string {
+  const words = [
+    'Zero', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
+    'Eight', 'Nine', 'Ten',
+  ]
+  return words[n] ?? String(n)
+}
+function countriesWord(n: number): string {
+  return citiesWord(n)
+}
+
+/* Titular calculado. */
+function selectedTitle(cases: Work[]): string {
+  const cities = new Set<string>()
+  const countries = new Set<string>()
+  for (const w of cases) {
+    if (w.place.city) cities.add(w.place.city)
+    if (w.place.country) countries.add(w.place.country)
+  }
+  return `${foundersWord(cases.length)} founders. ${citiesWord(cities.size)} cities. ${countriesWord(countries.size)} countries.`
+}
 
 function ProofLine({ proof }: { proof: Proof | undefined }) {
   if (!proof) return null
@@ -51,7 +81,6 @@ function ProofLine({ proof }: { proof: Proof | undefined }) {
 }
 
 function Chips({ w }: { w: Work }) {
-  if (w.hideChip) return null
   const primary = doorSpec(w.door.primary)
   const secondary = w.door.secondary ? doorSpec(w.door.secondary) : null
   return (
@@ -75,29 +104,15 @@ function CardArticle({
   w: Work
   spanTwo?: boolean
 }) {
-  const label = w.confidential ? w.dek : w.client.name
   return (
     <article className={`wcell${spanTwo ? ' wcell--x2' : ''}`}>
-      <Link className="wcard" href={`/work/${w.slug}`} aria-label={label}>
-        <div
-          className={`wcard__m${w.cardTile ? ' wcard__m--tile' : ''}`}
-        >
+      <Link className="wcard" href={`/work/${w.slug}`} aria-label={w.client.name}>
+        <div className="wcard__m">
           {w.image ? (
             <img src={w.image} alt="" loading="lazy" />
-          ) : w.cardTile ? (
-            <div className="wcard__tile">
-              <span className="wcard__tile__primary">
-                {w.cardTile.primary}
-              </span>
-              <span className="wcard__tile__secondary">
-                {w.cardTile.secondary}
-              </span>
-            </div>
           ) : null}
         </div>
-        <h3 className="wcard__n">
-          {w.confidential ? 'Confidential' : w.client.name}
-        </h3>
+        <h3 className="wcard__n">{w.client.name}</h3>
         <p className="wcard__d">{w.dek}</p>
         <ProofLine proof={w.proof} />
       </Link>
@@ -108,34 +123,16 @@ function CardArticle({
 
 function IndexRow({ w, i }: { w: Work; i: number }) {
   const n = String(i + 1).padStart(2, '0')
-  const primary = w.door && !w.hideChip ? doorSpec(w.door.primary) : null
-  const secondary =
-    w.door.secondary && !w.hideChip ? doorSpec(w.door.secondary) : null
+  const primary = w.door ? doorSpec(w.door.primary) : null
   const hasPage = w.capsule.length > 0
   const proof = w.proof
 
-  const chipEls = primary ? (
-    <div className="irow-chips">
-      <Link className="chip" href={primary.href}>
-        {primary.label}
-      </Link>
-      {secondary && (
-        <Link className="chip" href={secondary.href}>
-          {secondary.label}
-        </Link>
-      )}
-    </div>
-  ) : null
-
   if (!hasPage) {
     return (
-      <div className="irow-wrap" role="listitem">
-        <div className="irow irow--flat">
-          <span className="irow__o">{n}</span>
-          <span className="irow__n">{w.client.name}</span>
-          <span className="irow__d">{w.dek}</span>
-        </div>
-        {chipEls}
+      <div className="irow" role="listitem">
+        <span className="irow__o">{n}</span>
+        <span className="irow__n">{w.client.name}</span>
+        <span className="irow__d">{w.dek}</span>
       </div>
     )
   }
@@ -152,7 +149,13 @@ function IndexRow({ w, i }: { w: Work; i: number }) {
             : w.dek}
         </span>
       </Link>
-      {chipEls}
+      {primary && (
+        <div className="irow-chips">
+          <Link className="chip" href={primary.href}>
+            {primary.label}
+          </Link>
+        </div>
+      )}
     </div>
   )
 }
@@ -188,17 +191,17 @@ function layoutImaged(items: Work[]): Array<{ w: Work; spanTwo: boolean }> {
 
 export default function SelectedWork() {
   const cases = selectedWork
-  /* Enmienda 6-B · a la grilla van las cards con `image` o
-     `cardTile` (Confidential entra por tile tipográfico). El
-     resto queda en el índice inferior. */
-  const imaged = cases.filter(w => !!(w.image || w.cardTile))
-  const unimaged = cases.filter(w => !w.image && !w.cardTile)
+  const title = selectedTitle(cases)
+  const imaged = cases.filter(w => !!w.image)
+  const unimaged = cases.filter(w => !w.image)
   const grid = layoutImaged(imaged)
 
   return (
     <section id="selected-work" className="work">
-      {/* Enmienda 3 · sin rótulo "SELECTED WORK" · h2 fijo. */}
-      <h2 className="name" style={{ marginTop: 0 }}>Selected work.</h2>
+      <p className="eyebrow">Selected work</p>
+      <h2 className="name name--sm" style={{ marginTop: 14 }}>
+        {title}
+      </h2>
       <div className="rule" style={{ width: '100%', maxWidth: 560 }} />
 
       {grid.length > 0 && (
@@ -212,9 +215,7 @@ export default function SelectedWork() {
       {unimaged.length > 0 && (
         <div className="windex" role="list">
           {cases.map((w, i) =>
-            !w.image && !w.cardTile ? (
-              <IndexRow key={w.slug} w={w} i={i} />
-            ) : null,
+            !w.image ? <IndexRow key={w.slug} w={w} i={i} /> : null,
           )}
         </div>
       )}

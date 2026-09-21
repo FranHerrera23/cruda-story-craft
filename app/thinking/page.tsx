@@ -68,9 +68,8 @@ const SCHEMA = collectionPageSchema({
 
 export const metadata: Metadata = {
   title: 'Thinking — CRUDA',
-  /* Enmienda 6-E · meta description exacta. */
   description:
-    'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.',
+    'Pieces on narrative, brand, and the founders who build them.',
   alternates: {
     canonical: 'https://www.thecruda.com/thinking',
   },

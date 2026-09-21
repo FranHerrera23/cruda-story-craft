@@ -40,12 +40,10 @@ import '@/components/home/home-layout.css';
    HomeFit (Commit 5), HomeTranslated (F8 §9.1), HomeEssays.
 ------------------------------------------------------------------- */
 
-/* Enmienda 6-E · meta description exacta.
-   Enmienda 5-E · title site-wide "We translate cultures into business". */
 const HOME_DESCRIPTION =
-  'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.'
+  'CRUDA is a communications company. We translate cultures into business.'
 
-const HOME_TITLE = 'CRUDA · We translate cultures into business'
+const HOME_TITLE = 'CRUDA · Communications for founder-led companies'
 
 export const metadata: Metadata = {
   title: HOME_TITLE,

@@ -65,39 +65,3 @@ const AXIS_LABEL: Record<'inward' | 'outward' | 'across', string> = {
 export function axisLabel(axis: 'inward' | 'outward' | 'across') {
   return AXIS_LABEL[axis]
 }
-
-/* Enmienda 7 · costos externos · fuente única · aparece en /services
-   (índice + planos Translated y Transmission), /process (bajo la
-   lista de entregables), cierres de puerta en case studies, y en
-   llms.txt (línea de precios). Ningún texto del sitio sugiere que
-   un fee incluye ad spend, media, herramientas o proveedores. */
-export const EXTERNAL_COSTS_NOTE =
-  'Fees cover our work. Ad spend and any third-party costs are paid by the client directly.'
-
-/* Enmienda 5-D · Translated · una sola definición de entregables ·
-   consumida por /services (cuerpo del plano) y /process. */
-export const TRANSLATED_DELIVERABLES = {
-  narrative: [
-    'narrative platform',
-    'founder manuscript',
-    'four content pillars',
-    'working cadence',
-  ] as readonly string[],
-  demand: [
-    'site',
-    'CRM',
-    'workflows',
-    'list',
-    'booking',
-    'GTM',
-    'outreach',
-    'paid',
-  ] as readonly string[],
-} as const
-
-/* Enmienda 5-D · fee de Translated como string único. */
-export const TRANSLATED_FEE = {
-  duration: 'Twelve weeks',
-  amount: '$19,500',
-  terms: 'Flat · 50% to begin, 50% at month three',
-} as const

@@ -245,58 +245,6 @@ DECISIÓN: F18.9 sacó del render el corte 06 en /services. El h2
 "If none of this is you, this is not for you." es copy firmado
 pero sin body no cumple regla §2. Espera pass de Fran.
 
-## Enmienda 3 · SELECTED WORK sin conteo · ✓
-commit   (pendiente)
-checks   build ✓ · grep `Eight founders|Seven cities|Four
-countries` en / = 0 · grep del eyebrow "Selected work" separado
-del h2 = 0 · el h2 renderiza `Selected work.` invariable · regla
-naranja queda
-Cambios:
-· `SelectedWork.tsx` retira `selectedTitle()`, `foundersWord`,
-  `citiesWord`, `countriesWord`, tipo `WorkTitle`. El eyebrow
-  "Selected work" se borra; h2 fijo "Selected work.".
-· `content/work/index.ts` retira `workGeoStats()`.
-· `place.city` / `place.country` siguen en `Work` (schema y
-  cards los usan).
-
-## Enmienda 6 + Enmienda 5 + Enmienda 7 · aplicadas · commit `65d5458`
-Grep local (post-commit, contra `http://localhost:3000`):
-  · Nine founders                                  · 0 ✓
-  · Narrative & brand strategy · Web · Demand      · 0 ✓
-  · Retail systems                                 · 0 ✓
-  · between UAE                                    · 0 ✓
-  · KMLS                                           · 0 ✓
-  · one engagement                                 · 0 ✓
-  · Narrative for founder-led                      · 0 ✓
-  · Selected work.                                 · 1 ✓
-  · Book the call                                  · 1 ✓
-  · Fees cover our work · /services 1 · caso Karen 1 · llms.txt 1 ✓
-  · born in Salta, Argentina                       · 1 ✓
-  · $19,500                                        · 1 ✓
-Pendientes locales:
-  · Four doors. · 1 en home + 1 en /services · brief pide 0 · falta
-    Enmienda 2 (A2–A12) para el copy nuevo.
-  · No pitch. No placement. · 1 en home · idem · Enmienda 2 no
-    llegó a este entorno.
-
-## F18.10 · Contact corto + Calendly · saltado · ✓
-commit   —
-CALENDLY_URL vacío en el header del brief. Per instrucción
-explícita: "vacío → F18.10 se saltea". Se anota y se cierra la
-tanda.
-
-Cuando llegue la URL:
-· opener actual (rótulo Contact + h1 + regla + lede "Forty-five
-  minutes. No pitch.")
-· split 50/50: izq Calendly inline embed (min-height 700) · der
-  Name · Email · "What are you trying to do?" (textarea opcional)
-  + botón "Send it →" con mailto (sin backend)
-· SALEN las 3 celdas Length/Cost/What we ask y el filtro de 5
-  filas
-· Línea al pie "Fees are public on services. If none of this
-  fits, write anyway — fran@thecruda.com"
-
-
 
 
 

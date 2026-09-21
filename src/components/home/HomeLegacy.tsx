@@ -21,8 +21,7 @@ const LEGACY_HOLDINGS = [
   'United Nations',
 ]
 
-/* Enmienda 5-B · sin ubicación actual. */
-const CREDIT = 'Fran Herrera · Founder · born in Salta, Argentina'
+const CREDIT = 'Fran Herrera · Founder · between UAE and Russia'
 
 /* Titular · FIRMADO por Fran (H0 · 21-sep). Textual. */
 const HEADLINE =

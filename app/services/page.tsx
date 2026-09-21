@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PlanesStack from '@/components/motion/PlanesStack'
-import { EXTERNAL_COSTS_NOTE, TRANSLATED_DELIVERABLES, TRANSLATED_FEE } from '@/content/services/doors'
 import '@/components/motion/planes.css'
 import './services.css'
 
@@ -22,9 +21,8 @@ import './services.css'
 
 const BASE = 'https://www.thecruda.com'
 
-/* Enmienda 6-E · meta description exacta. */
 const META_DESCRIPTION =
-  'Translated, Transmission, Interpreted and The Read: what each includes, how long it runs and what it costs.'
+  'CRUDA is a communications company. We translate cultures into business.'
 
 export const metadata: Metadata = {
   title: 'Services — CRUDA',
@@ -45,14 +43,6 @@ export const metadata: Metadata = {
     description: META_DESCRIPTION,
     images: [`${BASE}/logo.png`],
   },
-}
-
-/* Enmienda 5-D · une un array como "a, b, c and d". */
-function joinAnd(items: readonly string[]): string {
-  if (items.length === 0) return ''
-  if (items.length === 1) return items[0]
-  if (items.length === 2) return `${items[0]} and ${items[1]}`
-  return `${items.slice(0, -1).join(', ')} and ${items[items.length - 1]}`
 }
 
 export default function ServicesPage() {
@@ -92,15 +82,10 @@ export default function ServicesPage() {
                 <span className="irow__p">per session</span>
               </div>
             </div>
-            {/* Enmienda 7 · costos externos · una vez, debajo del índice. */}
-            <p className="services-external">{EXTERNAL_COSTS_NOTE}</p>
           </div>
         </section>
 
-        {/* 02 · TRANSLATED · paper.
-            Enmienda 5-D · una sola definición · lista de entregables
-            desde `TRANSLATED_DELIVERABLES` (doors.ts). El cuerpo
-            enlaza NARRATIVE y DEMAND como brief especifica. */}
+        {/* 02 · TRANSLATED · paper */}
         <section className="plane plane--paper" data-plane id="translated">
           <div className="plane__in">
             <p className="eyebrow">01 · Building the system</p>
@@ -110,10 +95,10 @@ export default function ServicesPage() {
               Twelve weeks to build the system a company uses to say what it is.
             </p>
             <p className="body">
-              It starts with the founder in the room and ends with two systems
-              the company keeps running without us: the narrative — a{' '}
-              {joinAnd([...TRANSLATED_DELIVERABLES.narrative])} — and the demand
-              system that carries it: {joinAnd([...TRANSLATED_DELIVERABLES.demand])}.
+              It starts with the founder in the room and ends with a narrative
+              platform, a founder manuscript, four content pillars and a
+              working cadence — a proprietary framework, run 1:1, that the
+              company can keep running without us.
             </p>
             <div className="data">
               <div className="cell">
@@ -122,14 +107,13 @@ export default function ServicesPage() {
               </div>
               <div className="cell">
                 <p className="cell__l">Runs</p>
-                <p className="cell__v">{TRANSLATED_FEE.duration}</p>
-                <p className="cell__n">{TRANSLATED_FEE.terms.replace('Flat · ', '')}</p>
+                <p className="cell__v">Twelve weeks</p>
+                <p className="cell__n">50% to begin, 50% at month three</p>
               </div>
               <div className="cell">
                 <p className="cell__l">Fee</p>
-                <p className="cell__v cell__fee">{TRANSLATED_FEE.amount}</p>
+                <p className="cell__v cell__fee">$19,500</p>
                 <p className="cell__n">Flat</p>
-                <p className="cell__external">{EXTERNAL_COSTS_NOTE}</p>
               </div>
             </div>
             <Link className="go" href="/process">
@@ -157,7 +141,6 @@ export default function ServicesPage() {
                 <p className="cell__l">Fee</p>
                 <p className="cell__v cell__fee">From $2,200</p>
                 <p className="cell__n">Per month</p>
-                <p className="cell__external">{EXTERNAL_COSTS_NOTE}</p>
               </div>
             </div>
             <Link className="go" href="/contact">
@@ -251,14 +234,9 @@ export default function ServicesPage() {
               If those two things are the same, you do not need us. If they
               are not, that gap is the work.
             </p>
-            {/* Enmienda 5-F · Book the call primario · email secundario. */}
-            <Link className="services-mail" href="/contact">
-              Book the call →
-            </Link>
-            <p className="services-mail-secondary">
-              or write to{' '}
-              <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>
-            </p>
+            <a className="services-mail" href="mailto:fran@thecruda.com">
+              fran@thecruda.com
+            </a>
           </div>
         </section>
 

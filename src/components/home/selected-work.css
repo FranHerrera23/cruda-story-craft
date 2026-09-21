@@ -77,41 +77,6 @@
   display: block;
   transition: transform .4s cubic-bezier(.16, 1, .3, 1), opacity .35s;
 }
-
-/* Enmienda 6-B · tile tipográfico · fondo negro · cifra naranja
-   Archivo 600 (~40% del ancho) + rótulo sistema white 60% · abajo
-   izquierda, padding 24px. */
-.wcard__m--tile {
-  background: var(--black, #000);
-  display: flex;
-  align-items: flex-end;
-}
-.wcard__tile {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 24px;
-  color: var(--white, #FAF9F7);
-}
-.wcard__tile__primary {
-  font-family: var(--font-archivo), 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-weight: 600;
-  letter-spacing: -.045em;
-  line-height: 1;
-  /* ~40% del ancho del tile · card ancho ≈ 380-520px normal, 780px en x2. */
-  font-size: clamp(56px, 8.5vw, 140px);
-  color: var(--orange, #FF5A00);
-}
-.wcell--x2 .wcard__tile__primary {
-  font-size: clamp(80px, 10vw, 180px);
-}
-.wcard__tile__secondary {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, .6);
-}
 .wcard__n {
   margin: 14px 0 0;
   font-size: 17px;

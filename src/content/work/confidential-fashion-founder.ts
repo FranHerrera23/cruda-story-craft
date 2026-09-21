@@ -2,8 +2,7 @@ import type { Work } from './types'
 
 export const confidentialFashionFounder: Work = {
   slug: 'confidential-fashion-founder',
-  /* Enmienda 6-B · sube al segundo lugar · grilla · tile tipográfico. */
-  order: 2,
+  order: 7,
   title:
     'An industry with no faces. The first person to fill the empty seat credibly owns a position that cannot be contested by spend.',
   metaTitle: 'Confidential · Fashion — CRUDA',
@@ -18,12 +17,6 @@ export const confidentialFashionFounder: Work = {
   axis: 'across',
   moment: 'second-company',
 
-  /* Enmienda 6-B · tile tipográfico · fuente única de "$300M":
-     misma cifra que aparece en la capsule y en `metrics`. */
-  cardTile: {
-    primary: '$300M',
-    secondary: 'Fashion · Dubai',
-  },
   proof: {
     type: 'change',
     text: 'The system reused for recruitment',

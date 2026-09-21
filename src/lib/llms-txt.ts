@@ -1,7 +1,7 @@
 import { allClients } from '@/content/clients'
 import { allEssays } from '@/content/essays'
 import { selectedWork, allWork } from '@/content/work'
-import { doorSpec, EXTERNAL_COSTS_NOTE, DOORS } from '@/content/services/doors'
+import { doorSpec } from '@/content/services/doors'
 
 /* Brief v12 T5 — llms.txt / ai.txt generator.
 
@@ -51,21 +51,13 @@ const HEADER = `# CRUDA
 
 > CRUDA is a communications company. We translate cultures into business.`
 
-/* Enmienda 5-E · descripciones exactas por página. Enmienda 3 · sin
-   conteo en el listado de SELECTED WORK. */
 const HUBS_SECTION = `## Pages
 
-- [About CRUDA](${BASE}/about): CRUDA is a communications company founded by Fran Herrera. First client in 2021, registered in 2024.
-- [Work](${BASE}/work): Selected work.
-- [Services](${BASE}/services): Translated, Transmission, Interpreted and The Read: what each includes, how long it runs and what it costs.
+- [About CRUDA](${BASE}/about): CRUDA is a communications company. We translate cultures into business.
+- [Work](${BASE}/work): Nine founders. Six cities. Four countries.
+- [Services](${BASE}/services): CRUDA is a communications company. We translate cultures into business.
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
-- [Contact](${BASE}/contact): Book a 45-minute call with Fran Herrera, founder of CRUDA, or write to fran@thecruda.com.
-
-## Pricing
-
-${DOORS.map(d => `- **${d.label}** — ${d.price}`).join('\n')}
-
-${EXTERNAL_COSTS_NOTE}`
+- [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.`
 
 function oneLine(text: string, max = 200): string {
   const flat = text.replace(/\s+/g, ' ').trim()

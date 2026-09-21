@@ -1,4 +1,10 @@
 import type { CaseStudyData } from '@/components/CaseStudyLayoutV2'
+import pezetHero from '@/assets/pezet-05-context-skyline.jpg'
+import pezetPool from '@/assets/pezet-04-pool-interior.jpg'
+import pezetEntrance from '@/assets/pezet-01-entrance.png'
+import pezetLobby from '@/assets/pezet-08-lobby-interior.jpg'
+import pezetCard from '@/assets/pezet-07-exterior-front.jpg'
+import saadiyatCard from '@/assets/saadiyat-hero-new.jpg'
 
 /* /work/karen-mannheim · F17.1 · 21-sep · autónomo · case-molde-v1.
 
@@ -7,26 +13,26 @@ import type { CaseStudyData } from '@/components/CaseStudyLayoutV2'
    not a paid placement".
 
    Cifras (C1 cerrado, lockeadas):
-     +300%     LinkedIn growth
-     500K      Instagram views / 90 days
-     5 years   Client since 2021
-     33 years  Of practice, made legible
+     +300%     LinkedIn growth · LinkedIn Analytics
+     500K      Instagram views / 90 days · Meta Business Suite, Jul 2026
+     5 years   Client since 2021 · Bushido 2021–2024 · CRUDA 2024–2026
+     33 years  Of practice, made legible · 28 years before · 5 since
 
-   DECISIÓN F17.1 · el slot "período · C1" del +300% en el prototipo
-   no tiene dato firmado. Se muestra sólo "LinkedIn Analytics" sin
-   período específico (§5.4 sin inventar). Cuando Fran entregue el
-   período, se actualiza la fuente.
-
-   Sub-casos · PEZET y Saadiyat esperan capturas (§7) · no se
-   renderizan en F17.1. `moreFrom` queda vacío. */
+   Assets (F17.1 iter · Fran 21-sep):
+     · Hero y evidencia · PEZET real de `src/assets/pezet-*` · las
+       fotos de arquitectura ya existen en `/projects/karen-mannheim/
+       pezet` · son fotos, no capturas.
+     · moreFrom · cards a PEZET y Saadiyat, ambas con página.
+     · LinkedIn / SPOTLIGHT / Deck / Forbes · esperan captures.
+       Esas secciones van sin evidencia. */
 
 export const karenMannheim: CaseStudyData = {
   slug: 'karen-mannheim',
   h1: 'How a Lima lighting studio went from zero Miami presence to winning pitches against international firms',
   hero: {
-    img: '/karen-mannheim.webp',
-    alt: 'Karen Mannheim at PEZET, Lima.',
-    caption: 'Karen Mannheim at PEZET, Lima.',
+    img: pezetHero.src,
+    alt: 'PEZET, Lima. Architecture: Robert A.M. Stern Architects.',
+    caption: 'PEZET, Lima. Architecture: Robert A.M. Stern Architects.',
   },
   capsule: [
     "Karen Mannheim spent 33 years building Lima's most respected architectural lighting firm — over 2,500 projects, an 80-person team, and work in RAMSA, Four Seasons and Oppenheim buildings. Outside Peru, almost nobody knew she existed.",
@@ -72,16 +78,22 @@ export const karenMannheim: CaseStudyData = {
   ],
   sections: [
     {
+      /* Fotos reales de PEZET (Robert A.M. Stern) · el trabajo antes
+         que el texto. Las capturas de LinkedIn/Instagram esperan
+         re-tomar (§7). */
       h2: 'Thirty-three years of work in Peru. Zero presence in Miami.',
       body: [
         'Thirty-three years later: more than 2,500 projects. Lima\'s most important showrooms. An eighty-person team. Work inside RAMSA, Four Seasons and Oppenheim buildings. The Porsche flagship in Lima. Saadiyat Nights in Abu Dhabi.',
         'For 28 of those 33 years the same pattern held: the work was always exceptional. It just never left Lima. Inside the circle that already knew her, it moved. Outside it, nobody had a way in.',
       ],
-      /* Assets reales de PEZET / Porsche / Saadiyat esperan (§7).
-         Regla §2: sin asset, sin bloque · evidencia vacía en F17.1. */
-      evidence: [],
+      evidence: [
+        { img: pezetEntrance.src, caption: 'PEZET 1, entrance.', aspect: 'l' },
+        { img: pezetPool.src, caption: 'Pool interior, PEZET.', aspect: 'l' },
+        { img: pezetLobby.src, caption: 'Lobby interior, PEZET.', aspect: 'l' },
+      ],
     },
     {
+      /* SPOTLIGHT · esperan capturas re-tomadas de LinkedIn (§7). */
       h2: 'The format was the unlock, not the volume.',
       body: [
         'Most founder content fails because it asks the founder to talk about themselves. Karen is technical, precise, and generous — she is at her best when she is asking, not explaining.',
@@ -92,6 +104,7 @@ export const karenMannheim: CaseStudyData = {
       evidence: [],
     },
     {
+      /* Deck · esperan captures del sistema de presentación (§7). */
       h2: 'When the work is told well, the room stops asking questions.',
       body: [
         'In high-end A&D, a single deck decides a multi-million dollar project — and most decks in the category enumerate instead of telling. We built the presentation system her team now runs in-house: structure, master template, and the rules for assembling any pitch.',
@@ -100,6 +113,7 @@ export const karenMannheim: CaseStudyData = {
       evidence: [],
     },
     {
+      /* Forbes Perú · AD · esperan captures editoriales (§7). */
       h2: 'Forbes did not discover Karen. It caught up.',
       body: [
         'In 2026, Forbes Peru named Karen one of the 50 most powerful women in the country — an editorial selection, not a paid placement.',
@@ -130,5 +144,18 @@ export const karenMannheim: CaseStudyData = {
       a: "CRUDA builds the system. The client's team runs it. With TRAZZO, the presentation system was handed over and the team now produces decks without us.",
     },
   ],
-  moreFrom: [],
+  moreFrom: [
+    {
+      slug: '/projects/karen-mannheim/pezet',
+      name: 'PEZET',
+      meta: 'Three towers with RAMSA · Lima',
+      img: pezetCard.src,
+    },
+    {
+      slug: '/projects/karen-mannheim/saadiyat-music-festival',
+      name: 'Saadiyat Music Festival',
+      meta: 'Abu Dhabi',
+      img: saadiyatCard.src,
+    },
+  ],
 }

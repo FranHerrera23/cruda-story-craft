@@ -19,7 +19,7 @@ import { allClients } from '@/content/clients'
    Los labels son los display-names de cada caso (persona o brand):
    son la única duplicación intencional respecto de los data files —
    cada caso decide cómo se muestra como TARGET del next, y eso puede
-   diferir del title interno (INOUT como brand vs. Germán Noël como
+   diferir del title interno (INOUT como brand vs. Germán Noel como
    persona). El oneLiner se lee del data file — sin duplicación. */
 
 type OrderEntry = {
@@ -30,7 +30,7 @@ type OrderEntry = {
 export const CASE_ORDER: readonly OrderEntry[] = [
   { slug: 'mannheim-trading', label: 'José Mannheim' },
   { slug: 'girish-sehgal', label: 'Girish Sehgal' },
-  { slug: 'inout', label: 'Germán Noël' },
+  { slug: 'inout', label: 'Germán Noel' },
   { slug: 'juan-pablo-romero', label: 'JP Romero' },
   { slug: 'mike-kaeding', label: 'Mike Kaeding' },
   { slug: 'karen-mannheim', label: 'Karen Mannheim' },

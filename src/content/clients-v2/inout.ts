@@ -73,7 +73,7 @@ export const inout: CaseStudyV2 = {
         {
           label: 'The moment',
           paragraphs: [
-            'Germán Noël had built Cristalizando into the leading glass and high-performance openings manufacturer in northern Argentina: an industrial plant, façades for hospitals and towers, contracts won on volume and price.',
+            'Germán Noel had built Cristalizando into the leading glass and high-performance openings manufacturer in northern Argentina: an industrial plant, façades for hospitals and towers, contracts won on volume and price.',
             'INOUT was the opposite. A frameless system he engineered himself — 20mm vertical profiles, insulated glass — quoted project by project, for houses that wanted the wall to disappear.',
           ],
         },
@@ -229,7 +229,7 @@ export const inout: CaseStudyV2 = {
       draft: true,
       label: 'The client',
       quote: '[Testimonio de Germán — pendiente.]',
-      attribution: 'Germán Noël — Founder, INOUT. Founder, Cristalizando',
+      attribution: 'Germán Noel — Founder, INOUT. Founder, Cristalizando',
     },
     {
       type: 'built',
@@ -251,7 +251,7 @@ export const inout: CaseStudyV2 = {
     {
       type: 'credits',
       facts: [
-        { label: 'Client', value: 'Germán Noël' },
+        { label: 'Client', value: 'Germán Noel' },
         { label: 'Moment', value: 'New entity' },
         { label: 'Years', value: '2020–2022' },
         { label: 'Team', value: 'Fran Herrera' },
@@ -262,7 +262,7 @@ export const inout: CaseStudyV2 = {
   ],
   credits: {
     facts: [
-      { label: 'Client', value: 'Germán Noël' },
+      { label: 'Client', value: 'Germán Noel' },
       { label: 'Moment', value: 'New entity' },
       { label: 'Years', value: '2020–2022' },
       { label: 'Team', value: 'Fran Herrera' },

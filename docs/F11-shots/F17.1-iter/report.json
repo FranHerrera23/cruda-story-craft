@@ -1,0 +1,24 @@
+{
+  "phase": "F17.1-iter",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/work/karen-mannheim",
+    "/"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /work/karen-mannheim @ 390 · ok",
+    "js / @ 390 · ok",
+    "nojs /work/karen-mannheim @ 390 · body text length 4290",
+    "nojs /work/karen-mannheim @ 390 · ok",
+    "nojs / @ 390 · body text length 4682",
+    "nojs / @ 390 · ok",
+    "js /work/karen-mannheim @ 1440 · ok",
+    "js / @ 1440 · ok",
+    "nojs /work/karen-mannheim @ 1440 · body text length 4290",
+    "nojs /work/karen-mannheim @ 1440 · ok",
+    "nojs / @ 1440 · body text length 4682",
+    "nojs / @ 1440 · ok"
+  ]
+}

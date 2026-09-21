@@ -89,7 +89,7 @@ Cambios:
 · Dek locked: "Nine founders. Six cities. Four countries."
 · `Wcard` interna: `<a>` cuando hay href, `<div>` cuando no.
 · Assets · Karen · Mike · Girish · José tienen imagen. Jack,
-  Saracco, Confidential, INOUT, Arman van sin `.wcard__m`
+  Noel, Confidential, INOUT, Arman van sin `.wcard__m`
   (regla §2 · asset no existe → el bloque va sin imagen).
 · `@/content/home/selected-work.ts` queda como dead code (el
   tipo `WorkCardData` sigue re-exportado desde `SelectedWork.tsx`
@@ -98,10 +98,16 @@ Cambios:
 DECISIÓN: "Confidential" en la card 07 · en el data anterior el
 name era "An on-demand fashion founder" (más largo). El prototipo
 firmado dice "Confidential" · se respeta el prototipo.
-DECISIÓN: "Germán Saracco" (proto) vs "Germán Noël" (data
-previa). Prototipo firmado gana.
 DECISIÓN: "Jack Yeager" (proto) vs "Jack Yaeger" (data previa).
 Prototipo firmado gana.
+
+DECISIÓN corregida por Fran (21-sep · post-corrida): "Germán
+Saracco" del prototipo era un error del prototipo. El nombre real
+del cliente es "Germán Noel" (sin diéresis). Regla nueva de Fran
+· única excepción a §1: en nombres propios de clientes / personas
+/ empresas, cuando repo y prototipo difieren, se PREGUNTA. No
+gana el prototipo. Fix aplicado en `Corrección de nombres · Noel`
+(commit posterior).
 
 ## F11.4 · orden · WHAT WE DO a posición 03 · ✓
 commit   (pendiente)
@@ -334,6 +340,59 @@ Rutas verificadas (18):
   /work/karen-mannheim   /work/mike-kaeding
   /work/girish-sehgal   /work/mannheim-trading
   /work/confidential-fashion-founder   /work/inout
+
+## Corrección de nombres · Noel · post-corrida · ✓
+commit   (pendiente)
+Fran (21-sep · después de la corrida): "Germán Saracco" del
+prototipo era un error. Nombre real "Germán Noel" (sin diéresis).
+
+REGLA NUEVA · única excepción a §1: en nombres propios de
+clientes, personas y empresas, cuando repo y prototipo difieren,
+NO gana el prototipo · se detiene y pregunta.
+
+Cambios:
+· `SelectedWork.tsx` · card 06 "Germán Saracco" → "Germán Noel".
+· `content/clients-v2/inout.ts` · 4 hits "Germán Noël" → "Germán Noel".
+· `content/home/selected-work.ts` · 1 hit.
+· `content/next-order.ts` · 2 hits.
+
+Checks:
+· grep repo-wide (fuera de node_modules/.next/.git): Saracco = 0,
+  Noël (con diéresis) = 0 · sólo queda en la DECISIÓN histórica
+  del log F11.3 con contexto de por qué cambió.
+· grep servido en /, /work/inout, /work/karen-mannheim, /thinking,
+  /services, /about, /contact, /llms.txt, /ai.txt, /sitemap.xml:
+  Saracco = 0, Noël = 0. "Noel" queda en / (card 06) y /work/inout.
+
+## F17.1 iter · Karen con assets reales · ✓
+commit   (pendiente)
+Fran (21-sep · post-corrida): "hero y evidencia: las fotos de
+arquitectura de PEZET que ya están en /projects/karen-mannheim/
+pezet (la torre, Karen en la pileta). Son fotos, no capturas de
+LinkedIn: se usan hoy."
+
+Cambios:
+· Hero · `src/assets/pezet-05-context-skyline.jpg` (la torre) ·
+  caption "PEZET, Lima. Architecture: Robert A.M. Stern
+  Architects."
+· Sección 1 evidencia · 3 fotos PEZET: entrance, pool interior,
+  lobby interior (aspect landscape).
+· moreFrom · dos cards: PEZET (`/projects/karen-mannheim/pezet`,
+  200) y Saadiyat Music Festival (`/projects/karen-mannheim/
+  saadiyat-music-festival`, 200). Ambas con imagen.
+
+Sigue esperando (§7 · updated):
+· Capturas LinkedIn (SPOTLIGHT) · sección 2 sin evidencia.
+· Deck / presentation system captures · sección 3 sin evidencia.
+· Forbes Perú / AD editorial captures · sección 4 sin evidencia.
+
+Checks:
+· build ok
+· hero img servido desde `/_next/static/media/pezet-05-context-*`
+· 3 imágenes de evidencia en sección 1
+· 2 moreFrom cards con href a rutas 200
+· playwright 390 + 1440 sin errores, nojs legible
+
 
 
 

@@ -166,7 +166,7 @@ export const selectedWorkCards: WorkCardData[] = [
     ],
   },
   {
-    name: 'Germán Noël',
+    name: 'Germán Noel',
     company: 'INOUT',
     location: 'Salta, Argentina',
     line: "Built one of Argentina's leading glass companies — airports, towers. Then patented a frameless sliding door and started over with it.",

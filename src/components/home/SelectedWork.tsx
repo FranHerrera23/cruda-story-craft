@@ -41,7 +41,7 @@ export type WorkCardData = {
      03 Girish Sehgal    · Hospitality · Dubai         → /work/girish-sehgal
      04 Jack Yeager      · Lighting · Midtown Miami    (sin página)
      05 José Mannheim    · Trading · Panamá City       → /work/mannheim-trading
-     06 Germán Saracco   · Architecture · Buenos Aires (sin página)
+     06 Germán Noel      · Architecture · Buenos Aires (sin página)
      07 Confidential     · Fashion · Dubai             → /work/confidential-fashion-founder
      08 INOUT            · Retail systems · Panamá City → /work/inout
      09 Arman · BAUHOME  · Residential · Jacksonville  (sin página)
@@ -91,7 +91,7 @@ const CARDS: readonly Card[] = [
     href: '/work/mannheim-trading', img: '/jose-mannheim.webp',
   },
   {
-    n: '06', name: 'Germán Saracco', meta: 'Architecture · Buenos Aires',
+    n: '06', name: 'Germán Noel', meta: 'Architecture · Buenos Aires',
     scope: 'Narrative & brand strategy · Web · Demand',
   },
   {

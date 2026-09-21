@@ -4,9 +4,11 @@ import CaseStudyLayout from '@/components/CaseStudyLayout'
 import CaseStudyLayoutV2 from '@/components/CaseStudyLayoutV2'
 import CaseComposer from '@/components/case-blocks/CaseComposer'
 import MomentIndex from '@/components/MomentIndex'
+import WorkLayout from '@/components/WorkLayout'
 import { allClients } from '@/content/clients'
 import { allClientsV2, findClientV2 } from '@/content/clients-v2'
 import { allClientsV3, findClientV3 } from '@/content/clients-v3'
+import { allWork, findWork } from '@/content/work'
 import { MOMENTS, MOMENT_LABEL, MOMENT_DESC, type Moment } from '@/content/moments'
 
 const BASE = 'https://www.thecruda.com'
@@ -32,6 +34,7 @@ function isMoment(s: string): s is Moment {
 
 export function generateStaticParams() {
   return [
+    ...allWork.map((w) => ({ slug: w.slug })),
     ...allClientsV3.map((c) => ({ slug: c.slug })),
     ...allClientsV2.map((c) => ({ slug: c.slug })),
     ...allClients.map((c) => ({ slug: c.slug })),
@@ -64,6 +67,40 @@ export async function generateMetadata(
         title: `${label} — CRUDA Work`,
         description: desc,
         images: [`${BASE}/logo.png`],
+      },
+    }
+  }
+
+  // F18.5 · content/work fuente única · gana sobre v3/v2/legacy.
+  const work = findWork(slug)
+  if (work) {
+    return {
+      title: work.metaTitle,
+      description: work.dek,
+      alternates: { canonical: `${BASE}/work/${work.slug}` },
+      openGraph: {
+        title: work.title,
+        description: work.dek,
+        url: `${BASE}/work/${work.slug}`,
+        type: 'article',
+        publishedTime: work.period.end
+          ? `${work.period.end}-12-31`
+          : undefined,
+        images: [
+          work.image
+            ? `${BASE}${work.image.startsWith('/') ? work.image : '/' + work.image}`
+            : `${BASE}/opengraph-image`,
+        ],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: work.title,
+        description: work.dek,
+        images: [
+          work.image
+            ? `${BASE}${work.image.startsWith('/') ? work.image : '/' + work.image}`
+            : `${BASE}/opengraph-image`,
+        ],
       },
     }
   }
@@ -168,7 +205,11 @@ export default async function Page(
   const { slug } = await params
   if (isMoment(slug)) return <MomentIndex moment={slug} />
 
-  // V3 primero · molde firmado F17 (Karen y siguientes casos migrados).
+  // F18.1 · content/work fuente única · gana antes que v3/v2/legacy.
+  const work = findWork(slug)
+  if (work && work.capsule.length > 0) return <WorkLayout w={work} />
+
+  // V3 · molde firmado F17.
   const v3 = findClientV3(slug)
   if (v3) return <CaseStudyLayoutV2 data={v3} />
 

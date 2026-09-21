@@ -47,3 +47,43 @@ publicado (Mike, Girish, MTC, Confidential, INOUT, JPR). Frases,
 cifras y arcos son las del sitio · si un párrafo del "before" no
 migró, se anota en F18.2.
 
+## F18.1 · WorkLayout · molde extendido W6 · ✓
+commit   (pendiente)
+checks   build ✓ · las 7 URLs `/work/*` de content/work devuelven
+200 · métricas por caso: Karen 4 proof + 3 context = 7 · chips
+Door renderizan como `<a>` a `/services#[key]` · door closers al
+pie de cada caso · Next case card presente en Karen (→ Mike) ·
+schema Article + BreadcrumbList + FAQPage
+shots    docs/F18-shots/F18.1/
+Cambios:
+· `src/content/services/doors.ts` · fuente única de precios de
+  puerta (Translated $19,500 · Transmission from $2,200/mo ·
+  Interpreted 12 weeks · from $55,000 · The Read on request).
+· `src/components/WorkLayout.tsx` · nuevo layout que consume
+  `Work` de content/work. Anatomía W6:
+    - h1 + hero + capsule + takeaways + META (Client · Where ·
+      Period · Via · Door + chips · Axis + link a #what-cruda-is
+      · Moment)
+    - CIFRAS · PRUEBA ≤4 (naranja) + CONTEXTO (ink, sin tope) ·
+      notas al pie numeradas NDS
+    - sections con blocks (image · testimonial · published · list)
+    - What we built + Observable change + credit
+    - testimonial serif black
+    - FAQ native details
+    - door closers Primary-style (chip + descriptor + precio →)
+    - Next case wcard
+    - close plane 10
+· `src/components/work-layout.css` · estilos + `.chip` componente
+  nuevo (registrado en el CSS · el design-system doc se
+  actualiza en F18.3 cuando se instancie en las cards).
+· `app/work/[slug]/page.tsx` · resolver amplía: content/work
+  gana sobre v3/v2/legacy si el caso tiene `capsule.length > 0`.
+  Metadata: `title = metaTitle`, `description = dek`,
+  `og:image = work.image` (nunca logo.png).
+
+DECISIÓN: Karen ya tenía el layout V2 (F17.1). Con F18.1 vuelve
+a renderizar con la data de `content/work/karen-mannheim.ts` (que
+incluye las 7 métricas). El V2 legacy queda para casos que sólo
+tienen data v3.
+
+

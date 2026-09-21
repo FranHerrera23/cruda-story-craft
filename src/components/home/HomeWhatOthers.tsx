@@ -66,7 +66,7 @@ export default function HomeWhatOthers() {
 
         {/* Confidential · Drapers */}
         <Item className="home-what-others__item">
-          <p className="home-what-others__slot">[ Confidential ]</p>
+          <p className="home-what-others__confidential">[ Confidential ]</p>
           <p className="home-what-others__media-label">DRAPERS</p>
           <p className="home-what-others__attribution">
             Confidential · Dubai, UAE · 2026

@@ -52,16 +52,6 @@
   text-wrap: balance;
 }
 
-.home-services__provisorio {
-  font-family: var(--grot);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: hsl(var(--signal-red));
-  margin: 0;
-}
-
 /* ═════════ ITEMS ═════════
    Cada puerta es una fila con label izquierda (140-180px) +
    body derecha. Igual al molde de OUR FOUNDER. Padding ajustado
@@ -108,10 +98,6 @@
   color: var(--ink);
   margin: 0;
   max-width: 62ch;
-  /* Slot · italic + gris mientras el copy sea propuesto. Cuando
-     Fran firme, se retira. */
-  font-style: italic;
-  opacity: .75;
 }
 
 /* ═════════ CTA ═════════ */

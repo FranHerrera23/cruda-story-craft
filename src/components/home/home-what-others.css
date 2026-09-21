@@ -73,7 +73,11 @@
   margin: 0;
 }
 
-.home-what-others__slot {
+/* H0 (21-sep) · clase renombrada de __slot a __confidential ·
+   el naming heredaba del patrón de marcadores de build que H0
+   retira. El contenido "[ Confidential ]" es copy firmado
+   (F11 §3.7 · prensa Drapers · confidencialidad del cliente). */
+.home-what-others__confidential {
   font-family: var(--grot);
   font-weight: 400;
   font-size: clamp(14px, 1vw, 16px);

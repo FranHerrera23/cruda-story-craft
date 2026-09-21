@@ -14,39 +14,45 @@ import { allEssays } from '@/content/essays'
 
 const BASE = 'https://www.thecruda.com'
 
-/* Fran directive (19-sep) · el archivo servido a los crawlers
-   de IA tenía tres problemas graves:
-   · /sports y /systems declaradas como Companies · devuelven 410
-     Gone via middleware.ts. Retiradas.
-   · /resources listada como hub · redirige 308 a /work. Retirada.
-   · Header, /work y /about con descripciones del posicionamiento
-     viejo (Ogilvy-era "three companies, one method" · nicho
-     cerrado de "Architecture & Design" · frase de /about que F9
-     §2.4 marca para reemplazo por QUÉ ES CRUDA).
+/* H0 hotfix (21-sep) · cero marcadores de build llegan a
+   producción · regla 1 del brief 21-sep.
 
-   Las descripciones corregidas quedan como slot [PENDIENTE · FRAN]
-   hasta que llegue el copy nuevo. Fran (19-sep) · "preferible un
-   /llms.txt con menos líneas que uno con líneas falsas".
+   ANTES · las tres líneas del generador tenían slots
+   [PENDIENTE · FRAN] visibles al crawler:
+     · Header  · "> [ Description · PENDIENTE · FRAN ]"
+     · About   · "[About CRUDA](/about): [ PENDIENTE · FRAN ]"
+     · Work    · "[Work](/work): [ PENDIENTE · FRAN ]"
 
-   Regla nueva del protocolo (Fran, 19-sep) · cada vez que se
-   retira o agrega una ruta del sitio, se revisan /llms.txt y
-   /ai.txt. Registrado en docs/build-incidents.md.
+   DESPUÉS:
+     · Header · usa el copy firmado en el hero de /services
+       (WHAT CRUDA IS · F9 §2.4 · misma línea idéntica en home,
+       /services y /about)
+     · About  · misma descripción firmada
+     · Work   · usa el dek firmado F5 (brief 21-sep) del
+       prototipo home-v3 · "Nine founders. Six cities. Four
+       countries." · es el copy autorizado para describir la
+       sección Selected Work y por extensión la ruta /work
 
-   F9.4 (Commit 7 · 19-sep) · nueva ruta /services · agregada al
-   hub con la descripción firmada del plano 00 (QUÉ ES CRUDA).
-   Los cuatro planos internos llegan en F9.5/F9.6 · la descripción
-   de /services se re-audita cuando eso pase.
+   Los case studies siguen listados uno por uno en
+   caseStudiesSection() (allClients) · esta línea del hub es
+   la descripción resumen que ve el crawler al conocer la ruta.
 
-   /pricing salió en commit f25ff69 (18-sep · Commit 1). */
+   Historial de rutas:
+     · /sports, /systems, /resources retiradas (19-sep)
+     · /services agregada (F9.4)
+     · /pricing borrada (Commit 1 · f25ff69)
+
+   Regla del protocolo · cada vez que se retira o agrega una
+   ruta, se revisan /llms.txt y /ai.txt. */
 
 const HEADER = `# CRUDA
 
-> [ Description · PENDIENTE · FRAN ]`
+> CRUDA is a communications company. We translate cultures into business.`
 
 const HUBS_SECTION = `## Pages
 
-- [About CRUDA](${BASE}/about): [ PENDIENTE · FRAN ]
-- [Work](${BASE}/work): [ PENDIENTE · FRAN ]
+- [About CRUDA](${BASE}/about): CRUDA is a communications company. We translate cultures into business.
+- [Work](${BASE}/work): Nine founders. Six cities. Four countries.
 - [Services](${BASE}/services): CRUDA is a communications company. We translate cultures into business.
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
 - [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.`

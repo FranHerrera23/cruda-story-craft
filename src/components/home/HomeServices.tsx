@@ -2,19 +2,20 @@ import Link from 'next/link'
 import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-services.css'
 
-/* Home · LOS SERVICIOS (F10 §11 · posición 08 · Commit 11 F10.3)
+/* Home · LOS SERVICIOS (F10 §11 · posición 08 · H0 · 21-sep)
 
-   Dispositivo A (AnchorAdvance):
+   H0 hotfix (21-sep · Fran F1):
+     · Sale la banda roja "COPY PROPUESTO · PENDIENTE FIRMA"
+     · Sale el modifier --slot / italic + opacity de las puertas
+     · El copy de las 4 puertas es el del prototipo home-v3
+       (F5 firmado) · las líneas quedan planas y en producción
+     · Estructura NO se toca acá · eso es F11.0
+
+   Dispositivo A (AnchorAdvance) · vigente hasta F11.0:
      · ANCLA · label WHAT WE DO + h-sub "Four doors. The same
-       skill, at four distances." (headline firmado F9.4 con
-       corrección · sigue en producción)
-     · ITEMS · las 4 puertas · rótulo + body
-     · CTA al fondo · link a /services
-
-   COPY PROPUESTO · brief F10 §11 · marcado provisorio. Las
-   cuatro líneas de las puertas son propuesta · CC construye
-   marcado, Fran firma o rompe. Hasta que llegue firma, cada
-   body va en italic-gris (patrón --slot). */
+       skill, at four distances."
+     · ITEMS · 4 puertas
+     · CTA al fondo · link a /services */
 
 const DOORS: ReadonlyArray<{ key: string; label: string; body: string }> = [
   {
@@ -57,9 +58,6 @@ export default function HomeServices() {
           <h2 className="home-services__headline">
             Four doors. The same skill, at four distances.
           </h2>
-          <p className="home-services__provisorio">
-            [ COPY PROPUESTO · PENDIENTE FIRMA ]
-          </p>
         </div>
       </Anchor>
 

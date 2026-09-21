@@ -3,7 +3,6 @@ import Act1Hero from '@/components/home/Act1Hero';
 import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
 import HomeLegacy from '@/components/home/HomeLegacy';
-import HomeWhoItHoldsFor from '@/components/home/HomeWhoItHoldsFor';
 import HomeWhatOthers from '@/components/home/HomeWhatOthers';
 import HomeTestimonial from '@/components/home/HomeTestimonial';
 import HomeClose from '@/components/home/HomeClose';
@@ -14,44 +13,38 @@ import { selectedWorkCards } from '@/content/home/selected-work';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). Brief F9 · Commit 7 F9.4 (19-sep).
+   CRUDA — Home (`/`). H0 hotfix · 21-sep · Fran F1.
 
-   REORDEN · F9 §2.0 + §2.4 + §2.5 · "un dispositivo por sección"
+   Orden vigente post-H0:
 
-     1.  act 1                                    NEGRO · phrase mode
-     2.  QUÉ ES CRUDA (F9 §2.4)                   PAPER · lectura
-     3.  act 2                                    PAPER · fill + crossfade
-     4.  selected-work                            PAPER
-     5.  testimonial (con LA PRUEBA merged)       NEGRO · F9 §2.7.1
-     6.  WHO IT HOLDS FOR (densidad)              PAPER · F9 §2.7.2
-     7.  WHAT OTHERS (densidad)                   PAPER · F9 §2.7.3
-     8.  OUR FOUNDER (retrato a sangre)           NEGRO · F9 §2.7.4
-     9.  LOS SERVICIOS (F9 §2.5 · propuesto)      PAPER · plano 00
-    10.  close                                    PAPER
+     1.  act 1                        NEGRO · phrase mode
+     2.  QUÉ ES CRUDA                 PAPER
+     3.  act 2                        PAPER · fill + crossfade
+     4.  selected-work                PAPER
+     5.  testimonial (con LA PRUEBA)  NEGRO
+     6.  WHAT OTHERS                  PAPER
+     7.  OUR FOUNDER                  NEGRO
+     8.  LOS SERVICIOS                PAPER
+     9.  close                        PAPER
 
-   Alternancia · negro-papel-papel-papel-negro-papel. Dos negros
-   nunca adyacentes.
+   H0 (21-sep) · Fran F1:
+     · WHO IT HOLDS FOR retirada entera de la home. El corte se
+       muda a /services (F12). Componente + CSS quedan en el
+       repo como dead code hasta F12.
+     · Bandas provisorio y modificadores --slot fuera.
+     · OUR FOUNDER · PRACTICE y THE TEAM salen (H0). Rename
+       .home-legacy__ → .home-founder__ es F11.0.
 
-   F9.4 (Commit 7, 19-sep) · dos bloques nuevos:
-     · Posición 02 · QUÉ ES CRUDA · copy FIRMADO
-     · Posición 09 · LOS SERVICIOS · copy PROPUESTO (marcado
-                     visualmente como slot italic-gris hasta firma)
-
-   Nav change · PROCESS → SERVICES (esperando firma A/B/C del
-   target del link).
-
-   Estado anterior (Commit 5 F9.3):
-     · HomeFit sale del render. HomeWhoItHoldsFor reemplaza.
-     · Proof compact absorbed por HomeTestimonial.
-     · HomeLegacy · rediseñado como OUR FOUNDER (ground negro).
+   El orden final de la home (con WHAT WE DO subiendo a posición
+   03) llega en F11.4. Hasta entonces el orden vigente se mantiene
+   con WHO IT HOLDS FOR retirada.
 
    Componentes en el repo fuera del render:
+     · HomeWhoItHoldsFor (dead code post-H0)
      · HomeFit (dead code post-Commit-5)
      · HomeTranslated (dead desde F8 §9.1)
-     · HomeFirst90 · borrado del repo en Commit 3
 
-   Dos bloques inversos por página siguen siendo la regla
-   (act 1 y testimonial). Ledger #19.
+   Dos bloques inversos por página · act 1 y testimonial.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
@@ -80,7 +73,6 @@ export default function HomePage() {
       <Act2WhyNow />
       <SelectedWork cards={selectedWorkCards} />
       <HomeTestimonial />
-      <HomeWhoItHoldsFor />
       <HomeWhatOthers />
       <HomeLegacy />
       <HomeServices />

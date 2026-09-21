@@ -88,8 +88,8 @@
   margin: 0;
 }
 
-/* Titular · propuesto · marcado visualmente como provisorio ·
-   italic + opacity (patrón slot). Cuando Fran firme, se retira. */
+/* Titular · FIRMADO por Fran, 21-sep · H0. Se retiraron el
+   italic + opacity de la fase provisoria. */
 .home-legacy__headline {
   font-family: var(--grot);
   font-weight: 500;
@@ -100,25 +100,13 @@
   margin: 0;
   max-width: 30ch;
   text-wrap: balance;
-  font-style: italic;
-  opacity: .70;
-}
-
-.home-legacy__provisorio {
-  font-family: var(--grot);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: hsl(var(--signal-red));
-  margin: 0;
 }
 
 /* ═════════ ITEMS ═════════
-   Cuatro filas de tabla, cada una un Item del dispositivo A.
-   Layout · rótulo izq (120-160px) + body al costado. Retrato
-   NO acompaña acá · queda arriba en el ancla y el body de la
-   sección arranca ancho completo debajo. */
+   Dos filas de tabla · H0 retiró PRACTICE y THE TEAM. Layout ·
+   rótulo izq (120-160px) + body al costado. Retrato NO acompaña
+   acá · queda arriba en el ancla y el body de la sección arranca
+   ancho completo debajo. */
 .home-legacy__items {
   padding: 4vh var(--pad) 15vh;
 }
@@ -161,10 +149,6 @@
   color: var(--cream);
   margin: 0;
   max-width: 60ch;
-}
-.home-legacy__row-body--slot {
-  color: color-mix(in srgb, var(--cream) 45%, transparent);
-  font-style: italic;
 }
 
 /* Crédito al pie · label del sistema. Molde Pentagram. */

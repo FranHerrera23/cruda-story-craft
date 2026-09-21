@@ -4,25 +4,27 @@ import { useEffect, useState } from 'react'
 import { AnchorAdvance, Anchor, Item } from '@/components/motion/AnchorAdvance'
 import './home-legacy.css'
 
-/* Home · OUR FOUNDER (F10 §10 · posición 07 · Commit 11 F10.3)
+/* Home · OUR FOUNDER (F10 §10 · posición 07 · H0 · 21-sep)
 
-   Dispositivo A (AnchorAdvance):
+   H0 hotfix (21-sep · Fran F1 + F2 firmadas):
+     · Sale la banda roja "TITULAR PROPUESTO · PENDIENTE FIRMA"
+     · Salen las filas PRACTICE y THE TEAM
+     · Fran firma el titular · se revierte italic + opacity, queda
+       plano
+     · Estructura del ancla NO se toca acá · eso es F11.0
+     · Rename .home-legacy__ → .home-founder__ NO se hace acá ·
+       eso es F11.0
+
+   Dispositivo A (AnchorAdvance) · vigente hasta F11.0:
      · ANCLA · retrato a sangre (borde izq desktop · banner-top
-       mobile) + label OUR FOUNDER + titular (PROVISORIO)
-     · ITEMS · 4 filas de tabla · EXPERIENCE · LEGACY · PRACTICE
-              · THE TEAM
+       mobile) + label OUR FOUNDER + titular firmado
+     · ITEMS · 2 filas · EXPERIENCE · LEGACY
      · Crédito al pie · Fran Herrera · Founder · between UAE and
        Russia
 
-   El ancla es ALTA (retrato + titular) · readingZone tiene que
-   ir bajo el ancla, no al centro. En desktop el retrato ocupa
-   40% del ancho, no altura extra · el ancla mide como el body
-   (~50vh). En mobile el retrato pasa a banner-top a sangre, el
-   ancla mide ~60vh (retrato + label + titular) · readingZone
-   distinto.
-
-   Regla Fran 20-sep · en 390 el ancla es el banner-top, más
-   baja · readingZone distinto. Detección por matchMedia. */
+   readingZone diferenciado desktop 0.72 / mobile 0.78 se mantiene.
+   Con 2 items en vez de 4 puede haber que recalibrar · si al
+   verificar los picos no llegan >0.85, ajusto y reporto. */
 
 const LEGACY_HOLDINGS = [
   'Mondelez',
@@ -35,10 +37,8 @@ const LEGACY_HOLDINGS = [
 
 const CREDIT = 'Fran Herrera · Founder · between UAE and Russia'
 
-/* Titular · propuesto, marcado provisorio en producción · brief
-   F10 §10.3. Línea de la propuesta de Stone & Us, textual.
-   Fran firma, ajusta o rompe. */
-const HEADLINE_PROVISORIO =
+/* Titular · FIRMADO por Fran, 21-sep (F2). Textual. */
+const HEADLINE =
   'You work with the founder — and with a team small enough to move.'
 
 export default function HomeLegacy() {
@@ -74,11 +74,8 @@ export default function HomeLegacy() {
           <div className="home-legacy__anchor-body">
             <p className="home-legacy__label">OUR FOUNDER</p>
             <h2 className="home-legacy__headline">
-              {HEADLINE_PROVISORIO}
+              {HEADLINE}
             </h2>
-            <p className="home-legacy__provisorio">
-              [ TITULAR PROPUESTO · PENDIENTE FIRMA ]
-            </p>
           </div>
         </div>
       </Anchor>
@@ -96,20 +93,6 @@ export default function HomeLegacy() {
           <p className="home-legacy__row-label">LEGACY</p>
           <p className="home-legacy__row-body">
             {LEGACY_HOLDINGS.join(' · ')}
-          </p>
-        </Item>
-
-        <Item className="home-legacy__row">
-          <p className="home-legacy__row-label">PRACTICE</p>
-          <p className="home-legacy__row-body home-legacy__row-body--slot">
-            [ PENDIENTE · FRAN ]
-          </p>
-        </Item>
-
-        <Item className="home-legacy__row">
-          <p className="home-legacy__row-label">THE TEAM</p>
-          <p className="home-legacy__row-body home-legacy__row-body--slot">
-            [ PENDIENTE · FRAN ]
           </p>
         </Item>
 

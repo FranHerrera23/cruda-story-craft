@@ -1,0 +1,17 @@
+{
+  "phase": "F13",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/about"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /about @ 390 · ok",
+    "nojs /about @ 390 · body text length 2831",
+    "nojs /about @ 390 · ok",
+    "js /about @ 1440 · ok",
+    "nojs /about @ 1440 · body text length 2831",
+    "nojs /about @ 1440 · ok"
+  ]
+}

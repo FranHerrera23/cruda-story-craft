@@ -1,372 +1,300 @@
-/* /about — Brief 02 (14-sep). Página de empresa que reemplaza a
-   /our-founder. La empresa es el sujeto; las personas, la prueba.
+/* /about · F13 · 21-sep · autónomo · about-v1.
+   Cada sección es un dispositivo con jerarquía propia (no planos
+   apilados). El prefix `about-` evita colisiones con las clases
+   compartidas de planes.css. */
 
-   Tokens de globals + case-study.css. Sin cargar fuentes propias.
-
-   Regla dura: un solo bloque inverso — §01. Ningún gris de texto
-   en la página. Ningún gray tint suelto. */
-
-.ab {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--grot);
-  -webkit-font-smoothing: antialiased;
+.about-sec {
+  padding: clamp(80px, 13vh, 150px) var(--gap, clamp(20px, 4.5vw, 72px));
+  position: relative;
+  background: var(--paper, #F1EFEB);
+  color: var(--ink, #0D0D0D);
 }
+.about-sec--black {
+  background: var(--black, #000);
+  color: var(--white, #FAF9F7);
+}
+.about-sec--soft {
+  background: #0A0A0A;
+}
+.about-sec--tight { padding-top: clamp(40px, 6vh, 72px); }
 
-.ab *,
-.ab *::before,
-.ab *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ═════════ Block frame ═════════
-   Cada sección va como .ab-block, con variante paper o ink. La
-   sección de close usa el mismo bloque paper con un padding-bottom
-   más chico. */
-.ab-block {
-  padding: var(--s5) 0;
-}
-/* Brief 08 §P1 · grilla técnica sobre paper. Cruza de la home
-   sin quiebre. */
-.ab-block--paper {
-  background-color: var(--paper);
-  background-image: var(--grid-bg);
-  background-size: var(--grid-size) var(--grid-size);
-  color: var(--ink);
-}
-/* Brief 08 §P5 · §01 adopta los tokens del escenario de apertura
-   (--ink-deep + --cream) más la grilla oscura. Se lee como
-   pariente del opening act de la home, no como isla negra. */
-.ab-block--ink {
-  background-color: var(--ink-deep);
-  background-image: var(--grid-bg-dark);
-  background-size: var(--grid-size) var(--grid-size);
-  color: var(--cream);
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-}
-
-/* Filete entre bloques paper — mismo lenguaje de /our-founder y
-   de home. No entre paper e ink (el corte de color es más fuerte
-   que cualquier filete). */
-.ab-block + .ab-block--paper {
-  border-top: 1px solid var(--rule);
-}
-
-.ab-inner {
-  max-width: 1600px;
-  margin-inline: 0;
-  padding: 0 var(--pad);
-  width: 100%;
-}
-
-/* ═════════ Eyebrow ═════════
-   Igual patrón que /our-founder y home: grot 13/600 upper con
-   tracking .14em. Sobre ink cambia a --paper. */
-.ab-eyebrow {
-  font-family: var(--grot);
-  font-size: 13px;
-  /* Commit 6 · 19-sep · eyebrow del sistema en 500 (era 600).
-     El 600 queda reservado para CTAs, cs-author y summary. */
+.about-eyebrow {
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: clamp(48px, 7vh, 88px);
+  color: var(--grey, #6E6B65);
 }
-.ab-eyebrow--on-ink {
-  /* Brief 08 §P5 — la crema del escenario, no paper puro. */
-  color: var(--cream);
+.on-black .about-eyebrow { color: var(--grey-dark, #8A867E); }
+
+.about-name {
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.04;
+  margin-top: 16px;
 }
+.about-name--sm { font-size: clamp(22px, 2.8vw, 36px); line-height: 1.1; }
 
-/* ═════════ Labels ═════════
-   Version más chica del eyebrow para las secciones de prosa
-   (§02, §04, §05). Mismo tratamiento que el label de inside-cruda
-   y de los case study blocks. */
-.ab-label {
-  font-family: var(--grot);
-  font-size: 14px;
-  font-weight: 400;
-  color: var(--ink);
-  margin-bottom: clamp(32px, 5vh, 56px);
-}
-
-/* ═════════ H1 (§01) ═════════
-   Grot 500, no serif. Regla lockeada — ver docs/decisions.md
-   #serif-solo-hasta-seis-palabras. El H1 tiene ocho palabras
-   ('CRUDA is a narrative practice for founder-led companies');
-   la primera versión de esta página lo puso en serif rationalizando
-   una excepción de epígrafe, y Fran lo cazó porque es la misma
-   violación que la de why-now (12 palabras) que motivó la regla.
-
-   Sin excepciones nuevas.
-
-   Regla lockeada — ver docs/decisions.md #cortes-de-titulos-display.
-   El <br/> autoral entre 'practice' y 'for founder-led companies'
-   es intencional: la primera línea nombra la cosa, la segunda la
-   cualifica. Cortes autorados en todo título display. */
-.ab-h1 {
-  font-family: var(--grot);
-  font-weight: 500;
-  /* F9.4 · 19-sep · escala ajustada para el copy firmado
-     "We translate cultures into business." · 36 chars, tiene
-     que entrar en una línea 1440/1024/768 y romper en dos en
-     390 (por el <span class="ab-nobreak"> alrededor de
-     "into business."). */
-  font-size: clamp(32px, 5vw, 68px);
-  line-height: 1.08;
-  letter-spacing: -.02em;
-  /* Brief 08 §P5 · crema, no paper. Emparejado con el escenario
-     de apertura. */
-  color: var(--cream);
-  max-width: 40ch;
-  margin: 0 0 clamp(40px, 5vh, 72px);
-  text-wrap: balance;
+.about-rule {
+  height: 2px;
+  width: 100%;
+  max-width: 560px;
+  background: var(--orange, #FF5A00);
+  margin-top: 20px;
 }
 
-/* ═════════ H2 (§03) ═════════
-   Grot 700 como el resto de los H2 del sitio (home, why-now,
-   /approach, etc.). */
-.ab-h2 {
-  font-family: var(--grot);
-  font-weight: 700;
-  font-size: clamp(28px, 3vw, 44px);
-  line-height: 1.1;
-  letter-spacing: -.02em;
-  color: var(--ink);
-  max-width: 22ch;
-  margin: 0 0 clamp(64px, 9vh, 110px);
+.about-lede {
+  font-size: clamp(15px, 1.5vw, 21px);
+  line-height: 1.4;
+  letter-spacing: -.012em;
+  max-width: 32ch;
+  margin-top: 20px;
 }
-
-/* ═════════ Lede + prose ═════════
-   62ch para la caja de lectura. Mismo tamaño y line-height que
-   home + why-now. */
-.ab-lede {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: var(--t-lead);
+.about-body {
+  font-size: clamp(13px, 1.15vw, 16px);
   line-height: 1.55;
-  color: var(--ink);
-  max-width: 62ch;
+  max-width: 60ch;
+  margin-top: 16px;
+  color: var(--grey, #6E6B65);
+}
+.on-black .about-body { color: var(--grey-dark, #8A867E); }
+
+/* 01 · Split asimétrico. */
+.about-open {
+  display: grid;
+  grid-template-columns: 48% 52%;
+  gap: 0;
+  align-items: start;
+}
+.about-open__h {
+  font-size: clamp(38px, 6.4vw, 92px);
+  font-weight: 600;
+  letter-spacing: -.04em;
+  line-height: .98;
+  max-width: 11ch;
+  padding-right: var(--gap, clamp(20px, 4.5vw, 72px));
   margin: 0;
 }
-.ab-lede--on-ink {
-  /* Brief 08 §P5 — la crema del escenario, no paper puro. */
-  color: var(--cream);
+.about-open__b {
+  padding-top: clamp(6px, 1.4vh, 18px);
 }
-
-/* ═════════ §01 · sub + distances (F9.4 · 19-sep) ═════════
-   QUÉ ES CRUDA FIRMADO · el bloque §01 se reescribe con el mismo
-   copy que home §02 (HomeWhatCrudaIs). El eyebrow WHAT CRUDA IS
-   más el sub "CRUDA is a communications company." arman la lectura
-   antes del h1 display "We translate cultures into business.".
-   Después, tres distancias como párrafos separados por regla.
-
-   Regla del hero · una-frase-por-pantalla · aplica al act 1 de
-   home. §01 de /about es de lectura estructurada, no de hero. */
-
-.ab-sub {
-  font-family: var(--grot);
-  font-weight: 500;
-  font-size: clamp(20px, 1.8vw, 26px);
-  line-height: 1.3;
+.about-open__lede {
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.42;
   letter-spacing: -.015em;
-  color: var(--ink);
-  margin: 0 0 clamp(24px, 3vh, 40px);
-  max-width: 42ch;
+  max-width: 44ch;
 }
-.ab-sub--on-ink {
-  color: var(--cream);
-}
-
-/* Nobreak · fuerza el corte de mobile antes de "into", no entre
-   "into" y "business" · idéntico a .home-wci__nobreak. */
-.ab-nobreak {
-  white-space: nowrap;
+.about-open__lede + .about-open__lede { margin-top: 1.1em; }
+@media (max-width: 900px) {
+  .about-open {
+    grid-template-columns: 1fr;
+    gap: clamp(28px, 5vh, 52px);
+  }
+  .about-open__h { max-width: none; padding-right: 0; }
 }
 
-/* Distances · tres frases separadas por regla, cada una en su
-   propia línea. Reemplazan la lede sencilla en §01. */
-.ab-distances {
+/* Celdas de dato. */
+.about-data {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(26px, 4.4vh, 54px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.on-black .about-data { border-top-color: #272727; }
+.about-data--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.about-cell { padding: 15px 22px 0 0; }
+.about-cell__l {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+}
+.on-black .about-cell__l { color: var(--grey-dark, #8A867E); }
+.about-cell__v {
+  font-size: clamp(15px, 1.45vw, 20px);
+  font-weight: 500;
+  letter-spacing: -.015em;
+  margin-top: 8px;
+  line-height: 1.25;
+}
+.about-cell__n {
+  font-size: 12px;
+  color: var(--grey, #6E6B65);
+  margin-top: 5px;
+  line-height: 1.4;
+}
+.on-black .about-cell__n { color: var(--grey-dark, #8A867E); }
+
+/* 02 · Cronología. */
+.about-chron {
+  margin-top: clamp(30px, 5vh, 58px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-crow {
+  display: grid;
+  grid-template-columns: clamp(88px, 11vw, 150px) 1fr;
+  gap: clamp(16px, 2.6vw, 48px);
+  padding: clamp(22px, 3.4vh, 38px) 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+  align-items: start;
+}
+.about-crow__d {
+  font-size: clamp(13px, 1.3vw, 17px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--orange, #FF5A00);
+  font-variant-numeric: tabular-nums;
+  position: relative;
+  padding-left: 16px;
+}
+.about-crow__d::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .42em;
+  width: 7px;
+  height: 7px;
+  background: var(--orange, #FF5A00);
+}
+.about-crow__t {
+  font-size: clamp(15px, 1.45vw, 20px);
+  line-height: 1.4;
+  letter-spacing: -.015em;
+  max-width: 46ch;
+}
+@media (max-width: 760px) {
+  .about-crow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 20px 0;
+  }
+}
+
+/* 04 · Dos capas. */
+.about-layers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  margin-top: clamp(30px, 5vh, 58px);
+  border-top: 1px solid #272727;
+}
+.about-layer {
+  padding: clamp(24px, 3.6vh, 42px) clamp(20px, 2.6vw, 48px) clamp(24px, 3.6vh, 42px) 0;
+}
+.about-layer + .about-layer {
+  border-left: 1px solid #272727;
+  padding-left: clamp(20px, 2.6vw, 48px);
+}
+.about-layer__l {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey-dark, #8A867E);
+}
+.about-layer__v {
+  font-size: clamp(19px, 2.2vw, 32px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.1;
+  margin-top: 12px;
+}
+.about-layer__v em {
+  font-style: normal;
+  color: var(--orange, #FF5A00);
+}
+.about-layer__n {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--grey-dark, #8A867E);
+  margin-top: 14px;
+  max-width: 34ch;
+}
+@media (max-width: 760px) {
+  .about-layers { grid-template-columns: 1fr; }
+  .about-layer + .about-layer {
+    border-left: 0;
+    border-top: 1px solid #272727;
+    padding-left: 0;
+  }
+}
+
+/* 05 · Who runs it · Trampa 7 resuelta.
+   La foto no manda: altura fija en vh y object-fit sobre el <img>. */
+.about-who {
+  display: grid;
+  grid-template-columns: 38% 62%;
+  gap: 0;
+  align-items: stretch;
+}
+.about-who__port {
+  position: relative;
+  background: #161616;
+  overflow: hidden;
+  height: clamp(340px, 62vh, 620px);
+  margin-left: calc(var(--gap, clamp(20px, 4.5vw, 72px)) * -1);
+}
+.about-who__port img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  display: block;
+}
+.about-who__b {
+  padding-left: clamp(24px, 3vw, 56px);
   display: flex;
   flex-direction: column;
-  max-width: 62ch;
-  margin: 0;
+  justify-content: center;
 }
-.ab-distance {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(18px, 1.4vw, 22px);
-  line-height: 1.5;
-  color: var(--ink);
-  margin: 0;
-  padding: clamp(16px, 2vh, 24px) 0;
-  border-top: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-}
-.ab-distance:last-child {
-  border-bottom: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-}
-.ab-distances--on-ink .ab-distance {
-  color: var(--cream);
-  border-top-color: color-mix(in srgb, var(--cream) 20%, transparent);
-}
-.ab-distances--on-ink .ab-distance:last-child {
-  border-bottom-color: color-mix(in srgb, var(--cream) 20%, transparent);
-}
-
-.ab-prose {
-  max-width: 62ch;
-}
-.ab-prose p {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(18px, 1.5vw, 22px);
-  line-height: 1.55;
-  color: var(--ink);
-  margin: 0;
-}
-.ab-prose p + p {
-  margin-top: clamp(16px, 2vh, 24px);
-}
-
-/* ═════════ §03 · principles rows ═════════
-   Mismo componente que .ic-row de inside-cruda. Filete al 20%,
-   grilla 1fr / 1.4fr desde 1000px. */
-.ab-principles {
-  display: block;
-}
-.ab-row {
-  border-top: 1px solid color-mix(in srgb, var(--ink) 20%, transparent);
-  padding: var(--s3) 0;
-  display: grid;
-  gap: 16px;
-}
-@media (min-width: 1000px) {
-  .ab-row {
-    grid-template-columns: 1fr 1.4fr;
-    gap: clamp(40px, 5vw, 96px);
+.about-credit { margin-top: 22px; }
+@media (max-width: 760px) {
+  .about-who { grid-template-columns: 1fr; }
+  .about-who__port {
+    margin: 0 calc(var(--gap, clamp(20px, 4.5vw, 72px)) * -1) 24px;
+    height: clamp(260px, 42vh, 380px);
   }
-}
-.ab-row__label {
-  font-family: var(--grot);
-  font-weight: 700;
-  font-size: clamp(20px, 1.6vw, 24px);
-  line-height: 1.2;
-  letter-spacing: -.012em;
-  color: var(--ink);
-  max-width: 26ch;
-}
-.ab-row__body p {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: clamp(18px, 1.5vw, 22px);
-  line-height: 1.5;
-  color: var(--ink);
-  max-width: 46ch;
-  margin: 0;
+  .about-who__b { padding-left: 0; }
 }
 
-/* ═════════ §05 · Who runs it ═════════
-   Sin retrato hoy. Cuando el retrato llegue, esta sección se
-   convierte en grilla 1 col (retrato aspect 3:4) + col 6-11
-   (bio). Hoy es una columna sola. NO se reserva altura con vh
-   para el retrato ausente. */
-.ab-who {
-  display: grid;
-  gap: clamp(24px, 4vh, 48px);
-}
-.ab-who__body {
-  max-width: 62ch;
-}
-.ab-who__name {
-  font-family: var(--grot);
-  font-weight: 700;
-  font-size: clamp(28px, 2.6vw, 40px);
-  line-height: 1.1;
-  letter-spacing: -.02em;
-  color: var(--ink);
-  margin: 0 0 6px;
-}
-.ab-who__role {
-  font-family: var(--grot);
-  font-weight: 400;
-  font-size: 14px;
-  color: var(--ink);
-  margin: 0 0 clamp(32px, 5vh, 56px);
-}
-
-/* Regla lockeada — ver docs/decisions.md #grillas-se-encienden-por-has.
-   Cuando el retrato llegue, se agrega <img class="ab-who__portrait">
-   al DOM y esta grilla enciende — dos columnas, retrato 3:4 en la
-   primera, bio en la segunda. Sin retrato el selector :has() no
-   matchea y el layout queda como una columna. Cero altura reservada,
-   cero placeholder — el hueco no se dibuja.
-
-   El mismo mecanismo va a servir para §06 · Team cuando lleguen
-   tres personas: la grilla 3-up se enciende cuando hay 3+ children
-   con .ab-team__card, no antes. */
-.ab-who:has(.ab-who__portrait) {
-  grid-template-columns: minmax(0, 1fr);
-}
-@media (min-width: 1000px) {
-  .ab-who:has(.ab-who__portrait) {
-    grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
-    gap: clamp(48px, 6vw, 96px);
-    align-items: start;
-  }
-}
-.ab-who__portrait {
-  width: 100%;
-  aspect-ratio: 3 / 4;
-  object-fit: cover;
-  display: block;
-  filter: grayscale(1);
-}
-
-/* ═════════ §07 · Close ═════════ */
-.ab-block--close {
-  padding-block: clamp(80px, 12vh, 140px);
-}
-.ab-cta-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: clamp(24px, 4vw, 40px);
-  align-items: center;
-}
-.ab-cta {
+/* Cierre. */
+.about-mail {
   display: inline-block;
-  font-family: var(--grot);
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  background: transparent;
-  padding: 0;
-  border: 0;
-  text-decoration: underline;
-  text-underline-offset: 6px;
-  text-decoration-thickness: 1px;
-  transition: opacity var(--dur-2) var(--ease);
+  margin-top: 26px;
+  font-size: clamp(18px, 2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 6px;
 }
-.ab-cta:hover,
-.ab-cta:focus-visible {
-  opacity: .7;
+.about-mail:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+.about-go {
+  display: inline-block;
+  margin-top: clamp(20px, 3.2vh, 36px);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: inherit;
+  text-decoration: none;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+}
+.about-go:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
 }
 
-/* ═════════ Mobile ═════════ */
-@media (max-width: 860px) {
-  .ab-h1 {
-    max-width: none;
-  }
-  .ab-cta-row {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .ab-cta {
-    text-align: center;
-  }
+/* Mobile · celdas. */
+@media (max-width: 760px) {
+  .about-data { grid-template-columns: 1fr; }
+  .about-cell { padding: 13px 0 0; border-top: 1px solid var(--paper-line, #D9D5CD); }
+  .about-cell:first-child { border-top: 0; }
+  .on-black .about-cell { border-top-color: #272727; }
 }

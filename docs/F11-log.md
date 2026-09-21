@@ -162,6 +162,23 @@ Cambios:
 · mix-blend-mode del prototipo NO se replica (§2). Contador
   NN/07 tampoco.
 
+## F13 · /about · about-v1 · seis secciones (no apilado) · ✓
+commit   (pendiente)
+checks   build ✓ · h1 en /about.html = 1 · markers 0 · playwright
+390 + 1440 sin errores, nojs 2831 chars legible · curl /about = 200
+shots    docs/F11-shots/F13/
+Cambios:
+· `app/about/page.tsx` reescrito contra el prototipo about-v1.
+· Seis secciones sin planos apilados: opener split · cronología
+  · principios · dos capas · quién lo corre · cierre.
+· `about.css` reescrito con prefix `about-` para no colisionar
+  con los tokens compartidos de `planes.css`.
+· Trampa 7 resuelta: `.about-who__port` con altura `clamp(340px,
+  62vh, 620px)` y `<img>` con `object-fit:cover; height:100%`.
+· `.on-black` marca las secciones oscuras · el Nav global las
+  detecta con su regla F11.2 y aplica `bar--dark`.
+
+
 
 
 

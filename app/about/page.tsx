@@ -2,48 +2,39 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import './about.css'
 
-/* /about — Brief 02 (14-sep). Reemplaza /our-founder como página
-   de empresa.
+/* /about · F13 · 21-sep · autónomo · prototipo about-v1.
 
-   Diagnóstico del brief: /our-founder tenía a Fran como sujeto y
-   a CRUDA como predicado. Esta fase invierte eso — la empresa es
-   el sujeto, las personas son la prueba, y van al final.
+   Seis secciones (NO son planos apilados · brief §2 del prototipo:
+   "ninguna sección es un plano apilado. Cada una es un dispositivo
+   con jerarquía propia y motion atado al scroll").
 
-   Estructura:
-     01 · WHAT CRUDA IS       (BLACK · único inverso de la página)
-     02 · HOW IT STARTED      (blanco · label + body)
-     03 · OPERATING PRINCIPLES (blanco · 5 filas con filete)
-     04 · HOW THE WORK IS STRUCTURED (blanco · label + body)
-     05 · WHO RUNS IT         (blanco · retrato + bio)
-     06 · THE TEAM            (especificado, no renderizado hasta 3 pers.)
-     07 · CLOSE               (blanco · dos CTAs)
+     01  Opener · split asimétrico (Pentagram /about)
+     02  How it started · cronología con 3 fechas
+     03  Operating principles · índice de 5 líneas
+     04  How the work is structured · 2 celdas opuestas
+     05  Who runs it · retrato + celdas · trampa 7 resuelta
+     06  Cierre
 
-   Copy en tercera persona. La sección `04` arranca por el hecho
-   estructural de CRUDA (execution layer machine-assisted,
-   judgment layer human) · el párrafo inicial Ogilvy-era salió en
-   Commit 3 (19-sep) por F8 §4 + F9.
+   Regla §2 · nav sigue a la superficie por color (`on-black` en
+   este archivo señala "surface oscuro"; el `Nav` global detecta
+   esta clase para pintar `.bar--dark`).
 
-   Cinco operating principles, no seis: el sexto original ('the
-   machine executes, the judgment doesn't') era el contenido de
-   'The structure', que ahora vive en §04. Se elimina la
-   duplicación.
-
-   §05 se construye sin retrato hasta que Fran lo suba. No se
-   reserva altura con `vh` — un agujero en su lugar sería peor
-   que ninguna imagen. La grilla se activa cuando `hasPortrait`
-   pase a true. */
+   Copy textual del prototipo. Los dos rótulos y notas nuevas de
+   §04 (execution / judgment layer) heredan de about-v1 y quedan
+   firmados por su presencia en el prototipo. */
 
 const BASE = 'https://www.thecruda.com'
 
+const META_DESCRIPTION =
+  'CRUDA is a communications company. We translate cultures into business.'
+
 export const metadata: Metadata = {
   title: 'About — CRUDA',
-  description:
-    'CRUDA is a communications company. We translate cultures into business.',
+  description: META_DESCRIPTION,
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
     title: 'About — CRUDA',
-    description:
-      'CRUDA is a communications company. We translate cultures into business.',
+    description: META_DESCRIPTION,
     url: `${BASE}/about`,
     type: 'website',
     images: [
@@ -53,372 +44,231 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'About — CRUDA',
-    description:
-      'CRUDA is a communications company. We translate cultures into business.',
+    description: META_DESCRIPTION,
     images: [`${BASE}/logo.png`],
   },
 }
 
-/* Person schema — Task 5 Phase A. Migrado de /our-founder a /about.
-   @id cambia a `${BASE}/about#person`. La Organization schema en
-   layout.tsx queda apuntando al nuevo @id. `alternateName` es la
-   pieza que corta la ambigüedad con el cuartetero salteño en
-   entity resolvers — 'Francisco Herrera' ahí es correcto y es el
-   único lugar del repo donde ese string se queda. */
-const PERSON_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  '@id': `${BASE}/about#person`,
-  name: 'Fran Herrera',
-  alternateName: ['Francisco Herrera', 'Francisco Fran Herrera'],
-  jobTitle: 'Founder & CEO',
-  worksFor: { '@id': `${BASE}/#organization` },
-  birthPlace: 'Salta, Argentina',
-  nationality: 'Argentine',
-  url: `${BASE}/about`,
-  image: `${BASE}/fran-herrera.png`,
-  sameAs: [
-    'https://www.linkedin.com/in/franherrera2',
-    'https://x.com/franherrera_23',
-    'https://thefranherrera.substack.com',
-    'https://www.youtube.com/@franherrera2',
-    'https://franherrera.me',
-  ],
-  knowsAbout: [
-    'Brand strategy',
-    'Narrative systems',
-    'Founder positioning',
-    'Architecture and design marketing',
-    'Influencer marketing',
-    'Public relations',
-  ],
-} as const
-
-/* Operating principles — cinco. El sexto original (machine/judgment)
-   pasó a §04 dentro del bloque 'How the work is structured'. */
-const PRINCIPLES = [
-  {
-    principle: "We don't invent a story.",
-    consequence:
-      "We remove the layers that aren't yours until what's left is the part you'd have said anyway.",
-  },
-  {
-    principle: 'We observe. We don’t prescribe.',
-    consequence:
-      'Nobody is told what to believe about their own company. We return what we see and let the founder decide.',
-  },
-  {
-    principle: 'Specific beats general.',
-    consequence:
-      'Names, numbers, places and dates. The more specific a story is, the more people recognise themselves in it.',
-  },
-  {
-    principle: 'We never sell with fear.',
-    consequence:
-      "No urgency, no scarcity, no last chance. If it isn't a fit, it isn't a fit.",
-  },
-  {
-    /* v6 F5 §5.1 (17-sep) · reemplaza "If it isn't measured, it
-       didn't happen." Ledger 24 · el número es evidencia
-       direccional, no condición de existencia. Toda cifra
-       publicada lleva fuente y período. */
-    principle: 'Data is directional at best.',
-    consequence:
-      'Some of what matters cannot be counted, and some of what gets counted does not matter. We bring the figures we have and we do not dress up the rest.',
-  },
-] as const
-
 export default function AboutPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_SCHEMA) }}
-      />
-      <div className="ab">
-        {/* ═════════ 01 · WHAT CRUDA IS ═════════ */}
-        {/* El único bloque inverso de la página. Hero-entry: se
-            encadena a la salida del loader; sin loader (segunda
-            visita o reduced motion), fallback 120ms. */}
-        <section
-          id="what-cruda-is"
-          className="ab-block ab-block--ink"
-          data-reveal-seq
-          data-hero-entry
-        >
-          <div className="ab-inner">
-            <p
-              className="ab-eyebrow ab-eyebrow--on-ink"
-              data-seq="eyebrow"
-              data-reveal="text"
-            >
-              WHAT CRUDA IS
+      {/* 01 · OPENER · split asimétrico · WHAT CRUDA IS */}
+      <section className="about-sec about-sec--black on-black" data-sec>
+        <div className="about-open">
+          <h1 className="about-open__h">
+            We translate cultures into business.
+          </h1>
+          <div className="about-open__b">
+            <p className="about-open__lede">
+              CRUDA is a communications company. High ticket, white glove,
+              one engagement at a time.
             </p>
-            {/* Copy FIRMADO · 19-sep · idéntico a home §02
-                (HomeWhatCrudaIs) y a /services plano 00. Se
-                escribe una vez y aparece en tres lugares. El
-                <span class="ab-nobreak"> alrededor de "into
-                business." fuerza el corte de mobile antes de
-                "into", no entre "into" y "business". */}
-            <p
-              className="ab-sub ab-sub--on-ink"
-              data-seq="eyebrow"
-              data-reveal="text"
-            >
-              CRUDA is a communications company.
+            <p className="about-open__lede">
+              You work with the founder — and with a team small enough to
+              move. The execution layer is machine-assisted. The judgment
+              layer is not, and is not meant to be.
             </p>
-            {/* data-reveal="text" (no "lines") — LineReveals TIRA
-                los elementos hijos que no son <br> (los reemplaza
-                al reconstruir línea por texto plano). El
-                <span class="ab-nobreak"> tiene que sobrevivir al
-                reveal. Bug LineReveals · registrar en
-                build-incidents. */}
-            <h1
-              className="ab-h1"
-              data-seq="title"
-              data-reveal="text"
-            >
-              We translate cultures{' '}
-              <span className="ab-nobreak">into business.</span>
-            </h1>
-            <div
-              className="ab-distances ab-distances--on-ink"
-              data-seq="body"
-              data-reveal="text"
-            >
-              <p className="ab-distance">
-                Between a founder and a market that never heard
-                of them.
-              </p>
-              <p className="ab-distance">
-                Between a company and its own people.
-              </p>
-              <p className="ab-distance">
-                Between capital from one part of the world and
-                the country it just landed in.
-              </p>
-            </div>
+            <Link className="about-go" href="/services">
+              See how we work →
+            </Link>
           </div>
-        </section>
-
-        {/* ═════════ 02 · HOW IT STARTED ═════════ */}
-        <section
-          id="how-it-started"
-          className="ab-block ab-block--paper"
-          data-reveal-seq
+        </div>
+        <div
+          className="about-data marks"
+          style={{ marginTop: 'clamp(48px, 8vh, 110px)' }}
         >
-          <div className="ab-inner">
-            <p
-              className="ab-label"
-              data-seq="eyebrow"
-              data-reveal="text"
-            >
-              How it started
+          <div className="about-cell mark">
+            <p className="about-cell__l">Outward</p>
+            <p className="about-cell__v">
+              Between a founder and a market that never heard of them.
             </p>
-            <div
-              className="ab-prose"
-              data-seq="body"
-              data-reveal="text"
-            >
-              <p>
-                The first client came three years before the company
-                did.
-              </p>
-              <p>
-                In early 2021, Karen Mannheim hired Fran Herrera
-                through an agency where TRAZZO was one of the
-                accounts. The work outlasted the agency and ran for
-                five years.
-              </p>
-              <p>
-                CRUDA was registered in February 2024, the same month
-                Norhart restructured and the in-house job ended. The
-                practice already existed. What changed was the name on
-                it.
-              </p>
-            </div>
           </div>
-        </section>
-
-        {/* ═════════ 03 · OPERATING PRINCIPLES ═════════ */}
-        {/* Cinco filas con filete al 20%. Mismo componente de
-            inside-cruda de la home. Cada fila: principio a la izq,
-            consecuencia a la der. */}
-        <section
-          id="operating-principles"
-          className="ab-block ab-block--paper"
-          data-reveal-seq
-        >
-          <div className="ab-inner">
-            <p
-              className="ab-eyebrow"
-              data-seq="eyebrow"
-              data-reveal="text"
-            >
-              Operating principles
+          <div className="about-cell mark">
+            <p className="about-cell__l">Inward</p>
+            <p className="about-cell__v">
+              Between a company and its own people.
             </p>
-            <h2
-              className="ab-h2"
-              data-seq="title"
-              data-reveal="lines"
+          </div>
+          <div className="about-cell mark">
+            <p className="about-cell__l">Across</p>
+            <p className="about-cell__v">
+              Between capital from one part of the world and the country it
+              just landed in.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 02 · HOW IT STARTED */}
+      <section className="about-sec" data-sec>
+        <p className="about-eyebrow">How it started</p>
+        <h2 className="about-name">
+          The first client came three years before the company did.
+        </h2>
+        <div className="about-rule" />
+        <div className="about-chron marks">
+          <div className="about-crow mark">
+            <p className="about-crow__d">Early 2021</p>
+            <p className="about-crow__t">
+              Karen Mannheim hired Fran Herrera through an agency where
+              TRAZZO was one of the accounts.
+            </p>
+          </div>
+          <div className="about-crow mark">
+            <p className="about-crow__d">2021 — 2026</p>
+            <p className="about-crow__t">
+              The work outlasted the agency and ran for five years.
+            </p>
+          </div>
+          <div className="about-crow mark">
+            <p className="about-crow__d">February 2024</p>
+            <p className="about-crow__t">
+              CRUDA was registered, the same month Norhart restructured and
+              the in-house job ended. The practice already existed. What
+              changed was the name on it.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 03 · OPERATING PRINCIPLES */}
+      <section className="about-sec about-sec--black on-black" data-sec>
+        <p className="about-eyebrow">Operating principles</p>
+        <h2 className="about-name">How the work is done.</h2>
+        <div className="about-rule" />
+        <div
+          className="about-chron marks"
+          style={{ borderTopColor: '#272727' }}
+        >
+          {[
+            {
+              n: '01',
+              t: "We don't invent a story. We remove the layers that aren't yours until what's left is the part you'd have said anyway.",
+            },
+            {
+              n: '02',
+              t: "We observe. We don't prescribe. Nobody is told what to believe about their own company. We return what we see and let the founder decide.",
+            },
+            {
+              n: '03',
+              t: 'Specific beats general. Names, numbers, places and dates. The more specific a story is, the more people recognise themselves in it.',
+            },
+            {
+              n: '04',
+              t: "We never sell with fear. No urgency, no scarcity, no last chance. If it isn't a fit, it isn't a fit.",
+            },
+            {
+              n: '05',
+              t: 'Data is directional at best. Some of what matters cannot be counted, and some of what gets counted does not matter. We bring the figures we have and we do not dress up the rest.',
+            },
+          ].map(row => (
+            <div
+              key={row.n}
+              className="about-crow mark"
+              style={{ borderBottomColor: '#272727' }}
             >
-              How the work is done.
+              <p className="about-crow__d">{row.n}</p>
+              <p className="about-crow__t">{row.t}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 04 · HOW THE WORK IS STRUCTURED · dos capas */}
+      <section
+        className="about-sec about-sec--black on-black about-sec--soft"
+        data-sec
+      >
+        <p className="about-eyebrow">How the work is structured</p>
+        <h2 className="about-name about-name--sm">
+          The system handles volume. The decisions do not scale, and are not
+          meant to.
+        </h2>
+        <div className="about-rule" />
+        <div className="about-layers marks">
+          <div className="about-layer mark">
+            <p className="about-layer__l">The execution layer</p>
+            <p className="about-layer__v">
+              <em>Machine-assisted.</em>
+            </p>
+            <p className="about-layer__n">
+              Volume, cadence, format. What can be systematised, is.
+            </p>
+          </div>
+          <div className="about-layer mark">
+            <p className="about-layer__l">The judgment layer</p>
+            <p className="about-layer__v">Not.</p>
+            <p className="about-layer__n">
+              What is worth saying, what is true, what gets cut. That stays
+              with a person.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* 05 · WHO RUNS IT */}
+      <section className="about-sec about-sec--black on-black" data-sec>
+        <div className="about-who">
+          <div className="about-who__port" aria-hidden="true">
+            <img src="/fran-herrera.webp" alt="" loading="lazy" />
+          </div>
+          <div className="about-who__b">
+            <p className="about-eyebrow">Who runs it</p>
+            <h2 className="about-name about-name--sm">
+              You work with the founder — and with a team small enough to
+              move.
             </h2>
-            <div className="ab-principles" data-seq="body" data-reveal="text">
-              {PRINCIPLES.map((row, i) => (
-                <div key={i} className="ab-row">
-                  <div className="ab-row__label">{row.principle}</div>
-                  <div className="ab-row__body">
-                    <p>{row.consequence}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ═════════ 04 · HOW THE WORK IS STRUCTURED ═════════ */}
-        {/* Fran, 14-sep: 'arrancando por el hecho de CRUDA y no por
-            la descalificación de la competencia'. El opener antiguo
-            ('Most firms sell you a senior...') queda anulado. `The
-            structure` fact migra desde la home (Brief 04 §4.2). */}
-        <section
-          id="how-structured"
-          className="ab-block ab-block--paper"
-          data-reveal-seq
-        >
-          <div className="ab-inner">
-            <p
-              className="ab-label"
-              data-seq="eyebrow"
-              data-reveal="text"
-            >
-              How the work is structured
-            </p>
-            <div
-              className="ab-prose"
-              data-seq="body"
-              data-reveal="text"
-            >
-              {/* Retirado (Commit 3 · 19-sep) · el párrafo inicial
-                  con el posicionamiento Ogilvy-era salió · F8 §4 lo
-                  flageó, F9 lo confirma como retiro sin decisión
-                  pendiente. La sección arranca ahora por el segundo
-                  párrafo (execution layer machine-assisted). */}
-              <p>
-                That is only possible because the execution layer is
-                machine-assisted and the judgment layer is not. The
-                system handles volume. The decisions &mdash; what is
-                worth saying, what is true, what gets cut &mdash; do
-                not scale and are not meant to.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* ═════════ 05 · WHO RUNS IT ═════════ */}
-        {/* El retrato de Fran no existe todavía (Fran, 14-sep).
-            La sección se construye igual y sale sin imagen hasta
-            que él lo suba. NO SE RESERVA ALTURA CON vh —regla
-            lockeada— porque un agujero es peor que sin imagen. */}
-        <section
-          id="who-runs-it"
-          className="ab-block ab-block--paper"
-          data-reveal-seq
-        >
-          <div className="ab-inner ab-who">
-            <p
-              className="ab-label"
-              data-seq="eyebrow"
-              data-reveal="text"
-            >
-              Who runs it
-            </p>
-            <div className="ab-who__body">
-              {/* v6 F5 §5.3 · el retrato entra en el bloque Who
-                  runs it. El CSS ya soporta el :has(.ab-who__portrait)
-                  encendiendo grilla 2-col. Fran encontrado en
-                  /public/fran-herrera.webp (grep de F4.2 · el mismo
-                  archivo que consume el bloque LEGACY de la home). */}
-              <img
-                className="ab-who__portrait"
-                src="/fran-herrera.webp"
-                alt="Fran Herrera"
-              />
-              <h3
-                className="ab-who__name"
-                data-seq="title"
-                data-reveal="lines"
-              >
-                Fran Herrera
-              </h3>
-              {/* v6 F5 §5.5 · corrección de contexto · "Founder ·
-                  Abu Dhabi" → "Founder · Between UAE and Russia". */}
-              <p className="ab-who__role">
-                Founder &middot; Between UAE and Russia
-              </p>
-              <div
-                className="ab-prose"
-                data-seq="body"
-                data-reveal="text"
-              >
-                {/* v6 F5 §5.5 · lista de clientes alineada con la
-                    LEGACY de la home. TikTok, Oreo, Brahma, PedidosYa,
-                    Purina retirados · Mondelez, AB InBev, Delivery
-                    Hero, Nestlé, TikTok y UN según brief. */}
-                <p>
-                  Ten years building brands across three continents,
-                  in-house and on the agency side, on accounts for
-                  Mondelez, AB InBev, Delivery Hero, Nestlé and
-                  TikTok. Direct work for the United Nations. Born in
-                  Salta, in the north of Argentina.
+            <div className="about-rule" />
+            <div className="about-data about-data--2">
+              <div className="about-cell">
+                <p className="about-cell__l">Experience</p>
+                <p className="about-cell__v">
+                  Ten years building brands across three continents, in-house
+                  and agency side.
                 </p>
-                <p>
-                  CRUDA is what that experience looks like pointed at
-                  one kind of client.
+                <p className="about-cell__n">
+                  Born in Salta, in the north of Argentina
+                </p>
+              </div>
+              <div className="about-cell">
+                <p className="about-cell__l">Legacy</p>
+                <p className="about-cell__v">
+                  Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok ·
+                  United Nations
+                </p>
+                <p className="about-cell__n">
+                  Direct work for the United Nations
                 </p>
               </div>
             </div>
+            <p className="about-cell__n about-credit">
+              Fran Herrera · Founder · between UAE and Russia
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/*
-          ═════════ 06 · THE TEAM ═════════
-          Especificado, no renderizado.
-
-          El retrato de Fran en §05 ocupa una columna exacta de la
-          grilla, con aspect 3:4. Cuando haya tres personas, esta
-          sección se enciende como grilla 3-up y lo único que cambia
-          es que el epígrafe pasa de estar al costado a estar debajo.
-          Ninguna medida de §05 se toca cuando eso pase.
-
-          No renderizar una grilla de 3-4 con una sola card — ese es
-          exactamente el bug de la home donde Jack Yaeger sin foto
-          rompía el renglón. Se enciende cuando hay 3+.
-        */}
-
-        {/* ═════════ 07 · CLOSE ═════════ */}
-        <section
-          id="close"
-          className="ab-block ab-block--paper ab-block--close"
-          data-reveal-seq
-        >
-          <div className="ab-inner">
-            <div
-              className="ab-cta-row"
-              data-seq="body"
-              data-reveal="text"
-            >
-              <Link href="/#selected-work" className="ab-cta">
-                See the work
-              </Link>
-              <Link href="/contact" className="ab-cta">
-                Start a conversation
-              </Link>
-            </div>
-          </div>
-        </section>
-      </div>
+      {/* 06 · CIERRE */}
+      <section className="about-sec" data-sec>
+        <p className="about-eyebrow">Start here</p>
+        <h2 className="about-name">One conversation.</h2>
+        <div className="about-rule" />
+        <p className="about-lede">
+          We ask what you are actually trying to do, and what the market
+          currently believes about you.
+        </p>
+        <p className="about-body">
+          If those two things are the same, you do not need us. If they are
+          not, that gap is the work.
+        </p>
+        <Link className="about-mail" href="/contact">
+          Start a conversation
+        </Link>
+        <br />
+        <Link className="about-go" href="/#selected-work">
+          See the work →
+        </Link>
+      </section>
     </>
   )
 }

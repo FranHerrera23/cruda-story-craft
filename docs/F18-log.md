@@ -259,6 +259,26 @@ Cambios:
 · `place.city` / `place.country` siguen en `Work` (schema y
   cards los usan).
 
+## Enmienda 6 + Enmienda 5 + Enmienda 7 · aplicadas · commit `65d5458`
+Grep local (post-commit, contra `http://localhost:3000`):
+  · Nine founders                                  · 0 ✓
+  · Narrative & brand strategy · Web · Demand      · 0 ✓
+  · Retail systems                                 · 0 ✓
+  · between UAE                                    · 0 ✓
+  · KMLS                                           · 0 ✓
+  · one engagement                                 · 0 ✓
+  · Narrative for founder-led                      · 0 ✓
+  · Selected work.                                 · 1 ✓
+  · Book the call                                  · 1 ✓
+  · Fees cover our work · /services 1 · caso Karen 1 · llms.txt 1 ✓
+  · born in Salta, Argentina                       · 1 ✓
+  · $19,500                                        · 1 ✓
+Pendientes locales:
+  · Four doors. · 1 en home + 1 en /services · brief pide 0 · falta
+    Enmienda 2 (A2–A12) para el copy nuevo.
+  · No pitch. No placement. · 1 en home · idem · Enmienda 2 no
+    llegó a este entorno.
+
 ## F18.10 · Contact corto + Calendly · saltado · ✓
 commit   —
 CALENDLY_URL vacío en el header del brief. Per instrucción

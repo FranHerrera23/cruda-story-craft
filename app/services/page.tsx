@@ -86,7 +86,7 @@ export default function ServicesPage() {
         </section>
 
         {/* 02 · TRANSLATED · paper */}
-        <section className="plane plane--paper" data-plane>
+        <section className="plane plane--paper" data-plane id="translated">
           <div className="plane__in">
             <p className="eyebrow">01 · Building the system</p>
             <h2 className="name">Translated</h2>
@@ -124,7 +124,7 @@ export default function ServicesPage() {
         </section>
 
         {/* 03 · TRANSMISSION · negro */}
-        <section className="plane plane--black" data-plane>
+        <section className="plane plane--black" data-plane id="transmission">
           <div className="plane__in">
             <p className="eyebrow">02 · Running the system</p>
             <h2 className="name">Transmission</h2>
@@ -151,7 +151,7 @@ export default function ServicesPage() {
         </section>
 
         {/* 04 · INTERPRETED · paper */}
-        <section className="plane plane--paper" data-plane>
+        <section className="plane plane--paper" data-plane id="interpreted">
           <div className="plane__in">
             <p className="eyebrow">03 · Two cultures, one room</p>
             <h2 className="name">Interpreted</h2>
@@ -191,7 +191,7 @@ export default function ServicesPage() {
         </section>
 
         {/* 05 · THE READ · negro */}
-        <section className="plane plane--black" data-plane>
+        <section className="plane plane--black" data-plane id="read">
           <div className="plane__in">
             <p className="eyebrow">04 · Judgment, once</p>
             <h2 className="name">The Read</h2>

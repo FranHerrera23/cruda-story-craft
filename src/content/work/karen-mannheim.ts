@@ -35,6 +35,8 @@ export const karenMannheim: Work = {
   moment: 'market-entry',
 
   image: pezetHero.src,
+  /* La card usa la torre de PEZET (F17.1-iter). El hero interno del
+     caso también · el mismo asset se sirve como imagen destacada. */
   proof: {
     type: 'metric',
     value: '605,050',

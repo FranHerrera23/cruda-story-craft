@@ -17,6 +17,7 @@ export const mannheimTrading: Work = {
   axis: 'across',
   moment: 'new-entity',
 
+  image: '/jose-mannheim.webp',
   proof: {
     type: 'change',
     text: 'A founder who publishes under his own name, at eighty.',

@@ -17,6 +17,7 @@ export const mikeKaeding: Work = {
   axis: 'outward',
   moment: 'category-shift',
 
+  image: '/mike-kaeding.webp',
   proof: {
     type: 'metric',
     value: '2M',

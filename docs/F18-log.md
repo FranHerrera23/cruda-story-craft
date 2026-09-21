@@ -86,4 +86,49 @@ a renderizar con la data de `content/work/karen-mannheim.ts` (que
 incluye las 7 métricas). El V2 legacy queda para casos que sólo
 tienen data v3.
 
+## F18.2 · migrar cada caso al molde · absorbido por F18.1 · ✓
+commit   —
+Todas las URLs `/work/*` se migran al molde en un movimiento
+estructural: el resolver de `/work/[slug]` prefiere
+`content/work` sobre v3/v2/legacy. Cada URL sigue en 200 y
+renderiza con WorkLayout. Los diffs before/after quedan en
+`docs/F18-before/*.md` para referencia — el after es lo que
+la data de content/work encapsula.
+
+Ninguna URL cambió · las páginas legacy siguen en `app/work/[slug]
+/page.tsx` como fallback si un slug no tiene `capsule` en
+`content/work`.
+
+DECISIÓN: no se hace un commit por caso porque la migración es un
+único cambio estructural. Cualquier ajuste de contenido futuro
+edita el archivo de datos, no la página.
+
+## F18.3 · SELECTED WORK · cards Pentagram + prueba · ✓
+commit   (pendiente)
+checks   build ✓ · titular calculado: "Eight founders. Seven
+cities. Four countries." · 4 imaged cards con distribución W5
+(Karen ×2 + Mike + Girish + José ×2) · 4 filas en índice
+(INOUT · Confidential · Jack · Arman) · chips: 4 Translated · 2
+Transmission · 1 Interpreted · door anchors en /services:
+translated / transmission / interpreted / read
+shots    docs/F18-shots/F18.3/
+Cambios:
+· `SelectedWork.tsx` reescrito · consume `selectedWork` de
+  content/work. Titular calculado. Cards Pentagram (aspect 3/2,
+  sin ordinal, sin flecha, chips FUERA del `<a>` de la card).
+  Prueba atada por card (metric o change).
+· `selected-work.css` · grilla Pentagram (col-gap 10 · row-gap
+  72), .wcell--x2 span 2, hover W5 (imagen marcada scale 1.03,
+  demás imágenes .34, texto siempre al 100%), índice inferior
+  con .irow-wrap para casos sin imagen que sí tienen página.
+· Imágenes de card: Karen · pezet-05-context-skyline (la torre);
+  Mike · /mike-kaeding.webp; Girish · /girish-sehgal.webp;
+  José · /jose-mannheim.webp. INOUT / Confidential / Jack /
+  Arman sin imagen → índice.
+· `/services` · anchors id="translated", id="transmission",
+  id="interpreted", id="read" en cada plano. Los chips de las
+  cards y de los case studies apuntan y hacen scroll.
+
+
+
 

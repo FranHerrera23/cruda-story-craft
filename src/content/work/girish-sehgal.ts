@@ -21,6 +21,7 @@ export const girishSehgal: Work = {
   axis: 'outward',
   moment: 'category-shift',
 
+  image: '/girish-sehgal.webp',
   proof: {
     type: 'metric',
     value: '368',

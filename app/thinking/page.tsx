@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ThinkingFilters from './ThinkingFilters'
+import WorkCard from '@/components/home/WorkCard'
+import { selectedWorkCards } from '@/content/home/selected-work'
 import { allEssays } from '@/content/essays'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import type { Resource, ResourceCompany } from '@/content/resources'
+import '@/components/home/work-card.css'
+import '@/components/home/selected-work.css'
 import './thinking.css'
 
 /* /thinking · F14b.1 · 21-sep · autónomo · prototipo thinking-v1.
@@ -47,16 +51,10 @@ const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
 
-const CASE_STUDIES: Array<{
-  n: string
-  name: string
-  meta: string
-  href: string
-}> = [
-  { n: '01', name: 'Karen Mannheim', meta: 'TRAZZO Lighting · Lima → Miami', href: '/work/karen-mannheim' },
-  { n: '02', name: 'Mike Kaeding',   meta: 'Norhart · Multifamily · Minneapolis', href: '/work/mike-kaeding' },
-  { n: '03', name: 'Girish Sehgal',  meta: 'Hospitality · Dubai', href: '/work/girish-sehgal' },
-]
+/* F19-C.3 · Case studies section usa las MISMAS cards de SELECTED
+   WORK (Parte B). Se filtran las que tienen `href` (caso con
+   página propia). Girish · Abu Dhabi ya se corrigió en la data. */
+const CASE_STUDY_CARDS = selectedWorkCards.filter(c => !!c.href)
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
@@ -105,32 +103,33 @@ export default function ThinkingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · split asimétrico */}
+      {/* 01 · OPENER · F19-C · una columna · rótulo + h1 + regla + lede.
+          El h1 usa el mismo token que el h1 de /services. La regla
+          naranja es la ÚNICA de la página. */}
       <section className="thinking-open">
-        <h1 className="thinking-open__h">Thinking</h1>
-        <div className="thinking-open__b">
-          <p className="thinking-open__lede">
-            Pieces on narrative, brand, and the founders who build them.
-            Written for people who have to make decisions, not for people
-            who write about them.
-          </p>
-        </div>
+        <p className="thinking-eyebrow">Thinking</p>
+        <h1 className="thinking-h1">Thinking</h1>
+        <div className="thinking-h1-rule" />
+        <p className="thinking-lede">
+          Pieces on narrative, brand, and the founders who build them.
+          Written for people who have to make decisions, not for people
+          who write about them.
+        </p>
       </section>
 
       {/* 02 · FILTROS */}
       <ThinkingFilters
-        hasCases={CASE_STUDIES.length > 0}
+        hasCases={CASE_STUDY_CARDS.length > 0}
         hasPodcasts={true}
       />
 
-      {/* 03 · ARTICLES · molde WHAT WE DO */}
+      {/* 03 · ARTICLES · F19-C · sin regla naranja bajo el h2. */}
       <section className="thinking-sec" data-sec="article">
         <div className="thinking-sec__hd">
           <p className="eyebrow">Articles</p>
           <span className="thinking-sec__n" data-n />
         </div>
-        <h2 className="thinking-name">What we are thinking about.</h2>
-        <div className="thinking-rule" />
+        <h2 className="thinking-h2">What we are thinking about.</h2>
         <div className="thinking-index marks">
           {ARTICLES.map((e, i) => {
             const alt = e.alternates
@@ -178,30 +177,23 @@ export default function ThinkingPage() {
         </div>
       </section>
 
-      {/* 04 · CASE STUDIES · molde SELECTED WORK */}
+      {/* 04 · CASE STUDIES · F19-C.3 · mismas cards que SELECTED WORK.
+          Sin regla naranja bajo el h2. */}
       <section className="thinking-sec" data-sec="case">
         <div className="thinking-sec__hd">
           <p className="eyebrow">Case studies</p>
           <span className="thinking-sec__n" data-n />
         </div>
-        <h2 className="thinking-name">The work, and what it moved.</h2>
-        <div className="thinking-rule" />
-        <div className="thinking-wgrid marks">
-          {CASE_STUDIES.map(c => (
-            <Link
-              key={c.n}
-              className="thinking-wcard mark"
-              href={c.href}
-              data-lang="en"
-              aria-label={c.name}
-            >
-              <div className="thinking-wcard__hd">
-                <span className="thinking-wcard__o">{c.n}</span>
-                <span className="thinking-wcard__go" aria-hidden="true">↗</span>
-              </div>
-              <h3 className="thinking-wcard__n">{c.name}</h3>
-              <p className="thinking-wcard__d">{c.meta}</p>
-            </Link>
+        <h2 className="thinking-h2">The work, and what it moved.</h2>
+        <div className="work-grid" data-work-grid>
+          {CASE_STUDY_CARDS.map((card, i) => (
+            <div key={card.href ?? card.name} data-lang="en">
+              <WorkCard
+                {...card}
+                ordinal={String(i + 1).padStart(2, '0')}
+                revealIndex={Math.min(i, 5)}
+              />
+            </div>
           ))}
         </div>
       </section>
@@ -212,8 +204,7 @@ export default function ThinkingPage() {
           <p className="eyebrow">Podcasts</p>
           <span className="thinking-sec__n" data-n />
         </div>
-        <h2 className="thinking-name">Conversations.</h2>
-        <div className="thinking-rule" />
+        <h2 className="thinking-h2">Conversations.</h2>
         {/* F18.8 · sin caja gris/negra · card de TEXTO. */}
         <div className="thinking-podcast marks">
           <Link

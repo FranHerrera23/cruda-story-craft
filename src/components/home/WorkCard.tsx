@@ -115,17 +115,14 @@ export default function WorkCard({
       <p className="work-card__company">{company}</p>
       <p className="work-card__location">{location}</p>
       <p className="work-card__line">{line}</p>
-      {/* v6 §1 · scope block. En reposo opacity 0 pero reserva
-          altura (calculada sobre Karen · 5 superficies + 1 constante).
-          En hover entra con transición 400ms. En touch va siempre
-          visible (media query en el CSS). Separador y niveles de
-          opacidad se controlan por CSS. */}
-      <div className="work-card__scope" aria-label="Scope">
-        <div className="work-card__scope-constant">{scope[0]}</div>
-        <div className="work-card__scope-surfaces">
-          {scope.slice(1).join(' · ')}
+      {/* F19-B.2 · tercera línea = servicio · si vacía, se oculta. */}
+      {scope.length > 0 && (
+        <div className="work-card__scope" aria-label="Service">
+          <div className="work-card__scope-surfaces">
+            {scope.join(' · ')}
+          </div>
         </div>
-      </div>
+      )}
     </>
   )
 

@@ -13,29 +13,40 @@
   color: var(--grey, #6E6B65);
 }
 
-/* 01 · Opener · split asimétrico */
+/* 01 · Opener · F19-C · una columna · rótulo + h1 + regla + lede.
+   El h1 usa el mismo token que /services (`.name` clamp 26/3.6/48).
+   La regla naranja de 2px es la ÚNICA de la página. */
 .thinking-open {
   padding: clamp(110px, 16vh, 170px) var(--gap, clamp(20px, 4.5vw, 72px)) clamp(40px, 6vh, 72px);
-  display: grid;
-  grid-template-columns: 48% 52%;
-  align-items: end;
 }
-.thinking-open__h {
-  font-size: clamp(44px, 7.4vw, 108px);
-  font-weight: 600;
-  letter-spacing: -.045em;
-  line-height: .95;
+.thinking-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
   margin: 0;
 }
-.thinking-open__b { padding-left: clamp(0px, 1vw, 16px); }
-.thinking-open__lede {
+.thinking-h1 {
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.04;
+  margin: 16px 0 0;
+}
+.thinking-h1-rule {
+  height: 2px;
+  width: 100%;
+  max-width: 560px;
+  background: var(--orange, #FF5A00);
+  margin: 20px 0 0;
+}
+.thinking-lede {
   font-size: clamp(16px, 1.6vw, 22px);
   line-height: 1.42;
   letter-spacing: -.015em;
-  max-width: 40ch;
-}
-@media (max-width: 900px) {
-  .thinking-open { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+  max-width: 60ch;
+  margin-top: 20px;
 }
 
 /* 02 · Filtros · sticky bajo la nav (56px) */
@@ -121,19 +132,16 @@
   color: var(--grey, #6E6B65);
   font-variant-numeric: tabular-nums;
 }
-.thinking-name {
-  font-size: clamp(26px, 3.6vw, 48px);
+/* F19-C · h2 de sección · más chico que el h1 · SIN regla naranja.
+   scroll-margin-top = alto de nav (56) + filtros (~60) para que los
+   h2 no queden tapados al anclar. */
+.thinking-h2 {
+  font-size: clamp(22px, 2.8vw, 36px);
   font-weight: 600;
-  letter-spacing: -.03em;
-  line-height: 1.04;
-  margin-top: 16px;
-}
-.thinking-rule {
-  height: 2px;
-  width: 100%;
-  max-width: 560px;
-  background: var(--orange, #FF5A00);
-  margin-top: 20px;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+  margin: 16px 0 0;
+  scroll-margin-top: 132px;
 }
 
 /* Articles · molde WHAT WE DO. */

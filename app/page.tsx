@@ -2,10 +2,7 @@ import type { Metadata } from 'next';
 import Act1Hero from '@/components/home/Act1Hero';
 import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
-/* F11.3 · SelectedWork es Server Component sin datos externos.
-   Los 9 casos viven inline en el componente. La ex-fuente
-   `@/content/home/selected-work.ts` queda como dead code hasta
-   cleanup posterior. */
+import { selectedWorkCards } from '@/content/home/selected-work';
 import HomeLegacy from '@/components/home/HomeLegacy';
 import HomeWhatOthers from '@/components/home/HomeWhatOthers';
 import HomeKarenQuote from '@/components/home/HomeKarenQuote';
@@ -67,7 +64,7 @@ export default function HomePage() {
         <HomeWhatCrudaIs />
         <Act2WhyNow />
         <HomeServices />
-        <SelectedWork />
+        <SelectedWork cards={selectedWorkCards} />
         <HomeKarenQuote />
         <HomeKarenProof />
         <HomeWhatOthers />

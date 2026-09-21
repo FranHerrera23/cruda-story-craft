@@ -168,6 +168,27 @@ DECISIÓN: /, /services, /about, /thinking siguen con la misma
 descripción site-wide. §7 · "titles y meta description · quedan
 los actuales" · las que quiera personalizar Fran las pasa.
 
+## F18.6 · nav siempre visible + opaca · ✓
+commit   (pendiente)
+checks   build ✓ · sin `hide-on-scroll` (clase `away` retirada) ·
+`.bar` bg `--paper` opaco, `.bar--dark` bg `--black` opaco ·
+hairline 1px ink 8% / white 12% · barTheme detecta `on-black`,
+`about-sec--black`, `contact-sec--black` · playwright /about:
+opener negro → bar dark · paper → bar paper · principios negro
+→ bar dark · dos capas negro → bar dark
+Cambios:
+· `Nav.tsx` · retira el useEffect de hide-on-scroll y el toggle
+  `away`. `background` siempre presente: `--paper` por default,
+  `--black` cuando `bar--dark`. Hairline abajo.
+· barTheme incluye `on-black` (genérico) y las clases
+  `about-sec--black` / `contact-sec--black` — mata el bug de
+  /about y /contact donde el contenido se veía debajo del logo.
+
+DECISIÓN: sin acceso a pentagram.com desde este entorno para
+medir. Se toma el default del brief (siempre visible, fondo opaco,
+hairline abajo, sin transparencia intermedia).
+
+
 
 
 

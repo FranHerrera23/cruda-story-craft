@@ -36,7 +36,6 @@ const NAV_ITEMS = [
 export default function Nav() {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [away, setAway] = useState(false)
   const [ready, setReady] = useState(false)
   const [dark, setDark] = useState(false)
 
@@ -48,33 +47,6 @@ export default function Nav() {
     setReady(true)
   }, [])
 
-  /* Hide-on-scroll-down. Comportamiento heredado. */
-  useEffect(() => {
-    const HIDE_AFTER = 80
-    const DELTA_MIN = 12
-    let last = window.scrollY
-    let ticking = false
-    const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        const y = window.scrollY
-        const delta = y - last
-        if (Math.abs(delta) < DELTA_MIN) {
-          ticking = false
-          return
-        }
-        if (y <= HIDE_AFTER) setAway(false)
-        else if (delta > 0) setAway(true)
-        else setAway(false)
-        last = y
-        ticking = false
-      })
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
   /* barTheme · qué hay debajo de la nav. La nav está fija encima,
      así que `elementFromPoint` la devolvería a ella. En vez de eso
      buscamos entre todos los planos y secciones etiquetadas cuál
@@ -84,8 +56,25 @@ export default function Nav() {
   useEffect(() => {
     let raf = 0
     let tick = false
-    const DARK = ['plane--black', 'hero', 'act1', 'note']
-    const PAPER = ['plane--paper', 'act2', 'home-work']
+    /* F18.6 · qué superficie es oscura. `on-black` es el marcador
+       genérico que usan /about y /contact. Se detecta primero. */
+    const DARK = [
+      'on-black',
+      'plane--black',
+      'hero',
+      'act1',
+      'note',
+      'about-sec--black',
+      'contact-sec--black',
+      'cs-quote',
+    ]
+    const PAPER = [
+      'plane--paper',
+      'act2',
+      'home-work',
+      'about-sec',
+      'contact-sec',
+    ]
     const decide = () => {
       const probeY = 24
       const probeX = window.innerWidth - 24
@@ -131,10 +120,10 @@ export default function Nav() {
     }
   }, [])
 
+  /* F18.6 · siempre visible, siempre opaca. Sin hide-on-scroll. */
   const navClass = [
     'cruda-global-nav bar',
     dark ? 'bar--dark' : '',
-    away && !mobileOpen ? 'away' : '',
     ready ? 'ready' : '',
   ]
     .filter(Boolean)
@@ -205,22 +194,20 @@ export default function Nav() {
           left: 0;
           right: 0;
           z-index: 110;
-          /* F11.2 · fondo + color siguen a la superficie. Sin borde
-             ni franja para no marcar el corte entre planos. */
-          background: transparent;
+          /* F18.6 · fondo OPACO según superficie; nunca transparente.
+             Hairline abajo · el contenido nunca se ve por debajo. */
+          background: var(--paper, #F1EFEB);
           color: var(--ink, #0D0D0D);
-          border-bottom: 0;
-          transform: translateY(0);
+          border-bottom: 1px solid rgba(13, 13, 13, .08);
           transition:
-            transform var(--dur-3, 500ms) var(--ease, cubic-bezier(.16,1,.3,1)),
-            color 260ms cubic-bezier(.16,1,.3,1);
-          will-change: transform;
+            background 260ms cubic-bezier(.16,1,.3,1),
+            color 260ms cubic-bezier(.16,1,.3,1),
+            border-color 260ms cubic-bezier(.16,1,.3,1);
         }
         .cruda-global-nav.bar.bar--dark {
+          background: var(--black, #000);
           color: var(--white, #FAF9F7);
-        }
-        .cruda-global-nav.away {
-          transform: translateY(-100%);
+          border-bottom-color: rgba(255, 255, 255, .12);
         }
         .cruda-global-nav-in {
           max-width: 1600px;

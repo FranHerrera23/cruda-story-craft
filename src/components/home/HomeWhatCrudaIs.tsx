@@ -28,20 +28,20 @@ export default function HomeWhatCrudaIs() {
           <div className="rule" />
           <p className="lede">CRUDA is a communications company.</p>
         </div>
-        <div className="data">
-          <div className="cell">
+        <div className="data marks">
+          <div className="cell mark">
             <p className="cell__l">Outward</p>
             <p className="cell__v">
               Between a founder and a market that never heard of them.
             </p>
           </div>
-          <div className="cell">
+          <div className="cell mark">
             <p className="cell__l">Inward</p>
             <p className="cell__v">
               Between a company and its own people.
             </p>
           </div>
-          <div className="cell">
+          <div className="cell mark">
             <p className="cell__l">Across</p>
             <p className="cell__v">
               Between capital from one part of the world and the country

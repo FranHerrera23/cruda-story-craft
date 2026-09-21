@@ -113,6 +113,25 @@ shots    docs/F11-shots/F11.4/
 Cambio único: `HomeServices` sube justo después de `Act2WhyNow`
 y antes de `SelectedWork` en `app/page.tsx`.
 
+## F11.5 · el gesto de hover en todas las superficies · ✓
+commit   (pendiente)
+checks   build ✓ · curl / | grep 'marks?' → 3 contenedores + 9
+mark items · playwright 390 + 1440 sin errores, nojs 4683 chars
+legible · las dos superficies con gesto propio (SELECTED WORK y
+WHAT OTHERS) ya lo traían y siguen intactas
+shots    docs/F11-shots/F11.5/
+Cambios:
+· `planes.css` recibe el sistema `.marks / .mark / .mark::before`
+  del prototipo. Hover en el contenedor apaga los otros a .34;
+  hovered vuelve a 1 y estrena una regla naranja de 2px (barrido
+  550ms). Cero desplazamiento de layout.
+· `HomeWhatCrudaIs` · `.data.marks` con 3 `.cell.mark`.
+· `HomeServices` · `.index.marks` con 4 `.irow.mark`.
+· `HomeLegacy` · `.data.marks` con 2 `.cell.mark`.
+Cinco superficies con el gesto: WHAT CRUDA IS · WHAT WE DO ·
+SELECTED WORK · WHAT OTHERS · OUR FOUNDER.
+
+
 
 
 

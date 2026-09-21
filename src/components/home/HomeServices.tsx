@@ -61,12 +61,12 @@ export default function HomeServices() {
           </p>
           <div className="rule" />
         </div>
-        <div className="index">
+        <div className="index marks">
           {DOORS.map(door => (
             <Link
               key={door.key}
               href="/services"
-              className="irow"
+              className="irow mark"
             >
               <span className="irow__o">{door.n}</span>
               <span className="irow__n">{door.label}</span>

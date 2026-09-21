@@ -50,15 +50,15 @@ export default function HomeLegacy() {
               {HEADLINE}
             </h2>
             <div className="rule" />
-            <div className="data data--2">
-              <div className="cell">
+            <div className="data data--2 marks">
+              <div className="cell mark">
                 <p className="cell__l">Experience</p>
                 <p className="cell__v">
                   Ten years building brands across three continents,
                   in-house and agency side.
                 </p>
               </div>
-              <div className="cell">
+              <div className="cell mark">
                 <p className="cell__l">Legacy</p>
                 <p className="cell__v">{LEGACY_HOLDINGS.join(' · ')}</p>
               </div>

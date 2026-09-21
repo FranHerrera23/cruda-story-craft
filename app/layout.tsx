@@ -57,17 +57,19 @@ try {
 document.documentElement.className += ' js';
 `.trim();
 
-/* Brief v2 Task 5 — Organization schema site-wide.
+/* Organization schema site-wide · F16.2 · 21-sep · autónomo.
    Emitido en el root layout, dentro del <head>. Todas las páginas
    heredan la referencia por @id.
 
-   foundingDate: "2024-02" — regla dura del brief. La LinkedIn company
-   page está desalineada (dice 2023). Un dato inconsistente entre
-   fuentes es lo que un entity resolver marca como conflicto.
+   foundingDate: "2024-02" · regla dura del brief.
 
-   sameAs: cuentas corporativas de CRUDA. LinkedIn confirmada; X e
-   Instagram con placeholder ({handle}) hasta que Fran confirme
-   handles reales. */
+   sameAs: VACÍO (brief §2 F16.2 + §7). Fran entrega las URLs
+   confirmadas de LinkedIn / X / Instagram · hasta que lleguen,
+   el array queda vacío para no publicar handles no verificados.
+   El campo se conserva en el objeto para que la forma del schema
+   no cambie cuando Fran las agregue. */
+const ORG_SAMEAS: readonly string[] = []
+
 const ORG_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -77,9 +79,7 @@ const ORG_SCHEMA = {
   logo: 'https://www.thecruda.com/logo.png',
   foundingDate: '2024-02',
   founder: { '@id': 'https://www.thecruda.com/about#person' },
-  sameAs: [
-    'https://www.linkedin.com/company/thecrudaspace',
-  ],
+  sameAs: ORG_SAMEAS,
 } as const
 
 /* Instrument Serif — display face de las páginas-declaración (home,

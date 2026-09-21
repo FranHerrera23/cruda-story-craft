@@ -243,6 +243,20 @@ prototipo. Los slots faltantes de "título", "capsule",
 renderizan en estado upcoming (regla §2 · sin slots sin dato
 real).
 
+## F16.2 · schema + metadata · sameAs VACÍO · ✓
+commit   (pendiente)
+checks   build ✓ · sameAs = [] en Organization schema · JSON-LD
+válido en /, /services, /work/karen-mannheim (parseado con node
+JSON.parse sin errores) · playwright 390 + 1440 sin errores en
+las tres rutas · titles y meta descriptions quedan como estaban
+(§7 esperando a Fran)
+shots    docs/F11-shots/F16.2/
+Cambio único: `sameAs: []` en `app/layout.tsx` (antes tenía la
+URL de LinkedIn). Brief §7 "sameAs del schema · URLs de LinkedIn"
+= item que espera a Fran. La forma del objeto se conserva para
+que agregar handles no rompa entity resolvers.
+
+
 
 
 

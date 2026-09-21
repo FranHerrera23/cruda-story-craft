@@ -1,0 +1,36 @@
+{
+  "phase": "F16.2",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/",
+    "/services",
+    "/work/karen-mannheim"
+  ],
+  "ok": false,
+  "errors": [
+    "390 js: Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "390 nojs: Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "1440 js: Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "1440 nojs: Failed to load resource: the server responded with a status of 400 (Bad Request)"
+  ],
+  "summary": [
+    "js / @ 390 · ok",
+    "js /services @ 390 · ok",
+    "js /work/karen-mannheim @ 390 · ok",
+    "nojs / @ 390 · body text length 4685",
+    "nojs / @ 390 · ok",
+    "nojs /services @ 390 · body text length 2230",
+    "nojs /services @ 390 · ok",
+    "nojs /work/karen-mannheim @ 390 · body text length 4254",
+    "nojs /work/karen-mannheim @ 390 · ok",
+    "js / @ 1440 · ok",
+    "js /services @ 1440 · ok",
+    "js /work/karen-mannheim @ 1440 · ok",
+    "nojs / @ 1440 · body text length 4685",
+    "nojs / @ 1440 · ok",
+    "nojs /services @ 1440 · body text length 2230",
+    "nojs /services @ 1440 · ok",
+    "nojs /work/karen-mannheim @ 1440 · body text length 4254",
+    "nojs /work/karen-mannheim @ 1440 · ok"
+  ]
+}

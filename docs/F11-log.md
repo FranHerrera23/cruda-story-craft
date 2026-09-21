@@ -307,6 +307,35 @@ DECISIÓN: `evidence: []` en cada una de las 4 secciones · los
 assets reales de PEZET / Porsche / Saadiyat / SPOTLIGHT / Deck /
 Forbes esperan (§7). Regla §2: sin asset, sin bloque.
 
+## F16.4 · verificación final de todo el sitio · ✓
+commit   (pendiente)
+checks   build ✓ · grep de markers PENDIENTE · PROPUESTO ·
+RETRATO · slot · `"[ ` en .next/server/app/**/*.html → 0 · h1
+count = 1 en /, /about, /contact, /services, /thinking · nested
+`<a>` = 0 · playwright 390 + 1440 sin errores en las 6 rutas
+principales · las 18 rutas del inventario devuelven 200 o
+301/308, nunca 404
+shots    docs/F11-shots/F16.4/
+Fix único: `MikeTestimonial.tsx` retornaba `[ testimonial ·
+pending copy ]` visible cuando `quote` era undefined —
+disparaba el grep `"[ ` en /process.html. Se cambia a `return
+null` mientras no haya quote (regla §2 · sin dato real, no
+renderiza). El bloque va a aparecer cuando Fran pase el copy.
+
+Ripple: `mike-testimonial--pending` modifier queda sin uso en
+CSS · se conserva para no incrustar el retiro en este pass.
+
+Rutas verificadas (18):
+  /   /services   /about   /contact   /thinking
+  /thinking/steve-walls   /process   /essays (308)
+  /essays/third-place (308)
+  /clients/karen-mannheim (308)   /resources (308)
+  /resources/essays (308)
+  /work/karen-mannheim   /work/mike-kaeding
+  /work/girish-sehgal   /work/mannheim-trading
+  /work/confidential-fashion-founder   /work/inout
+
+
 
 
 

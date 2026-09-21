@@ -93,11 +93,13 @@ const nextConfig = {
       },
 
       // ============ Resources hub retirado (D3) ============
-      // El hub /resources se colapsa. La ruta apunta a /work — un buyer
-      // que llega desde un link viejo debería ver el work, no un hub.
+      // El hub /resources se colapsa. Apunta DIRECTO al ancla de la
+      // home. Antes iba a /work y /work a su vez redirige a
+      // /#selected-work: cadena · viola la regla "NO CHAINS".
+      // Fix Hallazgo #2 F16.0 (Fran, 21-sep).
       {
         source: '/resources',
-        destination: '/work',
+        destination: '/#selected-work',
         permanent: true,
       },
 

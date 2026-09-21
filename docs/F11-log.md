@@ -194,6 +194,29 @@ Cambios:
 · Copy textual del prototipo. Línea vieja "We do not ask about
   revenue, industry or geography" fuera (contradecía Q04).
 
+## F14b.1 · /thinking · rutas + página · redirects invertidos · ✓
+commit   (pendiente)
+checks   build ✓ · /thinking → 200 · /essays → 308 (UN salto → /thinking 200, sin loop) · /resources/essays → 308 UN salto · /essays/third-place → 308 UN salto · /thinking/third-place → 200 · playwright 390 + 1440 sin errores, nojs 1057 chars legible
+shots    docs/F11-shots/F14b.1/
+Cambios:
+· `app/essays` renombrado a `app/thinking` (move de ambos
+  `page.tsx` y `[slug]/page.tsx`).
+· `app/thinking/page.tsx` reescrito contra thinking-v1 (opener
+  split + filtros type/language + Articles + Case studies). Sin
+  sección Podcasts (F14b.2 la agrega junto al episodio).
+· `app/thinking/[slug]/page.tsx` conserva la lógica de essays
+  pero con canonical y schema apuntando a `/thinking/`.
+· `next.config.mjs` invierte los redirects: `/essays` →
+  `/thinking`, `/essays/:slug` → `/thinking/:slug`, `/resources/
+  essays` → `/thinking`. Cero cadenas (ex 301 /thinking → /essays
+  y /resources/essays → /essays fueron retirados).
+· Sitemap · `/essays` → `/thinking`, essay URLs a `/thinking/{slug}`.
+· `EssayLayout.tsx` schema y back-link a `/thinking`.
+· `resources/index.ts` `href` a `/thinking/{slug}`.
+· `SiteFooter.tsx` "Essays" → "Thinking".
+· `llms-txt.ts` URLs a /thinking/.
+
+
 
 
 

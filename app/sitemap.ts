@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE}/essays`,
+      url: `${BASE}/thinking`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -90,9 +90,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Karen sub-projects retirados del sitemap — cada page.tsx
     // declara robots.index:false y no corresponde re-invitarlos
     // al crawl desde acá (ver comentario superior).
-    // Essays
+    // Thinking · F14b.1
     ...allEssays.map((e) => ({
-      url: `${BASE}/essays/${e.slug}`,
+      url: `${BASE}/thinking/${e.slug}`,
       lastModified: new Date(e.updatedAt || e.publishedAt),
       changeFrequency: 'monthly' as const,
       priority: 0.7,
@@ -114,8 +114,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
        - /sports, /systems (410, retiradas)
        - /architecture-design/* (301 → /work | /about)
        - /our-founder (301 → /about, Brief 02 · 14-sep)
-       - /resources/* (301 → /work | /essays)
-       - /thinking/*, /clients/* (301 legacy)
+       - /resources/* (301 → /work | /thinking)
+       - /essays, /essays/*, /clients/* (301 legacy · F14b.1)
        - /deck, /crudasports/sfh (privadas, noindex a nivel meta)
        - /projects/karen-mannheim/* (privadas, noindex a nivel meta) */
   ];

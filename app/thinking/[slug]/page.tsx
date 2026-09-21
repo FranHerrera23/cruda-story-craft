@@ -5,33 +5,34 @@ import { allEssays } from '@/content/essays'
 
 const BASE = 'https://www.thecruda.com'
 
-/* Brief v2 D3 — ruta canónica del ensayo. /thinking/[slug] y
-   /resources/essays/[slug] redirigen aquí 308 (sin cadenas).
-   Canonical + hreflang absolute URLs sobre /essays/. */
+/* /thinking/[slug] · F14b.1 · 21-sep · autónomo.
+   Canónica del artículo. /essays/[slug] y /resources/essays/[slug]
+   redirigen acá 308 (sin cadenas). Canonical + hreflang absolute
+   URLs sobre /thinking/. */
 
 export function generateStaticParams() {
-  return allEssays.map((e) => ({ slug: e.slug }))
+  return allEssays.map(e => ({ slug: e.slug }))
 }
 
 export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
+  { params }: { params: Promise<{ slug: string }> },
 ): Promise<Metadata> {
   const { slug } = await params
-  const es = allEssays.find((e) => e.slug === slug)
+  const es = allEssays.find(e => e.slug === slug)
   if (!es) return {}
   const modified = es.updatedAt || es.publishedAt
   const locale = es.language === 'es' ? 'es_ES' : 'en_US'
   const headTitle = es.seoTitle ?? es.title
   const languages: Record<string, string> = {}
   if (es.alternates?.es) {
-    languages['es'] = `${BASE}/essays/${es.alternates.es}`
+    languages['es'] = `${BASE}/thinking/${es.alternates.es}`
   }
   if (es.alternates?.en) {
-    languages['en'] = `${BASE}/essays/${es.alternates.en}`
-    languages['x-default'] = `${BASE}/essays/${es.alternates.en}`
+    languages['en'] = `${BASE}/thinking/${es.alternates.en}`
+    languages['x-default'] = `${BASE}/thinking/${es.alternates.en}`
   }
   const alternates: NonNullable<Metadata['alternates']> = {
-    canonical: `${BASE}/essays/${es.slug}`,
+    canonical: `${BASE}/thinking/${es.slug}`,
   }
   if (Object.keys(languages).length > 0) {
     alternates.languages = languages
@@ -43,7 +44,7 @@ export async function generateMetadata(
     openGraph: {
       title: headTitle,
       description: es.answerCapsule,
-      url: `${BASE}/essays/${es.slug}`,
+      url: `${BASE}/thinking/${es.slug}`,
       type: 'article',
       publishedTime: es.publishedAt,
       modifiedTime: modified,
@@ -59,11 +60,11 @@ export async function generateMetadata(
   }
 }
 
-export default async function EssayPage(
-  { params }: { params: Promise<{ slug: string }> }
+export default async function ThinkingSlugPage(
+  { params }: { params: Promise<{ slug: string }> },
 ) {
   const { slug } = await params
-  const es = allEssays.find((e) => e.slug === slug)
+  const es = allEssays.find(e => e.slug === slug)
   if (!es) notFound()
   return <EssayLayout es={es} />
 }

@@ -1,0 +1,17 @@
+{
+  "phase": "F14b.1",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/thinking"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /thinking @ 390 · ok",
+    "nojs /thinking @ 390 · body text length 1057",
+    "nojs /thinking @ 390 · ok",
+    "js /thinking @ 1440 · ok",
+    "nojs /thinking @ 1440 · body text length 1057",
+    "nojs /thinking @ 1440 · ok"
+  ]
+}

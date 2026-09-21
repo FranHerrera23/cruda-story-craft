@@ -93,13 +93,13 @@ const ESSAY_COMPANY: Record<string, ResourceCompany> = {
   'third-place': 'cruda',
 }
 
-/* Brief v2 Task 2 + D3 — rutas canónicas planas:
-     Essays → /essays/{slug}
+/* F14b.1 · 21-sep · autónomo · rutas canónicas planas:
+     Articles → /thinking/{slug}
      Case studies → /work/{slug}
    Los slugs de la carpeta content no cambian. */
 const essayResources: Resource[] = allEssays.map((e) => ({
   slug: e.slug,
-  href: `/essays/${e.slug}`,
+  href: `/thinking/${e.slug}`,
   title: e.title,
   excerpt: e.answerCapsule,
   kind: e.contentType === 'Conversation' ? 'conversation' : 'essay',

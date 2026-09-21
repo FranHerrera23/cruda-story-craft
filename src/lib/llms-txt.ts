@@ -84,7 +84,7 @@ function essaysSection(): string {
   )
   const rows = sorted
     .map((e) => {
-      const url = `${BASE}/essays/${e.slug}`
+      const url = `${BASE}/thinking/${e.slug}`
       const langTag = e.language === 'es' ? ' [ES]' : ''
       return `- [${e.title}${langTag}](${url}): ${oneLine(e.answerCapsule)}`
     })

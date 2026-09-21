@@ -106,7 +106,7 @@ function schema(es: Essay) {
   const graph: unknown[] = [
     {
       '@type': 'Article',
-      '@id': `${base}/essays/${es.slug}#article`,
+      '@id': `${base}/thinking/${es.slug}#article`,
       /* Brief v13 T2.1 — headline = keyword literal (seoTitle) para
          que AI y buscadores lo indexen bien; alternativeHeadline =
          H1 humano. */
@@ -134,7 +134,7 @@ function schema(es: Essay) {
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${base}/essays/${es.slug}`,
+        '@id': `${base}/thinking/${es.slug}`,
       },
     },
     {
@@ -150,7 +150,7 @@ function schema(es: Essay) {
   if (es.faqs && es.faqs.length > 0) {
     graph.push({
       '@type': 'FAQPage',
-      '@id': `${base}/essays/${es.slug}#faq`,
+      '@id': `${base}/thinking/${es.slug}#faq`,
       mainEntity: es.faqs.map((f) => ({
         '@type': 'Question',
         name: f.q,
@@ -165,7 +165,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
   const showUpdated = es.updatedAt !== '' && es.updatedAt !== es.publishedAt
   const lang = es.language ?? 'en'
   const dateLocale = lang === 'es' ? 'es-ES' : 'en-US'
-  const backLabel = lang === 'es' ? '← Recursos' : '← Resources'
+  const backLabel = lang === 'es' ? '← Thinking' : '← Thinking'
   const updatedLabel = lang === 'es' ? 'Actualizado' : 'Updated'
   const readingLabel = lang === 'es' ? 'min de lectura' : 'min read'
   const questionsLabel = lang === 'es' ? 'Preguntas' : 'Questions'
@@ -187,7 +187,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
         {/* B5.3 — hero: breadcrumb → fecha → H1 → byline → hero image.
             Cero chips de categoría en la página de pieza. */}
         <header className="e-head">
-          <Link href="/essays" className="mono e-back">
+          <Link href="/thinking" className="mono e-back">
             {backLabel}
           </Link>
           <p className="e-date mono">

@@ -69,26 +69,28 @@ const nextConfig = {
         permanent: true,
       },
 
-      // ============ Essays → /essays/{slug} (D3) ============
-      // /thinking/* iba a /resources/essays. Sin cadenas — directo a /essays.
+      // ============ Thinking · F14b.1 · 21-sep · autónomo ============
+      // /thinking pasa a ser la página canónica (antes redirigía a
+      // /essays). Se invierten los redirects: cualquier URL vieja
+      // apunta directo a /thinking, sin cadenas.
       {
-        source: '/thinking',
-        destination: '/essays',
+        source: '/essays',
+        destination: '/thinking',
         permanent: true,
       },
       {
-        source: '/thinking/:slug',
-        destination: '/essays/:slug',
+        source: '/essays/:slug',
+        destination: '/thinking/:slug',
         permanent: true,
       },
       {
         source: '/resources/essays',
-        destination: '/essays',
+        destination: '/thinking',
         permanent: true,
       },
       {
         source: '/resources/essays/:slug',
-        destination: '/essays/:slug',
+        destination: '/thinking/:slug',
         permanent: true,
       },
 

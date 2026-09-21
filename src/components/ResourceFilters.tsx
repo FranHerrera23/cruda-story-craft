@@ -77,7 +77,7 @@ const FORMAT_LINKS: Array<{
 }> = [
   { kind: 'all', href: '/work', scope: 'all' },
   { kind: 'case-study', href: '/work', scope: 'case-studies' },
-  { kind: 'essay', href: '/essays', scope: 'essays' },
+  { kind: 'essay', href: '/thinking', scope: 'essays' },
 ]
 
 export default function ResourceFilters({
@@ -103,7 +103,7 @@ export default function ResourceFilters({
 
   const basePath = useMemo(() => {
     if (scope === 'case-studies') return '/work'
-    if (scope === 'essays') return '/essays'
+    if (scope === 'essays') return '/thinking'
     return '/work'
   }, [scope])
 

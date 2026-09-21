@@ -1,0 +1,17 @@
+{
+  "phase": "F11.a",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js / @ 390 · ok",
+    "nojs / @ 390 · body text length 5826",
+    "nojs / @ 390 · ok",
+    "js / @ 1440 · ok",
+    "nojs / @ 1440 · body text length 5826",
+    "nojs / @ 1440 · ok"
+  ]
+}

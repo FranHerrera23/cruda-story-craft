@@ -29,3 +29,18 @@ DECISIÓN: /public/fran-herrera.webp existe → el retrato de
 OUR FOUNDER se conserva (Trampa 7 preventiva: object-fit:cover
 con height:100% sobre grid stretch).
 
+## F11.a · #act2 a Archivo 400 · ✓
+commit   (pendiente)
+checks   build ✓ · serif en home chunks = 1 (sólo `.home-karen-quote .quote`) · playwright 390 + 1440 ok, sin errores de consola, nojs 5826 chars legible
+shots    docs/F11-shots/F11.a/
+Cambio: `.act2 .beat .dim,.act2 .beat .lit` pasa de `font-family:
+var(--serif)` a Archivo 400. Todo lo demás (weight, clamp, color)
+se conserva. La serif queda reservada al testimonio de Karen.
+
+DECISIÓN: translation-in-practice.css sigue usando `--serif` pero
+el componente `TranslationInPractice` no se importa desde
+`app/page.tsx` (dead code desde F8 §9.1). Su CSS no se incluye en
+los chunks de la home. Se retirará cuando el componente muera
+oficialmente en un cleanup posterior.
+
+

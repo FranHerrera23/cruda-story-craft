@@ -204,7 +204,11 @@
 }
 .act2 .beat .dim,
 .act2 .beat .lit {
-  font-family: var(--serif);
+  /* F11.a · 21-sep · autónomo · #act2 a Archivo 400.
+     Brief §2: la serif queda reservada al testimonio de Karen.
+     El peso 400 se conserva y el clamp también — el cambio es
+     sólo la familia. */
+  font-family: var(--font-archivo), 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
   font-size: clamp(26px, 3.4vw, 46px);
   line-height: 1.15;

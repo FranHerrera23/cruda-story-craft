@@ -1,14 +1,11 @@
-/* /contact · F14a · 21-sep · autónomo · contact-v1. */
+/* /contact · F19-D · redesign W4.
+   Una sola superficie paper. Sin plane negro, sin filtro de
+   5 filas, sin celdas Length/Cost/What we ask. */
 
-.contact-sec {
-  padding: clamp(80px, 13vh, 150px) var(--gap, clamp(20px, 4.5vw, 72px));
-  position: relative;
+.contact {
   background: var(--paper, #F1EFEB);
   color: var(--ink, #0D0D0D);
-}
-.contact-sec--black {
-  background: var(--black, #000);
-  color: var(--white, #FAF9F7);
+  padding-bottom: clamp(64px, 12vh, 128px);
 }
 
 .contact-eyebrow {
@@ -17,222 +14,177 @@
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--grey, #6E6B65);
+  margin: 0;
 }
-.on-black .contact-eyebrow { color: var(--grey-dark, #8A867E); }
 
-.contact-name {
+.contact-hero {
+  padding: clamp(110px, 16vh, 170px) var(--gap, clamp(20px, 4.5vw, 72px)) clamp(40px, 6vh, 72px);
+}
+.contact-h1 {
   font-size: clamp(26px, 3.6vw, 48px);
   font-weight: 600;
   letter-spacing: -.03em;
   line-height: 1.04;
-  margin-top: 16px;
+  margin: 16px 0 0;
 }
-.contact-name--sm { font-size: clamp(22px, 2.8vw, 36px); line-height: 1.1; }
-
-.contact-rule {
+.contact-h1-rule {
   height: 2px;
   width: 100%;
   max-width: 560px;
   background: var(--orange, #FF5A00);
-  margin-top: 20px;
+  margin: 20px 0 0;
 }
-
 .contact-lede {
-  font-size: clamp(15px, 1.5vw, 21px);
-  line-height: 1.4;
-  letter-spacing: -.012em;
-  max-width: 34ch;
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.42;
+  letter-spacing: -.015em;
+  max-width: 60ch;
   margin-top: 20px;
+  color: var(--ink, #0D0D0D);
 }
-.contact-body {
-  font-size: clamp(13px, 1.15vw, 16px);
-  line-height: 1.55;
-  max-width: 58ch;
-  margin-top: 16px;
-  color: var(--grey, #6E6B65);
-}
-.on-black .contact-body { color: var(--grey-dark, #8A867E); }
 
-.contact-data {
+.contact-body {
+  padding: clamp(24px, 4vh, 48px) var(--gap, clamp(20px, 4.5vw, 72px)) 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  margin-top: clamp(26px, 4.4vh, 54px);
-  border-top: 1px solid #272727;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 6vw, 72px);
 }
-.contact-cell { padding: 15px 22px 0 0; }
-.contact-cell__l {
+.contact-body--split {
+  grid-template-columns: 1fr 1fr;
+}
+
+.contact-col__label {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--grey-dark, #8A867E);
-}
-.contact-cell__v {
-  font-size: clamp(15px, 1.45vw, 20px);
-  font-weight: 500;
-  letter-spacing: -.015em;
-  margin-top: 8px;
-  line-height: 1.25;
-}
-.contact-cell__n {
-  font-size: 12px;
-  color: var(--grey-dark, #8A867E);
-  margin-top: 5px;
-  line-height: 1.4;
+  color: var(--grey, #6E6B65);
+  margin: 0 0 clamp(16px, 2vh, 24px);
+  padding-top: clamp(12px, 2vh, 20px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
 }
 
-/* Filtro · el mismo índice del sitio. Cero cajas con borde+radio. */
-.q {
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-  margin-top: clamp(24px, 3.6vh, 44px);
+/* Calendly · sólo cuando CALENDLY_URL está seteado. */
+.contact-calendly {
+  min-height: 700px;
+  background: var(--paper, #F1EFEB);
 }
-.qrow {
-  display: grid;
-  grid-template-columns: clamp(30px, 3.4vw, 46px) minmax(0, 15ch) 1fr;
-  gap: clamp(12px, 1.8vw, 28px);
-  padding: clamp(15px, 2.1vh, 24px) 0;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-  align-items: baseline;
+.contact-calendly iframe {
+  width: 100%;
+  min-height: 700px;
+  border: 0;
+  background: var(--paper, #F1EFEB);
 }
-.qrow__o {
+.contact-fallback {
+  display: inline-block;
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  border-bottom: 2px solid currentColor;
+  padding-bottom: 4px;
+}
+
+/* Formulario · inputs subrayados, sin caja. */
+.contact-form {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+}
+.contact-body:not(.contact-body--split) .contact-col--form {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 560px;
+}
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+}
+.contact-field__l {
   font-size: 10px;
   font-weight: 500;
   letter-spacing: .14em;
-  color: var(--orange, #FF5A00);
-}
-.qrow__q {
-  font-size: clamp(14px, 1.2vw, 17px);
-  font-weight: 600;
-  letter-spacing: -.02em;
-  line-height: 1.3;
-}
-.opts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 20px;
-}
-.opt {
-  position: relative;
-  font-size: clamp(14px, 1.2vw, 17px);
-  line-height: 1.35;
+  text-transform: uppercase;
   color: var(--grey, #6E6B65);
-  background: none;
-  border: 0;
-  padding: 1px 0 4px;
-  cursor: pointer;
-  font-family: inherit;
-  text-align: left;
-  transition: color .35s cubic-bezier(.16, 1, .3, 1);
 }
-.opt::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: var(--orange, #FF5A00);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s cubic-bezier(.16, 1, .3, 1);
-}
-.opt:hover { color: var(--ink, #0D0D0D); }
-.opt[aria-pressed='true'] {
-  color: var(--ink, #0D0D0D);
-  font-weight: 500;
-}
-.opt[aria-pressed='true']::after { transform: scaleX(1); }
-.opt:focus-visible {
-  outline: 2px solid var(--orange, #FF5A00);
-  outline-offset: 4px;
-}
-
-.inp {
+.contact-input {
   width: 100%;
-  max-width: 26ch;
   font-family: inherit;
-  font-size: clamp(14px, 1.25vw, 17px);
+  font-size: clamp(15px, 1.3vw, 18px);
   color: var(--ink, #0D0D0D);
   background: none;
   border: 0;
   border-bottom: 1px solid var(--paper-line, #D9D5CD);
   padding: 6px 0;
-  transition: border-color .35s;
+  outline: none;
+  transition: border-color 150ms, border-width 150ms;
 }
-.inp::placeholder { color: #A9A49B; }
-.inp:focus {
-  outline: 0;
-  border-bottom-color: var(--orange, #FF5A00);
+.contact-input:focus {
+  border-bottom: 2px solid var(--ink, #0D0D0D);
+  padding-bottom: 5px;
+}
+.contact-input--area {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.45;
+}
+.contact-input--err {
+  border-bottom: 2px solid var(--orange, #FF5A00);
+  padding-bottom: 5px;
+}
+.contact-required {
+  position: absolute;
+  right: 0;
+  bottom: -22px;
+  font-size: 13px;
+  color: var(--orange, #FF5A00);
 }
 
-.send {
-  margin-top: clamp(22px, 3.4vh, 40px);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: clamp(12px, 2vw, 32px);
-}
-.btn {
+/* Send it · siempre en ink, nunca gris/disabled. */
+.contact-send {
+  align-self: flex-start;
   font-family: inherit;
-  font-size: clamp(17px, 1.6vw, 22px);
+  font-size: 24px;
   font-weight: 500;
-  letter-spacing: -.03em;
+  letter-spacing: -.02em;
   color: var(--ink, #0D0D0D);
   background: none;
   border: 0;
-  border-bottom: 1px solid currentColor;
+  border-bottom: 2px solid var(--ink, #0D0D0D);
   padding: 0 0 6px;
   cursor: pointer;
-  transition: color .35s, border-color .35s, opacity .35s;
+  margin-top: clamp(8px, 1.5vh, 20px);
+  transition: color 150ms;
 }
-.btn:hover {
-  color: var(--orange, #FF5A00);
-  border-bottom-color: var(--orange, #FF5A00);
-}
-.btn[disabled] { opacity: .32; cursor: default; }
-.btn[disabled]:hover {
-  color: var(--ink, #0D0D0D);
-  border-bottom-color: currentColor;
-}
-.sendnote {
-  font-size: 12px;
-  color: var(--grey, #6E6B65);
-  max-width: 34ch;
-  line-height: 1.45;
-}
+.contact-send:hover { color: var(--orange, #FF5A00); border-bottom-color: var(--orange, #FF5A00); }
 
-.out {
-  margin-top: clamp(26px, 4vh, 46px);
+.contact-foot {
+  margin-top: clamp(48px, 8vh, 96px);
+  padding-top: clamp(20px, 3vh, 32px);
   border-top: 1px solid var(--paper-line, #D9D5CD);
-  padding-top: clamp(16px, 2.4vh, 26px);
-  font-size: 13px;
+  margin-inline: var(--gap, clamp(20px, 4.5vw, 72px));
+  font-size: 15px;
   line-height: 1.5;
   color: var(--grey, #6E6B65);
 }
-.out a { color: var(--ink, #0D0D0D); }
-
-.contact-mail {
-  display: inline-block;
-  margin-top: 26px;
-  font-size: clamp(18px, 2vw, 28px);
-  font-weight: 500;
-  letter-spacing: -.03em;
-  color: inherit;
+.contact-foot a {
+  color: var(--ink, #0D0D0D);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
-  padding-bottom: 6px;
 }
-.contact-mail:hover {
+.contact-foot a:hover {
   color: var(--orange, #FF5A00);
   border-bottom-color: var(--orange, #FF5A00);
 }
 
-@media (max-width: 760px) {
-  .contact-data { grid-template-columns: 1fr; }
-  .contact-cell {
-    padding: 13px 0 0;
-    border-top: 1px solid #272727;
+/* Mobile · todo apilado. */
+@media (max-width: 900px) {
+  .contact-body,
+  .contact-body--split {
+    grid-template-columns: 1fr;
   }
-  .contact-cell:first-child { border-top: 0; }
-  .qrow { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
 }

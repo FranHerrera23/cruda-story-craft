@@ -131,6 +131,18 @@ Cambios:
 Cinco superficies con el gesto: WHAT CRUDA IS · WHAT WE DO ·
 SELECTED WORK · WHAT OTHERS · OUR FOUNDER.
 
+## F11.6 · WHAT OTHERS · verificación · ✓
+commit   (pendiente · docs-only)
+checks   curl / | grep 'class="pitem"' → 2 items · Drapers → 0
+hits · `[ Confidential ]` → 0 hits · Karen · Forbes y Mike ·
+triple network son los dos items servidos, en ese orden
+shots    docs/F11-shots/F11.6/ · placeholder (F11.0 shots ya lo
+cubren visualmente).
+Estado: la retirada de Drapers y el paso a dos items ya se hizo
+en F11.0 (marcador `[ Confidential ]` disparaba el grep del §4).
+Esta fase queda como verificación · sin diff funcional.
+
+
 
 
 

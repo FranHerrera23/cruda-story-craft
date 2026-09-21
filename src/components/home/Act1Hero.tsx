@@ -24,36 +24,45 @@ import './acts.css'
 
 const FIT_MIN_PX = 12
 
-/* Medir el ancho REAL del texto de la frase.
-   Trampa detectada en verificación (17-sep): scrollWidth sobre
-   un <p> block-level con white-space:nowrap devuelve
-   max(clientWidth, contentWidth). Cuando el contenido cabe
-   holgado, scrollWidth == clientWidth, y el fit no puede saber
-   si necesita subir el tamaño ni distingue "cabe" de "no cabe"
-   con precisión. Con `width: max-content` el <p> se encoge al
-   ancho natural del texto y getBoundingClientRect().width
-   reporta lo que el ojo ve. */
-function fitPhrase(phrase: HTMLElement) {
-  const container = phrase.parentElement
-  if (!container) return
-  const containerWidth = container.getBoundingClientRect().width
-  if (containerWidth <= 0) return
-  phrase.style.fontSize = ''
-  phrase.style.width = 'max-content'
-  const cssSize = parseFloat(getComputedStyle(phrase).fontSize) || 76
-  let size = cssSize
-  phrase.style.fontSize = size + 'px'
-  let iter = 0
-  while (
-    phrase.getBoundingClientRect().width > containerWidth &&
-    size > FIT_MIN_PX &&
-    iter < 120
-  ) {
-    size *= 0.97
+/* F11.1 · auto-fit mínimo común (21-sep · autónomo).
+   Bug del brief: `fitPhrase` bajaba cada frase por su cuenta y
+   la frase corta se sostenía más grande que la larga. El check
+   §4 pide "las dos frases del hero al MISMO font-size, medido".
+
+   Nuevo modelo: medí cada frase por separado hasta que quepa,
+   guardá cada tamaño, tomá el mínimo, aplicá el mínimo a todas.
+   El techo del CSS (`font-size: clamp`) sigue mandando; el fit
+   sólo puede BAJAR. */
+function fitAllPhrases(phrases: HTMLElement[]) {
+  if (phrases.length === 0) return
+  const perSize: number[] = []
+  phrases.forEach(phrase => {
+    const container = phrase.parentElement
+    if (!container) return
+    const containerWidth = container.getBoundingClientRect().width
+    if (containerWidth <= 0) return
+    phrase.style.fontSize = ''
+    phrase.style.width = 'max-content'
+    const cssSize = parseFloat(getComputedStyle(phrase).fontSize) || 76
+    let size = cssSize
     phrase.style.fontSize = size + 'px'
-    iter++
-  }
-  phrase.style.width = ''
+    let iter = 0
+    while (
+      phrase.getBoundingClientRect().width > containerWidth &&
+      size > FIT_MIN_PX &&
+      iter < 120
+    ) {
+      size *= 0.97
+      phrase.style.fontSize = size + 'px'
+      iter++
+    }
+    phrase.style.width = ''
+    perSize.push(size)
+  })
+  const common = Math.min(...perSize)
+  phrases.forEach(phrase => {
+    phrase.style.fontSize = common + 'px'
+  })
 }
 
 export default function Act1Hero() {
@@ -72,8 +81,10 @@ export default function Act1Hero() {
     /* Auto-fit inicial + en resize + en fonts.ready.
        Wireframe §4.2 · nunca dos line-boxes. */
     const runFit = () => {
-      const phrases = track.querySelectorAll<HTMLElement>('.beat__phrase')
-      phrases.forEach(fitPhrase)
+      const phrases = Array.from(
+        track.querySelectorAll<HTMLElement>('.beat__phrase'),
+      )
+      fitAllPhrases(phrases)
     }
     runFit()
     window.addEventListener('resize', runFit)
@@ -113,24 +124,26 @@ export default function Act1Hero() {
       ref={trackRef}
     >
       <div className="act__stage act1__stage">
-        {/* Wireframe §4.1 · fondo NEGRO LISO · sin grilla.
-            El .act__grid queda intencionalmente afuera del
-            markup de act 1 (act 2 sí lo lleva). */}
+        {/* F11.1 · kicker firmado del prototipo home-v3 §hero. */}
+        <p className="hero__kicker">A communications company</p>
         <div className="act__beats">
-          {ACT1_BEATS.map((beat, i) => (
-            /* data-beat 1-indexed · el motor querySelectorAll(
-               '[data-beat]') encuentra el elemento y le aplica
-               opacity + --ty por scroll con lógica de overlap. */
-            <div key={i} className="beat beat--dark" data-beat={i + 1}>
-              {beat.lines.map((html, j) => (
-                <p
-                  key={j}
-                  className="beat__phrase"
-                  dangerouslySetInnerHTML={{ __html: html }}
-                />
-              ))}
-            </div>
-          ))}
+          {ACT1_BEATS.map((beat, i) => {
+            /* F11.1 · el primer beat es el <h1> semántico de la
+               página. Los siguientes siguen como <p>, cero cambio
+               visual. Ambos comparten .beat__phrase y el motor. */
+            const Tag = i === 0 ? 'h1' : 'p'
+            return (
+              <div key={i} className="beat beat--dark" data-beat={i + 1}>
+                {beat.lines.map((html, j) => (
+                  <Tag
+                    key={j}
+                    className="beat__phrase"
+                    dangerouslySetInnerHTML={{ __html: html }}
+                  />
+                ))}
+              </div>
+            )
+          })}
         </div>
         <div className="act__logo" aria-hidden="true">
           CRUDA

@@ -43,4 +43,23 @@ el componente `TranslationInPractice` no se importa desde
 los chunks de la home. Se retirará cuando el componente muera
 oficialmente en un cleanup posterior.
 
+## F11.1 · hero · auto-fit mínimo común · kicker · h1 · ✓
+commit   (pendiente)
+checks   build ✓ · h1 en /index.html = 1 · fit medido con playwright: 1440 ambas frases 49.62px (container 777.63) · 390 ambas 22.32px (container 342) · kicker "A communications company" presente · playwright 390 + 1440 ok, sin errores de consola, nojs 5852 chars legible
+shots    docs/F11-shots/F11.1/
+Cambios:
+· `fitPhrase` → `fitAllPhrases` · mide cada frase, toma el
+  mínimo, aplica a todas.
+· primer beat renderiza como `<h1>` (semántico); el resto queda
+  en `<p>` para no romper el motor phrase.
+· `<p class="hero__kicker">A communications company</p>` en el
+  stage, posicionado en `top: calc(50% - clamp(90px,13vh,150px))`.
+
+DECISIÓN: kicker en `left/right: 8vw` (mismo margen que las
+frases del beat) en vez de `left:0 right:0` del prototipo. El
+prototipo tiene `text-align:center`; en la home el kicker vive
+alineado con el hero de layout izquierda. Mobile mantiene el
+`text-align:center` del prototipo.
+
+
 

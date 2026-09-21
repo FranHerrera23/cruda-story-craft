@@ -214,29 +214,23 @@ export default function ThinkingPage() {
         </div>
         <h2 className="thinking-name">Conversations.</h2>
         <div className="thinking-rule" />
-        <div className="thinking-wgrid thinking-wgrid--video marks">
+        {/* F18.8 · sin caja gris/negra · card de TEXTO. */}
+        <div className="thinking-podcast marks">
           <Link
-            className="thinking-wcard mark"
+            className="thinking-podrow mark"
             href="/thinking/steve-walls"
             data-lang="en"
             data-status="upcoming"
-            aria-label="Steve Walls · Episode 01 · Coming soon"
+            aria-label="Steve Walls · Episode 01 · upcoming"
           >
-            <div className="thinking-wcard__hd">
-              <span className="thinking-wcard__o">01</span>
-              <span className="thinking-wcard__go" aria-hidden="true">↗</span>
+            <span className="thinking-podrow__o">01</span>
+            <div className="thinking-podrow__body">
+              <h3 className="thinking-podrow__n">Steve Walls</h3>
+              <p className="thinking-podrow__d">
+                Former CSO, Publicis Singapore &amp; Saatchi &amp; Saatchi · 1 h
+              </p>
+              <p className="thinking-podrow__s">Episode 01 · upcoming</p>
             </div>
-            <div className="thinking-wcard__m">
-              <div className="soon">
-                <span className="soon__o">Episode 01</span>
-                <span className="soon__n">Steve Walls</span>
-                <span className="soon__s">Coming soon</span>
-              </div>
-            </div>
-            <h3 className="thinking-wcard__n">Steve Walls</h3>
-            <p className="thinking-wcard__d">
-              Former CSO, Publicis Singapore &amp; Saatchi &amp; Saatchi · 1 h
-            </p>
           </Link>
         </div>
       </section>

@@ -201,9 +201,13 @@
   line-height: 1.1;
   margin-top: 12px;
 }
+/* F18.8 · "Machine-assisted." sale del naranja (ledger 27 · naranja
+   sólo en reglas, ordinales, cifras, hover). En la sección negra
+   `.about-sec--soft` el color heredado es white/off-white; el em
+   pasa a `color:inherit` para leer al mismo nivel que el resto. */
 .about-layer__v em {
   font-style: normal;
-  color: var(--orange, #FF5A00);
+  color: inherit;
 }
 .about-layer__n {
   font-size: 13px;

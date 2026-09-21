@@ -188,6 +188,38 @@ DECISIÓN: sin acceso a pentagram.com desde este entorno para
 medir. Se toma el default del brief (siempre visible, fondo opaco,
 hairline abajo, sin transparencia intermedia).
 
+## F18.7 · "one engagement" fuera · ✓
+commit   (pendiente)
+checks   build ✓ · `grep -ri "one engagement" .next/server` = 0
+Cambios:
+· `/services · Translated · cell For` · retira "One engagement at
+  a time" como línea secundaria. Queda "A founder, CMO or head of
+  marketing" sin nota.
+
+## F18.8 · About + Thinking · opener del sistema · ✓
+commit   (pendiente)
+checks   build ✓ · About opener con rótulo "About" · h1 "We
+translate cultures into business." · lede corto "CRUDA is a
+communications company. High ticket, white glove." · cronología
+en orden Early 2021 → February 2024 → 2021—2026 · "Machine-
+assisted." pasa a color inherit (era naranja) · Thinking podcast
+Steve Walls sin caja negra · card de texto (nombre + rol +
+"Episode 01 · upcoming")
+Cambios:
+· `app/about/page.tsx` · opener del sistema (rótulo + h1 + regla
+  + lede corto). El split gigante 48/52 sale · "You work with the
+  founder…" y la frase machine-assisted quedan verbatim más abajo
+  (en la sección WHO RUNS IT y en HOW THE WORK IS STRUCTURED).
+· Cronología reordenada.
+· `.about-layer__v em` · `color: inherit` (ledger 27 · naranja
+  sólo en reglas, ordinales, cifras, hover).
+· `app/thinking/page.tsx` · podcast Steve Walls · `.thinking-
+  podrow` (row de texto: ordinal 01 + name + role + "Episode 01
+  · upcoming"). El bloque negro diseñado sale.
+· `app/thinking/thinking.css` · retira `.thinking-wgrid--video` y
+  `.soon`, agrega `.thinking-podrow`.
+
+
 
 
 

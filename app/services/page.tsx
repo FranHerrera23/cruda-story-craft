@@ -104,7 +104,6 @@ export default function ServicesPage() {
               <div className="cell">
                 <p className="cell__l">For</p>
                 <p className="cell__v">A founder, CMO or head of marketing</p>
-                <p className="cell__n">One engagement at a time</p>
               </div>
               <div className="cell">
                 <p className="cell__l">Runs</p>

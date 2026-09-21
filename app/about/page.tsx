@@ -52,27 +52,21 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* 01 · OPENER · split asimétrico · WHAT CRUDA IS */}
+      {/* 01 · OPENER · W2 · rótulo + h1 + regla + lede corto.
+          Sale el split gigante; sale "You work with the founder…" y
+          la frase machine-assisted (viven abajo, verbatim). */}
       <section className="about-sec about-sec--black on-black" data-sec>
-        <div className="about-open">
-          <h1 className="about-open__h">
-            We translate cultures into business.
-          </h1>
-          <div className="about-open__b">
-            <p className="about-open__lede">
-              CRUDA is a communications company. High ticket, white glove,
-              one engagement at a time.
-            </p>
-            <p className="about-open__lede">
-              You work with the founder — and with a team small enough to
-              move. The execution layer is machine-assisted. The judgment
-              layer is not, and is not meant to be.
-            </p>
-            <Link className="about-go" href="/services">
-              See how we work →
-            </Link>
-          </div>
-        </div>
+        <p className="about-eyebrow">About</p>
+        <h1 className="about-name">
+          We translate cultures into business.
+        </h1>
+        <div className="about-rule" />
+        <p className="about-lede" style={{ maxWidth: '34ch' }}>
+          CRUDA is a communications company. High ticket, white glove.
+        </p>
+        <Link className="about-go" href="/services" style={{ marginTop: 'clamp(20px, 3.2vh, 36px)' }}>
+          See how we work →
+        </Link>
         <div
           className="about-data marks"
           style={{ marginTop: 'clamp(48px, 8vh, 110px)' }}
@@ -106,6 +100,7 @@ export default function AboutPage() {
           The first client came three years before the company did.
         </h2>
         <div className="about-rule" />
+        {/* W2 · orden cronológico: Early 2021 → February 2024 → 2021—2026 */}
         <div className="about-chron marks">
           <div className="about-crow mark">
             <p className="about-crow__d">Early 2021</p>
@@ -115,17 +110,17 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="about-crow mark">
-            <p className="about-crow__d">2021 — 2026</p>
-            <p className="about-crow__t">
-              The work outlasted the agency and ran for five years.
-            </p>
-          </div>
-          <div className="about-crow mark">
             <p className="about-crow__d">February 2024</p>
             <p className="about-crow__t">
               CRUDA was registered, the same month Norhart restructured and
               the in-house job ended. The practice already existed. What
               changed was the name on it.
+            </p>
+          </div>
+          <div className="about-crow mark">
+            <p className="about-crow__d">2021 — 2026</p>
+            <p className="about-crow__t">
+              The work outlasted the agency and ran for five years.
             </p>
           </div>
         </div>

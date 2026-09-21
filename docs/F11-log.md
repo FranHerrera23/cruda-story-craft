@@ -216,6 +216,34 @@ Cambios:
 · `SiteFooter.tsx` "Essays" → "Thinking".
 · `llms-txt.ts` URLs a /thinking/.
 
+## F14b.2 · podcast · /thinking/steve-walls · upcoming · ✓
+commit   (pendiente)
+checks   build ✓ · /thinking/steve-walls → 200 · meta robots =
+"noindex, follow" · sitemap sin URL steve-walls (0 hits) ·
+sección Podcasts renderiza en /thinking · playwright 390 + 1440
+sin errores, nojs 487 chars legible en el episodio
+shots    docs/F11-shots/F14b.2/
+Cambios:
+· `app/thinking/steve-walls/page.tsx` · ruta estática (toma
+  precedencia sobre `/thinking/[slug]`).
+· Metadata `robots: { index: false, follow: true }`.
+· Estado upcoming · bloque negro diseñado "Coming soon", back a
+  /thinking, cierre con mail. Sin capsule, sin transcript, sin
+  VideoObject schema · esos entran cuando el episodio se publique
+  (§7 espera a Fran para título, ID de YouTube y fecha).
+· `/thinking/page.tsx` · agrega sección Podcasts con la card del
+  episodio en upcoming (única excepción firmada §2 al marker
+  policy).
+· Sitemap sin cambio · steve-walls no entra hasta pasar a
+  "published".
+
+DECISIÓN: sub y capsule del episodio quedan textuales del
+prototipo. Los slots faltantes de "título", "capsule",
+"takeaways", "capítulos", "artículo" y "transcript" NO se
+renderizan en estado upcoming (regla §2 · sin slots sin dato
+real).
+
+
 
 
 

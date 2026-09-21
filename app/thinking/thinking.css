@@ -265,6 +265,45 @@
   .thinking-wgrid { grid-template-columns: 1fr; }
 }
 
+/* Podcasts · misma card, proporción de video · bloque negro upcoming.
+   Regla §2 · única excepción firmada: Steve Walls upcoming. */
+.thinking-wgrid--video .thinking-wcard__m {
+  aspect-ratio: 16 / 9;
+  background: var(--paper-line, #D9D5CD);
+  position: relative;
+  overflow: hidden;
+}
+.thinking .soon {
+  position: absolute;
+  inset: 0;
+  background: var(--black, #000);
+  color: var(--white, #FAF9F7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(14px, 1.6vw, 22px);
+}
+.thinking .soon__o {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey-dark, #8A867E);
+}
+.thinking .soon__n {
+  font-size: clamp(18px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+.thinking .soon__s {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--orange, #FF5A00);
+}
+
 /* Marks · gesto compartido (redefine local para /thinking). */
 .thinking .mark {
   transition: opacity .45s cubic-bezier(.16, 1, .3, 1);

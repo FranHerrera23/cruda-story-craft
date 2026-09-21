@@ -120,7 +120,7 @@ export default function ThinkingPage() {
       {/* 02 · FILTROS */}
       <ThinkingFilters
         hasCases={CASE_STUDIES.length > 0}
-        hasPodcasts={false}
+        hasPodcasts={true}
       />
 
       {/* 03 · ARTICLES · molde WHAT WE DO */}
@@ -203,6 +203,41 @@ export default function ThinkingPage() {
               <p className="thinking-wcard__d">{c.meta}</p>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* 05 · PODCASTS · F14b.2 · Steve Walls upcoming (única excepción firmada §2) */}
+      <section className="thinking-sec" data-sec="podcast">
+        <div className="thinking-sec__hd">
+          <p className="eyebrow">Podcasts</p>
+          <span className="thinking-sec__n" data-n />
+        </div>
+        <h2 className="thinking-name">Conversations.</h2>
+        <div className="thinking-rule" />
+        <div className="thinking-wgrid thinking-wgrid--video marks">
+          <Link
+            className="thinking-wcard mark"
+            href="/thinking/steve-walls"
+            data-lang="en"
+            data-status="upcoming"
+            aria-label="Steve Walls · Episode 01 · Coming soon"
+          >
+            <div className="thinking-wcard__hd">
+              <span className="thinking-wcard__o">01</span>
+              <span className="thinking-wcard__go" aria-hidden="true">↗</span>
+            </div>
+            <div className="thinking-wcard__m">
+              <div className="soon">
+                <span className="soon__o">Episode 01</span>
+                <span className="soon__n">Steve Walls</span>
+                <span className="soon__s">Coming soon</span>
+              </div>
+            </div>
+            <h3 className="thinking-wcard__n">Steve Walls</h3>
+            <p className="thinking-wcard__d">
+              Former CSO, Publicis Singapore &amp; Saatchi &amp; Saatchi · 1 h
+            </p>
+          </Link>
         </div>
       </section>
 

@@ -1,0 +1,24 @@
+{
+  "phase": "F14b.2",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/thinking/steve-walls",
+    "/thinking"
+  ],
+  "ok": true,
+  "errors": [],
+  "summary": [
+    "js /thinking/steve-walls @ 390 · ok",
+    "js /thinking @ 390 · ok",
+    "nojs /thinking/steve-walls @ 390 · body text length 487",
+    "nojs /thinking/steve-walls @ 390 · ok",
+    "nojs /thinking @ 390 · body text length 1202",
+    "nojs /thinking @ 390 · ok",
+    "js /thinking/steve-walls @ 1440 · ok",
+    "js /thinking @ 1440 · ok",
+    "nojs /thinking/steve-walls @ 1440 · body text length 487",
+    "nojs /thinking/steve-walls @ 1440 · ok",
+    "nojs /thinking @ 1440 · body text length 1202",
+    "nojs /thinking @ 1440 · ok"
+  ]
+}

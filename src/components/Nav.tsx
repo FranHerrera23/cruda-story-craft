@@ -4,47 +4,33 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-/* Nav de 5 items:
+/* Nav global · F11.2 · 21-sep · autónomo.
 
-     About  ·  Work  ·  Services  ·  Essays  ·  Contact
+   Cinco items en el orden firmado del brief §2:
+     Work · Services · About · Thinking · Contact
+   15px · 400 · sentence case · SIN tracking.
 
-   F9.4 (Commit 7 · 19-sep) · PROCESS → SERVICES · nav apunta a
-   /services · página nueva con plano 00 (QUÉ ES CRUDA firmed) ·
-   los cuatro planos internos (F9.5/F9.6) llegan en commits
-   siguientes.
+   FONDO + COLOR SIGUEN A LA SUPERFICIE
+   La barra detecta qué plano vive debajo (elementFromPoint en la
+   esquina superior derecha) y aplica:
+     .bar         background --paper · color --ink
+     .bar--dark   background --black · color --white
+   Cero mix-blend-mode, cero contadores NN/10 ni NN/07.
 
-   Fuera de la nav: la COMPANIES dropdown entera (retirada), la
-   RESOURCES dropdown (colapsada — Essays vive standalone ahora, y
-   Work vive standalone también). Fuera del sitio: /sports y /systems
-   devuelven 410 desde middleware.ts.
+   Detección: cualquier ancestor con clase .plane--black, .hero,
+   .act1, .note pinta oscuro. Cualquier .plane--paper, .work,
+   .act2 pinta paper. Default paper.
 
-   About → /about (Brief 02, 14-sep · /our-founder redirige 301
-   permanente). Nav flat, sin dropdowns.
-
-   Regla lockeada — ver docs/decisions.md #nombres-de-rutas-retiradas.
-   El regex `match: /^\/(about|our-founder)/` mantiene el nombre
-   viejo (`our-founder`) como matcher. El 308 dispara desde el
-   servidor, pero durante el frame antes de que resuelva,
-   usePathname() del cliente devuelve la URL vieja. Sin ese matcher
-   el estado activo se pierde por un frame. NO LIMPIAR mientras
-   exista el redirect. Mismo patrón se aplica a /process (queda como
-   matcher aunque el link ya sea /services · el 301 llega abajo). */
+   El matcher regex por item se mantiene: sirve para marcar el
+   activo aunque un 301 pise la URL (usePathname del cliente ve
+   la vieja antes del redirect). */
 
 const NAV_ITEMS = [
-  { href: '/about', label: 'About', match: /^\/(about|our-founder)/ },
-  /* Home · Selected Work (brief 10-sep §9 paso 5) — WORK apunta al
-     ancla en la home. Las rutas hijas /work/[slug] siguen matcheando
-     el activo por la regex; en la home el activo lo dispara /work
-     via el fragment. */
-  { href: '/#selected-work', label: 'Work', match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
-  /* F9.4 (19-sep) · SERVICES apunta a /services (plano 00). El
-     regex incluye /process y /approach como matchers heredados ·
-     por si Fran decide después un 301 /process → /services (no
-     está hecho en este commit · el link a /process sigue
-     funcionando). */
-  { href: '/services', label: 'Services', match: /^\/(services|process|approach)/ },
-  { href: '/essays', label: 'Essays', match: /^\/(essays|resources\/essays|thinking)/ },
-  { href: '/contact', label: 'Contact', match: /^\/contact/ },
+  { href: '/#selected-work', label: 'Work',    match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
+  { href: '/services',       label: 'Services', match: /^\/(services|process|approach)/ },
+  { href: '/about',          label: 'About',    match: /^\/(about|our-founder)/ },
+  { href: '/thinking',       label: 'Thinking', match: /^\/(thinking|essays|resources\/essays)/ },
+  { href: '/contact',        label: 'Contact',  match: /^\/contact/ },
 ] as const
 
 export default function Nav() {
@@ -52,41 +38,17 @@ export default function Nav() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [away, setAway] = useState(false)
   const [ready, setReady] = useState(false)
+  const [dark, setDark] = useState(false)
 
   useEffect(() => {
     setMobileOpen(false)
   }, [pathname])
 
-  /* Brief 11-sep §5 — cada link entra desde abajo con delays
-     escalonados. `ready` se dispara en mount (post-hydration) para
-     que la transición corra desde el estado inicial `translateY(100%)`
-     al final `translateY(0)`. Cinco items con stagger de 75ms. */
   useEffect(() => {
     setReady(true)
   }, [])
 
-  /* Motion v3 §10 · brief F8 §3 (17-sep) — la nav se oculta al
-     bajar y vuelve al subir. Dos correcciones sobre la versión
-     anterior:
-
-     1 · umbral de delta acumulado. Antes: `y > last` con estricta
-         desigualdad. Con Lenis smooth-scroll el `scrollY` se
-         interpola cada frame y el sample rAF ve deltas de 1–3px.
-         Al scrollear despacio dentro de un acto (wheelMultiplier
-         0.35), la dirección instantánea entre frames se puede
-         invertir por el jitter de la interpolación y `.away`
-         togglea varias veces por segundo · la nav parece saltar
-         entre subir y bajar. Con delta acumulado de DELTA_MIN
-         (12px) la dirección requerida es real, no ruido.
-
-     2 · inicialización de `last` con la posición actual al
-         montar. Antes arrancaba en 0; si la página se refresca
-         en scrollY alto, el primer sample daba delta enorme y
-         forzaba `.away` aunque el usuario no hubiera scrolleado
-         todavía.
-
-     Passive listener; el trabajo se agrupa en rAF para no
-     correr por cada evento de scroll. */
+  /* Hide-on-scroll-down. Comportamiento heredado. */
   useEffect(() => {
     const HIDE_AFTER = 80
     const DELTA_MIN = 12
@@ -102,13 +64,9 @@ export default function Nav() {
           ticking = false
           return
         }
-        if (y <= HIDE_AFTER) {
-          setAway(false)
-        } else if (delta > 0) {
-          setAway(true)
-        } else {
-          setAway(false)
-        }
+        if (y <= HIDE_AFTER) setAway(false)
+        else if (delta > 0) setAway(true)
+        else setAway(false)
         last = y
         ticking = false
       })
@@ -117,21 +75,65 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  /* Brief 11-sep §3 — nav en var(--grot), tamaño chico, mismo peso
-     para todos. El activo se marca por --color-ink; los demás en
-     --ink hasta hover. */
-  const linkStyle = (isActive: boolean): React.CSSProperties => ({
-    color: isActive ? 'var(--ink)' : 'var(--ink)',
-    textDecoration: 'none',
-    fontFamily: 'var(--grot)',
-    fontWeight: 500,
-    fontSize: '12px',
-    letterSpacing: '.14em',
-    textTransform: 'uppercase',
-  })
+  /* barTheme · qué hay debajo de la nav. La nav está fija encima,
+     así que `elementFromPoint` la devolvería a ella. En vez de eso
+     buscamos entre todos los planos y secciones etiquetadas cuál
+     está intersectando la línea superior del viewport.
+
+     Sin mix-blend-mode. Corre en scroll, resize y al montar. */
+  useEffect(() => {
+    let raf = 0
+    let tick = false
+    const DARK = ['plane--black', 'hero', 'act1', 'note']
+    const PAPER = ['plane--paper', 'act2', 'home-work']
+    const decide = () => {
+      const probeY = 24
+      const probeX = window.innerWidth - 24
+      /* Con planos sticky, varios pueden aparentar rect.top=0 al
+         mismo tiempo. El apilado se resuelve por z-index de DOM
+         (posterior = arriba). elementFromPoint respeta z-index,
+         pero devolvería la propia .bar. Solución: pointer-events:
+         none temporal en la nav, hit-test, restore. */
+      const nav = document.querySelector<HTMLElement>('.cruda-global-nav')
+      let pe = ''
+      if (nav) {
+        pe = nav.style.pointerEvents
+        nav.style.pointerEvents = 'none'
+      }
+      const el = document.elementFromPoint(probeX, probeY)
+      if (nav) nav.style.pointerEvents = pe
+      let n: Element | null = el
+      let d: boolean | null = null
+      while (n && n !== document.body) {
+        const cl = (n as HTMLElement).classList
+        if (cl) {
+          if (DARK.some(k => cl.contains(k))) { d = true; break }
+          if (PAPER.some(k => cl.contains(k))) { d = false; break }
+          if (cl.contains('plane')) { d = false; break }
+        }
+        n = n.parentElement
+      }
+      setDark(d === true)
+      tick = false
+    }
+    const on = () => {
+      if (tick) return
+      tick = true
+      raf = requestAnimationFrame(decide)
+    }
+    decide()
+    window.addEventListener('scroll', on, { passive: true })
+    window.addEventListener('resize', on, { passive: true })
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', on)
+      window.removeEventListener('resize', on)
+    }
+  }, [])
 
   const navClass = [
-    'cruda-global-nav',
+    'cruda-global-nav bar',
+    dark ? 'bar--dark' : '',
     away && !mobileOpen ? 'away' : '',
     ready ? 'ready' : '',
   ]
@@ -140,7 +142,7 @@ export default function Nav() {
 
   return (
     <>
-      <nav className={navClass}>
+      <nav className={navClass} data-nav>
         <div className="cruda-global-nav-in">
           <Link href="/" className="cruda-global-nav-brand" aria-label="CRUDA home">
             CRUDA
@@ -154,7 +156,6 @@ export default function Nav() {
                   <Link
                     href={item.href}
                     className="link"
-                    style={linkStyle(isActive)}
                     aria-current={isActive ? 'page' : undefined}
                   >
                     {item.label}
@@ -185,7 +186,7 @@ export default function Nav() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  style={linkStyle(isActive)}
+                  className="link"
                   aria-current={isActive ? 'page' : undefined}
                   onClick={() => setMobileOpen(false)}
                 >
@@ -198,55 +199,51 @@ export default function Nav() {
       </nav>
 
       <style jsx global>{`
-        .cruda-global-nav {
+        .cruda-global-nav.bar {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           z-index: 110;
-          /* Brief v4 UX §4.1 — bg opaco. NO transparente, NO blur. */
-          background: var(--paper);
-          border-bottom: 1px solid var(--rule);
-          /* §5.1 — la nav se retira al bajar con .away.
-             Transform + transition; sin ocupar espacio del layout.
-             Motion system: --t-3 y --ease. */
+          /* F11.2 · fondo + color siguen a la superficie. Sin borde
+             ni franja para no marcar el corte entre planos. */
+          background: transparent;
+          color: var(--ink, #0D0D0D);
+          border-bottom: 0;
           transform: translateY(0);
-          transition: transform var(--dur-3) var(--ease);
+          transition:
+            transform var(--dur-3, 500ms) var(--ease, cubic-bezier(.16,1,.3,1)),
+            color 260ms cubic-bezier(.16,1,.3,1);
           will-change: transform;
+        }
+        .cruda-global-nav.bar.bar--dark {
+          color: var(--white, #FAF9F7);
         }
         .cruda-global-nav.away {
           transform: translateY(-100%);
         }
-        /* reduce global vive en globals.css (motion §6). */
         .cruda-global-nav-in {
-          /* §2 · un solo margen izq en todo el sitio; el nav
-             tampoco se centra. Max-width 1600 como guardia. */
           max-width: 1600px;
           margin-inline: 0;
-          padding: 30px var(--pad);
+          padding: 18px var(--pad, clamp(20px, 4.5vw, 72px));
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 24px;
         }
         .cruda-global-nav-brand {
+          font-family: var(--font-archivo), 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
           font-weight: 700;
-          font-size: 19px;
-          letter-spacing: 0.04em;
-          color: var(--ink);
+          font-size: 16px;
+          letter-spacing: .04em;
+          color: inherit;
           text-decoration: none;
         }
         .cruda-global-nav-menu {
           display: flex;
           align-items: center;
-          gap: 32px;
+          gap: clamp(16px, 1.9vw, 26px);
         }
-
-        /* Brief 11-sep §5 — reveal del nav.
-           Cada item envuelto en .nav__item con overflow:hidden. El
-           link interno arranca en translateY(100%); cuando la nav
-           tiene .ready, translateY(0). Cinco items con stagger de
-           75ms. */
         .nav__item {
           display: inline-block;
           overflow: hidden;
@@ -254,44 +251,42 @@ export default function Nav() {
         .nav__item .link {
           display: inline-block;
           position: relative;
+          /* F11.2 §2 · 15px · 400 · sentence case · SIN tracking. */
+          font-family: var(--font-archivo), 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-weight: 400;
+          font-size: 15px;
+          letter-spacing: -.005em;
+          text-transform: none;
+          color: inherit;
+          text-decoration: none;
           transform: translateY(100%);
-          /* Motion §3.5 — entrada desde máscara con --ease-exit y --t-3. */
-          transition: transform var(--dur-3) var(--ease-exit);
+          transition: transform var(--dur-3, 500ms) var(--ease-exit, cubic-bezier(.33,1,.68,1));
         }
         .cruda-global-nav.ready .nav__item .link {
           transform: translateY(0);
         }
-        /* Stagger de cinco items en múltiplos de --stagger (75ms). */
         .cruda-global-nav-menu .nav__item:nth-child(1) .link { transition-delay: 0; }
-        .cruda-global-nav-menu .nav__item:nth-child(2) .link { transition-delay: var(--stagger); }
-        .cruda-global-nav-menu .nav__item:nth-child(3) .link { transition-delay: calc(2 * var(--stagger)); }
-        .cruda-global-nav-menu .nav__item:nth-child(4) .link { transition-delay: calc(3 * var(--stagger)); }
-        .cruda-global-nav-menu .nav__item:nth-child(5) .link { transition-delay: calc(4 * var(--stagger)); }
-
-        /* Subrayado del link — crece desde la derecha en salida y
-           desde la izquierda en hover. El cambio de origin es lo que
-           lo hace sentir intencional. */
+        .cruda-global-nav-menu .nav__item:nth-child(2) .link { transition-delay: var(--stagger, 75ms); }
+        .cruda-global-nav-menu .nav__item:nth-child(3) .link { transition-delay: calc(2 * var(--stagger, 75ms)); }
+        .cruda-global-nav-menu .nav__item:nth-child(4) .link { transition-delay: calc(3 * var(--stagger, 75ms)); }
+        .cruda-global-nav-menu .nav__item:nth-child(5) .link { transition-delay: calc(4 * var(--stagger, 75ms)); }
         .nav__item .link::after {
           content: '';
           position: absolute;
           left: 0;
-          bottom: -3px;
+          bottom: -2px;
           width: 100%;
           height: 1px;
           background: currentColor;
           transform: scaleX(0);
           transform-origin: right;
-          transition: transform var(--dur-4) var(--ease);
+          transition: transform var(--dur-4, 600ms) var(--ease, cubic-bezier(.16,1,.3,1));
         }
         .nav__item .link:hover::after,
         .nav__item .link:focus-visible::after {
           transform: scaleX(1);
           transform-origin: left;
         }
-
-        /* reduce global (motion §6) apaga transitions y fija
-           .nav__item > * en transform:none. Sin regla local. */
-
         .cruda-global-nav-mobile-toggle {
           display: none;
           background: none;
@@ -300,18 +295,26 @@ export default function Nav() {
           padding: 8px;
           gap: 5px;
           flex-direction: column;
+          color: inherit;
         }
         .cruda-global-nav-mobile-toggle span {
           display: block;
           width: 22px;
           height: 1.5px;
-          background: var(--ink);
+          background: currentColor;
         }
         .cruda-global-nav-mobile {
-          padding: 0 var(--pad) 24px;
+          padding: 0 var(--pad, clamp(20px, 4.5vw, 72px)) 24px;
           display: flex;
           flex-direction: column;
           gap: 16px;
+        }
+        .cruda-global-nav-mobile .link {
+          font-size: 15px;
+          font-weight: 400;
+          letter-spacing: -.005em;
+          color: inherit;
+          text-decoration: none;
         }
         @media (max-width: 900px) {
           .cruda-global-nav-menu { display: none; }

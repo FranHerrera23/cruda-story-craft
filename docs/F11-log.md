@@ -61,5 +61,23 @@ prototipo tiene `text-align:center`; en la home el kicker vive
 alineado con el hero de layout izquierda. Mobile mantiene el
 `text-align:center` del prototipo.
 
+## F11.2 · nav global · fondo+color siguen a la superficie · ✓
+commit   (pendiente)
+checks   build ✓ · 5 items en orden Work · Services · About · Thinking · Contact · 15px 400 sentence case sin tracking · playwright: sobre hero classList = [bar, bar--dark, ready] color rgb(255,255,255) — la barra es negra sin franja papel · sobre plano paper classList = [bar, ready] color rgb(17,17,17) · curl /services /about /contact /thinking /essays → todos 200
+shots    docs/F11-shots/F11.2/
+Cambios:
+· `Nav.tsx` reescrito. Ítems en orden firmado.
+· Font: 15px · 400 · sentence case · sin tracking. Uppercase
+  y `.14em` retirados del brand + links.
+· `barTheme` mide `document.elementFromPoint` con
+  `pointer-events:none` temporal sobre `.cruda-global-nav` para
+  ver el plano bajo la barra. Aplica `bar--dark` si el ancestro
+  es `.plane--black`, `.hero`, `.act1` o `.note`; paper por
+  default.
+· Cero `mix-blend-mode`. Cero contadores `NN/07` `NN/10`.
+· "Essays" → "Thinking" (href `/thinking`). El redirect
+  `/thinking → /essays` sigue vigente hasta F14b.1.
+
+
 
 

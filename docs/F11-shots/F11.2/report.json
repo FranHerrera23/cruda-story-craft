@@ -1,0 +1,48 @@
+{
+  "phase": "F11.2",
+  "base": "http://localhost:3000",
+  "paths": [
+    "/",
+    "/services",
+    "/about",
+    "/contact",
+    "/essays"
+  ],
+  "ok": false,
+  "errors": [
+    "390 js: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED",
+    "1440 js: Failed to load resource: net::ERR_TUNNEL_CONNECTION_FAILED"
+  ],
+  "summary": [
+    "js / @ 390 · ok",
+    "js /services @ 390 · ok",
+    "js /about @ 390 · ok",
+    "js /contact @ 390 · ok",
+    "js /essays @ 390 · ok",
+    "nojs / @ 390 · body text length 5854",
+    "nojs / @ 390 · ok",
+    "nojs /services @ 390 · body text length 531",
+    "nojs /services @ 390 · ok",
+    "nojs /about @ 390 · body text length 2290",
+    "nojs /about @ 390 · ok",
+    "nojs /contact @ 390 · body text length 571",
+    "nojs /contact @ 390 · ok",
+    "nojs /essays @ 390 · body text length 778",
+    "nojs /essays @ 390 · ok",
+    "js / @ 1440 · ok",
+    "js /services @ 1440 · ok",
+    "js /about @ 1440 · ok",
+    "js /contact @ 1440 · ok",
+    "js /essays @ 1440 · ok",
+    "nojs / @ 1440 · body text length 5854",
+    "nojs / @ 1440 · ok",
+    "nojs /services @ 1440 · body text length 531",
+    "nojs /services @ 1440 · ok",
+    "nojs /about @ 1440 · body text length 2290",
+    "nojs /about @ 1440 · ok",
+    "nojs /contact @ 1440 · body text length 571",
+    "nojs /contact @ 1440 · ok",
+    "nojs /essays @ 1440 · body text length 778",
+    "nojs /essays @ 1440 · ok"
+  ]
+}

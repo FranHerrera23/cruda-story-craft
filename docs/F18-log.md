@@ -129,6 +129,21 @@ Cambios:
   id="interpreted", id="read" en cada plano. Los chips de las
   cards y de los case studies apuntan y hacen scroll.
 
+## F18.4 · la prueba de home atada al caso · ✓
+commit   (pendiente)
+checks   build ✓ · HomeKarenProof consume `content/work` (605,050
+· 96× · $60,180 en la home = mismas cifras del caso) · WHAT
+OTHERS · Karen linkea a `/work/karen-mannheim`, Mike a
+`/work/mike-kaeding` (antes `#` en ambos)
+Cambios:
+· `HomeKarenProof.tsx` · sin strings duplicados · las 3 primeras
+  métricas de PRUEBA de Karen (605,050 · 96× · $60,180) se leen
+  de `findWork('karen-mannheim')`. "Read the case study →" apunta
+  a `/work/karen-mannheim`.
+· `HomeWhatOthers.tsx` · Karen y Mike linkean a sus `/work/*`.
+  Copy textual del prototipo home-v3 §11.
+
+
 
 
 

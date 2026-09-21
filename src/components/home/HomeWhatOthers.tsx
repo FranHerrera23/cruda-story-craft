@@ -1,26 +1,18 @@
+import { findWork } from '@/content/work'
 import './home-what-others.css'
 
-/* Home · WHAT OTHER PEOPLE STARTED SAYING · plano paper · F11.0
-   (21-sep · autónomo).
+/* Home · WHAT OTHER PEOPLE STARTED SAYING · F18.4 · 21-sep · autónomo.
 
-   Refactor a plano del apilado. AnchorAdvance retirado.
+   Dos items · Karen y Mike (Drapers retirado en F11.0). Los links de
+   Karen (Forbes/AD) y Mike (triple network) llegan a sus /work/*
+   respectivos, no a `#` (F18.4 · brief §F18.4).
 
-   DECISIÓN F11.0 · el retiro de Drapers, planificado para F11.6,
-   se adelanta acá: el marcador visible "[ Confidential ]" hace
-   fallar el grep §4 de F11.0 (patrón "[ "). El prototipo home-v3
-   §11 muestra sólo dos items — Karen · Forbes y Mike · triple
-   network — así que la fase F11.6 queda absorbida acá y se
-   confirmará en su turno con una entrada de verificación.
-
-   Copy · prototipo home-v3, textual:
-     eyebrow "What other people started saying"
-     name    "No pitch. No placement."
-
-   Los assets reales de prensa no existen todavía en /public. Regla
-   §2: si el asset no existe, el bloque se renderiza SIN la imagen.
-   Los <a> apuntan a "#" hasta que Fran entregue los links. */
+   Copy textual del prototipo home-v3 §11. Assets reales no existen
+   todavía: regla §2 · el bloque se renderiza sin la imagen. */
 
 export default function HomeWhatOthers() {
+  const karen = findWork('karen-mannheim')
+  const mike = findWork('mike-kaeding')
   return (
     <section
       className="plane plane--paper home-what-others"
@@ -34,15 +26,25 @@ export default function HomeWhatOthers() {
           <div className="rule" />
         </div>
         <div className="press">
-          <a className="pitem" href="#" aria-label="Karen · Forbes Perú">
+          <a
+            className="pitem"
+            href={karen ? `/work/${karen.slug}` : '#'}
+            aria-label="Karen · Forbes Perú"
+          >
             <p className="pitem__src">Forbes Perú</p>
             <p className="pitem__h">
               Karen Mannheim, named to “Las 50 mujeres más poderosas de
               Perú en 2026.”
             </p>
-            <p className="pitem__m">June 2026 · also in Architectural Digest</p>
+            <p className="pitem__m">
+              June 2026 · also in Architectural Digest
+            </p>
           </a>
-          <a className="pitem" href="#" aria-label="Mike · triple network">
+          <a
+            className="pitem"
+            href={mike ? `/work/${mike.slug}` : '#'}
+            aria-label="Mike · triple network"
+          >
             <p className="pitem__src">ABC · Fox News · CBS</p>
             <p className="pitem__h">
               Mike Kaeding, from a builder nobody outside Minnesota had

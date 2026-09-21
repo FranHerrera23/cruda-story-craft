@@ -74,7 +74,8 @@ const PHOTO_CARDS: PhotoCard[] = [
     service: ['TRANSLATED'],
     href: '/work/mannheim-trading',
     imageSrc: '/jose-mannheim.webp',
-    objectPosition: 'center 30%',
+    /* F21 · ajuste Fran: pelo entero con aire arriba. */
+    objectPosition: 'center 12%',
   },
   {
     name: 'Confidential',

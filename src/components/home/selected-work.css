@@ -1,205 +1,96 @@
-/* Home · SELECTED WORK · F18.3 · 21-sep · autónomo · wireframe W5.
-   Cards estilo Pentagram · prueba atada · .chip Pentagram · índice
-   debajo para casos sin imagen. */
+/* Home · Selected Work — brief 12-sep §6.3.
 
-.work {
-  position: relative;
-  background: var(--paper, #F1EFEB);
-  color: var(--ink, #0D0D0D);
-  padding: clamp(90px, 14vh, 150px) var(--gap, clamp(20px, 4.5vw, 72px));
+   Sección con la escala del sistema (--s5 padding-block), eyebrow
+   + dek + grid. El filete arriba lo pinta home-layout.css entre
+   secciones — sin regla propia. */
+
+.home-work {
+  /* Brief 08 §P1 · grilla técnica continua sobre paper. */
+  background-color: var(--paper);
+  background-image: var(--grid-bg);
+  background-size: var(--grid-size) var(--grid-size);
+  padding: var(--s5) var(--pad);
+}
+.home-work__inner {
+  max-width: 1600px;
+  margin-inline: 0;
 }
 
-.work .eyebrow {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
-}
-.work .name {
-  font-size: clamp(26px, 3.6vw, 48px);
+/* F19-B.2 · titular "Selected work." · sin eyebrow, sin conteo.
+   Regla naranja 2px debajo del h2. */
+.home-work__title {
+  font-family: var(--grot);
   font-weight: 600;
+  font-size: var(--t-lead);
+  line-height: 1.1;
   letter-spacing: -.03em;
-  line-height: 1.04;
+  color: var(--ink);
+  margin: 0;
 }
-.work .name--sm { font-size: clamp(22px, 2.8vw, 36px); line-height: 1.1; }
-.work .rule {
+.home-work__rule {
   height: 2px;
+  width: 100%;
+  max-width: 560px;
   background: var(--orange, #FF5A00);
-  margin-top: 20px;
-}
-.work .go {
-  display: inline-block;
-  margin-top: clamp(20px, 3.2vh, 36px);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -.01em;
-  color: inherit;
-  text-decoration: none;
-  padding-bottom: 5px;
-  border-bottom: 1px solid currentColor;
-}
-.work .go:hover {
-  color: var(--orange, #FF5A00);
-  border-bottom-color: var(--orange, #FF5A00);
+  margin: var(--s2) 0 var(--s4);
 }
 
-/* Grilla · W5 · column-gap 10 · row-gap 72. */
-.wgrid {
+/* Grid 3/2/1 con align-items:start — el as del brief. Sin esto,
+   cards de alto distinto se estiran y una card sin foto (que es
+   más baja) forzaría a las demás. Con esto conviven al natural. */
+.work-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 10px;
-  row-gap: 72px;
-  margin-top: clamp(36px, 6vh, 72px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s4) var(--gutter);
   align-items: start;
 }
-.wcell { position: relative; }
-.wcell--x2 { grid-column: span 2; }
-
-/* Card · Pentagram. Sin ordinal, sin flecha, sin rótulo mayúscula. */
-.wcard {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  transition: opacity .35s cubic-bezier(.16, 1, .3, 1);
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
 }
-.wcard__m {
-  aspect-ratio: 3 / 2;
-  background: #DEDAD2;
-  position: relative;
-  overflow: hidden;
-}
-.wcard__m img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-  display: block;
-  transition: transform .4s cubic-bezier(.16, 1, .3, 1), opacity .35s;
-}
-.wcard__n {
-  margin: 14px 0 0;
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -.015em;
-  line-height: 1.2;
-  color: var(--ink, #0D0D0D);
-}
-.wcard__d {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.2;
-  color: var(--grey, #6E6B65);
-  max-width: 40ch;
-  margin-top: 4px;
-}
-.wcard__proof {
-  margin: 10px 0 0;
-  font-size: 17px;
-  line-height: 1.2;
-  font-weight: 500;
-  color: var(--ink, #0D0D0D);
-}
-.wcard__proof__v {
-  color: var(--orange, #FF5A00);
-  font-weight: 600;
-}
-.wcard__proof__l { color: var(--ink, #0D0D0D); font-weight: 400; }
-.wcard__proof__p { color: var(--grey, #6E6B65); }
-.wcard__proof--change {
-  color: var(--ink, #0D0D0D);
-  font-weight: 500;
-}
-.wcard-chips {
-  margin-top: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+@media (max-width: 600px) {
+  .work-grid { grid-template-columns: 1fr; }
 }
 
-/* Hover · W5 · imagen marcada scale 1.03 · demás imágenes .34 ·
-   texto nunca se apaga. */
+/* v6 §1 · cross-dim al hoverar una card.
+   Reemplaza el 0.4 blanket del brief 08 §P3 · dos niveles ahora,
+   medidos sobre Zera: imagen 0.35, texto 0.30. Card activa 100%.
+   Curva easeOutQuint 400ms, la única del sitio.
+
+   Cambio de política vs. §P3: TODAS las cards participan del
+   cross-dim, incluyendo las que no tienen href (Arman, Mistiva).
+   Con el scope siempre presente, la información en las otras
+   cards ya no depende de si linkean o no, y el foco pierde
+   sentido si algunas cards se quedan a 100% mientras las demás
+   bajan.
+
+   En touch el selector :has(:hover) no matchea → todas las cards
+   viven al 100%. */
 @media (hover: hover) {
-  .wgrid:hover .wcard .wcard__m img { opacity: .34; }
-  .wgrid .wcard:hover .wcard__m img {
-    opacity: 1;
-    transform: scale(1.03);
+  .work-grid .work-card__media,
+  .work-grid .work-card__head,
+  .work-grid .work-card__company,
+  .work-grid .work-card__location,
+  .work-grid .work-card__line {
+    transition: opacity 400ms cubic-bezier(.22, 1, .36, 1);
+  }
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__media {
+    opacity: .35;
+  }
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__head,
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__company,
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__location,
+  .work-grid:has(.work-card:hover) .work-card:not(:hover) .work-card__line {
+    opacity: .30;
   }
 }
 
-@media (max-width: 1199px) {
-  .wgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .wcell--x2 { grid-column: span 2; }
-}
-@media (max-width: 699px) {
-  .wgrid { grid-template-columns: 1fr; row-gap: 56px; }
-  .wcell--x2 { grid-column: span 1; }
-}
-
-/* Índice · casos sin imagen · debajo de la grilla, margin-top 96px */
-.windex {
-  margin-top: clamp(72px, 12vh, 128px);
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-}
-.irow-wrap {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: baseline;
-  gap: clamp(12px, 2vw, 24px);
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-}
-.irow-chips {
-  padding: clamp(18px, 3vh, 28px) 0;
-  display: flex;
-  gap: 6px;
-  z-index: 2;
-}
-.windex .irow {
-  display: grid;
-  grid-template-columns: 44px 1fr 1.6fr;
-  gap: clamp(16px, 2.4vw, 40px);
-  align-items: baseline;
-  padding: clamp(18px, 3vh, 28px) 0;
-  color: inherit;
-  text-decoration: none;
-}
-.windex .irow-wrap .irow { padding-right: 20px; }
-.windex .irow.irow-noindex { grid-column: 1 / -1; }
-.windex .irow__o {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--orange, #FF5A00);
-}
-.windex .irow__n {
-  font-size: clamp(17px, 1.5vw, 22px);
-  font-weight: 600;
-  letter-spacing: -.02em;
-  line-height: 1;
-  color: var(--ink, #0D0D0D);
-}
-.windex .irow__d {
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--grey, #6E6B65);
-  max-width: 40ch;
-}
-.windex .irow:hover .irow__n { color: var(--orange, #FF5A00); }
-/* Índice sin página (Jack / Arman): fila plana. */
-.windex > .irow {
-  display: grid;
-  grid-template-columns: 44px 1fr 1.6fr;
-  gap: clamp(16px, 2.4vw, 40px);
-  align-items: baseline;
-  padding: clamp(18px, 3vh, 28px) 0;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-}
-@media (max-width: 760px) {
-  .irow-wrap { grid-template-columns: 1fr; }
-  .windex .irow, .windex > .irow {
-    grid-template-columns: 32px 1fr;
-    gap: 6px 14px;
+/* Reduced motion · sin atenuación. */
+@media (prefers-reduced-motion: reduce) {
+  .work-grid .work-card__media,
+  .work-grid .work-card__head,
+  .work-grid .work-card__company,
+  .work-grid .work-card__location,
+  .work-grid .work-card__line {
+    transition: none;
   }
-  .windex .irow__d { grid-column: 2; }
 }

@@ -64,17 +64,17 @@ export default function ServicesPage() {
               <div className="irow">
                 <span className="irow__o">01</span>
                 <span className="irow__n">Translated</span>
-                <span className="irow__p">12 weeks · $19,500</span>
+                <span className="irow__p">12 weeks · <em>$19,500</em></span>
               </div>
               <div className="irow">
                 <span className="irow__o">02</span>
                 <span className="irow__n">Transmission</span>
-                <span className="irow__p">from $2,200 / month</span>
+                <span className="irow__p">from <em>$2,200</em> / month</span>
               </div>
               <div className="irow">
                 <span className="irow__o">03</span>
                 <span className="irow__n">Interpreted</span>
-                <span className="irow__p">12 weeks · from $55,000</span>
+                <span className="irow__p">12 weeks · from <em>$55,000</em></span>
               </div>
               <div className="irow">
                 <span className="irow__o">04</span>
@@ -215,14 +215,10 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* 06 · EL CORTE · paper */}
-        <section className="plane plane--paper" data-plane>
-          <div className="plane__in">
-            <p className="eyebrow">Who it holds for</p>
-            <h2 className="name">If none of this is you, this is not for you.</h2>
-            <div className="rule" />
-          </div>
-        </section>
+        {/* 06 · EL CORTE · paper.
+            F18.9 · sin cuerpo · se oculta hasta que Fran pase el body.
+            Regla §2 · sin dato real, el bloque no se renderiza.
+        */}
 
         {/* 07 · CIERRE · paper */}
         <section className="plane plane--paper services-close" data-plane>

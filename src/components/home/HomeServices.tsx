@@ -1,50 +1,13 @@
 import Link from 'next/link'
+import { DOORS } from '@/content/services/doors'
 import './home-services.css'
 
-/* Home · WHAT WE DO · plano paper · F11.0 (21-sep · autónomo).
+/* Home · WHAT WE DO · F18.9 · 21-sep · autónomo.
+   Consume la fuente única de precios (src/content/services/doors.ts).
+   Cada fila lleva ordinal · nombre · descriptor · precio (mismo
+   formato que el índice de /services · cifra en naranja).
 
-   AnchorAdvance retirado. Estructura del prototipo home-v3 §12:
-   eyebrow · lede · rule · index (cuatro filas · link a /services).
-
-   DECISIÓN F11.0 · el CTA final del prototipo dice "See how each
-   one works →" y apunta a /process (§2). Como /process ya existe
-   en producción, se conserva el destino /process. Tabla precios
-   §2 en /services (F12). */
-
-const DOORS: ReadonlyArray<{
-  key: string
-  n: string
-  label: string
-  body: string
-}> = [
-  {
-    key: 'translated',
-    n: '01',
-    label: 'Translated',
-    body:
-      'Twelve weeks to build the system a company uses to say what it is.',
-  },
-  {
-    key: 'transmission',
-    n: '02',
-    label: 'Transmission',
-    body:
-      'The system, run every week, so it stops depending on the founder.',
-  },
-  {
-    key: 'interpreted',
-    n: '03',
-    label: 'Interpreted',
-    body:
-      'Two sides with capital and capability, made legible to each other.',
-  },
-  {
-    key: 'the-read',
-    n: '04',
-    label: 'The Read',
-    body: 'One session. What an outsider sees, said plainly.',
-  },
-]
+   CTA "See how each one works →" mantiene destino /process (§2). */
 
 export default function HomeServices() {
   return (
@@ -61,16 +24,17 @@ export default function HomeServices() {
           </p>
           <div className="rule" />
         </div>
-        <div className="index marks">
+        <div className="index marks home-services__index">
           {DOORS.map(door => (
             <Link
               key={door.key}
-              href="/services"
+              href={door.href}
               className="irow mark"
             >
               <span className="irow__o">{door.n}</span>
               <span className="irow__n">{door.label}</span>
-              <span className="irow__d">{door.body}</span>
+              <span className="irow__d">{door.descriptor}</span>
+              <span className="irow__p">{formatPrice(door.price)}</span>
             </Link>
           ))}
         </div>
@@ -79,5 +43,29 @@ export default function HomeServices() {
         </Link>
       </div>
     </section>
+  )
+}
+
+/* La cifra del precio va en naranja; el resto del literal en ink.
+   Regex captura el primer bloque monetario ($NNNN, NNN o "On request").
+   Cifra + moneda pasan a <em>; el prefijo/sufijo queda en text.
+   Ejemplos:
+     "12 weeks · $19,500"          → "12 weeks · [$19,500]"
+     "from $2,200 / month"         → "from [$2,200] / month"
+     "12 weeks · from $55,000"     → "12 weeks · from [$55,000]"
+     "per session · On request"    → "per session · [On request]" */
+function formatPrice(price: string) {
+  const match = price.match(/(\$[\d,]+|On request)/)
+  if (!match) return price
+  const [full] = match
+  const idx = price.indexOf(full)
+  const before = price.slice(0, idx)
+  const after = price.slice(idx + full.length)
+  return (
+    <>
+      {before}
+      <em>{full}</em>
+      {after}
+    </>
   )
 }

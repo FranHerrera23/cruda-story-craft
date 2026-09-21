@@ -219,6 +219,33 @@ Cambios:
 · `app/thinking/thinking.css` · retira `.thinking-wgrid--video` y
   `.soon`, agrega `.thinking-podrow`.
 
+## F18.9 · precios más grandes · fuente única · ✓
+commit   (pendiente)
+checks   build ✓ · home WHAT WE DO muestra los 4 precios con la
+cifra en `<em>` naranja (12 weeks · $19,500 · from $2,200/month ·
+12 weeks · from $55,000 · per session · On request) · /services
+plano Fee ≈ clamp(28px,3.2vw,44px) 600 naranja · `.name.*color:
+orange` = 0 (ningún titular en naranja) · sección "Who it holds
+for / If none of this is you" se oculta hasta que Fran pase el
+body
+Cambios:
+· `src/components/home/HomeServices.tsx` · consume DOORS de
+  `content/services/doors.ts`. Cada fila lleva precio ~60% del
+  nombre, cifra en `<em>` naranja. Cero copy duplicado.
+· `home-services.css` · grid con 4 columnas (ordinal · nombre ·
+  descriptor · precio).
+· `services.css` · `.cell__fee` naranja + clamp(28,3.2vw,44).
+  Índice de apertura `.irow__p` al ~60% del nombre.
+· Sección 06 "EL CORTE" en /services · retirada del render
+  (regla §2 · sin cuerpo, no renderiza). El h2 firmado queda
+  registrado en el commit; cuando Fran mande el body se
+  restaura.
+
+DECISIÓN: F18.9 sacó del render el corte 06 en /services. El h2
+"If none of this is you, this is not for you." es copy firmado
+pero sin body no cumple regla §2. Espera pass de Fran.
+
+
 
 
 

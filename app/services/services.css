@@ -27,11 +27,23 @@
   letter-spacing: -.025em;
   line-height: 1;
 }
+/* F18.9 · precio al 60% del nombre de puerta · 500 · ink · la cifra
+   en naranja. Fuente única de precios: src/content/services/doors.ts. */
 .services-open .irow__p {
-  font-size: 13px;
-  color: var(--grey-dark, #8A867E);
+  font-size: clamp(11px, 1.08vw, 16px); /* ~60% de irow__n */
+  font-weight: 500;
+  color: var(--ink, #0D0D0D);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
+}
+.services-open .irow__p em {
+  font-style: normal;
+  color: var(--orange, #FF5A00);
+}
+/* En negro (apertura): el precio queda en white + naranja. */
+.plane--black .services-open .irow__p,
+.plane--black .irow__p {
+  color: var(--white, #FAF9F7);
 }
 @media (max-width: 760px) {
   .services-open .irow {
@@ -41,8 +53,14 @@
   .services-open .irow__p { grid-column: 2; }
 }
 
-/* Fee en naranja · sólo en /services. */
-.plane .cell__fee { color: var(--orange, #FF5A00); }
+/* F18.9 · Fee en naranja + más grande · sólo en /services. */
+.plane .cell__fee {
+  color: var(--orange, #FF5A00);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1;
+}
 
 .services-mail {
   display: inline-block;

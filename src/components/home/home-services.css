@@ -41,6 +41,26 @@
   color: var(--grey, #6E6B65);
   max-width: 40ch;
 }
+/* F18.9 · precio · misma escala que /services (~60% del nombre). */
+.home-services .irow {
+  grid-template-columns: 44px 1fr 1.25fr auto;
+}
+.home-services .irow__p {
+  font-size: clamp(11px, 1.08vw, 16px);
+  font-weight: 500;
+  color: var(--ink, #0D0D0D);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-left: clamp(16px, 2vw, 32px);
+}
+.home-services .irow__p em {
+  font-style: normal;
+  color: var(--orange, #FF5A00);
+}
+@media (max-width: 760px) {
+  .home-services .irow { grid-template-columns: 32px 1fr; }
+  .home-services .irow__p { grid-column: 2; padding-left: 0; }
+}
 @media (max-width: 760px) {
   .home-services .irow {
     grid-template-columns: 32px 1fr;

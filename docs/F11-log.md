@@ -103,6 +103,17 @@ previa). Prototipo firmado gana.
 DECISIÓN: "Jack Yeager" (proto) vs "Jack Yaeger" (data previa).
 Prototipo firmado gana.
 
+## F11.4 · orden · WHAT WE DO a posición 03 · ✓
+commit   (pendiente)
+checks   build ✓ · orden de secciones en `.stack` verificado por
+curl · what-cruda-is → act2 → services → selected-work → karen-quote
+→ karen-proof → what-others → our-founder → close · playwright
+390 + 1440 sin errores de consola, nojs 4683 chars legible
+shots    docs/F11-shots/F11.4/
+Cambio único: `HomeServices` sube justo después de `Act2WhyNow`
+y antes de `SelectedWork` en `app/page.tsx`.
+
+
 
 
 

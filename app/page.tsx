@@ -18,27 +18,22 @@ import PlanesStack from '@/components/motion/PlanesStack';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). F11.0 · 21-sep · autónomo.
+   CRUDA — Home (`/`). F11.4 · 21-sep · autónomo.
 
-   Apilado firmado. AnchorAdvance retirado.
-
-   Orden vigente F11.0:
+   WHAT WE DO sube a posición 03. Orden vigente:
 
      hero                                          NEGRO · propio
      <main id="stack">
        01  WHAT CRUDA IS                           PAPER · plano
        02  #act2 · WHY NOW                         PAPER · propio
-       03  SELECTED WORK                           PAPER · propio
-       04  KAREN · CITA                            NEGRO · plano
-       05  LA PRUEBA                               NEGRO · plano
-       06  WHAT OTHERS                             PAPER · plano
-       07  OUR FOUNDER                             NEGRO · plano
-       08  WHAT WE DO                              PAPER · plano
+       03  WHAT WE DO                              PAPER · plano
+       04  SELECTED WORK                           PAPER · propio
+       05  KAREN · CITA                            NEGRO · plano
+       06  LA PRUEBA                               NEGRO · plano
+       07  WHAT OTHERS                             PAPER · plano
+       08  OUR FOUNDER                             NEGRO · plano
        09  CONTACT                                 PAPER · plano
      </main>
-
-   El orden final con WHAT WE DO subiendo a posición 03 llega en
-   F11.4. Hasta entonces se mantiene el orden vigente.
 
    Componentes fuera del render, se conservan como dead code hasta
    F12/F13: HomeTestimonial (split), HomeWhoItHoldsFor (H0),
@@ -71,12 +66,12 @@ export default function HomePage() {
       <main className="stack" id="stack">
         <HomeWhatCrudaIs />
         <Act2WhyNow />
+        <HomeServices />
         <SelectedWork />
         <HomeKarenQuote />
         <HomeKarenProof />
         <HomeWhatOthers />
         <HomeLegacy />
-        <HomeServices />
         <HomeClose />
       </main>
     </>

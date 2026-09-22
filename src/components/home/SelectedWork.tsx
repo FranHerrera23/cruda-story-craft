@@ -1,28 +1,28 @@
 import Link from 'next/link'
 import './selected-work.css'
 
-/* Home · SELECTED WORK · F21 FINAL v2 · 21-sep.
+/* Home · SELECTED WORK · F21 FINAL v2 · 21-sep · fotos 22-sep.
 
    Toca SOLO la sección #selected-work de la home.
-   9 cards en la grilla, sin lista debajo.
+   9 cards en la grilla, sin lista debajo. Todas con foto real
+   (aspect-ratio 1/1). Las que no son retrato de founder se
+   presentan como proyecto (título = nombre del proyecto).
 
    Grilla · 3 columnas · 3 filas · col-gap 12 · row-gap 72.
    Orden:
      Karen · Mike · Girish
      José · Confidential · JP Romero
-     Germán Noel · Jack Yeager · Arman
+     INOUT · Jack Yeager · BAUHOME
 
-   Imagen: foto real 3:2 o portada tipográfica (fondo black, nombre
-   de la empresa en blanco, Archivo 600 · clamp 28-44 · -.01em).
-   JP Romero: hasta que Fran apruebe un retrato → portada 'JURA · CTD'.
-
-   Text bloque: Nombre · Empresa·ciudad · Descripción · Servicio.
+   Text bloque: Nombre · Empresa·ciudad (o línea del proyecto) ·
+   Descripción · Servicio.
    Servicio en desktop aparece SOLO en hover (slot con altura
    reservada, translateY 100% → 0 · 400ms). En mobile/touch se
    ve siempre.
 
-   Link: toda la card es un solo <a>. Jack y Arman: <div>, sin link,
-   sin scale · Jack sí revela servicio en hover, Arman no tiene. */
+   Link: toda la card es un solo <a>. Jack y BAUHOME: <div>, sin
+   link, sin scale · Jack sí revela servicio en hover, BAUHOME no
+   tiene servicio. */
 
 type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'THE READ'
 
@@ -100,15 +100,15 @@ const CARDS: Card[] = [
     objectPosition: 'center 20%',
   },
   {
-    name: 'Germán Noel',
-    meta: 'INOUT · Salta',
+    /* F21 · Fran (22-sep) · card presentada como proyecto, no como
+       persona. "Germán Noel" no aparece en la card; "Salta"
+       tampoco. Sigue linkeando a /work/inout. */
+    name: 'INOUT',
+    meta: 'Frameless Sliding Doors · Argentina',
     description:
-      "Founder of northern Argentina's leading glass manufacturer, now launching a frameless door line.",
+      'A frameless sliding door line, branded from zero, with a trade program the client still runs on its own.',
     service: ['TRANSLATED'],
     href: '/work/inout',
-    /* F21 · foto de producto aprobada por Fran (22-sep) · muro
-       corredizo INOUT. Fuente 1170x1170; el crop 1:1 no descarta
-       nada, así que center 50% muestra la composición completa. */
     imageSrc: '/inout-sliding-wall.jpg',
     objectPosition: 'center 50%',
   },
@@ -125,13 +125,13 @@ const CARDS: Card[] = [
     objectPosition: 'center 20%',
   },
   {
-    name: 'Arman',
-    meta: 'BAUHOME · Jacksonville',
+    /* F21 · Fran (22-sep) · card presentada como proyecto, no como
+       persona. "Arman" y "Jacksonville" no aparecen en la card.
+       Sin link (queda como <div>). */
+    name: 'BAUHOME',
+    meta: 'Luxury kitchen cabinets · Los Angeles',
     description:
-      "Former Director of Operations at Santa Monica's biggest hospital, now building a luxury kitchen cabinet company.",
-    /* F21 · foto de producto aprobada por Fran (22-sep). Cocina
-       centrada horizontalmente; center 50% para dejar el bloque
-       principal en el crop 1:1. */
+      "Luxury kitchen cabinets, founded by the former Director of Operations at Santa Monica's biggest hospital.",
     imageSrc: '/bauhome-kitchen.webp',
     objectPosition: 'center 50%',
   },

@@ -118,7 +118,11 @@ const CARDS: Card[] = [
     description:
       'Sold his first company for seven figures, sailed the world, and came back to build a lighting business in Miami.',
     service: ['TRANSLATED', 'TRANSMISSION'],
-    coverText: 'Mistiva',
+    /* F21 · retrato aprobado por Fran (22-sep). Fuente 800×800 ya
+       cuadrada; object-position center 20% mantiene el criterio
+       del spec (cara en tercio superior si Fran cambia la fuente). */
+    imageSrc: '/jack-yeager.jpeg',
+    objectPosition: 'center 20%',
   },
   {
     name: 'Arman',

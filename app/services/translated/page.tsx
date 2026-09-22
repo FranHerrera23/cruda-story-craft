@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import StartHere from '@/components/StartHere'
 import '../services.css'
 import './translated.css'
 
@@ -147,22 +148,8 @@ export default function TranslatedPage() {
         </p>
       </section>
 
-      {/* 04 · Cierre · queda hasta que f23-5 monte START HERE. */}
-      <section className="translated-close">
-        <p className="eyebrow">Start here</p>
-        <h2 className="translated-h2">Twelve weeks start with forty-five minutes.</h2>
-        <p className="translated-lede">
-          The first step is a 45-minute call with Fran. No cost, and no
-          pitch at the end of it.
-        </p>
-        <Link className="translated-cta" href="/contact">
-          Book the call →
-        </Link>
-        <br />
-        <a className="translated-mail" href="mailto:fran@thecruda.com">
-          fran@thecruda.com
-        </a>
-      </section>
+      {/* 04 · START HERE · F23-5 */}
+      <StartHere h2="Twelve weeks start with forty-five minutes." />
     </main>
   )
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import StartHere, { CASE_START_HERE } from '@/components/StartHere'
 import './case-study-layout-v2.css'
 
 /* <CaseStudyLayout> · F17.0 · 21-sep · autónomo · case-molde-v1.
@@ -301,19 +302,10 @@ export default function CaseStudyLayout({ data }: { data: CaseStudyData }) {
         </section>
       )}
 
-      {/* 09 · CIERRE · plano 10 de la home */}
-      <section className="cs-close">
-        <p className="cs-eyebrow">Start here</p>
-        <h2>One conversation.</h2>
-        <div className="cs-rule" />
-        <p className="cs-close__lede">
-          We ask what you are actually trying to do, and what the market
-          currently believes about you.
-        </p>
-        <Link className="cs-mail" href="/contact">
-          Start a conversation
-        </Link>
-      </section>
+      {/* 09 · START HERE · F23-5 · copy por caso. */}
+      {CASE_START_HERE[data.slug] && (
+        <StartHere {...CASE_START_HERE[data.slug]} />
+      )}
     </article>
   )
 }

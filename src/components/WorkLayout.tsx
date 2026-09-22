@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Work, WorkBlock, WorkMetric } from '@/content/work/types'
 import { doorSpec } from '@/content/services/doors'
+import StartHere, { CASE_START_HERE } from '@/components/StartHere'
 import { selectedWork } from '@/content/work'
 import './case-study-layout-v2.css'
 import './work-layout.css'
@@ -399,19 +400,10 @@ export default function WorkLayout({ w }: { w: Work }) {
       {/* 10 · Next case */}
       {w.next && <NextCaseCard slug={w.next} />}
 
-      {/* 11 · Cierre · plano 10 de la home */}
-      <section className="cs-close">
-        <p className="cs-eyebrow">Start here</p>
-        <h2>One conversation.</h2>
-        <div className="cs-rule" />
-        <p className="cs-close__lede">
-          We ask what you are actually trying to do, and what the market
-          currently believes about you.
-        </p>
-        <Link className="cs-mail" href="/contact">
-          Start a conversation
-        </Link>
-      </section>
+      {/* 11 · START HERE · F23-5 · copy por caso. */}
+      {CASE_START_HERE[w.slug] && (
+        <StartHere {...CASE_START_HERE[w.slug]} />
+      )}
     </article>
   )
 }

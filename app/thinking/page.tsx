@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ThinkingFilters from './ThinkingFilters'
+import StartHere from '@/components/StartHere'
 import { allEssays } from '@/content/essays'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import type { Resource, ResourceCompany } from '@/content/resources'
@@ -254,6 +255,10 @@ export default function ThinkingPage() {
       <p className="thinking-empty" data-empty hidden>
         Nothing here yet in this combination.
       </p>
+
+      {/* START HERE · F23-5. */}
+      <StartHere h2="Did one of these pieces describe your company?" />
+
       <div className="thinking-end" />
     </div>
   )

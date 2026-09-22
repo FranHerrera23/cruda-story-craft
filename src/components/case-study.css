@@ -444,12 +444,17 @@
 }
 .site-footer__wordmark {
   grid-column: 1 / span 6;
-  font-family: var(--font-archivo), -apple-system, sans-serif;
-  font-weight: 700;
-  font-size: clamp(56px, 8vw, 128px);
-  line-height: 0.9;
-  letter-spacing: -0.02em;
   color: var(--ink);
+  line-height: 0;
+}
+/* F22 · logo negro reemplaza al wordmark de texto. Ancho al mismo
+   footprint visual que el "CRUDA" anterior (clamp del font-size). */
+.site-footer__wordmark-logo {
+  display: block;
+  width: clamp(240px, 40vw, 560px);
+  height: auto;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 .site-footer__capture-slot {
   grid-column: 1 / span 5;

@@ -15,17 +15,20 @@ import SmoothScroll from "@/components/SmoothScroll";
 import LineReveals from "@/components/LineReveals";
 import Loader from "@/components/Loader";
 
-/* Motion v3 §9 + Motion v4 §1 — inline script en el <head> que
-   corre antes del primer paint.
+/* Inline script en el <head> que corre antes del primer paint.
 
-   1 · Loader gate · lee sessionStorage y setea data-loader='skip'
-       en <html> si el loader ya se mostró en esta sesión. CSS
-       gate en globals.css (html[data-loader="skip"] .loader
-       { display:none }) corta el render antes de pintar. Sin este
-       script el loader flashea 800ms en cada reload dentro de la
-       misma pestaña.
+   1 · Loader gate · setea data-loader='show' en <html> en toda
+       carga completa (F22 · 22-sep, sin sessionStorage). El CSS
+       gate en globals.css sigue funcionando neutralmente: nunca
+       aplica 'skip', pero el hook queda para futuros overrides
+       (ej. reduced-motion via media query). Motion v3 §9.
 
-   2 · Motion v4 §1 no-flash · agrega la clase `js` al
+   2 · scrollRestoration = 'manual' · impide que el browser
+       restaure el scroll previo antes de que el loader termine
+       su salida (F22). Loader.tsx además fuerza scrollTo(0,0) o
+       respeta #ancla al final de la salida.
+
+   3 · Motion v4 §1 no-flash · agrega la clase `js` al
        documentElement. acts.css usa `.js` como gate para ocultar
        todos los beats menos el 01 de cada acto ANTES del primer
        paint. Sin JS la clase nunca se setea y el CSS default
@@ -45,15 +48,10 @@ import Loader from "@/components/Loader";
    no una clase real: `document.documentElement.dataset.foo`
    (así hace el loader gate de arriba). */
 const LOADER_GATE_SCRIPT = `
+document.documentElement.dataset.loader = 'show';
 try {
-  if (sessionStorage.getItem('cruda-loader-shown') === '1') {
-    document.documentElement.dataset.loader = 'skip';
-  } else {
-    document.documentElement.dataset.loader = 'show';
-  }
-} catch (e) {
-  document.documentElement.dataset.loader = 'show';
-}
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+} catch (e) {}
 document.documentElement.className += ' js';
 `.trim();
 

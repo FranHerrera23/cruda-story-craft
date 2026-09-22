@@ -134,7 +134,22 @@ export default function Nav() {
       <nav className={navClass} data-nav>
         <div className="cruda-global-nav-in">
           <Link href="/" className="cruda-global-nav-brand" aria-label="CRUDA home">
-            CRUDA
+            {/* F22 · dos imgs en el DOM, swap por CSS bajo .bar--dark.
+                Ambos se descargan en el primer paint, así el cambio
+                al scrollear a una sección oscura es instantáneo (sin
+                fetch, sin transición). alt="CRUDA" en la visible
+                por default; la otra queda decorativa. */}
+            <img
+              className="cruda-global-nav-brand__logo cruda-global-nav-brand__logo--ink"
+              src="/cruda-logo-black.png"
+              alt="CRUDA"
+            />
+            <img
+              className="cruda-global-nav-brand__logo cruda-global-nav-brand__logo--cream"
+              src="/cruda-logo-cream.png"
+              alt=""
+              aria-hidden="true"
+            />
           </Link>
 
           <div className="cruda-global-nav-menu">
@@ -219,13 +234,25 @@ export default function Nav() {
           gap: 24px;
         }
         .cruda-global-nav-brand {
-          font-family: var(--font-archivo), 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-          font-weight: 700;
-          font-size: 16px;
-          letter-spacing: .04em;
+          display: inline-flex;
+          align-items: center;
           color: inherit;
           text-decoration: none;
+          line-height: 0;
         }
+        /* F22 · misma altura visual que tenía el wordmark (16px del
+           Archivo 700). Las dos versiones ocupan el mismo espacio.
+           Swap por CSS bajo .bar--dark, sin transición. */
+        .cruda-global-nav-brand__logo {
+          display: block;
+          height: 20px;
+          width: auto;
+          user-select: none;
+          -webkit-user-drag: none;
+        }
+        .cruda-global-nav-brand__logo--cream { display: none; }
+        .cruda-global-nav.bar--dark .cruda-global-nav-brand__logo--ink { display: none; }
+        .cruda-global-nav.bar--dark .cruda-global-nav-brand__logo--cream { display: block; }
         .cruda-global-nav-menu {
           display: flex;
           align-items: center;

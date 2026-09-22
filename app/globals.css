@@ -374,6 +374,16 @@ a, button {
   transform: translateY(100%);
   animation: loader-letter-rise 620ms cubic-bezier(.16, 1, .3, 1) forwards;
 }
+/* F22 · logo crema dentro del clip. La rise animation vive en
+   .loader__letter; el img ocupa el mismo espacio que el wordmark
+   de texto anterior (altura del glifo). */
+.loader__logo {
+  display: block;
+  height: clamp(48px, 8vw, 88px);
+  width: auto;
+  user-select: none;
+  -webkit-user-drag: none;
+}
 .loader__line {
   position: absolute;
   left: 0;

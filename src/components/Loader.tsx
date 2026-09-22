@@ -2,61 +2,55 @@
 
 import { useEffect, useState } from 'react'
 
-/* Motion v3 §1 (14-sep) — Loader nuevo.
+/* Loader · F22 · 22-sep.
 
-   La versión anterior era rápida y vacía. 500ms de wordmark sin
-   nada más se leían como un parpadeo. El fix no es acortarlo —
-   es darle al ojo algo que mirar.
-
-   Tres elementos:
-     · Wordmark CRUDA — --paper, grot 500, clamp(48-88px). Cinco
-       letras con máscara individual, cada una sube desde
-       translateY(100%) a 0. Duración 620ms por letra, stagger 70ms.
-     · Línea de tagline — abajo, 13px tracked, mayúsculas, --paper
-       al 40%. Aparece a los 420ms con fade-in de 500ms.
-     · Panel --ink de fondo.
-
-   Todo dentro de `.loader__stage`, que sale de una sola vez —
-   translateY(0 → -100%) con --dur-4 y --ease-exit. La salida
-   arranca a los 1400ms y termina a los 2000ms.
+   Estructura y timing heredados de Motion v3 §1 (14-sep) — no se
+   rediseña. Cambia SOLO el wordmark: en vez de 5 letras Archivo,
+   entra el logo crema (public/cruda-logo-cream.png) dentro de la
+   misma máscara con la que subían las letras. Fondo --ink, tagline,
+   salida del panel y duración total: idénticos.
 
    Timing:
-     t=0        wordmark empieza a entrar
-     t=280ms    última letra empieza (4 × 70)
+     t=0        wordmark entra (translateY 100% → 0)
      t=420ms    tagline empieza fade-in
-     t=900ms    wordmark completo
-     t=920ms    tagline visible al 40%
-     t=1400ms   panel arranca a salir (--dur-4)
+     t=1400ms   panel arranca a salir (--dur-4 · --ease-exit)
      t=2000ms   panel fuera → dispatch cruda:loader-out → hero H1
+     t=2050ms   nodo desmontado
 
-   `cruda:loader-out` lo espera RevealScroll (§2) para dispararle
-   el revelado al hero. Sin este evento el H1 queda en su estado
-   inicial invisible.
+   F22 fixes:
+     · Sin sessionStorage. El loader aparece en toda carga completa
+       (primer paint, F5, entrada por URL). En navegación interna
+       de Next el layout persiste y este componente no se re-monta,
+       así que el loader no reaparece.
+     · history.scrollRestoration = 'manual' (via inline script en
+       layout.tsx) evita que el browser restaure el scroll previo
+       antes de terminar la salida del loader.
+     · En cada carga completa forzamos scroll a 0. Si la URL trae
+       #ancla, la respetamos: hacemos scrollIntoView al terminar
+       la salida del loader para asegurar el destino.
 
-   Flash-free en reload: inline script en <head> (layout.tsx) setea
-   data-loader="skip" en <html> antes del primer paint. CSS gate
-   `html[data-loader="skip"] .loader { display:none }` corta el
-   render antes de pintar.
-
-   Aún es solo primera visita de la sesión (sessionStorage). En
-   reloads posteriores el hero fire a 120ms via el fallback de
-   RevealScroll — no espera el evento porque el loader no corre.
-
-   Reduced motion: el nodo se desmonta inmediatamente. RevealScroll
-   detecta reduce y dispara el hero a 120ms sin esperar evento. */
+   Flash-free en reload: layout.tsx setea data-loader='show'
+   (o 'skip' bajo reduced-motion) antes del primer paint. */
 
 const HOLD_MS = 1400
 const EXIT_MS = 600
 const UNMOUNT_BUFFER_MS = 50
 const UNMOUNT_MS = HOLD_MS + EXIT_MS + UNMOUNT_BUFFER_MS
-const SESSION_KEY = 'cruda-loader-shown'
-const LETTER_STAGGER_MS = 70
-
-const WORDMARK = ['C', 'R', 'U', 'D', 'A'] as const
 const TAGLINE = 'Narrative for founder-led companies'
 
 function dispatchLoaderOut() {
   document.dispatchEvent(new CustomEvent('cruda:loader-out'))
+}
+
+function scrollToHashIfAny() {
+  const raw = window.location.hash
+  if (!raw) return false
+  const id = decodeURIComponent(raw.slice(1))
+  if (!id) return false
+  const el = document.getElementById(id)
+  if (!el) return false
+  el.scrollIntoView()
+  return true
 }
 
 export default function Loader() {
@@ -67,37 +61,21 @@ export default function Loader() {
 
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setVisible(false)
-      /* No dispatcheamos loader-out — RevealScroll bajo reduce va
-         al fallback de 120ms directamente (chequea el media query
-         cuando setup arranca). Duplicar el evento acá sería noise. */
+      /* RevealScroll bajo reduce va al fallback de 120ms directamente. */
       return
     }
 
-    let skip = false
-    try {
-      skip = sessionStorage.getItem(SESSION_KEY) === '1'
-    } catch {
-      /* Storage bloqueado (Safari privado, políticas corporativas):
-         el loader corre, aceptable. */
+    /* F22 · en toda carga completa, mandamos el scroll a 0 (o al
+       #ancla) antes de que el loader termine su salida. */
+    const hasHash = Boolean(window.location.hash)
+    if (!hasHash) {
+      window.scrollTo(0, 0)
     }
 
-    if (skip) {
-      setVisible(false)
-      /* Mismo caso que reduce — RevealScroll ve data-loader="skip"
-         y usa el fallback de 120ms. No dispatcheamos loader-out. */
-      return
-    }
-
-    /* Marcar la sesión ANTES de arrancar timers. Si algo falla
-       después, la próxima carga ya no ve el loader. */
-    try {
-      sessionStorage.setItem(SESSION_KEY, '1')
-    } catch {}
-
-    /* Dispatch al final del exit del panel, no al arranque. La
-       secuencia se lee como: "el telón sube, y apenas termina,
-       arranca el revelado por línea del H1" (§2). */
-    const tOut = window.setTimeout(dispatchLoaderOut, HOLD_MS + EXIT_MS)
+    const tOut = window.setTimeout(() => {
+      dispatchLoaderOut()
+      if (hasHash) scrollToHashIfAny()
+    }, HOLD_MS + EXIT_MS)
     const tUnmount = window.setTimeout(
       () => setVisible(false),
       UNMOUNT_MS,
@@ -112,25 +90,22 @@ export default function Loader() {
   if (!visible) return null
 
   /* La animación del wordmark, la tagline y la salida del panel
-     viven en CSS keyframes, no en transitions triggereadas por JS.
-     Ventaja: arrancan en el primer paint, no dependen de hydration.
-     El único rol de JS es dispatchear el evento a los 2000ms y
-     desmontar el nodo a los 2050ms. */
+     viven en CSS keyframes. Único rol de JS: dispatchear el evento
+     a los 2000ms y desmontar a los 2050ms. */
   return (
     <div className="loader" aria-hidden="true">
       <div className="loader__stage">
         <div className="loader__panel" />
         <div className="loader__word">
-          {WORDMARK.map((letter, i) => (
-            <span key={i} className="loader__letter-clip">
-              <span
-                className="loader__letter"
-                style={{ animationDelay: `${i * LETTER_STAGGER_MS}ms` }}
-              >
-                {letter}
-              </span>
+          <span className="loader__letter-clip">
+            <span className="loader__letter">
+              <img
+                className="loader__logo"
+                src="/cruda-logo-cream.png"
+                alt=""
+              />
             </span>
-          ))}
+          </span>
         </div>
         <div className="loader__line">{TAGLINE}</div>
       </div>

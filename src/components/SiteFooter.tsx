@@ -26,7 +26,15 @@ export default function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="grid-container site-footer__grid">
-        <div className="site-footer__wordmark">CRUDA</div>
+        {/* F22 · wordmark del footer pasa a ser el logo negro.
+            alt="CRUDA" y sin link (el nav ya sirve de home). */}
+        <div className="site-footer__wordmark">
+          <img
+            className="site-footer__wordmark-logo"
+            src="/cruda-logo-black.png"
+            alt="CRUDA"
+          />
+        </div>
 
         {showCapture && (
           <div className="site-footer__capture-slot">

@@ -17,6 +17,8 @@ export const confidentialFashionFounder: Work = {
   axis: 'across',
   moment: 'second-company',
 
+  image: '/confidential-hero.jpg',
+  heroFormat: 'landscape',
   proof: {
     type: 'change',
     text: 'The system reused for recruitment',

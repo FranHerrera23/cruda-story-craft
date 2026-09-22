@@ -18,6 +18,8 @@ export const mannheimTrading: Work = {
   moment: 'new-entity',
 
   image: '/jose-mannheim.webp',
+  heroFormat: 'portrait',
+  heroObjectPosition: 'center 20%',
   proof: {
     type: 'change',
     text: 'A founder who publishes under his own name, at eighty.',

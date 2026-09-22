@@ -18,6 +18,8 @@ export const mikeKaeding: Work = {
   moment: 'category-shift',
 
   image: '/mike-kaeding.webp',
+  heroFormat: 'portrait',
+  heroObjectPosition: 'center 30%',
   proof: {
     type: 'metric',
     value: '2M',

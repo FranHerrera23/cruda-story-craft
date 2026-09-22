@@ -628,6 +628,85 @@ html { font-size: 17px; }
 .cs-hero{margin:0 0 72px}
 .cs-hero img{width:100%;height:auto;display:block}
 
+/* F23-3 §4.1 · variantes de hero por formato.
+   · portrait 4:5 · 5 de 12 columnas (con meta al lado en desktop).
+   · landscape 16:9 · ancho completo.
+   Nunca por encima del ancho nativo (max-width intrínseco vía img
+   attributes en un follow-up; por ahora fit-content contiene). */
+.cs-hero--portrait {
+  aspect-ratio: 4 / 5;
+  max-width: 42%;
+  overflow: hidden;
+  background: #DEDAD2;
+}
+.cs-hero--portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+}
+.cs-hero--landscape {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #DEDAD2;
+}
+.cs-hero--landscape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (max-width: 700px) {
+  .cs-hero--portrait,
+  .cs-hero--landscape { max-width: 100%; }
+}
+
+/* F23-3 §4.4 · Next case como card de Selected Work: imagen 1:1,
+   nombre, empresa · ciudad, descripción. */
+.wl-next-card {
+  display: block;
+  max-width: 33%;
+  color: inherit;
+  text-decoration: none;
+}
+.wl-next-card__m {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #DEDAD2;
+}
+.wl-next-card__m img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
+}
+@media (hover: hover) {
+  .wl-next-card:hover .wl-next-card__m img { transform: scale(1.03); }
+}
+.wl-next-card__n {
+  margin: 14px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink, #0D0D0D);
+}
+.wl-next-card__meta {
+  margin: 4px 0 0;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--grey, #6E6B65);
+}
+.wl-next-card__desc {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink, #0D0D0D);
+  max-width: 42ch;
+}
+@media (max-width: 700px) {
+  .wl-next-card { max-width: 100%; }
+}
+
 /* CLIENT */
 .cs-client{padding-bottom:56px;border-bottom:1px solid var(--rule);margin-bottom:56px}
 /* T6 — H2 fijo en --fs-h2 (32px). Antes competía con el H1. */

@@ -30,11 +30,12 @@ export const karenMannheim: Work = {
   },
   period: { start: '2021', end: '2026' },
   via: 'Bushido 2021–2024 · CRUDA 2024–2026',
-  door: { primary: 'transmission', secondary: 'translated' },
+  door: { primary: 'translated', secondary: 'transmission' },
   axis: 'across',
   moment: 'market-entry',
 
   image: pezetHero.src,
+  heroFormat: 'landscape',
   /* La card usa la torre de PEZET (F17.1-iter). El hero interno del
      caso también · el mismo asset se sirve como imagen destacada. */
   proof: {

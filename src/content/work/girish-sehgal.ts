@@ -22,6 +22,8 @@ export const girishSehgal: Work = {
   moment: 'category-shift',
 
   image: '/girish-sehgal.webp',
+  heroFormat: 'portrait',
+  heroObjectPosition: 'center 15%',
   proof: {
     type: 'metric',
     value: '368',

@@ -46,7 +46,7 @@ const CARDS: Card[] = [
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',
-    objectPosition: 'center 25%',
+    objectPosition: 'center 20%',
   },
   {
     name: 'Mike Kaeding',
@@ -66,7 +66,7 @@ const CARDS: Card[] = [
     service: ['TRANSLATED'],
     href: '/work/girish-sehgal',
     imageSrc: '/girish-sehgal.webp',
-    objectPosition: 'center 20%',
+    objectPosition: 'center 15%',
   },
   {
     name: 'José Mannheim',
@@ -76,7 +76,7 @@ const CARDS: Card[] = [
     service: ['TRANSLATED'],
     href: '/work/mannheim-trading',
     imageSrc: '/jose-mannheim.webp',
-    objectPosition: 'center 12%',
+    objectPosition: 'center 20%',
   },
   {
     name: 'Confidential',
@@ -86,7 +86,7 @@ const CARDS: Card[] = [
     service: ['INTERPRETED'],
     href: '/work/confidential-fashion-founder',
     imageSrc: '/confidential-hero.jpg',
-    objectPosition: 'center 40%',
+    objectPosition: 'center 50%',
   },
   {
     name: 'JP Romero',
@@ -97,7 +97,7 @@ const CARDS: Card[] = [
     href: '/work/juan-pablo-romero',
     imageSrc: '/juan-pablo-romero.webp',
     /* F21 · foto aprobada por Fran (22-sep). Cara en tercio superior. */
-    objectPosition: 'center 25%',
+    objectPosition: 'center 20%',
   },
   {
     name: 'Germán Noel',

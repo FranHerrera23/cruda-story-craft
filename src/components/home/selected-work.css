@@ -45,9 +45,9 @@
 }
 .sw-card--flat { cursor: default; }
 
-/* Marco 3:2 · aloja foto o portada tipográfica. */
+/* Marco 1:1 · aloja foto o portada tipográfica. */
 .sw-card__m {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background: #DEDAD2;
 }

@@ -4,7 +4,7 @@ export const mikeKaeding: Work = {
   slug: 'mike-kaeding',
   order: 2,
   title:
-    'A construction CEO with $200M in assets and a mission to cut housing costs in half — turned from best-kept secret into a voice policymakers take calls from',
+    'A construction CEO with $230M in assets created and a mission to cut housing costs in half, turned from best-kept secret into a voice national networks call',
   metaTitle: 'Mike Kaeding · Norhart · CRUDA',
   dek:
     "How CRUDA turned Norhart CEO Mike Kaeding's mission to halve the cost of housing into a voice ABC, Fox News and CBS call.",
@@ -28,14 +28,14 @@ export const mikeKaeding: Work = {
   },
 
   capsule: [
-    "Mike Kaeding runs Norhart, a residential construction company with over 1,000 units delivered and $200M in assets, including the largest residential project in Minneapolis history — a $100M building.",
-    "He inherited the CEO seat when his father died and set the company against a bigger target: cut construction costs in half to solve America's housing crisis. The work was loud, the story was quiet.",
-    "CRUDA built the narrative system that put twenty years of construction expertise in front of policymakers, industry leaders and media, without changing what Mike sounds like.",
+    'Mike Kaeding runs Norhart, a residential construction company in Minnesota that has created $230M in assets, delivered more than 1,000 units and built the largest residential project in Minneapolis history, a $100M building.',
+    'He became CEO when his father died. He is a software engineer by training, and he runs the company with one goal: cut the cost of building housing in half.',
+    'Almost none of that was visible outside Minneapolis. Over eighteen months, CRUDA built the narrative that put his mission in front of policymakers, industry leaders and the media. ABC, Fox News and CBS started calling.',
   ],
   takeaways: [
-    "Being the best-kept secret in an industry that desperately needs what you build is not a growth strategy. Invisibility is a distinct risk.",
-    "The arc is the differentiator. Software engineer → builder → CEO after his father's death isn't background — it's what makes Mike's mission read.",
-    'Talking about waste, not growth, is the positioning that made a construction CEO sound like a systems thinker.',
+    'If your company does more than its story says, the gap costs you the conversations you are never invited to.',
+    "The founder's arc is not background. For Mike, it is the reason the mission is believable.",
+    'Talking about waste, not growth, is what made a construction CEO sound like a systems thinker.',
   ],
   metrics: [
     { value: '56,000', label: 'LinkedIn followers', source: 'LinkedIn Analytics', period: 'Jul 2023 — Oct 2024' },
@@ -44,32 +44,42 @@ export const mikeKaeding: Work = {
   ],
   sections: [
     {
-      h2: 'Twenty years of construction expertise. A quiet story.',
+      h2: 'Where he started.',
       body: [
-        'Mike Kaeding runs Norhart, a residential construction company in Minnesota. He inherited the CEO seat when his father died and turned a family business into the kind of company that builds the largest residential project in Minneapolis history — a $100M building. Over 1,000 units delivered. $200M in assets.',
-        'But none of that showed up online. Mike is a software engineer by training, a builder by conviction. He had a mission — cut construction costs in half to solve America\'s housing crisis — but no system to make that mission travel. His posts were technical. Intermittent. Impersonal.',
-        "The work was loud. The story was quiet. The risk wasn't failure. It was invisibility — being the best-kept secret in an industry that needs what he's building.",
+        "Mike did not choose to lead Norhart. His father's death put him in the chair, and he had to decide whether to walk away or step up. He stepped up, and turned a family business into a company that builds at a scale nobody in Minneapolis had built before.",
+        'Online, none of it showed. His posts were technical, occasional and impersonal. He had a mission the housing debate needed, and no system to make it travel.',
       ],
     },
     {
-      h2: 'From son to CEO — arc first, then mission.',
+      h2: 'What we saw.',
       body: [
-        "Mike didn't choose leadership. It chose him. His father's death forced a decision: walk away or step up. CRUDA told that story — not as tragedy, but as transformation. The arc from software engineer to builder to CEO is what makes the mission credible: he understands systems, and he chose to fix the one his family had built.",
-        "Once the arc was in front of the reader, the mission read differently. Cutting construction costs in half is no longer a slogan. It's a plan by someone who has already delivered a thousand units.",
+        "Most construction CEOs talk about growth. Mike talks about waste: why residential construction is broken, how regulation inflates costs, why building in a factory matters. That became the position: an engineer who thinks like an operator, challenging his industry's math.",
+        "The arc mattered as much as the argument. Software engineer, then builder, then CEO after his father's death: that is what makes the mission believable. He understands systems, and he chose to fix the one his family had built.",
       ],
     },
     {
-      h2: 'From best-kept secret to voice three networks call.',
+      h2: 'What we built.',
       body: [
-        'CRUDA rebuilt Norhart\'s outward surface: LinkedIn cadence, media positioning, executive presence. The volume was not new — the format was. Mike started publishing under his own name, on his own topics, with the arc in every piece.',
-        'By October 2024, ABC, Fox News and CBS were calling. Not because Norhart pitched them — because reporters searching for a builder with a mission on housing costs found one.',
+        'Four streams, every week.',
+        'Leadership · essays on running a company he never asked to run, including conversations with his daughters and what he learned from his wife.',
+        'Industry · what is broken in American housing, and what is possible.',
+        'Operations · how Norhart actually builds: modular construction, workforce training, the systems behind the mission.',
+        'Policy · housing policy, inflation and regulation, and what builders should do about them.',
+        'None of it stayed on LinkedIn. The same material went into keynotes, internal newsletters, investor decks and media interviews.',
+      ],
+    },
+    {
+      h2: 'What changed.',
+      body: [
+        'Mike started publishing under his own name, on his own topics, with the arc in every piece.',
+        'By October 2024, ABC, Fox News and CBS were calling. Norhart did not pitch them. Reporters looking for a builder with a mission on housing costs found one.',
       ],
     },
   ],
   built: [
-    'Positioning · builder-with-a-mission',
-    'LinkedIn cadence · founder voice',
-    'Media narrative · Norhart in the housing crisis frame',
+    "Positioning · the engineer challenging his industry's math",
+    'Four weekly streams · leadership, industry, operations, policy',
+    'Media narrative · Norhart in the housing-cost debate',
   ],
   change: [
     'Three national networks calling in eighteen months.',

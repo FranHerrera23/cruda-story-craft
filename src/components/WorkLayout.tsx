@@ -218,14 +218,22 @@ export default function WorkLayout({ w }: { w: Work }) {
             ))}
           </div>
           {w.takeaways.length > 0 && (
-            <ul className="cs-take" aria-label="Key takeaways">
-              {w.takeaways.map((t, i) => (
-                <li key={i}>
-                  <span>{String(i + 1).padStart(2, '0')}</span>
-                  <span>{t}</span>
-                </li>
-              ))}
-            </ul>
+            <div
+              className="cs-take-block"
+              aria-label="What this means for your company"
+            >
+              <p className="cs-take-block__l">
+                What this means for your company
+              </p>
+              <ul className="cs-take">
+                {w.takeaways.map((t, i) => (
+                  <li key={i}>
+                    <span>{String(i + 1).padStart(2, '0')}</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
         <dl className="cs-meta wl-meta">

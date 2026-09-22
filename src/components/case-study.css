@@ -628,6 +628,17 @@ html { font-size: 17px; }
 .cs-hero{margin:0 0 72px}
 .cs-hero img{width:100%;height:auto;display:block}
 
+/* F23-6 · label del bloque de takeaways: WHAT THIS MEANS FOR YOUR COMPANY. */
+.cs-take-block { margin-top: clamp(24px, 3.6vh, 40px); }
+.cs-take-block__l {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  margin: 0 0 clamp(12px, 1.6vh, 20px);
+}
+
 /* F23-3 §4.1 · variantes de hero por formato.
    · portrait 4:5 · 5 de 12 columnas (con meta al lado en desktop).
    · landscape 16:9 · ancho completo.

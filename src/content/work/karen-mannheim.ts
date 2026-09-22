@@ -46,14 +46,14 @@ export const karenMannheim: Work = {
   },
 
   capsule: [
-    "Karen Mannheim spent 33 years building Lima's most respected architectural lighting firm — over 2,500 projects, an 80-person team, and work in RAMSA, Four Seasons and Oppenheim buildings. Outside Peru, almost nobody knew she existed.",
-    'Between 2021 and 2026, Fran Herrera built the narrative system that made her work legible internationally — first through the agency Bushido, then through CRUDA after 2024. LinkedIn grew 300% and Instagram reached 500K views per 90 days. In 2026 her studio won a Miami pitch against international firms — the client asked no questions and requested the proposal.',
-    "That same year, Forbes Peru named her one of the country's 50 most powerful women: an editorial selection, not a paid placement.",
+    "When Karen Mannheim started working with Fran Herrera in 2021, she had spent 28 years building Lima's most respected architectural lighting firm: more than 2,500 projects, an 80-person team, and work inside RAMSA, Four Seasons and Oppenheim buildings. Outside Peru, almost nobody knew she existed.",
+    'Over the next five years, CRUDA built the narrative system that made her work legible outside Peru. In 2025, TRAZZO grew revenue 46% and closed its largest project, $380K. In 2026, her studio won a Miami pitch against international firms: the client asked no questions and requested the proposal.',
+    "Forbes Perú named her one of the country's 50 most powerful women in 2026. Nobody pitched it: CRUDA does no PR and buys no placements.",
   ],
   takeaways: [
-    'Thirty-three years of proven work does not travel on its own. Recognition is a system, not a byproduct.',
-    'The format matters more than the volume: SPOTLIGHT — Karen interviewing other experts — outperformed anything written about her.',
-    'Presentation systems compound. When the portfolio is told with authority, the room stops asking questions.',
+    'If your work is known at home and invisible abroad, the work is not the problem. Nothing explains it when you are not in the room.',
+    'The right format beats more content. Karen asking experts showed more judgment than any post about her.',
+    'Your deck is part of the narrative. If it lists projects, it loses to the one that tells a story.',
   ],
   metrics: [
     /* PRUEBA · las 4 cifras clave (W6 · naranja) */
@@ -104,10 +104,10 @@ export const karenMannheim: Work = {
   ],
   sections: [
     {
-      h2: 'Thirty-three years of work in Peru. Zero presence in Miami.',
+      h2: 'Where she started.',
       body: [
-        "Thirty-three years later: more than 2,500 projects. Lima's most important showrooms. An eighty-person team. Work inside RAMSA, Four Seasons and Oppenheim buildings. The Porsche flagship in Lima. Saadiyat Nights in Abu Dhabi.",
-        'For 28 of those 33 years the same pattern held: the work was always exceptional. It just never left Lima. Inside the circle that already knew her, it moved. Outside it, nobody had a way in.',
+        'In early 2021, TRAZZO had 28 years of work behind it: more than 2,500 projects, Lima\'s most important showrooms, work inside RAMSA, Four Seasons and Oppenheim buildings, and the Porsche flagship in Lima.',
+        'Inside the circle that already knew her, the work moved. Outside it, nobody had a way in. Karen had about a thousand followers on Instagram and no way to reach a developer in Miami who had never seen a room she lit.',
       ],
       blocks: [
         { kind: 'image', src: pezetEntrance.src, caption: 'PEZET 1, entrance.', aspect: 'l' },
@@ -116,26 +116,26 @@ export const karenMannheim: Work = {
       ],
     },
     {
-      h2: 'The format was the unlock, not the volume.',
+      h2: 'What we saw.',
       body: [
-        'Most founder content fails because it asks the founder to talk about themselves. Karen is technical, precise, and generous — she is at her best when she is asking, not explaining.',
-        'That produced SPOTLIGHT: a format where Karen interviews other experts in her field. It did more for her authority than anything we could have written about her, because it showed her judgment in motion instead of describing it.',
-      ],
-      pull:
-        'We did not give Karen a voice. We found the room where hers already worked.',
-    },
-    {
-      h2: 'When the work is told well, the room stops asking questions.',
-      body: [
-        'In high-end A&D, a single deck decides a multi-million dollar project — and most decks in the category enumerate instead of telling. We built the presentation system her team now runs in-house: structure, master template, and the rules for assembling any pitch.',
-        'Decks that took the team weeks now take an afternoon. In 2026, KMLS won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
+        'Most founder content fails because it asks the founder to talk about herself. Karen is technical, precise and generous, and she is at her best when she is asking, not explaining.',
+        'So instead of writing about her, we built SPOTLIGHT: a format where Karen interviews other experts in her field. It showed her judgment in motion, which no post about her could have done.',
+        'Everything else sits on three pillars: how light behaves in luxury spaces, what it takes to build a Latin American company in Miami, and why lighting cannot be the last decision in a project.',
       ],
     },
     {
-      h2: 'Forbes did not discover Karen. It caught up.',
+      h2: 'The deck that closes the room.',
       body: [
-        'In 2026, Forbes Peru named Karen one of the 50 most powerful women in the country — an editorial selection, not a paid placement.',
-        'The award did not create the reputation. It registered one that had become visible.',
+        'In high-end architecture and design, a single deck decides a multi-million dollar project, and most decks in the category list projects instead of telling anything.',
+        'We built the presentation system her team now runs in-house: the structure, the master template and the rules for assembling any pitch. Decks that took weeks now take an afternoon.',
+        'In 2026, TRAZZO won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
+      ],
+    },
+    {
+      h2: 'Forbes Perú, 2026.',
+      body: [
+        'Forbes Perú named Karen one of the country\'s 50 most powerful women. It was an editorial selection. Nobody pitched it.',
+        'In Florida, the rooms she walks into are already warm: interior design firms, architects and contractors who have been reading her for years.',
       ],
     },
   ],
@@ -147,8 +147,8 @@ export const karenMannheim: Work = {
   ],
   change: [
     'The Miami pitch closed without questions.',
-    'Forbes Peru named Karen one of the country\'s 50 most powerful women.',
-    'The team now assembles pitches in an afternoon instead of weeks.',
+    'The team assembles pitches in an afternoon instead of weeks.',
+    'Revenue grew 46% in 2025.',
   ],
   credit: 'CRUDA · Fran Herrera, Founder',
   faq: [

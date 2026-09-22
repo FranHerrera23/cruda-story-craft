@@ -95,8 +95,9 @@ const CARDS: Card[] = [
       'Takes European architecture and design brands into the US market.',
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/juan-pablo-romero',
-    /* Sin retrato aprobado aún · portada tipográfica de arranque. */
-    coverText: 'JURA · CTD',
+    imageSrc: '/juan-pablo-romero.webp',
+    /* F21 · foto aprobada por Fran (22-sep). Cara en tercio superior. */
+    objectPosition: 'center 25%',
   },
   {
     name: 'Germán Noel',

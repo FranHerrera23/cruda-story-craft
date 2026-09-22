@@ -92,9 +92,10 @@
 }
 
 /* F23.1 · --nav-h · alto real de la barra global (padding 18×2 +
-   logo 20 + hairline). Consumido por scroll-margin y scroll-padding
-   para que las anclas aterricen exactamente bajo la nav. */
-:root { --nav-h: 60px; }
+   logo 40 + hairline). Consumido por scroll-margin y scroll-padding
+   para que las anclas aterricen exactamente bajo la nav.
+   F23-bugs: logo de 20px → 40px por legibilidad. */
+:root { --nav-h: 76px; }
 
 html {
   scroll-behavior: smooth;

@@ -3,72 +3,103 @@
 import { useEffect, useRef, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-/* Motion v3 §8 — Transición de ruta con máscara.
+/* PageShell · F23.1 · 22-sep.
 
-   Reemplaza la transición opacity-only (motion §3.2 / F3.1). Un
-   panel de ancho completo en --ink entra desde abajo, la ruta
-   cambia detrás, y el panel destapa hacia arriba.
+   Reemplaza la máscara ink de Motion v3 §8 por un crossfade de 250ms
+   entre rutas internas, via View Transitions API. La nav queda fija:
+   se le da su propio `view-transition-name: cruda-nav` (globals.css)
+   y su cross-fade se apaga con `animation:none`.
 
-   Reglas duras del brief:
-     · La salida (destape) es más lenta que la entrada (cubrir).
-       Cubrir es funcional; destapar es el momento que se mira.
-       Cubrir --dur-3 con --ease (in); destapar --dur-4 con
-       --ease-exit (out).
-     · El scroll se resetea mientras está cubierto, nunca antes.
-     · Lenis se para durante la transición: lenis.stop() al cubrir,
-       lenis.start() al destapar.
+   Fallback sin transición: si el browser no soporta la API, hacemos
+   router.push directo — la ruta cambia sin animación. Fran, F23.1
+   §2.4: "con fallback sin transición".
 
-   Se dispara sobre clicks internos (next/link renderea <a>, así
-   que quedan cubiertos). Hash-only (misma pathname, cambia hash)
-   se salta — ahí actúa Lenis anchors, no la máscara.
+   `prefers-reduced-motion`: sin transición. En capture, si el media
+   query está activo, dejamos que next/link maneje el click (Link
+   nativo, client nav instantáneo).
 
-   Back button del navegador: el `popstate` es fast direct, sin
-   máscara. Cuando la nueva URL llega vía popstate, pendingRef está
-   en null y el useEffect de pathname no dispara 'revealing'. No es
-   una regresión, es una decisión: la máscara marca navegación
-   dirigida, no historial.
+   F23.1 §2.3 · scroll por ruta.
+   Antes de disparar una nav interna, guardamos la posición actual
+   en sessionStorage[SCROLL_KEY][previousPath]. En popstate (back /
+   forward) marcamos el flag `isPop`; en el useEffect de pathname, si
+   isPop está activo, restauramos la Y guardada. En una nav dirigida
+   (click en un link) reseteamos a 0 salvo que la URL nueva traiga
+   hash (Lenis / #ancla lo maneja).
 
-   Motion §3.1 · fade de hidratación en `.page-root` se conserva —
-   no depende de la transición y da la sensación de página que
-   entra al cargar la primera vez.
-
-   prefers-reduced-motion: la máscara se apaga por CSS
-   (display:none). El click sigue haciendo router.push directo. */
-
-type State = 'idle' | 'covering' | 'revealing'
+   El wrapper .route-mask se conserva en el DOM (dead) pero NUNCA se
+   le setea data-state: el panel queda translateY(100%) fuera del
+   viewport, sin coste visual. Cleanup en un follow-up. */
 
 type LenisApi = {
   stop?: () => void
   start?: () => void
 }
 
-/* SmoothScroll (motion v3 §4) expone la instancia en window.__lenis.
-   Vive fuera del árbol React; el shell la consume por window. */
 function getLenis(): LenisApi | null {
   if (typeof window === 'undefined') return null
   const w = window as unknown as { __lenis?: LenisApi }
   return w.__lenis ?? null
 }
 
-/* Ventana de cubrir tiene que quedar sincronizada con --dur-3, y
-   ventana de destapar con --dur-4. Si algún día cambian los tokens
-   estos números tienen que seguir. */
-const COVER_MS = 500
-const REVEAL_MS = 600
+/* Sessionstorage key + mini API para persistir la posición de scroll
+   por ruta. Cada entrada es `{ [pathname]: number }`. */
+const SCROLL_KEY = 'cruda-scroll-history'
+
+function readScrollHistory(): Record<string, number> {
+  try {
+    const raw = sessionStorage.getItem(SCROLL_KEY)
+    return raw ? (JSON.parse(raw) as Record<string, number>) : {}
+  } catch {
+    return {}
+  }
+}
+
+function saveScroll(path: string, y: number) {
+  try {
+    const data = readScrollHistory()
+    data[path] = y
+    sessionStorage.setItem(SCROLL_KEY, JSON.stringify(data))
+  } catch {}
+}
+
+function getSavedScroll(path: string): number | undefined {
+  return readScrollHistory()[path]
+}
+
+type StartViewTransitionApi = (cb: () => void) => { finished?: Promise<void> }
+
+function supportsViewTransitions(): boolean {
+  if (typeof document === 'undefined') return false
+  return typeof (document as unknown as { startViewTransition?: StartViewTransitionApi })
+    .startViewTransition === 'function'
+}
 
 export default function PageShell({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [state, setState] = useState<State>('idle')
   const [ready, setReady] = useState(false)
-  const pendingHref = useRef<string | null>(null)
   const prevPath = useRef(pathname)
-  const revealTimer = useRef<number | null>(null)
+  const isPop = useRef(false)
 
   useEffect(() => {
     setReady(true)
   }, [])
 
+  /* Popstate flag · marcamos el próximo pathname change como back
+     button para que el useEffect de pathname restaure el scroll
+     guardado en vez de resetearlo a 0. */
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    function onPop() {
+      isPop.current = true
+    }
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
+
+  /* Click interceptor · guarda el scroll de la ruta actual antes de
+     navegar, y dispara la nav dentro de startViewTransition para el
+     crossfade. */
   useEffect(() => {
     if (typeof document === 'undefined') return
 
@@ -85,68 +116,60 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       if (anchor.hasAttribute('download')) return
 
       /* Hash-only: misma pathname, cambia solo el fragmento. Lenis
-         anchors se ocupa. La máscara no se dispara. */
+         anchors se ocupa. Ni transición ni scroll reset. */
       const url = new URL(href, window.location.href)
       if (url.pathname === window.location.pathname) return
 
-      /* Reduced motion: la máscara ya está en display:none por CSS,
-         pero además no queremos meter un COVER_MS de delay para una
-         nav que va a saltar sin transición. Dejamos que next/link
-         maneje el click normalmente — client nav instantáneo. */
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        return
+      /* F23.1 · guardamos la posición actual antes de irnos. */
+      saveScroll(window.location.pathname, window.scrollY)
+
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+      /* Cross-fade solo si la API existe y motion no está reducido.
+         Fallback: router.push directo. */
+      if (!reduce && supportsViewTransitions()) {
+        e.preventDefault()
+        getLenis()?.stop?.()
+        /* Brief 14-sep P0.1 · linesReady flag persiste entre rutas
+           en Next SPA. Lo limpiamos para que RevealScroll re-mida
+           en la ruta nueva. */
+        delete document.documentElement.dataset.linesReady
+        const startVT = (document as unknown as {
+          startViewTransition: StartViewTransitionApi
+        }).startViewTransition
+        const vt = startVT(() => {
+          router.push(href)
+        })
+        if (vt.finished) {
+          vt.finished.finally(() => getLenis()?.start?.())
+        } else {
+          getLenis()?.start?.()
+        }
       }
-
-      e.preventDefault()
-
-      pendingHref.current = href
-      setState('covering')
-      getLenis()?.stop?.()
-
-      /* Brief 14-sep P0.1 — el flag linesReady vive en <html> y
-         persiste entre rutas (Next SPA no resetea el nodo). Sin
-         limpiarlo, la ruta nueva monta con el flag en true y
-         RevealScroll cree que LineReveals ya partió sus títulos —
-         pero LineReveals no re-corrió, los títulos nuevos siguen
-         sin partir, y el delay del cuerpo se calcula sobre un
-         lineCount NaN. Resultado: cuerpo invisible para siempre.
-         Se limpia acá, junto con el reset de scroll, no antes de
-         cubrir — así la ruta vieja termina de renderar tranquila. */
-      delete document.documentElement.dataset.linesReady
-
-      window.setTimeout(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
-        router.push(href)
-      }, COVER_MS)
+      /* Reduced motion o browser sin VT: dejamos que next/link haga
+         su client nav nativo. No preventDefault. */
     }
 
-    /* Capture phase: document listener corre ANTES del onClick que
-       next/link agrega en el <a>. Sin esto, next/link ya llamó a
-       router.push sincrónicamente para cuando corre nuestro handler
-       — la URL cambió, la comparación con window.location.pathname
-       da igualdad y bailamos sin haber montado la máscara. Con
-       capture, preventDefault corre primero y next/link no llega
-       a disparar. */
+    /* Capture phase: nuestro handler tiene que correr antes del de
+       next/link para preventDefault. */
     document.addEventListener('click', onClick, true)
     return () => document.removeEventListener('click', onClick, true)
   }, [router])
 
+  /* Restore de scroll cuando la ruta cambia. En popstate (isPop),
+     restauramos la Y guardada. En nav dirigida, dejamos que Loader
+     (carga completa) o next/link (client nav) hagan el reset a 0. */
   useEffect(() => {
-    if (pendingHref.current && prevPath.current !== pathname) {
-      pendingHref.current = null
-      setState('revealing')
-      getLenis()?.start?.()
-      if (revealTimer.current) window.clearTimeout(revealTimer.current)
-      revealTimer.current = window.setTimeout(() => {
-        setState('idle')
-        revealTimer.current = null
-      }, REVEAL_MS)
-    }
+    if (typeof window === 'undefined') return
+    if (prevPath.current === pathname) return
     prevPath.current = pathname
-    return () => {
-      if (revealTimer.current) {
-        window.clearTimeout(revealTimer.current)
-        revealTimer.current = null
+    if (isPop.current) {
+      isPop.current = false
+      const y = getSavedScroll(pathname)
+      if (typeof y === 'number') {
+        /* Esperamos un tick para dejar que Next termine de pintar +
+           el apilado recalcule antes de restaurar. */
+        window.setTimeout(() => window.scrollTo(0, y), 0)
       }
     }
   }, [pathname])
@@ -154,7 +177,9 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
   return (
     <div className={`page-root${ready ? ' ready' : ''}`}>
       {children}
-      <div className="route-mask" data-state={state} aria-hidden="true">
+      {/* F23.1 · route-mask queda en el DOM pero nunca se activa.
+          La transición ahora es View Transitions API (globals.css). */}
+      <div className="route-mask" data-state="idle" aria-hidden="true">
         <div className="route-mask__panel" />
       </div>
     </div>

@@ -461,24 +461,26 @@
   margin-top: var(--space-5);
   min-height: 96px;                /* Reservado para block 6 (§4.8) */
 }
+/* F23.1 · un solo nav en el footer (§2.5). */
 .site-footer__nav {
+  grid-column: 8 / span 5;
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
   font-size: var(--text-body);
   align-self: start;
 }
-.site-footer__nav--1 { grid-column: 8 / span 2; }
-.site-footer__nav--2 { grid-column: 10 / span 2; }
-.site-footer__nav--3 { grid-column: 12 / span 1; }
+/* F23.1 · legal en Archivo, token de rótulo del sistema (10px · 500 ·
+   .14em · uppercase). Sale IBM Plex Mono. */
 .site-footer__legal {
   grid-column: 1 / -1;
   margin-top: auto;
-  font-size: var(--text-caption);
-  color: var(--ink);
-  letter-spacing: 0.12em;
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
   text-transform: uppercase;
-  font-family: 'IBM Plex Mono', monospace;
+  color: var(--ink);
   padding-top: var(--space-4);
 }
 
@@ -492,9 +494,7 @@
   .site-footer__grid { min-height: auto; }
   .site-footer__wordmark { grid-column: 1 / -1; }
   .site-footer__capture-slot { grid-column: 1 / -1; }
-  .site-footer__nav--1,
-  .site-footer__nav--2,
-  .site-footer__nav--3 { grid-column: 1 / -1; }
+  .site-footer__nav { grid-column: 1 / -1; }
 }
 
 /* Root anchor (Parte 1.1). All rem-based sizes derive from this. */

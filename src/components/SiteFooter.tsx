@@ -42,18 +42,16 @@ export default function SiteFooter() {
           </div>
         )}
 
-        <nav className="site-footer__nav site-footer__nav--1" aria-label="Content">
-          <Link href="/thinking" className="link">Thinking</Link>
-          <Link href="/#selected-work" className="link">Case studies</Link>
-          <Link href="/newsletter" className="link">Newsletter</Link>
-        </nav>
-
-        <nav className="site-footer__nav site-footer__nav--2" aria-label="About">
+        {/* F23.1 · un solo orden (§2.5).
+              Work · Services · About · Thinking · Contact · Newsletter · LinkedIn · X
+            "Case studies" desaparece — Work la reemplaza. */}
+        <nav className="site-footer__nav" aria-label="Site">
+          <Link href="/#selected-work" className="link">Work</Link>
+          <Link href="/services" className="link">Services</Link>
           <Link href="/about" className="link">About</Link>
+          <Link href="/thinking" className="link">Thinking</Link>
           <Link href="/contact" className="link">Contact</Link>
-        </nav>
-
-        <nav className="site-footer__nav site-footer__nav--3" aria-label="Social">
+          <Link href="/newsletter" className="link">Newsletter</Link>
           <a
             href="https://www.linkedin.com/company/thecrudaspace/"
             target="_blank"

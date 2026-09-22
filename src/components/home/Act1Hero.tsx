@@ -145,9 +145,9 @@ export default function Act1Hero() {
             )
           })}
         </div>
-        <div className="act__logo" aria-hidden="true">
-          CRUDA
-        </div>
+        {/* F23.1 · CRUDA crema abajo-izquierda del hero retirado (Fran
+            22-sep). El wordmark ya vive en la nav global; repetirlo
+            en el fold competía con el h1. */}
       </div>
     </div>
   )

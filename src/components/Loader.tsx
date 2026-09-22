@@ -29,6 +29,12 @@ import { useEffect, useState } from 'react'
        #ancla, la respetamos: hacemos scrollIntoView al terminar
        la salida del loader para asegurar el destino.
 
+   F23.1 fix (§2.3):
+     · El loader corre SOLO si navigation.type === 'navigate' o
+       'reload'. En 'back_forward' (BFCache o back button del
+       browser) no aparece: la posición de scroll la restaura
+       PageShell desde sessionStorage.
+
    Flash-free en reload: layout.tsx setea data-loader='show'
    (o 'skip' bajo reduced-motion) antes del primer paint. */
 
@@ -62,6 +68,17 @@ export default function Loader() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setVisible(false)
       /* RevealScroll bajo reduce va al fallback de 120ms directamente. */
+      return
+    }
+
+    /* F23.1 · back button / BFCache · no volvemos a mostrar el loader.
+       PageShell restaura la posición de scroll de la ruta desde
+       sessionStorage. */
+    const navEntry = performance.getEntriesByType('navigation')[0] as
+      | (PerformanceNavigationTiming & { type: string })
+      | undefined
+    if (navEntry && navEntry.type === 'back_forward') {
+      setVisible(false)
       return
     }
 

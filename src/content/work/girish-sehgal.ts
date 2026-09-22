@@ -5,9 +5,9 @@ export const girishSehgal: Work = {
   order: 3,
   title:
     'Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find',
-  metaTitle: 'Girish Sehgal · SSMC — CRUDA',
+  metaTitle: 'Girish Sehgal · Sheikh Shakhbout Medical City · CRUDA',
   dek:
-    "Narrative and positioning for a hospitality executive moving into healthcare, with twenty-five years of work no search would find.",
+    'How CRUDA turned twenty-five years in luxury hospitality into the narrative of a healthcare executive in Abu Dhabi.',
   client: {
     name: 'Girish Sehgal',
     role: 'Chief Patient Experience Officer',
@@ -31,7 +31,7 @@ export const girishSehgal: Work = {
 
   capsule: [
     'Girish Sehgal started at Kempinski at nineteen, from a town in the Doon Valley. Then Four Seasons — Maldives, Boston, Chicago, Toronto. Then Taj, where he took Falaknuma\'s average stay from under one night to over six. Then JW Marriott Pune, past $24 million in under a year, in a non-metro city.',
-    'Fourteen cities, six countries. Then he moved to healthcare, as Chief Patient Experience Officer at Sheikh Shakhbout Medical City in Abu Dhabi. A career like that is an argument only to the people already holding the CV. Everyone else had no way to find it.',
+    'Fourteen cities, six countries. Then he moved to healthcare, as Chief Patient Experience Officer at Sheikh Shakhbout Medical City in Abu Dhabi. Everyone else had no way to find it.',
     'CRUDA turned twenty-five years of positions — never written down — into a narrative that let a hospitality executive read as inevitable in healthcare.',
   ],
   takeaways: [
@@ -47,7 +47,7 @@ export const girishSehgal: Work = {
   ],
   sections: [
     {
-      h2: 'A career like that is an argument only to the people already holding the CV.',
+      h2: 'Twenty-five years of positions, never written down.',
       body: [
         "Girish Sehgal started at Kempinski at nineteen, from a town in the Doon Valley. Then Four Seasons — Maldives, Boston, Chicago, Toronto. Then Taj, where he took Falaknuma's average stay from under one night to over six. Then JW Marriott Pune, past $24 million in under a year, in a non-metro city.",
         'Fourteen cities, six countries. Then he moved to healthcare, as Chief Patient Experience Officer at Sheikh Shakhbout Medical City in Abu Dhabi. Nothing about that arc showed up in a Google search.',
@@ -59,7 +59,6 @@ export const girishSehgal: Work = {
         'The obvious move was executive thought leadership: lessons, frameworks, takeaways. It would have produced competent posts nobody remembers, because that format asks a person to summarise themselves.',
         'What Girish had instead were positions — arrived at over thirty years, held against pressure, and never written down. That a security guard nobody notices decides whether forty traumatised patients feel safe. That when you build on someone else\'s land, money is not enough; you have to invest in their dignity. That being told you are too kind to lead is usually said by people who mistake distance for authority.',
       ],
-      pull: 'None of that is a lesson. All of it is a stance.',
     },
     {
       h2: 'The narrative bio was the first deliverable.',
@@ -90,5 +89,5 @@ export const girishSehgal: Work = {
   credit: 'CRUDA · Fran Herrera, Founder',
   faq: [],
   moreFrom: [],
-  next: 'jack-yeager',
+  next: 'mannheim-trading',
 }

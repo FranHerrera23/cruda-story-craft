@@ -22,7 +22,10 @@ export default function HomeWhatOthers() {
       <div className="plane__in">
         <div className="plane__top">
           <p className="eyebrow">What other people started saying</p>
-          <h2 className="name name--sm">No pitch. No placement.</h2>
+          <h2 className="name name--sm">
+            Forbes Perú put Karen on its 2026 list; ABC, Fox News and
+            CBS now call Mike.
+          </h2>
           <div className="rule" />
         </div>
         <div className="press">

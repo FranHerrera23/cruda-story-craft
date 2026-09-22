@@ -13,9 +13,9 @@ export const karenMannheim: Work = {
   order: 1,
   title:
     'How a Lima lighting studio went from zero Miami presence to winning pitches against international firms',
-  metaTitle: 'Karen Mannheim · TRAZZO Lighting — CRUDA',
+  metaTitle: 'Karen Mannheim · TRAZZO Lighting · CRUDA',
   dek:
-    "Karen Mannheim spent 33 years building Lima's most respected lighting firm. In 2026 her studio won a Miami pitch against international firms.",
+    'How CRUDA built the narrative system that took TRAZZO Lighting from zero Miami presence to winning pitches against international firms.',
   client: {
     name: 'Karen Mannheim',
     role: 'Founder',
@@ -149,7 +149,7 @@ export const karenMannheim: Work = {
     'Forbes Peru named Karen one of the country\'s 50 most powerful women.',
     'The team now assembles pitches in an afternoon instead of weeks.',
   ],
-  credit: 'Bushido 2021–2024 · CRUDA 2024–2026 · Fran Herrera, Founder',
+  credit: 'CRUDA · Fran Herrera, Founder',
   faq: [
     {
       q: 'What did CRUDA actually build for TRAZZO Lighting?',

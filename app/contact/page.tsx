@@ -11,15 +11,16 @@ import './contact.css'
 
 const BASE = 'https://www.thecruda.com'
 
+const CONTACT_TITLE = 'Contact · CRUDA'
 const META_DESCRIPTION =
-  'One conversation. Forty-five minutes. No pitch.'
+  'Book a 45-minute call with Fran Herrera, founder of CRUDA, or write to fran@thecruda.com.'
 
 export const metadata: Metadata = {
-  title: 'Contact — CRUDA',
+  title: CONTACT_TITLE,
   description: META_DESCRIPTION,
   alternates: { canonical: `${BASE}/contact` },
   openGraph: {
-    title: 'Contact — CRUDA',
+    title: CONTACT_TITLE,
     description: META_DESCRIPTION,
     url: `${BASE}/contact`,
     type: 'website',
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Contact — CRUDA',
+    title: CONTACT_TITLE,
     description: META_DESCRIPTION,
     images: [`${BASE}/logo.png`],
   },

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { Work, WorkBlock, WorkMetric } from '@/content/work/types'
-import { DOORS, doorSpec, axisLabel } from '@/content/services/doors'
+import { doorSpec } from '@/content/services/doors'
 import { selectedWork } from '@/content/work'
 import './case-study-layout-v2.css'
 import './work-layout.css'
@@ -222,37 +222,21 @@ export default function WorkLayout({ w }: { w: Work }) {
                 : `${w.period.start} — ${w.period.end}`}
             </dd>
           </div>
+          {/* F23-2 §3.6 · SERVICE en texto plano (17px, sin chip). Si son
+              dos: "Translated · Transmission" (Translated primero). Salen
+              las filas AXIS, MOMENT y VIA. */}
           <div>
-            <dt>Via</dt>
-            <dd>{w.via}</dd>
-          </div>
-          <div>
-            <dt>Door</dt>
-            <dd className="wl-meta__doors">
-              <Link className="chip" href={primary.href}>
-                {primary.label}
-              </Link>
+            <dt>Service</dt>
+            <dd className="wl-meta__service">
+              <Link href={primary.href}>{primary.label}</Link>
               {secondary && (
-                <Link className="chip" href={secondary.href}>
-                  {secondary.label}
-                </Link>
+                <>
+                  {' · '}
+                  <Link href={secondary.href}>{secondary.label}</Link>
+                </>
               )}
             </dd>
           </div>
-          <div>
-            <dt>Axis</dt>
-            <dd>
-              <Link className="wl-meta__axis" href="/#what-cruda-is">
-                {axisLabel(w.axis)}
-              </Link>
-            </dd>
-          </div>
-          {w.moment && (
-            <div>
-              <dt>Moment</dt>
-              <dd>{w.moment.replace('-', ' ')}</dd>
-            </div>
-          )}
         </dl>
       </section>
 
@@ -261,7 +245,7 @@ export default function WorkLayout({ w }: { w: Work }) {
         <section className="cs-wrap wl-metrics" aria-label="Results">
           {proof.length > 0 && (
             <>
-              <p className="wl-metrics__l">Prueba</p>
+              <p className="wl-metrics__l">Results</p>
               <div className="wl-metrics__row wl-metrics__row--proof">
                 {proof.map((m, i) => (
                   <Metric key={i} m={m} n={i + 1} kind="proof" />

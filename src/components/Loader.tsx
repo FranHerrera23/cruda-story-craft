@@ -42,7 +42,7 @@ const HOLD_MS = 1400
 const EXIT_MS = 600
 const UNMOUNT_BUFFER_MS = 50
 const UNMOUNT_MS = HOLD_MS + EXIT_MS + UNMOUNT_BUFFER_MS
-const TAGLINE = 'Narrative for founder-led companies'
+const TAGLINE = 'We translate cultures into business.'
 
 function dispatchLoaderOut() {
   document.dispatchEvent(new CustomEvent('cruda:loader-out'))

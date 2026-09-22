@@ -5,9 +5,9 @@ export const confidentialFashionFounder: Work = {
   order: 7,
   title:
     'An industry with no faces. The first person to fill the empty seat credibly owns a position that cannot be contested by spend.',
-  metaTitle: 'Confidential · Fashion — CRUDA',
+  metaTitle: 'Confidential · On-demand fashion · CRUDA',
   dek:
-    'Founder narrative for the head of a $300M on-demand fashion group, who had built the same business twice and never told the story of either one.',
+    'Founder narrative for an on-demand fashion group in Dubai: the position, the fall and the return.',
   client: { name: 'Confidential', role: 'Founder', company: 'On-demand fashion group' },
   confidential: true,
   place: { to: 'Dubai, UAE', city: 'Dubai', country: 'United Arab Emirates' },

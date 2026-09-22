@@ -6,28 +6,16 @@ import { collectionPageSchema } from '@/lib/collection-schema'
 import type { Resource, ResourceCompany } from '@/content/resources'
 import './thinking.css'
 
-/* /thinking · F14b.1 · 21-sep · autónomo · prototipo thinking-v1.
+/* /thinking · F23-2 · 22-sep · Fran §3.5 v2.
 
-   Antes: /essays (redirect /thinking → /essays). Ahora /thinking
-   es canónica y /essays → 301 → /thinking.
+   Hero mantiene el split (h1 · lede) al mismo token que /services.
+   Regla naranja SOLO bajo el h1.
+   h2 "What we are thinking about." en token de h2 de sección, sin regla.
+   Case studies usan el componente de card de Selected Work
+   (imagen 1:1, título, segunda línea, descripción). */
 
-   Estructura del prototipo:
-     01  Opener · split asimétrico
-     02  Filters · Type × Language (sticky bajo la barra)
-     03  Articles · index de artículos (molde WHAT WE DO)
-     04  Case studies · grilla wcard (molde SELECTED WORK)
-     05  Podcasts · sección vacía en F14b.1. F14b.2 mete el
-         episodio 01 · Steve Walls en upcoming.
-
-   Todos los items en el HTML servido · el filtro sólo pone hidden. */
-
-/* Los artículos vienen directo de allEssays porque necesitamos el
-   campo `alternates` (hreflang ES/EN) para el link "Also in ...".
-   Dedup manual: si el essay tiene versión EN, se muestra la EN y la
-   ES queda representada por el link alternate. */
 const ARTICLES = allEssays
   .filter(e => {
-    // Si es ES y existe versión EN, se oculta (la EN la incluye vía alt).
     if (e.language === 'es' && e.alternates?.en) {
       return !allEssays.some(o => o.slug === e.alternates!.en)
     }
@@ -47,36 +35,62 @@ const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
 
-const CASE_STUDIES: Array<{
-  n: string
-  name: string
-  meta: string
-  href: string
-}> = [
-  { n: '01', name: 'Karen Mannheim', meta: 'TRAZZO Lighting · Lima → Miami', href: '/work/karen-mannheim' },
-  { n: '02', name: 'Mike Kaeding',   meta: 'Norhart · Multifamily · Minneapolis', href: '/work/mike-kaeding' },
-  { n: '03', name: 'Girish Sehgal',  meta: 'Hospitality · Dubai', href: '/work/girish-sehgal' },
-]
+/* Cards de case studies · misma anatomía que Selected Work en la home:
+   imagen 1:1, título, empresa · ciudad, descripción. */
+const CASE_STUDIES = [
+  {
+    n: '01',
+    name: 'Karen Mannheim',
+    meta: 'TRAZZO Lighting · Miami',
+    description:
+      "Lights ten to two hundred million dollar homes; one of Forbes Perú's 50 most powerful women, 2026.",
+    href: '/work/karen-mannheim',
+    imageSrc: '/karen-mannheim.webp',
+    objectPosition: 'center 20%',
+  },
+  {
+    n: '02',
+    name: 'Mike Kaeding',
+    meta: 'Norhart · Minneapolis',
+    description:
+      'CEO of Norhart, $230M in assets created, on a mission to halve the cost of housing.',
+    href: '/work/mike-kaeding',
+    imageSrc: '/mike-kaeding.webp',
+    objectPosition: 'center 30%',
+  },
+  {
+    n: '03',
+    name: 'Girish Sehgal',
+    meta: 'Sheikh Shakhbout Medical City · Abu Dhabi',
+    description:
+      "Former Four Seasons GM, bringing hospitality into the UAE's biggest medical city.",
+    href: '/work/girish-sehgal',
+    imageSrc: '/girish-sehgal.webp',
+    objectPosition: 'center 15%',
+  },
+] as const
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
-  name: 'Thinking — CRUDA',
+  name: 'Thinking · CRUDA',
   description:
-    'Pieces on narrative, brand, and the founders who build them. Written for people who have to make decisions, not for people who write about them.',
+    'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.',
   items: SCHEMA_ITEMS,
 })
 
+const THINKING_TITLE = 'Thinking · CRUDA'
+const THINKING_DESCRIPTION =
+  'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.'
+
 export const metadata: Metadata = {
-  title: 'Thinking — CRUDA',
-  description:
-    'Pieces on narrative, brand, and the founders who build them.',
+  title: THINKING_TITLE,
+  description: THINKING_DESCRIPTION,
   alternates: {
     canonical: 'https://www.thecruda.com/thinking',
   },
   openGraph: {
-    title: 'Thinking — CRUDA',
-    description:
-      'Pieces on narrative, brand, and the founders who build them.',
+    title: THINKING_TITLE,
+    description: THINKING_DESCRIPTION,
     url: 'https://www.thecruda.com/thinking',
     type: 'website',
     images: [
@@ -90,9 +104,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Thinking — CRUDA',
-    description:
-      'Pieces on narrative, brand, and the founders who build them.',
+    title: THINKING_TITLE,
+    description: THINKING_DESCRIPTION,
     images: ['https://www.thecruda.com/logo.png'],
   },
 }
@@ -105,7 +118,7 @@ export default function ThinkingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · split asimétrico */}
+      {/* 01 · OPENER · única regla naranja de la página, bajo el h1. */}
       <section className="thinking-open">
         <h1 className="thinking-open__h">Thinking</h1>
         <div className="thinking-open__b">
@@ -115,22 +128,21 @@ export default function ThinkingPage() {
             who write about them.
           </p>
         </div>
+        <div className="thinking-rule thinking-rule--hero" />
       </section>
 
-      {/* 02 · FILTROS */}
       <ThinkingFilters
         hasCases={CASE_STUDIES.length > 0}
         hasPodcasts={true}
       />
 
-      {/* 03 · ARTICLES · molde WHAT WE DO */}
+      {/* 03 · ARTICLES · h2 sin regla. */}
       <section className="thinking-sec" data-sec="article">
         <div className="thinking-sec__hd">
           <p className="eyebrow">Articles</p>
           <span className="thinking-sec__n" data-n />
         </div>
         <h2 className="thinking-name">What we are thinking about.</h2>
-        <div className="thinking-rule" />
         <div className="thinking-index marks">
           {ARTICLES.map((e, i) => {
             const alt = e.alternates
@@ -178,43 +190,47 @@ export default function ThinkingPage() {
         </div>
       </section>
 
-      {/* 04 · CASE STUDIES · molde SELECTED WORK */}
+      {/* 04 · CASE STUDIES · componente de card de Selected Work
+          (imagen 1:1, título, segunda línea, descripción). */}
       <section className="thinking-sec" data-sec="case">
         <div className="thinking-sec__hd">
           <p className="eyebrow">Case studies</p>
           <span className="thinking-sec__n" data-n />
         </div>
         <h2 className="thinking-name">The work, and what it moved.</h2>
-        <div className="thinking-rule" />
-        <div className="thinking-wgrid marks">
+        <div className="thinking-sw-grid marks">
           {CASE_STUDIES.map(c => (
             <Link
               key={c.n}
-              className="thinking-wcard mark"
+              className="thinking-sw-card mark"
               href={c.href}
               data-lang="en"
               aria-label={c.name}
             >
-              <div className="thinking-wcard__hd">
-                <span className="thinking-wcard__o">{c.n}</span>
-                <span className="thinking-wcard__go" aria-hidden="true">↗</span>
+              <div className="thinking-sw-card__m">
+                <img
+                  className="thinking-sw-card__img"
+                  src={c.imageSrc}
+                  alt=""
+                  loading="lazy"
+                  style={{ objectPosition: c.objectPosition }}
+                />
               </div>
-              <h3 className="thinking-wcard__n">{c.name}</h3>
-              <p className="thinking-wcard__d">{c.meta}</p>
+              <h3 className="thinking-sw-card__n">{c.name}</h3>
+              <p className="thinking-sw-card__meta">{c.meta}</p>
+              <p className="thinking-sw-card__desc">{c.description}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* 05 · PODCASTS · F14b.2 · Steve Walls upcoming (única excepción firmada §2) */}
+      {/* 05 · PODCASTS */}
       <section className="thinking-sec" data-sec="podcast">
         <div className="thinking-sec__hd">
           <p className="eyebrow">Podcasts</p>
           <span className="thinking-sec__n" data-n />
         </div>
         <h2 className="thinking-name">Conversations.</h2>
-        <div className="thinking-rule" />
-        {/* F18.8 · sin caja gris/negra · card de TEXTO. */}
         <div className="thinking-podcast marks">
           <Link
             className="thinking-podrow mark"

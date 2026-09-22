@@ -21,7 +21,7 @@ const LEGACY_HOLDINGS = [
   'United Nations',
 ]
 
-const CREDIT = 'Fran Herrera · Founder · between UAE and Russia'
+const CREDIT = 'Fran Herrera · Founder · born in Salta, Argentina'
 
 /* Titular · FIRMADO por Fran (H0 · 21-sep). Textual. */
 const HEADLINE =

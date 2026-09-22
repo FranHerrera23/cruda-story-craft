@@ -121,7 +121,11 @@ const CARDS: Card[] = [
     meta: 'BAUHOME · Jacksonville',
     description:
       "Former Director of Operations at Santa Monica's biggest hospital, now building a luxury kitchen cabinet company.",
-    coverText: 'BAUHOME',
+    /* F21 · foto de producto aprobada por Fran (22-sep). Cocina
+       centrada horizontalmente; center 50% para dejar el bloque
+       principal en el crop 1:1. */
+    imageSrc: '/bauhome-kitchen.webp',
+    objectPosition: 'center 50%',
   },
 ]
 

@@ -210,14 +210,13 @@ export default function Nav() {
           right: 0;
           z-index: 110;
           /* F18.6 · fondo OPACO según superficie; nunca transparente.
-             Hairline abajo · el contenido nunca se ve por debajo. */
+             Hairline abajo · el contenido nunca se ve por debajo.
+             F23.1 v2 · sin transición: el color de la barra cambia
+             junto con el logo, instantáneo. La transición de 260ms
+             anterior dejaba una franja gris en el paso paper ↔ dark. */
           background: var(--paper, #F1EFEB);
           color: var(--ink, #0D0D0D);
           border-bottom: 1px solid rgba(13, 13, 13, .08);
-          transition:
-            background 260ms cubic-bezier(.16,1,.3,1),
-            color 260ms cubic-bezier(.16,1,.3,1),
-            border-color 260ms cubic-bezier(.16,1,.3,1);
         }
         .cruda-global-nav.bar.bar--dark {
           background: var(--black, #000);

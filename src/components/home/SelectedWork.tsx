@@ -106,7 +106,11 @@ const CARDS: Card[] = [
       "Founder of northern Argentina's leading glass manufacturer, now launching a frameless door line.",
     service: ['TRANSLATED'],
     href: '/work/inout',
-    coverText: 'INOUT',
+    /* F21 · foto de producto aprobada por Fran (22-sep) · muro
+       corredizo INOUT. Fuente 1170x1170; el crop 1:1 no descarta
+       nada, así que center 50% muestra la composición completa. */
+    imageSrc: '/inout-sliding-wall.jpg',
+    objectPosition: 'center 50%',
   },
   {
     name: 'Jack Yeager',

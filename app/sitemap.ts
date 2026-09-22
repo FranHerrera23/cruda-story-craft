@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE}/process`,
+      url: `${BASE}/services/translated`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,

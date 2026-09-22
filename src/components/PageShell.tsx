@@ -87,13 +87,38 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
 
   /* Popstate flag · marcamos el próximo pathname change como back
      button para que el useEffect de pathname restaure el scroll
-     guardado en vez de resetearlo a 0. */
+     guardado en vez de resetearlo a 0. También cubrimos el caso de
+     full-load con navigation.type === 'back_forward' (browser sin
+     bfcache que hace una navegación completa al volver): en ese
+     caso el layout re-monta y no hay popstate para escuchar. */
   useEffect(() => {
     if (typeof window === 'undefined') return
     function onPop() {
       isPop.current = true
     }
     window.addEventListener('popstate', onPop)
+    /* Full-load con back/forward · restauramos scroll de la ruta
+       actual desde sessionStorage, con el mismo rAF loop. */
+    const navEntry = performance.getEntriesByType('navigation')[0] as
+      | (PerformanceNavigationTiming & { type: string })
+      | undefined
+    if (navEntry && navEntry.type === 'back_forward') {
+      const y = getSavedScroll(window.location.pathname)
+      if (typeof y === 'number') {
+        let tries = 0
+        const attempt = () => {
+          if (tries++ > 120) return
+          const maxY =
+            document.documentElement.scrollHeight - window.innerHeight
+          if (maxY >= y) {
+            window.scrollTo(0, y)
+          } else {
+            window.requestAnimationFrame(attempt)
+          }
+        }
+        window.requestAnimationFrame(attempt)
+      }
+    }
     return () => window.removeEventListener('popstate', onPop)
   }, [])
 
@@ -134,10 +159,12 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
            en Next SPA. Lo limpiamos para que RevealScroll re-mida
            en la ruta nueva. */
         delete document.documentElement.dataset.linesReady
-        const startVT = (document as unknown as {
+        /* Llamamos startViewTransition sobre el propio document
+           para preservar el `this`. Extraerla en una variable y
+           llamarla suelta rompe el binding y tira. */
+        const vt = (document as unknown as {
           startViewTransition: StartViewTransitionApi
-        }).startViewTransition
-        const vt = startVT(() => {
+        }).startViewTransition(() => {
           router.push(href)
         })
         if (vt.finished) {
@@ -167,9 +194,24 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
       isPop.current = false
       const y = getSavedScroll(pathname)
       if (typeof y === 'number') {
-        /* Esperamos un tick para dejar que Next termine de pintar +
-           el apilado recalcule antes de restaurar. */
-        window.setTimeout(() => window.scrollTo(0, y), 0)
+        /* Esperamos a que el documento tenga altura suficiente
+           antes de restaurar. El apilado (PlanesStack) hace su
+           cálculo en useEffect al montar; hasta entonces la
+           altura total puede ser menor que la Y guardada. rAF loop
+           con tope ~1s para no colgar si la ruta no llega a esa
+           altura (ej. contenido cambió). */
+        let tries = 0
+        const attempt = () => {
+          if (tries++ > 60) return
+          const maxY =
+            document.documentElement.scrollHeight - window.innerHeight
+          if (maxY >= y) {
+            window.scrollTo(0, y)
+          } else {
+            window.requestAnimationFrame(attempt)
+          }
+        }
+        window.requestAnimationFrame(attempt)
       }
     }
   }, [pathname])

@@ -119,9 +119,12 @@ export default function ThinkingPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · única regla naranja de la página, bajo el h1. */}
+      {/* 01 · OPENER · F31 §4.2 · una sola columna: rótulo, h1,
+          regla naranja (única de la página), lede. */}
       <section className="thinking-open">
+        <p className="eyebrow">Thinking</p>
         <h1 className="thinking-open__h">Thinking</h1>
+        <div className="thinking-rule thinking-rule--hero" />
         <div className="thinking-open__b">
           <p className="thinking-open__lede">
             Pieces on narrative, brand, and the founders who build them.
@@ -129,7 +132,6 @@ export default function ThinkingPage() {
             who write about them.
           </p>
         </div>
-        <div className="thinking-rule thinking-rule--hero" />
       </section>
 
       <ThinkingFilters

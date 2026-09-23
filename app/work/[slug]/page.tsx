@@ -206,8 +206,11 @@ export default async function Page(
   if (isMoment(slug)) return <MomentIndex moment={slug} />
 
   // F18.1 · content/work fuente única · gana antes que v3/v2/legacy.
+  // F26 · el molde nuevo usa `summary` en vez de `capsule[]`, así que
+  // también entra al layout cuando `summary` está seteado.
   const work = findWork(slug)
-  if (work && work.capsule.length > 0) return <WorkLayout w={work} />
+  if (work && (work.capsule.length > 0 || work.summary))
+    return <WorkLayout w={work} />
 
   // V3 · molde firmado F17.
   const v3 = findClientV3(slug)

@@ -124,6 +124,10 @@
   line-height: 1.4;
 }
 .cs-meta a { color: inherit; }
+/* F25 §4 · en portrait la meta está al lado del hero, así que la
+   intro pasa a full width (capsule + takeaways sin la col derecha). */
+.cs-intro--full { grid-template-columns: 1fr; }
+.cs-intro--full > div { max-width: 60ch; }
 @media (max-width: 900px) {
   .cs-intro { grid-template-columns: 1fr; }
   .cs-meta { order: -1; }

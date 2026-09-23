@@ -262,6 +262,7 @@ export function runAct({
     track.querySelectorAll<HTMLElement>('[data-art]'),
   )
   const counter = track.querySelector<HTMLElement>('[data-counter]')
+  const stage = track.querySelector<HTMLElement>('.act__stage')
   const denom = String(totalBeats ?? beats.length).padStart(2, '0')
 
   let ticking = false
@@ -272,6 +273,26 @@ export function runAct({
     const total = track.offsetHeight - window.innerHeight
     if (total <= 0) return
     const p = clamp(-rect.top / total, 0, 1)
+
+    /* F25 §2 · fade del stage a medida que llega al pin.
+       El .act outer (620vh, natural offset después del plano
+       previo) no es sticky en sí. Su stage sí (sticky top:0
+       height:100svh). Antes de que el outer.top llegue a 0 del
+       viewport, el stage ya está pintado en la mitad del
+       viewport y su "STORY" chip + contador tapan el h2 del
+       plano previo (HomeWhatCrudaIs · "We translate cultures
+       into business.").
+       Bisect: el mismo patrón se ve desde F21 (ab7f23e). No
+       hay commit-regresor · es inherente al ensamble sticky
+       plane + sticky stage con outer relative.
+       Fix mínimo: opacity del stage = 0 mientras rect.top > 0
+       (outer aún debajo del viewport top), llega a 1 cuando
+       rect.top ≤ 0 (outer alcanza el pin). Fade window 40vh
+       para que el ingreso no sea corte duro. */
+    if (stage) {
+      const arrival = clamp(1 - rect.top / (window.innerHeight * 0.4), 0, 1)
+      stage.style.opacity = arrival.toFixed(3)
+    }
 
     let active = -1
 

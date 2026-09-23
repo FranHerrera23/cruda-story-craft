@@ -1,6 +1,43 @@
 /* WorkLayout · F18.1 · 21-sep · autónomo.
    Complementa case-study-layout-v2.css con anatomía W6 del wireframe. */
 
+/* F25 §4 · hero en retrato · el layout monta la imagen en cols 1–5
+   (4:5) y la meta al lado, cols 7–12. Antes el `.cs-hero--portrait`
+   quedaba sin CSS y caía al default 16:8, así que la meta bajaba
+   a la sección intro y las páginas de personas (Mike, José, JP,
+   Girish) tenían el mismo hero horizontal que Karen. En 900px
+   apila: retrato + meta en columnas independientes de ancho total,
+   igual que las plantillas de referencia. */
+.cs-hero-portrait {
+  display: grid;
+  grid-template-columns: 5fr 1fr 6fr;
+  gap: 0;
+  align-items: start;
+  padding-top: clamp(20px, 3vh, 40px);
+}
+.cs-hero-portrait .cs-hero {
+  grid-column: 1;
+  aspect-ratio: 4 / 5;
+}
+.cs-hero-portrait .wl-hero-meta {
+  grid-column: 3;
+  padding-top: clamp(4px, 1vh, 12px);
+}
+.cs-hero-portrait .wl-hero-meta.cs-meta {
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+@media (max-width: 900px) {
+  .cs-hero-portrait {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vh, 40px);
+  }
+  .cs-hero-portrait .cs-hero,
+  .cs-hero-portrait .wl-hero-meta {
+    grid-column: 1;
+  }
+  .cs-hero-portrait .cs-hero { aspect-ratio: 4 / 5; }
+}
+
 /* Meta con Door + Axis + Moment · una fila más amplia */
 .wl-meta__doors { display: flex; flex-wrap: wrap; gap: 6px; }
 .wl-meta__axis {

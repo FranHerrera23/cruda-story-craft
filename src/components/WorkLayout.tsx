@@ -173,6 +173,49 @@ export default function WorkLayout({ w }: { w: Work }) {
   const context = w.metrics.slice(PROOF_LIMIT)
   const primary = doorSpec(w.door.primary)
   const secondary = w.door.secondary ? doorSpec(w.door.secondary) : null
+  const isPortrait = w.heroFormat === 'portrait'
+
+  /* F25 §4 · dl meta compartido entre hero (retrato) e intro (paisaje).
+     En retrato vive al lado del hero, en cols 7–12; en paisaje sigue
+     en la columna derecha de la intro como venía. */
+  const metaDl = (
+    <dl className={`cs-meta ${isPortrait ? 'wl-hero-meta' : 'wl-meta'}`}>
+      <div>
+        <dt>Client</dt>
+        <dd>
+          {w.client.name}
+          <br />
+          {w.client.role}, {w.client.company}
+        </dd>
+      </div>
+      <div>
+        <dt>Where</dt>
+        <dd>
+          {w.place.from ? `${w.place.from} → ${w.place.to}` : w.place.to}
+        </dd>
+      </div>
+      <div>
+        <dt>Period</dt>
+        <dd>
+          {w.period.start === w.period.end
+            ? w.period.end
+            : `${w.period.start} — ${w.period.end}`}
+        </dd>
+      </div>
+      <div>
+        <dt>Service</dt>
+        <dd className="wl-meta__service">
+          <Link href={primary.href}>{primary.label}</Link>
+          {secondary && (
+            <>
+              {' · '}
+              <Link href={secondary.href}>{secondary.label}</Link>
+            </>
+          )}
+        </dd>
+      </div>
+    </dl>
+  )
 
   return (
     <article className="cs">
@@ -189,13 +232,28 @@ export default function WorkLayout({ w }: { w: Work }) {
         <h1 className="cs-h1">{w.title}</h1>
       </header>
 
-      {/* 02 · Hero · F23-3 §4.1 · aspect-ratio 4:5 (retrato) o 16:9
-          (paisaje/producto), object-position igual que Selected Work. */}
-      {w.image && (
+      {/* 02 · Hero · F25 §4 · retrato = 4:5 en cols 1–5 con la meta
+          al lado en cols 7–12. Paisaje = 16:8 a full-width como
+          venía (F23-3 §4.1). */}
+      {w.image && isPortrait && (
+        <div className="cs-wrap cs-hero-portrait">
+          <div className="cs-hero cs-hero--portrait">
+            <img
+              src={w.image}
+              alt=""
+              style={
+                w.heroObjectPosition
+                  ? { objectPosition: w.heroObjectPosition }
+                  : undefined
+              }
+            />
+          </div>
+          {metaDl}
+        </div>
+      )}
+      {w.image && !isPortrait && (
         <figure className="cs-wrap">
-          <div
-            className={`cs-hero cs-hero--${w.heroFormat ?? 'landscape'}`}
-          >
+          <div className="cs-hero cs-hero--landscape">
             <img
               src={w.image}
               alt=""
@@ -209,8 +267,9 @@ export default function WorkLayout({ w }: { w: Work }) {
         </figure>
       )}
 
-      {/* 03 · Capsule + takeaways + META */}
-      <section className="cs-intro cs-wrap">
+      {/* 03 · Capsule + takeaways + META (META solo si no es retrato,
+          porque en retrato ya está al lado del hero). */}
+      <section className={`cs-intro cs-wrap ${isPortrait ? 'cs-intro--full' : ''}`}>
         <div>
           <div className="cs-capsule">
             {w.capsule.map((p, i) => (
@@ -236,45 +295,7 @@ export default function WorkLayout({ w }: { w: Work }) {
             </div>
           )}
         </div>
-        <dl className="cs-meta wl-meta">
-          <div>
-            <dt>Client</dt>
-            <dd>
-              {w.client.name}
-              <br />
-              {w.client.role}, {w.client.company}
-            </dd>
-          </div>
-          <div>
-            <dt>Where</dt>
-            <dd>
-              {w.place.from ? `${w.place.from} → ${w.place.to}` : w.place.to}
-            </dd>
-          </div>
-          <div>
-            <dt>Period</dt>
-            <dd>
-              {w.period.start === w.period.end
-                ? w.period.end
-                : `${w.period.start} — ${w.period.end}`}
-            </dd>
-          </div>
-          {/* F23-2 §3.6 · SERVICE en texto plano (17px, sin chip). Si son
-              dos: "Translated · Transmission" (Translated primero). Salen
-              las filas AXIS, MOMENT y VIA. */}
-          <div>
-            <dt>Service</dt>
-            <dd className="wl-meta__service">
-              <Link href={primary.href}>{primary.label}</Link>
-              {secondary && (
-                <>
-                  {' · '}
-                  <Link href={secondary.href}>{secondary.label}</Link>
-                </>
-              )}
-            </dd>
-          </div>
-        </dl>
+        {!isPortrait && metaDl}
       </section>
 
       {/* 04 · CIFRAS · PRUEBA (≤4, naranja) + CONTEXTO (resto, ink) */}

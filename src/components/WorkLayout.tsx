@@ -1,10 +1,29 @@
 import Link from 'next/link'
-import type { Work, WorkBlock, WorkMetric } from '@/content/work/types'
+import type {
+  Work,
+  WorkBlock,
+  WorkMetric,
+  WorkBuiltRow,
+  WorkMetricGroups,
+} from '@/content/work/types'
 import { doorSpec } from '@/content/services/doors'
 import StartHere, { CASE_START_HERE } from '@/components/StartHere'
 import { selectedWork } from '@/content/work'
 import './case-study-layout-v2.css'
 import './work-layout.css'
+
+/* F26 · type guards. `built` acepta string[] (legacy) o
+   WorkBuiltRow[] (molde nuevo). */
+function isBuiltRows(
+  b: string[] | WorkBuiltRow[] | undefined,
+): b is WorkBuiltRow[] {
+  return !!b && b.length > 0 && typeof b[0] === 'object'
+}
+function isBuiltStrings(
+  b: string[] | WorkBuiltRow[] | undefined,
+): b is string[] {
+  return !!b && b.length > 0 && typeof b[0] === 'string'
+}
 
 /* WorkLayout · F18.1 · 21-sep · autónomo · wireframe W6.
    Recibe `Work` de content/work y renderiza el molde extendido.
@@ -267,39 +286,57 @@ export default function WorkLayout({ w }: { w: Work }) {
         </figure>
       )}
 
-      {/* 03 · Capsule + takeaways + META (META solo si no es retrato,
-          porque en retrato ya está al lado del hero). */}
-      <section className={`cs-intro cs-wrap ${isPortrait ? 'cs-intro--full' : ''}`}>
-        <div>
-          <div className="cs-capsule">
-            {w.capsule.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-          {w.takeaways.length > 0 && (
-            <div
-              className="cs-take-block"
-              aria-label="What this means for your company"
-            >
-              <p className="cs-take-block__l">
-                What this means for your company
-              </p>
-              <ul className="cs-take">
-                {w.takeaways.map((t, i) => (
-                  <li key={i}>
-                    <span>{String(i + 1).padStart(2, '0')}</span>
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ul>
+      {/* F26 §A.2 · SUMMARY + byline. Solo cuando el caso trae
+          `summary`. Reemplaza al bloque cs-intro / cs-capsule del
+          molde previo. La meta ya está al lado del hero (retrato)
+          o se renderiza aquí a la derecha (paisaje). */}
+      {w.summary && (
+        <section className={`cs-intro cs-wrap ${isPortrait ? 'cs-intro--full' : ''}`}>
+          <div>
+            <div className="cs-capsule wl-summary-text">
+              <p>{w.summary}</p>
             </div>
-          )}
-        </div>
-        {!isPortrait && metaDl}
-      </section>
+            {w.byline && <p className="wl-byline">{w.byline}</p>}
+          </div>
+          {!isPortrait && metaDl}
+        </section>
+      )}
 
-      {/* 04 · CIFRAS · PRUEBA (≤4, naranja) + CONTEXTO (resto, ink) */}
-      {w.metrics.length > 0 && (
+      {/* Legacy · Capsule + takeaways + META. Solo cuando el caso
+          NO trae `summary` (molde F18). */}
+      {!w.summary && (
+        <section className={`cs-intro cs-wrap ${isPortrait ? 'cs-intro--full' : ''}`}>
+          <div>
+            <div className="cs-capsule">
+              {w.capsule.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+            {w.takeaways.length > 0 && (
+              <div
+                className="cs-take-block"
+                aria-label="What this means for your company"
+              >
+                <p className="cs-take-block__l">
+                  What this means for your company
+                </p>
+                <ul className="cs-take">
+                  {w.takeaways.map((t, i) => (
+                    <li key={i}>
+                      <span>{String(i + 1).padStart(2, '0')}</span>
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          {!isPortrait && metaDl}
+        </section>
+      )}
+
+      {/* Legacy · CIFRAS · sólo cuando NO hay `metricGroups`. */}
+      {!w.metricGroups && w.metrics.length > 0 && (
         <section className="cs-wrap wl-metrics" aria-label="Results">
           {proof.length > 0 && (
             <>
@@ -336,39 +373,120 @@ export default function WorkLayout({ w }: { w: Work }) {
         </section>
       )}
 
-      {/* 05 · Secciones */}
-      {w.sections.map((sec, i) => (
-        <section key={i} className="cs-sec cs-wrap">
+      {/* 05 · Secciones — F26: la sección con h2 que menciona
+          "built" recibe las `built` rows entre el body y los
+          blocks. Detección por posición: es la sección cuyo body
+          está vacío o cuyo h2 contiene "built" (case-insensitive)
+          si el caso está en molde F26. */}
+      {w.sections.map((sec, i) => {
+        const hostsBuilt =
+          isBuiltRows(w.built) &&
+          /\bbuilt\b|\brun|\brunning\b/i.test(sec.h2) === false &&
+          sec.body.length === 0
+        // Simplificado: si es F26 y la sección tiene body vacío,
+        // asumimos que es el host de las builtRows.
+        const isBuiltHost =
+          isBuiltRows(w.built) && sec.body.length === 0
+        return (
+          <section key={i} className="cs-sec cs-wrap">
+            <div className="cs-sec__grid">
+              <h2>{sec.h2}</h2>
+              <div className="cs-sec__body">
+                {sec.body.map((p, j) => (
+                  <p key={j}>{p}</p>
+                ))}
+                {isBuiltHost && (
+                  <BuiltRows rows={w.built as WorkBuiltRow[]} />
+                )}
+              </div>
+            </div>
+            {sec.blocks && sec.blocks.length > 0 && (
+              <div
+                className={`cs-ev ${
+                  sec.blocks.filter(b => b.kind === 'image').length >= 3
+                    ? 'cs-ev--3'
+                    : 'cs-ev--2'
+                }`}
+              >
+                {sec.blocks.map((b, j) => (
+                  <EvidenceBlock key={j} block={b} />
+                ))}
+              </div>
+            )}
+            {sec.pull && <p className="cs-pull">{sec.pull}</p>}
+          </section>
+        )
+      })}
+
+      {/* F26 §A.7 · WHAT CHANGED · sólo cuando el caso trae
+          `metricGroups`. */}
+      {w.metricGroups && (
+        <ChangeBlock
+          preamble={w.changePreamble}
+          groups={w.metricGroups}
+          sources={w.sources ?? []}
+          testimonial={w.testimonial}
+        />
+      )}
+
+      {/* F26 §A.8 · ROOMS IT OPENED */}
+      {w.rooms && w.rooms.length > 0 && (
+        <section className="cs-wrap wl-rooms" aria-label="Rooms it opened">
           <div className="cs-sec__grid">
-            <h2>{sec.h2}</h2>
+            <h2>Rooms the work opened.</h2>
             <div className="cs-sec__body">
-              {sec.body.map((p, j) => (
-                <p key={j}>{p}</p>
-              ))}
+              <div className="wl-rooms__list">
+                {w.rooms.map((r, i) => (
+                  <div key={i} className="wl-rooms__row">
+                    <div className="wl-rooms__meta">
+                      {r.year && <span className="wl-rooms__y">{r.year}</span>}
+                      <span className="wl-rooms__n">{r.name}</span>
+                    </div>
+                    <p className="wl-rooms__d">{r.description}</p>
+                    {r.image && (
+                      <div className="wl-rooms__img">
+                        <img src={r.image} alt="" loading="lazy" />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          {sec.blocks && sec.blocks.length > 0 && (
-            <div
-              className={`cs-ev ${
-                sec.blocks.filter(b => b.kind === 'image').length >= 3
-                  ? 'cs-ev--3'
-                  : 'cs-ev--2'
-              }`}
-            >
-              {sec.blocks.map((b, j) => (
-                <EvidenceBlock key={j} block={b} />
-              ))}
-            </div>
-          )}
-          {sec.pull && <p className="cs-pull">{sec.pull}</p>}
         </section>
-      ))}
+      )}
 
-      {/* WHAT WE BUILT + OBSERVABLE CHANGE + credit */}
-      {(w.built?.length || w.change?.length || w.credit) && (
+      {/* F26 §A.9 · WHAT THIS MEANS FOR YOUR COMPANY · sólo cuando
+          el caso trae `summary` (molde F26 mueve el bloque afuera
+          del cs-intro). */}
+      {w.summary && w.takeaways.length > 0 && (
+        <section
+          className="cs-wrap wl-forcompany"
+          aria-label="What this means for your company"
+        >
+          <div className="cs-sec__grid">
+            <h2>What this means for your company</h2>
+            <div className="cs-sec__body">
+              <ul className="cs-take">
+                {w.takeaways.map((t, i) => (
+                  <li key={i}>
+                    <span>{String(i + 1).padStart(2, '0')}</span>
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Legacy · WHAT WE BUILT + OBSERVABLE CHANGE + credit. Sólo
+          cuando el caso NO está en F26 (no summary) y tiene datos
+          legacy. */}
+      {!w.summary && (w.built?.length || w.change?.length || w.credit) && (
         <section className="wl-summary cs-wrap">
           <div className="wl-summary__grid">
-            {w.built && w.built.length > 0 && (
+            {isBuiltStrings(w.built) && (
               <div className="wl-summary__col">
                 <p className="wl-summary__l">What we built</p>
                 <ul>
@@ -393,8 +511,9 @@ export default function WorkLayout({ w }: { w: Work }) {
         </section>
       )}
 
-      {/* 06 · Testimonio */}
-      {w.testimonial && (
+      {/* 06 · Testimonio · F26 lo renderiza dentro de ChangeBlock;
+          los casos legacy siguen mostrándolo acá. */}
+      {!w.metricGroups && w.testimonial && (
         <blockquote className="cs-quote">
           <q>{w.testimonial.quote}</q>
           <cite>{w.testimonial.cite}</cite>
@@ -464,5 +583,100 @@ function DoorRow({ spec }: { spec: ReturnType<typeof doorSpec> }) {
       <span className="wl-door-row__desc">{spec.descriptor}</span>
       <span className="wl-door-row__price">{spec.price} →</span>
     </Link>
+  )
+}
+
+/* F26 §A.5 · WHAT WE BUILT · filas nombre + descripción. Vive
+   dentro de la sección "What we built" (cuando el body está
+   vacío). */
+function BuiltRows({ rows }: { rows: WorkBuiltRow[] }) {
+  return (
+    <ul className="wl-built-rows">
+      {rows.map((r, i) => (
+        <li key={i}>
+          <p className="wl-built-rows__n">{r.name}</p>
+          <p className="wl-built-rows__d">{r.description}</p>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+/* F26 §A.7 · WHAT CHANGED · rótulos de grupo + cifras. */
+function ChangeBlock({
+  preamble,
+  groups,
+  sources,
+  testimonial,
+}: {
+  preamble?: string
+  groups: WorkMetricGroups
+  sources: string[]
+  testimonial?: { quote: string; cite: string }
+}) {
+  const GROUPS: Array<{
+    key: keyof WorkMetricGroups
+    label: string
+    kind: 'proof' | 'context'
+  }> = [
+    { key: 'business', label: 'The business', kind: 'proof' },
+    { key: 'reach', label: 'Reach', kind: 'proof' },
+    { key: 'mediaValue', label: 'Media value', kind: 'proof' },
+    { key: 'context', label: 'Context', kind: 'context' },
+  ]
+  return (
+    <section className="cs-wrap wl-change" aria-label="What changed">
+      <div className="cs-sec__grid">
+        <h2>Five years, measured.</h2>
+        <div className="cs-sec__body">
+          {preamble && <p className="wl-change__preamble">{preamble}</p>}
+          <div className="wl-change__groups">
+            {GROUPS.map(g => {
+              const items = groups[g.key]
+              if (!items || items.length === 0) return null
+              return (
+                <div key={g.key} className="wl-change__group">
+                  <p className="wl-change__gl">{g.label}</p>
+                  <div className="wl-change__row">
+                    {items.map((m, i) => (
+                      <div
+                        key={i}
+                        className={`wl-metric wl-metric--${g.kind}`}
+                      >
+                        <p className="wl-metric__v">
+                          {m.value}
+                          {m.n !== undefined && (
+                            <sup className="wl-metric__n">{m.n}</sup>
+                          )}
+                        </p>
+                        <p className="wl-metric__l">{m.label}</p>
+                        {m.period && (
+                          <p className="wl-metric__meta">{m.period}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+          {sources.length > 0 && (
+            <ol className="wl-change__sources">
+              {sources.map((s, i) => (
+                <li key={i}>
+                  <sup>{i + 1}</sup> {s}
+                </li>
+              ))}
+            </ol>
+          )}
+          {testimonial && (
+            <blockquote className="wl-change__quote">
+              <q>{testimonial.quote}</q>
+              <cite>{testimonial.cite}</cite>
+            </blockquote>
+          )}
+        </div>
+      </div>
+    </section>
   )
 }

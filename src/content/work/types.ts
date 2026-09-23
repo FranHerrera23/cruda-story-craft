@@ -49,6 +49,37 @@ export type WorkMetric = {
      period, no se publica. */
   source: string
   period: string
+  /* F26 molde · número de fuente en el pie de la sección
+     "What changed". Cuando se usa `metricGroups`. Opcional. */
+  n?: number
+}
+
+/* F26 §A.7 · cifras agrupadas por bloque. Todos opcionales. Los
+   grupos vacíos no se renderizan. Cuando el caso trae
+   `metricGroups`, la sección "What changed" se pinta con este
+   layout: rótulo del grupo · fila de cifras naranjas (business,
+   reach, mediaValue) o ink (context) · label/meta abajo · lista
+   de fuentes numeradas al pie. */
+export type WorkMetricGroups = {
+  business?: WorkMetric[]
+  reach?: WorkMetric[]
+  mediaValue?: WorkMetric[]
+  context?: WorkMetric[]
+}
+
+/* F26 §A.5 · fila del bloque WHAT WE BUILT. Reemplaza al `built`
+   plano cuando el caso está en el molde F26. */
+export type WorkBuiltRow = {
+  name: string
+  description: string
+}
+
+/* F26 §A.8 · fila del bloque ROOMS IT OPENED. */
+export type WorkRoom = {
+  year?: string
+  name: string
+  description: string
+  image?: string
 }
 
 export type WorkSection = {
@@ -134,7 +165,7 @@ export type Work = {
 
   sections: WorkSection[]
 
-  built?: string[]
+  built?: string[] | WorkBuiltRow[]
   change?: string[]
   credit?: string
   faq?: WorkFaq[]
@@ -144,4 +175,18 @@ export type Work = {
 
   /* Testimonio principal (serif) · opcional. */
   testimonial?: { quote: string; cite: string }
+
+  /* F26 §A · molde nuevo · todo opcional. Un caso migrado al molde
+     define `summary`, `byline`, `builtRows` (en vez de `built`
+     plano), `metricGroups` (en vez de `metrics` plano en la
+     sección "What changed"), `sources` (numeradas) y `rooms`.
+     Los casos que no lo definan siguen renderizando el layout
+     previo. */
+  summary?: string
+  byline?: string
+  metricGroups?: WorkMetricGroups
+  sources?: string[]
+  rooms?: WorkRoom[]
+  /* Línea corta debajo de "What changed" antes de las cifras. */
+  changePreamble?: string
 }

@@ -86,13 +86,19 @@ export const karenMannheim: Work = {
       ],
     },
     {
-      /* §B.5 · WHAT WE BUILT · imágenes de Pezet debajo de las filas */
+      /* §B.5 · WHAT WE BUILT · imágenes de Pezet + grilla de 4
+         posts de Karen (F26 §B.5 · si algún archivo no existe se
+         omite por §E.6). */
       h2: "A narrative system Karen's team runs every week.",
       body: [],
       blocks: [
         { kind: 'image', src: pezetEntrance.src, caption: 'PEZET 1, entrance.', aspect: 'l' },
         { kind: 'image', src: pezetPool.src, caption: 'Pool interior, PEZET.', aspect: 'l' },
         { kind: 'image', src: pezetLobby.src, caption: 'Lobby interior, PEZET.', aspect: 'l' },
+        { kind: 'image', src: '/karen-post-1.png', aspect: 'p' },
+        { kind: 'image', src: '/karen-post-2.png', aspect: 'p' },
+        { kind: 'image', src: '/karen-post-3.png', aspect: 'p' },
+        { kind: 'image', src: '/karen-post-4.png', aspect: 'p' },
       ],
     },
     {
@@ -134,6 +140,7 @@ export const karenMannheim: Work = {
   ],
 
   /* §B.7 · WHAT CHANGED · cifras agrupadas + preámbulo */
+  changeH2: 'Five years, measured.',
   changePreamble:
     'In 2026, TRAZZO won a Miami pitch against international studios; the client asked no questions and requested the proposal. One process video of Pezet reached 80,000 views on Instagram and brought an inbound contact that became a penthouse project worth $20–30K.',
   metricGroups: {

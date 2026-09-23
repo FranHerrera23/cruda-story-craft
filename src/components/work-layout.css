@@ -48,8 +48,10 @@
   text-wrap: pretty;
 }
 
-/* WHAT CHANGED · grupos (F26 §A.7). Regla ink 2px arriba, un
-   grupo por bloque, cifras naranjas (o ink en context). */
+/* WHAT CHANGED · grupos (F26 §A.7 · §E.2/§E.5). Regla ink 2px arriba.
+   El h2 y el preámbulo viven en la grilla de texto (h2 cols 1–5,
+   preámbulo cols 7–12); los grupos ocupan cols 1–12 con 4 cifras
+   por fila. */
 .wl-change {
   padding-top: clamp(48px, 8vh, 96px);
   padding-bottom: clamp(48px, 8vh, 96px);
@@ -57,16 +59,18 @@
   margin-top: clamp(48px, 8vh, 96px);
 }
 .wl-change__preamble {
-  font-size: clamp(15px, 1.4vw, 18px);
-  line-height: 1.55;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink, #0D0D0D);
   max-width: 62ch;
-  margin-bottom: clamp(30px, 4vh, 48px);
   text-wrap: pretty;
 }
 .wl-change__groups {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
   gap: clamp(28px, 4vh, 44px);
+  margin-top: clamp(30px, 4vh, 48px);
 }
 .wl-change__group {
   border-top: 1px solid var(--paper-line, #D9D5CD);
@@ -83,7 +87,7 @@
 .wl-change__row {
   display: grid;
   gap: clamp(20px, 3vw, 40px);
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 .wl-metric__meta {
   font-size: 13px;
@@ -93,6 +97,7 @@
   max-width: 22ch;
 }
 .wl-change__sources {
+  grid-column: 1 / span 8;
   list-style: none;
   margin-top: clamp(30px, 4vh, 48px);
   padding-top: clamp(16px, 2vh, 24px);
@@ -108,6 +113,7 @@
   color: var(--ink, #0D0D0D);
 }
 .wl-change__quote {
+  grid-column: 1 / span 8;
   margin-top: clamp(32px, 4vh, 48px);
   padding-left: clamp(16px, 2vw, 24px);
   border-left: 2px solid var(--orange, #FF5A00);
@@ -124,6 +130,11 @@
   font-size: 13px;
   color: var(--grey, #6E6B65);
   margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .wl-change__row { grid-template-columns: 1fr; }
+  .wl-change__sources, .wl-change__quote { grid-column: 1 / -1; }
 }
 
 /* ROOMS IT OPENED (F26 §A.8). Filas: año + nombre + descripción
@@ -159,8 +170,9 @@
   color: var(--ink, #0D0D0D);
 }
 .wl-rooms__d {
-  font-size: clamp(15px, 1.4vw, 18px);
-  line-height: 1.55;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink, #0D0D0D);
   max-width: 62ch;
   text-wrap: pretty;
 }
@@ -177,18 +189,11 @@
   display: block;
 }
 
-/* WHAT THIS MEANS FOR YOUR COMPANY (F26 §A.9). Rótulo + h2 en
-   una columna, filas numeradas en la otra. Reusa cs-take. */
+/* WHAT THIS MEANS FOR YOUR COMPANY (F26 §A.9 · §E.4).
+   Rótulo + h2 en cols 1–5, filas numeradas cols 7–12. */
 .wl-forcompany {
   padding-top: clamp(48px, 8vh, 96px);
   padding-bottom: clamp(48px, 8vh, 96px);
-}
-.wl-forcompany h2 {
-  font-size: clamp(22px, 2.4vw, 32px);
-  line-height: 1.1;
-  letter-spacing: -.02em;
-  font-weight: 600;
-  text-wrap: balance;
 }
 .wl-forcompany .cs-take {
   margin-top: 0;

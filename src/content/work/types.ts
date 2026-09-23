@@ -189,4 +189,8 @@ export type Work = {
   rooms?: WorkRoom[]
   /* Línea corta debajo de "What changed" antes de las cifras. */
   changePreamble?: string
+  /* F26 §A.7 · h2 del bloque WHAT CHANGED. Cambia por caso. */
+  changeH2?: string
+  /* F26 §A.8 · h2 del bloque ROOMS IT OPENED. */
+  roomsH2?: string
 }

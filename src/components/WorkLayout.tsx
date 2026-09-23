@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { existsSync } from 'node:fs'
+import { join } from 'node:path'
 import type {
   Work,
   WorkBlock,
@@ -23,6 +25,27 @@ function isBuiltStrings(
   b: string[] | WorkBuiltRow[] | undefined,
 ): b is string[] {
   return !!b && b.length > 0 && typeof b[0] === 'string'
+}
+
+/* F26 §E.6 · nunca publicar un <img> roto. Recibe una `src` (path
+   relativo al servidor, tipo "/foo.png", o una data URL). Devuelve
+   true si:
+   · empieza con "/_next/..." (asset importado por webpack ya
+     resuelto);
+   · o el archivo existe en `public/`.
+   Se ejecuta en el server component (SSG/SSR); en el cliente
+   siempre devuelve true (no bloquea). */
+function publicFileExists(src: string): boolean {
+  if (!src) return false
+  if (src.startsWith('data:')) return true
+  if (src.startsWith('/_next/')) return true
+  if (!src.startsWith('/')) return true
+  if (typeof process === 'undefined' || !process.cwd) return true
+  try {
+    return existsSync(join(process.cwd(), 'public', src.slice(1)))
+  } catch {
+    return true
+  }
 }
 
 /* WorkLayout · F18.1 · 21-sep · autónomo · wireframe W6.
@@ -151,8 +174,8 @@ function EvidenceBlock({ block }: { block: WorkBlock }) {
   return null
 }
 
-/* F23-3 §4.4 · Next case usa el componente de card de Selected Work
-   (imagen 1:1, título, segunda línea, descripción). */
+/* F23-3 §4.4 · Next case · F26 §E.7: usa el h1 y la imagen de hero
+   del caso siguiente (no dek escrito a mano). */
 function NextCaseCard({ slug }: { slug: string }) {
   const next = selectedWork.find(w => w.slug === slug)
   if (!next) return null
@@ -181,7 +204,7 @@ function NextCaseCard({ slug }: { slug: string }) {
         )}
         <h3 className="wl-next-card__n">{next.client.name}</h3>
         <p className="wl-next-card__meta">{meta}</p>
-        <p className="wl-next-card__desc">{next.dek}</p>
+        <p className="wl-next-card__desc">{next.title}</p>
       </Link>
     </section>
   )
@@ -400,19 +423,25 @@ export default function WorkLayout({ w }: { w: Work }) {
                 )}
               </div>
             </div>
-            {sec.blocks && sec.blocks.length > 0 && (
-              <div
-                className={`cs-ev ${
-                  sec.blocks.filter(b => b.kind === 'image').length >= 3
-                    ? 'cs-ev--3'
-                    : 'cs-ev--2'
-                }`}
-              >
-                {sec.blocks.map((b, j) => (
-                  <EvidenceBlock key={j} block={b} />
-                ))}
-              </div>
-            )}
+            {sec.blocks && sec.blocks.length > 0 && (() => {
+              /* F26 §E.6 · descartar imágenes sin archivo antes de
+                 medir cuántas quedan (para decidir --3 / --2). */
+              const blocks = sec.blocks.filter(b => {
+                if (b.kind === 'image') return publicFileExists(b.src)
+                return true
+              })
+              if (blocks.length === 0) return null
+              const imgCount = blocks.filter(b => b.kind === 'image').length
+              return (
+                <div
+                  className={`cs-ev ${imgCount >= 3 ? 'cs-ev--3' : 'cs-ev--2'}`}
+                >
+                  {blocks.map((b, j) => (
+                    <EvidenceBlock key={j} block={b} />
+                  ))}
+                </div>
+              )
+            })()}
             {sec.pull && <p className="cs-pull">{sec.pull}</p>}
           </section>
         )
@@ -422,6 +451,7 @@ export default function WorkLayout({ w }: { w: Work }) {
           `metricGroups`. */}
       {w.metricGroups && (
         <ChangeBlock
+          h2={w.changeH2 ?? 'Five years, measured.'}
           preamble={w.changePreamble}
           groups={w.metricGroups}
           sources={w.sources ?? []}
@@ -433,7 +463,7 @@ export default function WorkLayout({ w }: { w: Work }) {
       {w.rooms && w.rooms.length > 0 && (
         <section className="cs-wrap wl-rooms" aria-label="Rooms it opened">
           <div className="cs-sec__grid">
-            <h2>Rooms the work opened.</h2>
+            <h2>{w.roomsH2 ?? 'Rooms the work opened.'}</h2>
             <div className="cs-sec__body">
               <div className="wl-rooms__list">
                 {w.rooms.map((r, i) => (
@@ -443,7 +473,7 @@ export default function WorkLayout({ w }: { w: Work }) {
                       <span className="wl-rooms__n">{r.name}</span>
                     </div>
                     <p className="wl-rooms__d">{r.description}</p>
-                    {r.image && (
+                    {r.image && publicFileExists(r.image) && (
                       <div className="wl-rooms__img">
                         <img src={r.image} alt="" loading="lazy" />
                       </div>
@@ -602,13 +632,20 @@ function BuiltRows({ rows }: { rows: WorkBuiltRow[] }) {
   )
 }
 
-/* F26 §A.7 · WHAT CHANGED · rótulos de grupo + cifras. */
+/* F26 §A.7 · WHAT CHANGED · rótulos de grupo + cifras.
+   Estructura F26 §E.5: h2 y preámbulo en cs-sec__grid (h2 cols
+   1–5, preámbulo cols 7–12). Los grupos, fuentes y cita salen
+   directamente al grid como cols 1 / -1 para ocupar ancho
+   completo. La regla ink 2px del top del bloque no se ve
+   interrumpida por padding lateral porque cs-wrap ya lo maneja. */
 function ChangeBlock({
+  h2,
   preamble,
   groups,
   sources,
   testimonial,
 }: {
+  h2: string
   preamble?: string
   groups: WorkMetricGroups
   sources: string[]
@@ -627,55 +664,55 @@ function ChangeBlock({
   return (
     <section className="cs-wrap wl-change" aria-label="What changed">
       <div className="cs-sec__grid">
-        <h2>Five years, measured.</h2>
+        <h2>{h2}</h2>
         <div className="cs-sec__body">
           {preamble && <p className="wl-change__preamble">{preamble}</p>}
-          <div className="wl-change__groups">
-            {GROUPS.map(g => {
-              const items = groups[g.key]
-              if (!items || items.length === 0) return null
-              return (
-                <div key={g.key} className="wl-change__group">
-                  <p className="wl-change__gl">{g.label}</p>
-                  <div className="wl-change__row">
-                    {items.map((m, i) => (
-                      <div
-                        key={i}
-                        className={`wl-metric wl-metric--${g.kind}`}
-                      >
-                        <p className="wl-metric__v">
-                          {m.value}
-                          {m.n !== undefined && (
-                            <sup className="wl-metric__n">{m.n}</sup>
-                          )}
-                        </p>
-                        <p className="wl-metric__l">{m.label}</p>
-                        {m.period && (
-                          <p className="wl-metric__meta">{m.period}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-          {sources.length > 0 && (
-            <ol className="wl-change__sources">
-              {sources.map((s, i) => (
-                <li key={i}>
-                  <sup>{i + 1}</sup> {s}
-                </li>
-              ))}
-            </ol>
-          )}
-          {testimonial && (
-            <blockquote className="wl-change__quote">
-              <q>{testimonial.quote}</q>
-              <cite>{testimonial.cite}</cite>
-            </blockquote>
-          )}
         </div>
+        <div className="wl-change__groups">
+          {GROUPS.map(g => {
+            const items = groups[g.key]
+            if (!items || items.length === 0) return null
+            return (
+              <div key={g.key} className="wl-change__group">
+                <p className="wl-change__gl">{g.label}</p>
+                <div className="wl-change__row">
+                  {items.map((m, i) => (
+                    <div
+                      key={i}
+                      className={`wl-metric wl-metric--${g.kind}`}
+                    >
+                      <p className="wl-metric__v">
+                        {m.value}
+                        {m.n !== undefined && (
+                          <sup className="wl-metric__n">{m.n}</sup>
+                        )}
+                      </p>
+                      <p className="wl-metric__l">{m.label}</p>
+                      {m.period && (
+                        <p className="wl-metric__meta">{m.period}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+        {sources.length > 0 && (
+          <ol className="wl-change__sources">
+            {sources.map((s, i) => (
+              <li key={i}>
+                <sup>{i + 1}</sup> {s}
+              </li>
+            ))}
+          </ol>
+        )}
+        {testimonial && (
+          <blockquote className="wl-change__quote">
+            <q>{testimonial.quote}</q>
+            <cite>{testimonial.cite}</cite>
+          </blockquote>
+        )}
       </div>
     </section>
   )

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import StartHere from '@/components/StartHere'
 import './steve-walls.css'
 
 /* /thinking/steve-walls · F14b.2 · 21-sep · autónomo.
@@ -62,14 +63,8 @@ export default function SteveWallsPage() {
         </div>
       </figure>
 
-      <section className="episode-close">
-        <p className="episode-eyebrow">Start here</p>
-        <h2>One conversation.</h2>
-        <div className="episode-close__rule" />
-        <Link className="episode-mail" href="/contact">
-          Start a conversation
-        </Link>
-      </section>
+      {/* START HERE · F23-5 */}
+      <StartHere h2="Did one of these pieces describe your company?" />
     </article>
   )
 }

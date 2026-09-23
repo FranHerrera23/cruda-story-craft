@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import PlanesStack from '@/components/motion/PlanesStack'
+import StartHere from '@/components/StartHere'
 import '@/components/motion/planes.css'
 import './services.css'
 
@@ -272,23 +273,10 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* 07 · CIERRE · paper */}
+        {/* 07 · START HERE · F23-5 */}
         <section className="plane plane--paper services-close" data-plane>
           <div className="plane__in">
-            <p className="eyebrow">Start here</p>
-            <h2 className="name">One conversation.</h2>
-            <div className="rule" />
-            <p className="lede">
-              We ask what you are actually trying to do, and what the market
-              currently believes about you.
-            </p>
-            <p className="body">
-              If those two things are the same, you do not need us. If they
-              are not, that gap is the work.
-            </p>
-            <a className="services-mail" href="mailto:fran@thecruda.com">
-              fran@thecruda.com
-            </a>
+            <StartHere h2="Not sure which of the four fits?" />
           </div>
         </section>
 

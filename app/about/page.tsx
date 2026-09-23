@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import StartHere from '@/components/StartHere'
 import './about.css'
 
 /* /about · F23-2 · 22-sep · Fran §3.4 v2.
@@ -236,25 +237,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 07 · CIERRE · queda hasta que f23-5 reemplace por START HERE. */}
+      {/* 07 · START HERE · F23-5 */}
       <section className="about-sec" data-sec>
-        <p className="about-eyebrow">Start here</p>
-        <h2 className="about-name">One conversation.</h2>
-        <p className="about-lede">
-          We ask what you are actually trying to do, and what the market
-          currently believes about you.
-        </p>
-        <p className="about-body">
-          If those two things are the same, you do not need us. If they are
-          not, that gap is the work.
-        </p>
-        <Link className="about-mail" href="/contact">
-          Start a conversation
-        </Link>
-        <br />
-        <Link className="about-go" href="/#selected-work">
-          See the work →
-        </Link>
+        <StartHere h2="You talk to Fran from the first call." />
       </section>
     </>
   )

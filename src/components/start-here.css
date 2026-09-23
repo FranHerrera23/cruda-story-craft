@@ -1,0 +1,83 @@
+/* StartHere · F23-5 · 22-sep · Fran §6.
+   El fondo lo pone la sección padre. Este bloque solo pone tipo y
+   spacing. Ancho máximo del contenido: 8 columnas (~58ch). */
+
+.start-here {
+  padding: clamp(72px, 12vh, 128px) var(--gap, clamp(20px, 4.5vw, 72px));
+}
+.start-here__in {
+  max-width: 58ch;
+  margin-inline: 0;
+}
+.start-here__eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+}
+.start-here__h {
+  font-family: var(--grot);
+  font-size: clamp(26px, 3.6vw, 48px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.04;
+  color: inherit;
+  margin: 12px 0 0;
+  max-width: 22ch;
+}
+.start-here__proof {
+  margin-top: clamp(18px, 2.6vh, 30px);
+  font-size: 17px;
+  line-height: 1.45;
+  color: inherit;
+}
+.start-here__source {
+  margin-top: 6px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--grey, #6E6B65);
+}
+.start-here__lede {
+  margin-top: clamp(20px, 3vh, 32px);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--grey, #6E6B65);
+  max-width: 42ch;
+}
+.start-here__cta {
+  display: inline-block;
+  margin-top: clamp(22px, 3.4vh, 40px);
+  font-size: clamp(17px, 1.6vw, 22px);
+  font-weight: 500;
+  letter-spacing: -.03em;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 6px;
+  transition: color .35s, border-color .35s, transform .2s;
+}
+.start-here__cta:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+.start-here__mail {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 15px;
+  color: var(--grey, #6E6B65);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+.start-here__mail:hover { color: inherit; }
+
+/* Sección oscura: el color secundario aclara. */
+.plane--black .start-here__source,
+.on-black .start-here__source,
+.plane--black .start-here__lede,
+.on-black .start-here__lede,
+.plane--black .start-here__mail,
+.on-black .start-here__mail {
+  color: var(--grey-dark, #8A867E);
+}

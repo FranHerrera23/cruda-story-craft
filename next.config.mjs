@@ -115,13 +115,22 @@ const nextConfig = {
         permanent: true,
       },
 
-      // ============ /approach → /process (Brief 03, 14-sep) ============
-      // La página se llamaba `approach` — lo que decía una consultoría
-      // que no quería comprometerse a un orden. Ahora la página tiene
-      // un molde con meses y un proceso nombrado; la ruta lo refleja.
+      // ============ /approach → /services/translated (F23-4) ============
+      // /approach → /process apuntaba a la vieja página de proceso.
+      // /process ahora es Translated (§5.1). Se saltea el intermediario
+      // apuntando directo a la canónica final (regla NO CHAINS).
       {
         source: '/approach',
-        destination: '/process',
+        destination: '/services/translated',
+        permanent: true,
+      },
+
+      // ============ /process → /services/translated (F23-4 §5.1) ============
+      // La vieja /process pasa a ser la página del plano Translated,
+      // bajo /services/translated. Un salto directo.
+      {
+        source: '/process',
+        destination: '/services/translated',
         permanent: true,
       },
 

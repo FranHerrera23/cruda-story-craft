@@ -65,4 +65,5 @@ export const juanPabloRomero: Work = {
   credit: 'CRUDA · Fran Herrera, Founder',
   faq: [],
   moreFrom: [],
+  next: 'inout',
 }

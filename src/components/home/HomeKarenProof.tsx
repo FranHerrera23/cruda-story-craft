@@ -28,7 +28,7 @@ export default function HomeKarenProof() {
           </h2>
           <div className="rule" />
           <p className="body" style={{ maxWidth: '66ch' }}>
-            Karen lights ten, twenty and fifty million dollar homes.
+            Karen lights ten to two hundred million dollar homes.
             Her buyers are developers, architects and high-end builders
             across the United States, Latin America and Spain — a few
             thousand people, not a market. The writing went to them.

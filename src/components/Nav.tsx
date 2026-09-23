@@ -239,12 +239,14 @@ export default function Nav() {
           text-decoration: none;
           line-height: 0;
         }
-        /* F22 · misma altura visual que tenía el wordmark (16px del
-           Archivo 700). Las dos versiones ocupan el mismo espacio.
-           Swap por CSS bajo .bar--dark, sin transición. */
+        /* F22 + F23-bugs · logo trazado a mano · 708×284 nativo. A
+           20px de alto los trazos quedaban ilegibles ("garabato"),
+           bug reportado por Fran F23-bugs. Se sube a 40px: los
+           trazos anchos se leen, y la barra crece de ~60 a ~76px
+           (padding 18+18 + logo 40 = 76). */
         .cruda-global-nav-brand__logo {
           display: block;
-          height: 20px;
+          height: 40px;
           width: auto;
           user-select: none;
           -webkit-user-drag: none;

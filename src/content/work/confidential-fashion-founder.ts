@@ -25,53 +25,70 @@ export const confidentialFashionFounder: Work = {
   },
 
   capsule: [
-    "Name a fast fashion founder. Not a brand — a person. Most people in the industry can't, and most people outside it have never tried. The category is enormous, it dresses a generation, and it has no faces.",
-    "Our client was the exception waiting to happen. He had built one company, lost it, and built a second one that is now doing $300 million. He had the most tellable story in his industry and no way of telling it — not because he was hiding, but because he had never been asked the questions that would have made him articulate it.",
-    'CRUDA built the founder narrative — the position, the fall, the return — that his company is now reusing for recruitment.',
+    'Name a fast fashion founder. Not a brand, a person. Most people cannot: the category dresses a generation and has no faces.',
+    'Our client built one company into a business with hundreds of millions in revenue, and lost it. Then he built a second: an on-demand fashion group now doing $300 million a year. He had the most tellable story in his industry and no way of telling it.',
+    'CRUDA built the founder narrative, the position, the fall and the return, that his company now also uses to recruit.',
   ],
   takeaways: [
-    'The category is full of founders performing success. The decision was to build him as someone who runs things: every piece carries real operational detail — what a decision cost, what it returned, what it broke.',
-    'The instinct is to skip the fall. A founder who only tells you about the rise is one of thousands. A founder who has been through the entire cycle — built it, lost it, built it again — is one of very few.',
-    'No major player in the category uses its founder in the public story. That vacancy is not an accident of taste — it is a structural opening.',
+    'The fall can be the asset. A founder who has been through the whole cycle is rare, and a competitor cannot hire that.',
+    'If the market misreads your model, explain the model before you sell the product.',
+    'When a partner carries a reputation, do not defend and do not distance. Keep the story on what you control.',
   ],
   metrics: [
     { value: '$300M', label: 'net revenue · current company', source: 'Client, verified in interview', period: '2025' },
   ],
   sections: [
     {
-      h2: 'The rise gets told. The fall gets buried. The return needs both.',
+      h2: 'Where he started.',
       body: [
-        'He had built one company and grown it into a business with hundreds of millions in revenue. It collapsed. He started again, and inside two years the new group was doing $300 million. Almost nobody knew any of that.',
-        "He had the most tellable story in his industry and no way of telling it. Not because he was hiding — because he had never been asked the questions that would have made him articulate it.",
+        'He did not come to fashion from the outside. He grew up around factories, freight and clothing, and built his first company into one of the best-known names in its market. With scale came complexity, and the company fell.',
+        'He did not disappear and he did not pivot. He rebuilt: a new group, a different model, a lean global team and a large manufacturing partner. Inside two years it was doing $300 million.',
       ],
-      pull: 'The rise gets told. The fall gets buried. The return needs both.',
+    },
+    {
+      h2: 'What stood in the way.',
+      body: [
+        "The market still tied him to the first company's fall. Coverage had focused on the exit, not on what came after.",
+        'The model was misread. On-demand kept being filed as ordinary fast fashion, and the difference, which is the whole business, got lost.',
+        'The manufacturing partnership was polarising. It gives the group an operating advantage, and it carries a reputation he could neither defend nor escape.',
+        'And he did not want a personal brand. He wanted to be visible on his own terms, without clout and without noise.',
+      ],
+      pull: 'Most founders tell the rise and bury the fall. The return only makes sense with both.',
     },
     {
       h2: 'The position.',
       body: [
-        'The operator, not the influencer · the category is full of founders performing success. The decision was to build him as someone who runs things: every piece carries real operational detail — what a decision cost, what it returned, what it broke. Credibility in this industry comes from specifics, not from tone.',
-        'The fall is the asset · a founder who only tells you about the rise is one of thousands. A founder who has been through the entire cycle is one of very few, and that is not something a competitor can acquire, hire or copy.',
-        'Occupy the empty seat · no major player in the category uses its founder in its public story. That vacancy is not an accident of taste — it is a structural opening. The first person to fill it credibly owns a position that cannot be contested by spend.',
+        'The operator · the category is full of founders performing success. We built him as someone who runs things: every piece carries real operating detail, what a decision cost, what it returned, what it broke. Credibility in this industry comes from specifics.',
+        'The fall is the asset · a founder who only tells you about the rise is one of thousands. A founder who has been through the whole cycle is one of very few, and that is not something a competitor can buy, hire or copy.',
+        'The empty seat · no major player in the category uses its founder in its public story. The first person to fill that seat credibly owns a position that spend cannot contest.',
       ],
     },
     {
       h2: 'How we worked.',
       body: [
-        'Movement one · go backwards before going forwards. We did not start with what he wanted to say. We started three generations back — the arc that produced him — and worked forward.',
-        "Movement two · translate the operator's detail into public voice. Every post is built from a decision, not from a lesson. The lesson emerges from the decision.",
+        'We went backwards before going forwards. We did not start with what he wanted to say. We started three generations back, with the arc that produced him, and worked forward.',
+        'Every post is built from a decision, not from a lesson. The lesson comes out of the decision.',
+        'Every week: a one-to-one strategy call, a founder-led content engine, and one message matrix by audience (talent, investors, partners), so each hears the same story in the terms that matter to them. On the partnership, we neither defend nor distance: the story stays on what the group controls, its precision, its speed and its customer.',
+      ],
+    },
+    {
+      h2: 'What changed.',
+      body: [
+        "The narrative did not stay on his profile. It became the group's recruitment story. One LinkedIn post brought in more than 1,000 CVs.",
       ],
     },
   ],
   built: [
-    'Founder narrative · position, fall, return',
-    'Operator voice · decisions, not lessons',
-    'Recruitment story reused from the founder narrative',
+    'Founder narrative · the position, the fall, the return',
+    'Operator voice · every post built from a decision',
+    'Message matrix · talent, investors, partners',
   ],
   change: [
-    "The system reused for recruitment.",
+    'The founder narrative became the recruitment story.',
+    'More than 1,000 CVs from one LinkedIn post.',
   ],
   credit: 'CRUDA · Fran Herrera, Founder',
   faq: [],
   moreFrom: [],
-  next: 'arman-keshishian',
+  next: 'juan-pablo-romero',
 }

@@ -29,7 +29,7 @@ export const DOORS: readonly DoorSpec[] = [
     n: '02',
     label: 'Transmission',
     descriptor:
-      'The system, run every week, so it stops depending on the founder.',
+      'We run the system every week, so it stops depending on the founder.',
     price: 'from $2,200 / month',
     href: '/services#transmission',
   },
@@ -38,7 +38,7 @@ export const DOORS: readonly DoorSpec[] = [
     n: '03',
     label: 'Interpreted',
     descriptor:
-      'Two sides with capital and capability, made legible to each other.',
+      'For companies whose owners, teams and buyers come from different cultures.',
     price: '12 weeks · from $55,000',
     href: '/services#interpreted',
   },
@@ -46,7 +46,8 @@ export const DOORS: readonly DoorSpec[] = [
     key: 'read',
     n: '04',
     label: 'The Read',
-    descriptor: 'One session. What an outsider sees, said plainly.',
+    descriptor:
+      'One session in which an outsider tells you, plainly, what they see.',
     price: 'per session · On request',
     href: '/services#read',
   },

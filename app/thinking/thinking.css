@@ -21,7 +21,8 @@
   align-items: end;
 }
 .thinking-open__h {
-  font-size: clamp(44px, 7.4vw, 108px);
+  /* F23-2 · h1 al mismo token que /services (.name). */
+  font-size: clamp(26px, 3.6vw, 48px);
   font-weight: 600;
   letter-spacing: -.045em;
   line-height: .95;
@@ -134,6 +135,70 @@
   max-width: 560px;
   background: var(--orange, #FF5A00);
   margin-top: 20px;
+}
+/* F23-2 · única regla naranja de la página, bajo el hero (h1 + lede). */
+.thinking-rule--hero {
+  grid-column: 1 / -1;
+  margin-top: clamp(28px, 4vh, 48px);
+}
+
+/* F23-2 · Case study cards con la misma anatomía que Selected Work.
+   Imagen 1:1, título, empresa · ciudad, descripción. */
+.thinking-sw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 12px;
+  row-gap: 72px;
+  margin-top: clamp(30px, 5vh, 56px);
+  align-items: start;
+}
+@media (max-width: 1199px) {
+  .thinking-sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 699px) {
+  .thinking-sw-grid { grid-template-columns: 1fr; row-gap: 48px; }
+}
+.thinking-sw-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.thinking-sw-card__m {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #DEDAD2;
+}
+.thinking-sw-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
+}
+@media (hover: hover) {
+  .thinking-sw-card:hover .thinking-sw-card__img {
+    transform: scale(1.03);
+  }
+}
+.thinking-sw-card__n {
+  margin: 14px 0 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink, #0D0D0D);
+}
+.thinking-sw-card__meta {
+  margin: 4px 0 0;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--grey, #6E6B65);
+}
+.thinking-sw-card__desc {
+  margin: 6px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink, #0D0D0D);
+  max-width: 42ch;
 }
 
 /* Articles · molde WHAT WE DO. */

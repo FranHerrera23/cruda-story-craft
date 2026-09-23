@@ -41,9 +41,9 @@ import '@/components/home/home-layout.css';
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
-  'CRUDA is a communications company. We translate cultures into business.'
+  'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.'
 
-const HOME_TITLE = 'CRUDA · Communications for founder-led companies'
+const HOME_TITLE = 'CRUDA · We translate cultures into business'
 
 export const metadata: Metadata = {
   title: HOME_TITLE,

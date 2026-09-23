@@ -5,9 +5,9 @@ export const mannheimTrading: Work = {
   order: 5,
   title:
     'Narrative and positioning for a new company founded by a man whose name has carried an industry for sixty years — and who has never wanted to be seen',
-  metaTitle: 'José Mannheim · Mannheim Trading Corp — CRUDA',
+  metaTitle: 'José Mannheim · MTC · CRUDA',
   dek:
-    'Narrative and positioning for Mannheim Trading Corp: a new company by the founder of AGP, publishing under his own name at eighty.',
+    'Narrative and positioning for Mannheim Trading Corp, the new company of AGP founder José Mannheim.',
   client: { name: 'José Mannheim', role: 'Founder', company: 'Mannheim Trading Corp' },
   confidential: false,
   place: { to: 'Panama City, Panama', city: 'Panama City', country: 'Panama' },
@@ -51,15 +51,14 @@ export const mannheimTrading: Work = {
       h2: 'And what the market did about it.',
       body: [
         'Goldman Sachs Private Capital Investing took a minority position in 2018, after the group tripled its global revenues in five years. BDT Capital Partners followed in 2021, describing the investment as a partnership with the Mannheim family. A $250M credit line with OMERS and BMO in 2022. An $800M investment announced in Mexico in 2023.',
-        "Arturo Mannheim runs it now, as CEO and Chairman. The company is in the family's hands and out of José's. Then, at eighty, he started something new.",
+        "Arturo Mannheim runs it now, as CEO and Chairman. The company is in the family's hands and out of José's.",
       ],
-      pull: 'Then, at eighty, he started something new.',
     },
     {
       h2: 'The narrative problem.',
       body: [
         "Mannheim Trading Corp supplies polycarbonate, polyurethane and other critical materials to armoured glass manufacturers. Which means it sells to AGP's competitors. The obvious move — leaning on the AGP name — would have been the wrong one.",
-        'The narrative had to acknowledge the arithmetic without becoming defensive about it. Sixty years of industry weight is the credential; MTC is the new company; José is signing his own posts. That is the shape.',
+        'The narrative had to acknowledge the arithmetic without becoming defensive about it. Sixty years of industry weight is the credential; MTC is the new company; José is signing his own posts.',
       ],
     },
   ],
@@ -74,5 +73,5 @@ export const mannheimTrading: Work = {
   credit: 'CRUDA · Fran Herrera, Founder',
   faq: [],
   moreFrom: [],
-  next: 'german-noel',
+  next: 'confidential-fashion-founder',
 }

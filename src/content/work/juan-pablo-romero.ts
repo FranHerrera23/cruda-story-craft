@@ -8,9 +8,9 @@ export const juanPabloRomero: Work = {
   order: 101,
   title:
     'From zero US market presence to clear positioning that architects, designers and developers understand before the first meeting',
-  metaTitle: 'Juan Pablo Romero · JURA Plank — CRUDA',
+  metaTitle: 'JP Romero · JURA · CRUDA',
   dek:
-    'Positioning and brand narrative for a flooring founder opening the US market to brands from outside it.',
+    'Positioning for JURA Plank and Connecting the Dots, so US architects and developers understand them before the first meeting.',
   client: {
     name: 'Juan Pablo Romero',
     role: 'Founder',
@@ -25,8 +25,8 @@ export const juanPabloRomero: Work = {
   moment: 'market-entry',
 
   capsule: [
-    "Juan Pablo Romero came to the United States from Guatemala at seventeen. He learned hardwood flooring alongside his father, and after twenty years he built JURA Plank — a luxury Canadian hardwood company specialising in European engineered floors — and Connecting the Dots, a consulting practice that helps international construction firms enter the US market.",
-    'The technical expertise was three generations deep. The market visibility was zero.',
+    "Juan Pablo Romero came to the United States from Guatemala at seventeen. He learned hardwood flooring alongside his father, and after twenty years he built JURA Plank — a luxury hardwood company that carries every line, from Canadian hardwood to European engineered flooring — and Connecting the Dots, a consulting practice that helps international construction firms enter the US market.",
+    'The technical expertise came from twenty years on job sites, starting beside his father. The market visibility was zero.',
     'CRUDA built the positioning that lets architects, designers and developers understand what makes JURA different before the first meeting.',
   ],
   takeaways: [
@@ -37,15 +37,15 @@ export const juanPabloRomero: Work = {
   metrics: [],
   sections: [
     {
-      h2: 'Canadian hardwood. Luxury spec. Three generations of craft.',
+      h2: 'Two decades on the job site.',
       body: [
         "Juan Pablo Romero came to the United States from Guatemala at seventeen. He started learning flooring alongside his father, working job sites, understanding wood from the ground up. That was two decades ago.",
-        "Today, Juan Pablo runs JURA Plank, a luxury hardwood company specialising in European engineered flooring — Black Forest oak, natural oil finishes, click-lock engineering. He also founded Connecting the Dots, a consulting practice that helps international construction companies navigate US markets.",
+        "Today, Juan Pablo runs JURA Plank, a luxury hardwood company that carries every line, from Canadian hardwood to European engineered flooring: Black Forest oak, natural oil finishes, click-lock engineering. He also founded Connecting the Dots, a consulting practice that helps international construction companies navigate US markets.",
         "But none of that translated into market visibility. JURA had a product. Juan Pablo had the expertise. What they didn't have was a way to communicate why their approach to wood flooring — material, provenance, spec — was different before the first meeting.",
       ],
     },
     {
-      h2: 'Two doors, one voice.',
+      h2: 'One voice, two companies.',
       body: [
         'Positioning both JURA Plank and Connecting the Dots meant one voice pointing at two doors: the product for architects and designers, the consulting practice for the firms bringing their brands into US markets.',
         'A market builder is a different animal from a founder. Juan Pablo is both. The narrative had to make that legible without competing with itself.',

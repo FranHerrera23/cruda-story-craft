@@ -4,33 +4,38 @@ import PlanesStack from '@/components/motion/PlanesStack'
 import '@/components/motion/planes.css'
 import './services.css'
 
-/* /services · F12 · 21-sep · autónomo · prototipo services-v4.
+/* /services · F23-2 · 22-sep · Fran §3.3 v2.
 
-   Siete planos. Copy textual del prototipo. Precios firmados §2:
-     Translated    12 weeks · $19,500  (Flat)
-     Transmission  From $2,200 / month
-     Interpreted   12 weeks · From $55,000
-     The Read      per session · On request
-
-   Sólo TRANSLATED lleva a otra página (`/process` · brief §2:
-   "See how it works" va ahí). Los otros tres CTA van a /contact.
-
-   mix-blend-mode del prototipo se retira (§2 · cero mix-blend).
-   Contador NN/07 se retira (§2 · cero contadores). El progreso
-   sigue vivo, sin numeración textual. */
+   Siete planos. Copy actualizado a §3.3:
+     · Ledes de home + services alineados (Work with us for one…).
+     · Descriptors nuevos en Transmission, Interpreted, The Read.
+     · 03 y 04 renombrados: "Across two cultures" · "A single session".
+     · Translated cuerpo nuevo (5 entregables listados).
+     · CTAs "Write to us →" → "Book the call →" (→ /contact).
+     · Translated conserva "See how it works →" → /services/translated.
+     · Línea de costos F23 (constante §0.1) debajo del índice y como
+       segunda línea de Fee en Translated/Transmission/Interpreted.
+     · Línea "See it in: …" con los casos por plano.
+     · Nueva sección WHO IT IS NOT FOR antes de START HERE.
+     · Interpreted body intacto (Fran: "no tocar"). */
 
 const BASE = 'https://www.thecruda.com'
 
-const META_DESCRIPTION =
-  'CRUDA is a communications company. We translate cultures into business.'
+const SERVICES_TITLE = 'Services · CRUDA'
+const SERVICES_DESCRIPTION =
+  'Translated, Transmission, Interpreted and The Read: what each includes, how long it runs and what it costs.'
+
+/* Constantes F23 §0.1 · una sola definición. */
+const COST_LINE =
+  'Fees cover our work. Any third-party costs are paid by the client directly.'
 
 export const metadata: Metadata = {
-  title: 'Services — CRUDA',
-  description: META_DESCRIPTION,
+  title: SERVICES_TITLE,
+  description: SERVICES_DESCRIPTION,
   alternates: { canonical: `${BASE}/services` },
   openGraph: {
-    title: 'Services — CRUDA',
-    description: META_DESCRIPTION,
+    title: SERVICES_TITLE,
+    description: SERVICES_DESCRIPTION,
     url: `${BASE}/services`,
     type: 'website',
     images: [
@@ -39,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Services — CRUDA',
-    description: META_DESCRIPTION,
+    title: SERVICES_TITLE,
+    description: SERVICES_DESCRIPTION,
     images: [`${BASE}/logo.png`],
   },
 }
@@ -58,7 +63,8 @@ export default function ServicesPage() {
             <h1 className="name">We translate cultures into business.</h1>
             <div className="rule" />
             <p className="lede">
-              Four doors. The same skill, at four distances.
+              Work with us for one session, for twelve weeks, or every
+              week after that.
             </p>
             <div className="services-index">
               <div className="irow">
@@ -79,9 +85,10 @@ export default function ServicesPage() {
               <div className="irow">
                 <span className="irow__o">04</span>
                 <span className="irow__n">The Read</span>
-                <span className="irow__p">per session</span>
+                <span className="irow__p">per session · <em>On request</em></span>
               </div>
             </div>
+            <p className="services-cost-line">{COST_LINE}</p>
           </div>
         </section>
 
@@ -95,10 +102,11 @@ export default function ServicesPage() {
               Twelve weeks to build the system a company uses to say what it is.
             </p>
             <p className="body">
-              It starts with the founder in the room and ends with a narrative
-              platform, a founder manuscript, four content pillars and a
-              working cadence — a proprietary framework, run 1:1, that the
-              company can keep running without us.
+              It starts with the founder in the room and ends with a
+              system the company keeps running without us: a narrative
+              platform, a founder manuscript, four content pillars, a
+              website that tells the story, and a working cadence to
+              publish and distribute it.
             </p>
             <div className="data">
               <div className="cell">
@@ -114,11 +122,25 @@ export default function ServicesPage() {
                 <p className="cell__l">Fee</p>
                 <p className="cell__v cell__fee">$19,500</p>
                 <p className="cell__n">Flat</p>
+                <p className="cell__n">{COST_LINE}</p>
               </div>
             </div>
-            <Link className="go" href="/process">
-              See how it works →
-            </Link>
+            <div className="services-ctas">
+              <Link className="go" href="/contact">
+                Book the call →
+              </Link>
+              <Link className="go" href="/services/translated">
+                See how it works →
+              </Link>
+            </div>
+            <p className="services-see-in">
+              See it in:{' '}
+              <Link href="/work/karen-mannheim">Karen Mannheim</Link> ·{' '}
+              <Link href="/work/girish-sehgal">Girish Sehgal</Link> ·{' '}
+              <Link href="/work/mannheim-trading">José Mannheim</Link> ·{' '}
+              <Link href="/work/juan-pablo-romero">JP Romero</Link> ·{' '}
+              <Link href="/work/inout">INOUT</Link>
+            </p>
           </div>
         </section>
 
@@ -129,7 +151,8 @@ export default function ServicesPage() {
             <h2 className="name">Transmission</h2>
             <div className="rule" />
             <p className="lede">
-              The system, run every week, so it stops depending on the founder.
+              We run the system every week, so it stops depending on the
+              founder.
             </p>
             <div className="data data--2">
               <div className="cell">
@@ -141,22 +164,32 @@ export default function ServicesPage() {
                 <p className="cell__l">Fee</p>
                 <p className="cell__v cell__fee">From $2,200</p>
                 <p className="cell__n">Per month</p>
+                <p className="cell__n">{COST_LINE}</p>
               </div>
             </div>
-            <Link className="go" href="/contact">
-              Write to us →
-            </Link>
+            <div className="services-ctas">
+              <Link className="go" href="/contact">
+                Book the call →
+              </Link>
+            </div>
+            <p className="services-see-in">
+              See it in:{' '}
+              <Link href="/work/karen-mannheim">Karen Mannheim</Link> ·{' '}
+              <Link href="/work/mike-kaeding">Mike Kaeding</Link> ·{' '}
+              <Link href="/work/juan-pablo-romero">JP Romero</Link>
+            </p>
           </div>
         </section>
 
         {/* 04 · INTERPRETED · paper */}
         <section className="plane plane--paper" data-plane id="interpreted">
           <div className="plane__in">
-            <p className="eyebrow">03 · Two cultures, one room</p>
+            <p className="eyebrow">03 · Across two cultures</p>
             <h2 className="name">Interpreted</h2>
             <div className="rule" />
             <p className="lede">
-              Two sides with capital and capability, made legible to each other.
+              For companies whose owners, teams and buyers come from
+              different cultures.
             </p>
             <p className="body">
               Outward, the narrative does not speak to the capital or the
@@ -181,22 +214,30 @@ export default function ServicesPage() {
                 <p className="cell__l">Fee</p>
                 <p className="cell__v cell__fee">From $55,000</p>
                 <p className="cell__n">Scope set per firm</p>
+                <p className="cell__n">{COST_LINE}</p>
               </div>
             </div>
-            <Link className="go" href="/contact">
-              Write to us →
-            </Link>
+            <div className="services-ctas">
+              <Link className="go" href="/contact">
+                Book the call →
+              </Link>
+            </div>
+            <p className="services-see-in">
+              See it in:{' '}
+              <Link href="/work/confidential-fashion-founder">Confidential</Link>
+            </p>
           </div>
         </section>
 
         {/* 05 · THE READ · negro */}
         <section className="plane plane--black" data-plane id="read">
           <div className="plane__in">
-            <p className="eyebrow">04 · Judgment, once</p>
+            <p className="eyebrow">04 · A single session</p>
             <h2 className="name">The Read</h2>
             <div className="rule" />
             <p className="lede">
-              One session. What an outsider sees, said plainly.
+              One session in which an outsider tells you, plainly, what
+              they see.
             </p>
             <div className="data data--2">
               <div className="cell">
@@ -209,16 +250,27 @@ export default function ServicesPage() {
                 <p className="cell__v">On request</p>
               </div>
             </div>
-            <Link className="go" href="/contact">
-              Write to us →
-            </Link>
+            <div className="services-ctas">
+              <Link className="go" href="/contact">
+                Book the call →
+              </Link>
+            </div>
           </div>
         </section>
 
-        {/* 06 · EL CORTE · paper.
-            F18.9 · sin cuerpo · se oculta hasta que Fran pase el body.
-            Regla §2 · sin dato real, el bloque no se renderiza.
-        */}
+        {/* 06 · WHO IT IS NOT FOR · nuevo F23-2 §3.3 */}
+        <section className="plane plane--paper services-not-for" data-plane>
+          <div className="plane__in">
+            <p className="eyebrow">Who it is not for</p>
+            <h2 className="name">
+              We do not work with crypto, betting or gaming companies.
+            </h2>
+            <p className="lede">
+              Or on any engagement where the founder or principal will
+              not be in the room.
+            </p>
+          </div>
+        </section>
 
         {/* 07 · CIERRE · paper */}
         <section className="plane plane--paper services-close" data-plane>

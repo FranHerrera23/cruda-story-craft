@@ -52,7 +52,7 @@ const CARDS: Card[] = [
     name: 'Mike Kaeding',
     meta: 'Norhart · Minneapolis',
     description:
-      'CEO of Norhart, a $230M construction company on a mission to halve the cost of housing.',
+      'CEO of Norhart, $230M in assets created, on a mission to halve the cost of housing.',
     service: ['TRANSMISSION'],
     href: '/work/mike-kaeding',
     imageSrc: '/mike-kaeding.webp',

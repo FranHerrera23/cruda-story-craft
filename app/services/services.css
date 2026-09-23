@@ -77,3 +77,47 @@
   color: var(--orange, #FF5A00);
   border-bottom-color: var(--orange, #FF5A00);
 }
+
+/* F23-2 · línea de costos F23 (constante §0.1). 13px --grey,
+   debajo del índice de puertas y como segunda línea del Fee. */
+.services-cost-line {
+  margin-top: clamp(14px, 2vh, 22px);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--grey, #6E6B65);
+}
+.plane--black .services-cost-line { color: var(--grey-dark, #8A867E); }
+.plane .cell__n {
+  /* .cell__n ya existe; el 3rd .cell__n en Fee lleva la línea de
+     costos con el mismo tamaño (12px system) — sin override. */
+}
+
+/* F23-2 · dos CTAs en línea (Translated · "Book the call →" +
+   "See how it works →"). */
+.services-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(20px, 3vw, 40px);
+  margin-top: clamp(18px, 2.4vh, 30px);
+}
+
+/* F23-2 · "See it in: …" · 15px, --grey, con links inline. */
+.services-see-in {
+  margin-top: clamp(14px, 2vh, 22px);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--grey, #6E6B65);
+}
+.services-see-in a {
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.plane--black .services-see-in { color: var(--grey-dark, #8A867E); }
+.plane--black .services-see-in a { color: var(--white, #FAF9F7); }
+
+/* F23-2 · WHO IT IS NOT FOR · h2 de sección, sin regla. */
+.services-not-for h2.name {
+  max-width: 22ch;
+}

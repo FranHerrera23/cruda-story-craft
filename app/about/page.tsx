@@ -2,39 +2,31 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import './about.css'
 
-/* /about · F13 · 21-sep · autónomo · prototipo about-v1.
+/* /about · F23-2 · 22-sep · Fran §3.4 v2.
 
-   Seis secciones (NO son planos apilados · brief §2 del prototipo:
-   "ninguna sección es un plano apilado. Cada una es un dispositivo
-   con jerarquía propia y motion atado al scroll").
+   Hero (rótulo · h1 · regla naranja · lede · link)
+   Sección WHAT WE TRANSLATE (con las 3 columnas OUTWARD/INWARD/ACROSS)
+   HOW IT STARTED · sin regla en h2
+   OPERATING PRINCIPLES · sin regla en h2
+   HOW THE WORK IS STRUCTURED · sin regla en h2
+   WHO RUNS IT · h2 nuevo, LEGACY → TRACK RECORD
+   START HERE (queda hasta f23-5)
 
-     01  Opener · split asimétrico (Pentagram /about)
-     02  How it started · cronología con 3 fechas
-     03  Operating principles · índice de 5 líneas
-     04  How the work is structured · 2 celdas opuestas
-     05  Who runs it · retrato + celdas · trampa 7 resuelta
-     06  Cierre
-
-   Regla §2 · nav sigue a la superficie por color (`on-black` en
-   este archivo señala "surface oscuro"; el `Nav` global detecta
-   esta clase para pintar `.bar--dark`).
-
-   Copy textual del prototipo. Los dos rótulos y notas nuevas de
-   §04 (execution / judgment layer) heredan de about-v1 y quedan
-   firmados por su presencia en el prototipo. */
+   Reglas naranja: UNA sola en toda la página, bajo el h1. */
 
 const BASE = 'https://www.thecruda.com'
 
-const META_DESCRIPTION =
-  'CRUDA is a communications company. We translate cultures into business.'
+const ABOUT_TITLE = 'About · CRUDA'
+const ABOUT_DESCRIPTION =
+  'CRUDA is a communications company founded by Fran Herrera. First client in 2021, registered in 2024.'
 
 export const metadata: Metadata = {
-  title: 'About — CRUDA',
-  description: META_DESCRIPTION,
+  title: ABOUT_TITLE,
+  description: ABOUT_DESCRIPTION,
   alternates: { canonical: `${BASE}/about` },
   openGraph: {
-    title: 'About — CRUDA',
-    description: META_DESCRIPTION,
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
     url: `${BASE}/about`,
     type: 'website',
     images: [
@@ -43,8 +35,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'About — CRUDA',
-    description: META_DESCRIPTION,
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
     images: [`${BASE}/logo.png`],
   },
 }
@@ -52,21 +44,31 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      {/* 01 · OPENER · W2 · rótulo + h1 + regla + lede corto.
-          Sale el split gigante; sale "You work with the founder…" y
-          la frase machine-assisted (viven abajo, verbatim). */}
+      {/* 01 · HERO · única regla naranja de la página. */}
       <section className="about-sec about-sec--black on-black" data-sec>
         <p className="about-eyebrow">About</p>
         <h1 className="about-name">
-          We translate cultures into business.
+          You work with the founder — and with a team small enough to
+          move.
         </h1>
         <div className="about-rule" />
-        <p className="about-lede" style={{ maxWidth: '34ch' }}>
-          CRUDA is a communications company. High ticket, white glove.
+        <p className="about-lede" style={{ maxWidth: '42ch' }}>
+          CRUDA is a communications company founded by Fran Herrera.
+          First client in 2021, registered in 2024.
         </p>
-        <Link className="about-go" href="/services" style={{ marginTop: 'clamp(20px, 3.2vh, 36px)' }}>
+        <Link
+          className="about-go"
+          href="/services"
+          style={{ marginTop: 'clamp(20px, 3.2vh, 36px)' }}
+        >
           See how we work →
         </Link>
+      </section>
+
+      {/* 02 · WHAT WE TRANSLATE · h2 sin regla. */}
+      <section className="about-sec about-sec--black on-black" data-sec>
+        <p className="about-eyebrow">What we translate</p>
+        <h2 className="about-name">We translate cultures into business.</h2>
         <div
           className="about-data marks"
           style={{ marginTop: 'clamp(48px, 8vh, 110px)' }}
@@ -93,14 +95,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 02 · HOW IT STARTED */}
+      {/* 03 · HOW IT STARTED · h2 sin regla. */}
       <section className="about-sec" data-sec>
         <p className="about-eyebrow">How it started</p>
         <h2 className="about-name">
           The first client came three years before the company did.
         </h2>
-        <div className="about-rule" />
-        {/* W2 · orden cronológico: Early 2021 → February 2024 → 2021—2026 */}
         <div className="about-chron marks">
           <div className="about-crow mark">
             <p className="about-crow__d">Early 2021</p>
@@ -126,11 +126,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 03 · OPERATING PRINCIPLES */}
+      {/* 04 · OPERATING PRINCIPLES · h2 sin regla. */}
       <section className="about-sec about-sec--black on-black" data-sec>
         <p className="about-eyebrow">Operating principles</p>
         <h2 className="about-name">How the work is done.</h2>
-        <div className="about-rule" />
         <div
           className="about-chron marks"
           style={{ borderTopColor: '#272727' }}
@@ -150,7 +149,7 @@ export default function AboutPage() {
             },
             {
               n: '04',
-              t: "We never sell with fear. No urgency, no scarcity, no last chance. If it isn't a fit, it isn't a fit.",
+              t: 'We never sell with fear: no deadlines, no scarcity, no last chance. If it is not a fit, we say so.',
             },
             {
               n: '05',
@@ -169,22 +168,20 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 04 · HOW THE WORK IS STRUCTURED · dos capas */}
+      {/* 05 · HOW THE WORK IS STRUCTURED · h2 sin regla. */}
       <section
         className="about-sec about-sec--black on-black about-sec--soft"
         data-sec
       >
         <p className="about-eyebrow">How the work is structured</p>
         <h2 className="about-name about-name--sm">
-          The system handles volume. The decisions do not scale, and are not
-          meant to.
+          Software handles the volume. A person decides what gets said.
         </h2>
-        <div className="about-rule" />
         <div className="about-layers marks">
           <div className="about-layer mark">
             <p className="about-layer__l">The execution layer</p>
             <p className="about-layer__v">
-              <em>Machine-assisted.</em>
+              <em>Software.</em>
             </p>
             <p className="about-layer__n">
               Volume, cadence, format. What can be systematised, is.
@@ -192,7 +189,7 @@ export default function AboutPage() {
           </div>
           <div className="about-layer mark">
             <p className="about-layer__l">The judgment layer</p>
-            <p className="about-layer__v">Not.</p>
+            <p className="about-layer__v">A person.</p>
             <p className="about-layer__n">
               What is worth saying, what is true, what gets cut. That stays
               with a person.
@@ -201,7 +198,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 05 · WHO RUNS IT */}
+      {/* 06 · WHO RUNS IT · h2 sin regla. */}
       <section className="about-sec about-sec--black on-black" data-sec>
         <div className="about-who">
           <div className="about-who__port" aria-hidden="true">
@@ -210,44 +207,39 @@ export default function AboutPage() {
           <div className="about-who__b">
             <p className="about-eyebrow">Who runs it</p>
             <h2 className="about-name about-name--sm">
-              You work with the founder — and with a team small enough to
-              move.
+              Fran Herrera, founder.
             </h2>
-            <div className="about-rule" />
             <div className="about-data about-data--2">
               <div className="about-cell">
                 <p className="about-cell__l">Experience</p>
                 <p className="about-cell__v">
-                  Ten years building brands across three continents, in-house
-                  and agency side.
+                  Ten years building brands across three continents,
+                  in-house and agency side.
                 </p>
                 <p className="about-cell__n">
                   Born in Salta, in the north of Argentina
                 </p>
               </div>
               <div className="about-cell">
-                <p className="about-cell__l">Legacy</p>
+                <p className="about-cell__l">Track record</p>
                 <p className="about-cell__v">
                   Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok ·
-                  United Nations
+                  a United Nations agency
                 </p>
                 <p className="about-cell__n">
-                  Direct work for the United Nations
+                  An International Women&apos;s Day campaign for a United
+                  Nations agency.
                 </p>
               </div>
             </div>
-            <p className="about-cell__n about-credit">
-              Fran Herrera · Founder · between UAE and Russia
-            </p>
           </div>
         </div>
       </section>
 
-      {/* 06 · CIERRE */}
+      {/* 07 · CIERRE · queda hasta que f23-5 reemplace por START HERE. */}
       <section className="about-sec" data-sec>
         <p className="about-eyebrow">Start here</p>
         <h2 className="about-name">One conversation.</h2>
-        <div className="about-rule" />
         <p className="about-lede">
           We ask what you are actually trying to do, and what the market
           currently believes about you.

@@ -1,75 +1,70 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import Link from 'next/link'
 
-/* /contact content · F14a · 21-sep · autónomo · contact-v1.
+/* /contact · F31 §3 · 23-sep · Fran.
 
-   Tres secciones: apertura (negro) + filtro (paper) + corte (negro).
-   El filtro son cinco preguntas, sin backend: el botón compone un
-   mailto con las respuestas escritas. Cero caja con borde+radio.
+   Reemplaza el filtro de 5 preguntas (§3.4 sale) por:
+   1 · h1 "One conversation." + regla naranja (única de la página).
+   2 · lede "Forty-five minutes. No pitch."
+   3 · dos columnas: BOOK THE CALL (Calendly inline) + WRITE TO US
+       (form Name/Email/What are you trying to do?)
+   4 · línea de pie con fees + mailto.
 
-   Q01 The gap · multi-select (data-multi=1)
-   Q02 Who runs it today · single
-   Q03 Closest door · single (nombres de las 4 puertas + Not sure)
-   Q04 Set aside · single (rangos de budget)
-   Q05 You · dos inputs (nombre/empresa/ciudad + email)
+   Sin secciones oscuras (todo papel).
 
-   El botón se habilita cuando Q01-Q04 tienen valor y los dos
-   inputs son válidos (email regex).
+   NEXT_PUBLIC_CALENDLY_URL define la URL del embed. Si no está,
+   la columna izquierda cae a un link "Book the call →" a la URL
+   (o al mailto si tampoco hay). Nunca hay embed vacío.
 
-   `on-black` marca las secciones oscuras: el Nav global (F11.2)
-   las detecta y aplica `.bar--dark`. */
-
-type Answers = {
-  challenge: string[]
-  team: string | null
-  door: string | null
-  budget: string | null
-}
+   Form:
+   - Name (required), Email (required), What are you trying to do?
+     (opcional, textarea).
+   - Envío por mailto con los tres campos escritos en el cuerpo.
+   - Send it → siempre en --ink. Si falta un obligatorio, subrayado
+     naranja 2px + "Required" bajo el campo. */
 
 const EMAIL_RE = /.+@.+\..+/
+const CALENDLY = process.env.NEXT_PUBLIC_CALENDLY_URL ?? ''
+
+function calendlyIframeUrl(base: string): string {
+  const url = new URL(base)
+  url.searchParams.set('hide_gdpr_banner', '1')
+  // Paper: F1EFEB · Ink: 0D0D0D · sin naranja en primary color.
+  url.searchParams.set('background_color', 'F1EFEB')
+  url.searchParams.set('text_color', '0D0D0D')
+  url.searchParams.set('primary_color', '0D0D0D')
+  return url.toString()
+}
 
 export default function ContactContent() {
-  const [challenge, setChallenge] = useState<string[]>([])
-  const [team, setTeam] = useState<string | null>(null)
-  const [door, setDoor] = useState<string | null>(null)
-  const [budget, setBudget] = useState<string | null>(null)
-  const [who, setWho] = useState('')
+  const [name, setName] = useState('')
   const [mail, setMail] = useState('')
+  const [what, setWhat] = useState('')
+  const [touched, setTouched] = useState(false)
 
-  const ready = useMemo(() => {
-    return (
-      challenge.length > 0 &&
-      !!team &&
-      !!door &&
-      !!budget &&
-      who.trim().length > 0 &&
-      EMAIL_RE.test(mail.trim())
-    )
-  }, [challenge, team, door, budget, who, mail])
-
-  const toggleChallenge = (opt: string) => {
-    setChallenge(prev =>
-      prev.includes(opt) ? prev.filter(o => o !== opt) : [...prev, opt],
-    )
-  }
+  const nameOk = name.trim().length > 0
+  const mailOk = EMAIL_RE.test(mail.trim())
+  const iframeUrl = useMemo(
+    () => (CALENDLY ? calendlyIframeUrl(CALENDLY) : ''),
+    [],
+  )
 
   const submit = () => {
-    if (!ready) return
+    setTouched(true)
+    if (!nameOk || !mailOk) return
     const body = [
-      'The gap: ' + challenge.join(' / '),
-      'Communications today: ' + team,
-      'Closest door: ' + door,
-      'Set aside: ' + budget,
-      '',
-      who.trim(),
-      mail.trim(),
-    ].join('\n')
+      `Name: ${name.trim()}`,
+      `Email: ${mail.trim()}`,
+      what.trim() ? `What are you trying to do?\n${what.trim()}` : '',
+    ]
+      .filter(Boolean)
+      .join('\n\n')
     const url =
       'mailto:fran@thecruda.com' +
       '?subject=' +
-      encodeURIComponent('One conversation — ' + who.trim()) +
+      encodeURIComponent('One conversation — ' + name.trim()) +
       '&body=' +
       encodeURIComponent(body)
     window.location.href = url
@@ -77,183 +72,90 @@ export default function ContactContent() {
 
   return (
     <>
-      {/* 01 · APERTURA */}
-      <section className="contact-sec contact-sec--black on-black">
+      {/* 01 · APERTURA · papel · única regla naranja */}
+      <section className="contact-sec">
         <p className="contact-eyebrow">Contact</p>
         <h1 className="contact-name">One conversation.</h1>
         <div className="contact-rule" />
         <p className="contact-lede">Forty-five minutes. No pitch.</p>
-        <div className="contact-data">
-          <div className="contact-cell">
-            <p className="contact-cell__l">Length</p>
-            <p className="contact-cell__v">Forty-five minutes</p>
-            <p className="contact-cell__n">One call, with Fran</p>
-          </div>
-          <div className="contact-cell">
-            <p className="contact-cell__l">Cost</p>
-            <p className="contact-cell__v">None</p>
-            <p className="contact-cell__n">And no pitch at the end of it</p>
-          </div>
-          <div className="contact-cell">
-            <p className="contact-cell__l">What we ask</p>
-            <p className="contact-cell__v">Where the company is standing</p>
-            <p className="contact-cell__n">Not where you want it to be</p>
-          </div>
-        </div>
       </section>
 
-      {/* 02 · EL FILTRO */}
-      <section className="contact-sec">
-        <p className="contact-eyebrow">Before we talk</p>
-        <h2 className="contact-name contact-name--sm">Five questions first.</h2>
-        <div className="contact-rule" />
+      {/* 02 · DOS COLUMNAS · Calendly + form */}
+      <section className="contact-sec contact-act">
+        <div className="contact-act__col contact-act__col--book">
+          <p className="contact-eyebrow">Book the call</p>
+          {iframeUrl ? (
+            <iframe
+              className="contact-cal"
+              src={iframeUrl}
+              title="Book a 45-minute call with Fran Herrera on Calendly"
+              loading="lazy"
+            />
+          ) : CALENDLY ? (
+            <a className="contact-cal-link" href={CALENDLY} target="_blank" rel="noopener">
+              Book the call →
+            </a>
+          ) : (
+            <a
+              className="contact-cal-link"
+              href="mailto:fran@thecruda.com?subject=One%20conversation"
+            >
+              Book the call →
+            </a>
+          )}
+        </div>
 
-        <div className="q">
-          <div className="qrow">
-            <span className="qrow__o">01</span>
-            <p className="qrow__q">The gap</p>
-            <div className="opts">
-              {[
-                'Nobody knows us',
-                'We say it differently every time',
-                'It all depends on the founder',
-                "Two sides that don't understand",
-              ].map(opt => (
-                <button
-                  key={opt}
-                  type="button"
-                  className="opt"
-                  aria-pressed={challenge.includes(opt)}
-                  onClick={() => toggleChallenge(opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="qrow">
-            <span className="qrow__o">02</span>
-            <p className="qrow__q">Who runs it today</p>
-            <div className="opts">
-              {['The founder', 'One person', 'A team', 'An agency'].map(opt => (
-                <button
-                  key={opt}
-                  type="button"
-                  className="opt"
-                  aria-pressed={team === opt}
-                  onClick={() => setTeam(team === opt ? null : opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="qrow">
-            <span className="qrow__o">03</span>
-            <p className="qrow__q">Closest door</p>
-            <div className="opts">
-              {[
-                'Translated',
-                'Transmission',
-                'Interpreted',
-                'The Read',
-                'Not sure',
-              ].map(opt => (
-                <button
-                  key={opt}
-                  type="button"
-                  className="opt"
-                  aria-pressed={door === opt}
-                  onClick={() => setDoor(door === opt ? null : opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="qrow">
-            <span className="qrow__o">04</span>
-            <p className="qrow__q">Set aside</p>
-            <div className="opts">
-              {['Under $20K', '$20—50K', 'Over $50K', 'Nothing yet'].map(opt => (
-                <button
-                  key={opt}
-                  type="button"
-                  className="opt"
-                  aria-pressed={budget === opt}
-                  onClick={() => setBudget(budget === opt ? null : opt)}
-                >
-                  {opt}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="qrow">
-            <span className="qrow__o">05</span>
-            <p className="qrow__q">You</p>
-            <div className="opts" style={{ gap: '10px 24px' }}>
+        <div className="contact-act__col contact-act__col--write">
+          <p className="contact-eyebrow">Write to us</p>
+          <div className="contact-form">
+            <label className="contact-field">
+              <span className="contact-field__l">Name</span>
               <input
-                className="inp"
+                className={`contact-inp${touched && !nameOk ? ' contact-inp--err' : ''}`}
                 type="text"
-                placeholder="Name, company, city"
-                autoComplete="organization"
-                value={who}
-                onChange={e => setWho(e.target.value)}
+                autoComplete="name"
+                value={name}
+                onChange={e => setName(e.target.value)}
               />
+              {touched && !nameOk && <span className="contact-err">Required</span>}
+            </label>
+
+            <label className="contact-field">
+              <span className="contact-field__l">Email</span>
               <input
-                className="inp"
+                className={`contact-inp${touched && !mailOk ? ' contact-inp--err' : ''}`}
                 type="email"
-                placeholder="Email"
                 autoComplete="email"
                 value={mail}
                 onChange={e => setMail(e.target.value)}
               />
-            </div>
+              {touched && !mailOk && <span className="contact-err">Required</span>}
+            </label>
+
+            <label className="contact-field">
+              <span className="contact-field__l">What are you trying to do?</span>
+              <textarea
+                className="contact-inp contact-inp--ta"
+                rows={4}
+                value={what}
+                onChange={e => setWhat(e.target.value)}
+              />
+            </label>
+
+            <button type="button" className="contact-send" onClick={submit}>
+              Send it →
+            </button>
           </div>
         </div>
+      </section>
 
-        <div className="send">
-          <button
-            type="button"
-            className="btn"
-            disabled={!ready}
-            onClick={submit}
-          >
-            Send it →
-          </button>
-          <p className="sendnote">
-            {ready
-              ? 'Opens your mail client with the five answers already written.'
-              : 'Answer the five and the button opens your mail client with the answers already written.'}
-          </p>
-        </div>
-
-        <p className="out">
+      {/* 03 · PIE · fees + mailto */}
+      <section className="contact-sec contact-out-sec">
+        <p className="contact-out">
           Fees are public on <Link href="/services">services</Link>. If none
           of this fits, write anyway —{' '}
           <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>
         </p>
-      </section>
-
-      {/* 03 · EL CORTE */}
-      <section className="contact-sec contact-sec--black on-black">
-        <p className="contact-eyebrow">What happens next</p>
-        <h2 className="contact-name contact-name--sm">
-          If those two things are the same, you do not need us.
-        </h2>
-        <div className="contact-rule" />
-        <p className="contact-body" style={{ maxWidth: '52ch' }}>
-          We ask what you are actually trying to do, and what the market
-          currently believes about you. If they are not the same, that gap
-          is the work.
-        </p>
-        <a className="contact-mail" href="mailto:fran@thecruda.com">
-          fran@thecruda.com
-        </a>
       </section>
     </>
   )

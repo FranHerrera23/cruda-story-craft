@@ -1,5 +1,45 @@
-/* WorkLayout · F18.1 · 21-sep · autónomo.
-   Complementa case-study-layout-v2.css con anatomía W6 del wireframe. */
+/* F27 §4.3 · portrait hero SPLIT · h1 y meta cols 1–6 (h1 arriba,
+   meta bottom-aligned), imagen 4:5 cols 7–12. Reemplaza al layout
+   F25 §4 (imagen cols 1–5 + meta cols 7–12). En 900px apila:
+   h1 arriba, imagen, meta abajo. */
+.cs-top--split { padding-bottom: 0; }
+.cs-hero-portrait {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  align-items: stretch;
+  padding-top: clamp(12px, 2vh, 24px);
+}
+.cs-hero-portrait__left {
+  grid-column: 1 / span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(28px, 4vh, 48px);
+}
+.cs-hero-portrait__left .cs-h1 { margin-top: 0; }
+.cs-hero-portrait__right {
+  grid-column: 7 / span 6;
+  aspect-ratio: 4 / 5;
+  /* Override el max-width:42% de case-study.css que fue pensado para
+     el layout viejo donde el portrait vivía dentro de una col ancha
+     de la intro. Ahora ocupa las 6 cols del split. */
+  max-width: none;
+}
+.cs-hero-portrait .wl-hero-meta.cs-meta {
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+@media (max-width: 900px) {
+  .cs-hero-portrait {
+    grid-template-columns: 1fr;
+    gap: clamp(24px, 4vh, 40px);
+  }
+  .cs-hero-portrait__left,
+  .cs-hero-portrait__right {
+    grid-column: 1;
+  }
+  .cs-hero-portrait__right { aspect-ratio: 4 / 5; }
+}
 
 /* F26 §A · molde nuevo. Todo lo prefijado con `wl-` que no estaba
    antes vive aquí. */
@@ -225,43 +265,8 @@
 .cs h1, .cs h2, .cs h3 { text-wrap: balance; }
 .cs p, .cs li { text-wrap: pretty; }
 
-
-/* F25 §4 · hero en retrato · el layout monta la imagen en cols 1–5
-   (4:5) y la meta al lado, cols 7–12. Antes el `.cs-hero--portrait`
-   quedaba sin CSS y caía al default 16:8, así que la meta bajaba
-   a la sección intro y las páginas de personas (Mike, José, JP,
-   Girish) tenían el mismo hero horizontal que Karen. En 900px
-   apila: retrato + meta en columnas independientes de ancho total,
-   igual que las plantillas de referencia. */
-.cs-hero-portrait {
-  display: grid;
-  grid-template-columns: 5fr 1fr 6fr;
-  gap: 0;
-  align-items: start;
-  padding-top: clamp(20px, 3vh, 40px);
-}
-.cs-hero-portrait .cs-hero {
-  grid-column: 1;
-  aspect-ratio: 4 / 5;
-}
-.cs-hero-portrait .wl-hero-meta {
-  grid-column: 3;
-  padding-top: clamp(4px, 1vh, 12px);
-}
-.cs-hero-portrait .wl-hero-meta.cs-meta {
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-}
-@media (max-width: 900px) {
-  .cs-hero-portrait {
-    grid-template-columns: 1fr;
-    gap: clamp(24px, 4vh, 40px);
-  }
-  .cs-hero-portrait .cs-hero,
-  .cs-hero-portrait .wl-hero-meta {
-    grid-column: 1;
-  }
-  .cs-hero-portrait .cs-hero { aspect-ratio: 4 / 5; }
-}
+/* (F25 §4 · reemplazado por F27 §4.3 · el split del retrato vive
+   arriba en este mismo archivo, líneas 6–38.) */
 
 /* Meta con Door + Axis + Moment · una fila más amplia */
 .wl-meta__doors { display: flex; flex-wrap: wrap; gap: 6px; }

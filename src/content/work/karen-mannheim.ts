@@ -46,10 +46,12 @@ export const karenMannheim: Work = {
     period: '365 days',
   },
 
-  /* §B.2 · resumen + byline · reemplaza el capsule y la firma
-     suelta de la versión previa. */
+  /* §B.2 · resumen + byline · §H · reemplaza al capsule y la firma
+     suelta de la versión previa. Antes/después de 2021: Oppenheim
+     Architecture, Four Seasons, Wecselman Design, Kobi Karp, el
+     nuevo Osaka y el nuevo Porsche solo aparecen después de 2021. */
   summary:
-    'Karen Mannheim co-founded TRAZZO Lighting in Lima 33 years ago. By 2021 it had more than 2,500 projects, including buildings by RAMSA, Four Seasons and Oppenheim Architecture, and almost nobody outside Peru knew. Since 2021, CRUDA has built and run the narrative system behind Karen and the company, across Lima, Miami, LinkedIn and Instagram. In 2025, TRAZZO’s revenue grew 46% and it closed its largest project, $380K; in 2026, Forbes Perú named Karen one of the country’s 50 most powerful women.',
+    'Karen Mannheim co-founded TRAZZO Lighting in Lima 33 years ago. By 2021 it had more than 2,500 projects: residential buildings by RAMSA for ACM Grupo, work with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Almost nobody outside Peru knew. Since 2021, CRUDA has built and run the narrative system behind Karen and the company, across Lima, Miami, LinkedIn and Instagram. In those years TRAZZO added Four Seasons, Oppenheim Architecture, Wecselman Design and Kobi Karp to its list, grew revenue 46% in 2025 and closed its largest project, $380K. In 2026, Forbes Perú named Karen one of the country’s 50 most powerful women.',
   byline: 'Fran Herrera, Founder, CRUDA · Updated September 2026',
 
   /* Legacy · el layout ignora `capsule` cuando `summary` existe.
@@ -69,19 +71,22 @@ export const karenMannheim: Work = {
 
   sections: [
     {
-      /* §B.3 · THE CHALLENGE */
+      /* §B.3 · THE CHALLENGE · §H · antes de 2021 · nombra a RAMSA,
+         Llosa Cortegana, Barclay & Crousse, Porsche y Osaka Nikkei. */
       h2: 'Twenty-eight years of work that only travelled by word of mouth.',
       body: [
-        "In early 2021, TRAZZO had 28 years behind it: more than 2,500 projects, an 80-person team, Lima's most important showrooms, the Porsche flagship in Lima, and work inside buildings by RAMSA, Four Seasons and Oppenheim Architecture. Inside Lima, that record moved through Karen's network. Outside it, nobody could see it.",
+        "In early 2021, TRAZZO had 28 years behind it: more than 2,500 projects, an 80-person team, Lima's most important showrooms, and a list any architect in Lima would recognise: residential buildings by RAMSA for ACM Grupo, projects with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Inside Lima, that record moved through Karen's network. Outside it, nobody could see it.",
         "TRAZZO had opened in Miami in 2020. Its buyers there are developers, architects and high-end builders across the United States, Latin America and Spain: a few thousand people, none of whom had walked into a room Karen lit. She had about a thousand followers on Instagram.",
         "A lighting studio is chosen before anyone walks into its work. When the record can't reach the architect or developer specifying the project, the studio isn't in the conversation.",
       ],
     },
     {
-      /* §B.4 · WHAT WE SAW */
+      /* §B.4 · WHAT WE SAW · §H · el primer párrafo pierde Four
+         Seasons y Oppenheim (van a WHAT CHANGED); el segundo
+         párrafo no cambia. */
       h2: 'The names on the list already persuaded. Nobody had explained them.',
       body: [
-        "TRAZZO's project list carried weight a Miami developer would recognise at once, if someone told them what it meant. RAMSA designed the most expensive penthouse ever sold in the United States, the Harvard Kennedy School and residential colleges at Yale, and chose TRAZZO four times for residential projects in Peru, through ACM Grupo. Oppenheim Architecture built a $200M house in Golden Beach. Adriana Hoyos redesigned a Four Seasons Residences penthouse in Brickell, listed at $14M.",
+        "TRAZZO's project list carried weight a Miami developer would recognise at once, if someone told them what it meant. RAMSA designed the most expensive penthouse ever sold in the United States, the Harvard Kennedy School and residential colleges at Yale, and had chosen TRAZZO four times for residential projects in Peru, through ACM Grupo.",
         "So the content never describes lamps. It takes a project the buyer already respects and shows how its light was decided: the process, the constraints, the judgment. The association opens the door; Karen's criteria is what the reader remembers.",
       ],
     },
@@ -125,7 +130,7 @@ export const karenMannheim: Work = {
     {
       name: 'FOUNDER STORIES',
       description:
-        'The decisions behind the company, told by Karen: being chosen to light the Porsche flagship in Peru, opening Miami in 2020.',
+        'The decisions behind the company, told by Karen: being chosen to light the new Porsche flagship in Peru, opening Miami in 2020.',
     },
     {
       name: 'SPOTLIGHT · 2026',
@@ -139,10 +144,13 @@ export const karenMannheim: Work = {
     },
   ],
 
-  /* §B.7 · WHAT CHANGED · cifras agrupadas + preámbulo */
+  /* §B.7 · WHAT CHANGED · §H · el preámbulo ahora nombra Four
+     Seasons Residences ($14M, Adriana Hoyos), Oppenheim en Golden
+     Beach, Wecselman Design, Kobi Karp, el nuevo Osaka y el nuevo
+     Porsche · todos post-2021. */
   changeH2: 'Five years, measured.',
   changePreamble:
-    'In 2026, TRAZZO won a Miami pitch against international studios; the client asked no questions and requested the proposal. One process video of Pezet reached 80,000 views on Instagram and brought an inbound contact that became a penthouse project worth $20–30K.',
+    'Since 2021, the work has reached a different level of project: Four Seasons Residences in Brickell, with a penthouse redesigned by Adriana Hoyos and listed at $14M; a $200M house by Oppenheim Architecture in Golden Beach; projects with Wecselman Design and Kobi Karp; and the new Osaka and the new Porsche flagship. In 2026, TRAZZO won a Miami pitch against international studios; the client asked no questions and requested the proposal. One process video of Pezet reached 80,000 views on Instagram and brought an inbound contact that became a penthouse project worth $20–30K.',
   metricGroups: {
     business: [
       { value: '+46%', label: 'revenue growth', period: '2025 vs 2024', source: 'TRAZZO internal review, 2025', n: 3 },

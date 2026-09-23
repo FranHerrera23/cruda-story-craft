@@ -266,20 +266,34 @@ export default function WorkLayout({ w }: { w: Work }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(w)) }}
       />
 
-      {/* 01 · Título + back */}
-      <header className="cs-top cs-wrap">
-        <Link className="cs-back" href="/#selected-work">
-          ← Work
-        </Link>
-        <h1 className="cs-h1">{w.title}</h1>
-      </header>
+      {/* 01 · Back link · el h1 se dibuja adentro del hero
+          para retratos (F27 §4.3 split) o inline con el back
+          para paisajes. */}
+      {isPortrait ? (
+        <header className="cs-top cs-wrap cs-top--split">
+          <Link className="cs-back" href="/#selected-work">
+            ← Work
+          </Link>
+        </header>
+      ) : (
+        <header className="cs-top cs-wrap">
+          <Link className="cs-back" href="/#selected-work">
+            ← Work
+          </Link>
+          <h1 className="cs-h1">{w.title}</h1>
+        </header>
+      )}
 
-      {/* 02 · Hero · F25 §4 · retrato = 4:5 en cols 1–5 con la meta
-          al lado en cols 7–12. Paisaje = 16:8 a full-width como
-          venía (F23-3 §4.1). */}
+      {/* 02 · Hero · F27 §4.3 · retrato: SPLIT · h1 y meta en cols
+          1–6 (h1 arriba, meta bottom-aligned) + imagen 4:5 cols
+          7–12. Paisaje = 16:8 a full-width como venía. */}
       {w.image && isPortrait && (
         <div className="cs-wrap cs-hero-portrait">
-          <div className="cs-hero cs-hero--portrait">
+          <div className="cs-hero-portrait__left">
+            <h1 className="cs-h1">{w.title}</h1>
+            {metaDl}
+          </div>
+          <div className="cs-hero cs-hero--portrait cs-hero-portrait__right">
             <img
               src={w.image}
               alt=""
@@ -290,7 +304,6 @@ export default function WorkLayout({ w }: { w: Work }) {
               }
             />
           </div>
-          {metaDl}
         </div>
       )}
       {w.image && !isPortrait && (

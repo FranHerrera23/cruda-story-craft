@@ -295,6 +295,106 @@
   border-bottom-color: var(--orange, #FF5A00);
 }
 
+/* F24 · sub-lede del hero (segundo párrafo, más chico que el primero). */
+.about-lede--sub {
+  margin-top: 12px;
+  font-size: clamp(14px, 1.15vw, 16px);
+  color: var(--grey-dark, #8A867E);
+}
+
+/* F24 · WHO RUNS IT · líneas nuevas + LinkedIn. */
+.about-who__note {
+  margin-top: clamp(18px, 2.4vh, 28px);
+  max-width: 58ch;
+}
+.about-who__go {
+  margin-top: clamp(14px, 2vh, 22px);
+}
+
+/* F24 §4.2 · AT A GLANCE · <dl> de key facts. Filas con hairline,
+   rótulo a la izquierda, valor a la derecha (60/40). En 390 se apila. */
+.about-facts {
+  margin: clamp(30px, 5vh, 56px) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-facts__row {
+  display: grid;
+  grid-template-columns: minmax(140px, 22%) 1fr;
+  gap: clamp(20px, 3vw, 40px);
+  padding: clamp(18px, 2.6vh, 26px) 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+  align-items: baseline;
+}
+.about-facts__row dt {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  margin: 0;
+}
+.about-facts__row dd {
+  margin: 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.5;
+  color: var(--ink, #0D0D0D);
+}
+.about-facts__row dd a {
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.about-facts__row dd a:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+@media (max-width: 760px) {
+  .about-facts__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: clamp(16px, 2.4vh, 20px) 0;
+  }
+}
+
+/* F24 §4.3 · QUESTIONS · FAQ · 8 pares h3 + p, con hairline entre uno y otro. */
+.about-faq {
+  margin: clamp(30px, 5vh, 56px) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-faq__item {
+  padding: clamp(22px, 3.2vh, 32px) 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-faq__q {
+  font-family: var(--grot);
+  font-size: clamp(19px, 1.8vw, 24px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--ink, #0D0D0D);
+}
+.about-faq__a {
+  margin: clamp(10px, 1.4vh, 16px) 0 0;
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.55;
+  color: var(--grey, #6E6B65);
+  max-width: 60ch;
+}
+.about-faq__a a {
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+}
+.about-faq__a a:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+
 /* Mobile · celdas. */
 @media (max-width: 760px) {
   .about-data { grid-template-columns: 1fr; }

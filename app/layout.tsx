@@ -66,7 +66,12 @@ document.documentElement.className += ' js';
    el array queda vacío para no publicar handles no verificados.
    El campo se conserva en el objeto para que la forma del schema
    no cambie cuando Fran las agregue. */
-const ORG_SAMEAS: readonly string[] = []
+/* F24 · LinkedIn oficial confirmado por Fran (F24 §4.2 · SOCIAL).
+   sameAs se abre a esa URL. Persona/founder @id apunta al Fran del
+   /about (Person schema en app/about/page.tsx). */
+const ORG_SAMEAS: readonly string[] = [
+  'https://www.linkedin.com/company/thecrudaspace/',
+]
 
 const ORG_SCHEMA = {
   '@context': 'https://schema.org',
@@ -74,9 +79,13 @@ const ORG_SCHEMA = {
   '@id': 'https://www.thecruda.com/#organization',
   name: 'CRUDA',
   url: 'https://www.thecruda.com',
-  logo: 'https://www.thecruda.com/logo.png',
+  logo: 'https://www.thecruda.com/cruda-logo-black.png',
+  description:
+    'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.',
   foundingDate: '2024-02',
-  founder: { '@id': 'https://www.thecruda.com/about#person' },
+  founder: { '@id': 'https://www.thecruda.com/about#fran-herrera' },
+  email: 'fran@thecruda.com',
+  knowsLanguage: ['en', 'es', 'ru', 'zh', 'ar'],
   sameAs: ORG_SAMEAS,
 } as const
 

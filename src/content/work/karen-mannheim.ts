@@ -189,6 +189,16 @@ export const karenMannheim: Work = {
       description:
         'Named one of the 50 most powerful women in Peru, June–July 2026 issue. An editorial selection; nobody pitched it. CRUDA does no PR and buys no placements. Also featured in Architectural Digest.',
       image: '/forbes-peru-2026-cover.jpg',
+      links: [
+        {
+          label: 'Read the profile on Forbes Perú',
+          href: 'https://forbes.pe/mujeres-poderosas/2026-06-19/las-50-mujeres-mas-poderosas-de-peru-en-2026-karen-mannheim/',
+        },
+        {
+          label: 'See the full list',
+          href: 'https://forbes.pe/mujeres-poderosas/2026-06-22/listado-forbes-estos-son-las-50-mujeres-mas-poderosas-de-peru-en-2026/',
+        },
+      ],
     },
     {
       year: '2025',

@@ -80,6 +80,10 @@ export type WorkRoom = {
   name: string
   description: string
   image?: string
+  /* F26 §G · links opcionales que salen debajo del texto, con el
+     mismo estilo que "Book the call →". Se abren en pestaña nueva
+     (target="_blank" rel="noopener"). */
+  links?: Array<{ label: string; href: string }>
 }
 
 export type WorkSection = {

@@ -62,7 +62,7 @@
   font-size: 18px;
   line-height: 1.6;
   color: var(--ink, #0D0D0D);
-  max-width: 62ch;
+  max-width: 60ch;
   text-wrap: pretty;
 }
 .wl-change__groups {
@@ -187,6 +187,28 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* F26 §G · links opcionales de la fila ROOMS. Mismo estilo que
+   "Book the call →" (ver .go en planes.css). */
+.wl-rooms__links {
+  margin-top: clamp(14px, 2vh, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wl-rooms__link {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  align-self: flex-start;
+}
+.wl-rooms__link:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
 }
 
 /* WHAT THIS MEANS FOR YOUR COMPANY (F26 §A.9 · §E.4).

@@ -186,8 +186,8 @@
   gap: clamp(20px, 3vw, 40px);
   align-items: start;
 }
-.cs-sec__grid > h2 { grid-column: 1 / span 5; }
-.cs-sec__grid > .cs-sec__body { grid-column: 7 / span 6; }
+.cs-sec__grid > h2 { grid-column: 1 / span 6; }
+.cs-sec__grid > .cs-sec__body { grid-column: 8 / span 5; }
 .cs-sec h2,
 .wl-change h2,
 .wl-rooms h2,
@@ -203,7 +203,7 @@
   font-size: 18px;
   line-height: 1.6;
   color: var(--ink, #0D0D0D);
-  max-width: 62ch;
+  max-width: 60ch;
   text-wrap: pretty;
 }
 .cs-sec__body p + p { margin-top: 1em; }

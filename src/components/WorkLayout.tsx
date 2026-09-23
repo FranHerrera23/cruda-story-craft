@@ -473,6 +473,21 @@ export default function WorkLayout({ w }: { w: Work }) {
                       <span className="wl-rooms__n">{r.name}</span>
                     </div>
                     <p className="wl-rooms__d">{r.description}</p>
+                    {r.links && r.links.length > 0 && (
+                      <p className="wl-rooms__links">
+                        {r.links.map((l, j) => (
+                          <a
+                            key={j}
+                            href={l.href}
+                            target="_blank"
+                            rel="noopener"
+                            className="wl-rooms__link"
+                          >
+                            {l.label} →
+                          </a>
+                        ))}
+                      </p>
+                    )}
                     {r.image && publicFileExists(r.image) && (
                       <div className="wl-rooms__img">
                         <img src={r.image} alt="" loading="lazy" />

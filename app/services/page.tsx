@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PlanesStack from '@/components/motion/PlanesStack'
 import StartHere from '@/components/StartHere'
+import ProofBlock from '@/components/proof/ProofBlock'
+import { findWork } from '@/content/work'
 import '@/components/motion/planes.css'
 import './services.css'
 
@@ -273,7 +275,12 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* 07 · START HERE · F23-5 */}
+        {/* 07 · F28 §2 · MIKE PROOF · mismo componente que la
+            prueba de Karen en la home. Los datos vienen del molde
+            F26 de Mike (metricGroups: reach, mediaValue). */}
+        <MikeProofBlock />
+
+        {/* 08 · START HERE · F23-5 · con "Book the call →". */}
         <section className="plane plane--paper services-close" data-plane>
           <div className="plane__in">
             <StartHere h2="Not sure which of the four fits?" />
@@ -282,5 +289,30 @@ export default function ServicesPage() {
 
       </main>
     </>
+  )
+}
+
+function MikeProofBlock() {
+  const mike = findWork('mike-kaeding')
+  if (!mike) return null
+  const c1 = mike.metricGroups?.reach?.[0]  // 56,000
+  const c2 = mike.metricGroups?.reach?.[1]  // 2M
+  const c3 = mike.metricGroups?.mediaValue?.[0]  // $110,000
+  const cells = [c1, c2, c3].filter(Boolean) as {
+    value: string
+    label: string
+    period: string
+    source: string
+  }[]
+  return (
+    <ProofBlock
+      id="mike-proof"
+      eyebrow="What we built for him"
+      h2="A weekly voice for a plan to halve the cost of housing."
+      body="Mike Kaeding runs Norhart, a Minnesota company that has created $230M in assets and aims to cut the cost of building housing in half. From 2023 to 2025, we turned that plan into a voice he publishes every week, under his own name."
+      cells={cells}
+      href="/work/mike-kaeding"
+      linkLabel="Read the case study"
+    />
   )
 }

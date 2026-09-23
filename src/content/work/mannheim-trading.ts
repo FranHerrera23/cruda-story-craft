@@ -1,10 +1,14 @@
 import type { Work } from './types'
 
+/* /work/mannheim-trading · F27 · 23-sep · Fran §2.
+   Migrada al molde F26. Copy §2 textual, sin invenciones.
+   Sin ROOMS, sin HOW IT RUNS, sin cita. */
+
 export const mannheimTrading: Work = {
   slug: 'mannheim-trading',
   order: 5,
   title:
-    'Narrative and positioning for a new company founded by a man whose name has carried an industry for sixty years — and who has never wanted to be seen',
+    'José Mannheim co-founded AGP. At eighty, he started a company that sells to its competitors.',
   metaTitle: 'José Mannheim · MTC · CRUDA',
   dek:
     'Narrative and positioning for Mannheim Trading Corp, the new company of AGP founder José Mannheim.',
@@ -20,60 +24,90 @@ export const mannheimTrading: Work = {
   image: '/jose-mannheim.webp',
   heroFormat: 'portrait',
   heroObjectPosition: 'center 20%',
-  proof: {
-    type: 'change',
-    text: 'A founder who publishes under his own name, at eighty.',
-  },
 
-  capsule: [
-    "The Mannheims built their first glass factory in Germany more than a century ago. In 1965, José Mannheim and his father founded Autoglass Peruana in Lima. In the eighties they took their first patents in bullet-resistant glass and moved into high-value products. That company became AGP Group — glass in four in ten armoured vehicles on earth, in 45 countries, for Tesla, the Pentagon, and heads of state.",
-    "In 2018, Goldman Sachs took a minority position. BDT Capital followed in 2021. Arturo Mannheim runs AGP now. The company is in the family's hands and out of José's. Then, at eighty, he started something new.",
-    'CRUDA built the narrative platform for Mannheim Trading Corp — a materials supplier to armoured glass manufacturers — that lets José publish under his own name for the first time.',
-  ],
+  summary:
+    'José Mannheim and his father founded Autoglass Peruana in Lima in 1965. It became AGP Group, whose glass is in four in ten armoured vehicles in the world, in 45 countries, for Tesla, the Pentagon and heads of state. Arturo Mannheim runs AGP now. At eighty, José founded Mannheim Trading Corp in Panama City, which supplies critical materials to armoured glass manufacturers. In 2025, CRUDA built MTC’s narrative and the voice José publishes under, for the first time in his own name.',
+  byline: 'Fran Herrera, Founder, CRUDA · Updated September 2026',
+
+  capsule: [],
+
   takeaways: [
     'Sixty years of industry weight only becomes a narrative asset if the person carrying it is willing to sign under his own name.',
-    "MTC sells to AGP's competitors. The narrative had to acknowledge that arithmetic without becoming defensive about it.",
+    'When your customers compete with the name you are known for, the narrative has to say so first.',
     'A founder who has never wanted to be seen needs a system that lets him publish in prose he recognises.',
   ],
-  metrics: [
-    { value: '4 in 10', label: 'armoured vehicles carry AGP glass', source: 'agpglass.com', period: '2025' },
-    { value: '45', label: 'countries', source: 'agpglass.com', period: '2025' },
-    { value: '180+', label: 'certified ballistic formulas', source: 'agpglass.com', period: '2025' },
-    { value: '60 years', label: 'of industry weight, made visible', source: 'AGP + MTC history', period: '1965–2025' },
-  ],
+
+  metrics: [],
+
   sections: [
     {
-      h2: 'What sixty years built.',
+      h2: 'A new company, a sixty-year name, and customers who compete with that name.',
       body: [
-        'Knoxville, Tennessee · AGP USA opens, 1988. Brazil, Mexico, Asia · expansion, partly through an alliance with North Glass Japan. Lotus UK · key supplier to the sports car division, 2000. The Pentagon · curved armoured glass solutions. 8,950 military vehicles manufactured for the United States, 2004, deployed across the Middle East. Tesla · BMW · Range Rover · Audi · VW · Toyota — OEM programmes. Tesla supplier since 2021.',
-        "The \"Cielo\" windshield · the world's first panoramic windshield fully integrated with a car roof, Opel Astra GTC. AGP B.33 ballistic glass · 30% lighter and thinner. The Popemobile · glass for John Paul II. AGP's own materials say heads of state, ministers, soldiers and Popes; José names the one that mattered to him.",
+        "The Mannheims built their first glass factory in Germany more than a century ago. In the eighties, José and his father took their first patents in bullet-resistant glass. AGP opened in Knoxville, Tennessee, in 1988, supplied Lotus from 2000, made curved armoured glass for the Pentagon, glazed 8,950 military vehicles for the United States in 2004, and has supplied Tesla since 2021. It made the glass for John Paul II's Popemobile.",
+        'The market noticed. Goldman Sachs took a minority position in 2018, after the group tripled its global revenue in five years. BDT Capital Partners followed in 2021. In 2022, AGP secured a $250M credit line with OMERS and BMO; in 2023, it announced an $800M investment in Mexico.',
+        'None of that belongs to MTC. It is a new company with no track record, founded by a man who had never spoken in public, selling to the manufacturers AGP competes with.',
       ],
     },
     {
-      h2: 'And what the market did about it.',
+      h2: 'The credential was José, and he had never signed anything.',
       body: [
-        'Goldman Sachs Private Capital Investing took a minority position in 2018, after the group tripled its global revenues in five years. BDT Capital Partners followed in 2021, describing the investment as a partnership with the Mannheim family. A $250M credit line with OMERS and BMO in 2022. An $800M investment announced in Mexico in 2023.',
-        "Arturo Mannheim runs it now, as CEO and Chairman. The company is in the family's hands and out of José's.",
+        "MTC supplies polycarbonate, polyurethane and other critical materials to armoured glass manufacturers, which means it sells to AGP's competitors. Leaning on the AGP name would have been the obvious move, and the wrong one.",
+        'The narrative had to acknowledge that arithmetic without becoming defensive about it. Sixty years of industry weight is the credential; MTC is the new company; José signs his own posts.',
       ],
     },
     {
-      h2: 'The narrative problem.',
-      body: [
-        "Mannheim Trading Corp supplies polycarbonate, polyurethane and other critical materials to armoured glass manufacturers. Which means it sells to AGP's competitors. The obvious move — leaning on the AGP name — would have been the wrong one.",
-        'The narrative had to acknowledge the arithmetic without becoming defensive about it. Sixty years of industry weight is the credential; MTC is the new company; José is signing his own posts.',
-      ],
+      /* WHAT WE BUILT · h2 solo · las built rows debajo. */
+      h2: 'A narrative for MTC, and a voice José recognises as his.',
+      body: [],
     },
   ],
+
   built: [
-    'Narrative platform for MTC',
-    "Founder voice · José publishing under his own name",
-    'One-page positioning · MTC vs. AGP arithmetic',
+    {
+      name: 'NARRATIVE PLATFORM',
+      description:
+        "MTC's position and message for procurement at armoured glass manufacturers: a new supplier carrying sixty years of the industry's weight.",
+    },
+    {
+      name: 'FOUNDER VOICE',
+      description:
+        'José publishing under his own name for the first time, in prose he recognises as his.',
+    },
   ],
-  change: [
-    "A founder who has never wanted to be seen, publishing under his own name at eighty.",
+
+  changeH2: 'A man who never wanted to be seen now signs his own name.',
+  changePreamble:
+    'At eighty, José publishes under his own name, for a company that has to earn its own reputation.',
+  metricGroups: {
+    context: [
+      { value: '4 in 10', label: 'armoured vehicles carry AGP glass', period: '', source: 'agpglass.com, 2025', n: 1 },
+      { value: '45', label: 'countries', period: '', source: 'agpglass.com, 2025', n: 1 },
+      { value: '180+', label: 'certified ballistic formulas', period: '', source: 'agpglass.com, 2025', n: 1 },
+      { value: '60 years', label: 'in the industry', period: '', source: 'AGP + MTC history, 1965 — 2025', n: 2 },
+    ],
+  },
+  sources: [
+    'agpglass.com, 2025',
+    'AGP + MTC history, 1965 — 2025',
   ],
-  credit: 'CRUDA · Fran Herrera, Founder',
-  faq: [],
+
+  change: [],
+  credit: '',
+
+  faq: [
+    {
+      q: 'What did CRUDA build for Mannheim Trading Corp?',
+      a: 'A narrative platform for MTC and a founder voice that lets José Mannheim publish under his own name for the first time.',
+    },
+    {
+      q: 'Why not lean on the AGP name?',
+      a: "MTC sells to AGP's competitors. The narrative acknowledges that openly: José's sixty years are the credential, and MTC earns its own reputation.",
+    },
+    {
+      q: 'What is Translated?',
+      a: 'Twelve weeks to build the system a company uses to say what it is. It costs $19,500 flat.',
+    },
+  ],
   moreFrom: [],
   next: 'confidential-fashion-founder',
 }

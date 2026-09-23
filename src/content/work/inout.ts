@@ -16,6 +16,8 @@ export const inout: Work = {
   axis: 'outward',
   moment: 'new-entity',
 
+  image: '/inout-sliding-wall.jpg',
+  heroFormat: 'landscape',
   proof: {
     type: 'change',
     text: 'INSIDERS still in production — by the client, without us',

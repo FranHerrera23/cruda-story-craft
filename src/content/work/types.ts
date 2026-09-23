@@ -119,6 +119,13 @@ export type Work = {
   moment?: string
 
   image?: string
+  /* F23-3 §4.1 · formato del hero. `portrait` para retratos (4:5,
+     5/12 cols) · `landscape` para paisaje o producto (16:9, ancho
+     completo). Default: landscape. */
+  heroFormat?: 'portrait' | 'landscape'
+  /* F23-3 §4.1 · object-position para retratos. Igual criterio que
+     Selected Work. Ignorado en landscape. */
+  heroObjectPosition?: string
   proof?: Proof
 
   capsule: string[]        // 2–3 párrafos

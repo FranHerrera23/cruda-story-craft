@@ -24,6 +24,10 @@ export const juanPabloRomero: Work = {
   axis: 'across',
   moment: 'market-entry',
 
+  image: '/juan-pablo-romero.webp',
+  heroFormat: 'portrait',
+  heroObjectPosition: 'center 20%',
+
   capsule: [
     "Juan Pablo Romero came to the United States from Guatemala at seventeen. He learned hardwood flooring alongside his father, and after twenty years he built JURA Plank — a luxury hardwood company that carries every line, from Canadian hardwood to European engineered flooring — and Connecting the Dots, a consulting practice that helps international construction firms enter the US market.",
     'The technical expertise came from twenty years on job sites, starting beside his father. The market visibility was zero.',

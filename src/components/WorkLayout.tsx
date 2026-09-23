@@ -131,20 +131,37 @@ function EvidenceBlock({ block }: { block: WorkBlock }) {
   return null
 }
 
+/* F23-3 §4.4 · Next case usa el componente de card de Selected Work
+   (imagen 1:1, título, segunda línea, descripción). */
 function NextCaseCard({ slug }: { slug: string }) {
   const next = selectedWork.find(w => w.slug === slug)
   if (!next) return null
+  const meta = `${next.client.company} · ${next.place.city}`
   return (
     <section className="wl-next cs-wrap">
       <p className="cs-eyebrow">Next case</p>
-      <Link href={`/work/${next.slug}`} className="cs-wcard wl-next__card">
+      <Link
+        href={`/work/${next.slug}`}
+        className="wl-next-card"
+        aria-label={next.client.name}
+      >
         {next.image && (
-          <div className="cs-wcard__m">
-            <img src={next.image} alt="" loading="lazy" />
+          <div className="wl-next-card__m">
+            <img
+              src={next.image}
+              alt=""
+              loading="lazy"
+              style={
+                next.heroObjectPosition
+                  ? { objectPosition: next.heroObjectPosition }
+                  : undefined
+              }
+            />
           </div>
         )}
-        <h3 className="cs-wcard__n">{next.client.name}</h3>
-        <p className="cs-wcard__d">{next.dek}</p>
+        <h3 className="wl-next-card__n">{next.client.name}</h3>
+        <p className="wl-next-card__meta">{meta}</p>
+        <p className="wl-next-card__desc">{next.dek}</p>
       </Link>
     </section>
   )
@@ -171,11 +188,22 @@ export default function WorkLayout({ w }: { w: Work }) {
         <h1 className="cs-h1">{w.title}</h1>
       </header>
 
-      {/* 02 · Hero */}
+      {/* 02 · Hero · F23-3 §4.1 · aspect-ratio 4:5 (retrato) o 16:9
+          (paisaje/producto), object-position igual que Selected Work. */}
       {w.image && (
         <figure className="cs-wrap">
-          <div className="cs-hero">
-            <img src={w.image} alt="" />
+          <div
+            className={`cs-hero cs-hero--${w.heroFormat ?? 'landscape'}`}
+          >
+            <img
+              src={w.image}
+              alt=""
+              style={
+                w.heroObjectPosition
+                  ? { objectPosition: w.heroObjectPosition }
+                  : undefined
+              }
+            />
           </div>
         </figure>
       )}
@@ -358,25 +386,9 @@ export default function WorkLayout({ w }: { w: Work }) {
         </section>
       )}
 
-      {/* 08 · Sub-casos */}
-      {w.moreFrom && w.moreFrom.length > 0 && (
-        <section className="cs-more cs-wrap">
-          <p className="cs-eyebrow">More from this engagement</p>
-          <div className="cs-more__g">
-            {w.moreFrom.map(m => (
-              <Link key={m.slug} className="cs-wcard" href={m.slug}>
-                {m.img && (
-                  <div className="cs-wcard__m">
-                    <img src={m.img} alt="" loading="lazy" />
-                  </div>
-                )}
-                <h3 className="cs-wcard__n">{m.name}</h3>
-                <p className="cs-wcard__d">{m.meta}</p>
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      {/* 08 · F23-3 §4.5 · "More from this engagement" oculto en Karen
+          hasta que PEZET/Saadiyat se rehagan. Las rutas /projects/*
+          siguen vivas y en noindex, pero la grilla no se renderiza. */}
 
       {/* 09 · Cierre de PUERTA · estilo Primary, sin escasez */}
       <section className="wl-door-close cs-wrap">

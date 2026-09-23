@@ -174,37 +174,34 @@ function EvidenceBlock({ block }: { block: WorkBlock }) {
   return null
 }
 
-/* F23-3 §4.4 · Next case · F26 §E.7: usa el h1 y la imagen de hero
-   del caso siguiente (no dek escrito a mano). */
+/* F33 §3 · buildTags · arma la línea de tags del hero/next case.
+   Formato: "SERVICE · SERVICE2 · SECTOR · CITY" (uppercase con
+   spacing). Sale directo del `Work`: doors + sector + place.city. */
+function buildTags(w: Work): string {
+  const parts: string[] = []
+  parts.push(doorSpec(w.door.primary).label.toUpperCase())
+  if (w.door.secondary) parts.push(doorSpec(w.door.secondary).label.toUpperCase())
+  if (w.sector) parts.push(w.sector.toUpperCase())
+  parts.push(w.place.city.toUpperCase())
+  return parts.join(' · ')
+}
+
+/* F23-3 §4.4 · F33 · Next case sin imagen · sólo nombre + descriptor
+   + tags. */
 function NextCaseCard({ slug }: { slug: string }) {
   const next = selectedWork.find(w => w.slug === slug)
   if (!next) return null
-  const meta = `${next.client.company} · ${next.place.city}`
   return (
-    <section className="wl-next cs-wrap">
-      <p className="cs-eyebrow">Next case</p>
+    <section className="wl-next cs-wrap pen-next">
+      <p className="pen-eyebrow">Next case</p>
       <Link
         href={`/work/${next.slug}`}
-        className="wl-next-card"
+        className="pen-next__link"
         aria-label={next.client.name}
       >
-        {next.image && (
-          <div className="wl-next-card__m">
-            <img
-              src={next.image}
-              alt=""
-              loading="lazy"
-              style={
-                next.heroObjectPosition
-                  ? { objectPosition: next.heroObjectPosition }
-                  : undefined
-              }
-            />
-          </div>
-        )}
-        <h3 className="wl-next-card__n">{next.client.name}</h3>
-        <p className="wl-next-card__meta">{meta}</p>
-        <p className="wl-next-card__desc">{next.title}</p>
+        <h3 className="pen-next__n">{next.client.name}</h3>
+        <p className="pen-next__desc">{next.title}</p>
+        <p className="pen-tags">{buildTags(next)}</p>
       </Link>
     </section>
   )
@@ -260,114 +257,61 @@ export default function WorkLayout({ w }: { w: Work }) {
   )
 
   return (
-    <article className="cs">
+    <article className="cs cs--pen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema(w)) }}
       />
 
-      {/* 01 · Back link · el h1 se dibuja adentro del hero
-          para retratos (F27 §4.3 split) o inline con el back
-          para paisajes. */}
-      {isPortrait ? (
-        <header className="cs-top cs-wrap cs-top--split">
-          <Link className="cs-back" href="/#selected-work">
-            ← Work
-          </Link>
-        </header>
-      ) : (
-        <header className="cs-top cs-wrap">
-          <Link className="cs-back" href="/#selected-work">
-            ← Work
-          </Link>
-          <h1 className="cs-h1">{w.title}</h1>
-        </header>
-      )}
+      {/* F33 · Pentagram-style opener · back + h1(client name) +
+          descriptor + tags. Reemplaza el hero split de F27 §4.3. */}
+      <header className="cs-top cs-wrap pen-top">
+        <Link className="cs-back" href="/#selected-work">
+          ← Work
+        </Link>
+        <h1 className="pen-h1">{w.client.name}</h1>
+        <p className="pen-descriptor">{w.title}</p>
+        <p className="pen-tags">{buildTags(w)}</p>
+      </header>
 
-      {/* 02 · Hero · F27 §4.3 · retrato: SPLIT · h1 y meta en cols
-          1–6 (h1 arriba, meta bottom-aligned) + imagen 4:5 cols
-          7–12. Paisaje = 16:8 a full-width como venía. */}
-      {w.image && isPortrait && (
-        <div className="cs-wrap cs-hero-portrait">
-          <div className="cs-hero-portrait__left">
-            <h1 className="cs-h1">{w.title}</h1>
-            {metaDl}
-          </div>
-          <div className="cs-hero cs-hero--portrait cs-hero-portrait__right">
-            <img
-              src={w.image}
-              alt=""
-              style={
-                w.heroObjectPosition
-                  ? { objectPosition: w.heroObjectPosition }
-                  : undefined
-              }
-            />
-          </div>
-        </div>
-      )}
-      {w.image && !isPortrait && (
+      {/* F33 · Hero 16:9 · siempre landscape · cols 1–12. */}
+      {w.image && (
         <figure className="cs-wrap">
-          <div className="cs-hero cs-hero--landscape">
+          <div className="cs-hero cs-hero--landscape pen-hero">
             <img
               src={w.image}
               alt=""
               style={
                 w.heroObjectPosition
                   ? { objectPosition: w.heroObjectPosition }
-                  : undefined
+                  : { objectPosition: 'center 25%' }
               }
             />
           </div>
         </figure>
       )}
 
-      {/* F26 §A.2 · SUMMARY + byline. Solo cuando el caso trae
-          `summary`. Reemplaza al bloque cs-intro / cs-capsule del
-          molde previo. La meta ya está al lado del hero (retrato)
-          o se renderiza aquí a la derecha (paisaje). */}
+      {/* F33 · ABOUT THE PROJECT · rótulo + resumen (cols 1–8, 24px)
+          + byline (13px grey). */}
       {w.summary && (
-        <section className={`cs-intro cs-wrap ${isPortrait ? 'cs-intro--full' : ''}`}>
-          <div>
-            <div className="cs-capsule wl-summary-text">
-              <p>{w.summary}</p>
-            </div>
-            {w.byline && <p className="wl-byline">{w.byline}</p>}
+        <section className="cs-wrap pen-about">
+          <p className="pen-eyebrow">About the project</p>
+          <div className="pen-about__body">
+            <p className="pen-summary">{w.summary}</p>
+            {w.byline && <p className="pen-byline">{w.byline}</p>}
           </div>
-          {!isPortrait && metaDl}
         </section>
       )}
 
-      {/* Legacy · Capsule + takeaways + META. Solo cuando el caso
-          NO trae `summary` (molde F18). */}
+      {/* Legacy · Capsule + takeaways · sólo cuando el caso NO trae
+          `summary` (molde F18). Renderizado a una col para compat. */}
       {!w.summary && (
-        <section className={`cs-intro cs-wrap ${isPortrait ? 'cs-intro--full' : ''}`}>
-          <div>
-            <div className="cs-capsule">
-              {w.capsule.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            {w.takeaways.length > 0 && (
-              <div
-                className="cs-take-block"
-                aria-label="What this means for your company"
-              >
-                <p className="cs-take-block__l">
-                  What this means for your company
-                </p>
-                <ul className="cs-take">
-                  {w.takeaways.map((t, i) => (
-                    <li key={i}>
-                      <span>{String(i + 1).padStart(2, '0')}</span>
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+        <section className="cs-wrap pen-about">
+          <div className="pen-about__body">
+            {w.capsule.map((p, i) => (
+              <p key={i} className="pen-summary">{p}</p>
+            ))}
           </div>
-          {!isPortrait && metaDl}
         </section>
       )}
 
@@ -409,36 +353,24 @@ export default function WorkLayout({ w }: { w: Work }) {
         </section>
       )}
 
-      {/* 05 · Secciones — F26: la sección con h2 que menciona
-          "built" recibe las `built` rows entre el body y los
-          blocks. Detección por posición: es la sección cuyo body
-          está vacío o cuyo h2 contiene "built" (case-insensitive)
-          si el caso está en molde F26. */}
+      {/* F33 · Secciones de texto · una sola columna cols 3–10.
+          h2 es el subtítulo (22px). No hay rótulo en caps sobre cada
+          sección de texto. */}
       {w.sections.map((sec, i) => {
-        const hostsBuilt =
-          isBuiltRows(w.built) &&
-          /\bbuilt\b|\brun|\brunning\b/i.test(sec.h2) === false &&
-          sec.body.length === 0
-        // Simplificado: si es F26 y la sección tiene body vacío,
-        // asumimos que es el host de las builtRows.
         const isBuiltHost =
           isBuiltRows(w.built) && sec.body.length === 0
         return (
-          <section key={i} className="cs-sec cs-wrap">
-            <div className="cs-sec__grid">
-              <h2>{sec.h2}</h2>
-              <div className="cs-sec__body">
-                {sec.body.map((p, j) => (
-                  <p key={j}>{p}</p>
-                ))}
-                {isBuiltHost && (
-                  <BuiltRows rows={w.built as WorkBuiltRow[]} />
-                )}
-              </div>
+          <section key={i} className="cs-sec cs-wrap pen-sec">
+            <h2 className="pen-h2">{sec.h2}</h2>
+            <div className="pen-body">
+              {sec.body.map((p, j) => (
+                <p key={j}>{p}</p>
+              ))}
+              {isBuiltHost && (
+                <BuiltRows rows={w.built as WorkBuiltRow[]} />
+              )}
             </div>
             {sec.blocks && sec.blocks.length > 0 && (() => {
-              /* F26 §E.6 · descartar imágenes sin archivo antes de
-                 medir cuántas quedan (para decidir --3 / --2). */
               const blocks = sec.blocks.filter(b => {
                 if (b.kind === 'image') return publicFileExists(b.src)
                 return true
@@ -447,7 +379,7 @@ export default function WorkLayout({ w }: { w: Work }) {
               const imgCount = blocks.filter(b => b.kind === 'image').length
               return (
                 <div
-                  className={`cs-ev ${imgCount >= 3 ? 'cs-ev--3' : 'cs-ev--2'}`}
+                  className={`cs-ev pen-ev ${imgCount >= 3 ? 'cs-ev--3' : 'cs-ev--2'}`}
                 >
                   {blocks.map((b, j) => (
                     <EvidenceBlock key={j} block={b} />
@@ -460,8 +392,7 @@ export default function WorkLayout({ w }: { w: Work }) {
         )
       })}
 
-      {/* F26 §A.7 · WHAT CHANGED · sólo cuando el caso trae
-          `metricGroups`. */}
+      {/* F26 §A.7 · WHAT CHANGED · a ancho completo (F26 §E.5). */}
       {w.metricGroups && (
         <ChangeBlock
           h2={w.changeH2 ?? 'Five years, measured.'}
@@ -472,68 +403,63 @@ export default function WorkLayout({ w }: { w: Work }) {
         />
       )}
 
-      {/* F26 §A.8 · ROOMS IT OPENED */}
+      {/* F33 · ROOMS IT OPENED · cols 3–10 (F33 §2). */}
       {w.rooms && w.rooms.length > 0 && (
-        <section className="cs-wrap wl-rooms" aria-label="Rooms it opened">
-          <div className="cs-sec__grid">
-            <h2>{w.roomsH2 ?? 'Rooms the work opened.'}</h2>
-            <div className="cs-sec__body">
-              <div className="wl-rooms__list">
-                {w.rooms.map((r, i) => (
-                  <div key={i} className="wl-rooms__row">
-                    <div className="wl-rooms__meta">
-                      {r.year && <span className="wl-rooms__y">{r.year}</span>}
-                      <span className="wl-rooms__n">{r.name}</span>
-                    </div>
-                    <p className="wl-rooms__d">{r.description}</p>
-                    {r.links && r.links.length > 0 && (
-                      <p className="wl-rooms__links">
-                        {r.links.map((l, j) => (
-                          <a
-                            key={j}
-                            href={l.href}
-                            target="_blank"
-                            rel="noopener"
-                            className="wl-rooms__link"
-                          >
-                            {l.label} →
-                          </a>
-                        ))}
-                      </p>
-                    )}
-                    {r.image && publicFileExists(r.image) && (
-                      <div className="wl-rooms__img">
-                        <img src={r.image} alt="" loading="lazy" />
-                      </div>
-                    )}
+        <section className="cs-wrap wl-rooms pen-sec" aria-label="Rooms it opened">
+          <h2 className="pen-h2">{w.roomsH2 ?? 'Rooms the work opened.'}</h2>
+          <div className="pen-body">
+            <div className="wl-rooms__list">
+              {w.rooms.map((r, i) => (
+                <div key={i} className="wl-rooms__row">
+                  <div className="wl-rooms__meta">
+                    {r.year && <span className="wl-rooms__y">{r.year}</span>}
+                    <span className="wl-rooms__n">{r.name}</span>
                   </div>
-                ))}
-              </div>
+                  <p className="wl-rooms__d">{r.description}</p>
+                  {r.links && r.links.length > 0 && (
+                    <p className="wl-rooms__links">
+                      {r.links.map((l, j) => (
+                        <a
+                          key={j}
+                          href={l.href}
+                          target="_blank"
+                          rel="noopener"
+                          className="wl-rooms__link"
+                        >
+                          {l.label} →
+                        </a>
+                      ))}
+                    </p>
+                  )}
+                  {r.image && publicFileExists(r.image) && (
+                    <div className="wl-rooms__img">
+                      <img src={r.image} alt="" loading="lazy" />
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* F26 §A.9 · WHAT THIS MEANS FOR YOUR COMPANY · sólo cuando
-          el caso trae `summary` (molde F26 mueve el bloque afuera
-          del cs-intro). */}
+      {/* F33 §2 · WHAT THIS MEANS FOR YOUR COMPANY · cols 3–10 (una
+          sola col). Sólo cuando el caso trae `summary` (molde F26). */}
       {w.summary && w.takeaways.length > 0 && (
         <section
-          className="cs-wrap wl-forcompany"
+          className="cs-wrap wl-forcompany pen-sec"
           aria-label="What this means for your company"
         >
-          <div className="cs-sec__grid">
-            <h2>What this means for your company</h2>
-            <div className="cs-sec__body">
-              <ul className="cs-take">
-                {w.takeaways.map((t, i) => (
-                  <li key={i}>
-                    <span>{String(i + 1).padStart(2, '0')}</span>
-                    <span>{t}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <h2 className="pen-h2">What this means for your company</h2>
+          <div className="pen-body">
+            <ul className="cs-take">
+              {w.takeaways.map((t, i) => (
+                <li key={i}>
+                  <span>{String(i + 1).padStart(2, '0')}</span>
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
       )}
@@ -578,6 +504,57 @@ export default function WorkLayout({ w }: { w: Work }) {
         </blockquote>
       )}
 
+      {/* F33 · CREDITS · rótulo + dl 2-col (dt cols 3–4, dd cols
+          5–10). Muestra Client, Sector, Service, Where, Period,
+          Team. */}
+      <section className="cs-wrap pen-credits" aria-label="Credits">
+        <p className="pen-eyebrow">Credits</p>
+        <dl className="pen-credits__dl">
+          <div>
+            <dt>Client</dt>
+            <dd>
+              {w.client.name}
+              {w.client.role && w.client.company &&
+                `, ${w.client.role}, ${w.client.company}`}
+            </dd>
+          </div>
+          {w.sector && (
+            <div>
+              <dt>Sector</dt>
+              <dd>{w.sector}</dd>
+            </div>
+          )}
+          <div>
+            <dt>Service</dt>
+            <dd>
+              <Link href={primary.href}>{primary.label}</Link>
+              {secondary && (
+                <>
+                  {' · '}
+                  <Link href={secondary.href}>{secondary.label}</Link>
+                </>
+              )}
+            </dd>
+          </div>
+          <div>
+            <dt>Where</dt>
+            <dd>{w.place.from ? `${w.place.from} → ${w.place.to}` : w.place.to}</dd>
+          </div>
+          <div>
+            <dt>Period</dt>
+            <dd>
+              {w.period.start === w.period.end
+                ? w.period.end
+                : `${w.period.start} — ${w.period.end}`}
+            </dd>
+          </div>
+          <div>
+            <dt>Team</dt>
+            <dd>Fran Herrera</dd>
+          </div>
+        </dl>
+      </section>
+
       {/* 07 · FAQ */}
       {w.faq && w.faq.length > 0 && (
         <section className="cs-faq cs-wrap">
@@ -603,7 +580,7 @@ export default function WorkLayout({ w }: { w: Work }) {
         {secondary && <DoorRow spec={secondary} />}
       </section>
 
-      {/* 10 · Next case */}
+      {/* 10 · Next case · F33: sin imagen, sólo texto */}
       {w.next && <NextCaseCard slug={w.next} />}
 
       {/* 11 · START HERE · F23-5 · copy por caso. */}

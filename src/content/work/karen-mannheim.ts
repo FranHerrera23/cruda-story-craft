@@ -36,6 +36,7 @@ export const karenMannheim: Work = {
   door: { primary: 'translated', secondary: 'transmission' },
   axis: 'across',
   moment: 'market-entry',
+  sector: 'Lighting',
 
   image: pezetHero.src,
   heroFormat: 'landscape',

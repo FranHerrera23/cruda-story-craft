@@ -197,4 +197,9 @@ export type Work = {
   changeH2?: string
   /* F26 §A.8 · h2 del bloque ROOMS IT OPENED. */
   roomsH2?: string
+  /* F33 §3 · sector del caso · pasa a las tags del hero y a
+     CREDITS (`Sector: …`). Ejemplos: "Lighting", "Construction",
+     "Materials", "Healthcare", "Architecture", "Fashion". Opcional
+     por compat con casos legacy. */
+  sector?: string
 }

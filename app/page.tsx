@@ -54,6 +54,16 @@ export const metadata: Metadata = {
     description: HOME_DESCRIPTION,
     url: 'https://www.thecruda.com',
     type: 'website',
+    images: ['https://www.thecruda.com/logo.png'],
+  },
+  /* F31 §2.4 · twitter title/description matchean og · imagen
+     matchea og (logo.png). El layout.tsx tiene un twitter site-wide
+     con "CRUDA" · en la home overrideamos con el título largo. */
+  twitter: {
+    card: 'summary_large_image',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    images: ['https://www.thecruda.com/logo.png'],
   },
 };
 

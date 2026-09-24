@@ -12,13 +12,17 @@ import './home-legacy.css'
    del retrato usa align-self:stretch + object-fit:cover para que
    el <img> no estire la fila. */
 
-const LEGACY_HOLDINGS = [
+/* F41 · TRACK RECORD (antes LEGACY) · sale el organismo
+   internacional que estaba al final (F37 §6 · no linkear a cuentas
+   no confirmadas · la campaña puntual del track record no refleja
+   la relación agencial actual). Quedan las cinco cuentas con
+   relación agencial verificada. */
+const TRACK_RECORD_HOLDINGS = [
   'Mondelez',
   'AB InBev',
   'Delivery Hero',
   'Nestlé',
   'TikTok',
-  'United Nations',
 ]
 
 const CREDIT = 'Fran Herrera · Founder · born in Salta, Argentina'
@@ -26,6 +30,11 @@ const CREDIT = 'Fran Herrera · Founder · born in Salta, Argentina'
 /* Titular · FIRMADO por Fran (H0 · 21-sep). Textual. */
 const HEADLINE =
   'You work with the founder — and with a team small enough to move.'
+
+/* F41 · EXPERIENCE copy actualizada · describe la mezcla real
+   (Fortune 500s + SMEs + B2B) en vez de "brands" a secas. */
+const EXPERIENCE_COPY =
+  'Ten years across Fortune 500s, SMEs and B2B companies, on three continents, in-house and agency side.'
 
 export default function HomeLegacy() {
   return (
@@ -53,14 +62,13 @@ export default function HomeLegacy() {
             <div className="data data--2 marks">
               <div className="cell mark">
                 <p className="cell__l">Experience</p>
-                <p className="cell__v">
-                  Ten years building brands across three continents,
-                  in-house and agency side.
-                </p>
+                <p className="cell__v">{EXPERIENCE_COPY}</p>
               </div>
               <div className="cell mark">
-                <p className="cell__l">Legacy</p>
-                <p className="cell__v">{LEGACY_HOLDINGS.join(' · ')}</p>
+                <p className="cell__l">Track record</p>
+                <p className="cell__v">
+                  {TRACK_RECORD_HOLDINGS.join(' · ')}
+                </p>
               </div>
             </div>
             <p className="cell__n home-founder__credit">{CREDIT}</p>

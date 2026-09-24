@@ -2,19 +2,22 @@
 
 import { useEffect, useState } from 'react'
 
-/* /thinking · filtros · F14b.1 · prototipo thinking-v1 §02.
-   Type × Language. Cero back-end · sólo pone hidden en los items
-   que no cumplen. Cero cajas con borde+radio (§sistema).
+/* /thinking · filtros · F36 · library.
 
-   Los filtros se ocultan cuando no hay piezas de ese valor. */
+   Cambios vs F14b.1:
+   · LANGUAGE primero · es el filtro que más se usa desde un DM
+     de Instagram.
+   · Type ya no incluye "Case studies" (los casos viven en Work).
+   · Opciones de Type: All · Articles · Podcasts (si hay).
+   · Sin animación de opacidad · las filas se ocultan/mostran con
+     hidden (todo lo demás queda en --ink). */
 
-type Type = 'all' | 'article' | 'case' | 'podcast'
+type Type = 'all' | 'article' | 'podcast'
 type Lang = 'all' | 'en' | 'es'
 
 const TYPE_OPTS: Array<{ v: Type; label: string }> = [
   { v: 'all', label: 'All' },
   { v: 'article', label: 'Articles' },
-  { v: 'case', label: 'Case studies' },
   { v: 'podcast', label: 'Podcasts' },
 ]
 const LANG_OPTS: Array<{ v: Lang; label: string }> = [
@@ -24,10 +27,8 @@ const LANG_OPTS: Array<{ v: Lang; label: string }> = [
 ]
 
 export default function ThinkingFilters({
-  hasCases,
   hasPodcasts,
 }: {
-  hasCases: boolean
   hasPodcasts: boolean
 }) {
   const [type, setType] = useState<Type>('all')
@@ -35,28 +36,20 @@ export default function ThinkingFilters({
   const [total, setTotal] = useState<number>(0)
 
   useEffect(() => {
-    const secs = Array.from(
-      document.querySelectorAll<HTMLElement>('[data-sec]'),
+    const rows = Array.from(
+      document.querySelectorAll<HTMLElement>('.thinking-row'),
     )
-    let sum = 0
-    secs.forEach(sec => {
-      const secType = sec.dataset.sec as Type
-      const showSec = type === 'all' || secType === type
-      let n = 0
-      sec.querySelectorAll<HTMLElement>('[data-lang]').forEach(it => {
-        const okLang = lang === 'all' || it.dataset.lang === lang
-        const ok = showSec && okLang
-        it.hidden = !ok
-        if (ok) n++
-      })
-      sec.hidden = n === 0
-      const counter = sec.querySelector<HTMLElement>('[data-n]')
-      if (counter) counter.textContent = n + (n === 1 ? ' piece' : ' pieces')
-      sum += n
+    let n = 0
+    rows.forEach(row => {
+      const okType = type === 'all' || row.dataset.kind === type
+      const okLang = lang === 'all' || row.dataset.lang === lang
+      const ok = okType && okLang
+      row.hidden = !ok
+      if (ok) n++
     })
-    setTotal(sum)
+    setTotal(n)
     const empty = document.querySelector<HTMLElement>('[data-empty]')
-    if (empty) empty.hidden = sum > 0
+    if (empty) empty.hidden = n > 0
   }, [type, lang])
 
   return (
@@ -65,26 +58,7 @@ export default function ThinkingFilters({
       role="group"
       aria-label="Filter thinking"
     >
-      <div className="fgroup">
-        <span className="fgroup__l">Type</span>
-        {TYPE_OPTS.map(opt => {
-          const hide =
-            (opt.v === 'case' && !hasCases) ||
-            (opt.v === 'podcast' && !hasPodcasts)
-          if (hide) return null
-          return (
-            <button
-              key={opt.v}
-              type="button"
-              className="f"
-              aria-pressed={type === opt.v}
-              onClick={() => setType(opt.v)}
-            >
-              {opt.label}
-            </button>
-          )
-        })}
-      </div>
+      {/* F36 · LANGUAGE primero. */}
       <div className="fgroup">
         <span className="fgroup__l">Language</span>
         {LANG_OPTS.map(opt => (
@@ -98,6 +72,23 @@ export default function ThinkingFilters({
             {opt.label}
           </button>
         ))}
+      </div>
+      <div className="fgroup">
+        <span className="fgroup__l">Type</span>
+        {TYPE_OPTS.map(opt => {
+          if (opt.v === 'podcast' && !hasPodcasts) return null
+          return (
+            <button
+              key={opt.v}
+              type="button"
+              className="f"
+              aria-pressed={type === opt.v}
+              onClick={() => setType(opt.v)}
+            >
+              {opt.label}
+            </button>
+          )
+        })}
       </div>
       <span className="count" aria-live="polite">
         {total} {total === 1 ? 'piece' : 'pieces'}

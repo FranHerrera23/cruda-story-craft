@@ -108,8 +108,8 @@ export default function ServicesPage() {
               It starts with the founder in the room and ends with a
               system the company keeps running without us: a narrative
               platform, a founder manuscript, four content pillars, a
-              website that tells the story, and a working cadence to
-              publish and distribute it.
+              website that tells the story, a CRM set up to follow up
+              on it, and a working cadence to publish and distribute it.
             </p>
             <div className="data">
               <div className="cell">
@@ -261,23 +261,13 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* 06 · WHO IT IS NOT FOR · nuevo F23-2 §3.3 */}
-        <section className="plane plane--paper services-not-for" data-plane>
-          <div className="plane__in">
-            <p className="eyebrow">Who it is not for</p>
-            <h2 className="name">
-              We do not work with crypto, betting or gaming companies.
-            </h2>
-            <p className="lede">
-              Or on any engagement where the founder or principal will
-              not be in the room.
-            </p>
-          </div>
-        </section>
+        {/* F31 §1.4 · WHO IT IS NOT FOR sale de la página · el
+            rótulo/h2/lede quedaba en /services de la versión F23-2;
+            F31 §1.4 pide sacarlo. */}
 
         {/* 07 · F28 §2 · MIKE PROOF · mismo componente que la
-            prueba de Karen en la home. Los datos vienen del molde
-            F26 de Mike (metricGroups: reach, mediaValue). */}
+            prueba de Karen en la home. Cifras 56,000 · 2M · $110,000
+            (proof-mike.ts). */}
         <MikeProofBlock />
 
         {/* 08 · START HERE · F23-5 · con "Book the call →". */}

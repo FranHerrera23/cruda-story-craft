@@ -145,6 +145,15 @@ export const karenMannheim: Work = {
     },
   ],
 
+  /* F39 §2.3 · Key takeaways · franja de 3 cifras clave arriba del
+     ABOUT THE PROJECT. Fran: $60,192 · +46% · $380K. Cada entrada
+     apunta a la cifra existente en metricGroups (sin duplicar). */
+  keyTakeaways: [
+    { group: 'mediaValue', index: 2 }, // $60,192 · a year
+    { group: 'business', index: 0 },   // +46% · revenue growth
+    { group: 'business', index: 2 },   // $380K · largest close
+  ],
+
   /* §B.7 · WHAT CHANGED · §H · el preámbulo ahora nombra Four
      Seasons Residences ($14M, Adriana Hoyos), Oppenheim en Golden
      Beach, Wecselman Design, Kobi Karp, el nuevo Osaka y el nuevo

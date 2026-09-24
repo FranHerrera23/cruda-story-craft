@@ -12,8 +12,31 @@ import type {
 import { doorSpec } from '@/content/services/doors'
 import StartHere, { CASE_START_HERE } from '@/components/StartHere'
 import { selectedWork } from '@/content/work'
+import caseDates from '@/content/work/case-dates.json'
 import './case-study-layout-v2.css'
 import './work-layout.css'
+
+/* F39 §2.2 · fechas reales por caso.
+   Vienen de `case-dates.json` · manifiesto generado con
+   `git log --diff-filter=A/-1 -- <archivo>` (script en
+   `scripts/sync-case-dates.mjs`). Devuelve YYYY-MM-DD o undefined.
+   Al llamar, tomamos primero el manifiesto y sólo caemos al valor
+   viejo (`w.publishedAt`) si el caso no está listado. */
+type CaseDates = { publishedAt?: string; updatedAt?: string }
+function caseTimes(slug: string): CaseDates {
+  const rec = (caseDates as Record<string, CaseDates>)[slug]
+  return rec ?? {}
+}
+function isoToMonthYear(iso?: string): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return ''
+  return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+}
+function isoToDate(iso?: string): string | undefined {
+  if (!iso) return undefined
+  return iso.slice(0, 10)
+}
 
 /* F26 · type guards. `built` acepta string[] (legacy) o
    WorkBuiltRow[] (molde nuevo). */
@@ -80,13 +103,17 @@ function schema(w: Work) {
     '@id': `${base}/work/${w.slug}#article`,
     headline: w.title,
     description: w.dek,
-    /* F38 + F37 combinados:
-       · datePublished: sólo si el caso trae `publishedAt` real
-         (antes se emitía `period.end + '-01-01'`, una fecha fake).
-       · author y publisher usan @id linkeados a los nodos
-         canonicals de /about (Person Fran + Organization CRUDA),
-         en vez de un Person/Organization inline. */
-    datePublished: w.publishedAt || undefined,
+    /* F38 + F37 + F39 combinados:
+       · datePublished: `case-dates.json` (primer commit del archivo
+         del caso) o fallback `publishedAt`. Fake fechas quedaron
+         fuera desde F38.
+       · dateModified: `case-dates.json` (último commit del archivo).
+       · author y publisher por @id linkeados a los nodos canonicals
+         de /about (Person Fran + Organization CRUDA). */
+    datePublished:
+      isoToDate(caseTimes(w.slug).publishedAt) || w.publishedAt || undefined,
+    dateModified:
+      isoToDate(caseTimes(w.slug).updatedAt) || w.updatedAt || undefined,
     author: { '@id': `${base}/about#fran-herrera` },
     publisher: { '@id': `${base}/#organization` },
     about: w.confidential
@@ -304,9 +331,22 @@ export default function WorkLayout({ w }: { w: Work }) {
         </figure>
       )}
 
+      {/* F39 §2.3 · Key takeaways · franja de 3 cifras clave entre el
+          hero y ABOUT THE PROJECT. Sólo casos con cifras de negocio
+          o alcance definen `keyTakeaways` (hoy Karen y Mike). Las
+          cifras se resuelven contra `metricGroups`, no duplican
+          texto. */}
+      {w.keyTakeaways && w.keyTakeaways.length > 0 && w.metricGroups && (
+        <KeyTakeawaysStrip w={w} />
+      )}
+
       {/* F33 · ABOUT THE PROJECT · rótulo + resumen (cols 1–8, 24px)
           + byline (13px grey). F37 §3 · "Fran Herrera" linkea a
-          /about#fran-herrera si aparece al principio del byline. */}
+          /about#fran-herrera si aparece al principio del byline.
+          F39 §2.2 · debajo del byline sale una línea con fechas
+          reales sacadas del git log del archivo del caso: "Published
+          <Mes Año> · Updated <Mes Año>" con `<time datetime>` para
+          cada valor. */}
       {w.summary && (
         <section className="cs-wrap pen-about">
           <p className="pen-eyebrow">About the project</p>
@@ -317,6 +357,7 @@ export default function WorkLayout({ w }: { w: Work }) {
                 {renderBylineWithFranLink(w.byline)}
               </p>
             )}
+            <CaseTimes slug={w.slug} />
           </div>
         </section>
       )}
@@ -656,6 +697,67 @@ function BuiltRows({ rows }: { rows: WorkBuiltRow[] }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+/* F39 §2.2 · fechas visibles de la pieza. Aparece bajo el byline,
+   con `<time datetime>` para published y updated. Si el caso no
+   está en el manifiesto, no se rinde. */
+function CaseTimes({ slug }: { slug: string }) {
+  const t = caseTimes(slug)
+  const pub = isoToMonthYear(t.publishedAt)
+  const mod = isoToMonthYear(t.updatedAt)
+  if (!pub && !mod) return null
+  return (
+    <p className="pen-case-times">
+      {pub && (
+        <>
+          Published{' '}
+          <time dateTime={isoToDate(t.publishedAt)}>{pub}</time>
+        </>
+      )}
+      {pub && mod && ' · '}
+      {mod && (
+        <>
+          Updated <time dateTime={isoToDate(t.updatedAt)}>{mod}</time>
+        </>
+      )}
+    </p>
+  )
+}
+
+/* F39 §2.3 · Key takeaways · franja de 3 cifras clave debajo del
+   hero, arriba del ABOUT THE PROJECT. Fuente: `metricGroups` del
+   mismo caso (sin duplicar texto). Sólo casos con cifras de
+   negocio o alcance (Karen, Mike). El label sale tal cual del
+   metric; el "period" del metric va como sublabel gris. */
+function KeyTakeawaysStrip({ w }: { w: Work }) {
+  if (!w.keyTakeaways || !w.metricGroups) return null
+  const pick = (ref: { group: keyof WorkMetricGroups; index: number }) => {
+    const arr = w.metricGroups?.[ref.group]
+    return arr && arr[ref.index] ? arr[ref.index] : null
+  }
+  const items = w.keyTakeaways.map(pick).filter((m): m is WorkMetric => !!m)
+  if (items.length === 0) return null
+  return (
+    <section
+      className="cs-wrap wl-key-takeaways"
+      aria-label="Key takeaways"
+    >
+      <ul className="wl-key-takeaways__row">
+        {items.map((m, i) => (
+          <li key={i} className="wl-key-takeaways__cell">
+            <p className="wl-key-takeaways__v">
+              {m.value}
+              {m.n !== undefined && (
+                <sup className="wl-key-takeaways__n">{m.n}</sup>
+              )}
+            </p>
+            <p className="wl-key-takeaways__l">{m.label}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
   )
 }
 

@@ -123,6 +123,14 @@ export const mikeKaeding: Work = {
     },
   ],
 
+  /* F39 §2.3 · Key takeaways · franja de 3 cifras clave arriba del
+     ABOUT THE PROJECT. Fran: 56,000 · 2M · $110,000. */
+  keyTakeaways: [
+    { group: 'reach', index: 0 },      // 56,000 · LinkedIn followers
+    { group: 'reach', index: 1 },      // 2M · impressions a year
+    { group: 'mediaValue', index: 0 }, // $110,000 · a year
+  ],
+
   /* §5 · WHAT CHANGED · h2 · Measured, July 2023 to October 2024. */
   changeH2: 'Measured, July 2023 to October 2024.',
   metricGroups: {

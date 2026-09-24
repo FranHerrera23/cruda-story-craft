@@ -9,7 +9,10 @@ import { allClients } from '@/content/clients'
 import { allClientsV2, findClientV2 } from '@/content/clients-v2'
 import { allClientsV3, findClientV3 } from '@/content/clients-v3'
 import { allWork, findWork } from '@/content/work'
+import caseDatesJson from '@/content/work/case-dates.json'
 import { MOMENTS, MOMENT_LABEL, MOMENT_DESC, type Moment } from '@/content/moments'
+
+const caseDates = caseDatesJson as Record<string, { publishedAt?: string; updatedAt?: string }>
 
 const BASE = 'https://www.thecruda.com'
 
@@ -74,19 +77,28 @@ export async function generateMetadata(
   // F18.5 · content/work fuente única · gana sobre v3/v2/legacy.
   const work = findWork(slug)
   if (work) {
+    /* F39 §2.1 · <title>, og:title, twitter:title pasan a ser el
+       descriptor aprobado del caso (work.title) + " · CRUDA". Ganan
+       en resultados de búsqueda porque describen el resultado del
+       comprador. El h1 sigue siendo w.client.name. */
+    const seoTitle = `${work.title} · CRUDA`
+    /* F39 §2.2 · dates reales del git log del archivo de datos del
+       caso (via case-dates.json). article:published_time y
+       article:modified_time también salen desde acá. */
+    const times = caseDates[work.slug] ?? {}
+    const publishedIso = (times.publishedAt || work.publishedAt)?.slice(0, 10) || undefined
+    const modifiedIso = (times.updatedAt || work.updatedAt)?.slice(0, 10) || undefined
     return {
-      title: work.metaTitle,
+      title: seoTitle,
       description: work.dek,
       alternates: { canonical: `${BASE}/work/${work.slug}` },
       openGraph: {
-        title: work.title,
+        title: seoTitle,
         description: work.dek,
         url: `${BASE}/work/${work.slug}`,
         type: 'article',
-        /* F38 · article:published_time · sólo si el caso trae
-           `publishedAt` real. Antes se emitía `period.end + -12-31`
-           que era una fecha fake. */
-        publishedTime: work.publishedAt || undefined,
+        publishedTime: publishedIso,
+        modifiedTime: modifiedIso,
         images: [
           work.image
             ? `${BASE}${work.image.startsWith('/') ? work.image : '/' + work.image}`
@@ -95,7 +107,7 @@ export async function generateMetadata(
       },
       twitter: {
         card: 'summary_large_image',
-        title: work.title,
+        title: seoTitle,
         description: work.dek,
         images: [
           work.image

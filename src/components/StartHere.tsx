@@ -66,8 +66,8 @@ export const CASE_START_HERE: Record<string, StartHereProps> = {
   'mike-kaeding': {
     h2: 'Is your company doing more than its story says?',
     proof:
-      'Within eighteen months, ABC, Fox News and CBS were calling.',
-    source: 'Broadcast placements, 2023—2024',
+      "Mike's LinkedIn reached 2M impressions a year: $110,000 a year in media value.",
+    source: 'LinkedIn Analytics + CPM benchmarks, Jul 2023 — Oct 2024',
   },
   'girish-sehgal': {
     h2: 'Does your career make sense only to people holding your CV?',

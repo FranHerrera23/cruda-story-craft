@@ -1,14 +1,14 @@
 import { findWork } from '@/content/work'
 import './home-what-others.css'
 
-/* Home · WHAT OTHER PEOPLE STARTED SAYING · F18.4 · 21-sep · autónomo.
+/* Home · WHAT OTHER PEOPLE STARTED SAYING · F28 §1.2 · 23-sep.
 
-   Dos items · Karen y Mike (Drapers retirado en F11.0). Los links de
-   Karen (Forbes/AD) y Mike (triple network) llegan a sus /work/*
-   respectivos, no a `#` (F18.4 · brief §F18.4).
-
-   Copy textual del prototipo home-v3 §11. Assets reales no existen
-   todavía: regla §2 · el bloque se renderiza sin la imagen. */
+   Textos actualizados (§1.2 F28):
+   - h2 pasa a "Forbes Perú put Karen on its 2026 list, without a pitch."
+   - Card de Mike ya no menciona ABC / Fox News / CBS.
+   - Rótulo de Mike ahora es "LINKEDIN · 2023 — 2025".
+   - "56,000 followers · 2M impressions a year" queda como
+     "2M impressions a year · $110,000 a year in media value". */
 
 export default function HomeWhatOthers() {
   const karen = findWork('karen-mannheim')
@@ -23,8 +23,7 @@ export default function HomeWhatOthers() {
         <div className="plane__top">
           <p className="eyebrow">What other people started saying</p>
           <h2 className="name name--sm">
-            Forbes Perú put Karen on its 2026 list; ABC, Fox News and
-            CBS now call Mike.
+            Forbes Perú put Karen on its 2026 list, without a pitch.
           </h2>
           <div className="rule" />
         </div>
@@ -46,16 +45,15 @@ export default function HomeWhatOthers() {
           <a
             className="pitem"
             href={mike ? `/work/${mike.slug}` : '#'}
-            aria-label="Mike · triple network"
+            aria-label="Mike Kaeding · LinkedIn 2023 — 2025"
           >
-            <p className="pitem__src">ABC · Fox News · CBS</p>
+            <p className="pitem__src">LINKEDIN · 2023 — 2025</p>
             <p className="pitem__h">
-              Mike Kaeding, from a builder nobody outside Minnesota had
-              heard of to a source three networks call.
+              Mike Kaeding, from occasional technical posts to a weekly
+              voice 56,000 people follow.
             </p>
             <p className="pitem__m">
-              56,000 followers · 2M impressions a year · Jul 2023 — Oct
-              2024
+              2M impressions a year · $110,000 a year in media value
             </p>
           </a>
         </div>

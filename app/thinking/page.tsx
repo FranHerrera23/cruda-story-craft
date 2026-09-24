@@ -1,28 +1,35 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import ThinkingFilters from './ThinkingFilters'
-import StartHere from '@/components/StartHere'
 import { allEssays } from '@/content/essays'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import type { Resource, ResourceCompany } from '@/content/resources'
 import './thinking.css'
 
-/* /thinking · F23-2 · 22-sep · Fran §3.5 v2.
+/* /thinking · F36 · 24-sep · Fran · library.
 
-   Hero mantiene el split (h1 · lede) al mismo token que /services.
-   Regla naranja SOLO bajo el h1.
-   h2 "What we are thinking about." en token de h2 de sección, sin regla.
-   Case studies usan el componente de card de Selected Work
-   (imagen 1:1, título, segunda línea, descripción). */
+   Reemplaza a F31 §4.2. F31 §4.1 (un solo h1 token /services + una
+   sola regla naranja) sigue vigente.
 
-const ARTICLES = allEssays
-  .filter(e => {
-    if (e.language === 'es' && e.alternates?.en) {
-      return !allEssays.some(o => o.slug === e.alternates!.en)
-    }
-    return true
-  })
-  .sort((a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''))
+   Sale de /thinking:
+   · La sección CASE STUDIES completa (cards). Los casos viven en
+     Work · abajo hay un link "Case studies live in Work →".
+   · La opción "Case studies" del filtro TYPE.
+   · Los h2 "What we are thinking about." · "Conversations."
+   · El atenuado en gris de filas no activas (marks/mark).
+
+   La página es una SOLA lista de artículos + podcasts, ordenada
+   por fecha (más reciente primero). Cada fila muestra número,
+   título, dek (si hay), meta line (kind · reading time · Also in
+   other language), y una etiqueta de idioma a la derecha. */
+
+/* F36 · lista incluye TODAS las piezas · el filtro de idioma
+   decide cuáles se muestran. Antes se ocultaban las ES con alt EN
+   para evitar duplicados de la misma pieza; en el molde library
+   ambas versiones son ítems de biblioteca independientes. */
+const ARTICLES = [...allEssays].sort((a, b) =>
+  (b.publishedAt || '').localeCompare(a.publishedAt || ''),
+)
 
 const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   slug: e.slug,
@@ -36,40 +43,69 @@ const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
 
-/* Cards de case studies · misma anatomía que Selected Work en la home:
-   imagen 1:1, título, empresa · ciudad, descripción. */
-const CASE_STUDIES = [
+/* F36 §2 · fila unificada · articles + podcasts en una sola lista. */
+type LibraryItem = {
+  slug: string
+  href: string
+  title: string
+  dek?: string
+  language: 'en' | 'es'
+  kind: 'article' | 'podcast'
+  readingMinutes?: number
+  publishedAt: string
+  altLang?: { href: string; label: 'English' | 'Español' }
+  status?: 'upcoming'
+}
+
+const ARTICLE_ITEMS: LibraryItem[] = ARTICLES.map(e => {
+  const alt = e.alternates
+  const language = (e.language ?? 'en') as 'en' | 'es'
+  const altES =
+    language === 'en' && alt?.es
+      ? { href: `/thinking/${alt.es}`, label: 'Español' as const }
+      : undefined
+  const altEN =
+    language === 'es' && alt?.en
+      ? { href: `/thinking/${alt.en}`, label: 'English' as const }
+      : undefined
+  return {
+    slug: e.slug,
+    href: `/thinking/${e.slug}`,
+    title: e.title,
+    /* F36 § dek visible · viene del campo `deck` cuando existe.
+       Si no hay deck, la fila va sin dek (F36 § "si una pieza no
+       tiene descripción, se omite y se reporta"). */
+    dek: e.deck || undefined,
+    language,
+    kind: 'article',
+    readingMinutes: e.readingMinutes,
+    publishedAt: e.publishedAt,
+    altLang: altES ?? altEN,
+  }
+})
+
+const PODCAST_ITEMS: LibraryItem[] = [
   {
-    n: '01',
-    name: 'Karen Mannheim',
-    meta: 'TRAZZO Lighting · Miami',
-    description:
-      "Lights ten to two hundred million dollar homes; one of Forbes Perú's 50 most powerful women, 2026.",
-    href: '/work/karen-mannheim',
-    imageSrc: '/karen-mannheim.webp',
-    objectPosition: 'center 20%',
+    slug: 'steve-walls',
+    href: '/thinking/steve-walls',
+    title: 'Steve Walls',
+    dek: 'Former CSO, Publicis Singapore & Saatchi & Saatchi.',
+    language: 'en',
+    kind: 'podcast',
+    publishedAt: '',
+    status: 'upcoming',
   },
-  {
-    n: '02',
-    name: 'Mike Kaeding',
-    meta: 'Norhart · Minneapolis',
-    description:
-      'CEO of Norhart, $230M in assets created, on a mission to halve the cost of housing.',
-    href: '/work/mike-kaeding',
-    imageSrc: '/mike-kaeding.webp',
-    objectPosition: 'center 30%',
-  },
-  {
-    n: '03',
-    name: 'Girish Sehgal',
-    meta: 'Sheikh Shakhbout Medical City · Abu Dhabi',
-    description:
-      "Former Four Seasons GM, bringing hospitality into the UAE's biggest medical city.",
-    href: '/work/girish-sehgal',
-    imageSrc: '/girish-sehgal.webp',
-    objectPosition: 'center 15%',
-  },
-] as const
+]
+
+/* Combinado y ordenado por fecha (más reciente primero). Podcasts
+   upcoming (sin fecha) van al final. */
+const LIBRARY = [...ARTICLE_ITEMS, ...PODCAST_ITEMS].sort((a, b) => {
+  if (!a.publishedAt) return 1
+  if (!b.publishedAt) return -1
+  return b.publishedAt.localeCompare(a.publishedAt)
+})
+
+const HAS_PODCASTS = PODCAST_ITEMS.length > 0
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
@@ -113,14 +149,14 @@ export const metadata: Metadata = {
 
 export default function ThinkingPage() {
   return (
-    <div className="thinking">
+    <div className="thinking thinking--library">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · F31 §4.2 · una sola columna: rótulo, h1,
-          regla naranja (única de la página), lede. */}
+      {/* 01 · OPENER · F31 §4.2 (vigente) · rótulo · h1 · regla ·
+          lede en una sola columna. */}
       <section className="thinking-open">
         <p className="eyebrow">Thinking</p>
         <h1 className="thinking-open__h">Thinking</h1>
@@ -134,132 +170,68 @@ export default function ThinkingPage() {
         </div>
       </section>
 
-      <ThinkingFilters
-        hasCases={CASE_STUDIES.length > 0}
-        hasPodcasts={true}
-      />
+      <ThinkingFilters hasPodcasts={HAS_PODCASTS} />
 
-      {/* 03 · ARTICLES · h2 sin regla. */}
-      <section className="thinking-sec" data-sec="article">
-        <div className="thinking-sec__hd">
-          <p className="eyebrow">Articles</p>
-          <span className="thinking-sec__n" data-n />
-        </div>
-        <h2 className="thinking-name">What we are thinking about.</h2>
-        <div className="thinking-index marks">
-          {ARTICLES.map((e, i) => {
-            const alt = e.alternates
-            const altES =
-              e.language === 'en' && alt?.es
-                ? { href: `/thinking/${alt.es}`, label: 'Español' }
-                : null
-            const altEN =
-              e.language === 'es' && alt?.en
-                ? { href: `/thinking/${alt.en}`, label: 'English' }
-                : null
-            return (
-              <article
-                key={e.slug}
-                className="thinking-irow mark"
-                data-lang={e.language}
-                lang={e.language === 'es' ? 'es' : undefined}
-              >
-                <span className="thinking-irow__o">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="thinking-irow__n">
-                    <Link href={`/thinking/${e.slug}`}>{e.title}</Link>
-                  </h3>
-                  {(altES || altEN) && (
-                    <p className="thinking-irow__d">
-                      Also in{' '}
-                      <Link
-                        className="alt"
-                        href={(altES ?? altEN)!.href}
-                        hrefLang={altES ? 'es' : 'en'}
-                      >
-                        {(altES ?? altEN)!.label}
-                      </Link>
-                    </p>
-                  )}
-                </div>
-                <span className="thinking-irow__m">
-                  {e.language === 'es' ? 'Español' : 'English'}
-                </span>
-              </article>
-            )
-          })}
-        </div>
-      </section>
-
-      {/* 04 · CASE STUDIES · componente de card de Selected Work
-          (imagen 1:1, título, segunda línea, descripción). */}
-      <section className="thinking-sec" data-sec="case">
-        <div className="thinking-sec__hd">
-          <p className="eyebrow">Case studies</p>
-          <span className="thinking-sec__n" data-n />
-        </div>
-        <h2 className="thinking-name">The work, and what it moved.</h2>
-        <div className="thinking-sw-grid marks">
-          {CASE_STUDIES.map(c => (
-            <Link
-              key={c.n}
-              className="thinking-sw-card mark"
-              href={c.href}
-              data-lang="en"
-              aria-label={c.name}
+      {/* F36 · una sola lista · articles + podcasts. */}
+      <section className="thinking-sec thinking-lib" data-sec="library">
+        <div className="thinking-lib__list">
+          {LIBRARY.map((it, i) => (
+            <article
+              key={it.slug}
+              className="thinking-row"
+              data-kind={it.kind}
+              data-lang={it.language}
+              data-status={it.status}
+              lang={it.language === 'es' ? 'es' : undefined}
             >
-              <div className="thinking-sw-card__m">
-                <img
-                  className="thinking-sw-card__img"
-                  src={c.imageSrc}
-                  alt=""
-                  loading="lazy"
-                  style={{ objectPosition: c.objectPosition }}
-                />
+              <span className="thinking-row__o">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <div className="thinking-row__b">
+                <h3 className="thinking-row__n">
+                  <Link href={it.href}>{it.title}</Link>
+                </h3>
+                {it.dek && <p className="thinking-row__dek">{it.dek}</p>}
+                <p className="thinking-row__m">
+                  {it.kind === 'podcast'
+                    ? it.status === 'upcoming'
+                      ? 'PODCAST · UPCOMING'
+                      : 'PODCAST'
+                    : `ARTICLE${
+                        it.readingMinutes
+                          ? ` · ${it.readingMinutes} MIN READ`
+                          : ''
+                      }`}
+                  {it.altLang && (
+                    <>
+                      {' · '}
+                      <Link
+                        className="thinking-row__alt"
+                        href={it.altLang.href}
+                        hrefLang={it.altLang.label === 'Español' ? 'es' : 'en'}
+                      >
+                        Also in {it.altLang.label} →
+                      </Link>
+                    </>
+                  )}
+                </p>
               </div>
-              <h3 className="thinking-sw-card__n">{c.name}</h3>
-              <p className="thinking-sw-card__meta">{c.meta}</p>
-              <p className="thinking-sw-card__desc">{c.description}</p>
-            </Link>
+              <span className="thinking-row__lang">
+                {it.language === 'es' ? 'Español' : 'English'}
+              </span>
+            </article>
           ))}
         </div>
+
+        <p className="thinking-empty" data-empty hidden>
+          Nothing here yet in this combination.
+        </p>
+
+        {/* F36 · link a Work para casos. */}
+        <Link href="/#selected-work" className="thinking-lib__cases">
+          Case studies live in Work →
+        </Link>
       </section>
-
-      {/* 05 · PODCASTS */}
-      <section className="thinking-sec" data-sec="podcast">
-        <div className="thinking-sec__hd">
-          <p className="eyebrow">Podcasts</p>
-          <span className="thinking-sec__n" data-n />
-        </div>
-        <h2 className="thinking-name">Conversations.</h2>
-        <div className="thinking-podcast marks">
-          <Link
-            className="thinking-podrow mark"
-            href="/thinking/steve-walls"
-            data-lang="en"
-            data-status="upcoming"
-            aria-label="Steve Walls · Episode 01 · upcoming"
-          >
-            <span className="thinking-podrow__o">01</span>
-            <div className="thinking-podrow__body">
-              <h3 className="thinking-podrow__n">Steve Walls</h3>
-              <p className="thinking-podrow__d">
-                Former CSO, Publicis Singapore &amp; Saatchi &amp; Saatchi · 1 h
-              </p>
-              <p className="thinking-podrow__s">Episode 01 · upcoming</p>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      <p className="thinking-empty" data-empty hidden>
-        Nothing here yet in this combination.
-      </p>
-
-      {/* START HERE · F23-5. */}
-      <StartHere h2="Did one of these pieces describe your company?" />
 
       <div className="thinking-end" />
     </div>

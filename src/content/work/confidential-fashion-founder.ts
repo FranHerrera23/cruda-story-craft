@@ -20,7 +20,10 @@ export const confidentialFashionFounder: Work = {
   client: {
     name: 'Confidential',
     role: 'Founder',
-    company: 'On-demand fashion group',
+    /* F32 §1 · company es un descriptor genérico (el nombre real
+       queda confidencial), va en minúscula. En CREDITS se combina
+       como "Confidential · Founder, on-demand fashion group". */
+    company: 'on-demand fashion group',
   },
   confidential: true,
   place: { to: 'Dubai', city: 'Dubai', country: 'United Arab Emirates' },

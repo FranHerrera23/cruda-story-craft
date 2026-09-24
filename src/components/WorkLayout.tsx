@@ -515,7 +515,11 @@ export default function WorkLayout({ w }: { w: Work }) {
             <dd>
               {w.client.name}
               {w.client.role && w.client.company &&
-                `, ${w.client.role}, ${w.client.company}`}
+                /* F32 §1 · en casos confidenciales, el name es un
+                   placeholder ("Confidential") y se separa del rol
+                   con " · " para leerse claramente como etiqueta,
+                   no como nombre propio. El resto sigue con coma. */
+                `${w.confidential ? ' · ' : ', '}${w.client.role}, ${w.client.company}`}
             </dd>
           </div>
           {w.sector && (

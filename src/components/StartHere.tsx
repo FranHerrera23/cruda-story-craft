@@ -87,8 +87,9 @@ export const CASE_START_HERE: Record<string, StartHereProps> = {
     source: 'Client, verified, 2021—2026',
   },
   'confidential-fashion-founder': {
-    h2: 'Built it twice, and never told the story?',
-    proof: 'One LinkedIn post brought in more than 1,000 CVs.',
-    source: 'Client, 2025',
+    h2: 'Does everyone around you tell your story differently?',
+    proof:
+      'One LinkedIn post brought more than a thousand job applications.',
+    source: 'Client data, 2025',
   },
 }

@@ -42,7 +42,7 @@ const CARDS: Card[] = [
     name: 'Karen Mannheim',
     meta: 'TRAZZO Lighting · Miami',
     description:
-      "Lights ten to two hundred million dollar homes; one of Forbes Perú's 50 most powerful women, 2026.",
+      "Lights homes worth $10 million to $200 million; one of Forbes Perú's 50 most powerful women, 2026.",
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',

@@ -88,7 +88,7 @@ export const karenMannheim: Work = {
       h2: 'The names on the list already persuaded. Nobody had explained them.',
       body: [
         "TRAZZO's project list carried weight a Miami developer would recognise at once, if someone told them what it meant. RAMSA designed the most expensive penthouse ever sold in the United States, the Harvard Kennedy School and residential colleges at Yale, and had chosen TRAZZO four times for residential projects in Peru, through ACM Grupo.",
-        "So the content never describes lamps. It takes a project the buyer already respects and shows how its light was decided: the process, the constraints, the judgment. The association opens the door; Karen's criteria is what the reader remembers.",
+        "So the content never describes lamps. It takes a project the buyer already respects and shows how its light was decided: the process, the constraints, the judgment. The association opens the door; Karen's judgment is what the reader remembers.",
       ],
     },
     {

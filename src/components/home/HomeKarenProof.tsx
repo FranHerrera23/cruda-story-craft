@@ -20,7 +20,7 @@ export default function HomeKarenProof() {
       id="karen-proof"
       eyebrow="What we built for her"
       h2="Thirty-three years of work, in front of the people who specify it."
-      body="Karen lights ten to two hundred million dollar homes. Her buyers are developers, architects and high-end builders across the United States, Latin America and Spain — a few thousand people, not a market. The writing went to them."
+      body="Karen lights homes worth $10 million to $200 million. Her buyers are developers, architects and high-end builders across the United States, Latin America and Spain — a few thousand people, not a market. The writing went to them."
       cells={KAREN_PROOF_CELLS}
       href={`/work/${slug}`}
       linkLabel="Read the case study"

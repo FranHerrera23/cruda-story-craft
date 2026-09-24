@@ -302,3 +302,111 @@
   .about-cell:first-child { border-top: 0; }
   .on-black .about-cell { border-top-color: #272727; }
 }
+
+/* F32 §2.4 · KEY FACTS · <dl> con dt caps 10px + dd 18px.
+   Mismo estilo visual que la meta lateral de los casos. */
+.about-keyfacts {
+  padding-top: clamp(80px, 12vh, 140px);
+}
+.about-kf {
+  display: grid;
+  grid-template-columns: minmax(160px, 3fr) minmax(0, 9fr);
+  row-gap: clamp(14px, 2vh, 22px);
+  column-gap: clamp(20px, 3vw, 40px);
+  margin: clamp(28px, 4vh, 48px) 0 0;
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+  padding-top: clamp(20px, 3vh, 32px);
+}
+.about-kf > div {
+  display: contents;
+}
+.about-kf dt {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-kf dd {
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink, #0D0D0D);
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+  text-wrap: pretty;
+}
+.about-kf dd a {
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-kf dd a:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+@media (max-width: 760px) {
+  .about-kf {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+  }
+  .about-kf dt { border-bottom: 0; padding-bottom: 0; padding-top: 16px; }
+  .about-kf dd { padding-top: 4px; }
+}
+
+/* F32 §2.5 · FAQ · acordeón · mismo tratamiento que .cs-faq. */
+.about-faq {
+  padding-top: clamp(80px, 12vh, 140px);
+}
+.about-faq__list {
+  margin-top: clamp(28px, 4vh, 48px);
+  border-top: 1px solid var(--ink, #0D0D0D);
+  max-width: 880px;
+}
+.about-faq details {
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+.about-faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(16px, 2.4vh, 24px) 0;
+  align-items: baseline;
+}
+.about-faq summary::-webkit-details-marker { display: none; }
+.about-faq summary h3 {
+  margin: 0;
+  font-size: clamp(16px, 1.5vw, 20px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  color: var(--ink, #0D0D0D);
+}
+.about-faq summary::after {
+  content: '+';
+  font-weight: 400;
+  color: var(--grey, #6E6B65);
+  transition: transform .3s;
+  font-size: 20px;
+}
+.about-faq details[open] summary::after { transform: rotate(45deg); }
+.about-faq details p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #2b2a27;
+  padding: 0 0 clamp(16px, 2vh, 22px);
+  margin: 0;
+  max-width: 68ch;
+}
+.about-faq details p a {
+  color: var(--ink, #0D0D0D);
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+  text-decoration: none;
+}
+.about-faq details p a:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}

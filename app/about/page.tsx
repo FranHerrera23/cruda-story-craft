@@ -156,12 +156,17 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_SCHEMA) }}
       />
 
-      {/* 01 · HERO · única regla naranja de la página. */}
+      {/* 01 · HERO · única regla naranja de la página. F40 §1:
+          h1 ahora usa `.about-h1` (token propio, mayor que h2 de
+          sección) con `text-wrap: balance` y `max-width` en ~22ch
+          para caer en 3 líneas sin viudas ("to move." sola). El
+          copy sigue igual · sale WHAT WE TRANSLATE de esta página
+          porque su definición ya está en el lede. */}
       <section className="about-sec" data-sec data-reveal-seq>
         <p className="about-eyebrow" data-reveal>
           About
         </p>
-        <h1 className="about-name" data-reveal>
+        <h1 className="about-h1" data-reveal>
           You work with the founder — and with a team small enough to
           move.
         </h1>
@@ -186,47 +191,21 @@ export default function AboutPage() {
         </Link>
       </section>
 
-      {/* 02 · WHAT WE TRANSLATE · h2 sin regla · paper. */}
-      <section className="about-sec" data-sec data-reveal-seq>
-        <p className="about-eyebrow" data-reveal>
-          What we translate
-        </p>
-        <h2 className="about-name" data-reveal>
-          We translate cultures into business.
-        </h2>
-        <div
-          className="about-data marks"
-          style={{ marginTop: 'clamp(48px, 8vh, 110px)' }}
-        >
-          <div className="about-cell mark" data-reveal>
-            <p className="about-cell__l">Outward</p>
-            <p className="about-cell__v">
-              Between a founder and a market that never heard of them.
-            </p>
-          </div>
-          <div className="about-cell mark" data-reveal>
-            <p className="about-cell__l">Inward</p>
-            <p className="about-cell__v">
-              Between a company and its own people.
-            </p>
-          </div>
-          <div className="about-cell mark" data-reveal>
-            <p className="about-cell__l">Across</p>
-            <p className="about-cell__v">
-              Between capital from one part of the world and the country it
-              just landed in.
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* F40 §2 · WHAT WE TRANSLATE fuera de /about. La sección
+          entera (rótulo, h2 "We translate cultures into business."
+          y las tres columnas OUTWARD/INWARD/ACROSS) vive idéntica
+          en la home y ya está reflejada en el lede del hero. Se
+          removió para no duplicar. */}
 
       {/* 03 · HOW IT STARTED · F32 §2.3 · ahora 4 filas · sale
-          "registered" y "restructured". */}
+          "registered" y "restructured".
+          F40 §3 · el h2 pasa a usar `--sm` (token de sección) para
+          quedar más chico que el h1 del hero. */}
       <section className="about-sec" data-sec data-reveal-seq>
         <p className="about-eyebrow" data-reveal>
           How it started
         </p>
-        <h2 className="about-name" data-reveal>
+        <h2 className="about-name about-name--sm" data-reveal>
           The first client came three years before the company did.
         </h2>
         <div className="about-chron marks">
@@ -260,12 +239,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* 04 · OPERATING PRINCIPLES · "How the work is done." */}
+      {/* 04 · OPERATING PRINCIPLES · "How the work is done."
+          F40 §3 · h2 con `--sm`. */}
       <section className="about-sec" data-sec data-reveal-seq>
         <p className="about-eyebrow" data-reveal>
           Operating principles
         </p>
-        <h2 className="about-name" data-reveal>
+        <h2 className="about-name about-name--sm" data-reveal>
           How the work is done.
         </h2>
         <div className="about-chron marks">
@@ -349,7 +329,10 @@ export default function AboutPage() {
             >
               Fran Herrera, founder.
             </h2>
-            <div className="about-data about-data--2">
+            {/* F40 §4 · pasa de 2 columnas a 3 con la nueva celda
+                WHAT HE READS. Default de .about-data ya es
+                repeat(3, 1fr), así que sale el modifier `--2`. */}
+            <div className="about-data">
               <div className="about-cell" data-reveal>
                 <p className="about-cell__l">Experience</p>
                 <p className="about-cell__v">
@@ -365,15 +348,29 @@ export default function AboutPage() {
                   each project.
                 </p>
               </div>
+              {/* F40 §4 · track record: sale la mención al organismo
+                  internacional (una campaña puntual, no una relación
+                  agencial actual) tanto del valor como del pie. El
+                  pie pasa a describir la mezcla real de clientes:
+                  Fortune 500s, SMEs y B2B en tres continentes. */}
               <div className="about-cell" data-reveal>
                 <p className="about-cell__l">Track record</p>
                 <p className="about-cell__v">
-                  Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok ·
-                  a United Nations agency
+                  Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok
                 </p>
                 <p className="about-cell__n">
-                  An International Women&apos;s Day campaign for a United
-                  Nations agency.
+                  Fortune 500s, SMEs and B2B companies across industries
+                  and nationalities, on three continents.
+                </p>
+              </div>
+              {/* F40 §4 · nueva celda WHAT HE READS · mismo estilo que
+                  las otras dos, cierra la fila con la formación no
+                  laboral que informa el trabajo. */}
+              <div className="about-cell" data-reveal>
+                <p className="about-cell__l">What he reads</p>
+                <p className="about-cell__v">
+                  Cultures and markets, and what a story needs to travel
+                  between them.
                 </p>
               </div>
             </div>

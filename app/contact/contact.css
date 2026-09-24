@@ -1,14 +1,12 @@
-/* /contact · F14a · 21-sep · autónomo · contact-v1. */
+/* /contact · F14a → F31 §3 · 23-sep.
+   /contact ahora es todo papel · sin secciones oscuras. La regla
+   naranja bajo "One conversation." es la única de la página. */
 
 .contact-sec {
   padding: clamp(80px, 13vh, 150px) var(--gap, clamp(20px, 4.5vw, 72px));
   position: relative;
   background: var(--paper, #F1EFEB);
   color: var(--ink, #0D0D0D);
-}
-.contact-sec--black {
-  background: var(--black, #000);
-  color: var(--white, #FAF9F7);
 }
 
 .contact-eyebrow {
@@ -235,4 +233,120 @@
   }
   .contact-cell:first-child { border-top: 0; }
   .qrow { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
+}
+
+/* F31 §3 · dos columnas: BOOK THE CALL (7/12) + WRITE TO US (5/12). */
+.contact-act {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(28px, 4vw, 72px);
+  padding-top: clamp(20px, 3vh, 40px);
+}
+.contact-act__col {
+  min-width: 0;
+}
+.contact-cal {
+  width: 100%;
+  min-height: 720px;
+  border: 0;
+  background: var(--paper, #F1EFEB);
+  margin-top: clamp(16px, 2vh, 24px);
+}
+.contact-cal-link {
+  display: inline-block;
+  margin-top: clamp(16px, 2vh, 24px);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--ink, #0D0D0D);
+}
+.contact-cal-link:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 2.4vh, 24px);
+  margin-top: clamp(16px, 2vh, 24px);
+  max-width: 560px;
+}
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.contact-field__l {
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  letter-spacing: -.005em;
+}
+.contact-inp {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+  font: inherit;
+  font-size: 18px;
+  padding: 8px 0;
+  color: var(--ink, #0D0D0D);
+  transition: border-color .15s;
+  outline: none;
+  width: 100%;
+  min-width: 0;
+}
+.contact-inp:focus {
+  border-bottom-color: var(--ink, #0D0D0D);
+  border-bottom-width: 2px;
+}
+.contact-inp--ta {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.5;
+}
+.contact-inp--err {
+  border-bottom: 2px solid var(--orange, #FF5A00);
+}
+.contact-err {
+  font-size: 13px;
+  color: var(--orange, #FF5A00);
+}
+.contact-send {
+  display: inline-block;
+  background: transparent;
+  border: 0;
+  padding: 6px 0 4px;
+  font: inherit;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink, #0D0D0D);
+  border-bottom: 2px solid var(--ink, #0D0D0D);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: color .15s, border-color .15s;
+}
+.contact-send:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+
+.contact-out-sec {
+  padding-top: clamp(40px, 6vh, 80px);
+  padding-bottom: clamp(60px, 10vh, 120px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.contact-out-sec .contact-out {
+  font-size: 15px;
+  color: var(--grey, #6E6B65);
+}
+.contact-out-sec .contact-out a {
+  color: var(--ink, #0D0D0D);
+}
+
+@media (max-width: 900px) {
+  .contact-act { grid-template-columns: 1fr; gap: clamp(28px, 4vh, 44px); }
+  .contact-cal { min-height: 900px; }
 }

@@ -39,7 +39,7 @@ export default function HomeKarenQuote() {
           <div className="cell">
             <p className="cell__l">Who</p>
             <p className="cell__v">Karen Mannheim</p>
-            <p className="cell__n">Founder, TRAZZO Lighting</p>
+            <p className="cell__n">Co-founder, TRAZZO Lighting</p>
           </div>
           <div className="cell">
             <p className="cell__l">Client since</p>

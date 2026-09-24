@@ -72,7 +72,7 @@ const CARDS: Card[] = [
     name: 'José Mannheim',
     meta: 'MTC · Panamá City',
     description:
-      'Founder of AGP, maker of armored glass for the Pentagon, Tesla and Audi.',
+      'Co-founder of AGP, maker of armored glass for the Pentagon, Tesla and Audi.',
     service: ['TRANSLATED'],
     href: '/work/mannheim-trading',
     imageSrc: '/jose-mannheim.webp',
@@ -118,6 +118,9 @@ const CARDS: Card[] = [
     description:
       'Sold his first company for seven figures, sailed the world, and came back to build a lighting business in Miami.',
     service: ['TRANSLATED', 'TRANSMISSION'],
+    /* F38 · card de Jack linkea a /work/jack-yeager (F29 · el
+       href se había perdido en el conflict de merge de f29-jack). */
+    href: '/work/jack-yeager',
     /* F21 · retrato aprobado por Fran (22-sep). Fuente 800×800 ya
        cuadrada; object-position center 20% mantiene el criterio
        del spec (cara en tercio superior si Fran cambia la fuente). */
@@ -127,11 +130,14 @@ const CARDS: Card[] = [
   {
     /* F21 · Fran (22-sep) · card presentada como proyecto, no como
        persona. "Arman" y "Jacksonville" no aparecen en la card.
-       Sin link (queda como <div>). */
+       Sin link (queda como <div>) porque BAUHOME todavía no tiene
+       caso. F35 · agrega la etiqueta de servicio (mismo componente
+       que el resto). */
     name: 'BAUHOME',
     meta: 'Luxury kitchen cabinets · Los Angeles',
     description:
       "Luxury kitchen cabinets, founded by the former Director of Operations at Santa Monica's biggest hospital.",
+    service: ['TRANSLATED'],
     imageSrc: '/bauhome-kitchen.webp',
     objectPosition: 'center 50%',
   },

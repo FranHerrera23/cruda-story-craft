@@ -83,9 +83,10 @@ export async function generateMetadata(
         description: work.dek,
         url: `${BASE}/work/${work.slug}`,
         type: 'article',
-        publishedTime: work.period.end
-          ? `${work.period.end}-12-31`
-          : undefined,
+        /* F38 · article:published_time · sólo si el caso trae
+           `publishedAt` real. Antes se emitía `period.end + -12-31`
+           que era una fecha fake. */
+        publishedTime: work.publishedAt || undefined,
         images: [
           work.image
             ? `${BASE}${work.image.startsWith('/') ? work.image : '/' + work.image}`

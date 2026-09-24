@@ -202,4 +202,12 @@ export type Work = {
      "Materials", "Healthcare", "Architecture", "Fashion". Opcional
      por compat con casos legacy. */
   sector?: string
+  /* F34 · texto de la fila TEAM en CREDITS. Default "Fran Herrera"
+     cuando no viene, pero algunos casos (Mike, F34) requieren
+     un texto extendido. */
+  creditsTeam?: string
+  /* F38 · fecha ISO de publicación del caso (YYYY-MM-DD). Si no
+     está, no se emite `article:published_time` ni `datePublished`
+     en el JSON-LD Article. Fecha fake (period.end + -12-31) sale. */
+  publishedAt?: string
 }

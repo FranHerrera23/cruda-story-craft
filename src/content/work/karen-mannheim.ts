@@ -52,7 +52,7 @@ export const karenMannheim: Work = {
      Architecture, Four Seasons, Wecselman Design, Kobi Karp, el
      nuevo Osaka y el nuevo Porsche solo aparecen después de 2021. */
   summary:
-    'Karen Mannheim co-founded TRAZZO Lighting in Lima 33 years ago. By 2021 it had more than 2,500 projects: residential buildings by RAMSA for ACM Grupo, work with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Almost nobody outside Peru knew. Since 2021, CRUDA has built and run the narrative system behind Karen and the company, across Lima, Miami, LinkedIn and Instagram. In those years TRAZZO added Four Seasons, Oppenheim Architecture, Wecselman Design and Kobi Karp to its list, grew revenue 46% in 2025 and closed its largest project, $380K. In 2026, Forbes Perú named Karen one of the country’s 50 most powerful women.',
+    'Karen Mannheim co-founded TRAZZO Lighting in Lima 33 years ago. By 2021 it had more than 2,500 projects: residential buildings by RAMSA for ACM Grupo, work with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Almost nobody outside Peru knew. Since 2021, Fran Herrera has built and run the narrative system behind Karen and the company, across Lima, Miami, LinkedIn and Instagram; since 2024, through CRUDA. In those years TRAZZO added Four Seasons, Oppenheim Architecture, Wecselman Design and Kobi Karp to its list, grew revenue 46% in 2025 and closed its largest project, $380K. In 2026, Forbes Perú named Karen one of the country’s 50 most powerful women.',
   byline: 'Fran Herrera, Founder, CRUDA · Updated September 2026',
 
   /* Legacy · el layout ignora `capsule` cuando `summary` existe.
@@ -173,7 +173,7 @@ export const karenMannheim: Work = {
     ],
     context: [
       { value: '33 years', label: 'of practice', period: '', source: '', },
-      { value: '5 years', label: 'with CRUDA · 2021 — 2026', period: '', source: '' },
+      { value: '5 years', label: 'with Fran Herrera · 2021 — 2026', period: '', source: '' },
       { value: '2,500+', label: 'projects', period: '', source: '' },
       { value: '80', label: 'people on the team', period: '', source: '' },
     ],
@@ -219,7 +219,7 @@ export const karenMannheim: Work = {
       year: '2021',
       name: 'SAADIYAT NIGHTS, ABU DHABI',
       description:
-        "Lighting for the venue of Abu Dhabi's leading music festival, with first-tier international headliners. The project came through CRUDA's network.",
+        "Lighting for the venue of Abu Dhabi's leading music festival, with first-tier international headliners. The project came through Fran Herrera's network.",
     },
     {
       name: 'PITCHES',

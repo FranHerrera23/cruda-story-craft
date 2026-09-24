@@ -68,15 +68,9 @@ export default function SiteFooter() {
             LinkedIn
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
-          <a
-            href="https://x.com/cruda"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link"
-          >
-            X
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
+          {/* F38 · X link retirado · F37 pide no linkear a cuentas no
+              confirmadas · si @cruda no es nuestra, es un tercero con
+              nuestro nombre. Vuelve cuando exista la cuenta oficial. */}
         </nav>
 
         <p className="site-footer__legal">

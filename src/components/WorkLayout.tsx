@@ -61,9 +61,10 @@ function schema(w: Work) {
     '@id': `${base}/work/${w.slug}#article`,
     headline: w.title,
     description: w.dek,
-    datePublished: w.period.end
-      ? `${w.period.end}-01-01`
-      : undefined,
+    /* F38 · datePublished · sólo se emite si el caso trae
+       `publishedAt` real. Antes usaba `period.end + '-01-01'` que
+       inventaba fechas · sale. */
+    datePublished: w.publishedAt || undefined,
     author: {
       '@type': 'Person',
       name: 'Fran Herrera',
@@ -550,7 +551,7 @@ export default function WorkLayout({ w }: { w: Work }) {
           </div>
           <div>
             <dt>Team</dt>
-            <dd>Fran Herrera</dd>
+            <dd>{w.creditsTeam ?? 'Fran Herrera'}</dd>
           </div>
         </dl>
       </section>

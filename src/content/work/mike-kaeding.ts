@@ -20,6 +20,9 @@ export const mikeKaeding: Work = {
   dek:
     "How CRUDA turned Norhart CEO Mike Kaeding's plan to halve the cost of housing into a founder-led voice 56,000 people follow.",
   client: { name: 'Mike Kaeding', role: 'CEO', company: 'Norhart' },
+  /* F34 · CREDITS · Team · el sujeto pasa de "CRUDA" a un texto
+     que refleja el arco Norhart in-house → CRUDA. */
+  creditsTeam: 'Fran Herrera · in-house at Norhart, then CRUDA',
   confidential: false,
   place: {
     from: 'Forest Lake',
@@ -38,7 +41,7 @@ export const mikeKaeding: Work = {
   heroObjectPosition: 'center 30%',
 
   summary:
-    'Mike Kaeding is the CEO of Norhart, a Minnesota company that designs, builds and rents apartments and has created $230M in assets. He runs it with one goal: cut the cost of building housing in half, by making its own parts in its own factory. From 2023 to 2025, CRUDA turned that goal into founder-led content under his name. His LinkedIn reached 2M impressions a year: attention that would have cost $110,000 a year to buy.',
+    'Mike Kaeding is the CEO of Norhart, a Minnesota company that designs, builds and rents apartments and has created $230M in assets. He runs it with one goal: cut the cost of building housing in half, by making its own parts in its own factory. From 2023 to 2025, Fran Herrera turned that goal into founder-led content under his name: first in-house at Norhart, then, from February 2024, through CRUDA. His LinkedIn reached 2M impressions a year: attention that would have cost $110,000 a year to buy.',
   byline: 'Fran Herrera, Founder, CRUDA · Updated September 2026',
 
   capsule: [],
@@ -83,7 +86,7 @@ export const mikeKaeding: Work = {
       /* §4 · HOW IT RUNS */
       h2: 'One voice, every week, on every surface.',
       body: [
-        "CRUDA wrote and published under Mike's name every week on LinkedIn. The same pieces became keynotes, newsletters for Norhart's team, investor decks and talking points for interviews, so the company said one thing everywhere.",
+        "Fran Herrera wrote and published under Mike's name every week on LinkedIn. The same pieces became keynotes, newsletters for Norhart's team, investor decks and talking points for interviews, so the company said one thing everywhere.",
       ],
     },
   ],

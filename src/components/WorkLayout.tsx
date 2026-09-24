@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type React from 'react'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import type {
@@ -48,6 +49,24 @@ function publicFileExists(src: string): boolean {
   }
 }
 
+/* F37 §3 · byline "Fran Herrera, Founder, CRUDA · Updated…" · el
+   nombre "Fran Herrera" al principio se envuelve en un link a
+   /about#fran-herrera. El texto del byline no cambia. */
+function renderBylineWithFranLink(byline: string): React.ReactNode {
+  const NAME = 'Fran Herrera'
+  const idx = byline.indexOf(NAME)
+  if (idx < 0) return byline
+  return (
+    <>
+      {byline.slice(0, idx)}
+      <a href="/about#fran-herrera" className="pen-byline__link">
+        {NAME}
+      </a>
+      {byline.slice(idx + NAME.length)}
+    </>
+  )
+}
+
 /* WorkLayout · F18.1 · 21-sep · autónomo · wireframe W6.
    Recibe `Work` de content/work y renderiza el molde extendido.
    Reutiliza case-study-layout-v2.css (cs-*) y agrega work-layout.css. */
@@ -64,18 +83,11 @@ function schema(w: Work) {
     datePublished: w.period.end
       ? `${w.period.end}-01-01`
       : undefined,
-    author: {
-      '@type': 'Person',
-      name: 'Fran Herrera',
-      jobTitle: 'Founder',
-      worksFor: { '@type': 'Organization', name: 'CRUDA' },
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'CRUDA',
-      url: base,
-      logo: { '@type': 'ImageObject', url: `${base}/logo.png` },
-    },
+    /* F37 §3 · author y publisher usan @id linkeados a los nodos
+       canonicals de /about (Person + Organization) en vez de un
+       Person/Organization inline. */
+    author: { '@id': `${base}/about#fran-herrera` },
+    publisher: { '@id': `${base}/#organization` },
     about: w.confidential
       ? undefined
       : {
@@ -292,13 +304,18 @@ export default function WorkLayout({ w }: { w: Work }) {
       )}
 
       {/* F33 · ABOUT THE PROJECT · rótulo + resumen (cols 1–8, 24px)
-          + byline (13px grey). */}
+          + byline (13px grey). F37 §3 · "Fran Herrera" linkea a
+          /about#fran-herrera si aparece al principio del byline. */}
       {w.summary && (
         <section className="cs-wrap pen-about">
           <p className="pen-eyebrow">About the project</p>
           <div className="pen-about__body">
             <p className="pen-summary">{w.summary}</p>
-            {w.byline && <p className="pen-byline">{w.byline}</p>}
+            {w.byline && (
+              <p className="pen-byline">
+                {renderBylineWithFranLink(w.byline)}
+              </p>
+            )}
           </div>
         </section>
       )}

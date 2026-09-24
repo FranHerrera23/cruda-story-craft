@@ -18,9 +18,15 @@ import './about.css'
 
 const BASE = 'https://www.thecruda.com'
 
-const ABOUT_TITLE = 'About · CRUDA'
+/* F37 §4 · title de /about pasa a "About CRUDA · Founded by Fran
+   Herrera" (entity separation + SEO). */
+const ABOUT_TITLE = 'About CRUDA · Founded by Fran Herrera'
 const ABOUT_DESCRIPTION =
   'CRUDA is a communications company founded by Fran Herrera in 2024. First client in 2021.'
+
+/* F37 §3 · foto de Fran en /about · URL absoluta para el nodo
+   Person.image del JSON-LD. */
+const FRAN_PHOTO_URL = `${BASE}/fran-herrera.webp`
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -98,6 +104,10 @@ const ABOUT_SCHEMA = {
       logo: `${BASE}/cruda-logo-black-2x.png`,
       description:
         'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.',
+      /* F37 §2 · disambiguatingDescription para separar CRUDA como
+         entidad de otras marcas homónimas del rubro moda. */
+      disambiguatingDescription:
+        'Communications company founded by Fran Herrera in 2024, based in Dubai and Moscow.',
       foundingDate: '2024-02',
       founder: { '@id': PERSON_ID },
       email: 'fran@thecruda.com',
@@ -108,8 +118,22 @@ const ABOUT_SCHEMA = {
       '@type': 'Person',
       '@id': PERSON_ID,
       name: 'Fran Herrera',
+      url: `${BASE}/about`,
+      image: FRAN_PHOTO_URL,
       jobTitle: 'Founder',
       worksFor: { '@id': ORG_ID },
+      /* F37 §1 · description + birthPlace + knowsLanguage + knowsAbout
+         para consolidar la entidad Fran Herrera como founder of CRUDA,
+         distinguible de otras entidades homónimas. */
+      description:
+        'Founder of CRUDA, a communications company that builds narrative and demand systems for founders, companies and cross-border joint ventures.',
+      birthPlace: { '@type': 'Place', name: 'Salta, Argentina' },
+      knowsLanguage: ['en', 'es', 'ru'],
+      knowsAbout: [
+        'Narrative strategy',
+        'Founder-led communications',
+        'Cross-border joint ventures',
+      ],
       sameAs: ['https://www.linkedin.com/in/franherrera2/'],
     },
     {
@@ -318,7 +342,11 @@ export default function AboutPage() {
             <p className="about-eyebrow" data-reveal>
               Who runs it
             </p>
-            <h2 className="about-name about-name--sm" data-reveal>
+            <h2
+              className="about-name about-name--sm"
+              data-reveal
+              id="fran-herrera"
+            >
               Fran Herrera, founder.
             </h2>
             <div className="about-data about-data--2">
@@ -353,7 +381,7 @@ export default function AboutPage() {
               className="about-go"
               href="https://www.linkedin.com/in/franherrera2/"
               target="_blank"
-              rel="noopener"
+              rel="me noopener"
               style={{ marginTop: 'clamp(20px, 3.2vh, 36px)' }}
               data-reveal
             >

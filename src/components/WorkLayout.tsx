@@ -402,15 +402,29 @@ export default function WorkLayout({ w }: { w: Work }) {
                 return true
               })
               if (blocks.length === 0) return null
-              const imgCount = blocks.filter(b => b.kind === 'image').length
+              /* F42 · pen-quote sale del contenedor .cs-ev (que es
+                 grid de imágenes) y se renderea directamente en
+                 la pen-sec para respetar cols 3-10. El resto de
+                 blocks (image, testimonial, published, list) va
+                 dentro de .cs-ev como antes. */
+              const evBlocks = blocks.filter(b => b.kind !== 'pen-quote')
+              const outerBlocks = blocks.filter(b => b.kind === 'pen-quote')
+              const imgCount = evBlocks.filter(b => b.kind === 'image').length
               return (
-                <div
-                  className={`cs-ev pen-ev ${imgCount >= 3 ? 'cs-ev--3' : 'cs-ev--2'}`}
-                >
-                  {blocks.map((b, j) => (
-                    <EvidenceBlock key={j} block={b} />
+                <>
+                  {evBlocks.length > 0 && (
+                    <div
+                      className={`cs-ev pen-ev ${imgCount >= 3 ? 'cs-ev--3' : 'cs-ev--2'}`}
+                    >
+                      {evBlocks.map((b, j) => (
+                        <EvidenceBlock key={j} block={b} />
+                      ))}
+                    </div>
+                  )}
+                  {outerBlocks.map((b, j) => (
+                    <EvidenceBlock key={`outer-${j}`} block={b} />
                   ))}
-                </div>
+                </>
               )
             })()}
             {sec.pull && <p className="cs-pull">{sec.pull}</p>}

@@ -625,6 +625,23 @@
   line-height: 1.4;
 }
 
+/* F32 §1 · WHAT CHANGED h2 unificado con las demás secciones del
+   molde F33. Antes salía grande (28–44px) y a dos columnas (h2 en
+   cols 1–5, preámbulo en cols 7–12); ahora single-col cols 3–10
+   en 22px, como ROOMS y WHAT THIS MEANS. Grupos, fuentes y quote
+   siguen a ancho completo (span 1/-1 / 1-8) desde .wl-change__*. */
+.cs--pen .wl-change .cs-sec__grid > h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.3;
+  max-width: 44ch;
+  grid-column: 3 / span 8;
+}
+.cs--pen .wl-change .cs-sec__grid > .cs-sec__body {
+  grid-column: 3 / span 8;
+}
+
 /* F33 · Secciones de texto · h2 22px, single-col cols 3–10. */
 .cs--pen .pen-sec {
   padding-top: clamp(48px, 7vh, 96px);

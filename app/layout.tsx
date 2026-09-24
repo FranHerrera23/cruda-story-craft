@@ -68,15 +68,22 @@ document.documentElement.className += ' js';
    no cambie cuando Fran las agregue. */
 const ORG_SAMEAS: readonly string[] = []
 
+/* F37 · el Organization site-wide comparte @id con el @graph de
+   /about; para que los validadores puedan mergearlos por @id sin
+   conflictos, `logo` y `founder` acá coinciden con la versión rica
+   que /about publica (logo cream 2x + founder = Fran Herrera con
+   @id #fran-herrera). Antes founder apuntaba a `/about#person`,
+   un @id que no existe en ningún nodo, y era una referencia rota
+   que Rich Results Test reporta. */
 const ORG_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   '@id': 'https://www.thecruda.com/#organization',
   name: 'CRUDA',
   url: 'https://www.thecruda.com',
-  logo: 'https://www.thecruda.com/logo.png',
+  logo: 'https://www.thecruda.com/cruda-logo-black-2x.png',
   foundingDate: '2024-02',
-  founder: { '@id': 'https://www.thecruda.com/about#person' },
+  founder: { '@id': 'https://www.thecruda.com/about#fran-herrera' },
   sameAs: ORG_SAMEAS,
 } as const
 

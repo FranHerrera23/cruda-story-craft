@@ -82,14 +82,15 @@ export type Essay = {
 }
 
 const AUTHOR = {
-  /* A.1.2b — public name "Fran Herrera" en byline visible y en el
-     author.name del Article JSON-LD que este componente emite.
-     "Francisco" solo vive como alternateName del Person schema en
-     /about (migrado desde /our-founder por Brief 02, 14-sep). */
+  /* F37 §1 · public name "Fran Herrera" en byline visible y en el
+     author.name del Article JSON-LD. author usa @id `about#fran-herrera`
+     (canonical Person node), no un Person inline. "Francisco" solo
+     vive como alternateName del Person schema en /about. */
   name: 'Fran Herrera',
   role: 'Founder, CRUDA',
   photo: '/fran-herrera.png',
-  url: 'https://www.thecruda.com/about',
+  url: 'https://www.thecruda.com/about#fran-herrera',
+  id: 'https://www.thecruda.com/about#fran-herrera',
 }
 
 function fmt(iso: string, locale: string) {
@@ -120,17 +121,10 @@ function schema(es: Essay) {
       keywords: es.tags && es.tags.length > 0 ? es.tags.join(', ') : undefined,
       image: es.heroImage ? `${base}${es.heroImage}` : undefined,
       author: {
-        '@type': 'Person',
-        name: AUTHOR.name,
-        jobTitle: AUTHOR.role,
-        url: AUTHOR.url,
-        worksFor: { '@type': 'Organization', name: 'CRUDA', url: base },
+        '@id': AUTHOR.id,
       },
       publisher: {
-        '@type': 'Organization',
-        name: 'CRUDA',
-        url: base,
-        logo: { '@type': 'ImageObject', url: `${base}/logo.png` },
+        '@id': 'https://www.thecruda.com/#organization',
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
@@ -139,12 +133,12 @@ function schema(es: Essay) {
     },
     {
       '@type': 'Person',
-      '@id': `${base}/about#person`,
+      '@id': AUTHOR.id,
       name: AUTHOR.name,
       jobTitle: AUTHOR.role,
       url: AUTHOR.url,
       image: `${base}${AUTHOR.photo}`,
-      worksFor: { '@type': 'Organization', name: 'CRUDA', url: base },
+      worksFor: { '@id': 'https://www.thecruda.com/#organization' },
     },
   ]
   if (es.faqs && es.faqs.length > 0) {
@@ -213,13 +207,18 @@ export default function EssayLayout({ es }: { es: Essay }) {
           <div className="e-by">
             <Image
               src={AUTHOR.photo}
-              alt={AUTHOR.name}
+              alt="Fran Herrera, founder of CRUDA"
               width={64}
               height={64}
               className="e-av"
             />
             <div>
-              <span className="e-name">{AUTHOR.name}</span>
+              {/* F37 §3 · byline visible · "Fran Herrera" linkea al
+                  nodo canonical Person (/about#fran-herrera). Texto sin
+                  cambios. */}
+              <span className="e-name">
+                <a href="/about#fran-herrera">{AUTHOR.name}</a>
+              </span>
               <span className="e-role">{AUTHOR.role}</span>
             </div>
             <div className="e-reading mono">

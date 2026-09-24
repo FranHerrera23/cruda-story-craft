@@ -36,10 +36,10 @@ export default function HomeLegacy() {
     >
       <div className="plane__in home-founder__in">
         <div className="home-founder__grid">
-          <div className="home-founder__portrait" aria-hidden="true">
+          <div className="home-founder__portrait">
             <img
               src="/fran-herrera.webp"
-              alt=""
+              alt="Fran Herrera, founder of CRUDA"
               className="home-founder__img"
               loading="lazy"
             />

@@ -6,38 +6,40 @@ import pezetLobby from '@/assets/pezet-08-lobby-interior.jpg'
 import pezetCard from '@/assets/pezet-07-exterior-front.jpg'
 import saadiyatCard from '@/assets/saadiyat-hero-new.jpg'
 
-/* /work/karen-mannheim · F18.0 · 21-sep · autónomo · fuente única. */
+/* /work/karen-mannheim · F26 · 23-sep · Fran §A/§B.
+   Migrada al molde F26: summary + byline, secciones nombradas
+   por preguntas del molde, `builtRows` en vez de `built` plano,
+   `metricGroups` en vez de `metrics` sueltos, `rooms[]`, `sources`.
+   Copy §B textual, sin invenciones. */
 
 export const karenMannheim: Work = {
   slug: 'karen-mannheim',
   order: 1,
   title:
-    'How a Lima lighting studio went from zero Miami presence to winning pitches against international firms',
+    "Karen Mannheim's work was known only in Lima. Now it wins pitches in Miami.",
   metaTitle: 'Karen Mannheim · TRAZZO Lighting · CRUDA',
   dek:
     'How CRUDA built the narrative system that took TRAZZO Lighting from zero Miami presence to winning pitches against international firms.',
   client: {
     name: 'Karen Mannheim',
-    role: 'Founder',
+    role: 'Co-founder',
     company: 'TRAZZO Lighting',
   },
   confidential: false,
   place: {
-    from: 'Lima, Peru',
-    to: 'Miami, Florida',
+    to: 'Lima · Miami · Madrid',
     city: 'Miami',
     country: 'United States',
   },
   period: { start: '2021', end: '2026' },
-  via: 'Bushido 2021–2024 · CRUDA 2024–2026',
+  via: 'CRUDA',
   door: { primary: 'translated', secondary: 'transmission' },
   axis: 'across',
   moment: 'market-entry',
+  sector: 'Lighting',
 
   image: pezetHero.src,
   heroFormat: 'landscape',
-  /* La card usa la torre de PEZET (F17.1-iter). El hero interno del
-     caso también · el mismo asset se sirve como imagen destacada. */
   proof: {
     type: 'metric',
     value: '605,050',
@@ -45,147 +47,210 @@ export const karenMannheim: Work = {
     period: '365 days',
   },
 
-  capsule: [
-    "When Karen Mannheim started working with Fran Herrera in 2021, she had spent 28 years building Lima's most respected architectural lighting firm: more than 2,500 projects, an 80-person team, and work inside RAMSA, Four Seasons and Oppenheim buildings. Outside Peru, almost nobody knew she existed.",
-    'Over the next five years, CRUDA built the narrative system that made her work legible outside Peru. In 2025, TRAZZO grew revenue 46% and closed its largest project, $380K. In 2026, her studio won a Miami pitch against international firms: the client asked no questions and requested the proposal.',
-    "Forbes Perú named her one of the country's 50 most powerful women in 2026. Nobody pitched it: CRUDA does no PR and buys no placements.",
-  ],
+  /* §B.2 · resumen + byline · §H · reemplaza al capsule y la firma
+     suelta de la versión previa. Antes/después de 2021: Oppenheim
+     Architecture, Four Seasons, Wecselman Design, Kobi Karp, el
+     nuevo Osaka y el nuevo Porsche solo aparecen después de 2021. */
+  summary:
+    'Karen Mannheim co-founded TRAZZO Lighting in Lima 33 years ago. By 2021 it had more than 2,500 projects: residential buildings by RAMSA for ACM Grupo, work with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Almost nobody outside Peru knew. Since 2021, CRUDA has built and run the narrative system behind Karen and the company, across Lima, Miami, LinkedIn and Instagram. In those years TRAZZO added Four Seasons, Oppenheim Architecture, Wecselman Design and Kobi Karp to its list, grew revenue 46% in 2025 and closed its largest project, $380K. In 2026, Forbes Perú named Karen one of the country’s 50 most powerful women.',
+  byline: 'Fran Herrera, Founder, CRUDA · Updated September 2026',
+
+  /* Legacy · el layout ignora `capsule` cuando `summary` existe.
+     Queda vacío para no romper el shape del type. */
+  capsule: [],
+
+  /* §B.9 · WHAT THIS MEANS FOR YOUR COMPANY */
   takeaways: [
-    'If your work is known at home and invisible abroad, the work is not the problem. Nothing explains it when you are not in the room.',
-    'The right format beats more content. Karen asking experts showed more judgment than any post about her.',
-    'Your deck is part of the narrative. If it lists projects, it loses to the one that tells a story.',
+    "If your work is known only by the people who already hired you, the next buyer has no way in.",
+    "The names on your project list are an argument, but only once someone explains why they matter to your buyer.",
+    "Your deck is part of the narrative. Your team should be able to build the next one in an afternoon.",
   ],
-  metrics: [
-    /* PRUEBA · las 4 cifras clave (W6 · naranja) */
-    {
-      value: '605,050',
-      label: 'LinkedIn impressions',
-      source: 'LinkedIn Analytics',
-      period: '365 days · 66% outside her network',
-    },
-    {
-      value: '96×',
-      label: 'more people than actually follow her',
-      source: 'LinkedIn Analytics',
-      period: 'on 6,299 followers',
-    },
-    {
-      value: '$60,180',
-      label: 'a year · what buying that attention would have cost',
-      source:
-        'LinkedIn $33,278 + Instagram $26,902 · CPMs at the floor of published 2026 benchmarks',
-      period: '365 days',
-    },
-    {
-      value: '+300%',
-      label: 'LinkedIn growth',
-      source: 'LinkedIn Analytics',
-      period: '2021 — 2026',
-    },
-    /* CONTEXTO · las restantes (W6 · ink) */
-    {
-      value: '500K',
-      label: 'Instagram views',
-      source: 'Meta Business Suite',
-      period: '90 days · Jul 2026',
-    },
-    {
-      value: '5 years',
-      label: 'Client since 2021',
-      source: 'Bushido + CRUDA engagement',
-      period: '2021 — 2026',
-    },
-    {
-      value: '33 years',
-      label: 'Of practice, made legible',
-      source: 'TRAZZO Lighting history',
-      period: '28 years before · 5 since',
-    },
-  ],
+
+  /* Legacy `metrics` · se conserva vacía porque el layout F26 usa
+     `metricGroups` cuando existe. */
+  metrics: [],
+
   sections: [
     {
-      h2: 'Where she started.',
+      /* §B.3 · THE CHALLENGE · §H · antes de 2021 · nombra a RAMSA,
+         Llosa Cortegana, Barclay & Crousse, Porsche y Osaka Nikkei. */
+      h2: 'Twenty-eight years of work that only travelled by word of mouth.',
       body: [
-        'In early 2021, TRAZZO had 28 years of work behind it: more than 2,500 projects, Lima\'s most important showrooms, work inside RAMSA, Four Seasons and Oppenheim buildings, and the Porsche flagship in Lima.',
-        'Inside the circle that already knew her, the work moved. Outside it, nobody had a way in. Karen had about a thousand followers on Instagram and no way to reach a developer in Miami who had never seen a room she lit.',
+        "In early 2021, TRAZZO had 28 years behind it: more than 2,500 projects, an 80-person team, Lima's most important showrooms, and a list any architect in Lima would recognise: residential buildings by RAMSA for ACM Grupo, projects with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Inside Lima, that record moved through Karen's network. Outside it, nobody could see it.",
+        "TRAZZO had opened in Miami in 2020. Its buyers there are developers, architects and high-end builders across the United States, Latin America and Spain: a few thousand people, none of whom had walked into a room Karen lit. She had about a thousand followers on Instagram.",
+        "A lighting studio is chosen before anyone walks into its work. When the record can't reach the architect or developer specifying the project, the studio isn't in the conversation.",
       ],
+    },
+    {
+      /* §B.4 · WHAT WE SAW · §H · el primer párrafo pierde Four
+         Seasons y Oppenheim (van a WHAT CHANGED); el segundo
+         párrafo no cambia. */
+      h2: 'The names on the list already persuaded. Nobody had explained them.',
+      body: [
+        "TRAZZO's project list carried weight a Miami developer would recognise at once, if someone told them what it meant. RAMSA designed the most expensive penthouse ever sold in the United States, the Harvard Kennedy School and residential colleges at Yale, and had chosen TRAZZO four times for residential projects in Peru, through ACM Grupo.",
+        "So the content never describes lamps. It takes a project the buyer already respects and shows how its light was decided: the process, the constraints, the judgment. The association opens the door; Karen's criteria is what the reader remembers.",
+      ],
+    },
+    {
+      /* §B.5 · WHAT WE BUILT · imágenes de Pezet + grilla de 4
+         posts de Karen (F26 §B.5 · si algún archivo no existe se
+         omite por §E.6). */
+      h2: "A narrative system Karen's team runs every week.",
+      body: [],
       blocks: [
         { kind: 'image', src: pezetEntrance.src, caption: 'PEZET 1, entrance.', aspect: 'l' },
         { kind: 'image', src: pezetPool.src, caption: 'Pool interior, PEZET.', aspect: 'l' },
         { kind: 'image', src: pezetLobby.src, caption: 'Lobby interior, PEZET.', aspect: 'l' },
+        { kind: 'image', src: '/karen-post-1.png', aspect: 'p' },
+        { kind: 'image', src: '/karen-post-2.png', aspect: 'p' },
+        { kind: 'image', src: '/karen-post-3.png', aspect: 'p' },
+        { kind: 'image', src: '/karen-post-4.png', aspect: 'p' },
       ],
     },
     {
-      h2: 'What we saw.',
+      /* §B.6 · HOW IT RUNS */
+      h2: 'Lima, Miami, LinkedIn and Instagram, run as one system.',
       body: [
-        'Most founder content fails because it asks the founder to talk about herself. Karen is technical, precise and generous, and she is at her best when she is asking, not explaining.',
-        'So instead of writing about her, we built SPOTLIGHT: a format where Karen interviews other experts in her field. It showed her judgment in motion, which no post about her could have done.',
-        'Everything else sits on three pillars: how light behaves in luxury spaces, what it takes to build a Latin American company in Miami, and why lighting cannot be the last decision in a project.',
-      ],
-    },
-    {
-      h2: 'The deck that closes the room.',
-      body: [
-        'In high-end architecture and design, a single deck decides a multi-million dollar project, and most decks in the category list projects instead of telling anything.',
-        'We built the presentation system her team now runs in-house: the structure, the master template and the rules for assembling any pitch. Decks that took weeks now take an afternoon.',
-        'In 2026, TRAZZO won a Miami pitch against international studios. The client asked no questions. They requested the proposal and signed.',
-      ],
-    },
-    {
-      h2: 'Forbes Perú, 2026.',
-      body: [
-        'Forbes Perú named Karen one of the country\'s 50 most powerful women. It was an editorial selection. Nobody pitched it.',
-        'In Florida, the rooms she walks into are already warm: interior design firms, architects and contractors who have been reading her for years.',
+        "LinkedIn carries Karen to developers and architects. Instagram carries the projects. The same story is told in Lima, to a market that already knows TRAZZO, and in Miami, to one that doesn't. Karen and Fran meet once a week; CRUDA runs the rest.",
       ],
     },
   ],
+
+  /* §B.5 · WHAT WE BUILT · filas */
   built: [
-    'Narrative platform · positioning',
-    'Content system · LinkedIn + Instagram',
-    'SPOTLIGHT format · Karen interviews',
-    'Presentation system · in-house decks',
-  ],
-  change: [
-    'The Miami pitch closed without questions.',
-    'The team assembles pitches in an afternoon instead of weeks.',
-    'Revenue grew 46% in 2025.',
-  ],
-  credit: 'CRUDA · Fran Herrera, Founder',
-  faq: [
     {
-      q: 'What did CRUDA actually build for TRAZZO Lighting?',
-      a: 'A narrative system across two surfaces: organic content on LinkedIn and Instagram — strategy, creative direction and execution — and a presentation system the team now runs in-house for pitches, onboarding and partners.',
+      name: 'NARRATIVE PLATFORM',
+      description:
+        'One position for Karen and the company: an entrepreneur who found her language in light. It decides which stories get told and which don’t.',
     },
     {
-      q: 'How long did the results take?',
-      a: 'The work ran from 2021 to 2026. LinkedIn growth compounded over the first two years. The Miami pitch and the Forbes recognition came in 2026.',
+      name: 'PROJECT BREAKDOWNS',
+      description:
+        'How the light was decided in penthouses, villas and buildings, starting with Pezet, by RAMSA, in Lima.',
     },
     {
-      q: 'Does this only work for lighting or architecture firms?',
-      a: 'The method is the same for any founder-expert whose work is stronger than their reach. CRUDA has applied it in lighting, building materials, construction and hospitality.',
+      name: 'FOUNDER STORIES',
+      description:
+        'The decisions behind the company, told by Karen: being chosen to light the new Porsche flagship in Peru, opening Miami in 2020.',
     },
     {
-      q: "Who does the work — CRUDA or the client's team?",
-      a: "CRUDA builds the system. The client's team runs it. With TRAZZO, the presentation system was handed over and the team now produces decks without us.",
+      name: 'SPOTLIGHT · 2026',
+      description:
+        'A video series in which Karen interviews people at the top of neighbouring fields: Peter Seinfeld, five years in Frank Gehry’s studio; Norbert Jacniak, a Marbella-based chef who has cooked for Formula 1 in Saudi Arabia and for a European king; and leading Latin American architects.',
+    },
+    {
+      name: 'PRESENTATION SYSTEM',
+      description:
+        "The structure, master template and rules for any pitch. Karen's team now builds a deck in an afternoon instead of weeks.",
     },
   ],
-  moreFrom: [
-    {
-      slug: '/projects/karen-mannheim/pezet',
-      name: 'PEZET',
-      meta: 'Three towers with RAMSA · Lima',
-      img: pezetCard.src,
-    },
-    {
-      slug: '/projects/karen-mannheim/saadiyat-music-festival',
-      name: 'Saadiyat Music Festival',
-      meta: 'Abu Dhabi',
-      img: saadiyatCard.src,
-    },
+
+  /* §B.7 · WHAT CHANGED · §H · el preámbulo ahora nombra Four
+     Seasons Residences ($14M, Adriana Hoyos), Oppenheim en Golden
+     Beach, Wecselman Design, Kobi Karp, el nuevo Osaka y el nuevo
+     Porsche · todos post-2021. */
+  changeH2: 'Five years, measured.',
+  changePreamble:
+    'Since 2021, the work has reached a different level of project: Four Seasons Residences in Brickell, with a penthouse redesigned by Adriana Hoyos and listed at $14M; a $200M house by Oppenheim Architecture in Golden Beach; projects with Wecselman Design and Kobi Karp; and the new Osaka and the new Porsche flagship. In 2026, TRAZZO won a Miami pitch against international studios; the client asked no questions and requested the proposal. One process video of Pezet reached 80,000 views on Instagram and brought an inbound contact that became a penthouse project worth $20–30K.',
+  metricGroups: {
+    business: [
+      { value: '+46%', label: 'revenue growth', period: '2025 vs 2024', source: 'TRAZZO internal review, 2025', n: 3 },
+      { value: '+27%', label: 'approved quotes', period: '2025', source: 'TRAZZO internal review, 2025', n: 3 },
+      { value: '$380K', label: 'largest close', period: '2025', source: 'TRAZZO internal review, 2025', n: 3 },
+    ],
+    reach: [
+      { value: '605,050', label: 'LinkedIn impressions', period: '365 days · 66% outside her network', source: 'LinkedIn Analytics, August 2026', n: 1 },
+      { value: '165,513', label: 'people reached on LinkedIn', period: '365 days', source: 'LinkedIn Analytics, August 2026', n: 1 },
+      { value: '96×', label: 'more people than follow her', period: 'on 6,299 followers', source: 'LinkedIn Analytics, August 2026', n: 1 },
+      { value: '+300%', label: 'LinkedIn growth', period: '2021 — 2026', source: 'LinkedIn Analytics, August 2026', n: 1 },
+      { value: '560,715', label: 'Instagram views', period: '90 days · 0% paid', source: 'Meta Insights, 2026', n: 2 },
+      { value: '19,000', label: 'Instagram followers', period: 'from about 1,000', source: 'Meta Insights, 2026', n: 2 },
+    ],
+    mediaValue: [
+      { value: '$33,278', label: 'LinkedIn', period: '605,050 impressions × $55 CPM', source: 'CPMs at the floor of published 2026 benchmarks', n: 4 },
+      { value: '$26,914', label: 'Instagram', period: '2,242,860 views × $12 CPM, annualised from 90 days', source: 'CPMs at the floor of published 2026 benchmarks', n: 4 },
+      { value: '$60,192', label: 'a year', period: 'what buying that attention would have cost', source: 'CPMs at the floor of published 2026 benchmarks', n: 4 },
+    ],
+    context: [
+      { value: '33 years', label: 'of practice', period: '', source: '', },
+      { value: '5 years', label: 'with CRUDA · 2021 — 2026', period: '', source: '' },
+      { value: '2,500+', label: 'projects', period: '', source: '' },
+      { value: '80', label: 'people on the team', period: '', source: '' },
+    ],
+  },
+  sources: [
+    'LinkedIn Analytics, August 2026',
+    'Meta Insights, 2026',
+    'TRAZZO internal review, 2025',
+    'CPMs at the floor of published 2026 benchmarks',
   ],
-  next: 'mike-kaeding',
+
   testimonial: {
     quote: 'We finally sound like who we actually are.',
-    cite: 'Karen Mannheim, Founder, TRAZZO Lighting',
+    cite: 'Karen Mannheim, Co-founder, TRAZZO Lighting',
   },
+
+  /* §B.8 · ROOMS IT OPENED */
+  rooms: [
+    {
+      year: '2026',
+      name: 'FORBES PERÚ',
+      description:
+        'Named one of the 50 most powerful women in Peru, June–July 2026 issue. An editorial selection; nobody pitched it. CRUDA does no PR and buys no placements. Also featured in Architectural Digest.',
+      image: '/forbes-peru-2026-cover.jpg',
+      links: [
+        {
+          label: 'Read the profile on Forbes Perú',
+          href: 'https://forbes.pe/mujeres-poderosas/2026-06-19/las-50-mujeres-mas-poderosas-de-peru-en-2026-karen-mannheim/',
+        },
+        {
+          label: 'See the full list',
+          href: 'https://forbes.pe/mujeres-poderosas/2026-06-22/listado-forbes-estos-son-las-50-mujeres-mas-poderosas-de-peru-en-2026/',
+        },
+      ],
+    },
+    {
+      year: '2025',
+      name: 'MORPH',
+      description:
+        "A direct meeting with César Frías Enciso, CEO of MORPH, a studio ranked among the world's 100 best, arranged through CRUDA's network.",
+    },
+    {
+      year: '2021',
+      name: 'SAADIYAT NIGHTS, ABU DHABI',
+      description:
+        "Lighting for the venue of Abu Dhabi's leading music festival, with first-tier international headliners. The project came through CRUDA's network.",
+    },
+    {
+      name: 'PITCHES',
+      description:
+        "Presentations for a Brazilian football star's residence, a seven-storey villa in Marbella and a Grammy-winning artist's home.",
+    },
+  ],
+
+  change: [],
+  credit: '',
+
+  /* §B.10 · FAQ nuevas */
+  faq: [
+    {
+      q: 'What did CRUDA build for TRAZZO Lighting?',
+      a: 'A narrative platform for Karen and the company, a content system across LinkedIn and Instagram, the SPOTLIGHT video series and the presentation system her team uses for every pitch.',
+    },
+    {
+      q: 'How long did it take to see results?',
+      a: "Karen started working with Fran Herrera in 2021. In 2025, TRAZZO's revenue grew 46% and it closed its largest project, $380K.",
+    },
+    {
+      q: 'Did CRUDA arrange the Forbes Perú listing?',
+      a: "No. Forbes Perú's list is an editorial selection. CRUDA does no PR and buys no placements.",
+    },
+    {
+      q: 'What does this kind of engagement cost?',
+      a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,200 a month.',
+    },
+  ],
+
+  moreFrom: [],
+  next: 'mike-kaeding',
 }

@@ -1,27 +1,30 @@
-/* WorkLayout · F18.1 · 21-sep · autónomo.
-   Complementa case-study-layout-v2.css con anatomía W6 del wireframe. */
-
-/* F25 §4 · hero en retrato · el layout monta la imagen en cols 1–5
-   (4:5) y la meta al lado, cols 7–12. Antes el `.cs-hero--portrait`
-   quedaba sin CSS y caía al default 16:8, así que la meta bajaba
-   a la sección intro y las páginas de personas (Mike, José, JP,
-   Girish) tenían el mismo hero horizontal que Karen. En 900px
-   apila: retrato + meta en columnas independientes de ancho total,
-   igual que las plantillas de referencia. */
+/* F27 §4.3 · portrait hero SPLIT · h1 y meta cols 1–6 (h1 arriba,
+   meta bottom-aligned), imagen 4:5 cols 7–12. Reemplaza al layout
+   F25 §4 (imagen cols 1–5 + meta cols 7–12). En 900px apila:
+   h1 arriba, imagen, meta abajo. */
+.cs-top--split { padding-bottom: 0; }
 .cs-hero-portrait {
   display: grid;
-  grid-template-columns: 5fr 1fr 6fr;
-  gap: 0;
-  align-items: start;
-  padding-top: clamp(20px, 3vh, 40px);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+  align-items: stretch;
+  padding-top: clamp(12px, 2vh, 24px);
 }
-.cs-hero-portrait .cs-hero {
-  grid-column: 1;
+.cs-hero-portrait__left {
+  grid-column: 1 / span 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(28px, 4vh, 48px);
+}
+.cs-hero-portrait__left .cs-h1 { margin-top: 0; }
+.cs-hero-portrait__right {
+  grid-column: 7 / span 6;
   aspect-ratio: 4 / 5;
-}
-.cs-hero-portrait .wl-hero-meta {
-  grid-column: 3;
-  padding-top: clamp(4px, 1vh, 12px);
+  /* Override el max-width:42% de case-study.css que fue pensado para
+     el layout viejo donde el portrait vivía dentro de una col ancha
+     de la intro. Ahora ocupa las 6 cols del split. */
+  max-width: none;
 }
 .cs-hero-portrait .wl-hero-meta.cs-meta {
   border-top: 1px solid var(--paper-line, #D9D5CD);
@@ -31,12 +34,239 @@
     grid-template-columns: 1fr;
     gap: clamp(24px, 4vh, 40px);
   }
-  .cs-hero-portrait .cs-hero,
-  .cs-hero-portrait .wl-hero-meta {
+  .cs-hero-portrait__left,
+  .cs-hero-portrait__right {
     grid-column: 1;
   }
-  .cs-hero-portrait .cs-hero { aspect-ratio: 4 / 5; }
+  .cs-hero-portrait__right { aspect-ratio: 4 / 5; }
 }
+
+/* F26 §A · molde nuevo. Todo lo prefijado con `wl-` que no estaba
+   antes vive aquí. */
+
+/* Summary + byline · reemplazan al cs-capsule cuando el caso
+   trae `summary`. Mismo tipo del párrafo, byline chico y grey. */
+.wl-summary-text p {
+  font-size: clamp(17px, 1.55vw, 22px);
+  line-height: 1.5;
+  letter-spacing: -.012em;
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+.wl-byline {
+  margin-top: clamp(16px, 2.4vh, 28px);
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  line-height: 1.4;
+}
+
+/* WHAT WE BUILT · filas (F26 §A.5). Cada fila:
+   NOMBRE (15px 500 · caps) + descripción 18px · 62ch. */
+.wl-built-rows {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.wl-built-rows li {
+  padding: clamp(18px, 2.6vh, 28px) 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+.wl-built-rows__n {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--ink, #0D0D0D);
+  text-transform: uppercase;
+}
+.wl-built-rows__d {
+  margin-top: 8px;
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.55;
+  color: var(--ink, #0D0D0D);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+
+/* WHAT CHANGED · grupos (F26 §A.7 · §E.2/§E.5). Regla ink 2px arriba.
+   El h2 y el preámbulo viven en la grilla de texto (h2 cols 1–5,
+   preámbulo cols 7–12); los grupos ocupan cols 1–12 con 4 cifras
+   por fila. */
+.wl-change {
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(48px, 8vh, 96px);
+  border-top: 2px solid var(--ink, #0D0D0D);
+  margin-top: clamp(48px, 8vh, 96px);
+}
+.wl-change__preamble {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink, #0D0D0D);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+.wl-change__groups {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vh, 44px);
+  margin-top: clamp(30px, 4vh, 48px);
+}
+.wl-change__group {
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+  padding-top: clamp(18px, 2.6vh, 28px);
+}
+.wl-change__gl {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  margin-bottom: clamp(14px, 2vh, 22px);
+}
+.wl-change__row {
+  display: grid;
+  gap: clamp(20px, 3vw, 40px);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.wl-metric__meta {
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  margin-top: 6px;
+  line-height: 1.4;
+  max-width: 22ch;
+}
+.wl-change__sources {
+  grid-column: 1 / span 8;
+  list-style: none;
+  margin-top: clamp(30px, 4vh, 48px);
+  padding-top: clamp(16px, 2vh, 24px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  line-height: 1.55;
+}
+.wl-change__sources li { padding: 2px 0; }
+.wl-change__sources sup {
+  font-size: 11px;
+  margin-right: 2px;
+  color: var(--ink, #0D0D0D);
+}
+.wl-change__quote {
+  grid-column: 1 / span 8;
+  margin-top: clamp(32px, 4vh, 48px);
+  padding-left: clamp(16px, 2vw, 24px);
+  border-left: 2px solid var(--orange, #FF5A00);
+}
+.wl-change__quote q {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(22px, 2.4vw, 32px);
+  line-height: 1.25;
+  quotes: none;
+}
+.wl-change__quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  margin-top: 12px;
+}
+
+@media (max-width: 900px) {
+  .wl-change__row { grid-template-columns: 1fr; }
+  .wl-change__sources, .wl-change__quote { grid-column: 1 / -1; }
+}
+
+/* ROOMS IT OPENED (F26 §A.8). Filas: año + nombre + descripción
+   + imagen opcional 4:5. */
+.wl-rooms {
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(48px, 8vh, 96px);
+}
+.wl-rooms__list {
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.wl-rooms__row {
+  padding: clamp(22px, 3.4vh, 36px) 0;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+.wl-rooms__meta {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.wl-rooms__y {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--orange, #FF5A00);
+  font-variant-numeric: tabular-nums;
+}
+.wl-rooms__n {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink, #0D0D0D);
+}
+.wl-rooms__d {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink, #0D0D0D);
+  max-width: 62ch;
+  text-wrap: pretty;
+}
+.wl-rooms__img {
+  margin-top: clamp(16px, 2.4vh, 24px);
+  max-width: 380px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.wl-rooms__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* F26 §G · links opcionales de la fila ROOMS. Mismo estilo que
+   "Book the call →" (ver .go en planes.css). */
+.wl-rooms__links {
+  margin-top: clamp(14px, 2vh, 20px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.wl-rooms__link {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  color: var(--ink, #0D0D0D);
+  text-decoration: none;
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  align-self: flex-start;
+}
+.wl-rooms__link:hover {
+  color: var(--orange, #FF5A00);
+  border-bottom-color: var(--orange, #FF5A00);
+}
+
+/* WHAT THIS MEANS FOR YOUR COMPANY (F26 §A.9 · §E.4).
+   Rótulo + h2 en cols 1–5, filas numeradas cols 7–12. */
+.wl-forcompany {
+  padding-top: clamp(48px, 8vh, 96px);
+  padding-bottom: clamp(48px, 8vh, 96px);
+}
+.wl-forcompany .cs-take {
+  margin-top: 0;
+}
+
+/* h1 / h2 wrapping global · F26 §A.3. */
+.cs h1, .cs h2, .cs h3 { text-wrap: balance; }
+.cs p, .cs li { text-wrap: pretty; }
+
+/* (F25 §4 · reemplazado por F27 §4.3 · el split del retrato vive
+   arriba en este mismo archivo, líneas 6–38.) */
 
 /* Meta con Door + Axis + Moment · una fila más amplia */
 .wl-meta__doors { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -299,4 +529,255 @@
   text-transform: uppercase;
   color: var(--grey, #6E6B65);
   margin-bottom: 12px;
+}
+
+/* ============================================================
+   F33 · Pentagram-style · nuevo molde de caso.
+   Reemplaza el layout de hero/secciones anteriores en `.cs--pen`.
+   Todo lo previo sigue aplicando a `.cs` sin el modifier, pero en
+   este release Karen y el resto de F33 usan `.cs--pen`.
+   ============================================================ */
+
+/* F33 · Grid base 12 cols · Karen full-width. */
+.cs.cs--pen { display: block; }
+.cs--pen .cs-wrap {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-left: clamp(20px, 4.5vw, 72px);
+  padding-right: clamp(20px, 4.5vw, 72px);
+}
+
+/* F33 · Top · back + h1 + descriptor + tags. */
+.cs--pen .pen-top {
+  padding-top: clamp(96px, 14vh, 160px);
+  padding-bottom: clamp(28px, 4vh, 48px);
+}
+.cs--pen .pen-h1 {
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1;
+  margin: clamp(20px, 3vh, 32px) 0 0;
+  text-wrap: balance;
+}
+.cs--pen .pen-descriptor {
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.3;
+  color: var(--ink, #0D0D0D);
+  max-width: 60ch;
+  margin-top: clamp(16px, 2.4vh, 24px);
+  text-wrap: balance;
+}
+.cs--pen .pen-tags {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  margin-top: clamp(20px, 3vh, 32px);
+}
+
+/* F33 · Hero 16:9 · siempre landscape. */
+.cs--pen .pen-hero {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #DEDAD2;
+  margin-top: clamp(16px, 2.4vh, 32px);
+}
+.cs--pen .pen-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* F33 · Eyebrow reusable. */
+.cs--pen .pen-eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  margin: 0 0 clamp(16px, 2vh, 24px);
+}
+
+/* F33 · About the project · resumen 24px cols 1–8. */
+.cs--pen .pen-about {
+  padding-top: clamp(64px, 10vh, 112px);
+  padding-bottom: clamp(28px, 4vh, 48px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 40px);
+}
+.cs--pen .pen-about > .pen-eyebrow { grid-column: 1 / -1; }
+.cs--pen .pen-about__body { grid-column: 1 / span 8; }
+.cs--pen .pen-summary {
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--ink, #0D0D0D);
+  max-width: 60ch;
+  text-wrap: pretty;
+}
+.cs--pen .pen-byline {
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  margin-top: clamp(20px, 3vh, 32px);
+  line-height: 1.4;
+}
+
+/* F33 · Secciones de texto · h2 22px, single-col cols 3–10. */
+.cs--pen .pen-sec {
+  padding-top: clamp(48px, 7vh, 96px);
+  padding-bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(16px, 2vh, 24px) clamp(20px, 3vw, 40px);
+}
+.cs--pen .pen-sec .pen-h2 {
+  grid-column: 3 / span 8;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1.3;
+  color: var(--ink, #0D0D0D);
+  margin: 0;
+  text-wrap: balance;
+  max-width: 44ch;
+}
+.cs--pen .pen-sec .pen-body {
+  grid-column: 3 / span 8;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink, #0D0D0D);
+  max-width: 64ch;
+  text-wrap: pretty;
+}
+.cs--pen .pen-sec .pen-body p + p { margin-top: 1em; }
+
+/* F33 · Imágenes debajo de secciones · una a ancho 1–12, par
+   3:2, trío 3 cols con gap chico. */
+.cs--pen .pen-ev {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 12px;
+  margin-top: clamp(28px, 4vh, 48px);
+}
+.cs--pen .pen-ev.cs-ev--2 { grid-template-columns: repeat(2, 1fr); }
+.cs--pen .pen-ev.cs-ev--3 { grid-template-columns: repeat(3, 1fr); }
+.cs--pen .pen-ev .cs-ev__m--l { aspect-ratio: 3 / 2; }
+
+/* F33 · WHAT WE BUILT rows · en el body de la sección se ven bien
+   con el mismo estilo (ver .wl-built-rows arriba). */
+
+/* F33 · Rooms · single-col cols 3–10. Reusa wl-rooms styles pero
+   pen-sec establece el grid. */
+.cs--pen .wl-rooms.pen-sec { padding-top: clamp(48px, 7vh, 96px); }
+.cs--pen .wl-rooms .wl-rooms__list { border-top: 1px solid var(--paper-line, #D9D5CD); }
+
+/* F33 · What this means · single-col cols 3–10. */
+.cs--pen .wl-forcompany.pen-sec { padding-bottom: clamp(48px, 7vh, 96px); }
+
+/* F33 · CREDITS · rótulo + dl 2 cols · dt cols 3–4, dd cols 5–10. */
+.cs--pen .pen-credits {
+  padding-top: clamp(56px, 9vh, 110px);
+  padding-bottom: clamp(48px, 7vh, 96px);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(16px, 2vh, 24px) clamp(20px, 3vw, 40px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+}
+.cs--pen .pen-credits > .pen-eyebrow { grid-column: 3 / span 8; margin: 0; }
+.cs--pen .pen-credits__dl {
+  grid-column: 3 / span 8;
+  display: grid;
+  grid-template-columns: minmax(160px, 2fr) minmax(0, 5fr);
+  row-gap: clamp(14px, 2vh, 22px);
+  column-gap: clamp(20px, 3vw, 40px);
+  margin: clamp(16px, 2vh, 24px) 0 0;
+}
+.cs--pen .pen-credits__dl > div { display: contents; }
+.cs--pen .pen-credits__dl dt {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  padding-top: 4px;
+}
+.cs--pen .pen-credits__dl dd {
+  font-size: 15px;
+  color: var(--ink, #0D0D0D);
+  line-height: 1.4;
+  margin: 0;
+}
+.cs--pen .pen-credits__dl dd a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+}
+
+/* F33 · Next case · sin imagen · rótulo + nombre + descriptor +
+   tags. Se dibuja en cols 3–10. */
+.cs--pen .pen-next {
+  padding-top: clamp(48px, 7vh, 96px);
+  padding-bottom: clamp(64px, 10vh, 128px);
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(16px, 2vh, 24px) clamp(20px, 3vw, 40px);
+}
+.cs--pen .pen-next > .pen-eyebrow { grid-column: 3 / span 8; margin: 0; }
+.cs--pen .pen-next__link {
+  grid-column: 3 / span 8;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  margin-top: clamp(16px, 2vh, 24px);
+}
+.cs--pen .pen-next__n {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -.02em;
+  line-height: 1;
+  margin: 0;
+  text-wrap: balance;
+}
+.cs--pen .pen-next__desc {
+  font-size: 18px;
+  color: var(--grey, #6E6B65);
+  line-height: 1.4;
+  margin-top: clamp(12px, 2vh, 20px);
+  max-width: 60ch;
+}
+.cs--pen .pen-next .pen-tags { margin-top: clamp(16px, 2vh, 24px); }
+.cs--pen .pen-next__link:hover .pen-next__n {
+  color: var(--orange, #FF5A00);
+}
+
+/* F33 · Rooms · quiero verlos también en pen-sec grid. */
+.cs--pen .wl-rooms.pen-sec .pen-h2 { grid-column: 3 / span 8; }
+.cs--pen .wl-rooms.pen-sec .pen-body { grid-column: 3 / span 8; }
+
+/* F33 · mobile · todo apilado a full-width. */
+@media (max-width: 900px) {
+  .cs--pen .pen-h1 { font-size: clamp(32px, 8vw, 44px); }
+  .cs--pen .pen-descriptor { font-size: 20px; }
+  .cs--pen .pen-about { grid-template-columns: 1fr; }
+  .cs--pen .pen-about__body { grid-column: 1; }
+  .cs--pen .pen-sec { grid-template-columns: 1fr; }
+  .cs--pen .pen-sec .pen-h2,
+  .cs--pen .pen-sec .pen-body,
+  .cs--pen .wl-rooms.pen-sec .pen-h2,
+  .cs--pen .wl-rooms.pen-sec .pen-body { grid-column: 1; }
+  .cs--pen .pen-credits { grid-template-columns: 1fr; }
+  .cs--pen .pen-credits > .pen-eyebrow,
+  .cs--pen .pen-credits__dl { grid-column: 1; }
+  .cs--pen .pen-credits__dl { grid-template-columns: 1fr; row-gap: 4px; }
+  .cs--pen .pen-credits__dl > div { display: block; padding-bottom: 12px; }
+  .cs--pen .pen-credits__dl dd { margin-top: 4px; }
+  .cs--pen .pen-next { grid-template-columns: 1fr; }
+  .cs--pen .pen-next > .pen-eyebrow,
+  .cs--pen .pen-next__link { grid-column: 1; }
+  .cs--pen .pen-ev.cs-ev--3 { grid-template-columns: 1fr; }
+  .cs--pen .pen-ev.cs-ev--2 { grid-template-columns: 1fr; }
 }

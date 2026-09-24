@@ -304,10 +304,23 @@ a, button {
    prefers-reduced-motion: máscara desactivada; el click sigue
    haciendo router.push directo, sin panel. */
 .route-mask {
+  /* F26 §E.1 · display:none por default. Antes vivía con
+     position:fixed permanente y su panel con transform:translateY(100%).
+     El translate lo saca del viewport en uso normal, pero en full-page
+     captures de Playwright el fixed se repite en cada slice y el
+     panel aparece como bloque negro sobre el contenido. Cambiar a
+     display:none cuando idle (o cuando no está siendo usada) evita
+     el artefacto sin cambiar la mecánica: cuando arranque una
+     transición, JS pasa data-state="covering" y volvemos a mostrar. */
+  display: none;
   position: fixed;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
+}
+.route-mask[data-state="covering"],
+.route-mask[data-state="revealing"] {
+  display: block;
 }
 .route-mask__panel {
   position: absolute;

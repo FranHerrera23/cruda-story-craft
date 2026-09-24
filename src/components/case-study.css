@@ -437,8 +437,11 @@
   border-top: 1px solid var(--rule);
   padding-block: var(--space-5);
 }
+/* F38 · el footer se ajusta a su contenido.
+   Antes tenía min-height: 640px pensado para el momento en que el
+   capture form estuviera prendido (F0 lo apaga). Con CAPTURE_ENABLED
+   off, quedaba un hueco de ~300px debajo del copyright. */
 .site-footer__grid {
-  min-height: 640px;
   grid-auto-rows: min-content;
   row-gap: var(--space-4);
 }
@@ -498,7 +501,6 @@
    sola y desbordan del contenedor. Fix: stackear hasta 900px,
    alineado con el mismo umbral del nav mobile. */
 @media (max-width: 900px) {
-  .site-footer__grid { min-height: auto; }
   .site-footer__wordmark { grid-column: 1 / -1; }
   .site-footer__capture-slot { grid-column: 1 / -1; }
   /* F23.1 v2 · 390 · stack vertical (§2.5).

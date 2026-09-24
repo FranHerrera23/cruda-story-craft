@@ -139,14 +139,24 @@ export default function Nav() {
                 al scrollear a una sección oscura es instantáneo (sin
                 fetch, sin transición). alt="CRUDA" en la visible
                 por default; la otra queda decorativa. */}
+            {/* F25 §1 · srcset 1x/2x. Los PNGs 708×284 originales
+                bajaban a 40×~100px con antialiasing que destruía los
+                trazos finos ("garabato"). Los variants pre-escalados
+                a la altura exacta del nav se leen crisp en 1x y 2x. */}
             <img
               className="cruda-global-nav-brand__logo cruda-global-nav-brand__logo--ink"
-              src="/cruda-logo-black.png"
+              src="/cruda-logo-black-1x.png"
+              srcSet="/cruda-logo-black-1x.png 1x, /cruda-logo-black-2x.png 2x"
+              width={100}
+              height={40}
               alt="CRUDA"
             />
             <img
               className="cruda-global-nav-brand__logo cruda-global-nav-brand__logo--cream"
-              src="/cruda-logo-cream.png"
+              src="/cruda-logo-cream-1x.png"
+              srcSet="/cruda-logo-cream-1x.png 1x, /cruda-logo-cream-2x.png 2x"
+              width={100}
+              height={40}
               alt=""
               aria-hidden="true"
             />

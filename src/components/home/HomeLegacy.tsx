@@ -4,7 +4,7 @@ import './home-legacy.css'
 
    AnchorAdvance retirado. Rename .home-legacy__ → .home-founder__
    (D2 firmado). Estructura: retrato a sangre a la izquierda + body
-   con eyebrow · headline · rule · celdas EXPERIENCE / LEGACY · crédito.
+   con eyebrow · headline · rule · celdas EXPERIENCE / BEFORE CRUDA · crédito.
 
    El retrato existe en /public/fran-herrera.webp — se conserva.
    Regla §2: si el asset no existe, el bloque va sin imagen. Acá
@@ -12,12 +12,13 @@ import './home-legacy.css'
    del retrato usa align-self:stretch + object-fit:cover para que
    el <img> no estire la fila. */
 
-/* F41 · TRACK RECORD (antes LEGACY) · sale el organismo
+/* F41 · BEFORE CRUDA (antes LEGACY) · sale el organismo
    internacional que estaba al final (F37 §6 · no linkear a cuentas
-   no confirmadas · la campaña puntual del track record no refleja
-   la relación agencial actual). Quedan las cinco cuentas con
-   relación agencial verificada. */
-const TRACK_RECORD_HOLDINGS = [
+   no confirmadas · la campaña puntual no refleja la relación
+   agencial actual). Quedan las cinco cuentas con relación agencial
+   verificada. Rótulo actualizado a "Before CRUDA" (F41 rev),
+   consistente con /about. */
+const BEFORE_CRUDA_HOLDINGS = [
   'Mondelez',
   'AB InBev',
   'Delivery Hero',
@@ -65,9 +66,9 @@ export default function HomeLegacy() {
                 <p className="cell__v">{EXPERIENCE_COPY}</p>
               </div>
               <div className="cell mark">
-                <p className="cell__l">Track record</p>
+                <p className="cell__l">Before CRUDA</p>
                 <p className="cell__v">
-                  {TRACK_RECORD_HOLDINGS.join(' · ')}
+                  {BEFORE_CRUDA_HOLDINGS.join(' · ')}
                 </p>
               </div>
             </div>

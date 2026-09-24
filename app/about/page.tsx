@@ -348,13 +348,14 @@ export default function AboutPage() {
                   each project.
                 </p>
               </div>
-              {/* F40 §4 · track record: sale la mención al organismo
-                  internacional (una campaña puntual, no una relación
-                  agencial actual) tanto del valor como del pie. El
-                  pie pasa a describir la mezcla real de clientes:
-                  Fortune 500s, SMEs y B2B en tres continentes. */}
+              {/* F40 §4 · rótulo pasa a "Before CRUDA" (antes "Track
+                  record"). Sale la mención al organismo internacional
+                  del valor (era una campaña puntual, no una relación
+                  agencial actual). El pie pasa a describir la mezcla
+                  real de clientes: Fortune 500s, SMEs y B2B en tres
+                  continentes. */}
               <div className="about-cell" data-reveal>
-                <p className="about-cell__l">Track record</p>
+                <p className="about-cell__l">Before CRUDA</p>
                 <p className="about-cell__v">
                   Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok
                 </p>

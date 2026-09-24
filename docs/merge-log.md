@@ -18,8 +18,19 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 9 | `f27-jose` | `82231e48482043b945a78c17702997ebadb642ae` | ✅ |
 | 10 | `f27-girish` | `458d551577b381a21eeee8eb350ebf6e8c1fc658` | ✅ |
 | 11 | `f29-jack` | `9bc735b2a8e3857652d27ec38d9ca2e53d3bf054` | ✅ |
+| 12 | `f38-live-fixes` | `46a5b62` | ✅ |
+| 13 | `f32-confidential` | `f7a9184` | ✅ |
+| 14 | `f36-thinking` | `ef977db` | ✅ |
 
-`origin/main` HEAD final: `9bc735b`.
+`origin/main` HEAD final: `ef977db`.
+
+**Segunda tanda (misma sesión, después de captures + fixes):**
+
+- `f38-live-fixes` trae F34 (crédito Fran + fechas), F35 (etiquetas de servicio en las 9 cards, BAUHOME incluido), F37 parcial (byline essays) + dos globales del footer: X link fuera, min-height 640px removida (dejaba ~300px vacíos abajo del copyright con CAPTURE_ENABLED off).
+- `f32-confidential` migra `/work/confidential-fashion-founder` al molde F33 con copy F32 §1 verbatim + tres correcciones: START HERE reescrita según F32 §1, CREDITS Client con separador ` · ` cuando `w.confidential`, WHAT CHANGED h2 unificado a 22px cols 3–10 (arregla los 7 casos F33 de una vez).
+- `f36-thinking` reemplaza F31 §4.2: `/thinking` pasa a formato biblioteca, una sola lista, sin sección CASE STUDIES, sin opción "Case studies" en el filtro, LANGUAGE antes que TYPE. El link "Case studies live in Work →" queda al final. F31 §4.1 (h1 token, regla naranja) sigue vigente.
+
+Merges limpios sin conflictos entre las tres.
 
 ---
 
@@ -63,7 +74,9 @@ Origen del conflicto: `f29-jack` fue rebasado a lo largo de la sesión sobre f27
 
 - **`f26-case-karen`** · `b98e9d7` · **NO mergeada por separado**. Su contenido está totalmente incluido en el merge de `f33-case-mold` (que se creó encima de f26 y le agregó el overhaul Pentagram). Mergear f26 después de f33 sería redundante y podría revertir cambios de F33.
 
-- **F30 (INOUT)** y **F32 (Confidential + /about)** · no construidas todavía. Van en una próxima sesión, directo sobre el molde F33 que ya está en main.
+- **F30 (INOUT)** · no construida todavía.
+- **f32-about** y **f37-entity** · en origen, esperando OK final. `f32-about` reescribe `/about` con KEY FACTS + FAQ 8Q; `f37-entity` añade el JSON-LD @graph enlazado (Person + Organization) y wireado de bylines a `/about#fran-herrera`. Van al mergearse después de la validación Rich Results Test + validator.schema.org.
+- **F32 §1 (Confidential)** ya está en main via `f7a9184`.
 
 ---
 
@@ -104,6 +117,15 @@ git revert -m 1 458d551
 
 # Rollback f29-jack
 git revert -m 1 9bc735b
+
+# Rollback f38-live-fixes (segunda tanda)
+git revert -m 1 46a5b62
+
+# Rollback f32-confidential
+git revert -m 1 f7a9184
+
+# Rollback f36-thinking
+git revert -m 1 ef977db
 ```
 
 Después de cualquier revert:

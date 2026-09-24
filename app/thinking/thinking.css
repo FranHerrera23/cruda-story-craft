@@ -15,10 +15,14 @@
 
 /* 01 · Opener · split asimétrico */
 .thinking-open {
+  /* F31 §4.2 · una sola columna: rótulo, h1, regla, lede.
+     Antes usaba split 48/52 con h1 a la izquierda y lede a la
+     derecha. Ahora todo alineado a la izquierda. */
   padding: clamp(110px, 16vh, 170px) var(--gap, clamp(20px, 4.5vw, 72px)) clamp(40px, 6vh, 72px);
-  display: grid;
-  grid-template-columns: 48% 52%;
-  align-items: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(20px, 3vh, 40px);
 }
 .thinking-open__h {
   /* F23-2 · h1 al mismo token que /services (.name). */
@@ -28,15 +32,16 @@
   line-height: .95;
   margin: 0;
 }
-.thinking-open__b { padding-left: clamp(0px, 1vw, 16px); }
+.thinking-open__b { padding-left: 0; }
 .thinking-open__lede {
   font-size: clamp(16px, 1.6vw, 22px);
   line-height: 1.42;
   letter-spacing: -.015em;
-  max-width: 40ch;
+  max-width: 60ch;
+  margin: 0;
 }
 @media (max-width: 900px) {
-  .thinking-open { grid-template-columns: 1fr; gap: 24px; align-items: start; }
+  .thinking-open { gap: 20px; }
 }
 
 /* 02 · Filtros · sticky bajo la nav (56px) */
@@ -136,9 +141,9 @@
   background: var(--orange, #FF5A00);
   margin-top: 20px;
 }
-/* F23-2 · única regla naranja de la página, bajo el hero (h1 + lede). */
+/* F23-2 · única regla naranja de la página, bajo el hero (h1 + lede).
+   F31 §4 · confirmado · thinking-rule sin --hero no se usa. */
 .thinking-rule--hero {
-  grid-column: 1 / -1;
   margin-top: clamp(28px, 4vh, 48px);
 }
 

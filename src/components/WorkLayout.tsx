@@ -163,6 +163,14 @@ function EvidenceBlock({ block }: { block: WorkBlock }) {
       </blockquote>
     )
   }
+  if (block.kind === 'pen-quote') {
+    return (
+      <blockquote className="wl-pen-quote">
+        <q>{block.quote}</q>
+        <cite>{block.cite}</cite>
+      </blockquote>
+    )
+  }
   if (block.kind === 'published') {
     return (
       <div className="wl-published">
@@ -410,7 +418,9 @@ export default function WorkLayout({ w }: { w: Work }) {
         )
       })}
 
-      {/* F26 §A.7 · WHAT CHANGED · a ancho completo (F26 §E.5). */}
+      {/* F26 §A.7 · WHAT CHANGED · a ancho completo (F26 §E.5).
+          F42 · contextBeforeLabel se pasa para etiquetar el grupo
+          contextBefore (Jack: "Before Mistiva"). */}
       {w.metricGroups && (
         <ChangeBlock
           h2={w.changeH2 ?? 'Five years, measured.'}
@@ -418,6 +428,7 @@ export default function WorkLayout({ w }: { w: Work }) {
           groups={w.metricGroups}
           sources={w.sources ?? []}
           testimonial={w.testimonial}
+          contextBeforeLabel={w.contextBeforeLabel}
         />
       )}
 
@@ -671,18 +682,24 @@ function ChangeBlock({
   groups,
   sources,
   testimonial,
+  contextBeforeLabel,
 }: {
   h2: string
   preamble?: string
   groups: WorkMetricGroups
   sources: string[]
   testimonial?: { quote: string; cite: string }
+  contextBeforeLabel?: string
 }) {
+  /* F42 · contextBefore va antes de business/reach/mediaValue/
+     context. Rótulo por caso (jack: "Before Mistiva"); fallback
+     genérico "Before". kind='context' → cifras en --ink. */
   const GROUPS: Array<{
     key: keyof WorkMetricGroups
     label: string
     kind: 'proof' | 'context'
   }> = [
+    { key: 'contextBefore', label: contextBeforeLabel ?? 'Before', kind: 'context' },
     { key: 'business', label: 'The business', kind: 'proof' },
     { key: 'reach', label: 'Reach', kind: 'proof' },
     { key: 'mediaValue', label: 'Media value', kind: 'proof' },

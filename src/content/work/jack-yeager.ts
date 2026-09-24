@@ -41,11 +41,33 @@ export const jackYeager: Work = {
 
   sections: [
     {
+      /* §1 · THE CHALLENGE */
       h2: 'Every feature Mistiva sold could be copied.',
       body: [
         'Mistiva makes ring chandeliers and rechargeable sconces, designed in Miami and sold studio-direct. The ring shape, "rechargeable", "dimmable": a competitor can copy all of it. The luxury catalogues win on range, the copycats on price, and the aggregators outrank everyone in search.',
         "The company also carried a rebrand. It had been House of Interiors, and search engines still split its authority between two names. No editor had written about it yet, so AI assistants cited aggregators instead. Paid social was buying reach, and nothing was turning that reach into demand.",
         "The one story no competitor could copy, the founder's, had never been told. Jack says sharing himself is the hardest thing he does.",
+      ],
+    },
+    {
+      /* F42 §1 · sección biográfica nueva, después de THE CHALLENGE.
+         Fuentes: "Jack Yeager — Narrative Strategy" (10 jun 2026),
+         "The Pillars, Capsule by Capsule" (11 jun 2026) y la versión
+         editada por Jack de "Making a Life From Scratch". Donde
+         difieren, manda la editada por Jack.
+
+         F42 Freno · no se mergea hasta que Fran confirme el ok de
+         Jack para publicar biografía y cita. Tom Gores no se
+         nombra nunca. La primera versión del párrafo 3 usa "a
+         private equity firm" (Fran dijo que confirmaría si va
+         Platinum Equity o no; el default seguro es genérico para
+         no bloquear el review). */
+      h2: "A farm kid who kept walking into things he didn't know how to do.",
+      body: [
+        'Jack Yeager was born in Detroit in 1964 and raised on a farm in Ohio. He paid for architecture school with a mowing business: fifty-five lawns, five thousand dollars a week, cut in diagonals he had learned on a golf course.',
+        'In 1991, before email, he built his own sales automation system and became the number one mortgage insurance rep in the United States, writing over $1.2 billion in one year, in one state.',
+        'He patented a diet and meal-planning system and licensed it to Discovery Health and Lifetime Fitness. Then came the turnarounds: hired as CEO by a private equity firm, he carved a $140M business unit out of Cardinal Health. He later bought a pharma-software company with no money, rebuilt it and sold it in a seven-figure exit. Then he spent five years at sea.',
+        "None of that was on Mistiva's site. The brand read like any lighting store. The man behind it read like no one.",
       ],
     },
     {
@@ -56,11 +78,20 @@ export const jackYeager: Work = {
       ],
     },
     {
+      /* WHAT MISTIVA NOW RUNS ON · host de los `built` rows y del
+         pen-quote de Jack (F42 §3, después de WHAT WE BUILT). */
       h2: 'What Mistiva now runs on.',
       body: [],
       blocks: [
         { kind: 'image', src: '/mistiva-journal-list.png', caption: 'The Journal · every question, answered once', aspect: 'l' },
         { kind: 'image', src: '/mistiva-journal-article.png', caption: 'An article opens with the short answer an AI assistant can quote', aspect: 'l' },
+        /* F42 §3 · pen-quote · serif 40px cols 3–10. */
+        {
+          kind: 'pen-quote',
+          quote:
+            'If nobody ever hands you the impossible thing and walks away, you never find out you could do it.',
+          cite: 'Jack Yeager · "Making a Life From Scratch"',
+        },
       ],
     },
     {
@@ -71,10 +102,28 @@ export const jackYeager: Work = {
     },
   ],
 
+  /* F42 §2 · WHAT MISTIVA NOW RUNS ON · la fila FOUNDER NARRATIVE
+     se reemplaza por tres (NARRATIVE STRATEGY · FOUNDER LETTER ·
+     FOUR PILLARS). El resto (RESEARCH, BRAND PLATFORM, THE JOURNAL,
+     VIDEO FOR CLIENTS, TRADE POSITIONING) sin cambios. */
   built: [
     { name: 'RESEARCH', description: 'Five lenses on the market, the culture, the category, the company and the customer, each with its data. The conclusion: brand is the only moat.' },
     { name: 'BRAND PLATFORM', description: 'The insight, the enemy, the position and one rule for every piece. The position: the light was always the most important thing in your home; Mistiva makes it the one you chose. The enemy is resignation, "it is what it is". The tone is desire and recognition, never fear.' },
-    { name: 'FOUNDER NARRATIVE', description: "Jack's life as a founder letter, \"Making a Life From Scratch\": the Ohio farm, the mowing business that paid for architecture school, the seven-figure exit, five years at sea. Four content pillars grow from it." },
+    {
+      name: 'NARRATIVE STRATEGY',
+      description:
+        "A master document for Jack's founder brand: his life as a factual timeline, one positioning line, and the two tests every piece has to pass: three layers of story (what happened, what it means, why it matters to him), told in the order feeling, proof, trust.",
+    },
+    {
+      name: 'FOUNDER LETTER',
+      description:
+        '"Making a Life From Scratch": Jack\'s life in his own voice, from a tractor auction at ten to the day Mistiva became his. Every script grows from it.',
+    },
+    {
+      name: 'FOUR PILLARS',
+      description:
+        'Never Knew How · Making Mistiva · Somebody Had to Do It · Then I Went Sailing. Thirty-one stories mapped, each told once.',
+    },
     { name: 'THE JOURNAL', description: 'Every question customers ask before buying, answered once, by Jack: vaulted ceilings, sloped mounts, whether you need an electrician. Each article opens with a short answer an AI assistant can quote, and the team sends the links to clients instead of writing the same email twice.' },
     { name: 'VIDEO FOR CLIENTS', description: "Short videos hosted on Mistiva's own store and sent to clients during the sale." },
     { name: 'TRADE POSITIONING', description: "The site's written and visual narrative rebuilt for the designers, architects and builders who specify light for many homes at once." },
@@ -83,19 +132,40 @@ export const jackYeager: Work = {
   changeH2: 'Where it starts from.',
   changePreamble:
     'The engagement began in June 2026. Results will be published here as they are measured.',
+  /* F42 §4 · WHAT CHANGED · dos grupos de context. El grupo nuevo
+     BEFORE MISTIVA va primero (source #2) y aclara al lector que
+     esas cifras son de la vida de Jack antes del engagement, no
+     resultados de CRUDA. El grupo original (source #1) queda igual
+     y va debajo. Ambos rinden en --ink a ancho completo. */
+  contextBeforeLabel: 'Before Mistiva',
   metricGroups: {
+    contextBefore: [
+      { value: '$1.2B+', label: 'mortgage insurance written in one year, as the #1 rep in the US', period: '', source: 'Jack Yeager, founder letter, 2026', n: 2 },
+      { value: '$140M', label: 'business unit he carved out of Cardinal Health', period: '', source: 'Jack Yeager, founder letter, 2026', n: 2 },
+      { value: '5 years', label: 'at sea, after a seven-figure exit', period: '', source: 'Jack Yeager, founder letter, 2026', n: 2 },
+    ],
     context: [
       { value: '112 → 4', label: 'products in the catalogue', period: '', source: 'Mistiva, 2026', n: 1 },
       { value: '4.9★', label: 'across hundreds of verified reviews', period: '', source: 'Mistiva, 2026', n: 1 },
       { value: '3', label: 'dimming zones in a single ring', period: '', source: 'Mistiva, 2026', n: 1 },
     ],
   },
-  sources: ['Mistiva, 2026'],
+  sources: [
+    'Mistiva, 2026',
+    'Jack Yeager, founder letter, 2026',
+  ],
 
   change: [],
   credit: '',
 
   faq: [
+    /* F42 §5 · nueva primera pregunta. Mismo texto se emite en el
+       FAQPage JSON-LD (WorkLayout auto-emite `w.faq` como mainEntity).
+       Coincide con la biografía renderizada; sin Tom Gores. */
+    {
+      q: 'Who is Jack Yeager?',
+      a: 'The founder of Mistiva, a lighting studio in Midtown Miami. Before Mistiva he was the number one mortgage insurance rep in the United States, patented a diet software, ran private equity turnarounds including a $140M carve-out from Cardinal Health, and sold a pharma-software company in a seven-figure exit.',
+    },
     {
       q: 'What did CRUDA build for Mistiva?',
       a: "The research, brand platform and founder narrative, a Journal that answers customers' questions in articles an AI assistant can quote, videos for clients, and a site narrative rebuilt for trade buyers.",

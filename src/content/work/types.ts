@@ -65,6 +65,11 @@ export type WorkMetricGroups = {
   reach?: WorkMetric[]
   mediaValue?: WorkMetric[]
   context?: WorkMetric[]
+  /* F42 · grupo previo al de context, para cifras que preceden al
+     engagement (vida del cliente antes del caso). Rótulo por caso
+     via `Work.contextBeforeLabel`; kind = 'context' (color --ink,
+     ancho completo). Uso hoy: Jack Yeager · BEFORE MISTIVA. */
+  contextBefore?: WorkMetric[]
 }
 
 /* F26 §A.5 · fila del bloque WHAT WE BUILT. Reemplaza al `built`
@@ -104,6 +109,14 @@ export type WorkTestimonialBlock = {
   quote: string
   cite: string
 }
+/* F42 · cita a ancho de columna del molde F33 (serif 40px, cols
+   3–10). Distinta de la testimonial mini que va con border-left
+   naranja: esta es el pull-quote del caso. */
+export type WorkPenQuoteBlock = {
+  kind: 'pen-quote'
+  quote: string
+  cite: string
+}
 export type WorkPublishedBlock = {
   kind: 'published'
   outlet: string
@@ -119,6 +132,7 @@ export type WorkListBlock = {
 export type WorkBlock =
   | WorkImageBlock
   | WorkTestimonialBlock
+  | WorkPenQuoteBlock
   | WorkPublishedBlock
   | WorkListBlock
 
@@ -210,4 +224,8 @@ export type Work = {
      está, no se emite `article:published_time` ni `datePublished`
      en el JSON-LD Article. Fecha fake (period.end + -12-31) sale. */
   publishedAt?: string
+  /* F42 · rótulo del grupo `metricGroups.contextBefore`. Ejemplo
+     Jack Yeager: "Before Mistiva". Opcional; si el grupo se usa
+     y este campo no está seteado, cae al fallback "Before". */
+  contextBeforeLabel?: string
 }

@@ -48,7 +48,7 @@ export const elOcho: Essay = {
     {
       type: 'p',
       text:
-        "If El Ocho knew you, you didn't pay upfront. If your time ran out mid-game, he'd spot you a few extra minutes. If he didn't know you, you paid before you sat down. No favours.",
+        "If El Ocho knew you, you didn't pay upfront. If your time ran out mid-game, he'd spot you a few extra minutes. If he didn't know you, you paid before you sat down. No favors.",
     },
 
     { type: 'pull', text: 'He was extending credit. To eight-year-olds. Off memory.' },
@@ -74,7 +74,7 @@ export const elOcho: Essay = {
     {
       type: 'p',
       text:
-        'Today trust is cheap to fake. A brand can sound warm at zero cost. It can remember your name automatically, wish you a happy birthday, apologise in a tone workshopped by a committee. None of it costs anything, which is exactly why none of it lands.',
+        'Today trust is cheap to fake. A brand can sound warm at zero cost. It can remember your name automatically, wish you a happy birthday, apologize in a tone workshopped by a committee. None of it costs anything, which is exactly why none of it lands.',
     },
     { type: 'p', text: 'Twenty years later I still remember his name.' },
     {

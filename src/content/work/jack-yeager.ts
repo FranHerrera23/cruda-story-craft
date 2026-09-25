@@ -26,13 +26,13 @@ export const jackYeager: Work = {
   heroObjectPosition: 'center 25%',
 
   summary:
-    'Jack Yeager grew up on a farm in Ohio, became the top mortgage-insurance sales rep in the United States, ran company turnarounds and sold a software business for seven figures. After five years sailing, he bought a lighting business, cut its catalogue from 112 products to four and rebuilt it in Miami as Mistiva. In 2026, CRUDA built the research, brand platform and founder narrative behind it, moved the brand toward trade buyers, and set up a Journal that answers customers’ questions before they ask.',
+    'Jack Yeager grew up on a farm in Ohio, became the top mortgage-insurance sales rep in the United States, ran company turnarounds and sold a software business for seven figures. After five years sailing, he bought a lighting business, cut its catalog from 112 products to four and rebuilt it in Miami as Mistiva. In 2026, CRUDA built the research, brand platform and founder narrative behind it, moved the brand toward trade buyers, and set up a Journal that answers customers’ questions before they ask.',
   byline: 'Fran Herrera, Founder, CRUDA · Updated September 2026',
 
   capsule: [],
 
   takeaways: [
-    'When every feature you sell can be copied, the only defence left is who made it.',
+    'When every feature you sell can be copied, the only defense left is who made it.',
     'The questions your customers email you are your best content. Answer each one once, in public.',
     'Selling to the trade means writing for the person who specifies light for many homes at once.',
   ],
@@ -43,7 +43,7 @@ export const jackYeager: Work = {
     {
       h2: 'Every feature Mistiva sold could be copied.',
       body: [
-        'Mistiva makes ring chandeliers and rechargeable sconces, designed in Miami and sold studio-direct. The ring shape, "rechargeable", "dimmable": a competitor can copy all of it. The luxury catalogues win on range, the copycats on price, and the aggregators outrank everyone in search.',
+        'Mistiva makes ring chandeliers and rechargeable sconces, designed in Miami and sold studio-direct. The ring shape, "rechargeable", "dimmable": a competitor can copy all of it. The luxury catalogs win on range, the copycats on price, and the aggregators outrank everyone in search.',
         "The company also carried a rebrand. It had been House of Interiors, and search engines still split its authority between two names. No editor had written about it yet, so AI assistants cited aggregators instead. Paid social was buying reach, and nothing was turning that reach into demand.",
         "The one story no competitor could copy, the founder's, had never been told. Jack says sharing himself is the hardest thing he does.",
       ],
@@ -85,7 +85,7 @@ export const jackYeager: Work = {
     'The engagement began in June 2026. Results will be published here as they are measured.',
   metricGroups: {
     context: [
-      { value: '112 → 4', label: 'products in the catalogue', period: '', source: 'Mistiva, 2026', n: 1 },
+      { value: '112 → 4', label: 'products in the catalog', period: '', source: 'Mistiva, 2026', n: 1 },
       { value: '4.9★', label: 'across hundreds of verified reviews', period: '', source: 'Mistiva, 2026', n: 1 },
       { value: '3', label: 'dimming zones in a single ring', period: '', source: 'Mistiva, 2026', n: 1 },
     ],

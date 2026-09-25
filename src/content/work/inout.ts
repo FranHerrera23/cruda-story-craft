@@ -49,7 +49,7 @@ export const inout: Work = {
     {
       h2: 'The identity system.',
       body: [
-        "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the centre, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
+        "The mark is drawn from the product's own geometry — right angles, vertices, intersections. The lines trace an opening and, at the center, a camera lens: the brand's two axes, contemplation and movement, in a single figure.",
         "The palette runs from electric blue to cement green because the thesis is industrial architecture plus sky and nature. The palette is the brand's argument, resolved as a system.",
       ],
     },

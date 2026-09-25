@@ -88,14 +88,14 @@ export const mannheimTrading: CaseStudyV2 = {
           title: 'Lotus UK',
           meta: 'Key supplier to the sports car division, 2000',
         },
-        { title: 'The Pentagon', meta: 'Curved armoured glass solutions' },
+        { title: 'The Pentagon', meta: 'Curved armored glass solutions' },
         {
           title: '8,950 military vehicles',
           meta: 'Manufactured for the United States, 2004, deployed across the Middle East',
         },
         {
           title: 'Tesla · BMW · Range Rover · Audi · VW · Toyota',
-          meta: 'OEM programmes. Tesla supplier since 2021',
+          meta: 'OEM programs. Tesla supplier since 2021',
         },
         {
           title: 'The "Cielo" windshield',
@@ -130,7 +130,7 @@ export const mannheimTrading: CaseStudyV2 = {
       type: 'prose',
       label: 'The narrative problem',
       paragraphs: [
-        "Mannheim Trading Corp supplies polycarbonate, polyurethane and other critical materials to armoured glass manufacturers. Which means it sells to AGP's competitors.",
+        "Mannheim Trading Corp supplies polycarbonate, polyurethane and other critical materials to armored glass manufacturers. Which means it sells to AGP's competitors.",
         'So the obvious move — lead with sixty years of AGP — is the one move unavailable. The history is the credibility and the history is the conflict, at the same time, in the same sentence.',
         'That one is an architecture problem. It gets solved by deciding what the company says and in what order.',
         "The second problem is harder. José's only commercial asset is his name, and being seen has never been something he wanted. A man like that will not publish a company profile about himself. He will not do a founder video. Ask him to sell and he stops.",
@@ -202,7 +202,7 @@ export const mannheimTrading: CaseStudyV2 = {
       type: 'prose',
       label: 'The second voice',
       paragraphs: [
-        'When the subject will not take the centre, presence gets built from outside it. So Karen Mannheim writes about her father. What he cannot say about himself she can say with more authority, because self-praise does not count and someone else’s does.',
+        'When the subject will not take the center, presence gets built from outside it. So Karen Mannheim writes about her father. What he cannot say about himself she can say with more authority, because self-praise does not count and someone else’s does.',
         'She had the same problem first. Her own words, five years earlier: any founder who spent decades building something good knows it — the work is excellent and nobody outside your circle finds out. She had it for twenty-eight years.',
         'She hired CRUDA in 2021 to solve it. The visibility she built then is now the instrument that builds her father’s.',
       ],

@@ -45,7 +45,7 @@ export const confidentialFashionFounder: Work = {
   capsule: [],
 
   takeaways: [
-    'A comeback told too early reads as a defence. Settle the story inside before you tell it outside.',
+    'A comeback told too early reads as a defense. Settle the story inside before you tell it outside.',
     'When partners come from different cultures, the company needs one version of why it exists, in words each side can repeat.',
     'Not every narrative is meant to be published. Some of the most valuable ones are only read by your own team.',
   ],
@@ -66,7 +66,7 @@ export const confidentialFashionFounder: Work = {
       /* §1.4 · WHAT WE SAW */
       h2: 'Clarity inside had to come before visibility outside.',
       body: [
-        "A comeback told too early reads as a defence. He didn't need to answer the press. He needed a story he could stand behind in a board meeting, in an interview with a new hire and on a call with his partners.",
+        "A comeback told too early reads as a defense. He didn't need to answer the press. He needed a story he could stand behind in a board meeting, in an interview with a new hire and on a call with his partners.",
         'So the order was reversed. The narrative was built for the inside of the company first, and only a small part of it was ever published.',
       ],
     },

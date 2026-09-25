@@ -62,7 +62,7 @@ export const girishSehgal: CaseStudyV2 = {
       type: 'prose',
       label: 'The narrative problem',
       paragraphs: [
-        'The obvious move was executive thought leadership: lessons, frameworks, takeaways. It would have produced competent posts nobody remembers, because that format asks a person to summarise themselves.',
+        'The obvious move was executive thought leadership: lessons, frameworks, takeaways. It would have produced competent posts nobody remembers, because that format asks a person to summarize themselves.',
         'What Girish had instead were positions — arrived at over thirty years, held against pressure, and never written down. That a security guard nobody notices decides whether forty traumatised patients feel safe. That when you build on someone else’s land, money is not enough; you have to invest in their dignity. That being told you are too kind to lead is usually said by people who mistake distance for authority.',
         'None of that is a lesson. All of it is a stance.',
       ],
@@ -83,7 +83,7 @@ export const girishSehgal: CaseStudyV2 = {
       type: 'prose',
       label: 'The narrative bio',
       paragraphs: [
-        'The first deliverable was not a post. It was one page: twenty-five years turned into a position, written so that Girish could recognise himself in it and repeat it out loud.',
+        'The first deliverable was not a post. It was one page: twenty-five years turned into a position, written so that Girish could recognize himself in it and repeat it out loud.',
         'Not "hospitality executive with international experience." That describes a category. The position we landed is narrower and harder to copy — the executive who builds cultures rather than inherits them, now doing it where the stakes are highest.',
         'Everything downstream is decided by that sentence: which stories get told, which do not, and why a move from hotels to a hospital reads as strategy rather than as a career accident.',
       ],

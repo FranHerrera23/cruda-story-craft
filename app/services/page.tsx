@@ -174,10 +174,10 @@ export default function ServicesPage() {
                 <p className="cell__l">Fee</p>
                 <p className="cell__v cell__fee">From $2,500</p>
                 <p className="cell__n">
-                  One company, one person · $2,500 / month
+                  One company, one voice · $2,500 / month
                 </p>
                 <p className="cell__n">
-                  One company, two people · $3,700 / month
+                  One company, two voices · $3,700 / month
                 </p>
                 <p className="cell__n">{COST_LINE}</p>
               </div>

@@ -36,7 +36,7 @@ export const girishSehgal: Work = {
   capsule: [],
 
   takeaways: [
-    'Executive thought leadership formats ask a person to summarise themselves. That produces competent posts nobody remembers.',
+    'Executive thought leadership formats ask a person to summarize themselves. That produces competent posts nobody remembers.',
     'Girish had positions instead of lessons: stances arrived at over twenty-five years, held against pressure, and never written down until now.',
     'A move from hotels to a hospital reads as strategy once the argument that hospitality is a mindset is on the page.',
   ],
@@ -54,7 +54,7 @@ export const girishSehgal: Work = {
     {
       h2: 'He had positions, not lessons.',
       body: [
-        'The obvious move was executive thought leadership: lessons, frameworks, takeaways. It would have produced competent posts nobody remembers, because that format asks a person to summarise themselves.',
+        'The obvious move was executive thought leadership: lessons, frameworks, takeaways. It would have produced competent posts nobody remembers, because that format asks a person to summarize themselves.',
         "What Girish had instead were positions, arrived at over twenty-five years, held against pressure and never written down. That a security guard nobody notices decides whether forty traumatised patients feel safe. That when you build on someone else's land, money is not enough; you have to invest in their dignity. That being told you are too kind to lead is usually said by people who mistake distance for authority.",
       ],
     },
@@ -68,7 +68,7 @@ export const girishSehgal: Work = {
     {
       name: 'NARRATIVE BIO',
       description:
-        'One page: twenty-five years turned into a position Girish recognises and can repeat out loud. The executive who builds cultures rather than inherits them, now doing it where the stakes are highest.',
+        'One page: twenty-five years turned into a position Girish recognizes and can repeat out loud. The executive who builds cultures rather than inherits them, now doing it where the stakes are highest.',
     },
     {
       name: 'KINDNESS IS AN OPERATING STRENGTH',
@@ -123,7 +123,7 @@ export const girishSehgal: Work = {
     },
     {
       q: 'Why not standard executive thought leadership?',
-      a: "That format asks a person to summarise themselves. Girish's material was his positions, held for twenty-five years and never written down.",
+      a: "That format asks a person to summarize themselves. Girish's material was his positions, held for twenty-five years and never written down.",
     },
     {
       q: 'What is Translated?',

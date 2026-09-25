@@ -260,7 +260,7 @@ export default function AboutPage() {
             },
             {
               n: '03',
-              t: 'Specific beats general. Names, numbers, places and dates. The more specific a story is, the more people recognise themselves in it.',
+              t: 'Specific beats general. Names, numbers, places and dates. The more specific a story is, the more people recognize themselves in it.',
             },
             {
               n: '04',
@@ -294,7 +294,7 @@ export default function AboutPage() {
               <em>Software.</em>
             </p>
             <p className="about-layer__n">
-              Volume, cadence, format. What can be systematised, is.
+              Volume, cadence, format. What can be systemized, is.
             </p>
           </div>
           <div className="about-layer mark" data-reveal>

@@ -74,9 +74,9 @@ export const karenMannheim: Work = {
     {
       /* §B.3 · THE CHALLENGE · §H · antes de 2021 · nombra a RAMSA,
          Llosa Cortegana, Barclay & Crousse, Porsche y Osaka Nikkei. */
-      h2: 'Twenty-eight years of work that only travelled by word of mouth.',
+      h2: 'Twenty-eight years of work that only traveled by word of mouth.',
       body: [
-        "In early 2021, TRAZZO had 28 years behind it: more than 2,500 projects, an 80-person team, Lima's most important showrooms, and a list any architect in Lima would recognise: residential buildings by RAMSA for ACM Grupo, projects with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Inside Lima, that record moved through Karen's network. Outside it, nobody could see it.",
+        "In early 2021, TRAZZO had 28 years behind it: more than 2,500 projects, an 80-person team, Lima's most important showrooms, and a list any architect in Lima would recognize: residential buildings by RAMSA for ACM Grupo, projects with Llosa Cortegana Arquitectos and Barclay & Crousse, the Porsche flagship and Osaka Nikkei. Inside Lima, that record moved through Karen's network. Outside it, nobody could see it.",
         "TRAZZO had opened in Miami in 2020. Its buyers there are developers, architects and high-end builders across the United States, Latin America and Spain: a few thousand people, none of whom had walked into a room Karen lit. She had about a thousand followers on Instagram.",
         "A lighting studio is chosen before anyone walks into its work. When the record can't reach the architect or developer specifying the project, the studio isn't in the conversation.",
       ],
@@ -87,8 +87,8 @@ export const karenMannheim: Work = {
          párrafo no cambia. */
       h2: 'The names on the list already persuaded. Nobody had explained them.',
       body: [
-        "TRAZZO's project list carried weight a Miami developer would recognise at once, if someone told them what it meant. RAMSA designed the most expensive penthouse ever sold in the United States, the Harvard Kennedy School and residential colleges at Yale, and had chosen TRAZZO four times for residential projects in Peru, through ACM Grupo.",
-        "So the content never describes lamps. It takes a project the buyer already respects and shows how its light was decided: the process, the constraints, the judgment. The association opens the door; Karen's criteria is what the reader remembers.",
+        "TRAZZO's project list carried weight a Miami developer would recognize at once, if someone told them what it meant. RAMSA designed the most expensive penthouse ever sold in the United States, the Harvard Kennedy School and residential colleges at Yale, and had chosen TRAZZO four times for residential projects in Peru, through ACM Grupo.",
+        "So the content never describes lamps. It takes a project the buyer already respects and shows how its light was decided: the process, the constraints, the judgment. The association opens the door; Karen's judgment is what the reader remembers.",
       ],
     },
     {
@@ -136,7 +136,7 @@ export const karenMannheim: Work = {
     {
       name: 'SPOTLIGHT · 2026',
       description:
-        'A video series in which Karen interviews people at the top of neighbouring fields: Peter Seinfeld, five years in Frank Gehry’s studio; Norbert Jacniak, a Marbella-based chef who has cooked for Formula 1 in Saudi Arabia and for a European king; and leading Latin American architects.',
+        'A video series in which Karen interviews people at the top of neighboring fields: Peter Seinfeld, five years in Frank Gehry’s studio; Norbert Jacniak, a Marbella-based chef who has cooked for Formula 1 in Saudi Arabia and for a European king; and leading Latin American architects.',
     },
     {
       name: 'PRESENTATION SYSTEM',

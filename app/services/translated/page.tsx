@@ -51,7 +51,7 @@ const WEEKS = [
   {
     label: 'WEEKS 1—4 · RESEARCH AND NARRATIVE PLATFORM',
     h3: 'Anyone who looks you up finds something that backs you up.',
-    body: 'We start with the founder in the room and with our 5C research: what the company actually does, and what the market currently believes about it. The gap between the two becomes the narrative platform, and the founder manuscript, written so the founder recognises every line as their own.',
+    body: 'We start with the founder in the room and with our 5C research: what the company actually does, and what the market currently believes about it. The gap between the two becomes the narrative platform, and the founder manuscript, written so the founder recognizes every line as their own.',
   },
   {
     label: 'WEEKS 5—8 · FOUR CONTENT PILLARS',

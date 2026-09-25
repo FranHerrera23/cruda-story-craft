@@ -21,8 +21,23 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 12 | `f38-live-fixes` | `46a5b62` | ✅ |
 | 13 | `f32-confidential` | `f7a9184` | ✅ |
 | 14 | `f36-thinking` | `ef977db` | ✅ |
+| 15 | `f37-entity` | `373d763` | ✅ |
+| 16 | `f41-home-founder` | `4510bd9` | ✅ |
+| 17 | `f40-about` | `04f965d` | ✅ |
+| 18 | `f43-fixes` | `6503799` | ✅ |
+| 19 | `f39-cases` | `ce1c278` | ✅ |
+| 20 | `f42-jack` | `d936e29` | ✅ |
 
-`origin/main` HEAD final: `ef977db`.
+`origin/main` HEAD final: `d936e29`.
+
+**Tercera tanda (25-sep):** F41 → F40 → F43 → F39 → F42 en el orden aprobado por Fran. Build limpio + push después de cada uno.
+
+- `f37-entity` mergeado antes del tren, con un conflicto en `WorkLayout.tsx` (Article JSON-LD: main tenía datePublished real de F38, f37 tenía author/publisher por @id · resolución: se combinan los dos).
+- `f41-home-founder`: home OUR FOUNDER · foto verificada · rótulo LEGACY → Before CRUDA · TikTok como último item del track record.
+- `f40-about`: hero h1 propio 32–68px con text-wrap balance · sale WHAT WE TRANSLATE · jerarquía de h2 · WHO RUNS IT en 3 celdas (EXPERIENCE, Before CRUDA, WHAT HE READS).
+- `f43-fixes`: aria-hidden en Marco Aurelio verificado · US English sweep (25 findings → 0) · Karen judgment · $10M-$200M · /our-founder resuelto.
+- `f39-cases`: rótulos de fila naranja 13px · `<title>` = descriptor + · CRUDA · fechas reales de git en manifest + `<time datetime>` + JSON-LD dates · franja Key Takeaways en Karen y Mike.
+- `f42-jack`: caso Jack completo · Platinum Equity nombrado (Jack ok 25-sep) · sección biográfica · WHAT MISTIVA NOW RUNS ON con 3 filas nuevas · cita pen-quote 40px · grupo BEFORE MISTIVA · FAQ nueva. Conflict en types.ts (F39 vs F42) resuelto uniendo los campos.
 
 **Segunda tanda (misma sesión, después de captures + fixes):**
 
@@ -126,6 +141,24 @@ git revert -m 1 f7a9184
 
 # Rollback f36-thinking
 git revert -m 1 ef977db
+
+# Rollback f37-entity (tercera tanda · antes del tren)
+git revert -m 1 373d763
+
+# Rollback f41-home-founder (tren, orden 1)
+git revert -m 1 4510bd9
+
+# Rollback f40-about (tren, orden 2)
+git revert -m 1 04f965d
+
+# Rollback f43-fixes (tren, orden 3)
+git revert -m 1 6503799
+
+# Rollback f39-cases (tren, orden 4)
+git revert -m 1 ce1c278
+
+# Rollback f42-jack (tren, orden 5)
+git revert -m 1 d936e29
 ```
 
 Después de cualquier revert:

@@ -78,7 +78,7 @@ export default function ServicesPage() {
               <div className="irow">
                 <span className="irow__o">02</span>
                 <span className="irow__n">Transmission</span>
-                <span className="irow__p">from <em>$2,200</em> / month</span>
+                <span className="irow__p">from <em>$2,500</em> / month</span>
               </div>
               <div className="irow">
                 <span className="irow__o">03</span>
@@ -157,19 +157,38 @@ export default function ServicesPage() {
               We run the system every week, so it stops depending on the
               founder.
             </p>
+            {/* F44 · Runs y Fee actualizados.
+                Runs: "Four months, then monthly" + nota de 45 días.
+                Fee: base pasa a $2,500 · dos líneas de nivel (1p,
+                2p). La línea de terceros se conserva al final. */}
             <div className="data data--2">
               <div className="cell">
                 <p className="cell__l">Runs</p>
-                <p className="cell__v">Monthly</p>
-                <p className="cell__n">Thirty days’ notice, either side</p>
+                <p className="cell__v">Four months, then monthly</p>
+                <p className="cell__n">
+                  Forty-five days’ notice, either side, after the first
+                  four months.
+                </p>
               </div>
               <div className="cell">
                 <p className="cell__l">Fee</p>
-                <p className="cell__v cell__fee">From $2,200</p>
-                <p className="cell__n">Per month</p>
+                <p className="cell__v cell__fee">From $2,500</p>
+                <p className="cell__n">
+                  One company, one person · $2,500 / month
+                </p>
+                <p className="cell__n">
+                  One company, two people · $3,700 / month
+                </p>
                 <p className="cell__n">{COST_LINE}</p>
               </div>
             </div>
+            {/* F44 · línea de alcance de Transmission · texto chico,
+                gris, mismo estilo que la línea de terceros. Va entre
+                el bloque Fee y `Book the call →`. */}
+            <p className="services-scope-line">
+              Narrative, writing, short-form pieces and video scripts.
+              Video editing is not included.
+            </p>
             <div className="services-ctas">
               <Link className="go" href="/contact">
                 Book the call →

@@ -30,7 +30,7 @@ export const DOORS: readonly DoorSpec[] = [
     label: 'Transmission',
     descriptor:
       'We run the system every week, so it stops depending on the founder.',
-    price: 'from $2,200 / month',
+    price: 'from $2,500 / month',
     href: '/services#transmission',
   },
   {

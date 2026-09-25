@@ -179,7 +179,7 @@ export const jackYeager: Work = {
     },
     {
       q: 'What does this cost?',
-      a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,200 a month.',
+      a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,500 a month.',
     },
   ],
   moreFrom: [],

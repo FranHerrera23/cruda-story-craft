@@ -171,7 +171,7 @@ export const mikeKaeding: Work = {
     },
     {
       q: 'What is Transmission?',
-      a: 'CRUDA runs the narrative system every week, so it stops depending on the founder. It starts at $2,200 a month.',
+      a: 'CRUDA runs the narrative system every week, so it stops depending on the founder. It starts at $2,500 a month.',
     },
   ],
   moreFrom: [],

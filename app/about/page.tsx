@@ -65,7 +65,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'How much does CRUDA cost?',
-    a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,200 a month. Interpreted runs twelve weeks from $55,000, and The Read is priced on request.',
+    a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,500 a month. Interpreted runs twelve weeks from $55,000, and The Read is priced on request.',
   },
   {
     q: 'Who pays for ads, production and other outside costs?',
@@ -441,7 +441,7 @@ export default function AboutPage() {
           <div>
             <dt>Pricing</dt>
             <dd>
-              Translated $19,500 flat, 12 weeks · Transmission from $2,200
+              Translated $19,500 flat, 12 weeks · Transmission from $2,500
               per month · Interpreted from $55,000, 12 weeks · The Read on
               request
             </dd>
@@ -450,8 +450,8 @@ export default function AboutPage() {
             <dt>Terms</dt>
             <dd>
               Translated: 50% to begin, 50% at month three · Transmission:
-              monthly, 30 days&apos; notice · Third-party costs paid by the
-              client directly
+              four months, then monthly, 45 days&apos; notice · Third-party
+              costs paid by the client directly
             </dd>
           </div>
           <div>

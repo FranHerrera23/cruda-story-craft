@@ -80,13 +80,15 @@
 
 /* F23-2 · línea de costos F23 (constante §0.1). 13px --grey,
    debajo del índice de puertas y como segunda línea del Fee. */
-.services-cost-line {
+.services-cost-line,
+.services-scope-line {
   margin-top: clamp(14px, 2vh, 22px);
   font-size: 13px;
   line-height: 1.4;
   color: var(--grey, #6E6B65);
 }
-.plane--black .services-cost-line { color: var(--grey-dark, #8A867E); }
+.plane--black .services-cost-line,
+.plane--black .services-scope-line { color: var(--grey-dark, #8A867E); }
 .plane .cell__n {
   /* .cell__n ya existe; el 3rd .cell__n en Fee lleva la línea de
      costos con el mismo tamaño (12px system) — sin override. */

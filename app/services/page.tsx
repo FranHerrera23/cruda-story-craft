@@ -157,6 +157,14 @@ export default function ServicesPage() {
               We run the system every week, so it stops depending on the
               founder.
             </p>
+            {/* F45 · unidad de venta de Transmission. Segundo párrafo
+                bajo la apertura, mismo estilo (.lede). Aclara que se
+                vende el pieza long-form y todo lo que se corta de ahí,
+                no cantidad de posts ni de canales. */}
+            <p className="lede">
+              Each month is built on long-form pieces, and everything else
+              is cut from them.
+            </p>
             {/* F44 · Runs y Fee actualizados.
                 Runs: "Four months, then monthly" + nota de 45 días.
                 Fee: base pasa a $2,500 · dos líneas de nivel (1p,

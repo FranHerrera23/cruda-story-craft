@@ -40,6 +40,11 @@ export type EssayBlock =
      newsletter que prometía algo que no existe). Mono, mayúsculas,
      --fs-meta, --ink-2. No es un CTA, es firma. */
   | { type: 'signature'; text: string }
+  /* F46 · separator del molde de ensayo · reemplaza al `<hr>` crudo
+     del markdown. Hairline gris con aire arriba y abajo (mismo
+     tratamiento que el sistema usa en pen-sec y en la lista de
+     /thinking). Sin texto ni role. */
+  | { type: 'separator' }
 
 export type Faq = { q: string; a: string }
 
@@ -315,6 +320,18 @@ export default function EssayLayout({ es }: { es: Essay }) {
                 <p key={i} className="e-signature">
                   {block.text}
                 </p>
+              )
+            }
+            if (block.type === 'separator') {
+              /* F46 · hairline gris con aire, no `<hr>` crudo. Rol
+                 semántico null porque es una división visual, no
+                 estructural. */
+              return (
+                <div
+                  key={i}
+                  className="e-separator"
+                  role="presentation"
+                />
               )
             }
             // quote — attributed

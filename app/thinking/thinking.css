@@ -142,9 +142,11 @@
   margin-top: 20px;
 }
 /* F23-2 · única regla naranja de la página, bajo el hero (h1 + lede).
-   F31 §4 · confirmado · thinking-rule sin --hero no se usa. */
+   F31 §4 · confirmado · thinking-rule sin --hero no se usa.
+   F46 · la regla queda a 24px del h1 (antes clamp(28,4vh,48) que
+   dejaba un hueco grande en desktop). */
 .thinking-rule--hero {
-  margin-top: clamp(28px, 4vh, 48px);
+  margin-top: 24px;
 }
 
 /* F23-2 · Case study cards con la misma anatomía que Selected Work.
@@ -432,33 +434,50 @@
 .thinking--library .thinking-lib__list {
   border-top: 1px solid var(--paper-line, #D9D5CD);
 }
+/* F46 · fila 2-col con aire. Meta a la izquierda (cols 1–3),
+   título+dek a la derecha (cols 4–11 en 1440 · aprox 25%/75%).
+   Hairlines gris arriba y abajo (top del wrapper + bottom de cada
+   fila). Padding 56px arriba/abajo en 1440. Sin números naranjas. */
 .thinking--library .thinking-row {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) auto;
-  gap: clamp(16px, 2.4vw, 40px);
+  grid-template-columns: minmax(160px, 3fr) minmax(0, 8fr);
+  gap: clamp(20px, 3vw, 44px);
   align-items: start;
-  padding: clamp(22px, 3.4vh, 34px) 0;
+  padding: 56px 0;
   border-bottom: 1px solid var(--paper-line, #D9D5CD);
   color: var(--ink, #0D0D0D);
   opacity: 1;
 }
 .thinking--library .thinking-row[hidden] { display: none; }
-.thinking--library .thinking-row__o {
-  font-size: 10px;
+
+/* Meta chica: 25 SEP 2026 · ARTICLE · 6 MIN · ENGLISH. Cada dato
+   en su línea. 13px caps tracking .08em grey. */
+.thinking--library .thinking-row__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--orange, #FF5A00);
-  padding-top: 8px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  line-height: 1.35;
+  padding-top: 4px;
 }
+.thinking--library .thinking-row__date { font-variant-numeric: tabular-nums; }
+
 .thinking--library .thinking-row__b { min-width: 0; }
 .thinking--library .thinking-row__n {
-  font-size: clamp(22px, 2.4vw, 32px);
+  font-size: clamp(24px, 2.6vw, 36px);
   font-weight: 500;
   letter-spacing: -.022em;
-  line-height: 1.2;
+  line-height: 1.15;
   color: var(--ink, #0D0D0D);
   margin: 0;
   text-wrap: balance;
+  /* F46 rev · sale el max-width: 22ch · el título ocupa el ancho
+     de cols 4–11 (la propia columna derecha del grid). Los títulos
+     largos rebalancean solos con text-wrap: balance. */
 }
 .thinking--library .thinking-row__n a {
   color: inherit;
@@ -472,20 +491,18 @@
   }
 }
 .thinking--library .thinking-row__dek {
-  margin: 10px 0 0;
+  margin: 16px 0 0;
   font-size: 18px;
   line-height: 1.5;
   color: var(--grey, #6E6B65);
-  max-width: 68ch;
+  max-width: 60ch;
   text-wrap: pretty;
 }
-.thinking--library .thinking-row__m {
-  margin: 14px 0 0;
-  font-size: 13px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
+.thinking--library .thinking-row__alts {
+  margin: 16px 0 0;
+  font-size: 15px;
   line-height: 1.4;
+  color: var(--grey, #6E6B65);
 }
 .thinking--library .thinking-row__alt {
   color: var(--ink, #0D0D0D);
@@ -494,17 +511,11 @@
   letter-spacing: -.005em;
   text-transform: none;
 }
-.thinking--library .thinking-row__alt:hover {
-  border-bottom-color: var(--orange, #FF5A00);
-  color: var(--orange, #FF5A00);
-}
-.thinking--library .thinking-row__lang {
-  font-size: 13px;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
-  padding-top: 12px;
-  white-space: nowrap;
+@media (hover: hover) {
+  .thinking--library .thinking-row__alt:hover {
+    border-bottom-color: var(--orange, #FF5A00);
+    color: var(--orange, #FF5A00);
+  }
 }
 .thinking--library .thinking-row[data-status="upcoming"] .thinking-row__n a {
   color: var(--grey, #6E6B65);
@@ -527,16 +538,35 @@
   font-size: 15px;
   color: var(--grey, #6E6B65);
 }
+/* F46 · 390 · meta va en una sola línea arriba (25 SEP 2026 ·
+   ARTICLE · 6 MIN · ENGLISH), separada por " · ". Título 26px,
+   dek 18px. Padding 40px arriba y abajo. */
 @media (max-width: 760px) {
   .thinking--library .thinking-row {
     grid-template-columns: 1fr;
-    gap: 4px 10px;
+    gap: 12px;
+    padding: 40px 0;
   }
-  .thinking--library .thinking-row__o { padding-top: 0; font-size: 11px; }
-  .thinking--library .thinking-row__lang {
+  .thinking--library .thinking-row__meta {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 8px;
     padding-top: 0;
-    order: -1;
     font-size: 11px;
     letter-spacing: .1em;
+  }
+  .thinking--library .thinking-row__meta > * + *::before {
+    content: '· ';
+    color: inherit;
+    margin-right: 4px;
+  }
+  .thinking--library .thinking-row__n {
+    font-size: 26px;
+    max-width: none;
+  }
+  .thinking--library .thinking-row__dek {
+    font-size: 16px;
+    max-width: none;
   }
 }

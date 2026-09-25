@@ -349,6 +349,16 @@
 }
 .essay .e-body a:hover::after { transform: scaleX(1); transform-origin: left; }
 
+/* F46 · separator del molde de ensayo · hairline gris con aire.
+   Reemplaza a los `<hr>` crudos del markdown. Ancho completo de la
+   columna del body, con 40px de aire arriba y abajo. */
+.essay .e-body .e-separator {
+  height: 1px;
+  background: var(--paper-line, #D9D5CD);
+  margin: clamp(28px, 4.5vh, 48px) 0;
+  border: 0;
+}
+
 /* Signature — brief v15 T4. Reemplaza la línea del newsletter que
    prometía algo que no existe todavía. Mono, mayúsculas, --fs-meta,
    --ink-2. Es firma, no CTA. */

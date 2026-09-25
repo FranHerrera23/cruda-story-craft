@@ -107,6 +107,22 @@ const LIBRARY = [...ARTICLE_ITEMS, ...PODCAST_ITEMS].sort((a, b) => {
 
 const HAS_PODCASTS = PODCAST_ITEMS.length > 0
 
+/* F46 · formato de fecha de fila · "25 SEP 2026" (UPPER, sin coma).
+   Recibe ISO YYYY-MM-DD y devuelve string listo para render. */
+function formatRowDate(iso: string): string {
+  if (!iso) return ''
+  const d = new Date(iso)
+  if (Number.isNaN(d.getTime())) return ''
+  const day = d.getUTCDate()
+  const months = [
+    'JAN','FEB','MAR','APR','MAY','JUN',
+    'JUL','AUG','SEP','OCT','NOV','DEC',
+  ]
+  const mon = months[d.getUTCMonth()]
+  const year = d.getUTCFullYear()
+  return `${day} ${mon} ${year}`
+}
+
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
   name: 'Thinking · CRUDA',
@@ -172,55 +188,70 @@ export default function ThinkingPage() {
 
       <ThinkingFilters hasPodcasts={HAS_PODCASTS} />
 
-      {/* F36 · una sola lista · articles + podcasts. */}
+      {/* F36 · una sola lista · articles + podcasts.
+          F46 · layout 2-col por fila: meta chica a la izquierda
+          (fecha + kind·min + lengua), título+dek a la derecha.
+          Sale el número naranja (thinking-row__o). Hairlines gris
+          arriba y abajo de la lista + entre filas. Padding 56px
+          arriba y abajo en 1440, 40px en 390. Toda la fila es
+          clickeable via <Link> que envuelve el contenido. */}
       <section className="thinking-sec thinking-lib" data-sec="library">
         <div className="thinking-lib__list">
-          {LIBRARY.map((it, i) => (
-            <article
-              key={it.slug}
-              className="thinking-row"
-              data-kind={it.kind}
-              data-lang={it.language}
-              data-status={it.status}
-              lang={it.language === 'es' ? 'es' : undefined}
-            >
-              <span className="thinking-row__o">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <div className="thinking-row__b">
-                <h3 className="thinking-row__n">
-                  <Link href={it.href}>{it.title}</Link>
-                </h3>
-                {it.dek && <p className="thinking-row__dek">{it.dek}</p>}
-                <p className="thinking-row__m">
-                  {it.kind === 'podcast'
-                    ? it.status === 'upcoming'
-                      ? 'PODCAST · UPCOMING'
-                      : 'PODCAST'
-                    : `ARTICLE${
-                        it.readingMinutes
-                          ? ` · ${it.readingMinutes} MIN READ`
-                          : ''
-                      }`}
+          {LIBRARY.map((it) => {
+            const isPodcast = it.kind === 'podcast'
+            const isUpcoming = it.status === 'upcoming'
+            const kindLabel = isPodcast
+              ? isUpcoming
+                ? 'PODCAST · UPCOMING'
+                : 'PODCAST'
+              : `ARTICLE${
+                  it.readingMinutes ? ` · ${it.readingMinutes} MIN READ` : ''
+                }`
+            return (
+              <article
+                key={it.slug}
+                className="thinking-row"
+                data-kind={it.kind}
+                data-lang={it.language}
+                data-status={it.status}
+                lang={it.language === 'es' ? 'es' : undefined}
+              >
+                <div className="thinking-row__meta" aria-hidden="true">
+                  {it.publishedAt && (
+                    <time
+                      className="thinking-row__date"
+                      dateTime={it.publishedAt}
+                    >
+                      {formatRowDate(it.publishedAt)}
+                    </time>
+                  )}
+                  <span className="thinking-row__kind">{kindLabel}</span>
+                  <span className="thinking-row__lang">
+                    {it.language === 'es' ? 'Español' : 'English'}
+                  </span>
+                </div>
+                <div className="thinking-row__b">
+                  <h3 className="thinking-row__n">
+                    <Link href={it.href}>{it.title}</Link>
+                  </h3>
+                  {it.dek && <p className="thinking-row__dek">{it.dek}</p>}
                   {it.altLang && (
-                    <>
-                      {' · '}
+                    <p className="thinking-row__alts">
                       <Link
                         className="thinking-row__alt"
                         href={it.altLang.href}
-                        hrefLang={it.altLang.label === 'Español' ? 'es' : 'en'}
+                        hrefLang={
+                          it.altLang.label === 'Español' ? 'es' : 'en'
+                        }
                       >
                         Also in {it.altLang.label} →
                       </Link>
-                    </>
+                    </p>
                   )}
-                </p>
-              </div>
-              <span className="thinking-row__lang">
-                {it.language === 'es' ? 'Español' : 'English'}
-              </span>
-            </article>
-          ))}
+                </div>
+              </article>
+            )
+          })}
         </div>
 
         <p className="thinking-empty" data-empty hidden>

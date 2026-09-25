@@ -210,4 +210,16 @@ export type Work = {
      está, no se emite `article:published_time` ni `datePublished`
      en el JSON-LD Article. Fecha fake (period.end + -12-31) sale. */
   publishedAt?: string
+  /* F39 · fecha ISO de última modificación (YYYY-MM-DD). Poblada
+     desde `case-dates.json` (git log del archivo del caso). */
+  updatedAt?: string
+
+  /* F39 · franja de 3 cifras clave debajo del hero, arriba del
+     resumen. Solo para casos con cifras de negocio o alcance
+     (Karen, Mike). Cada entrada apunta a una métrica existente
+     en `metricGroups`; no se duplica texto. */
+  keyTakeaways?: Array<{
+    group: 'business' | 'reach' | 'mediaValue' | 'context'
+    index: number
+  }>
 }

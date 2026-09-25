@@ -60,8 +60,12 @@
   line-height: 1.4;
 }
 
-/* WHAT WE BUILT · filas (F26 §A.5). Cada fila:
-   NOMBRE (15px 500 · caps) + descripción 18px · 62ch. */
+/* WHAT WE BUILT · filas (F26 §A.5 + F39). Cada fila:
+   RÓTULO (13px · 600 · caps · tracking .08em · --orange · mb 8px)
+   + descripción 18px · 62ch.
+   F39: el rótulo pasa a funcionar como etiqueta (color naranja,
+   más chico y más apretado) para distinguirlo del cuerpo. Antes
+   salía 15px --ink y se confundía con el texto. */
 .wl-built-rows {
   list-style: none;
   padding: 0;
@@ -73,19 +77,81 @@
   border-bottom: 1px solid var(--paper-line, #D9D5CD);
 }
 .wl-built-rows__n {
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: .04em;
-  color: var(--ink, #0D0D0D);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--orange, #FF5A00);
   text-transform: uppercase;
+  margin-bottom: 8px;
 }
 .wl-built-rows__d {
-  margin-top: 8px;
-  font-size: clamp(15px, 1.4vw, 18px);
-  line-height: 1.55;
+  margin-top: 0;
+  font-size: 18px;
+  line-height: 1.6;
   color: var(--ink, #0D0D0D);
   max-width: 62ch;
   text-wrap: pretty;
+}
+
+/* F39 §2.2 · pen-case-times · fechas visibles debajo del byline,
+   con `<time datetime>`. Mismo tratamiento tipográfico que el
+   byline (13px grey), separadas por " · ". */
+.pen-case-times {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  letter-spacing: 0;
+}
+.pen-case-times time {
+  font-variant-numeric: tabular-nums;
+}
+
+/* F39 §2.3 · Key takeaways · franja de 3 cifras clave debajo del
+   hero. En 1440 las tres van en fila, con hairlines gris arriba y
+   abajo. En 390 se apilan. */
+.cs--pen .wl-key-takeaways {
+  border-top: 1px solid var(--paper-line, #D9D5CD);
+  border-bottom: 1px solid var(--paper-line, #D9D5CD);
+  padding-block: clamp(20px, 3vh, 32px);
+  margin-top: clamp(32px, 5vh, 56px);
+  max-width: 1440px;
+  margin-inline: auto;
+}
+.wl-key-takeaways__row {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 44px);
+}
+.wl-key-takeaways__cell {
+  min-width: 0;
+}
+.wl-key-takeaways__v {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.05;
+  color: var(--ink, #0D0D0D);
+  letter-spacing: -.01em;
+}
+.wl-key-takeaways__n {
+  font-family: var(--font-archivo), -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink, #0D0D0D);
+  vertical-align: super;
+  margin-left: 3px;
+}
+.wl-key-takeaways__l {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  line-height: 1.4;
+  max-width: 30ch;
+}
+@media (max-width: 900px) {
+  .wl-key-takeaways__row { grid-template-columns: 1fr; gap: 20px; }
 }
 
 /* WHAT CHANGED · grupos (F26 §A.7 · §E.2/§E.5). Regla ink 2px arriba.

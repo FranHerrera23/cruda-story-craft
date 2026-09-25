@@ -56,17 +56,15 @@ export const jackYeager: Work = {
          editada por Jack de "Making a Life From Scratch". Donde
          difieren, manda la editada por Jack.
 
-         F42 Freno · no se mergea hasta que Fran confirme el ok de
-         Jack para publicar biografía y cita. Tom Gores no se
-         nombra nunca. La primera versión del párrafo 3 usa "a
-         private equity firm" (Fran dijo que confirmaría si va
-         Platinum Equity o no; el default seguro es genérico para
-         no bloquear el review). */
+         F42 · Jack aprobó publicar biografía + cita (25-sep). El
+         párrafo 3 nombra "Platinum Equity" directamente (antes
+         decía "a private equity firm" como default seguro). El
+         nombre del dueño de PE queda fuera; sólo la firma. */
       h2: "A farm kid who kept walking into things he didn't know how to do.",
       body: [
         'Jack Yeager was born in Detroit in 1964 and raised on a farm in Ohio. He paid for architecture school with a mowing business: fifty-five lawns, five thousand dollars a week, cut in diagonals he had learned on a golf course.',
         'In 1991, before email, he built his own sales automation system and became the number one mortgage insurance rep in the United States, writing over $1.2 billion in one year, in one state.',
-        'He patented a diet and meal-planning system and licensed it to Discovery Health and Lifetime Fitness. Then came the turnarounds: hired as CEO by a private equity firm, he carved a $140M business unit out of Cardinal Health. He later bought a pharma-software company with no money, rebuilt it and sold it in a seven-figure exit. Then he spent five years at sea.',
+        'He patented a diet and meal-planning system and licensed it to Discovery Health and Lifetime Fitness. Then came the turnarounds: hired as CEO by Platinum Equity, he carved a $140M business unit out of Cardinal Health. He later bought a pharma-software company with no money, rebuilt it and sold it in a seven-figure exit. Then he spent five years at sea.',
         "None of that was on Mistiva's site. The brand read like any lighting store. The man behind it read like no one.",
       ],
     },
@@ -161,7 +159,8 @@ export const jackYeager: Work = {
   faq: [
     /* F42 §5 · nueva primera pregunta. Mismo texto se emite en el
        FAQPage JSON-LD (WorkLayout auto-emite `w.faq` como mainEntity).
-       Coincide con la biografía renderizada; sin Tom Gores. */
+       Coincide con la biografía renderizada; sin el nombre del
+       dueño de la firma de PE. */
     {
       q: 'Who is Jack Yeager?',
       a: 'The founder of Mistiva, a lighting studio in Midtown Miami. Before Mistiva he was the number one mortgage insurance rep in the United States, patented a diet software, ran private equity turnarounds including a $140M carve-out from Cardinal Health, and sold a pharma-software company in a seven-figure exit.',

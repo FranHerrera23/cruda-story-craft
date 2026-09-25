@@ -29,8 +29,10 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 20 | `f42-jack` | `d936e29` | ✅ |
 | 21 | `f44-services-transmission` | `a695516` | ✅ |
 | 22 | `f45-transmission-unit` | `1ce0703` | ✅ |
+| 23 | `f47-case-dates` | `b8fbbd5` | ✅ |
+| 24 | `f46-thinking` | `955ef90` | ✅ |
 
-`origin/main` HEAD final: `1ce0703`.
+`origin/main` HEAD final: `955ef90`.
 
 **Tercera tanda (25-sep):** F41 → F40 → F43 → F39 → F42 en el orden aprobado por Fran. Build limpio + push después de cada uno.
 
@@ -167,6 +169,12 @@ git revert -m 1 a695516
 
 # Rollback f45-transmission-unit (línea "Each month is built on long-form pieces…")
 git revert -m 1 1ce0703
+
+# Rollback f47-case-dates (resync updatedAt del manifest post-F39)
+git revert -m 1 b8fbbd5
+
+# Rollback f46-thinking (ensayo Why you can't write your own website + layout)
+git revert -m 1 955ef90
 ```
 
 Después de cualquier revert:

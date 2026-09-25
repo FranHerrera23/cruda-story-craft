@@ -475,7 +475,9 @@
   color: var(--ink, #0D0D0D);
   margin: 0;
   text-wrap: balance;
-  max-width: 22ch;
+  /* F46 rev · sale el max-width: 22ch · el título ocupa el ancho
+     de cols 4–11 (la propia columna derecha del grid). Los títulos
+     largos rebalancean solos con text-wrap: balance. */
 }
 .thinking--library .thinking-row__n a {
   color: inherit;

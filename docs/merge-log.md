@@ -28,8 +28,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 19 | `f39-cases` | `ce1c278` | ✅ |
 | 20 | `f42-jack` | `d936e29` | ✅ |
 | 21 | `f44-services-transmission` | `a695516` | ✅ |
+| 22 | `f45-transmission-unit` | `1ce0703` | ✅ |
 
-`origin/main` HEAD final: `a695516`.
+`origin/main` HEAD final: `1ce0703`.
 
 **Tercera tanda (25-sep):** F41 → F40 → F43 → F39 → F42 en el orden aprobado por Fran. Build limpio + push después de cada uno.
 
@@ -163,6 +164,9 @@ git revert -m 1 d936e29
 
 # Rollback f44-services-transmission (sweep de Transmission $2,200 → $2,500)
 git revert -m 1 a695516
+
+# Rollback f45-transmission-unit (línea "Each month is built on long-form pieces…")
+git revert -m 1 1ce0703
 ```
 
 Después de cualquier revert:

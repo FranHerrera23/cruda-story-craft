@@ -25,14 +25,17 @@ export const whyYouCantWriteYourOwnWebsite: Essay = {
 
   title: "Why you can't write your own website",
 
-  /* F46 · deck sale del cuerpo (la línea en negrita del md). Se
-     usa como dek visible entre h1 y byline, en la fila de /thinking
-     y como `answerCapsule` de AEO. La línea NO se repite dentro del
-     body para no salir dos veces. */
+  /* F46 · deck sale del cuerpo (la línea en negrita del md). Va
+     entre h1 y byline y también en la fila de /thinking. La línea
+     NO se repite dentro del body para no salir dos veces.
+     answerCapsule es distinto porque renderea en la e-capsule
+     cream — describe qué argumenta el ensayo, para AEO/search
+     snippets. Si fueran el mismo texto, la frase salía dos veces
+     en la página (una bajo el h1 y otra en la cápsula cream). */
   deck:
     "Ten years spent reading other people's labels, and I couldn't read my own.",
   answerCapsule:
-    "Ten years spent reading other people's labels, and I couldn't read my own.",
+    "Fourteen versions of the CRUDA site, including a PDF that opened with an offer I couldn't explain out loud, before I could write the sentence. Why founders can't write their own websites, and why the job has to fall to someone standing outside the jar.",
 
   body: [
     { type: 'separator' },

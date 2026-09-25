@@ -540,6 +540,36 @@
 }
 
 /* Mini blocks internos */
+/* F42 · pen-quote · pull-quote del molde F33 · serif 40px cols 3–10.
+   Se usa como block dentro de una pen-sec. En el grid de 12 cols
+   ocupa cols 3/span 8 (mismo tramo que .pen-h2/.pen-body). Sin
+   border naranja, sin margin-left; el cite queda 13px grey abajo. */
+.cs--pen .pen-sec .wl-pen-quote {
+  grid-column: 3 / span 8;
+  margin: clamp(28px, 4vh, 48px) 0 0;
+  padding: 0;
+  border: 0;
+  max-width: 44ch;
+}
+.cs--pen .pen-sec .wl-pen-quote q {
+  font-family: var(--serif, 'Instrument Serif', Georgia, serif);
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  color: var(--ink, #0D0D0D);
+  quotes: none;
+  display: block;
+  text-wrap: balance;
+}
+.cs--pen .pen-sec .wl-pen-quote cite {
+  display: block;
+  font-style: normal;
+  font-size: 13px;
+  color: var(--grey, #6E6B65);
+  margin-top: 14px;
+  letter-spacing: 0;
+}
+
 .wl-mini-quote {
   border-left: 2px solid var(--orange, #FF5A00);
   padding-left: 20px;

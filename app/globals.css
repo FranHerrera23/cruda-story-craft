@@ -669,14 +669,20 @@ select,
 }
 
 /* F48 · tap targets 44×44 mínimo en mobile / touch.
-   Regla general para los patrones más usados. Alcanza:
-     · `.plane .go` (Book the call, See how it works)
-     · `.link` (nav mobile, footer, thinking bottom cases link)
-     · `.about-go`, `.services-mail`, `.thinking-row__alt`
-     · `.cs-back` y `.pen-eyebrow`-adjacent buttons en cases
-   Sube el hit area con padding y min-height sin cambiar la
-   tipografía. Desktop no se toca. */
+   Regla general para todos los "controles sueltos" del audit
+   Fase 2 (b): botones, filtros, links de nav, footer, "See how it
+   works", back arrows, CTA de start-here, mail links, acordeón,
+   toggle hamburger, wordmark. Cero cambios en desktop.
+
+   Las (a) — links inline dentro de párrafos (case names en "See it
+   in:", byline "Fran Herrera", "Karen Mannheim" en KEY FACTS de
+   /about, door service names en CREDITS del molde F33, sources en
+   ROOMS, "services" en /contact copy, "fran@thecruda.com" cuando
+   está inline en párrafo) — se dejan como están: forman parte de
+   la lectura y ampliarlas romperían el flujo de texto. */
 @media (max-width: 767px), (pointer: coarse) {
+  /* Textos-CTA · padding vertical + inline-flex para tomar 44px
+     de alto sin cambiar la tipografía. */
   .plane .go,
   .about-go,
   .services-mail,
@@ -684,11 +690,57 @@ select,
   .thinking-row__alt,
   .thinking-lib__cases,
   .cs-back,
-  .e-back {
+  .e-back,
+  .start-here__cta,
+  .start-here__mail,
+  .translated-back {
     min-height: 44px;
     display: inline-flex;
     align-items: center;
     padding-block: 10px;
+  }
+  /* Ancho mínimo · para links cortos como "Work" en el footer,
+     "All" en filtros, "Work" en la nav mobile. Sin center-align
+     text porque estos son inline-flex y align-items ya centra
+     verticalmente. */
+  .link,
+  .site-footer__nav .link,
+  .cruda-global-nav-menu .link,
+  .cruda-global-nav-mobile .link {
+    min-width: 44px;
+  }
+  /* Filter buttons de /thinking (.f) · padding + min-height +
+     min-width. Estos son <button> y viven en la fila de filtros. */
+  .f {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 12px 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* Nav mobile · hamburger toggle y wordmark link. Padding
+     extra para tocar 44×44. El logo interno mantiene su
+     dimensión (40px de alto); el link a su alrededor toma
+     44px con padding. */
+  .cruda-global-nav-mobile-toggle {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 11px 12px;
+  }
+  .cruda-global-nav-brand {
+    min-height: 44px;
+    padding-block: 2px;
+  }
+  /* Skip-link a11y · sólo visible en focus (screen reader). Su
+     hit area no importa visualmente pero cuando aparece que sea
+     ≥44px. */
+  .skip-link:focus-visible {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 12px;
   }
   /* La fila del índice de puertas (/services): sube padding
      vertical para que la caja del row toque 44px aunque no sea
@@ -703,6 +755,15 @@ select,
      min-height al link por si el título es de una línea corta. */
   .thinking--library .thinking-row__n a {
     display: inline-block;
+    min-height: 44px;
+  }
+  /* FAQ acordeón · /about y las FAQs de cases · el <button>
+     summary del <details> necesita 44px. La regla usa el patrón
+     estándar del componente FaqAccordion. */
+  details > summary,
+  .about-faq__q,
+  .wl-faq__q,
+  .pen-faq__q {
     min-height: 44px;
   }
 }

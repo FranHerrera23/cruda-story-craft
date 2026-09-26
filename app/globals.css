@@ -160,6 +160,24 @@ section {
   }
 }
 
+/* F48 · política de motion mobile · mismo apagado que reduced
+   sobre reveal/opacity locks, pero sin tocar duraciones globales
+   ni scroll-behavior a `auto` en todo (ese ya está gated por
+   Lenis en `essay.css`). Los reveals se resuelven de golpe al
+   montar: opacity 1, transform 0, clip-path none. Fade 400ms
+   único queda a cargo del componente si le importa. */
+@media (max-width: 767px), (pointer: coarse) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+  }
+  .work-card__arrow {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -457,6 +475,22 @@ html[data-loader="skip"] .loader { display: none; }
   .loader { display: none; }
 }
 
+/* F48 · Loader mobile · 1.2s max total. Se comprimen los tres
+   timings (letter-rise, line-in, panel-exit) para que la salida
+   sea a los ~800ms + 400ms de buffer JS = 1.2s hard cap.
+   Desktop no cambia. */
+@media (max-width: 767px), (pointer: coarse) {
+  .loader__stage {
+    animation: loader-panel-exit 400ms var(--ease-exit) 400ms forwards;
+  }
+  .loader__letter {
+    animation: loader-letter-rise 300ms cubic-bezier(.16, 1, .3, 1) forwards;
+  }
+  .loader__line {
+    animation: loader-line-in 250ms ease-out 200ms forwards;
+  }
+}
+
 /* Motion §3.1 · carga de página.
 
    `.page-root` es opacity 0 al pintarse y sube a 1 al agregarse
@@ -614,4 +648,61 @@ select,
 [class*="card"],
 [class*="button"] {
   border-radius: 0 !important;
+}
+
+/* F48 · rótulos "eyebrow" a 12px mínimo en mobile · desktop no
+   cambia. Alcanza las clases que hoy están a 10-11px (audit P1,
+   P2, P6). Las que ya son 12+ no bajan de precio: max() lo respeta. */
+@media (max-width: 767px), (pointer: coarse) {
+  .eyebrow,
+  .pen-eyebrow,
+  .about-eyebrow,
+  .cell__l,
+  .cs-eyebrow,
+  .thinking-row__kind,
+  .thinking-row__lang,
+  .thinking-row__date,
+  .home-founder__credit,
+  .home-what-others__credit {
+    font-size: max(12px, 100%);
+  }
+}
+
+/* F48 · tap targets 44×44 mínimo en mobile / touch.
+   Regla general para los patrones más usados. Alcanza:
+     · `.plane .go` (Book the call, See how it works)
+     · `.link` (nav mobile, footer, thinking bottom cases link)
+     · `.about-go`, `.services-mail`, `.thinking-row__alt`
+     · `.cs-back` y `.pen-eyebrow`-adjacent buttons en cases
+   Sube el hit area con padding y min-height sin cambiar la
+   tipografía. Desktop no se toca. */
+@media (max-width: 767px), (pointer: coarse) {
+  .plane .go,
+  .about-go,
+  .services-mail,
+  .link,
+  .thinking-row__alt,
+  .thinking-lib__cases,
+  .cs-back,
+  .e-back {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    padding-block: 10px;
+  }
+  /* La fila del índice de puertas (/services): sube padding
+     vertical para que la caja del row toque 44px aunque no sea
+     `<a>` en sí (queda como referencia; el link real es el h2
+     de cada plano). */
+  .services-open .irow {
+    padding-block: 14px;
+    min-height: 44px;
+  }
+  /* Fila de /thinking · el `<a>` del título ya ocupa una área
+     grande gracias al padding 40px del row (F46). Le sumamos
+     min-height al link por si el título es de una línea corta. */
+  .thinking--library .thinking-row__n a {
+    display: inline-block;
+    min-height: 44px;
+  }
 }

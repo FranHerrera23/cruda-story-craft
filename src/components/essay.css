@@ -26,6 +26,11 @@
   text-transform: uppercase;
 }
 .essay-root html { scroll-behavior: smooth; }
+/* F48 · cero smooth scroll en touch/mobile — se acumula con
+   Lenis y el nativo iOS. Desktop no cambia. */
+@media (max-width: 767px), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .essay-root html { scroll-behavior: auto; }
+}
 
 /* ---------- Reading progress bar — brief v4 UX §4.1
    Sale del naranja. Se queda a 2px en --color-ink. */

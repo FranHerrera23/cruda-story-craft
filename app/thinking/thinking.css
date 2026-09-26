@@ -58,6 +58,17 @@
   border-top: 1px solid var(--paper-line, #D9D5CD);
   border-bottom: 1px solid var(--paper-line, #D9D5CD);
 }
+/* F48 · en mobile los filtros dejan de ser sticky · comen 100px
+   del viewport (nav 56 + filtros ~44) y no se ve más de 1 fila
+   del listado por pantalla. Con scroll normal siguen accesibles
+   arriba del listado. */
+@media (max-width: 767px), (pointer: coarse) {
+  .thinking-filters {
+    position: static;
+    top: auto;
+    z-index: auto;
+  }
+}
 .fgroup {
   display: flex;
   flex-wrap: wrap;

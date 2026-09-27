@@ -305,9 +305,9 @@ opacity a 1 sobre el resto.
 
 | Hipótesis | Estado | Evidencia |
 |---|---|---|
-| **A** — Loader corre fuera de `/` o dura demás | **PARCIALMENTE FALSADA** | El código lo bloquea fuera de `/` (§7). En `/` mobile son 850 ms — dentro del margen. No es la primera causa. |
-| **B** — Content del primer fold sale a `opacity:0` / `visibility:hidden` al load | **CONFIRMADA como causa dominante en /, /services, /about** | `.page-root:not(.ready) { opacity: 0 }` global (§6 fila 1). El nav está fuera del wrapper y por eso su logo se convierte en el LCP fabricado. |
-| **C** — El LCP image no tiene `priority` ni formato moderno | **CONFIRMADA como causa dominante en karen** | 1.17 MB JPG, sin `next/image`, sin `fetchpriority`, sin `sizes`, servido a 324×182 css px (§2, §3, §5). |
+| **A** — Content del primer fold sale a `opacity:0` / `visibility:hidden` al load | **CONFIRMADA como causa dominante en /, /services, /about** | `.page-root:not(.ready) { opacity: 0 }` global (§6 fila 1). El nav está fuera del wrapper y por eso su logo se convierte en el LCP fabricado. |
+| **B** — Loader corre fuera de `/` o dura demás | **FALSADA** | El código lo bloquea fuera de `/` (§7). En `/` mobile son 850 ms — dentro del margen. No es la primera causa. |
+| **C** — El LCP image (hero de case study) no tiene `priority` ni formato moderno | **CONFIRMADA como causa dominante en karen** | 1.17 MB JPG, sin `next/image`, sin `fetchpriority`, sin `sizes`, servido a 324×182 css px (§2, §3, §5). Vive en `CaseStudyLayoutV2.tsx:157` → aplica a **todos** los cases F33 (Karen, Mike, José, Girish, Jack, Confidential). |
 
 **No se contradicen las hipótesis. Se refinan:**
 

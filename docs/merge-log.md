@@ -31,8 +31,21 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 22 | `f45-transmission-unit` | `1ce0703` | ✅ |
 | 23 | `f47-case-dates` | `b8fbbd5` | ✅ |
 | 24 | `f46-thinking` | `955ef90` | ✅ |
+| 25 | `f48-mobile` | `af57897` | ✅ |
 
-`origin/main` HEAD final: `955ef90`.
+`origin/main` HEAD final: `af57897`.
+
+**Cuarta tanda (27-sep · F48):** política motion mobile + tap
+targets 44×44. Regla dura de Fran: cero cambios en desktop.
+Regresión pixel-diff main vs f48-mobile en 17 páginas × 1024/
+1440/1920 = 0 pixels distintos en las 51 comparaciones (baseline
+main-vs-main = 0). Métricas mobile 390: home stky 9→0 + opacHid
+34→0 + tinys 14→1; services stky 7→0 + tinys 27→10; thinking
+stky 1→0 + tinys 20→1. Loader ahora sólo en `/`, una vez por
+sesión, nunca con UTM, ≤1.2s mobile · desktop 2s intacto. Todos
+los tap targets clasificados (a) inline-en-párrafo aceptables /
+(b) controles sueltos a 44×44. "See it in:" case name links con
+área táctil de 41px alto + 8px separación en mobile.
 
 **Tercera tanda (25-sep):** F41 → F40 → F43 → F39 → F42 en el orden aprobado por Fran. Build limpio + push después de cada uno.
 
@@ -175,6 +188,9 @@ git revert -m 1 b8fbbd5
 
 # Rollback f46-thinking (ensayo Why you can't write your own website + layout)
 git revert -m 1 955ef90
+
+# Rollback f48-mobile (política motion mobile + tap targets 44×44)
+git revert -m 1 af57897
 ```
 
 Después de cualquier revert:

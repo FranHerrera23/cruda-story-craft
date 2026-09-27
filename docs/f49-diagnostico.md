@@ -326,6 +326,43 @@ opacity a 1 sobre el resto.
 
 ---
 
+## Hallazgo adicional (durante §3.2) · nav CSS no llega en el server render
+
+Al ejecutar §3.2 apareció una segunda causa de shift que estaba enmascarada
+por el gate original: **el `<style jsx global>` de `Nav.tsx` (client
+component) no se emite en el HTML server-rendered en Next.js 14 App
+Router.**
+
+Verificado con `curl -s http://localhost:3013/ | grep -oE 'position\s*:\s*fixed'`
+→ 0 matches en el HTML servido. Sólo aparece un `.cruda-global-nav { view-transition-name: cruda-nav }` que viene de una CSS chunk regular. Todo el
+resto de la CSS de la nav (position, flex, padding, colores, hover)
+llega junto con el bundle JS.
+
+Consecuencia con el gate `.page-root` off en mobile:
+1. Primer paint (t≈2 s en Slow-4G): nav render sin `position: fixed`, ocupa
+   169.5 px de alto en flow estático. `.page-root` empieza pintado en
+   `y = 170`.
+2. Hidratación (t≈3.7 s con CPU 4× throttling): styled-jsx inyecta el CSS
+   completo, nav se vuelve `position: fixed`, `.page-root` sube a `y = 0`.
+3. Chrome contabiliza esa subida como layout shift ≈ 0.206.
+
+**Reporte técnico:** este es un problema estructural del cliente-side CSS
+de `Nav.tsx`. La solución de fondo es sacar la CSS de la nav de
+`<style jsx global>` y ponerla en un archivo `.css` real (o CSS module),
+para que Next.js la incluya en las stylesheets emitidas en el HTML
+servido junto con el resto. Fuera del scope de F49.
+
+**Fix quirúrgico aplicado en §3.2:** las reglas mínimas que evitan el
+shift (`position: fixed`, `top/left/right`, `z-index`, `display: flex` del
+`.cruda-global-nav-in`, y `height: 40px` del logo) se replicaron en
+`app/globals.css` — que sí se emite server-side. La cascada CSS deja
+que la versión de styled-jsx (que llega en la hidratación) coexista sin
+conflictos.
+
+Segundo shift chico (footer wordmark 96 px) se resolvió agregando
+`width={708}` + `height={284}` al `<img>` del footer + `loading="lazy"`
+(sub-ítem del layout-shift audit de LH).
+
 ## Recomendación de secuencia para el Paso 2
 
 1. **§3.2 primero** (quitar el gate `.page-root:not(.ready)` de la primera

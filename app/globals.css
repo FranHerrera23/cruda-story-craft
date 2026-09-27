@@ -493,20 +493,68 @@ html[data-loader="skip"] .loader { display: none; }
 
 /* Motion §3.1 · carga de página.
 
-   `.page-root` es opacity 0 al pintarse y sube a 1 al agregarse
-   `.ready` post-hydration. Solo opacidad, sin transform. Bajo
-   scripting:none (JS off), no gate: el default de opacity 1 se
-   respeta y la página aparece de una.
+   F49 §3.2 · 27-sep · gate acotado a DESKTOP fine-pointer.
+
+   El gate original `.page-root:not(.ready) { opacity: 0 }` global
+   apagaba todo el `<main>` hasta que React hidrataba. En mobile eso
+   convertía el logo del nav (fuera del wrapper) en LCP fabricado y
+   empujaba el LCP de home/services/about a ~2.6-3.0 s. Diagnóstico
+   completo en `docs/f49-diagnostico.md`.
+
+   Se mantiene en desktop porque Act1Hero.fitAllPhrases mide el ancho
+   del contenedor y baja el font-size en un rAF post-mount; sin el
+   gate se vería un flash de dos line-boxes antes del auto-fit
+   (ese motor no monta en mobile via F48 gate, así que allá no hay
+   FOJT que ocultar). El pixel-diff a 1200 ms se preserva porque
+   post-fit la renderización es idéntica en ambos caminos.
 
    reduce (globals §6) fija `.page-root { opacity: 1 }` — ver bloque
    más abajo. */
-@media (scripting: enabled) {
+@media (scripting: enabled) and (min-width: 768px) and (pointer: fine) {
   .page-root:not(.ready) { opacity: 0; }
   .page-root.ready {
     opacity: 1;
     transition: opacity var(--dur-3) var(--ease);
   }
 }
+
+/* F49 §3.2 · reserva SSR de la barra nav.
+   Nav.tsx pone `position: fixed` sobre `.cruda-global-nav.bar` desde
+   un `<style jsx global>` dentro de un componente client. En Next.js
+   14 App Router esa CSS no se emite en el HTML server-rendered — llega
+   junto con el bundle JS y se aplica recién al hidratarse React. Sin
+   el gate `.page-root:not(.ready)` en mobile (F49 §3.2), la ventana
+   entre el primer paint y la hidratación deja a la nav en flujo
+   `static` y empuja al `<div class="page-root">` unos 170 px hacia
+   abajo. Cuando la nav se vuelve fija, el `.page-root` sube al top y
+   Chrome contabiliza esa subida como CLS 0.206.
+   Este bloque emite las reglas de posicionamiento y layout mínimas
+   de la barra desde globals.css (server component), para que el
+   primer paint ya conozca `position: fixed` y la disposición flex
+   interna. La CSS interna de la nav (colores, tipografías, hover,
+   mobile menu) se queda en su `<style jsx>` — este bloque sólo
+   cubre lo que causa layout shift.
+   Reporte + explicación en `docs/f49-diagnostico.md`. */
+.cruda-global-nav.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 110;
+}
+.cruda-global-nav-in {
+  padding: 18px var(--pad, clamp(20px, 4.5vw, 72px));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.cruda-global-nav-brand__logo {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+.cruda-global-nav-brand__logo--cream { display: none; }
 
 /* ==================================================================
    Motion §3.3 · Reveal de media.

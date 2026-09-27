@@ -29,10 +29,22 @@ export default function SiteFooter() {
         {/* F22 · wordmark del footer pasa a ser el logo negro.
             alt="CRUDA" y sin link (el nav ya sirve de home). */}
         <div className="site-footer__wordmark">
+          {/* F49 §3.2 · width/height explícitos + loading=lazy · sin las
+              dimensiones intrínsecas el browser reservaba 0px hasta que
+              cargaba el PNG, y al cargar reflowaba el resto de la página
+              (subitem del CLS 0.206 medido en Paso 1 tras destapar el
+              gate .page-root). Con 708×284 el aspect-ratio de la CSS
+              (width: clamp(240px, 40vw, 560px); height: auto;) reserva
+              alto correcto desde el server-render. `lazy` porque el
+              footer está fuera del primer fold en todas las páginas. */}
           <img
             className="site-footer__wordmark-logo"
             src="/cruda-logo-black.png"
             alt="CRUDA"
+            width={708}
+            height={284}
+            loading="lazy"
+            decoding="async"
           />
         </div>
 

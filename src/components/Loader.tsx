@@ -44,6 +44,44 @@ const UNMOUNT_BUFFER_MS = 50
 const UNMOUNT_MS = HOLD_MS + EXIT_MS + UNMOUNT_BUFFER_MS
 const TAGLINE = 'We translate cultures into business.'
 
+/* F48 · variantes mobile · el brief pide 1.2s máximo total en
+   mobile. Compresión: HOLD 400ms + EXIT 400ms + buffer 50ms
+   = 850ms real + margin. Se activa solo cuando el gate mobile
+   pasa (matchMedia pointer:coarse o max-width 767 o reduce-motion). */
+const HOLD_MS_MOBILE = 400
+const EXIT_MS_MOBILE = 400
+const UNMOUNT_MS_MOBILE = HOLD_MS_MOBILE + EXIT_MS_MOBILE + UNMOUNT_BUFFER_MS
+
+const LOADER_SEEN_KEY = 'cruda-loader-seen'
+
+/* F48 · gate mobile · solo se aplica policy nueva del brief bajo
+   pointer:coarse, max-width 767 o prefers-reduced-motion:reduce. */
+function isMobileLoaderContext(): boolean {
+  if (typeof window === 'undefined') return false
+  return (
+    window.matchMedia('(pointer: coarse)').matches ||
+    window.matchMedia('(max-width: 767px)').matches ||
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
+/* F48 · UTM detection · cualquier parámetro `utm_*` presente en
+   la URL cuenta como tráfico de outreach donde no queremos meter
+   fricción del loader. */
+function hasUtmParams(): boolean {
+  if (typeof window === 'undefined') return false
+  const params = new URLSearchParams(window.location.search)
+  for (const key of params.keys()) {
+    if (key.toLowerCase().startsWith('utm_')) return true
+  }
+  return false
+}
+
+function isHomePathname(): boolean {
+  if (typeof window === 'undefined') return false
+  return window.location.pathname === '/'
+}
+
 function dispatchLoaderOut() {
   document.dispatchEvent(new CustomEvent('cruda:loader-out'))
 }
@@ -82,6 +120,32 @@ export default function Loader() {
       return
     }
 
+    /* F48 · policy nueva sólo bajo mobile/touch/reduced-motion
+       (regla dura Fran: desktop code path unchanged). En desktop
+       cae al camino original (loader en toda carga completa,
+       duración 2s). En mobile: solo `/`, una vez por sesión,
+       nunca con UTM, duración max 1.2s. */
+    const mobileCtx = isMobileLoaderContext()
+    if (mobileCtx) {
+      if (!isHomePathname()) {
+        setVisible(false)
+        return
+      }
+      if (hasUtmParams()) {
+        setVisible(false)
+        return
+      }
+      try {
+        if (sessionStorage.getItem(LOADER_SEEN_KEY) === '1') {
+          setVisible(false)
+          return
+        }
+        sessionStorage.setItem(LOADER_SEEN_KEY, '1')
+      } catch {
+        /* Private mode / storage blocked · no impedir la home. */
+      }
+    }
+
     /* F22 · en toda carga completa, mandamos el scroll a 0 (o al
        #ancla) antes de que el loader termine su salida. */
     const hasHash = Boolean(window.location.hash)
@@ -89,13 +153,17 @@ export default function Loader() {
       window.scrollTo(0, 0)
     }
 
+    const holdMs = mobileCtx ? HOLD_MS_MOBILE : HOLD_MS
+    const exitMs = mobileCtx ? EXIT_MS_MOBILE : EXIT_MS
+    const unmountMs = mobileCtx ? UNMOUNT_MS_MOBILE : UNMOUNT_MS
+
     const tOut = window.setTimeout(() => {
       dispatchLoaderOut()
       if (hasHash) scrollToHashIfAny()
-    }, HOLD_MS + EXIT_MS)
+    }, holdMs + exitMs)
     const tUnmount = window.setTimeout(
       () => setVisible(false),
-      UNMOUNT_MS,
+      unmountMs,
     )
 
     return () => {

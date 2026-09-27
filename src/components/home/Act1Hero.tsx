@@ -75,6 +75,17 @@ export default function Act1Hero() {
     setReduced(mq.matches)
     if (mq.matches) return
 
+    /* F48 · gate mobile · el motor de Act1 no monta en touch o
+       viewport chico. El CSS ya apila los beats en flujo (misma
+       política que reduced-motion) — el JS no hace falta. */
+    if (
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 767px)').matches
+    ) {
+      setReduced(true)
+      return
+    }
+
     const track = trackRef.current
     if (!track) return
 

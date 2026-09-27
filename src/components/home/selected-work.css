@@ -174,3 +174,9 @@
   }
   .sw-service { transform: translateY(0); }
 }
+/* F48 · rótulo de servicio (TRANSLATED · TRANSMISSION...) a 12px
+   en mobile · el 10px original queda al borde de legibilidad en
+   390. Desktop no cambia. */
+@media (max-width: 767px), (pointer: coarse) {
+  .sw-service-slot { font-size: 12px; }
+}

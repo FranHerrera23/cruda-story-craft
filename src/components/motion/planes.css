@@ -194,3 +194,16 @@
   .plane .rule { width: 100% !important; }
   [data-r] { opacity: 1 !important; transform: none !important; }
 }
+
+/* F48 · misma política que reduced-motion sobre mobile / touch.
+   Los cinco planos del PlanesStack (WhatCrudaIs, Services,
+   KarenProof, WhatOthers, Legacy, Close) dejan de ser sticky
+   100svh y se apilan como bloques planos. Sin scroll-scrub sobre
+   el reveal. Regla dura F48: desktop (>= 768px con pointer fino)
+   no cambia. */
+@media (max-width: 767px), (pointer: coarse) {
+  .plane { position: static; height: auto; min-height: 0; }
+  .plane__in { transform: none !important; opacity: 1 !important; }
+  .plane .rule { width: 100% !important; }
+  [data-r] { opacity: 1 !important; transform: none !important; }
+}

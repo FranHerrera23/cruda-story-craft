@@ -32,7 +32,15 @@ export default function PlanesStack() {
 
     doc.body.classList.add('js')
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    /* F48 · gate mobile · en touch o viewport chico no se monta
+       el scroll-scrub. El reveal de `data-r` sigue quedando en el
+       DOM (el marcado ocurre antes del early-return abajo), pero
+       el CSS de F48 lo neutraliza con `opacity: 1 !important` y
+       `transform: none !important`. Desktop no cambia. */
+    const reduce =
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches ||
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 767px)').matches
 
     // 1 · z-index por orden de DOM.
     Array.from(stack.children).forEach((el, i) => {

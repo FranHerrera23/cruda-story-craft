@@ -176,6 +176,20 @@
   border-bottom: 1px solid currentColor;
   padding-bottom: 1px;
 }
+/* F48 · misma política que la .services-see-in de /services · en
+   mobile los links inline pasan a inline-block con 24px de alto
+   (padding vertical 5px) y 8px de margen derecho. Line-height
+   del párrafo sube a 2 para que los inline-block no se solapen.
+   Desktop no cambia. */
+@media (max-width: 767px), (pointer: coarse) {
+  .translated-see-in { line-height: 2; }
+  .translated-see-in a {
+    display: inline-block;
+    min-height: 24px;
+    padding: 5px 0;
+    margin-right: 8px;
+  }
+}
 
 /* START HERE · placeholder hasta f23-5. */
 .translated-close {

@@ -29,6 +29,17 @@ export default function Act2WhyNow() {
     setReduced(mq.matches)
     if (mq.matches) return
 
+    /* F48 · gate mobile · el motor de Act2 no monta en touch. El
+       CSS colapsa el stage y apila los beats + la primer imagen
+       estática (art:first-child) como en reduced-motion. */
+    if (
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.matchMedia('(max-width: 767px)').matches
+    ) {
+      setReduced(true)
+      return
+    }
+
     const track = trackRef.current
     if (!track) return
 

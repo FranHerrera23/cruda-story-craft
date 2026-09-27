@@ -118,6 +118,21 @@
 }
 .plane--black .services-see-in { color: var(--grey-dark, #8A867E); }
 .plane--black .services-see-in a { color: var(--white, #FAF9F7); }
+/* F48 · "See it in:" en /services y /services/translated · en
+   mobile los case name links son inline-block con 24px de alto
+   (padding vertical 5px sobre line-height 15×1.5=22.5) y 8px de
+   margen derecho para que no se toquen entre sí. Sin cambiar
+   el tamaño del texto. Line-height del párrafo sube para que
+   los inline-block apilados no se solapen. Desktop no cambia. */
+@media (max-width: 767px), (pointer: coarse) {
+  .services-see-in { line-height: 2; }
+  .services-see-in a {
+    display: inline-block;
+    min-height: 24px;
+    padding: 5px 0;
+    margin-right: 8px;
+  }
+}
 
 /* F23-2 · WHO IT IS NOT FOR · h2 de sección, sin regla. */
 .services-not-for h2.name {

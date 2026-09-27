@@ -30,12 +30,24 @@ gsap.registerPlugin(ScrollTrigger)
        vuelva a tirar al hash cuando el usuario navega con back.
 
    Bajo prefers-reduced-motion no se instancia Lenis — los
-   anchors nativos y el scroll-behavior:smooth del CSS quedan. */
+   anchors nativos y el scroll-behavior:smooth del CSS quedan.
+
+   F48 · Lenis desactivado en mobile / touch. Además del gate
+   por prefers-reduced-motion, también salteamos la instancia en:
+     · `(pointer: coarse)` — dispositivos touch (iPhone, Android).
+     · `(max-width: 767px)` — cualquier viewport mobile aunque
+        el device pretenda tener puntero fino (por ejemplo iPad
+        en Safari mobile con pointer:fine emulado).
+   El scroll pasa a ser nativo en esos casos. Desktop (pointer
+   fine + viewport >= 768) sigue con Lenis igual que antes. */
 
 export default function SmoothScroll() {
   useEffect(() => {
     if (typeof window === 'undefined') return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    /* F48 · gate mobile / touch. */
+    if (window.matchMedia('(pointer: coarse)').matches) return
+    if (window.matchMedia('(max-width: 767px)').matches) return
 
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual'

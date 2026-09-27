@@ -96,6 +96,12 @@
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
+/* F48 · counters + labels de Act1/Act2 a 12px en mobile.
+   Desktop no cambia. */
+@media (max-width: 767px), (pointer: coarse) {
+  .act__counter,
+  .act__label { font-size: 12px; }
+}
 .act__counter {
   left: clamp(24px, 5vw, 80px);
 }
@@ -445,6 +451,98 @@
     margin-top: var(--s4);
   }
   /* Act 2 · un solo dibujo estático (el primero). */
+  .act2__arts {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1;
+    margin: 0 0 var(--s4);
+  }
+  .act2__art {
+    opacity: 0;
+  }
+  .act2__art:first-child {
+    opacity: 1;
+  }
+}
+
+/* ══════════ F48 · Mobile · misma política que reduced-motion
+   Sin sticky, sin 100svh, sin scroll-scrub, sin clip-path.
+   Bloques apilados en flujo. Texto full opacity al primer paint.
+   Fade 400ms una sola vez via el reveal del sistema (RevealScroll
+   respeta la misma media query desde F48 gate). Desktop
+   (>= 768px con pointer fino) sigue igual que hoy.
+
+   La regla dura de F48 §3 dice: sin cambios de markup ni de orden.
+   Todos los reveals que hoy se atan al scroll y todos los sticky
+   se resuelven vía CSS override sobre el mismo DOM. */
+
+@media (max-width: 767px), (pointer: coarse) {
+  .act1,
+  .act2 {
+    height: auto;
+  }
+  .act__stage {
+    position: static;
+    height: auto;
+    padding: var(--s5) var(--pad);
+  }
+  .act__grid,
+  .act__counter,
+  .act__label {
+    display: none;
+  }
+  .act__beats {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s4);
+    max-width: 1600px;
+    margin-inline: 0;
+  }
+  .beat,
+  .act1 .beat,
+  .act2 .beat {
+    position: static;
+    transform: none;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    max-width: none;
+    visibility: visible;
+    opacity: 1;
+    animation: none;
+  }
+  /* F48 · el gate `.js .act1 .beat` (opacity 0) también se
+     neutraliza en mobile · el motor no está montado por el gate
+     de acts-motor, pero por si el HTML todavía llega con `.js`
+     antes de que el JS detecte mobile, forzamos opacity 1. */
+  .js .act1 .beat,
+  .js .act2 .beat,
+  .js #act2 .beat:not([data-beat="1"]) {
+    opacity: 1;
+    visibility: visible;
+  }
+  .beat__phrase {
+    opacity: 1;
+  }
+  .beat__line .dim {
+    opacity: 1;
+  }
+  .beat__line .lit {
+    display: none;
+  }
+  .act__logo {
+    position: static;
+    margin-top: var(--s4);
+  }
+  /* Act 2 · un solo dibujo estático (el primero) apilado arriba
+     del texto. Mismo criterio que reduced-motion. */
   .act2__arts {
     position: static;
     transform: none;

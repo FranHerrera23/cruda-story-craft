@@ -69,8 +69,13 @@ export type Essay = {
   tags?: string[]
   contentType?: 'Essay' | 'Conversation'
   readingMinutes: number
+  /* F51 §2 · hero opcional (para todos los ensayos). Larry Holmes
+     es el primero que lo usa. Si no viene, el ensayo cierra el hueco
+     entre firma y cuerpo a 48 px desktop / 32 px mobile (via CSS
+     `.essay .e-body { margin-top }`). */
   heroImage?: string
   heroAlt?: string
+  heroCredit?: string
   body: EssayBlock[]
   faqs?: Faq[]
   language?: EssayLanguage
@@ -241,15 +246,35 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </div>
         </header>
 
-        {/* Answer capsule — de qué se trata, sin spoilear el giro.
-            Brief v8 T1: sobre --cream, como el bloque takeaways de los
-            case studies. Es lo que la IA levanta como respuesta. */}
-        <p className="e-capsule">{es.answerCapsule}</p>
-
+        {/* F51 §2 · hero opcional (nuevo slot para todos los ensayos).
+            Va inmediatamente después del filete de la firma. 16:9 con
+            `object-fit: cover`. Ancho de la columna del h1 (cols 1-8),
+            no full-bleed. Los ensayos que no definen `heroImage` no
+            renderizan nada · el gap entre firma y cuerpo se cierra en
+            .e-body vía CSS (48 px desktop, 32 px mobile). */}
         {es.heroImage && es.heroAlt && (
           <figure className="e-hero">
-            <Image src={es.heroImage} alt={es.heroAlt} width={1600} height={900} priority />
+            <Image
+              src={es.heroImage}
+              alt={es.heroAlt}
+              width={1600}
+              height={900}
+              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 65vw, 800px"
+              quality={90}
+              priority
+            />
+            {es.heroCredit && (
+              <figcaption className="e-hero__credit">{es.heroCredit}</figcaption>
+            )}
           </figure>
+        )}
+
+        {/* Answer capsule — de qué se trata, sin spoilear el giro.
+            F51 §2 · se oculta cuando hay hero (la foto abre la pieza).
+            Los ensayos sin capsule + sin hero también saltean este
+            bloque; en ese caso el body cierra el gap directamente. */}
+        {es.answerCapsule && !es.heroImage && (
+          <p className="e-capsule">{es.answerCapsule}</p>
         )}
 
         {/* Body */}

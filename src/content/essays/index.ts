@@ -1,5 +1,7 @@
 import type { Essay } from '@/components/EssayLayout'
+import { buscaATuLarryHolmes } from './busca-a-tu-larry-holmes'
 import { elOcho } from './el-ocho'
+import { findYourLarryHolmes } from './find-your-larry-holmes'
 import { founderWorth70Million } from './founder-worth-70-million'
 import { narradoresPeligrosos } from './narradores-peligrosos'
 import { siglasParaNoDecirGente } from './siglas-para-no-decir-gente'
@@ -11,6 +13,8 @@ import { whyYouCantWriteYourOwnWebsite } from './why-you-cant-write-your-own-web
 // entries — they are distinct URLs. The alternates field on each
 // links them via hreflang.
 export const allEssays: Essay[] = [
+  findYourLarryHolmes,
+  buscaATuLarryHolmes,
   whyYouCantWriteYourOwnWebsite,
   tercerLugar,
   thirdPlace,

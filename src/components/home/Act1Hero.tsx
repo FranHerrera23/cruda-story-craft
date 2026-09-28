@@ -20,50 +20,74 @@ import './acts.css'
    Auto-fit del tamaño de fuente (§4.2 · white-space:nowrap +
    medición) · cada frase se reduce hasta entrar en UNA sola
    line-box, aplicado en 1440/1024/768/390. Se recalcula en
-   resize y en document.fonts.ready. */
+   resize y en document.fonts.ready.
+
+   F52 §3.2 · el fit corre en un <script> inline server-rendered
+   dentro del árbol del hero. La lógica de fit es una sola: vive
+   en `INLINE_FIT_SCRIPT` como fuente única, y `window.__crudaFitAct1`
+   la deja disponible tanto para el primer paint como para el resize
+   y el fonts.ready. Antes de F52 el fit corría en el useEffect de
+   este componente y Chrome no podía marcar el h1 como LCP hasta
+   que React hidrataba (~2 s en desktop LH). Con el script inline
+   el font-size sale seteado en el mismo paint del HTML servido y
+   el h1 pasa a ser LCP en FCP. */
 
 const FIT_MIN_PX = 12
 
-/* F11.1 · auto-fit mínimo común (21-sep · autónomo).
-   Bug del brief: `fitPhrase` bajaba cada frase por su cuenta y
-   la frase corta se sostenía más grande que la larga. El check
-   §4 pide "las dos frases del hero al MISMO font-size, medido".
-
-   Nuevo modelo: medí cada frase por separado hasta que quepa,
-   guardá cada tamaño, tomá el mínimo, aplicá el mínimo a todas.
-   El techo del CSS (`font-size: clamp`) sigue mandando; el fit
-   sólo puede BAJAR. */
-function fitAllPhrases(phrases: HTMLElement[]) {
-  if (phrases.length === 0) return
-  const perSize: number[] = []
-  phrases.forEach(phrase => {
-    const container = phrase.parentElement
-    if (!container) return
-    const containerWidth = container.getBoundingClientRect().width
-    if (containerWidth <= 0) return
-    phrase.style.fontSize = ''
-    phrase.style.width = 'max-content'
-    const cssSize = parseFloat(getComputedStyle(phrase).fontSize) || 76
-    let size = cssSize
-    phrase.style.fontSize = size + 'px'
-    let iter = 0
-    while (
-      phrase.getBoundingClientRect().width > containerWidth &&
-      size > FIT_MIN_PX &&
-      iter < 120
-    ) {
-      size *= 0.97
-      phrase.style.fontSize = size + 'px'
-      iter++
+/* Fuente única del auto-fit. Este mismo string se emite como
+   `<script>` inline en el JSX (SSR + primer paint) y define
+   `window.__crudaFitAct1`, que el useEffect llama en resize y en
+   fonts.ready. Cambios acá impactan ambos caminos. */
+const INLINE_FIT_SCRIPT = `
+(function(){
+  var MIN = ${FIT_MIN_PX};
+  function fit(track) {
+    var phrases = track.querySelectorAll('.beat__phrase');
+    if (phrases.length === 0) return;
+    var sizes = [];
+    for (var i = 0; i < phrases.length; i++) {
+      var phrase = phrases[i];
+      var container = phrase.parentElement;
+      if (!container) continue;
+      var cw = container.getBoundingClientRect().width;
+      if (cw <= 0) continue;
+      phrase.style.fontSize = '';
+      phrase.style.width = 'max-content';
+      var css = parseFloat(getComputedStyle(phrase).fontSize) || 76;
+      var s = css;
+      phrase.style.fontSize = s + 'px';
+      var iter = 0;
+      while (
+        phrase.getBoundingClientRect().width > cw &&
+        s > MIN &&
+        iter < 120
+      ) {
+        s *= 0.97;
+        phrase.style.fontSize = s + 'px';
+        iter++;
+      }
+      phrase.style.width = '';
+      sizes.push(s);
     }
-    phrase.style.width = ''
-    perSize.push(size)
-  })
-  const common = Math.min(...perSize)
-  phrases.forEach(phrase => {
-    phrase.style.fontSize = common + 'px'
-  })
-}
+    if (sizes.length === 0) return;
+    var common = Math.min.apply(null, sizes);
+    for (var j = 0; j < phrases.length; j++) {
+      phrases[j].style.fontSize = common + 'px';
+    }
+  }
+  window.__crudaFitAct1 = function(){
+    var track = document.getElementById('act1');
+    if (!track) return;
+    /* F48 · mismo gate mobile/reduced que el motor de Act1: el CSS
+       apila los beats en flujo y el fit no aplica. */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    if (window.matchMedia('(max-width: 767px)').matches) return;
+    fit(track);
+  };
+  window.__crudaFitAct1();
+})();
+`
 
 export default function Act1Hero() {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -89,15 +113,14 @@ export default function Act1Hero() {
     const track = trackRef.current
     if (!track) return
 
-    /* Auto-fit inicial + en resize + en fonts.ready.
-       Wireframe §4.2 · nunca dos line-boxes. */
+    /* F52 §3.2 · el fit inicial ya corrió en el <script> inline al
+       primer paint. Acá sólo re-corremos en resize y en fonts.ready
+       (que puede llegar después de la hidratación). La lógica es la
+       misma que en el script inline (misma función `__crudaFitAct1`). */
     const runFit = () => {
-      const phrases = Array.from(
-        track.querySelectorAll<HTMLElement>('.beat__phrase'),
-      )
-      fitAllPhrases(phrases)
+      const w = window as unknown as { __crudaFitAct1?: () => void }
+      if (w.__crudaFitAct1) w.__crudaFitAct1()
     }
-    runFit()
     window.addEventListener('resize', runFit)
     if (document.fonts?.ready) {
       document.fonts.ready.then(runFit).catch(() => {})
@@ -149,6 +172,12 @@ export default function Act1Hero() {
                   <Tag
                     key={j}
                     className="beat__phrase"
+                    /* F52 §3.2 · el font-size lo escribe el script inline
+                       (más abajo) o `__crudaFitAct1` al primer paint /
+                       resize / fonts.ready. React no toca `style` en
+                       este nodo (no hay prop `style`), así que la
+                       hidratación no re-renderea. */
+                    suppressHydrationWarning
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
                 ))}
@@ -159,6 +188,14 @@ export default function Act1Hero() {
         {/* F23.1 · CRUDA crema abajo-izquierda del hero retirado (Fran
             22-sep). El wordmark ya vive en la nav global; repetirlo
             en el fold competía con el h1. */}
+        {/* F52 §3.2 · fit inline · corre en el mismo tick del parseo
+            del HTML, antes de que React hidrate. Setea `font-size`
+            inline en cada `.beat__phrase` con la lógica compartida
+            (constante `INLINE_FIT_SCRIPT`). */}
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: INLINE_FIT_SCRIPT }}
+        />
       </div>
     </div>
   )

@@ -493,30 +493,23 @@ html[data-loader="skip"] .loader { display: none; }
 
 /* Motion §3.1 · carga de página.
 
-   F49 §3.2 · 27-sep · gate acotado a DESKTOP fine-pointer.
+   F52 §3.1 · 28-sep · el gate `.page-root:not(.ready) { opacity: 0 }`
+   se retira por completo (mobile ya lo estaba desde F49 §3.2, ahora
+   también desktop). Regla F49 §3.2 aplicada al 100 %: nada del primer
+   pantallazo arranca en opacity 0. El h1 y los reveals del primer
+   fold viven en el HTML servido con su estado final.
 
-   El gate original `.page-root:not(.ready) { opacity: 0 }` global
-   apagaba todo el `<main>` hasta que React hidrataba. En mobile eso
-   convertía el logo del nav (fuera del wrapper) en LCP fabricado y
-   empujaba el LCP de home/services/about a ~2.6-3.0 s. Diagnóstico
-   completo en `docs/f49-diagnostico.md`.
+   El motor de `Act1Hero.fitAllPhrases` (único caso que necesitaba
+   ocultar contenido para que no se viera un flash de dos line-boxes)
+   pasa a un script inline server-rendered en el layout de home — ver
+   `Act1Hero.tsx` para el patrón exacto.
 
-   Se mantiene en desktop porque Act1Hero.fitAllPhrases mide el ancho
-   del contenedor y baja el font-size en un rAF post-mount; sin el
-   gate se vería un flash de dos line-boxes antes del auto-fit
-   (ese motor no monta en mobile via F48 gate, así que allá no hay
-   FOJT que ocultar). El pixel-diff a 1200 ms se preserva porque
-   post-fit la renderización es idéntica en ambos caminos.
+   reduce (globals §6) fija `.page-root { opacity: 1 }` — ese bloque
+   se mantiene por si un tercero re-introduce el gate.
 
-   reduce (globals §6) fija `.page-root { opacity: 1 }` — ver bloque
-   más abajo. */
-@media (scripting: enabled) and (min-width: 768px) and (pointer: fine) {
-  .page-root:not(.ready) { opacity: 0; }
-  .page-root.ready {
-    opacity: 1;
-    transition: opacity var(--dur-3) var(--ease);
-  }
-}
+   PageShell.tsx sigue aplicando la clase `.ready` post-hidratación
+   por si algún día se quiere reintroducir un fade, pero sin la regla
+   `.page-root:not(.ready)` el toggle no cambia nada visible. */
 
 /* F49 §3.2 · reserva SSR de la barra nav.
    Nav.tsx pone `position: fixed` sobre `.cruda-global-nav.bar` desde

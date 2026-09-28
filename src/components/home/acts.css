@@ -156,7 +156,12 @@
 .act1 .beat {
   opacity: 1;
 }
-.js .act1 .beat {
+/* F52 §3.2 · el primer beat (data-beat="1") queda visible desde SSR
+   para que Chrome pueda tomar el h1 como LCP en el primer paint.
+   Los beats 2+ mantienen el gate `.js` porque el motor los apila
+   sobre el mismo espacio absoluto y necesita esconderlos hasta que
+   scroll los active. Mismo patrón que act2 (línea de abajo). */
+.js .act1 .beat:not([data-beat="1"]) {
   opacity: 0;
 }
 

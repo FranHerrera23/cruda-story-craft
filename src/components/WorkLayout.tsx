@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
 import { existsSync } from 'node:fs'
@@ -322,13 +323,26 @@ export default function WorkLayout({ w }: { w: Work }) {
         <p className="pen-tags">{buildTags(w)}</p>
       </header>
 
-      {/* F33 · Hero 16:9 · siempre landscape · cols 1–12. */}
+      {/* F33 · Hero 16:9 · siempre landscape · cols 1–12.
+          F49 §3.3 · `next/image` con `fill` + `priority` + `sizes` real.
+          El hero del case study es LCP en todos los F33; pre §3.3 los
+          <img> planos bajaban el source completo (Karen: 4000×2667,
+          1.17 MB) para pintar un thumb de 567×378 css en mobile.
+          Con `fill`, next/image emite variantes AVIF/WebP dimensionadas
+          al ancho display real (~1200 px desktop, ~460 px mobile).
+          `object-fit: cover` y `object-position` los sigue poniendo
+          la CSS de `.cs-hero img`; `object-position` inline se
+          preserva vía `style`. */}
       {w.image && (
         <figure className="cs-wrap">
           <div className="cs-hero cs-hero--landscape pen-hero">
-            <img
+            <Image
               src={w.image}
               alt=""
+              fill
+              priority
+              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 90vw, 1200px"
+              quality={90}
               style={
                 w.heroObjectPosition
                   ? { objectPosition: w.heroObjectPosition }

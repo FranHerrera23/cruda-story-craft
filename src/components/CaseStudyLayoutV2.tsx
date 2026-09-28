@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import StartHere, { CASE_START_HERE } from '@/components/StartHere'
 import './case-study-layout-v2.css'
@@ -150,11 +151,26 @@ export default function CaseStudyLayout({ data }: { data: CaseStudyData }) {
         <h1 className="cs-h1">{data.h1}</h1>
       </header>
 
-      {/* 02 · HERO */}
+      {/* 02 · HERO
+          F49 §3.3 · `next/image` con `fill` + `priority` + `sizes` real.
+          Pre §3.3 el <img> del hero bajaba el JPG source completo
+          (Karen: 4000×2667, 1170 kB). El `.cs-hero` displayed es
+          567×378 mobile · 1143×762 desktop. Vercel emite variantes
+          AVIF/WebP a esos anchos, ahorro medido ≥ 1 MB en mobile.
+          El `object-fit: cover` + `object-position` los sigue
+          poniendo la CSS de `.cs-hero img` — next/image respeta el
+          className y el aspect ratio del contenedor. */}
       {data.hero?.img && (
         <figure className="cs-wrap">
           <div className="cs-hero">
-            <img src={data.hero.img} alt={data.hero.alt ?? ''} />
+            <Image
+              src={data.hero.img}
+              alt={data.hero.alt ?? ''}
+              fill
+              priority
+              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 90vw, 1200px"
+              quality={90}
+            />
           </div>
           {data.hero.caption && (
             <figcaption className="cs-cap">{data.hero.caption}</figcaption>

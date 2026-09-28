@@ -1,6 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    /* F52 §2.1 · activar AVIF además de WebP.
+       Sin esta línea Next.js 14 sirve sólo WebP; el bundle mide 30-50 %
+       más que la variante AVIF equivalente. Con el array explícito
+       Next.js emite `<source type="image/avif">` primero y hace
+       fallback a WebP si el navegador no acepta AVIF.
+       AVIF/WebP miden similar en Chrome/Edge, pero AVIF gana claro
+       en fotos con tonos suaves (los heroes de PEZET, jose, etc.). */
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',

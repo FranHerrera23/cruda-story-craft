@@ -341,7 +341,20 @@ export default function WorkLayout({ w }: { w: Work }) {
               alt=""
               fill
               priority
-              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 90vw, 1200px"
+              /* F52 §2.2 · sizes al ancho real del hero.
+                 Medido (Playwright, DPR real de cada breakpoint):
+                   viewport 390 · hero 302 css · ≈ 78 vw
+                   viewport 412 · hero 324 css · ≈ 79 vw
+                   viewport 768 · hero 659 css · ≈ 86 vw
+                   viewport 1350 · hero 1149 css · ≈ 85 vw
+                   viewport 1440 · hero 1230 css · ≈ 85 vw
+                   viewport 1920 · hero 1296 css · cap max-width 1600
+                 Antes decíamos 100 vw / 90 vw / 1200 px, así el
+                 navegador pedía la variante 750w en mobile cuando
+                 alcanzaba 640w. Ajustado: mobile 80 vw pide 640w
+                 (savings ~15 KB en Karen), desktop se queda igual
+                 en 1200 px (el cap del contenedor). */
+              sizes="(max-width: 767px) 80vw, (max-width: 1199px) 87vw, 1200px"
               quality={90}
               style={
                 w.heroObjectPosition

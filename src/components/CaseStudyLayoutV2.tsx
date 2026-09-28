@@ -168,7 +168,10 @@ export default function CaseStudyLayout({ data }: { data: CaseStudyData }) {
               alt={data.hero.alt ?? ''}
               fill
               priority
-              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 90vw, 1200px"
+              /* F52 §2.2 · sizes al ancho real (ver comentario largo
+                 en WorkLayout.tsx). Mismo container `.cs-hero` en
+                 los dos moldes; misma tabla de anchos. */
+              sizes="(max-width: 767px) 80vw, (max-width: 1199px) 87vw, 1200px"
               quality={90}
             />
           </div>

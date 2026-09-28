@@ -34,8 +34,28 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 25 | `f48-mobile` | `af57897` | ✅ |
 | 26 | `f49-performance` | `f773a0f` | ✅ |
 | 27 | `f50-thinking` | `29550a5` | ✅ |
+| 28 | `f50-1-fixes` | `293b2c7` | ✅ |
 
-`origin/main` HEAD final: `29550a5`.
+`origin/main` HEAD final: `293b2c7`.
+
+**Octava tanda (28-sep · F50.1):** parche post-F50 con 7 ajustes
+reportados por Fran, en dos commits encadenados:
+  · Lista (`ea72bfd`) · títulos con `max-width: 100 %` (era 22em),
+    dek sin `line-clamp`, "Also in …" con `white-space: nowrap`,
+    padding-top de la lista a 48 px desktop / 32 px mobile, y NBSP
+    en el título de `founder-worth-70-million` ("$70 million").
+  · Ensayo (`23247dc`) · `.e-role` en 15 px sans sentence case gris
+    ("Founder, CRUDA" en el mismo tratamiento que la meta). La
+    `.e-quote` ya había perdido padding + fondo en F50 §5;
+    verificado que borde izquierdo y ancho máximo coinciden con
+    los párrafos del cuerpo (x=385 w=670 en 1440).
+
+Pixel-diff regresión F50 → F50.1: 42/42 comparables en 0 pixels.
+Los 9 size-mismatch son /thinking + essay-en + essay-es en
+1024/1440/1920, esperados por diseño.
+
+Rollback: `git revert -m 1 293b2c7` (completo) · `git revert
+23247dc` (sólo ensayo) · `git revert ea72bfd` (sólo lista).
 
 **Séptima tanda (28-sep · F50):** rediseño de `/thinking` al patrón
 tetragrammaton.com/articles. Tres commits encadenados:

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import StartHere from '@/components/StartHere'
 import './about.css'
@@ -311,10 +312,20 @@ export default function AboutPage() {
       {/* 06 · WHO RUNS IT · F32 §2.2 · agrega lenguajes + LinkedIn. */}
       <section className="about-sec" data-sec data-reveal-seq>
         <div className="about-who">
+          {/* F49 §3.3 · retrato de Fran migrado a `next/image`.
+              El `.about-who__port` es 38 % del viewport en desktop
+              (~380×620 css) y 100 vw en mobile (~380×340 css).
+              Sizes reflejan ese split; lazy porque el retrato vive
+              en la sección 06 (fuera del primer fold). Object-fit
+              y object-position siguen viniendo del CSS de
+              `.about-who__port img`. */}
           <div className="about-who__port" aria-hidden="true">
-            <img
+            <Image
               src="/fran-herrera.webp"
               alt="Fran Herrera, founder of CRUDA"
+              fill
+              sizes="(max-width: 767px) 100vw, 38vw"
+              quality={90}
               loading="lazy"
             />
           </div>

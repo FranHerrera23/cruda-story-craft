@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { ACT2_BEATS, ACT2_ARTS } from './acts-config'
 import { runAct, enterAct, leaveAct } from './acts-motor'
@@ -90,16 +91,27 @@ export default function Act2WhyNow() {
             transform-origin lo dicta data-subject (bust · 50% 28%,
             book · 42% 45%). */}
         <div className="act2__arts" aria-hidden="true">
+          {/* F49 §3.3 · `next/image` con `sizes` real.
+              Displayed 721×721 en mobile · 459×459 en desktop.
+              Vercel emite variantes AVIF/WebP a esos anchos en
+              vez del PNG 1024×1024 (waste ~50 % en LH). El primer
+              art queda `priority` (era eager en el motor), los otros
+              cinco lazy. Peso y aspecto originales no cambian; el
+              CSS de `.act2__art` sigue mandando (width/height 100 %,
+              object-fit contain). */}
           {ACT2_ARTS.map((a, i) => (
-            <img
+            <Image
               key={a.name}
               className={`act2__art act2__art--${a.subject}`}
               data-art={i}
               data-subject={a.subject}
               src={`/why-now/${a.name}.png`}
               alt=""
-              loading={i === 0 ? 'eager' : 'lazy'}
-              decoding="async"
+              width={1024}
+              height={1024}
+              sizes="(max-width: 767px) 90vw, (max-width: 1199px) 60vw, 480px"
+              quality={90}
+              priority={i === 0}
             />
           ))}
         </div>

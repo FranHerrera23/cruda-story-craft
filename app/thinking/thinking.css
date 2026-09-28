@@ -1,583 +1,206 @@
-/* /thinking · F14b.1 · 21-sep · autónomo · thinking-v1. */
+/* /thinking · F50 · 28-sep · rediseño de la lista.
+
+   Referencia: tetragrammaton.com/articles. Una sola columna,
+   filetes 1 px negro, título, meta line, dek opcional.
+
+   Los tokens de sistema (paper, ink, orange, grot) no cambian. */
 
 .thinking {
   background: var(--paper, #F1EFEB);
   color: var(--ink, #0D0D0D);
 }
 
-.thinking .eyebrow {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
-}
-
-/* 01 · Opener · split asimétrico */
+/* ============ 01 · OPENER ============
+   Cols 1–9 del grid, alineado a la izquierda. Sin kicker (repetía h1).
+   La regla naranja es la del sistema (--hero). */
 .thinking-open {
-  /* F31 §4.2 · una sola columna: rótulo, h1, regla, lede.
-     Antes usaba split 48/52 con h1 a la izquierda y lede a la
-     derecha. Ahora todo alineado a la izquierda. */
-  padding: clamp(110px, 16vh, 170px) var(--gap, clamp(20px, 4.5vw, 72px)) clamp(40px, 6vh, 72px);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(20px, 3vh, 40px);
+  padding: clamp(110px, 16vh, 170px) var(--gap, clamp(20px, 4.5vw, 72px)) 0;
+  max-width: 1200px;
 }
 .thinking-open__h {
-  /* F23-2 · h1 al mismo token que /services (.name). */
+  font-family: var(--grot);
   font-size: clamp(26px, 3.6vw, 48px);
   font-weight: 600;
   letter-spacing: -.045em;
   line-height: .95;
   margin: 0;
+  color: var(--ink, #0D0D0D);
 }
-.thinking-open__b { padding-left: 0; }
 .thinking-open__lede {
+  font-family: var(--grot);
   font-size: clamp(16px, 1.6vw, 22px);
   line-height: 1.42;
   letter-spacing: -.015em;
   max-width: 60ch;
-  margin: 0;
-}
-@media (max-width: 900px) {
-  .thinking-open { gap: 20px; }
+  margin: clamp(20px, 3vh, 40px) 0 0;
+  color: var(--ink, #0D0D0D);
 }
 
-/* 02 · Filtros · sticky bajo la nav (56px) */
-.thinking-filters {
-  position: sticky;
-  top: 56px;
-  z-index: 50;
-  background: var(--paper, #F1EFEB);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px clamp(28px, 4vw, 64px);
-  align-items: baseline;
-  padding: 16px var(--gap, clamp(20px, 4.5vw, 72px));
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-}
-/* F48 · en mobile los filtros dejan de ser sticky · comen 100px
-   del viewport (nav 56 + filtros ~44) y no se ve más de 1 fila
-   del listado por pantalla. Con scroll normal siguen accesibles
-   arriba del listado. */
-@media (max-width: 767px), (pointer: coarse) {
-  .thinking-filters {
-    position: static;
-    top: auto;
-    z-index: auto;
-  }
-}
-.fgroup {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px 20px;
-}
-.fgroup__l {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
-  margin-right: 4px;
-}
-.f {
-  position: relative;
-  font-family: inherit;
-  font-size: 15px;
-  line-height: 1.35;
-  color: var(--grey, #6E6B65);
-  background: none;
-  border: 0;
-  padding: 1px 0 4px;
-  cursor: pointer;
-  transition: color .3s cubic-bezier(.16, 1, .3, 1);
-}
-.f::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: var(--orange, #FF5A00);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .4s cubic-bezier(.16, 1, .3, 1);
-}
-.f:hover { color: var(--ink, #0D0D0D); }
-.f[aria-pressed='true'] { color: var(--ink, #0D0D0D); font-weight: 500; }
-.f[aria-pressed='true']::after { transform: scaleX(1); }
-.f:focus-visible {
-  outline: 2px solid var(--orange, #FF5A00);
-  outline-offset: 4px;
-}
-.count {
-  margin-left: auto;
-  font-size: 13px;
-  color: var(--grey, #6E6B65);
-  font-variant-numeric: tabular-nums;
-}
-@media (max-width: 700px) {
-  .count { margin-left: 0; width: 100%; }
-}
-
-/* 03/04 · Secciones */
-.thinking-sec { padding: clamp(72px, 11vh, 130px) var(--gap, clamp(20px, 4.5vw, 72px)) 0; }
-.thinking-sec[hidden] { display: none; }
-.thinking-sec__hd {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-}
-.thinking-sec__n {
-  font-size: 13px;
-  color: var(--grey, #6E6B65);
-  font-variant-numeric: tabular-nums;
-}
-.thinking-name {
-  font-size: clamp(26px, 3.6vw, 48px);
-  font-weight: 600;
-  letter-spacing: -.03em;
-  line-height: 1.04;
-  margin-top: 16px;
-}
 .thinking-rule {
   height: 2px;
   width: 100%;
   max-width: 560px;
   background: var(--orange, #FF5A00);
-  margin-top: 20px;
 }
-/* F23-2 · única regla naranja de la página, bajo el hero (h1 + lede).
-   F31 §4 · confirmado · thinking-rule sin --hero no se usa.
-   F46 · la regla queda a 24px del h1 (antes clamp(28,4vh,48) que
-   dejaba un hueco grande en desktop). */
 .thinking-rule--hero {
   margin-top: 24px;
 }
 
-/* F23-2 · Case study cards con la misma anatomía que Selected Work.
-   Imagen 1:1, título, empresa · ciudad, descripción. */
-.thinking-sw-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 12px;
-  row-gap: 72px;
-  margin-top: clamp(30px, 5vh, 56px);
-  align-items: start;
+/* ============ 02 · LISTA ============
+   Una columna. Filete 1 px #000 arriba de la primera fila y debajo
+   de cada fila. Fila 48 px de padding vertical en desktop, 32 px en
+   mobile. Toda la fila clickeable via un ::after sobre el link
+   principal (`.thinking-row__link`). Los links secundarios (Also
+   in …) suben por z-index para no quedar tapados por el ::after. */
+
+.thinking-list {
+  padding: clamp(56px, 9vh, 96px) var(--gap, clamp(20px, 4.5vw, 72px)) clamp(80px, 12vh, 140px);
+  max-width: 1200px;
 }
-@media (max-width: 1199px) {
-  .thinking-sw-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.thinking-row {
+  position: relative;
+  padding: 48px 0;
+  border-top: 1px solid var(--ink, #0D0D0D);
 }
-@media (max-width: 699px) {
-  .thinking-sw-grid { grid-template-columns: 1fr; row-gap: 48px; }
+.thinking-row + .thinking-row { border-top-color: var(--ink, #0D0D0D); }
+.thinking-row:last-of-type { border-bottom: 1px solid var(--ink, #0D0D0D); }
+
+/* Título · el peso más liviano que ya carga la familia (500). No
+   se agrega peso nuevo. text-wrap balance evita viudas. */
+.thinking-row__t {
+  font-family: var(--grot);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+  margin: 0;
+  max-width: 22em;
+  text-wrap: balance;
+  color: var(--ink, #0D0D0D);
 }
-.thinking-sw-card {
-  display: block;
+.thinking-row__t a {
   color: inherit;
   text-decoration: none;
 }
-.thinking-sw-card__m {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: #DEDAD2;
+/* El ::after cubre la fila entera para que sea clickeable. */
+.thinking-row__link {
+  position: static;
 }
-.thinking-sw-card__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 400ms cubic-bezier(.22, 1, .36, 1);
-}
-@media (hover: hover) {
-  .thinking-sw-card:hover .thinking-sw-card__img {
-    transform: scale(1.03);
-  }
-}
-.thinking-sw-card__n {
-  margin: 14px 0 0;
-  font-size: 17px;
-  font-weight: 500;
-  line-height: 1.25;
-  color: var(--ink, #0D0D0D);
-}
-.thinking-sw-card__meta {
-  margin: 4px 0 0;
-  font-size: 15px;
-  line-height: 1.35;
-  color: var(--grey, #6E6B65);
-}
-.thinking-sw-card__desc {
-  margin: 6px 0 0;
-  font-size: 15px;
-  line-height: 1.4;
-  color: var(--ink, #0D0D0D);
-  max-width: 42ch;
-}
-
-/* Articles · molde WHAT WE DO. */
-.thinking-index {
-  margin-top: clamp(30px, 5vh, 56px);
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-}
-.thinking-irow {
-  display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) auto;
-  gap: clamp(16px, 2.4vw, 40px);
-  align-items: start;
-  padding: clamp(20px, 3.2vh, 32px) 0;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-  position: relative;
-}
-.thinking-irow[hidden] { display: none; }
-.thinking-irow__o {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--orange, #FF5A00);
-  padding-top: 7px;
-}
-.thinking-irow__n {
-  font-size: clamp(17px, 1.75vw, 24px);
-  font-weight: 600;
-  letter-spacing: -.022em;
-  line-height: 1.22;
-  max-width: 40ch;
-  margin: 0;
-}
-.thinking-irow__n a { color: inherit; text-decoration: none; }
-.thinking-irow__n a::after {
+.thinking-row__link::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
 }
-.thinking-irow__d {
-  font-size: 13px;
-  color: var(--grey, #6E6B65);
-  margin-top: 8px;
+@media (hover: hover) {
+  .thinking-row__t a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
 }
-.thinking-irow__d .alt {
+@media (prefers-reduced-motion: reduce) {
+  .thinking-row__t a { transition: none; }
+}
+
+/* Meta · 15px sentence case gris. Puede incluir "Also in …" al
+   final, separado por · . */
+.thinking-row__meta {
+  font-family: var(--grot);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+  color: var(--grey, #6E6B65);
+  margin: 8px 0 0;
+}
+.thinking-row__also {
   position: relative;
   z-index: 2;
-  color: var(--ink, #0D0D0D);
-  text-decoration: none;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-}
-.thinking-irow__d .alt:hover {
-  border-bottom-color: var(--orange, #FF5A00);
-}
-.thinking-irow__m {
-  font-size: 13px;
-  color: var(--grey, #6E6B65);
-  white-space: nowrap;
-  padding-top: 5px;
-}
-.thinking-irow:focus-within {
-  outline: 2px solid var(--orange, #FF5A00);
-  outline-offset: 4px;
-}
-@media (max-width: 760px) {
-  .thinking-irow { grid-template-columns: 32px 1fr; gap: 6px 14px; }
-  .thinking-irow__m { grid-column: 2; padding-top: 0; }
-}
-
-/* Case studies · molde SELECTED WORK. */
-.thinking-wgrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(30px, 4vh, 52px) var(--gap, clamp(20px, 4.5vw, 72px));
-  margin-top: clamp(30px, 5vh, 56px);
-}
-.thinking-wcard {
-  display: block;
   color: inherit;
   text-decoration: none;
-  transition: opacity .35s cubic-bezier(.16, 1, .3, 1);
-  position: relative;
-}
-.thinking-wcard[hidden] { display: none; }
-.thinking-wcard__hd {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-.thinking-wcard__o {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--orange, #FF5A00);
-}
-.thinking-wcard__go {
-  font-size: 15px;
-  line-height: 1;
-  opacity: 0;
-  transform: translate(-4px, 4px);
-  transition: opacity .3s ease-out, transform .3s ease-out;
-}
-.thinking-wcard__n {
-  font-size: clamp(15px, 1.3vw, 18px);
-  font-weight: 600;
-  letter-spacing: -.02em;
-  line-height: 1.25;
-  margin-top: 14px;
-}
-.thinking-wcard__d {
-  font-size: 13px;
-  color: var(--grey, #6E6B65);
-  margin-top: 5px;
-  line-height: 1.4;
 }
 @media (hover: hover) {
-  .thinking-wgrid:hover .thinking-wcard { opacity: .55; }
-  .thinking-wgrid .thinking-wcard:hover { opacity: 1; }
-  .thinking-wcard:hover .thinking-wcard__go {
-    opacity: 1;
-    transform: none;
+  .thinking-row__also:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
 }
-@media (max-width: 1024px) {
-  .thinking-wgrid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 760px) {
-  .thinking-wgrid { grid-template-columns: 1fr; }
-}
 
-/* Podcasts · F18.8 · card de TEXTO (sin caja gris/negra). */
-.thinking-podcast {
-  margin-top: clamp(30px, 5vh, 56px);
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-}
-.thinking-podrow {
-  display: grid;
-  grid-template-columns: 44px 1fr;
-  gap: clamp(16px, 2.4vw, 40px);
-  align-items: baseline;
-  padding: clamp(20px, 3.2vh, 32px) 0;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-  color: inherit;
-  text-decoration: none;
-  position: relative;
-}
-.thinking-podrow.mark::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -1px;
-  height: 2px;
-  background: var(--orange, #FF5A00);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .55s cubic-bezier(.16, 1, .3, 1);
-}
-@media (hover: hover) {
-  .thinking-podrow:hover::before { transform: scaleX(1); }
-}
-.thinking-podrow__o {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  color: var(--orange, #FF5A00);
-  padding-top: 7px;
-}
-.thinking-podrow__n {
-  font-size: clamp(17px, 1.75vw, 24px);
-  font-weight: 600;
-  letter-spacing: -.022em;
-  line-height: 1.22;
-  margin: 0;
-}
-.thinking-podrow__d {
-  font-size: 13px;
-  color: var(--grey, #6E6B65);
-  margin-top: 6px;
-  line-height: 1.45;
-}
-.thinking-podrow__s {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
-  margin-top: 8px;
-}
-
-/* Marks · gesto compartido (redefine local para /thinking). */
-.thinking .mark {
-  transition: opacity .45s cubic-bezier(.16, 1, .3, 1);
-}
-.thinking .thinking-irow.mark::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -1px;
-  height: 2px;
-  background: var(--orange, #FF5A00);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform .55s cubic-bezier(.16, 1, .3, 1);
-}
-@media (hover: hover) {
-  .thinking .marks:hover .mark { opacity: .34; }
-  .thinking .marks .mark:hover { opacity: 1; }
-  .thinking .thinking-irow.mark:hover::before { transform: scaleX(1); }
-}
-
-.thinking-empty {
-  padding: 40px var(--gap, clamp(20px, 4.5vw, 72px));
-  font-size: 15px;
-  color: var(--grey, #6E6B65);
-}
-.thinking-end { height: clamp(80px, 12vh, 140px); }
-
-/* F36 · /thinking como biblioteca · una sola lista de artículos +
-   podcasts, sin secciones ni h2 · sin marks/mark hover. */
-.thinking--library .thinking-lib {
-  padding-top: clamp(28px, 5vh, 56px);
-}
-.thinking--library .thinking-lib__list {
-  border-top: 1px solid var(--paper-line, #D9D5CD);
-}
-/* F46 · fila 2-col con aire. Meta a la izquierda (cols 1–3),
-   título+dek a la derecha (cols 4–11 en 1440 · aprox 25%/75%).
-   Hairlines gris arriba y abajo (top del wrapper + bottom de cada
-   fila). Padding 56px arriba/abajo en 1440. Sin números naranjas. */
-.thinking--library .thinking-row {
-  display: grid;
-  grid-template-columns: minmax(160px, 3fr) minmax(0, 8fr);
-  gap: clamp(20px, 3vw, 44px);
-  align-items: start;
-  padding: 56px 0;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
-  color: var(--ink, #0D0D0D);
-  opacity: 1;
-}
-.thinking--library .thinking-row[hidden] { display: none; }
-
-/* Meta chica: 25 SEP 2026 · ARTICLE · 6 MIN · ENGLISH. Cada dato
-   en su línea. 13px caps tracking .08em grey. */
-.thinking--library .thinking-row__meta {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--grey, #6E6B65);
-  line-height: 1.35;
-  padding-top: 4px;
-}
-.thinking--library .thinking-row__date { font-variant-numeric: tabular-nums; }
-
-.thinking--library .thinking-row__b { min-width: 0; }
-.thinking--library .thinking-row__n {
-  font-size: clamp(24px, 2.6vw, 36px);
-  font-weight: 500;
-  letter-spacing: -.022em;
-  line-height: 1.15;
-  color: var(--ink, #0D0D0D);
-  margin: 0;
-  text-wrap: balance;
-  /* F46 rev · sale el max-width: 22ch · el título ocupa el ancho
-     de cols 4–11 (la propia columna derecha del grid). Los títulos
-     largos rebalancean solos con text-wrap: balance. */
-}
-.thinking--library .thinking-row__n a {
-  color: inherit;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-  transition: border-color .15s;
-}
-@media (hover: hover) {
-  .thinking--library .thinking-row__n a:hover {
-    border-bottom-color: var(--ink, #0D0D0D);
-  }
-}
-.thinking--library .thinking-row__dek {
-  margin: 16px 0 0;
+/* Dek · 18px, gris, máximo 2 líneas. Sale del campo `deck` del
+   ensayo · si no hay, la fila no tiene dek. */
+.thinking-row__dek {
+  font-family: var(--grot);
   font-size: 18px;
-  line-height: 1.5;
-  color: var(--grey, #6E6B65);
-  max-width: 60ch;
-  text-wrap: pretty;
-}
-.thinking--library .thinking-row__alts {
-  margin: 16px 0 0;
-  font-size: 15px;
+  font-weight: 400;
   line-height: 1.4;
-  color: var(--grey, #6E6B65);
-}
-.thinking--library .thinking-row__alt {
-  color: var(--ink, #0D0D0D);
-  text-decoration: none;
-  border-bottom: 1px solid var(--paper-line, #D9D5CD);
   letter-spacing: -.005em;
-  text-transform: none;
+  color: var(--grey, #6E6B65);
+  margin: 12px 0 0;
+  max-width: 60ch;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
-@media (hover: hover) {
-  .thinking--library .thinking-row__alt:hover {
-    border-bottom-color: var(--orange, #FF5A00);
-    color: var(--orange, #FF5A00);
-  }
-}
-.thinking--library .thinking-row[data-status="upcoming"] .thinking-row__n a {
+
+/* Upcoming (podcast) · el título va en gris para diferenciarlo. */
+.thinking-row--upcoming .thinking-row__t {
   color: var(--grey, #6E6B65);
 }
-.thinking--library .thinking-lib__cases {
+
+/* Case studies · link inferior. */
+.thinking-list__cases {
   display: inline-block;
-  margin-top: clamp(40px, 6vh, 80px);
-  font-size: 18px;
+  font-family: var(--grot);
+  font-size: 15px;
+  font-weight: 500;
   color: var(--ink, #0D0D0D);
   text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid var(--ink, #0D0D0D);
+  margin-top: clamp(48px, 8vh, 96px);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
 }
-.thinking--library .thinking-lib__cases:hover {
-  color: var(--orange, #FF5A00);
-  border-bottom-color: var(--orange, #FF5A00);
+@media (hover: hover) {
+  .thinking-list__cases:hover {
+    color: var(--orange, #FF5A00);
+    border-bottom-color: var(--orange, #FF5A00);
+  }
 }
-.thinking--library .thinking-empty {
-  padding: clamp(32px, 5vh, 60px) 0;
-  font-size: 15px;
-  color: var(--grey, #6E6B65);
-}
-/* F46 · 390 · meta va en una sola línea arriba (25 SEP 2026 ·
-   ARTICLE · 6 MIN · ENGLISH), separada por " · ". Título 26px,
-   dek 18px. Padding 40px arriba y abajo. */
-@media (max-width: 760px) {
-  .thinking--library .thinking-row {
-    grid-template-columns: 1fr;
-    gap: 12px;
-    padding: 40px 0;
+
+/* ============ MOBILE (≤ 767 px) ============ */
+
+@media (max-width: 767px) {
+  .thinking-open {
+    padding: clamp(80px, 12vh, 120px) var(--gap, 20px) 0;
   }
-  .thinking--library .thinking-row__meta {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 8px;
-    padding-top: 0;
-    font-size: 11px;
-    letter-spacing: .1em;
+  .thinking-list {
+    padding: clamp(40px, 6vh, 64px) var(--gap, 20px) clamp(56px, 9vh, 96px);
   }
-  .thinking--library .thinking-row__meta > * + *::before {
-    content: '· ';
-    color: inherit;
-    margin-right: 4px;
+  .thinking-row {
+    padding: 32px 0;
   }
-  .thinking--library .thinking-row__n {
+  .thinking-row__t {
     font-size: 26px;
-    max-width: none;
   }
-  .thinking--library .thinking-row__dek {
+  .thinking-row__meta {
+    font-size: 14px;
+  }
+  .thinking-row__dek {
     font-size: 16px;
-    max-width: none;
+    -webkit-line-clamp: 3;
   }
+}
+
+/* ============ Reduced motion ============ */
+@media (prefers-reduced-motion: reduce) {
+  .thinking-list__cases {
+    transition: none;
+  }
+}
+
+/* ============ End cap para el footer ============ */
+.thinking-end {
+  height: 0;
 }

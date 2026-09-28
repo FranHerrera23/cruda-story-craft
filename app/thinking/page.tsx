@@ -1,32 +1,25 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import ThinkingFilters from './ThinkingFilters'
 import { allEssays } from '@/content/essays'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import type { Resource, ResourceCompany } from '@/content/resources'
 import './thinking.css'
 
-/* /thinking · F36 · 24-sep · Fran · library.
+/* /thinking · F50 · 28-sep · Fran · index rediseñado.
 
-   Reemplaza a F31 §4.2. F31 §4.1 (un solo h1 token /services + una
-   sola regla naranja) sigue vigente.
+   Referencia: tetragrammaton.com/articles. Una sola columna, título,
+   una línea de meta, dek opcional y un filete negro de lado a lado
+   entre filas. Se van del molde F36: el kicker "THINKING", los
+   filtros LANGUAGE/TYPE, el contador "N pieces" y la columna de
+   meta en mayúsculas.
 
-   Sale de /thinking:
-   · La sección CASE STUDIES completa (cards). Los casos viven en
-     Work · abajo hay un link "Case studies live in Work →".
-   · La opción "Case studies" del filtro TYPE.
-   · Los h2 "What we are thinking about." · "Conversations."
-   · El atenuado en gris de filas no activas (marks/mark).
+   Este commit trae la lista visual nueva mostrando ambos idiomas
+   ordenados por fecha. El toggle idioma (?lang=es) entra en el
+   commit siguiente. La regla naranja del h1 se mantiene porque es
+   del sistema. */
 
-   La página es una SOLA lista de artículos + podcasts, ordenada
-   por fecha (más reciente primero). Cada fila muestra número,
-   título, dek (si hay), meta line (kind · reading time · Also in
-   other language), y una etiqueta de idioma a la derecha. */
+/* ------- Datos ------- */
 
-/* F36 · lista incluye TODAS las piezas · el filtro de idioma
-   decide cuáles se muestran. Antes se ocultaban las ES con alt EN
-   para evitar duplicados de la misma pieza; en el molde library
-   ambas versiones son ítems de biblioteca independientes. */
 const ARTICLES = [...allEssays].sort((a, b) =>
   (b.publishedAt || '').localeCompare(a.publishedAt || ''),
 )
@@ -43,8 +36,7 @@ const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
 
-/* F36 §2 · fila unificada · articles + podcasts en una sola lista. */
-type LibraryItem = {
+type Row = {
   slug: string
   href: string
   title: string
@@ -53,38 +45,38 @@ type LibraryItem = {
   kind: 'article' | 'podcast'
   readingMinutes?: number
   publishedAt: string
-  altLang?: { href: string; label: 'English' | 'Español' }
+  altHref?: string
+  altLang?: 'en' | 'es'
   status?: 'upcoming'
 }
 
-const ARTICLE_ITEMS: LibraryItem[] = ARTICLES.map(e => {
-  const alt = e.alternates
+const ARTICLE_ROWS: Row[] = ARTICLES.map(e => {
   const language = (e.language ?? 'en') as 'en' | 'es'
-  const altES =
-    language === 'en' && alt?.es
-      ? { href: `/thinking/${alt.es}`, label: 'Español' as const }
-      : undefined
-  const altEN =
-    language === 'es' && alt?.en
-      ? { href: `/thinking/${alt.en}`, label: 'English' as const }
-      : undefined
+  const alt = e.alternates
+  const altEs = language === 'en' && alt?.es
+    ? { href: `/thinking/${alt.es}`, lang: 'es' as const }
+    : undefined
+  const altEn = language === 'es' && alt?.en
+    ? { href: `/thinking/${alt.en}`, lang: 'en' as const }
+    : undefined
+  const altPair = altEs ?? altEn
   return {
     slug: e.slug,
     href: `/thinking/${e.slug}`,
     title: e.title,
-    /* F36 § dek visible · viene del campo `deck` cuando existe.
-       Si no hay deck, la fila va sin dek (F36 § "si una pieza no
-       tiene descripción, se omite y se reporta"). */
+    /* F50 · dek sale del campo `deck` — si el ensayo no tiene
+       subtítulo firmado, la fila va sin dek. No se inventa uno. */
     dek: e.deck || undefined,
     language,
     kind: 'article',
     readingMinutes: e.readingMinutes,
     publishedAt: e.publishedAt,
-    altLang: altES ?? altEN,
+    altHref: altPair?.href,
+    altLang: altPair?.lang,
   }
 })
 
-const PODCAST_ITEMS: LibraryItem[] = [
+const PODCAST_ROWS: Row[] = [
   {
     slug: 'steve-walls',
     href: '/thinking/steve-walls',
@@ -97,31 +89,46 @@ const PODCAST_ITEMS: LibraryItem[] = [
   },
 ]
 
-/* Combinado y ordenado por fecha (más reciente primero). Podcasts
-   upcoming (sin fecha) van al final. */
-const LIBRARY = [...ARTICLE_ITEMS, ...PODCAST_ITEMS].sort((a, b) => {
+const ROWS = [...ARTICLE_ROWS, ...PODCAST_ROWS].sort((a, b) => {
   if (!a.publishedAt) return 1
   if (!b.publishedAt) return -1
   return b.publishedAt.localeCompare(a.publishedAt)
 })
 
-const HAS_PODCASTS = PODCAST_ITEMS.length > 0
+/* ------- Formatos ------- */
 
-/* F46 · formato de fecha de fila · "25 SEP 2026" (UPPER, sin coma).
-   Recibe ISO YYYY-MM-DD y devuelve string listo para render. */
-function formatRowDate(iso: string): string {
+const MONTHS_EN = [
+  'January','February','March','April','May','June',
+  'July','August','September','October','November','December',
+]
+
+function fmtDate(iso: string): string {
   if (!iso) return ''
   const d = new Date(iso)
   if (Number.isNaN(d.getTime())) return ''
-  const day = d.getUTCDate()
-  const months = [
-    'JAN','FEB','MAR','APR','MAY','JUN',
-    'JUL','AUG','SEP','OCT','NOV','DEC',
-  ]
-  const mon = months[d.getUTCMonth()]
-  const year = d.getUTCFullYear()
-  return `${day} ${mon} ${year}`
+  return `${MONTHS_EN[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`
 }
+
+function metaSegments(row: Row): { text: string; alt?: { href: string; text: string; lang: 'en' | 'es' } } {
+  const parts: string[] = []
+  if (row.publishedAt) parts.push(fmtDate(row.publishedAt))
+  if (row.kind === 'podcast') {
+    parts.push(row.status === 'upcoming' ? 'Podcast · Upcoming' : 'Podcast')
+  } else if (row.readingMinutes) {
+    parts.push(`${row.readingMinutes} min read`)
+  }
+  const meta = { text: parts.join(' · ') } as { text: string; alt?: { href: string; text: string; lang: 'en' | 'es' } }
+  if (row.altHref && row.altLang) {
+    meta.alt = {
+      href: row.altHref,
+      lang: row.altLang,
+      text: row.altLang === 'es' ? 'Also in Español →' : 'Also in English →',
+    }
+  }
+  return meta
+}
+
+/* ------- Metadata ------- */
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
@@ -163,108 +170,73 @@ export const metadata: Metadata = {
   },
 }
 
+/* ------- Render ------- */
+
 export default function ThinkingPage() {
   return (
-    <div className="thinking thinking--library">
+    <div className="thinking">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · F31 §4.2 (vigente) · rótulo · h1 · regla ·
-          lede en una sola columna. */}
+      {/* 01 · OPENER · h1, regla naranja del sistema, intro.
+          Se sacó el kicker "Thinking" · repetía el h1. */}
       <section className="thinking-open">
-        <p className="eyebrow">Thinking</p>
         <h1 className="thinking-open__h">Thinking</h1>
         <div className="thinking-rule thinking-rule--hero" />
-        <div className="thinking-open__b">
-          <p className="thinking-open__lede">
-            Pieces on narrative, brand, and the founders who build them.
-            Written for people who have to make decisions, not for people
-            who write about them.
-          </p>
-        </div>
+        <p className="thinking-open__lede">
+          Pieces on narrative, brand, and the founders who build them.
+          Written for people who have to make decisions, not for people
+          who write about them.
+        </p>
       </section>
 
-      <ThinkingFilters hasPodcasts={HAS_PODCASTS} />
-
-      {/* F36 · una sola lista · articles + podcasts.
-          F46 · layout 2-col por fila: meta chica a la izquierda
-          (fecha + kind·min + lengua), título+dek a la derecha.
-          Sale el número naranja (thinking-row__o). Hairlines gris
-          arriba y abajo de la lista + entre filas. Padding 56px
-          arriba y abajo en 1440, 40px en 390. Toda la fila es
-          clickeable via <Link> que envuelve el contenido. */}
-      <section className="thinking-sec thinking-lib" data-sec="library">
-        <div className="thinking-lib__list">
-          {LIBRARY.map((it) => {
-            const isPodcast = it.kind === 'podcast'
-            const isUpcoming = it.status === 'upcoming'
-            const kindLabel = isPodcast
-              ? isUpcoming
-                ? 'PODCAST · UPCOMING'
-                : 'PODCAST'
-              : `ARTICLE${
-                  it.readingMinutes ? ` · ${it.readingMinutes} MIN READ` : ''
-                }`
-            return (
-              <article
-                key={it.slug}
-                className="thinking-row"
-                data-kind={it.kind}
-                data-lang={it.language}
-                data-status={it.status}
-                lang={it.language === 'es' ? 'es' : undefined}
-              >
-                <div className="thinking-row__meta" aria-hidden="true">
-                  {it.publishedAt && (
-                    <time
-                      className="thinking-row__date"
-                      dateTime={it.publishedAt}
+      {/* 02 · LISTA · una sola columna, filetes 1px negro entre filas.
+          Meta line 15px sentence case, dek 18px, ambos color secundario.
+          Toda la fila clickeable via <Link> que envuelve el título;
+          el resto lo cubre `.thinking-row__link::after` (F50 §3). */}
+      <section className="thinking-list">
+        {ROWS.map(row => {
+          const meta = metaSegments(row)
+          const upcoming = row.status === 'upcoming'
+          return (
+            <article
+              key={row.slug}
+              className={`thinking-row${upcoming ? ' thinking-row--upcoming' : ''}`}
+              data-kind={row.kind}
+              data-lang={row.language}
+              lang={row.language === 'es' ? 'es' : undefined}
+            >
+              <h2 className="thinking-row__t">
+                <Link className="thinking-row__link" href={row.href}>
+                  {row.title}
+                </Link>
+              </h2>
+              <p className="thinking-row__meta">
+                <span>{meta.text}</span>
+                {meta.alt && (
+                  <>
+                    <span aria-hidden="true"> · </span>
+                    <Link
+                      className="thinking-row__also"
+                      href={meta.alt.href}
+                      hrefLang={meta.alt.lang}
                     >
-                      {formatRowDate(it.publishedAt)}
-                    </time>
-                  )}
-                  <span className="thinking-row__kind">{kindLabel}</span>
-                  <span className="thinking-row__lang">
-                    {it.language === 'es' ? 'Español' : 'English'}
-                  </span>
-                </div>
-                <div className="thinking-row__b">
-                  <h3 className="thinking-row__n">
-                    <Link href={it.href}>{it.title}</Link>
-                  </h3>
-                  {it.dek && <p className="thinking-row__dek">{it.dek}</p>}
-                  {it.altLang && (
-                    <p className="thinking-row__alts">
-                      <Link
-                        className="thinking-row__alt"
-                        href={it.altLang.href}
-                        hrefLang={
-                          it.altLang.label === 'Español' ? 'es' : 'en'
-                        }
-                      >
-                        Also in {it.altLang.label} →
-                      </Link>
-                    </p>
-                  )}
-                </div>
-              </article>
-            )
-          })}
-        </div>
+                      {meta.alt.text}
+                    </Link>
+                  </>
+                )}
+              </p>
+              {row.dek && <p className="thinking-row__dek">{row.dek}</p>}
+            </article>
+          )
+        })}
 
-        <p className="thinking-empty" data-empty hidden>
-          Nothing here yet in this combination.
-        </p>
-
-        {/* F36 · link a Work para casos. */}
-        <Link href="/#selected-work" className="thinking-lib__cases">
+        <Link href="/#selected-work" className="thinking-list__cases">
           Case studies live in Work →
         </Link>
       </section>
-
-      <div className="thinking-end" />
     </div>
   )
 }

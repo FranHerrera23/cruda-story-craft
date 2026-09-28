@@ -35,8 +35,53 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 26 | `f49-performance` | `f773a0f` | ✅ |
 | 27 | `f50-thinking` | `29550a5` | ✅ |
 | 28 | `f50-1-fixes` | `293b2c7` | ✅ |
+| 29 | `f51-larry-holmes` | `209dd99` | ✅ |
 
-`origin/main` HEAD final: `293b2c7`.
+`origin/main` HEAD final: `209dd99`.
+
+**Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
++ slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
+Un commit encadenado (`57b0a00`):
+
+  · Contenido · `/thinking/find-your-larry-holmes` (EN) y
+    `/thinking/busca-a-tu-larry-holmes` (ES), textos verbatim del
+    .md de Fran, reading time 6 min, newsletter line linkeada
+    a `/newsletter` (existente). Alternates cruzadas.
+
+  · Infra · `Essay` type gana `heroCredit?: string`. `EssayLayout`
+    renderiza el hero (si `heroImage` + `heroAlt`) inmediatamente
+    después del filete de la firma; `.e-capsule` se hace
+    condicional (sólo si hay `answerCapsule` truthy Y no hay hero).
+    `essay.css` reescribe `.e-hero` a cols 1/8, aspect 16/9,
+    object-fit cover, 48/32 px de margen vertical, `next/image`
+    con priority + sizes + q=90.
+
+  · Cierre de gap (para todos los ensayos) · `.e-body` y
+    `.e-capsule` bajan `margin-top` de var(--space-5)=64 px a
+    48 px desktop / 32 px mobile.
+
+  · Hero · `/public/larry-holmes-hero.webp` (1344×752 WebP · 143 KB
+    · aspect 1.787 ~ 16:9 · imagen generada con Higgsfield · sin
+    crédito). Advertencia: fuente < 2400 px de ancho, blanda en
+    1920 DPR alto; nítida en 1440.
+
+  · Cita "Your mind is making a date your body can't keep." /
+    "Tu mente está haciendo una cita que tu cuerpo no puede
+    cumplir." · comillas curvas, sin `<em>` (verificado por curl).
+
+  · CTA final "Got a story worth telling? Let's talk." /
+    "¿Tenés una historia que contar? Hablemos." · pre-F51,
+    introducido en `f334fcb` (2026-09-18, B5 template rework).
+    Queda en todos los ensayos por regla F53 §4.5.
+
+LH mobile Larry Holmes EN: LCP 2472 · CLS 0.001 · TBT 62 · dentro
+de todos los budgets.
+
+Pixel-diff F51 vs baseline: 42/42 comparables en 0 pixels · 9
+size-mismatch esperados (7 ensayos existentes -32 px + /thinking
++200 px por 2 filas nuevas).
+
+Rollback: `git revert -m 1 209dd99`.
 
 **Octava tanda (28-sep · F50.1):** parche post-F50 con 7 ajustes
 reportados por Fran, en dos commits encadenados:

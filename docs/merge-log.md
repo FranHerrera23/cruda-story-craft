@@ -33,8 +33,39 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 24 | `f46-thinking` | `955ef90` | ✅ |
 | 25 | `f48-mobile` | `af57897` | ✅ |
 | 26 | `f49-performance` | `f773a0f` | ✅ |
+| 27 | `f50-thinking` | `29550a5` | ✅ |
 
-`origin/main` HEAD final: `f773a0f`.
+`origin/main` HEAD final: `29550a5`.
+
+**Séptima tanda (28-sep · F50):** rediseño de `/thinking` al patrón
+tetragrammaton.com/articles. Tres commits encadenados:
+  · Lista (`ff071e9`) · una sola columna, filetes 1 px negro, título
+    32 px peso 500, meta 15 px sans sentence case gris, dek 18 px
+    (line-clamp 2 desktop / 3 mobile), toda la fila clickeable via
+    `::after`. Fuera: kicker "THINKING", contador "N pieces",
+    columna izquierda de meta en mayúsculas, ThinkingFilters.tsx.
+  · Idioma (`56234bf`) · `?lang=es` render SSR con toggle real
+    (`<a href>`, sin JS). `/thinking` default EN, `/thinking?lang=es`
+    filtra ES. Rótulos de UI localizados ("6 min de lectura",
+    "25 de septiembre de 2026", "Podcast · Próximamente"). h1 y
+    lede quedan en inglés en las dos vistas (brief §4). Canonical
+    por vista.
+  · Ensayo (`4f23827`) · meta 15 px sans sentence case gris en
+    `.e-back`, `.e-date`, `.e-reading`, `.e-quote cite` (antes
+    IBM Plex Mono uppercase). `.e-quote` sin fondo paper, alineada
+    al borde del cuerpo. Backlink lang-aware: ES → `?lang=es`.
+
+Verificación SSR (`curl -s http://localhost:3013/thinking`):
+  · EN · 5 filas EN + toggle presente + ES ausente.
+  · ES · 3 filas ES + toggle presente + EN ausente.
+
+Sin cambios en las otras 15 páginas del sitio.
+
+Rollback:
+  · `git revert -m 1 29550a5` · vuelta completa del merge.
+  · `git revert 4f23827` · sólo el essay.
+  · `git revert 56234bf` · sólo el idioma.
+  · `git revert ff071e9` · sólo la lista.
 
 **Sexta tanda (28-sep · F49):** performance mobile LCP + CLS.
 Cinco commits encadenados:

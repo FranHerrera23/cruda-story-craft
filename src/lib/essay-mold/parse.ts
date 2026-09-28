@@ -152,12 +152,16 @@ function splitByLanguage(body: string): LangSection[] {
 
 const NEWSLETTER_TRIGGERS = ['newsletter', 'suscribí', 'suscribi', 'subscribe']
 
-/* F53 §1 · convierte `*text*` inline a `<em>text</em>`.
-   Sólo pares balanceados; asteriscos sueltos (por ejemplo en un cuerpo
-   con `*` como marcador) quedan literales. Para el link de newsletter
-   preservamos la itálica alrededor del `<a>` completo. */
-function inlineItalicsHtml(text: string): string {
-  return text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+/* F53 §1 · convierte inline:
+     `**bold**` → `<strong>bold</strong>`
+     `*italic*` → `<em>italic</em>`
+   Se procesa bold PRIMERO para que `**text**` no matchee dos veces
+   con la regex de itálicas. Sólo pares balanceados. */
+function inlineMarkupHtml(text: string): string {
+  let s = text
+  s = s.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+  s = s.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+  return s
 }
 
 function isNewsletterLine(line: string): boolean {
@@ -180,9 +184,9 @@ function paragraphToBlock(text: string, lang: 'en' | 'es'): EssayBlock | null {
   const trimmed = text.trim()
   if (!trimmed) return null
   if (isNewsletterLine(trimmed)) return buildNewsletterBlock(trimmed, lang)
-  const hasItalic = /\*[^*\n]+\*/.test(trimmed)
-  if (hasItalic) {
-    return { type: 'p', html: inlineItalicsHtml(trimmed) }
+  const hasMarkup = /\*[^*\n]+\*/.test(trimmed)
+  if (hasMarkup) {
+    return { type: 'p', html: inlineMarkupHtml(trimmed) }
   }
   return { type: 'p', text: trimmed }
 }

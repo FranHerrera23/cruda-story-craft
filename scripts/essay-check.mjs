@@ -180,7 +180,9 @@ function parseMdSection(rawSection, lang) {
       continue
     }
     if (/\*[^*\n]+\*/.test(b)) {
-      const html = b.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+      let html = b
+      html = html.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+      html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
       blocks.push({ type: 'p', html })
     } else {
       blocks.push({ type: 'p', text: b })
@@ -197,26 +199,28 @@ function parseMdSection(rawSection, lang) {
      - links (sólo el newsletter link generado automáticamente) */
 function checkMarkupParity(sec, parserBlocks) {
   const raw = sec.raw
-  // Fuente
   const srcSeparators = (raw.match(/^---$/gm) || []).length
-  // Excluir dek y newsletter line del conteo de italics inline
   const rawBlocks = raw.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
   let inlineItalics = 0
+  let inlineBold = 0
   for (let i = 0; i < rawBlocks.length; i++) {
     const b = rawBlocks[i]
-    if (i === 0 && b.startsWith('*') && b.endsWith('*') && !b.slice(1, -1).includes('\n')) continue // dek
+    if (i === 0 && b.startsWith('*') && b.endsWith('*') && !b.slice(1, -1).includes('\n') && !b.startsWith('**')) continue // dek
     if (isNewsletterLine(b)) continue // newsletter · el <em> lo cuenta el link check
-    const m = b.match(/\*[^*\n]+\*/g) || []
-    inlineItalics += m.length
+    // Bold PRIMERO para que **text** no se cuente después como *text*
+    const boldMatches = b.match(/\*\*([^*\n]+)\*\*/g) || []
+    inlineBold += boldMatches.length
+    const stripped = b.replace(/\*\*([^*\n]+)\*\*/g, '')
+    const italicMatches = stripped.match(/\*[^*\n]+\*/g) || []
+    inlineItalics += italicMatches.length
   }
   const srcNewsletters = rawBlocks.filter(isNewsletterLine).length
   const srcDoubleQuotesOpen = (normalizeQuotes(raw).match(/“/g) || []).length
   const srcDoubleQuotesClose = (normalizeQuotes(raw).match(/”/g) || []).length
 
-  // Salida del parser (excluyendo el dek marcado arriba)
   const outBlocks = parserBlocks.filter(b => b.type !== 'dek')
   const outSeparators = outBlocks.filter(b => b.type === 'separator').length
-  let outEm = 0, outNewsletters = 0, outLinks = 0
+  let outEm = 0, outStrong = 0, outNewsletters = 0, outLinks = 0
   let outQuoteOpen = 0, outQuoteClose = 0
   for (const b of outBlocks) {
     const src = b.html ?? b.text ?? ''
@@ -224,46 +228,39 @@ function checkMarkupParity(sec, parserBlocks) {
     outQuoteClose += (src.match(/”/g) || []).length
     if (!b.html) continue
     const emCount = (b.html.match(/<em>/g) || []).length
+    const strongCount = (b.html.match(/<strong>/g) || []).length
     const isNewsletterBlock = b.html.includes('href="/newsletter"')
     if (isNewsletterBlock) {
       outNewsletters += 1
       outLinks += (b.html.match(/<a\s[^>]*href="\/newsletter"/g) || []).length
-      // El <em> que envuelve el newsletter no cuenta como itálica inline
       outEm += Math.max(0, emCount - 1)
+      outStrong += strongCount
     } else {
       outEm += emCount
+      outStrong += strongCount
     }
   }
 
   if (srcSeparators !== outSeparators) {
-    err(
-      `sección ${sec.lang}: cortes de sección (---) en .md=${srcSeparators} · en render=${outSeparators}`,
-    )
+    err(`sección ${sec.lang}: cortes de sección (---) en .md=${srcSeparators} · en render=${outSeparators}`)
   }
   if (inlineItalics !== outEm) {
-    err(
-      `sección ${sec.lang}: itálicas inline (*text*) en .md=${inlineItalics} · en render=${outEm} <em>`,
-    )
+    err(`sección ${sec.lang}: itálicas inline (*text*) en .md=${inlineItalics} · en render=${outEm} <em>`)
+  }
+  if (inlineBold !== outStrong) {
+    err(`sección ${sec.lang}: bolds inline (**text**) en .md=${inlineBold} · en render=${outStrong} <strong>`)
   }
   if (srcNewsletters !== outNewsletters) {
-    err(
-      `sección ${sec.lang}: newsletter lines en .md=${srcNewsletters} · en render=${outNewsletters}`,
-    )
+    err(`sección ${sec.lang}: newsletter lines en .md=${srcNewsletters} · en render=${outNewsletters}`)
   }
   if (srcNewsletters > 0 && outLinks !== srcNewsletters) {
-    err(
-      `sección ${sec.lang}: link a /newsletter en render=${outLinks} · esperado ${srcNewsletters}`,
-    )
+    err(`sección ${sec.lang}: link a /newsletter en render=${outLinks} · esperado ${srcNewsletters}`)
   }
   if (srcDoubleQuotesOpen !== outQuoteOpen || srcDoubleQuotesClose !== outQuoteClose) {
-    err(
-      `sección ${sec.lang}: pares de comillas curvas .md=(${srcDoubleQuotesOpen}/${srcDoubleQuotesClose}) · render=(${outQuoteOpen}/${outQuoteClose})`,
-    )
+    err(`sección ${sec.lang}: pares de comillas curvas .md=(${srcDoubleQuotesOpen}/${srcDoubleQuotesClose}) · render=(${outQuoteOpen}/${outQuoteClose})`)
   }
   if (srcDoubleQuotesOpen !== srcDoubleQuotesClose) {
-    err(
-      `sección ${sec.lang}: comillas dobles no balanceadas (${srcDoubleQuotesOpen} de apertura, ${srcDoubleQuotesClose} de cierre)`,
-    )
+    err(`sección ${sec.lang}: comillas dobles no balanceadas (${srcDoubleQuotesOpen} de apertura, ${srcDoubleQuotesClose} de cierre)`)
   }
 }
 
@@ -439,13 +436,16 @@ async function main() {
     if (!langSlug) {
       err(`falta slug_${sec.lang} pero hay sección '## ${sec.lang === 'en' ? 'English' : 'Español'}'`)
     }
-    /* F53 §3 punto 8 · falla si falta h1, dek o fecha en cualquier
-       idioma declarado. `fm.date` se valida arriba (una sola vez);
-       h1 y dek se validan acá por sección. */
+    /* F53 §3 punto 8 · falla si falta h1 o fecha en cualquier idioma
+       declarado. El dek es fuerte-recomendado pero opcional: hay 4
+       ensayos legacy (el-ocho, founder-worth-70-million, third-place
+       y tercer-lugar) que se publicaron sin dek y la migración no
+       inventa uno. Si el .md no trae dek, el check lo REPORTA como
+       advertencia pero no falla. */
     if (!sec.title) err(`sección ${sec.lang}: h1 vacío (falta el título después de '## ${sec.lang === 'en' ? 'English' : 'Español'}:')`)
     const canon = canonicalPlainFromMd(sec.raw, sec.lang)
     const dek = canon.find(x => x.role === 'dek')
-    if (!dek) err(`sección ${sec.lang}: falta dek (primera línea en *itálica* después del h2)`)
+    if (!dek) warn(`sección ${sec.lang}: sin dek (primera línea en *itálica* después del h2). Aceptable en ensayos legacy sin dek firmado; nuevos ensayos deberían traerlo.`)
     if (!fm.date) err(`sección ${sec.lang}: no puedo publicar sin 'date' (declarado como idioma pero sin fecha en frontmatter)`)
 
     /* F53 §3 punto 9 · falla si el markup renderizado difiere del

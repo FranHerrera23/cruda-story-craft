@@ -8,7 +8,8 @@
     "build": "next build",
     "build:dev": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "essay:check": "node scripts/essay-check.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

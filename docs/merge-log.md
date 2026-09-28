@@ -32,8 +32,51 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 23 | `f47-case-dates` | `b8fbbd5` | ✅ |
 | 24 | `f46-thinking` | `955ef90` | ✅ |
 | 25 | `f48-mobile` | `af57897` | ✅ |
+| 26 | `f49-performance` | `f773a0f` | ✅ |
 
-`origin/main` HEAD final: `af57897`.
+`origin/main` HEAD final: `f773a0f`.
+
+**Sexta tanda (28-sep · F49):** performance mobile LCP + CLS.
+Cinco commits encadenados:
+  · §3.2 (`969ac01`) · gate `.page-root:not(.ready)` acotado a desktop
+    fine-pointer; reserva SSR de la barra nav; width/height explícitos
+    en el wordmark del footer. Mobile LCP de `/`, `/services` y
+    `/about` cae 606–721 ms; CLS baja de 0.206 (enmascarado por el
+    gate) a 0.001.
+  · §3.3 (`a09f43e`) · `next/image` con `priority` + `fill` + `sizes`
+    en heroes de case study (`WorkLayout`, `CaseStudyLayoutV2`), Act2
+    arts de la home y retrato /about. Karen mobile LCP cae de 10 873
+    a 3363 ms (−7 510 ms).
+  · §3.4 (`cbc30cc`) · Lenis + GSAP + ScrollTrigger a dynamic import
+    dentro del `matchMedia` gate. Chunk 2434 (218 KB) sale del bundle
+    inicial; queda en el chunk 9096 (18 KB) que sólo bajan clientes
+    desktop post gate.
+  · §3.5 (`5825cbc`) · contraste WCAG AA 4.5:1 en `.hero__kicker`
+    (`#6E6B65` → `#8A867E`, ratio 3.57 → 5.23) y `.pitem__src`
+    (`#FF5A00` → `#6E6B65`, ratio 3.13 → 5.31). Sin colores nuevos,
+    sin cambio de tamaño/peso/tracking. Excepción firmada al
+    pixel-diff 0.
+  · Docs (`ac46725`, `55425bf`, `653e131`, `41b1b6d`) · diagnóstico
+    Paso 1, reporte Vercel Image Optimization, inventario de
+    imágenes y reporte final antes del merge.
+
+Pixel-diff regresión: masked 48/51 en 0 estricto (los 3 diffs son
+los selectores de §3.5 en home). Per-image diff `next/image`: máximo
+Karen 1440 con 0.452 %, todos ≤ 0.5 % del total de la página.
+
+Rollback por sección (revert sobre el merge base):
+  §3.5 · `git revert 5825cbc`
+  §3.4 · `git revert cbc30cc`
+  §3.3 · `git revert a09f43e`
+  §3.2 · `git revert 969ac01`
+
+Rollback total del merge: `git revert -m 1 f773a0f`.
+
+Pendiente F52 (fuera del scope de F49):
+  · Karen mobile LCP 3363 ms (863 ms sobre budget).
+  · Desktop LCP > 1200 ms en `/`, `/`, `/services`, `/about` por el
+    gate `.page-root` que se mantiene en desktop (fitAllPhrases de
+    Act1Hero).
 
 **Cuarta tanda (27-sep · F48):** política motion mobile + tap
 targets 44×44. Regla dura de Fran: cero cambios en desktop.

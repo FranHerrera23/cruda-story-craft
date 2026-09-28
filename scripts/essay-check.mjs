@@ -148,6 +148,125 @@ function canonicalPlainFromMd(sectionRaw, lang) {
   return out
 }
 
+/* ═════════ Parser réplica (mismo output que src/lib/essay-mold/parse.ts)
+   La check compara este output contra el .md fuente. Si los dos
+   parsers divergen alguna vez, hay que arreglar el que no cumpla
+   con la spec del brief. */
+
+function parseMdSection(rawSection, lang) {
+  const normalized = normalizeQuotes(rawSection)
+  const rawBlocks = normalized.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
+  const blocks = []
+  let dekTaken = false
+  for (const b of rawBlocks) {
+    if (
+      !dekTaken && blocks.length === 0 &&
+      b.startsWith('*') && b.endsWith('*') &&
+      !b.slice(1, -1).includes('\n') &&
+      !isNewsletterLine(b)
+    ) {
+      dekTaken = true
+      // dek no es un block del body en el importer, pero lo
+      // marcamos acá para no contarlo como itálica inline.
+      blocks.push({ type: 'dek', text: b.slice(1, -1).trim() })
+      continue
+    }
+    if (b === '---') { blocks.push({ type: 'separator' }); continue }
+    if (isNewsletterLine(b)) {
+      const inner = b.slice(1, -1).trim()
+      const cta = lang === 'es' ? /(Suscribite[^.!?]*\.)/ : /(Subscribe[^.!?]*\.)/
+      const withLink = inner.replace(cta, '<a href="/newsletter">$1</a>')
+      blocks.push({ type: 'p', html: `<em>${withLink}</em>` })
+      continue
+    }
+    if (/\*[^*\n]+\*/.test(b)) {
+      const html = b.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+      blocks.push({ type: 'p', html })
+    } else {
+      blocks.push({ type: 'p', text: b })
+    }
+  }
+  return blocks
+}
+
+/* F53 §3 punto 9 · falla si el markup renderizado difiere del .md.
+   Compara cantidad y contenido de:
+     - separators (`---`)
+     - italics (`*text*`), excluyendo el dek y el newsletter line
+     - comillas curvas (por par abierta/cerrada)
+     - links (sólo el newsletter link generado automáticamente) */
+function checkMarkupParity(sec, parserBlocks) {
+  const raw = sec.raw
+  // Fuente
+  const srcSeparators = (raw.match(/^---$/gm) || []).length
+  // Excluir dek y newsletter line del conteo de italics inline
+  const rawBlocks = raw.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
+  let inlineItalics = 0
+  for (let i = 0; i < rawBlocks.length; i++) {
+    const b = rawBlocks[i]
+    if (i === 0 && b.startsWith('*') && b.endsWith('*') && !b.slice(1, -1).includes('\n')) continue // dek
+    if (isNewsletterLine(b)) continue // newsletter · el <em> lo cuenta el link check
+    const m = b.match(/\*[^*\n]+\*/g) || []
+    inlineItalics += m.length
+  }
+  const srcNewsletters = rawBlocks.filter(isNewsletterLine).length
+  const srcDoubleQuotesOpen = (normalizeQuotes(raw).match(/“/g) || []).length
+  const srcDoubleQuotesClose = (normalizeQuotes(raw).match(/”/g) || []).length
+
+  // Salida del parser (excluyendo el dek marcado arriba)
+  const outBlocks = parserBlocks.filter(b => b.type !== 'dek')
+  const outSeparators = outBlocks.filter(b => b.type === 'separator').length
+  let outEm = 0, outNewsletters = 0, outLinks = 0
+  let outQuoteOpen = 0, outQuoteClose = 0
+  for (const b of outBlocks) {
+    const src = b.html ?? b.text ?? ''
+    outQuoteOpen += (src.match(/“/g) || []).length
+    outQuoteClose += (src.match(/”/g) || []).length
+    if (!b.html) continue
+    const emCount = (b.html.match(/<em>/g) || []).length
+    const isNewsletterBlock = b.html.includes('href="/newsletter"')
+    if (isNewsletterBlock) {
+      outNewsletters += 1
+      outLinks += (b.html.match(/<a\s[^>]*href="\/newsletter"/g) || []).length
+      // El <em> que envuelve el newsletter no cuenta como itálica inline
+      outEm += Math.max(0, emCount - 1)
+    } else {
+      outEm += emCount
+    }
+  }
+
+  if (srcSeparators !== outSeparators) {
+    err(
+      `sección ${sec.lang}: cortes de sección (---) en .md=${srcSeparators} · en render=${outSeparators}`,
+    )
+  }
+  if (inlineItalics !== outEm) {
+    err(
+      `sección ${sec.lang}: itálicas inline (*text*) en .md=${inlineItalics} · en render=${outEm} <em>`,
+    )
+  }
+  if (srcNewsletters !== outNewsletters) {
+    err(
+      `sección ${sec.lang}: newsletter lines en .md=${srcNewsletters} · en render=${outNewsletters}`,
+    )
+  }
+  if (srcNewsletters > 0 && outLinks !== srcNewsletters) {
+    err(
+      `sección ${sec.lang}: link a /newsletter en render=${outLinks} · esperado ${srcNewsletters}`,
+    )
+  }
+  if (srcDoubleQuotesOpen !== outQuoteOpen || srcDoubleQuotesClose !== outQuoteClose) {
+    err(
+      `sección ${sec.lang}: pares de comillas curvas .md=(${srcDoubleQuotesOpen}/${srcDoubleQuotesClose}) · render=(${outQuoteOpen}/${outQuoteClose})`,
+    )
+  }
+  if (srcDoubleQuotesOpen !== srcDoubleQuotesClose) {
+    err(
+      `sección ${sec.lang}: comillas dobles no balanceadas (${srcDoubleQuotesOpen} de apertura, ${srcDoubleQuotesClose} de cierre)`,
+    )
+  }
+}
+
 /* ═════════ Reading time (mismo que parse.ts) ═════════ */
 
 function wordCount(blocks) {
@@ -320,14 +439,23 @@ async function main() {
     if (!langSlug) {
       err(`falta slug_${sec.lang} pero hay sección '## ${sec.lang === 'en' ? 'English' : 'Español'}'`)
     }
-    // h1
-    if (!sec.title) err(`sección ${sec.lang}: h1 vacío`)
-    // dek + newsletter check
+    /* F53 §3 punto 8 · falla si falta h1, dek o fecha en cualquier
+       idioma declarado. `fm.date` se valida arriba (una sola vez);
+       h1 y dek se validan acá por sección. */
+    if (!sec.title) err(`sección ${sec.lang}: h1 vacío (falta el título después de '## ${sec.lang === 'en' ? 'English' : 'Español'}:')`)
     const canon = canonicalPlainFromMd(sec.raw, sec.lang)
     const dek = canon.find(x => x.role === 'dek')
     if (!dek) err(`sección ${sec.lang}: falta dek (primera línea en *itálica* después del h2)`)
+    if (!fm.date) err(`sección ${sec.lang}: no puedo publicar sin 'date' (declarado como idioma pero sin fecha en frontmatter)`)
+
+    /* F53 §3 punto 9 · falla si el markup renderizado difiere del
+       .md en itálicas, comillas, links o cortes de sección.
+       Compara conteos y contenidos concretos entre la fuente y lo
+       que el parser produce. */
+    const parserBlocks = parseMdSection(sec.raw, sec.lang)
+    checkMarkupParity(sec, parserBlocks)
+
     const hasNewsletter = canon.some(x => x.role === 'newsletter')
-    // Report por idioma
     const wc = wordCount(canon)
     const rm = Math.max(1, Math.round(wc / 200))
     report.sections.push({
@@ -341,16 +469,15 @@ async function main() {
       metaChars: (fm[`meta_${sec.lang}`] || '').length,
       alt: fm[`alt_${sec.lang}`] || '(sin alt; se autogenera en F53.1)',
     })
-    // Diff .md vs canónico (round-trip check)
-    // Re-normalización idempotente: si aplico normalizeQuotes al
-    // texto ya normalizado, no cambia. Ese es el invariante.
+
+    // Round-trip · re-normalización idempotente.
     const canonText = canon.map(x => x.text).join('\n\n')
     const roundTrip = normalizeQuotes(canonText)
     if (roundTrip !== canonText) {
       err(
         `sección ${sec.lang}: la normalización no es idempotente · ` +
-        `un caracter cambió en el round-trip. Reportá la line que falla ` +
-        `a Fran.`,
+        `un caracter cambió en el round-trip. Reportá la línea que ` +
+        `falla a Fran.`,
       )
     }
   }

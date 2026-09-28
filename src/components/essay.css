@@ -229,10 +229,13 @@
   .essay .e-reading { grid-column: 1 / -1; text-align: left; margin-top: 12px; }
 }
 
-/* Answer capsule — sigue en --color-paper. §4.3 breakout col 3-11. */
+/* Answer capsule — sigue en --color-paper. §4.3 breakout col 3-11.
+   F51 §2 · margin-top pasa de --space-5 (64 px) a 48 px, en línea
+   con el nuevo espaciado del template. Cuando la capsule no se
+   renderiza (Larry Holmes) el `.e-body` toma el mismo 48 px. */
 .essay .e-capsule {
   grid-column: 3 / span 9;
-  margin-top: var(--space-5);
+  margin-top: 48px;
   padding: var(--space-4);
   background: var(--paper);
   font-family: var(--font-archivo), -apple-system, sans-serif;
@@ -243,23 +246,70 @@
   color: var(--ink);
 }
 @media (max-width: 767px) {
-  .essay .e-capsule { grid-column: 1 / -1; }
+  .essay .e-capsule {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+  }
 }
 
-.essay .e-hero { grid-column: 1 / -1; margin-top: var(--space-4); }
-.essay .e-hero img { width: 100%; height: auto; display: block; }
+/* F51 §2 · hero de la pieza · 16:9, ancho de la columna del h1
+   (cols 1 / span 8), no full-bleed. 48 px arriba/abajo en desktop,
+   32 px en mobile. next/image con `priority` + `sizes` real. */
+.essay .e-hero {
+  grid-column: 1 / span 8;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+.essay .e-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.essay .e-hero__credit {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(100%);
+  padding-top: 8px;
+  font-family: var(--grot);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--grey, #6E6B65);
+  line-height: 1.4;
+}
+@media (max-width: 767px) {
+  .essay .e-hero {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+    margin-bottom: 32px;
+  }
+}
 
 /* Body — brief v4 UX §4.3, corregido B3.
    Prose col 4-9 (6 columnas). El comentario anterior decía "~68 chars"
    pero la medición real en playwright a 1440px con 7 cols dio 85 chars.
    6 cols acerca a los 68 target sin llegar del todo. Breakout col 3-11,
    full-bleed col 1-12. */
+/* F51 §2 · margin-top pasa de var(--space-5) (64 px) a 48 px, para
+   cerrar el "hueco blanco" (~200 px) que reportó Fran entre firma y
+   cuerpo cuando el ensayo no tiene capsule ni hero. Cuando la capsule
+   o el hero están, ellos abren su propio 48 px arriba y el body toma
+   este mismo 48 px como cierre. Mobile: 32 px. */
 .essay .e-body {
   grid-column: 4 / span 6;
-  margin-top: var(--space-5);
+  margin-top: 48px;
 }
 @media (max-width: 767px) {
-  .essay .e-body { grid-column: 1 / -1; }
+  .essay .e-body {
+    grid-column: 1 / -1;
+    margin-top: 32px;
+  }
 }
 
 .essay .e-body > * + * { margin-top: 28px; }

@@ -1,32 +1,35 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import ThinkingFilters from './ThinkingFilters'
 import { allEssays } from '@/content/essays'
 import { collectionPageSchema } from '@/lib/collection-schema'
 import type { Resource, ResourceCompany } from '@/content/resources'
 import './thinking.css'
 
-/* /thinking · F36 · 24-sep · Fran · library.
+/* /thinking · F50 · 28-sep · Fran · index rediseñado.
 
-   Reemplaza a F31 §4.2. F31 §4.1 (un solo h1 token /services + una
-   sola regla naranja) sigue vigente.
+   Referencia: tetragrammaton.com/articles. Una sola columna, título,
+   una línea de meta, dek opcional y un filete negro de lado a lado
+   entre filas. Se van del molde F36: el kicker "THINKING", los
+   filtros LANGUAGE/TYPE, el contador "N pieces" y la columna de
+   meta en mayúsculas.
 
-   Sale de /thinking:
-   · La sección CASE STUDIES completa (cards). Los casos viven en
-     Work · abajo hay un link "Case studies live in Work →".
-   · La opción "Case studies" del filtro TYPE.
-   · Los h2 "What we are thinking about." · "Conversations."
-   · El atenuado en gris de filas no activas (marks/mark).
+   Idioma:
+     · /thinking (default) · renderiza sólo las piezas en inglés.
+     · /thinking?lang=es · renderiza sólo las piezas en español, con
+       los rótulos de UI (fecha, "min de lectura", toggle) en
+       español. h1 y lede quedan en inglés.
+   Cada par bilingüe aparece una sola vez por vista; el link
+   "Also in …" apunta a la otra versión.
 
-   La página es una SOLA lista de artículos + podcasts, ordenada
-   por fecha (más reciente primero). Cada fila muestra número,
-   título, dek (si hay), meta line (kind · reading time · Also in
-   other language), y una etiqueta de idioma a la derecha. */
+   Los toggles son links reales (`<a href>`), no botones JS. Ambas
+   URLs responden 200 desde el servidor con canonical a sí mismas.
 
-/* F36 · lista incluye TODAS las piezas · el filtro de idioma
-   decide cuáles se muestran. Antes se ocultaban las ES con alt EN
-   para evitar duplicados de la misma pieza; en el molde library
-   ambas versiones son ítems de biblioteca independientes. */
+   La regla naranja del h1 se mantiene porque es del sistema. */
+
+type Lang = 'en' | 'es'
+
+/* ------- Datos ------- */
+
 const ARTICLES = [...allEssays].sort((a, b) =>
   (b.publishedAt || '').localeCompare(a.publishedAt || ''),
 )
@@ -38,53 +41,50 @@ const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   excerpt: e.answerCapsule,
   kind: 'essay' as const,
   company: 'cruda' as ResourceCompany,
-  language: (e.language ?? 'en') as 'en' | 'es',
+  language: (e.language ?? 'en') as Lang,
   publishedAt: e.publishedAt,
   canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
 
-/* F36 §2 · fila unificada · articles + podcasts en una sola lista. */
-type LibraryItem = {
+type Row = {
   slug: string
   href: string
   title: string
   dek?: string
-  language: 'en' | 'es'
+  language: Lang
   kind: 'article' | 'podcast'
   readingMinutes?: number
   publishedAt: string
-  altLang?: { href: string; label: 'English' | 'Español' }
+  altHref?: string
+  altLang?: Lang
   status?: 'upcoming'
 }
 
-const ARTICLE_ITEMS: LibraryItem[] = ARTICLES.map(e => {
+const ARTICLE_ROWS: Row[] = ARTICLES.map(e => {
+  const language = (e.language ?? 'en') as Lang
   const alt = e.alternates
-  const language = (e.language ?? 'en') as 'en' | 'es'
-  const altES =
-    language === 'en' && alt?.es
-      ? { href: `/thinking/${alt.es}`, label: 'Español' as const }
-      : undefined
-  const altEN =
-    language === 'es' && alt?.en
-      ? { href: `/thinking/${alt.en}`, label: 'English' as const }
-      : undefined
+  const altEs = language === 'en' && alt?.es
+    ? { href: `/thinking/${alt.es}`, lang: 'es' as const }
+    : undefined
+  const altEn = language === 'es' && alt?.en
+    ? { href: `/thinking/${alt.en}`, lang: 'en' as const }
+    : undefined
+  const altPair = altEs ?? altEn
   return {
     slug: e.slug,
     href: `/thinking/${e.slug}`,
     title: e.title,
-    /* F36 § dek visible · viene del campo `deck` cuando existe.
-       Si no hay deck, la fila va sin dek (F36 § "si una pieza no
-       tiene descripción, se omite y se reporta"). */
     dek: e.deck || undefined,
     language,
     kind: 'article',
     readingMinutes: e.readingMinutes,
     publishedAt: e.publishedAt,
-    altLang: altES ?? altEN,
+    altHref: altPair?.href,
+    altLang: altPair?.lang,
   }
 })
 
-const PODCAST_ITEMS: LibraryItem[] = [
+const PODCAST_ROWS: Row[] = [
   {
     slug: 'steve-walls',
     href: '/thinking/steve-walls',
@@ -97,174 +97,209 @@ const PODCAST_ITEMS: LibraryItem[] = [
   },
 ]
 
-/* Combinado y ordenado por fecha (más reciente primero). Podcasts
-   upcoming (sin fecha) van al final. */
-const LIBRARY = [...ARTICLE_ITEMS, ...PODCAST_ITEMS].sort((a, b) => {
+const ALL_ROWS = [...ARTICLE_ROWS, ...PODCAST_ROWS].sort((a, b) => {
   if (!a.publishedAt) return 1
   if (!b.publishedAt) return -1
   return b.publishedAt.localeCompare(a.publishedAt)
 })
 
-const HAS_PODCASTS = PODCAST_ITEMS.length > 0
+/* ------- Formatos i18n ------- */
 
-/* F46 · formato de fecha de fila · "25 SEP 2026" (UPPER, sin coma).
-   Recibe ISO YYYY-MM-DD y devuelve string listo para render. */
-function formatRowDate(iso: string): string {
+const MONTHS: Record<Lang, string[]> = {
+  en: [
+    'January','February','March','April','May','June',
+    'July','August','September','October','November','December',
+  ],
+  es: [
+    'enero','febrero','marzo','abril','mayo','junio',
+    'julio','agosto','septiembre','octubre','noviembre','diciembre',
+  ],
+}
+
+function fmtDate(iso: string, lang: Lang): string {
   if (!iso) return ''
   const d = new Date(iso)
   if (Number.isNaN(d.getTime())) return ''
   const day = d.getUTCDate()
-  const months = [
-    'JAN','FEB','MAR','APR','MAY','JUN',
-    'JUL','AUG','SEP','OCT','NOV','DEC',
-  ]
-  const mon = months[d.getUTCMonth()]
+  const mon = MONTHS[lang][d.getUTCMonth()]
   const year = d.getUTCFullYear()
-  return `${day} ${mon} ${year}`
+  if (lang === 'es') return `${day} de ${mon} de ${year}`
+  return `${mon} ${day}, ${year}`
+}
+
+/* Los rótulos "Also in English →" / "Also in Español →" se
+   mantienen tal cual en las dos vistas (brief §4). */
+const ALSO_LABEL: Record<Lang, string> = {
+  en: 'Also in English →',
+  es: 'Also in Español →',
+}
+
+const READ_LABEL: Record<Lang, string> = {
+  en: 'min read',
+  es: 'min de lectura',
+}
+
+const PODCAST_LABEL: Record<Lang, { base: string; upcoming: string }> = {
+  en: { base: 'Podcast', upcoming: 'Podcast · Upcoming' },
+  es: { base: 'Podcast', upcoming: 'Podcast · Próximamente' },
+}
+
+function metaText(row: Row, viewLang: Lang): string {
+  const parts: string[] = []
+  if (row.publishedAt) parts.push(fmtDate(row.publishedAt, viewLang))
+  if (row.kind === 'podcast') {
+    parts.push(row.status === 'upcoming'
+      ? PODCAST_LABEL[viewLang].upcoming
+      : PODCAST_LABEL[viewLang].base)
+  } else if (row.readingMinutes) {
+    parts.push(`${row.readingMinutes} ${READ_LABEL[viewLang]}`)
+  }
+  return parts.join(' · ')
+}
+
+/* ------- Metadata (dinámica por lang) ------- */
+
+const BASE_TITLE = 'Thinking · CRUDA'
+const BASE_DESC =
+  'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.'
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: Promise<{ lang?: string }>
+}): Promise<Metadata> {
+  const params = (await searchParams) ?? {}
+  const lang: Lang = params.lang === 'es' ? 'es' : 'en'
+  const canonical =
+    lang === 'es'
+      ? 'https://www.thecruda.com/thinking?lang=es'
+      : 'https://www.thecruda.com/thinking'
+  return {
+    title: BASE_TITLE,
+    description: BASE_DESC,
+    alternates: { canonical },
+    openGraph: {
+      title: BASE_TITLE,
+      description: BASE_DESC,
+      url: canonical,
+      type: 'website',
+      images: [
+        {
+          url: 'https://www.thecruda.com/logo.png',
+          width: 1080,
+          height: 1080,
+          alt: 'CRUDA',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: BASE_TITLE,
+      description: BASE_DESC,
+      images: ['https://www.thecruda.com/logo.png'],
+    },
+  }
 }
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
-  name: 'Thinking · CRUDA',
-  description:
-    'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.',
+  name: BASE_TITLE,
+  description: BASE_DESC,
   items: SCHEMA_ITEMS,
 })
 
-const THINKING_TITLE = 'Thinking · CRUDA'
-const THINKING_DESCRIPTION =
-  'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.'
+/* ------- Render ------- */
 
-export const metadata: Metadata = {
-  title: THINKING_TITLE,
-  description: THINKING_DESCRIPTION,
-  alternates: {
-    canonical: 'https://www.thecruda.com/thinking',
-  },
-  openGraph: {
-    title: THINKING_TITLE,
-    description: THINKING_DESCRIPTION,
-    url: 'https://www.thecruda.com/thinking',
-    type: 'website',
-    images: [
-      {
-        url: 'https://www.thecruda.com/logo.png',
-        width: 1080,
-        height: 1080,
-        alt: 'CRUDA',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: THINKING_TITLE,
-    description: THINKING_DESCRIPTION,
-    images: ['https://www.thecruda.com/logo.png'],
-  },
-}
+export default async function ThinkingPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ lang?: string }>
+}) {
+  const params = (await searchParams) ?? {}
+  const viewLang: Lang = params.lang === 'es' ? 'es' : 'en'
+  const rows = ALL_ROWS.filter(r => r.language === viewLang)
 
-export default function ThinkingPage() {
   return (
-    <div className="thinking thinking--library">
+    <div className="thinking" data-lang={viewLang}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · F31 §4.2 (vigente) · rótulo · h1 · regla ·
-          lede en una sola columna. */}
+      {/* 01 · OPENER · h1 (EN en las dos vistas · brief §4). */}
       <section className="thinking-open">
-        <p className="eyebrow">Thinking</p>
         <h1 className="thinking-open__h">Thinking</h1>
         <div className="thinking-rule thinking-rule--hero" />
-        <div className="thinking-open__b">
-          <p className="thinking-open__lede">
-            Pieces on narrative, brand, and the founders who build them.
-            Written for people who have to make decisions, not for people
-            who write about them.
-          </p>
-        </div>
-      </section>
-
-      <ThinkingFilters hasPodcasts={HAS_PODCASTS} />
-
-      {/* F36 · una sola lista · articles + podcasts.
-          F46 · layout 2-col por fila: meta chica a la izquierda
-          (fecha + kind·min + lengua), título+dek a la derecha.
-          Sale el número naranja (thinking-row__o). Hairlines gris
-          arriba y abajo de la lista + entre filas. Padding 56px
-          arriba y abajo en 1440, 40px en 390. Toda la fila es
-          clickeable via <Link> que envuelve el contenido. */}
-      <section className="thinking-sec thinking-lib" data-sec="library">
-        <div className="thinking-lib__list">
-          {LIBRARY.map((it) => {
-            const isPodcast = it.kind === 'podcast'
-            const isUpcoming = it.status === 'upcoming'
-            const kindLabel = isPodcast
-              ? isUpcoming
-                ? 'PODCAST · UPCOMING'
-                : 'PODCAST'
-              : `ARTICLE${
-                  it.readingMinutes ? ` · ${it.readingMinutes} MIN READ` : ''
-                }`
-            return (
-              <article
-                key={it.slug}
-                className="thinking-row"
-                data-kind={it.kind}
-                data-lang={it.language}
-                data-status={it.status}
-                lang={it.language === 'es' ? 'es' : undefined}
-              >
-                <div className="thinking-row__meta" aria-hidden="true">
-                  {it.publishedAt && (
-                    <time
-                      className="thinking-row__date"
-                      dateTime={it.publishedAt}
-                    >
-                      {formatRowDate(it.publishedAt)}
-                    </time>
-                  )}
-                  <span className="thinking-row__kind">{kindLabel}</span>
-                  <span className="thinking-row__lang">
-                    {it.language === 'es' ? 'Español' : 'English'}
-                  </span>
-                </div>
-                <div className="thinking-row__b">
-                  <h3 className="thinking-row__n">
-                    <Link href={it.href}>{it.title}</Link>
-                  </h3>
-                  {it.dek && <p className="thinking-row__dek">{it.dek}</p>}
-                  {it.altLang && (
-                    <p className="thinking-row__alts">
-                      <Link
-                        className="thinking-row__alt"
-                        href={it.altLang.href}
-                        hrefLang={
-                          it.altLang.label === 'Español' ? 'es' : 'en'
-                        }
-                      >
-                        Also in {it.altLang.label} →
-                      </Link>
-                    </p>
-                  )}
-                </div>
-              </article>
-            )
-          })}
-        </div>
-
-        <p className="thinking-empty" data-empty hidden>
-          Nothing here yet in this combination.
+        <p className="thinking-open__lede">
+          Pieces on narrative, brand, and the founders who build them.
+          Written for people who have to make decisions, not for people
+          who write about them.
         </p>
 
-        {/* F36 · link a Work para casos. */}
-        <Link href="/#selected-work" className="thinking-lib__cases">
+        {/* 01b · TOGGLE · links reales sin JS. Activo en ink,
+            inactivo en gris. Subrayado sólo en hover. */}
+        <nav className="thinking-lang" aria-label="Language">
+          <Link
+            className={`thinking-lang__opt${viewLang === 'en' ? ' is-active' : ''}`}
+            href="/thinking"
+            hrefLang="en"
+            aria-current={viewLang === 'en' ? 'page' : undefined}
+          >
+            English
+          </Link>
+          <Link
+            className={`thinking-lang__opt${viewLang === 'es' ? ' is-active' : ''}`}
+            href="/thinking?lang=es"
+            hrefLang="es"
+            aria-current={viewLang === 'es' ? 'page' : undefined}
+          >
+            Español
+          </Link>
+        </nav>
+      </section>
+
+      {/* 02 · LISTA · una sola columna, filetes 1px negro entre filas. */}
+      <section className="thinking-list">
+        {rows.map(row => {
+          const upcoming = row.status === 'upcoming'
+          const showAlso = row.altHref && row.altLang
+          return (
+            <article
+              key={row.slug}
+              className={`thinking-row${upcoming ? ' thinking-row--upcoming' : ''}`}
+              data-kind={row.kind}
+              data-lang={row.language}
+              lang={row.language === 'es' ? 'es' : undefined}
+            >
+              <h2 className="thinking-row__t">
+                <Link className="thinking-row__link" href={row.href}>
+                  {row.title}
+                </Link>
+              </h2>
+              <p className="thinking-row__meta">
+                <span>{metaText(row, viewLang)}</span>
+                {showAlso && (
+                  <>
+                    <span aria-hidden="true"> · </span>
+                    <Link
+                      className="thinking-row__also"
+                      href={row.altHref!}
+                      hrefLang={row.altLang}
+                    >
+                      {ALSO_LABEL[row.altLang as Lang]}
+                    </Link>
+                  </>
+                )}
+              </p>
+              {row.dek && <p className="thinking-row__dek">{row.dek}</p>}
+            </article>
+          )
+        })}
+
+        <Link href="/#selected-work" className="thinking-list__cases">
           Case studies live in Work →
         </Link>
       </section>
-
-      <div className="thinking-end" />
     </div>
   )
 }

@@ -87,30 +87,40 @@
   .essay .e-head { padding-top: var(--s5); }
 }
 
+/* F50 §5 · back link · 15 px sans sentence case, gris. Mismo
+   tratamiento que la meta de la lista. Sin uppercase, sin tracking
+   monospaceado. */
 .essay .e-back {
   grid-column: 1 / -1;
   margin-bottom: 64px;
-  color: var(--ink);
+  color: var(--grey, #6E6B65);
   text-decoration: none;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: var(--text-caption);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--grot);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
   transition: opacity var(--dur-2) var(--ease);
 }
-.essay .e-back:hover { opacity: 0.6; }
+@media (hover: hover) {
+  .essay .e-back:hover {
+    color: var(--ink, #0D0D0D);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
 
-/* B5.3 — fecha standalone entre breadcrumb y H1. Reemplaza a .e-meta
-   (que llevaba contentType + tags como chips — todo eso salió porque
-   las categorías viven solo en las cards de índices). */
+/* B5.3 — fecha standalone entre breadcrumb y H1.
+   F50 §5 · 15 px sans sentence case, gris. Mismo tratamiento que
+   la meta de la lista. */
 .essay .e-date {
   grid-column: 1 / span 5;
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 500;
-  font-size: var(--text-caption);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--grey, #6E6B65);
   margin: 0;
 }
 @media (max-width: 767px) {
@@ -195,15 +205,17 @@
   text-transform: uppercase;
   font-family: 'IBM Plex Mono', monospace;
 }
-/* B5.3 — reading time en la byline (reemplaza .e-dates: las fechas se
-   mudaron arriba del H1). Mismo tratamiento visual, misma columna. */
+/* B5.3 — reading time en la byline.
+   F50 §5 · 15 px sans sentence case, gris. Mismo tratamiento que
+   la meta de la lista. */
 .essay .e-reading {
   grid-column: 10 / span 3;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: var(--text-caption);
-  color: var(--ink);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--grey, #6E6B65);
+  letter-spacing: 0;
+  text-transform: none;
   text-align: right;
   margin: 0;
   align-self: center;
@@ -429,10 +441,13 @@
   text-align: left;
 }
 
+/* F50 §5 · cita destacada · alineada a la columna del cuerpo,
+   mismo borde izquierdo, mismo ancho máximo. Sale el fondo paper
+   y la sangría de 32 px que la corrían fuera de columna. */
 .essay .e-quote {
   margin: 44px 0;
-  padding: 28px 32px;
-  background: var(--paper);
+  padding: 0;
+  background: transparent;
 }
 .essay .e-quote p {
   font-size: var(--text-body-large);
@@ -440,13 +455,16 @@
   margin-bottom: 14px;
   color: var(--ink);
 }
+/* F50 §5 · citation en 15 px sans sentence case gris, como el
+   resto de la meta del ensayo. */
 .essay .e-quote cite {
   font-style: normal;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: var(--text-caption);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
+  font-family: var(--grot);
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--grey, #6E6B65);
 }
 
 /* FAQ — alineado a la columna del body (4/6), hairlines en --color-rule */

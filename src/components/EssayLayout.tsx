@@ -164,7 +164,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
   const showUpdated = es.updatedAt !== '' && es.updatedAt !== es.publishedAt
   const lang = es.language ?? 'en'
   const dateLocale = lang === 'es' ? 'es-ES' : 'en-US'
-  const backLabel = lang === 'es' ? '← Thinking' : '← Thinking'
+  /* F50 §5 · el backlink vuelve al índice en el idioma del ensayo
+     (los ES a `/thinking?lang=es`, los EN a `/thinking`). Texto en
+     sentence case, sin uppercase. */
+  const backHref = lang === 'es' ? '/thinking?lang=es' : '/thinking'
+  const backLabel = '← Thinking'
   const updatedLabel = lang === 'es' ? 'Actualizado' : 'Updated'
   const readingLabel = lang === 'es' ? 'min de lectura' : 'min read'
   const questionsLabel = lang === 'es' ? 'Preguntas' : 'Questions'
@@ -186,10 +190,14 @@ export default function EssayLayout({ es }: { es: Essay }) {
         {/* B5.3 — hero: breadcrumb → fecha → H1 → byline → hero image.
             Cero chips de categoría en la página de pieza. */}
         <header className="e-head">
-          <Link href="/thinking" className="mono e-back">
+          {/* F50 §5 · sin `mono` uppercase · el back link toma la meta
+              de la lista (15 px sans sentence case). Href lang-aware. */}
+          <Link href={backHref} className="e-back">
             {backLabel}
           </Link>
-          <p className="e-date mono">
+          {/* F50 §5 · sin `mono` uppercase · fecha 15 px sans sentence
+              case como la meta de la lista. */}
+          <p className="e-date">
             <time dateTime={es.publishedAt}>
               {fmt(es.publishedAt, dateLocale)}
             </time>
@@ -226,7 +234,8 @@ export default function EssayLayout({ es }: { es: Essay }) {
               </span>
               <span className="e-role">{AUTHOR.role}</span>
             </div>
-            <div className="e-reading mono">
+            {/* F50 §5 · sin `mono` uppercase · 15 px sentence case. */}
+            <div className="e-reading">
               {es.readingMinutes} {readingLabel}
             </div>
           </div>

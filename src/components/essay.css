@@ -197,13 +197,17 @@
   font-size: var(--text-body);
   color: var(--ink);
 }
+/* F50.1 · rol de la firma · 15 px sans sentence case gris, mismo
+   tratamiento que la meta del ensayo (F50 §5). Antes venía en
+   IBM Plex Mono uppercase con letter-spacing 0.12em. */
 .essay .e-role {
   display: block;
-  font-size: var(--text-caption);
-  color: var(--ink);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: var(--grot);
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--grey, #6E6B65);
 }
 /* B5.3 — reading time en la byline.
    F50 §5 · 15 px sans sentence case, gris. Mismo tratamiento que

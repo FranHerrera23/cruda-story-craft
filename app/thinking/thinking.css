@@ -83,8 +83,11 @@
    principal (`.thinking-row__link`). Los links secundarios (Also
    in …) suben por z-index para no quedar tapados por el ::after. */
 
+/* F50.1 · gap toggle → primer filete = 48 px desktop.
+   Antes venía de clamp(56, 9vh, 96) que en 1440 alto 900 daba
+   ~81 px, con el toggle 32 px arriba sumaba ~113 px de aire. */
 .thinking-list {
-  padding: clamp(56px, 9vh, 96px) var(--gap, clamp(20px, 4.5vw, 72px)) clamp(80px, 12vh, 140px);
+  padding: 48px var(--gap, clamp(20px, 4.5vw, 72px)) clamp(80px, 12vh, 140px);
   max-width: 1200px;
 }
 
@@ -97,7 +100,11 @@
 .thinking-row:last-of-type { border-bottom: 1px solid var(--ink, #0D0D0D); }
 
 /* Título · el peso más liviano que ya carga la familia (500). No
-   se agrega peso nuevo. text-wrap balance evita viudas. */
+   se agrega peso nuevo. text-wrap balance evita viudas.
+   F50.1 · sale el max-width 22em · en la columna de 1070 px del
+   grid nuevo, 22em (~700 px) cortaba muchos títulos a mitad de
+   línea. Ahora ocupa el ancho de la columna y balance decide
+   dónde partir. */
 .thinking-row__t {
   font-family: var(--grot);
   font-size: 32px;
@@ -105,7 +112,7 @@
   letter-spacing: -.02em;
   line-height: 1.15;
   margin: 0;
-  max-width: 22em;
+  max-width: 100%;
   text-wrap: balance;
   color: var(--ink, #0D0D0D);
 }
@@ -145,11 +152,14 @@
   color: var(--grey, #6E6B65);
   margin: 8px 0 0;
 }
+/* F50.1 · nowrap · en mobile la flecha "→" caía sola en la
+   línea siguiente. */
 .thinking-row__also {
   position: relative;
   z-index: 2;
   color: inherit;
   text-decoration: none;
+  white-space: nowrap;
 }
 @media (hover: hover) {
   .thinking-row__also:hover {
@@ -158,8 +168,10 @@
   }
 }
 
-/* Dek · 18px, gris, máximo 2 líneas. Sale del campo `deck` del
-   ensayo · si no hay, la fila no tiene dek. */
+/* Dek · 18 px gris.
+   F50.1 · sale el line-clamp · algunos deks (siglas, narradores)
+   quedaban cortados a mitad de palabra ("un problema d…"). Ahora
+   se muestra completo. */
 .thinking-row__dek {
   font-family: var(--grot);
   font-size: 18px;
@@ -169,10 +181,6 @@
   color: var(--grey, #6E6B65);
   margin: 12px 0 0;
   max-width: 60ch;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
 /* Upcoming (podcast) · el título va en gris para diferenciarlo. */
@@ -205,8 +213,9 @@
   .thinking-open {
     padding: clamp(80px, 12vh, 120px) var(--gap, 20px) 0;
   }
+  /* F50.1 · 32 px mobile (era clamp 40-64). */
   .thinking-list {
-    padding: clamp(40px, 6vh, 64px) var(--gap, 20px) clamp(56px, 9vh, 96px);
+    padding: 32px var(--gap, 20px) clamp(56px, 9vh, 96px);
   }
   .thinking-row {
     padding: 32px 0;

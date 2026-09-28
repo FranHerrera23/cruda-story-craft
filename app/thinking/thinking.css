@@ -46,6 +46,36 @@
   margin-top: 24px;
 }
 
+/* 01b · Toggle idioma · 32 px debajo del lede.
+   Activo en ink · inactivo en gris. Subrayado sólo en hover. */
+.thinking-lang {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  font-family: var(--grot);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+}
+.thinking-lang__opt {
+  color: var(--grey, #6E6B65);
+  text-decoration: none;
+  padding: 8px 0;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.thinking-lang__opt.is-active {
+  color: var(--ink, #0D0D0D);
+}
+@media (hover: hover) {
+  .thinking-lang__opt:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+}
+
 /* ============ 02 · LISTA ============
    Una columna. Filete 1 px #000 arriba de la primera fila y debajo
    de cada fila. Fila 48 px de padding vertical en desktop, 32 px en

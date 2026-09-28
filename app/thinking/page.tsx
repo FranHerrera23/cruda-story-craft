@@ -13,10 +13,20 @@ import './thinking.css'
    filtros LANGUAGE/TYPE, el contador "N pieces" y la columna de
    meta en mayúsculas.
 
-   Este commit trae la lista visual nueva mostrando ambos idiomas
-   ordenados por fecha. El toggle idioma (?lang=es) entra en el
-   commit siguiente. La regla naranja del h1 se mantiene porque es
-   del sistema. */
+   Idioma:
+     · /thinking (default) · renderiza sólo las piezas en inglés.
+     · /thinking?lang=es · renderiza sólo las piezas en español, con
+       los rótulos de UI (fecha, "min de lectura", toggle) en
+       español. h1 y lede quedan en inglés.
+   Cada par bilingüe aparece una sola vez por vista; el link
+   "Also in …" apunta a la otra versión.
+
+   Los toggles son links reales (`<a href>`), no botones JS. Ambas
+   URLs responden 200 desde el servidor con canonical a sí mismas.
+
+   La regla naranja del h1 se mantiene porque es del sistema. */
+
+type Lang = 'en' | 'es'
 
 /* ------- Datos ------- */
 
@@ -31,7 +41,7 @@ const SCHEMA_ITEMS: Resource[] = ARTICLES.map(e => ({
   excerpt: e.answerCapsule,
   kind: 'essay' as const,
   company: 'cruda' as ResourceCompany,
-  language: (e.language ?? 'en') as 'en' | 'es',
+  language: (e.language ?? 'en') as Lang,
   publishedAt: e.publishedAt,
   canonicalPieceId: e.alternates?.en ?? e.slug,
 }))
@@ -41,17 +51,17 @@ type Row = {
   href: string
   title: string
   dek?: string
-  language: 'en' | 'es'
+  language: Lang
   kind: 'article' | 'podcast'
   readingMinutes?: number
   publishedAt: string
   altHref?: string
-  altLang?: 'en' | 'es'
+  altLang?: Lang
   status?: 'upcoming'
 }
 
 const ARTICLE_ROWS: Row[] = ARTICLES.map(e => {
-  const language = (e.language ?? 'en') as 'en' | 'es'
+  const language = (e.language ?? 'en') as Lang
   const alt = e.alternates
   const altEs = language === 'en' && alt?.es
     ? { href: `/thinking/${alt.es}`, lang: 'es' as const }
@@ -64,8 +74,6 @@ const ARTICLE_ROWS: Row[] = ARTICLES.map(e => {
     slug: e.slug,
     href: `/thinking/${e.slug}`,
     title: e.title,
-    /* F50 · dek sale del campo `deck` — si el ensayo no tiene
-       subtítulo firmado, la fila va sin dek. No se inventa uno. */
     dek: e.deck || undefined,
     language,
     kind: 'article',
@@ -89,99 +97,136 @@ const PODCAST_ROWS: Row[] = [
   },
 ]
 
-const ROWS = [...ARTICLE_ROWS, ...PODCAST_ROWS].sort((a, b) => {
+const ALL_ROWS = [...ARTICLE_ROWS, ...PODCAST_ROWS].sort((a, b) => {
   if (!a.publishedAt) return 1
   if (!b.publishedAt) return -1
   return b.publishedAt.localeCompare(a.publishedAt)
 })
 
-/* ------- Formatos ------- */
+/* ------- Formatos i18n ------- */
 
-const MONTHS_EN = [
-  'January','February','March','April','May','June',
-  'July','August','September','October','November','December',
-]
+const MONTHS: Record<Lang, string[]> = {
+  en: [
+    'January','February','March','April','May','June',
+    'July','August','September','October','November','December',
+  ],
+  es: [
+    'enero','febrero','marzo','abril','mayo','junio',
+    'julio','agosto','septiembre','octubre','noviembre','diciembre',
+  ],
+}
 
-function fmtDate(iso: string): string {
+function fmtDate(iso: string, lang: Lang): string {
   if (!iso) return ''
   const d = new Date(iso)
   if (Number.isNaN(d.getTime())) return ''
-  return `${MONTHS_EN[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}`
+  const day = d.getUTCDate()
+  const mon = MONTHS[lang][d.getUTCMonth()]
+  const year = d.getUTCFullYear()
+  if (lang === 'es') return `${day} de ${mon} de ${year}`
+  return `${mon} ${day}, ${year}`
 }
 
-function metaSegments(row: Row): { text: string; alt?: { href: string; text: string; lang: 'en' | 'es' } } {
+/* Los rótulos "Also in English →" / "Also in Español →" se
+   mantienen tal cual en las dos vistas (brief §4). */
+const ALSO_LABEL: Record<Lang, string> = {
+  en: 'Also in English →',
+  es: 'Also in Español →',
+}
+
+const READ_LABEL: Record<Lang, string> = {
+  en: 'min read',
+  es: 'min de lectura',
+}
+
+const PODCAST_LABEL: Record<Lang, { base: string; upcoming: string }> = {
+  en: { base: 'Podcast', upcoming: 'Podcast · Upcoming' },
+  es: { base: 'Podcast', upcoming: 'Podcast · Próximamente' },
+}
+
+function metaText(row: Row, viewLang: Lang): string {
   const parts: string[] = []
-  if (row.publishedAt) parts.push(fmtDate(row.publishedAt))
+  if (row.publishedAt) parts.push(fmtDate(row.publishedAt, viewLang))
   if (row.kind === 'podcast') {
-    parts.push(row.status === 'upcoming' ? 'Podcast · Upcoming' : 'Podcast')
+    parts.push(row.status === 'upcoming'
+      ? PODCAST_LABEL[viewLang].upcoming
+      : PODCAST_LABEL[viewLang].base)
   } else if (row.readingMinutes) {
-    parts.push(`${row.readingMinutes} min read`)
+    parts.push(`${row.readingMinutes} ${READ_LABEL[viewLang]}`)
   }
-  const meta = { text: parts.join(' · ') } as { text: string; alt?: { href: string; text: string; lang: 'en' | 'es' } }
-  if (row.altHref && row.altLang) {
-    meta.alt = {
-      href: row.altHref,
-      lang: row.altLang,
-      text: row.altLang === 'es' ? 'Also in Español →' : 'Also in English →',
-    }
-  }
-  return meta
+  return parts.join(' · ')
 }
 
-/* ------- Metadata ------- */
+/* ------- Metadata (dinámica por lang) ------- */
+
+const BASE_TITLE = 'Thinking · CRUDA'
+const BASE_DESC =
+  'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.'
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams?: Promise<{ lang?: string }>
+}): Promise<Metadata> {
+  const params = (await searchParams) ?? {}
+  const lang: Lang = params.lang === 'es' ? 'es' : 'en'
+  const canonical =
+    lang === 'es'
+      ? 'https://www.thecruda.com/thinking?lang=es'
+      : 'https://www.thecruda.com/thinking'
+  return {
+    title: BASE_TITLE,
+    description: BASE_DESC,
+    alternates: { canonical },
+    openGraph: {
+      title: BASE_TITLE,
+      description: BASE_DESC,
+      url: canonical,
+      type: 'website',
+      images: [
+        {
+          url: 'https://www.thecruda.com/logo.png',
+          width: 1080,
+          height: 1080,
+          alt: 'CRUDA',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: BASE_TITLE,
+      description: BASE_DESC,
+      images: ['https://www.thecruda.com/logo.png'],
+    },
+  }
+}
 
 const SCHEMA = collectionPageSchema({
   url: 'https://www.thecruda.com/thinking',
-  name: 'Thinking · CRUDA',
-  description:
-    'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.',
+  name: BASE_TITLE,
+  description: BASE_DESC,
   items: SCHEMA_ITEMS,
 })
 
-const THINKING_TITLE = 'Thinking · CRUDA'
-const THINKING_DESCRIPTION =
-  'Articles, case studies and podcasts by CRUDA on narrative, brand and demand.'
-
-export const metadata: Metadata = {
-  title: THINKING_TITLE,
-  description: THINKING_DESCRIPTION,
-  alternates: {
-    canonical: 'https://www.thecruda.com/thinking',
-  },
-  openGraph: {
-    title: THINKING_TITLE,
-    description: THINKING_DESCRIPTION,
-    url: 'https://www.thecruda.com/thinking',
-    type: 'website',
-    images: [
-      {
-        url: 'https://www.thecruda.com/logo.png',
-        width: 1080,
-        height: 1080,
-        alt: 'CRUDA',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: THINKING_TITLE,
-    description: THINKING_DESCRIPTION,
-    images: ['https://www.thecruda.com/logo.png'],
-  },
-}
-
 /* ------- Render ------- */
 
-export default function ThinkingPage() {
+export default async function ThinkingPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ lang?: string }>
+}) {
+  const params = (await searchParams) ?? {}
+  const viewLang: Lang = params.lang === 'es' ? 'es' : 'en'
+  const rows = ALL_ROWS.filter(r => r.language === viewLang)
+
   return (
-    <div className="thinking">
+    <div className="thinking" data-lang={viewLang}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SCHEMA) }}
       />
 
-      {/* 01 · OPENER · h1, regla naranja del sistema, intro.
-          Se sacó el kicker "Thinking" · repetía el h1. */}
+      {/* 01 · OPENER · h1 (EN en las dos vistas · brief §4). */}
       <section className="thinking-open">
         <h1 className="thinking-open__h">Thinking</h1>
         <div className="thinking-rule thinking-rule--hero" />
@@ -190,16 +235,34 @@ export default function ThinkingPage() {
           Written for people who have to make decisions, not for people
           who write about them.
         </p>
+
+        {/* 01b · TOGGLE · links reales sin JS. Activo en ink,
+            inactivo en gris. Subrayado sólo en hover. */}
+        <nav className="thinking-lang" aria-label="Language">
+          <Link
+            className={`thinking-lang__opt${viewLang === 'en' ? ' is-active' : ''}`}
+            href="/thinking"
+            hrefLang="en"
+            aria-current={viewLang === 'en' ? 'page' : undefined}
+          >
+            English
+          </Link>
+          <Link
+            className={`thinking-lang__opt${viewLang === 'es' ? ' is-active' : ''}`}
+            href="/thinking?lang=es"
+            hrefLang="es"
+            aria-current={viewLang === 'es' ? 'page' : undefined}
+          >
+            Español
+          </Link>
+        </nav>
       </section>
 
-      {/* 02 · LISTA · una sola columna, filetes 1px negro entre filas.
-          Meta line 15px sentence case, dek 18px, ambos color secundario.
-          Toda la fila clickeable via <Link> que envuelve el título;
-          el resto lo cubre `.thinking-row__link::after` (F50 §3). */}
+      {/* 02 · LISTA · una sola columna, filetes 1px negro entre filas. */}
       <section className="thinking-list">
-        {ROWS.map(row => {
-          const meta = metaSegments(row)
+        {rows.map(row => {
           const upcoming = row.status === 'upcoming'
+          const showAlso = row.altHref && row.altLang
           return (
             <article
               key={row.slug}
@@ -214,16 +277,16 @@ export default function ThinkingPage() {
                 </Link>
               </h2>
               <p className="thinking-row__meta">
-                <span>{meta.text}</span>
-                {meta.alt && (
+                <span>{metaText(row, viewLang)}</span>
+                {showAlso && (
                   <>
                     <span aria-hidden="true"> · </span>
                     <Link
                       className="thinking-row__also"
-                      href={meta.alt.href}
-                      hrefLang={meta.alt.lang}
+                      href={row.altHref!}
+                      hrefLang={row.altLang}
                     >
-                      {meta.alt.text}
+                      {ALSO_LABEL[row.altLang as Lang]}
                     </Link>
                   </>
                 )}

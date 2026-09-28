@@ -21,7 +21,15 @@
   font-weight: 500;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--orange, #FF5A00);
+  /* F49 §3.5 · contraste 4.5:1 sobre #FFFFFF.
+     Antes: --orange #FF5A00 → ratio 3.13 (falla LH).
+     Después: --grey #6E6B65 → ratio 5.31. Es el token existente
+     más cercano al accent original que llega a 4.5:1 (#8A867E
+     falla en 3.63 sobre paper). El signal de "fuente" pasa del
+     naranja al gris meta que ya usa el resto del sitio para
+     rótulos de eyebrow/meta. No se toca tamaño, peso, tracking
+     ni texto. */
+  color: var(--grey, #6E6B65);
 }
 .home-what-others .pitem__h {
   font-size: clamp(17px, 1.85vw, 26px);

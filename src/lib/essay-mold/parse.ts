@@ -191,33 +191,75 @@ function paragraphToBlock(text: string, lang: 'en' | 'es'): EssayBlock | null {
   return { type: 'p', text: trimmed }
 }
 
+/* F53 §3 (Fran 29-sep) · sintaxis extendida para migrar los ensayos
+   legacy sin perder copy:
+     ### X       → { type: 'h2', text: X }  (subtítulo interno)
+     > X         → { type: 'pull', text: X }
+     > X\n> — Y  → { type: 'quote', text: X, attribution: Y }
+     - X\n- Y    → { type: 'checklist', items: [X, Y, ...] }
+
+   La firma legacy (colofón tipo "EVERYTHING IS A NARRATIVE." o
+   "thecruda.com") no tiene sintaxis en el .md · se elimina en la
+   migración. Si en el futuro un ensayo necesita una línea de firma
+   propia se agrega el bloque explícitamente al parser. */
+
+function parseHeadingBlock(raw: string): EssayBlock | null {
+  const m = raw.match(/^###\s+(.+)$/)
+  if (!m) return null
+  return { type: 'h2', text: m[1].trim() }
+}
+
+function parseBlockquoteBlock(raw: string): EssayBlock | null {
+  const lines = raw.split('\n').map(l => l.trim())
+  if (!lines.every(l => l.startsWith('>'))) return null
+  const stripped = lines.map(l => l.replace(/^>\s?/, '').trim())
+  // Última línea con "— attr" o "-- attr" = attribution.
+  const last = stripped[stripped.length - 1]
+  const attrMatch = last.match(/^(?:—|--|-\s)\s*(.+)$/)
+  if (attrMatch && stripped.length > 1) {
+    const text = stripped.slice(0, -1).join(' ').trim()
+    return { type: 'quote', text, attribution: attrMatch[1].trim() }
+  }
+  // Pull quote plano
+  return { type: 'pull', text: stripped.join(' ').trim() }
+}
+
+function parseChecklistBlock(raw: string): EssayBlock | null {
+  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean)
+  if (!lines.every(l => /^-\s+/.test(l))) return null
+  const items = lines.map(l => l.replace(/^-\s+/, '').trim())
+  return { type: 'checklist', items }
+}
+
 function parseBody(raw: string, lang: 'en' | 'es'): {
   dek: string | undefined
   blocks: EssayBlock[]
 } {
-  // Separar por bloques (dobles saltos de línea).
   const rawBlocks = raw.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
   let dek: string | undefined
   const blocks: EssayBlock[] = []
   for (let i = 0; i < rawBlocks.length; i++) {
     const b = rawBlocks[i]
-    // Primer bloque en itálica de UNA sola línea → dek.
+    // dek · primer bloque en *itálica* de UNA sola línea.
     if (
       !dek && blocks.length === 0 &&
       b.startsWith('*') && b.endsWith('*') &&
+      !b.startsWith('**') &&
       !b.slice(1, -1).includes('\n') &&
       !isNewsletterLine(b)
     ) {
       dek = b.slice(1, -1).trim()
       continue
     }
-    // Separador de sección
-    if (b === '---') {
-      blocks.push({ type: 'separator' })
-      continue
-    }
-    const block = paragraphToBlock(b, lang)
-    if (block) blocks.push(block)
+    if (b === '---') { blocks.push({ type: 'separator' }); continue }
+    const h2 = parseHeadingBlock(b)
+    if (h2) { blocks.push(h2); continue }
+    const bq = parseBlockquoteBlock(b)
+    if (bq) { blocks.push(bq); continue }
+    const cl = parseChecklistBlock(b)
+    if (cl) { blocks.push(cl); continue }
+    const p = paragraphToBlock(b, lang)
+    if (p) blocks.push(p)
   }
   return { dek, blocks }
 }

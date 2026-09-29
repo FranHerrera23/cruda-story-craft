@@ -162,16 +162,38 @@ function parseMdSection(rawSection, lang) {
     if (
       !dekTaken && blocks.length === 0 &&
       b.startsWith('*') && b.endsWith('*') &&
+      !b.startsWith('**') &&
       !b.slice(1, -1).includes('\n') &&
       !isNewsletterLine(b)
     ) {
       dekTaken = true
-      // dek no es un block del body en el importer, pero lo
-      // marcamos acá para no contarlo como itálica inline.
       blocks.push({ type: 'dek', text: b.slice(1, -1).trim() })
       continue
     }
     if (b === '---') { blocks.push({ type: 'separator' }); continue }
+    const h3 = b.match(/^###\s+(.+)$/)
+    if (h3) { blocks.push({ type: 'h2', text: h3[1].trim() }); continue }
+    const bqLines = b.split('\n').map(l => l.trim())
+    if (bqLines.every(l => l.startsWith('>'))) {
+      const stripped = bqLines.map(l => l.replace(/^>\s?/, '').trim())
+      const last = stripped[stripped.length - 1]
+      const attrMatch = last.match(/^(?:—|--|-\s)\s*(.+)$/)
+      if (attrMatch && stripped.length > 1) {
+        blocks.push({
+          type: 'quote',
+          text: stripped.slice(0, -1).join(' ').trim(),
+          attribution: attrMatch[1].trim(),
+        })
+      } else {
+        blocks.push({ type: 'pull', text: stripped.join(' ').trim() })
+      }
+      continue
+    }
+    const cl = b.split('\n').map(l => l.trim()).filter(Boolean)
+    if (cl.length > 0 && cl.every(l => /^-\s+/.test(l))) {
+      blocks.push({ type: 'checklist', items: cl.map(l => l.replace(/^-\s+/, '').trim()) })
+      continue
+    }
     if (isNewsletterLine(b)) {
       const inner = b.slice(1, -1).trim()
       const cta = lang === 'es' ? /(Suscribite[^.!?]*\.)/ : /(Subscribe[^.!?]*\.)/
@@ -203,11 +225,25 @@ function checkMarkupParity(sec, parserBlocks) {
   const rawBlocks = raw.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
   let inlineItalics = 0
   let inlineBold = 0
+  let srcH2 = 0
+  let srcPull = 0
+  let srcQuote = 0
+  let srcChecklists = 0
   for (let i = 0; i < rawBlocks.length; i++) {
     const b = rawBlocks[i]
     if (i === 0 && b.startsWith('*') && b.endsWith('*') && !b.slice(1, -1).includes('\n') && !b.startsWith('**')) continue // dek
     if (isNewsletterLine(b)) continue // newsletter · el <em> lo cuenta el link check
-    // Bold PRIMERO para que **text** no se cuente después como *text*
+    if (/^###\s+/.test(b)) { srcH2++; continue }
+    const bqLines = b.split('\n').map(l => l.trim())
+    if (bqLines.every(l => l.startsWith('>'))) {
+      const stripped = bqLines.map(l => l.replace(/^>\s?/, '').trim())
+      const last = stripped[stripped.length - 1]
+      if (stripped.length > 1 && /^(?:—|--|-\s)/.test(last)) srcQuote++
+      else srcPull++
+      continue
+    }
+    const cl = b.split('\n').map(l => l.trim()).filter(Boolean)
+    if (cl.length > 0 && cl.every(l => /^-\s+/.test(l))) { srcChecklists++; continue }
     const boldMatches = b.match(/\*\*([^*\n]+)\*\*/g) || []
     inlineBold += boldMatches.length
     const stripped = b.replace(/\*\*([^*\n]+)\*\*/g, '')
@@ -220,6 +256,10 @@ function checkMarkupParity(sec, parserBlocks) {
 
   const outBlocks = parserBlocks.filter(b => b.type !== 'dek')
   const outSeparators = outBlocks.filter(b => b.type === 'separator').length
+  const outH2 = outBlocks.filter(b => b.type === 'h2').length
+  const outPull = outBlocks.filter(b => b.type === 'pull').length
+  const outQuote = outBlocks.filter(b => b.type === 'quote').length
+  const outChecklists = outBlocks.filter(b => b.type === 'checklist').length
   let outEm = 0, outStrong = 0, outNewsletters = 0, outLinks = 0
   let outQuoteOpen = 0, outQuoteClose = 0
   for (const b of outBlocks) {
@@ -243,6 +283,18 @@ function checkMarkupParity(sec, parserBlocks) {
 
   if (srcSeparators !== outSeparators) {
     err(`sección ${sec.lang}: cortes de sección (---) en .md=${srcSeparators} · en render=${outSeparators}`)
+  }
+  if (srcH2 !== outH2) {
+    err(`sección ${sec.lang}: subtítulos internos (###) en .md=${srcH2} · en render=${outH2}`)
+  }
+  if (srcPull !== outPull) {
+    err(`sección ${sec.lang}: pull quotes (>) en .md=${srcPull} · en render=${outPull}`)
+  }
+  if (srcQuote !== outQuote) {
+    err(`sección ${sec.lang}: quotes con atribución (> + > — Attr) en .md=${srcQuote} · en render=${outQuote}`)
+  }
+  if (srcChecklists !== outChecklists) {
+    err(`sección ${sec.lang}: checklists (- ...) en .md=${srcChecklists} · en render=${outChecklists}`)
   }
   if (inlineItalics !== outEm) {
     err(`sección ${sec.lang}: itálicas inline (*text*) en .md=${inlineItalics} · en render=${outEm} <em>`)

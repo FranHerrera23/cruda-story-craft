@@ -6,7 +6,6 @@ import { narradoresPeligrosos } from './narradores-peligrosos'
 import { siglasParaNoDecirGente } from './siglas-para-no-decir-gente'
 import { tercerLugar } from './tercer-lugar'
 import { thirdPlace } from './third-place'
-import { whyYouCantWriteYourOwnWebsite } from './why-you-cant-write-your-own-website'
 
 /* F53 · molde de ensayo · combinación de ensayos migrados a `.md`
    + los `.ts` legacy que todavía no se migraron.
@@ -17,7 +16,6 @@ import { whyYouCantWriteYourOwnWebsite } from './why-you-cant-write-your-own-web
 const MD_ESSAYS: Essay[] = loadAllEssays().map(l => l.data)
 
 const LEGACY_TS_ESSAYS: Essay[] = [
-  whyYouCantWriteYourOwnWebsite,
   tercerLugar,
   thirdPlace,
   siglasParaNoDecirGente,

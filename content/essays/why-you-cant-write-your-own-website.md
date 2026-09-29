@@ -1,6 +1,7 @@
 ---
 slug_en: why-you-cant-write-your-own-website
 date: 2026-09-25
+capsule_en: Somebody has to walk in without history, ask the question everyone stopped asking, and be unimpressed by the official version.
 meta_en: Somebody has to walk in without history, ask the question everyone stopped asking, and be unimpressed by the official version.
 hero:
 hero_credit:

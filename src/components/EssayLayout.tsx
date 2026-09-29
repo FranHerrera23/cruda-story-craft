@@ -64,7 +64,16 @@ export type Essay = {
   deck?: string
   publishedAt: string
   updatedAt: string
+  /* F53 · dos campos separados (Fran 29-sep):
+     · answerCapsule (capsule_en/es en el .md) · bloque AEO largo
+       que se renderiza on-page bajo --cream. Sin límite de chars.
+     · metaDescription (meta_en/es en el .md) · ≤ 160 chars, va al
+       <meta description> y a og:description. Obligatoria en los
+       ensayos migrados a .md. Los ensayos .ts legacy todavía no
+       la tienen y caen por fallback a `answerCapsule.slice(0, 160)`
+       hasta que se migren. */
   answerCapsule: string
+  metaDescription?: string
   category: string
   tags?: string[]
   contentType?: 'Essay' | 'Conversation'

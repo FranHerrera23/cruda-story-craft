@@ -2,6 +2,8 @@
 slug_en: find-your-larry-holmes
 slug_es: busca-a-tu-larry-holmes
 date: 2026-09-28
+capsule_en: Larry Holmes was Ali's sparring partner for nearly four years, and the only one with his map. Who has the map to your company?
+capsule_es: Larry Holmes fue sparring de Ali durante casi cuatro años y el único que tenía su mapa. ¿Quién tiene el mapa de tu empresa?
 meta_en: Larry Holmes was Ali's sparring partner for nearly four years, and the only one with his map. Who has the map to your company?
 meta_es: Larry Holmes fue sparring de Ali durante casi cuatro años y el único que tenía su mapa. ¿Quién tiene el mapa de tu empresa?
 hero: larry-holmes.webp

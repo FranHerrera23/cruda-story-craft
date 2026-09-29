@@ -127,14 +127,48 @@ function blocksToMd(blocks, lang) {
   return { md: out.join('\n\n'), droppedSignatures }
 }
 
+/* Fran 29-sep · meta_* = primera oración de la cápsula si ≤ 160.
+   Devuelve { meta, needsReview }: needsReview=true si la primera
+   oración excede 160 y hay que pedirle a Fran una meta ad-hoc.
+   Definición de "oración": termina en `.`, `!` o `?` seguido de
+   espacio o fin de string, ignorando puntos internos comunes
+   (decimales, siglas 1-letra). */
+function firstSentence(text) {
+  const trimmed = text.trim().replace(/\n\s+/g, ' ')
+  // Corta en el primer punto seguido de espacio o fin.
+  const m = trimmed.match(/^(.+?[.!?])(\s|$)/)
+  if (!m) return trimmed
+  return m[1].trim()
+}
+
+function autoMeta(capsule) {
+  const clean = capsule.trim().replace(/\n\s+/g, ' ')
+  const first = firstSentence(clean)
+  if (first.length <= 160) return { meta: first, needsReview: false }
+  return { meta: first, needsReview: true }
+}
+
 function essaysToMd(en, es) {
   const one = en || es
   const fm = ['---']
   if (en) fm.push('slug_en: ' + en.slug)
   if (es) fm.push('slug_es: ' + es.slug)
   fm.push('date: ' + one.publishedAt)
-  if (en) fm.push('meta_en: ' + en.answerCapsule.trim().replace(/\n\s+/g, ' '))
-  if (es) fm.push('meta_es: ' + es.answerCapsule.trim().replace(/\n\s+/g, ' '))
+  const needsReview = { en: false, es: false }
+  if (en) {
+    const capsuleClean = en.answerCapsule.trim().replace(/\n\s+/g, ' ')
+    const auto = autoMeta(capsuleClean)
+    needsReview.en = auto.needsReview
+    fm.push('capsule_en: ' + capsuleClean)
+    fm.push(`meta_en: ${auto.meta}`)
+  }
+  if (es) {
+    const capsuleClean = es.answerCapsule.trim().replace(/\n\s+/g, ' ')
+    const auto = autoMeta(capsuleClean)
+    needsReview.es = auto.needsReview
+    fm.push('capsule_es: ' + capsuleClean)
+    fm.push(`meta_es: ${auto.meta}`)
+  }
   fm.push('hero:')
   fm.push('hero_credit:')
   fm.push('---')
@@ -155,7 +189,7 @@ function essaysToMd(en, es) {
   }
 
   const doc = fm.join('\n') + '\n\n' + sections.join('\n\n')
-  return { md: normalizeQuotes(doc), dropped }
+  return { md: normalizeQuotes(doc), dropped, needsReview }
 }
 
 async function main() {
@@ -185,16 +219,27 @@ async function main() {
     } catch { /* opcional */ }
   }
 
-  // El basename del .md preserva el pair · usamos el slug_en.
-  const basename = enEssay.language === 'en' ? enEssay.slug : (esEssay?.slug || enEssay.slug)
+  /* Default de idioma · los .ts legacy no siempre declaran
+     `language`. Inferimos 'en' cuando no está, salvo que el .ts
+     tenga alternates.en apuntando a OTRO slug (entonces es la
+     versión ES del par). */
+  function inferLang(e) {
+    if (e.language) return e.language
+    if (e.alternates?.en && e.alternates.en !== e.slug) return 'es'
+    return 'en'
+  }
+  const enLang = inferLang(enEssay)
+  const esLang = esEssay ? inferLang(esEssay) : null
+
+  const basename = enLang === 'en' ? enEssay.slug : (esEssay?.slug || enEssay.slug)
   const outPath = path.join(MD_DIR, basename + '.md')
 
-  // Orden: si tenemos par, ES primero, EN después (siguiendo el
-  // orden del larry-holmes.md source).
-  const enForOut = enEssay.language === 'en' ? enEssay : (esEssay?.language === 'en' ? esEssay : null)
-  const esForOut = enEssay.language === 'es' ? enEssay : (esEssay?.language === 'es' ? esEssay : null)
+  // Orden: si tenemos par, ES primero, EN después (mismo orden del
+  // larry-holmes.md source).
+  const enForOut = enLang === 'en' ? enEssay : (esLang === 'en' ? esEssay : null)
+  const esForOut = enLang === 'es' ? enEssay : (esLang === 'es' ? esEssay : null)
 
-  const { md, dropped } = essaysToMd(enForOut, esForOut)
+  const { md, dropped, needsReview } = essaysToMd(enForOut, esForOut)
 
   fs.mkdirSync(MD_DIR, { recursive: true })
   fs.writeFileSync(outPath, md)
@@ -207,6 +252,11 @@ async function main() {
     console.log('DROPPED signatures (colofón F53 §1 · Fran 29-sep):')
     for (const s of dropped.en) console.log('  [EN] ' + s)
     for (const s of dropped.es) console.log('  [ES] ' + s)
+  }
+  if (needsReview.en || needsReview.es) {
+    console.log('NEEDS REVIEW · primera oración de la cápsula > 160 chars:')
+    if (needsReview.en) console.log('  [EN] escribí meta_en a mano y pasala a Fran')
+    if (needsReview.es) console.log('  [ES] escribí meta_es a mano y pasala a Fran')
   }
 }
 

@@ -96,14 +96,21 @@ function splitByLanguage(body) {
       start: m.index + m[0].length,
     })
   }
+  /* Corta la sección en el siguiente `## Español:`/`## English:`
+     con la misma regex · si buscamos `## ` con `indexOf`, un `### h3`
+     truncaría el body (F53 bug fix 29-sep). */
+  const headerRe = /^##\s+(Español|English):/m
   for (let i = 0; i < matches.length; i++) {
-    const end = i + 1 < matches.length
-      ? body.indexOf('## ', matches[i].start)
-      : body.length
+    let end = body.length
+    if (i + 1 < matches.length) {
+      const rest = body.slice(matches[i].start)
+      const nh = rest.match(headerRe)
+      if (nh && nh.index !== undefined) end = matches[i].start + nh.index
+    }
     out.push({
       lang: matches[i].lang,
       title: matches[i].title,
-      raw: body.slice(matches[i].start, end === -1 ? body.length : end).trim(),
+      raw: body.slice(matches[i].start, end).trim(),
     })
   }
   return out
@@ -181,11 +188,18 @@ function parseMdSection(rawSection, lang) {
       if (attrMatch && stripped.length > 1) {
         blocks.push({
           type: 'quote',
-          text: stripped.slice(0, -1).join(' ').trim(),
+          text: stripped.slice(0, -1).join(' ').trim().replace(/\*\*([^*\n]+)\*\*/g, '$1').replace(/\*([^*\n]+)\*/g, '$1'),
           attribution: attrMatch[1].trim(),
         })
       } else {
-        blocks.push({ type: 'pull', text: stripped.join(' ').trim() })
+        const raw2 = stripped.join(' ').trim()
+        if (/\*[^*\n]+\*/.test(raw2)) {
+          let html = raw2.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+          html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+          blocks.push({ type: 'pull', html, text: raw2.replace(/\*\*([^*\n]+)\*\*/g, '$1').replace(/\*([^*\n]+)\*/g, '$1') })
+        } else {
+          blocks.push({ type: 'pull', text: raw2 })
+        }
       }
       continue
     }
@@ -235,24 +249,47 @@ function checkMarkupParity(sec, parserBlocks) {
     if (isNewsletterLine(b)) continue // newsletter · el <em> lo cuenta el link check
     if (/^###\s+/.test(b)) { srcH2++; continue }
     const bqLines = b.split('\n').map(l => l.trim())
+    let contentForInline = b
     if (bqLines.every(l => l.startsWith('>'))) {
-      const stripped = bqLines.map(l => l.replace(/^>\s?/, '').trim())
-      const last = stripped[stripped.length - 1]
-      if (stripped.length > 1 && /^(?:—|--|-\s)/.test(last)) srcQuote++
-      else srcPull++
-      continue
+      const strippedBq = bqLines.map(l => l.replace(/^>\s?/, '').trim())
+      const lastBq = strippedBq[strippedBq.length - 1]
+      const isQuoteWithAttr = strippedBq.length > 1 && /^(?:—|--|-\s)/.test(lastBq)
+      if (isQuoteWithAttr) {
+        srcQuote++
+        /* La atribución no se incluye en el conteo inline · el
+           parser la guarda en `attribution` (no en `text` ni
+           `html`) y no genera <em>/<strong> desde ella. */
+        contentForInline = strippedBq.slice(0, -1).join(' ')
+      } else {
+        srcPull++
+        contentForInline = strippedBq.join(' ')
+      }
+      /* Sigue al conteo inline · el pull/quote body puede tener
+         **bold**, *em* y comillas curvas que el parser refleja
+         en el html del bloque. */
     }
     const cl = b.split('\n').map(l => l.trim()).filter(Boolean)
-    if (cl.length > 0 && cl.every(l => /^-\s+/.test(l))) { srcChecklists++; continue }
-    const boldMatches = b.match(/\*\*([^*\n]+)\*\*/g) || []
+    if (bqLines.every(l => l.startsWith('>'))) {
+      // ya asignamos contentForInline arriba
+    } else if (cl.length > 0 && cl.every(l => /^-\s+/.test(l))) {
+      srcChecklists++
+      contentForInline = ''
+    }
+    const boldMatches = contentForInline.match(/\*\*([^*\n]+)\*\*/g) || []
     inlineBold += boldMatches.length
-    const stripped = b.replace(/\*\*([^*\n]+)\*\*/g, '')
-    const italicMatches = stripped.match(/\*[^*\n]+\*/g) || []
+    const strippedInline = contentForInline.replace(/\*\*([^*\n]+)\*\*/g, '')
+    const italicMatches = strippedInline.match(/\*[^*\n]+\*/g) || []
     inlineItalics += italicMatches.length
   }
   const srcNewsletters = rawBlocks.filter(isNewsletterLine).length
-  const srcDoubleQuotesOpen = (normalizeQuotes(raw).match(/“/g) || []).length
-  const srcDoubleQuotesClose = (normalizeQuotes(raw).match(/”/g) || []).length
+  /* Excluye el dek (primer bloque en *itálica* de una línea) del
+     conteo de comillas · el parser lo guarda en el campo `deck` y
+     lo renderea en `.e-deck`, fuera del body. */
+  const rawSansDek = rawBlocks
+    .filter((b, i) => !(i === 0 && b.startsWith('*') && b.endsWith('*') && !b.startsWith('**') && !b.slice(1, -1).includes('\n')))
+    .join('\n\n')
+  const srcDoubleQuotesOpen = (normalizeQuotes(rawSansDek).match(/“/g) || []).length
+  const srcDoubleQuotesClose = (normalizeQuotes(rawSansDek).match(/”/g) || []).length
 
   const outBlocks = parserBlocks.filter(b => b.type !== 'dek')
   const outSeparators = outBlocks.filter(b => b.type === 'separator').length
@@ -442,8 +479,13 @@ async function main() {
   // Fecha
   if (!fm.date) err(`frontmatter: falta 'date' (YYYY-MM-DD)`)
 
-  // Meta
+  /* F53 (Fran 29-sep) · dos campos:
+     · capsule_* · sin límite. Renderiza on-page cuando no hay hero.
+     · meta_*    · ≤ 160, obligatoria por idioma declarado. */
   for (const lang of ['en', 'es']) {
+    if (fm[`capsule_${lang}`] !== undefined && !fm[`capsule_${lang}`]) {
+      err(`frontmatter: 'capsule_${lang}' vacío (dejalo sin declarar si no aplica)`)
+    }
     const key = `meta_${lang}`
     if (fm[key] !== undefined) {
       if (!fm[key]) err(`frontmatter: '${key}' vacío`)
@@ -519,6 +561,7 @@ async function main() {
       readingMinutes: rm,
       hadNewsletter: hasNewsletter,
       metaChars: (fm[`meta_${sec.lang}`] || '').length,
+      capsuleChars: (fm[`capsule_${sec.lang}`] || '').length,
       alt: fm[`alt_${sec.lang}`] || '(sin alt; se autogenera en F53.1)',
     })
 
@@ -573,6 +616,7 @@ function printReport(filePath) {
     console.log(`    palabras:        ${s.words}`)
     console.log(`    reading time:    ${s.readingMinutes} min`)
     console.log(`    meta_${s.lang} chars:    ${s.metaChars} / ${META_MAX_CHARS}`)
+    console.log(`    capsule_${s.lang} chars: ${s.capsuleChars || '(sin capsule; usa meta)'}`)
     console.log(`    newsletter line: ${s.hadNewsletter ? 'sí' : 'no'}`)
     console.log(`    alt:             ${s.alt}`)
   }

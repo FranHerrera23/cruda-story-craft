@@ -66,14 +66,20 @@ type Frontmatter = {
   slug_en?: string
   slug_es?: string
   date?: string
+  /* F53 (Fran 29-sep) · dos campos separados:
+     · capsule_* · bloque AEO largo, sin límite. Va on-page bajo
+       --cream (cuando no hay hero) y al JSON-LD description.
+     · meta_*   · ≤ 160 chars, obligatoria. Va al <meta description>
+       y a og:description / twitter:description. */
+  capsule_en?: string
+  capsule_es?: string
   meta_en?: string
   meta_es?: string
   hero?: string
   hero_credit?: string
   /* F53 §7 · alt del hero por idioma. Si no viene, el parser deja
      el alt vacío y el reporte lo marca "pendiente de generación
-     automática". Cuando F53.1 sume el alt-generator (vía LLM de
-     visión), este campo se ignora. */
+     automática". */
   alt_en?: string
   alt_es?: string
 }
@@ -134,11 +140,25 @@ function splitByLanguage(body: string): LangSection[] {
       end: -1,
     })
   }
+  /* Sección termina en el siguiente `## Español:` / `## English:`.
+     Buscamos con la misma regex (no con `indexOf('## ')` porque
+     `### h3` empieza con `## ` y truncaría el body antes del primer
+     subtítulo del ensayo · bug reportado en la migración de
+     third-place). */
+  const headerRe = /^##\s+(Español|English):/m
   for (let i = 0; i < matches.length; i++) {
-    matches[i].end = i + 1 < matches.length ? matches[i + 1].start - `## Español: `.length : body.length
-    // The above end calc is off; just use next start or body end
-    matches[i].end = i + 1 < matches.length ? body.indexOf('## ', matches[i].start) : body.length
-    if (matches[i].end === -1) matches[i].end = body.length
+    if (i + 1 < matches.length) {
+      matches[i].end = matches[i + 1].start
+      // El .end apunta después del `## Header:` del siguiente · le
+      // restamos la longitud del header para cortar antes.
+      const rest = body.slice(matches[i].start)
+      const nextHeader = rest.match(headerRe)
+      if (nextHeader && nextHeader.index !== undefined) {
+        matches[i].end = matches[i].start + nextHeader.index
+      }
+    } else {
+      matches[i].end = body.length
+    }
     out.push({
       lang: matches[i].lang,
       title: matches[i].title,
@@ -213,15 +233,22 @@ function parseBlockquoteBlock(raw: string): EssayBlock | null {
   const lines = raw.split('\n').map(l => l.trim())
   if (!lines.every(l => l.startsWith('>'))) return null
   const stripped = lines.map(l => l.replace(/^>\s?/, '').trim())
-  // Última línea con "— attr" o "-- attr" = attribution.
   const last = stripped[stripped.length - 1]
   const attrMatch = last.match(/^(?:—|--|-\s)\s*(.+)$/)
   if (attrMatch && stripped.length > 1) {
-    const text = stripped.slice(0, -1).join(' ').trim()
-    return { type: 'quote', text, attribution: attrMatch[1].trim() }
+    const raw = stripped.slice(0, -1).join(' ').trim()
+    return { type: 'quote', text: stripRawInline(raw), attribution: attrMatch[1].trim() }
   }
-  // Pull quote plano
-  return { type: 'pull', text: stripped.join(' ').trim() }
+  // Pull quote · si tiene markup inline (bold/italic), sale como html.
+  const raw2 = stripped.join(' ').trim()
+  if (/\*[^*\n]+\*/.test(raw2)) {
+    return { type: 'pull', html: inlineMarkupHtml(raw2), text: stripRawInline(raw2) }
+  }
+  return { type: 'pull', text: raw2 }
+}
+
+function stripRawInline(t: string): string {
+  return t.replace(/\*\*([^*\n]+)\*\*/g, '$1').replace(/\*([^*\n]+)\*/g, '$1')
 }
 
 function parseChecklistBlock(raw: string): EssayBlock | null {
@@ -346,8 +373,12 @@ export function loadEssay(mdPath: string): LoadedEssay[] {
     if (!meta) {
       throw new Error(`${mdPath}: missing meta_${sec.lang}`)
     }
+    /* Capsule opcional · si no viene, se usa la meta como fallback
+       para preservar el bloque on-page (que hoy renderiza cuando
+       no hay hero). Esencial para los ensayos nuevos que no
+       requieren cápsula AEO larga. */
+    const capsule = (sec.lang === 'en' ? fm.capsule_en : fm.capsule_es) || meta
 
-    const other = sec.lang === 'en' ? fm.slug_es : fm.slug_en
     const alternates = { en: fm.slug_en, es: fm.slug_es } as {
       en?: string; es?: string
     }
@@ -366,7 +397,8 @@ export function loadEssay(mdPath: string): LoadedEssay[] {
       updatedAt: fm.date,
       title: normalizeQuotes(sec.title),
       deck: dek ? normalizeQuotes(dek) : undefined,
-      answerCapsule: normalizeQuotes(meta),
+      answerCapsule: normalizeQuotes(capsule),
+      metaDescription: normalizeQuotes(meta),
       heroImage: heroExists ? heroPublicPath : undefined,
       heroAlt: heroExists
         ? ((sec.lang === 'en' ? fm.alt_en : fm.alt_es) || defaultHeroAlt())

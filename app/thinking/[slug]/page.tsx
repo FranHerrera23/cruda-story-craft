@@ -39,11 +39,11 @@ export async function generateMetadata(
   }
   return {
     title: `${headTitle} | CRUDA`,
-    description: es.answerCapsule.slice(0, 200),
+    description: es.metaDescription || es.answerCapsule.slice(0, 160),
     alternates,
     openGraph: {
       title: headTitle,
-      description: es.answerCapsule,
+      description: es.metaDescription || es.answerCapsule.slice(0, 160),
       url: `${BASE}/thinking/${es.slug}`,
       type: 'article',
       publishedTime: es.publishedAt,
@@ -54,7 +54,7 @@ export async function generateMetadata(
     twitter: {
       card: 'summary_large_image',
       title: headTitle,
-      description: es.answerCapsule.slice(0, 200),
+      description: es.metaDescription || es.answerCapsule.slice(0, 160),
       images: [es.heroImage ? `${BASE}${es.heroImage}` : `${BASE}/logo.png`],
     },
   }

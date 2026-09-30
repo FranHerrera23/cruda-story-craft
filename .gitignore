@@ -29,3 +29,7 @@ tsconfig.tsbuildinfo
 .env
 .env.*
 !.env.example
+
+# Scripts · outputs de verificación (no versionar).
+scripts/.shots
+scripts/.lh

@@ -155,33 +155,55 @@ El migrator:
 Después de correr el migrator, siempre pasar `essay-parity.mjs`
 antes de commitear.
 
-## 6 · Newsletter (beehiiv)
+## 6 · Newsletter (beehiiv, embed hosted)
 
-F53 §7 · el endpoint `/api/subscribe` acepta beehiiv (primero) o
-Substack (fallback). El componente `CaptureForm` (usado en
-`/newsletter` y al final de cada ensayo) no cambia: postea el
-mismo body y el server elige proveedor por env vars.
+F53 §7 (Fran 30-sep) · captura de email vía embed hosted de
+beehiiv, no API. El componente `SubscribeForm` (client) vive en
+`/newsletter` y al final de cada `/thinking/<slug>`.
 
-Env vars (prod, Vercel):
+Contrato:
+- Carga on-demand · IntersectionObserver con `rootMargin: 300px 0px`.
+  El `loader.js` de beehiiv NO va en `<head>` ni al cargar la página:
+  se inyecta cuando la caja se acerca a la pantalla.
+- One-shot por page-view · aunque haya varias cajas, el script se
+  inyecta una sola vez (guard `loaderInjected` a nivel de módulo).
+  Instancias siguientes sólo añaden el `<div data-beehiiv-form>`
+  marker; el MutationObserver interno del loader v3 las levanta.
+- Reserva CLS · `min-height: 360` en el contenedor. La caja
+  beehiiv v3 mide ~340 px en 390 y ~280 px en 1440.
 
-| var                        | uso                               |
-|----------------------------|-----------------------------------|
-| `BEEHIIV_API_KEY`          | API key de beehiiv (secret).       |
-| `BEEHIIV_PUBLICATION_ID`   | pub_XXXXXXX (público, sin secret). |
-| `SUBSTACK_PUBLICATION`     | fallback legacy (opcional).       |
+Form ID (público, no secret): `c7cb08c8-b381-4b1e-a20f-76c86ce39552`.
+Cuando exista una versión ES separada, el prop `lang="es"`
+selecciona el ID correspondiente (por ahora comparten el mismo).
 
-Regla:
-1. Si `BEEHIIV_API_KEY` y `BEEHIIV_PUBLICATION_ID` están, usa
-   beehiiv.
-2. Si no, si `SUBSTACK_PUBLICATION` está, usa Substack.
-3. Si no, responde 500 reason="error" (dev sin config).
+El endpoint `/api/subscribe` ya no se usa desde el cliente. Vive
+como stub que responde 500 (rama `f53-substack-out`, mergeable
+sola antes que F53 · Substack fuera del formulario).
 
-El migre de Substack → beehiiv se hace prendiendo las variables
-de beehiiv en Vercel · no necesita redeploy. Cuando el switch
-esté confirmado, borrar la env de Substack y sacar la rama
-fallback del handler.
+## 7 · Guard-rails de push (Fran 30-sep)
 
-## 7 · Reporting
+"Build limpio" = preview Vercel verde. Nada mergea sin eso.
+
+Scripts:
+
+```bash
+npm run typecheck    # tsc --noEmit
+npm run essay:check  # tsc + itera todos los .md (exit 1 si falla alguno)
+npm run essay:parity # paridad AST vs main
+npm run essay:og     # regenera og.jpg 1200×630 (si cambió un hero)
+npm run prepush      # typecheck + parity + essay:check + next build
+```
+
+Git hook (una vez por dev):
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Después de eso, cada `git push` corre `npm run prepush` primero.
+Exit != 0 cancela el push. Bypass (evitar): `git push --no-verify`.
+
+## 8 · Reporting
 
 Toda tabla de verificación (paridad, metas, pixel-diff, Lighthouse)
 se genera con un script commiteado en `scripts/`. El reporte trae

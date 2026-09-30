@@ -155,7 +155,33 @@ El migrator:
 Después de correr el migrator, siempre pasar `essay-parity.mjs`
 antes de commitear.
 
-## 6 · Reporting
+## 6 · Newsletter (beehiiv)
+
+F53 §7 · el endpoint `/api/subscribe` acepta beehiiv (primero) o
+Substack (fallback). El componente `CaptureForm` (usado en
+`/newsletter` y al final de cada ensayo) no cambia: postea el
+mismo body y el server elige proveedor por env vars.
+
+Env vars (prod, Vercel):
+
+| var                        | uso                               |
+|----------------------------|-----------------------------------|
+| `BEEHIIV_API_KEY`          | API key de beehiiv (secret).       |
+| `BEEHIIV_PUBLICATION_ID`   | pub_XXXXXXX (público, sin secret). |
+| `SUBSTACK_PUBLICATION`     | fallback legacy (opcional).       |
+
+Regla:
+1. Si `BEEHIIV_API_KEY` y `BEEHIIV_PUBLICATION_ID` están, usa
+   beehiiv.
+2. Si no, si `SUBSTACK_PUBLICATION` está, usa Substack.
+3. Si no, responde 500 reason="error" (dev sin config).
+
+El migre de Substack → beehiiv se hace prendiendo las variables
+de beehiiv en Vercel · no necesita redeploy. Cuando el switch
+esté confirmado, borrar la env de Substack y sacar la rama
+fallback del handler.
+
+## 7 · Reporting
 
 Toda tabla de verificación (paridad, metas, pixel-diff, Lighthouse)
 se genera con un script commiteado en `scripts/`. El reporte trae

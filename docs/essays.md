@@ -17,6 +17,7 @@ src/lib/essay-mold/parse.ts            ← importer .md → Essay
 src/content/essays/index.ts            ← combina .md + .ts legacy
 scripts/essay-check.mjs                ← check por archivo
 scripts/essay-parity.mjs               ← paridad AST vs main
+scripts/essay-og.mjs                   ← genera og.jpg 1200×630
 scripts/essay-migrate.mjs              ← .ts → .md (uso puntual)
 ```
 
@@ -86,6 +87,26 @@ falla si cualquier otro carácter cambia.
 - Alt: `alt_en` / `alt_es`. F53.1 va a autogenerar el alt vía LLM
   de visión; hasta entonces lo llena Fran, o el check lo marca
   pendiente.
+
+### 4.1 · og:image
+
+`public/essays/<slug>/og.jpg` (1200×630, quality 80, mozjpeg) se
+genera con `scripts/essay-og.mjs` desde el hero WebP. Si existe,
+el metadata de `/thinking/<slug>` lo usa como `og:image` y
+`twitter:image`. Si no, cae a `heroImage` (WebP raw) y por último
+a `/logo.png`.
+
+Se corre cada vez que se agrega o cambia una foto:
+
+```bash
+# todos los ensayos con hero:
+node scripts/essay-og.mjs
+
+# uno solo:
+node scripts/essay-og.mjs <basename>
+```
+
+Los ensayos sin hero se skipean silenciosamente · no hay error.
 
 ## 5 · Scripts obligatorios
 

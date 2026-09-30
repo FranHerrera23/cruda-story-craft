@@ -85,6 +85,12 @@ export type Essay = {
   heroImage?: string
   heroAlt?: string
   heroCredit?: string
+  /* F53 §8 · og.jpg 1200×630 pre-generada por
+     `scripts/essay-og.mjs`. Si existe en disco al momento de
+     cargar el ensayo, el loader la expone acá y el metadata la
+     usa como og:image/twitter:image. Si no, fallback a
+     `heroImage` (WebP) o `logo.png`. */
+  ogImage?: string
   body: EssayBlock[]
   faqs?: Faq[]
   language?: EssayLanguage
@@ -268,7 +274,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
               alt={es.heroAlt}
               width={1600}
               height={900}
-              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 65vw, 800px"
+              /* F53 §4 · el container es col 1/span 8 (66.67% de la
+                 grilla). A 1440 son ~900 px, a 1600 son ~1013 px, a
+                 1024 son ~636 px. `sizes` alineado con eso · antes
+                 pedía 800 px a 1200+ y up-scalaba a 900 en render. */
+              sizes="(max-width: 767px) 100vw, 67vw"
               quality={90}
               priority
             />

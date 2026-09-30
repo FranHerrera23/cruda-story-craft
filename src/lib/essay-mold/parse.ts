@@ -372,6 +372,11 @@ export function loadEssay(mdPath: string): LoadedEssay[] {
     : ''
   const heroExists = heroFile ? fs.existsSync(heroPathAbs) : false
   const heroPublicPath = heroFile ? `/essays/${basename}/${heroFile}` : undefined
+  /* F53 §8 · og.jpg 1200×630 pre-generada por scripts/essay-og.mjs.
+     Se expone en `Essay.ogImage` sólo si existe en disco al cargar. */
+  const ogPathAbs = path.resolve(DEFAULT_PUBLIC_DIR, basename, 'og.jpg')
+  const ogExists = fs.existsSync(ogPathAbs)
+  const ogPublicPath = ogExists ? `/essays/${basename}/og.jpg` : undefined
 
   const out: LoadedEssay[] = []
   for (const sec of sections) {
@@ -418,6 +423,7 @@ export function loadEssay(mdPath: string): LoadedEssay[] {
         ? ((sec.lang === 'en' ? fm.alt_en : fm.alt_es) || defaultHeroAlt())
         : undefined,
       heroCredit: fm.hero_credit || undefined,
+      ogImage: ogPublicPath,
       alternates,
       body: blocks,
     }

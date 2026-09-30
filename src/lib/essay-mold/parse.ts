@@ -175,12 +175,30 @@ const NEWSLETTER_TRIGGERS = ['newsletter', 'suscribí', 'suscribi', 'subscribe']
 /* F53 §1 · convierte inline:
      `**bold**` → `<strong>bold</strong>`
      `*italic*` → `<em>italic</em>`
-   Se procesa bold PRIMERO para que `**text**` no matchee dos veces
-   con la regex de itálicas. Sólo pares balanceados. */
+     `[text](url)` → `<a href="url">text</a>` · externos con
+       `rel="noopener"` en la misma pestaña (Fran 30-sep §7 nuevo
+       ensayo im-from-the-government).
+   Orden: links primero (extraemos texto y url con placeholders),
+   después bold, después em. Así los markdown adentro del texto
+   del link se procesan sin que la regex de link los rompa. */
+function isExternalHref(url: string): boolean {
+  return /^https?:\/\//i.test(url) &&
+    !/^https?:\/\/(www\.)?thecruda\.com(\/|$)/i.test(url)
+}
 function inlineMarkupHtml(text: string): string {
-  let s = text
+  /* Links · placeholders `<idx>` para preservar mientras
+     corren bold/em. El PUA U+E000 no aparece en copy real. */
+  const linkStore: string[] = []
+  let s = text.replace(/\[([^\]\n]+)\]\((\S+?)\)/g, (_m, txt, url) => {
+    const idx = linkStore.length
+    const inner = inlineMarkupHtml(txt) // recursivo · bold/em dentro
+    const rel = isExternalHref(url) ? ' rel="noopener"' : ''
+    linkStore.push(`<a href="${url}"${rel}>${inner}</a>`)
+    return `${idx}`
+  })
   s = s.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
   s = s.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+  s = s.replace(/(\d+)/g, (_m, idx) => linkStore[Number(idx)])
   return s
 }
 
@@ -204,8 +222,10 @@ function paragraphToBlock(text: string, lang: 'en' | 'es'): EssayBlock | null {
   const trimmed = text.trim()
   if (!trimmed) return null
   if (isNewsletterLine(trimmed)) return buildNewsletterBlock(trimmed, lang)
-  const hasMarkup = /\*[^*\n]+\*/.test(trimmed)
-  if (hasMarkup) {
+  const hasInline =
+    /\*[^*\n]+\*/.test(trimmed) ||
+    /\[[^\]\n]+\]\(\S+?\)/.test(trimmed)
+  if (hasInline) {
     return { type: 'p', html: inlineMarkupHtml(trimmed) }
   }
   return { type: 'p', text: trimmed }
@@ -272,6 +292,17 @@ function parseChecklistBlock(raw: string): EssayBlock | null {
   return { type: 'checklist', items }
 }
 
+/* F53 · Fran 30-sep · lista numerada `1.` `2.` ... → `<ol>`.
+   Cada item soporta bold/em/links inline (misma pipeline que
+   párrafos). El type `ol` en EssayLayout renderea `<ol><li>…`
+   con contadores nativos del navegador. */
+function parseOrderedListBlock(raw: string): EssayBlock | null {
+  const lines = raw.split('\n').map(l => l.trim()).filter(Boolean)
+  if (!lines.every(l => /^\d+\.\s+/.test(l))) return null
+  const items = lines.map(l => inlineMarkupHtml(l.replace(/^\d+\.\s+/, '').trim()))
+  return { type: 'ol', items }
+}
+
 function parseBody(raw: string, lang: 'en' | 'es'): {
   dek: string | undefined
   blocks: EssayBlock[]
@@ -297,6 +328,8 @@ function parseBody(raw: string, lang: 'en' | 'es'): {
     if (h2) { blocks.push(h2); continue }
     const bq = parseBlockquoteBlock(b)
     if (bq) { blocks.push(bq); continue }
+    const ol = parseOrderedListBlock(b)
+    if (ol) { blocks.push(ol); continue }
     const cl = parseChecklistBlock(b)
     if (cl) { blocks.push(cl); continue }
     const p = paragraphToBlock(b, lang)

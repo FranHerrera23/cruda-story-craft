@@ -507,6 +507,31 @@
   color: var(--ink);
 }
 
+/* F53 · Fran 30-sep · <ol> nativo del molde para listas numeradas
+   `1. ...` del .md. Contadores del navegador (decimal), sangría
+   liviana, mismo tamaño de texto que el body. */
+.essay .e-body .e-ol {
+  list-style: decimal outside;
+  margin: 0 0 28px;
+  padding-left: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--ink);
+}
+.essay .e-body .e-ol li {
+  padding-left: 8px;
+}
+.essay .e-body .e-ol li::marker {
+  color: var(--ink-2, #6E6B65);
+  font-variant-numeric: tabular-nums;
+}
+.essay .e-body .e-ol strong { font-weight: 700; color: var(--ink); }
+/* Los links dentro del <ol> heredan el sweep underline
+   de `.essay .e-body a` sin declararlo acá. */
+
 /* Pull quote — brief v4 UX §4.3 breakout.
    Antes usaba border-left en --accent naranja; ahora --color-rule
    (neutro) porque el accent está reservado a focus + botón. */

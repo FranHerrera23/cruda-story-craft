@@ -39,6 +39,9 @@ export type EssayBlock =
   | { type: 'h2'; text: string; image?: { src: string; alt: string } }
   | { type: 'h3'; text: string }
   | { type: 'checklist'; items: string[] }
+  /* F53 · Fran 30-sep · lista numerada del .md (`1. …`).
+     Items pueden traer html inline (bold/em/links). */
+  | { type: 'ol'; items: string[] }
   /* Brief v15 T4 — firma final del ensayo (reemplaza la línea del
      newsletter que prometía algo que no existe). Mono, mayúsculas,
      --fs-meta, --ink-2. No es un CTA, es firma. */
@@ -369,6 +372,17 @@ export default function EssayLayout({ es }: { es: Essay }) {
                     </li>
                   ))}
                 </ul>
+              )
+            }
+            if (block.type === 'ol') {
+              /* F53 · Fran 30-sep · <ol> nativo. Contadores del
+                 navegador; items con bold/em/links inline. */
+              return (
+                <ol key={i} className="e-ol">
+                  {block.items.map((item, j) => (
+                    <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
+                  ))}
+                </ol>
               )
             }
             if (block.type === 'signature') {

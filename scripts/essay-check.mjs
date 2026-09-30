@@ -216,6 +216,16 @@ function parseMdSection(rawSection, lang) {
       continue
     }
     const cl = b.split('\n').map(l => l.trim()).filter(Boolean)
+    if (cl.length > 0 && cl.every(l => /^\d+\.\s+/.test(l))) {
+      /* F53 · Fran 30-sep · <ol> nativo. Cada item guarda su html
+         (bold/em/links) para que la paridad de markup los cuente. */
+      const items = cl.map(l => {
+        const inner = l.replace(/^\d+\.\s+/, '').trim()
+        return inlineLinksBoldEm(inner)
+      })
+      blocks.push({ type: 'ol', items })
+      continue
+    }
     if (cl.length > 0 && cl.every(l => /^-\s+/.test(l))) {
       blocks.push({ type: 'checklist', items: cl.map(l => l.replace(/^-\s+/, '').trim()) })
       continue
@@ -227,16 +237,38 @@ function parseMdSection(rawSection, lang) {
       blocks.push({ type: 'p', html: `<em>${withLink}</em>` })
       continue
     }
-    if (/\*[^*\n]+\*/.test(b)) {
-      let html = b
-      html = html.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
-      html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
-      blocks.push({ type: 'p', html })
+    /* Detección inline: bold / em / link (Fran 30-sep). */
+    const hasMd =
+      /\*[^*\n]+\*/.test(b) ||
+      /\[[^\]\n]+\]\(\S+?\)/.test(b)
+    if (hasMd) {
+      blocks.push({ type: 'p', html: inlineLinksBoldEm(b) })
     } else {
       blocks.push({ type: 'p', text: b })
     }
   }
   return blocks
+}
+
+/* F53 · Fran 30-sep · idéntica al inlineMarkupHtml de parse.ts.
+   Links primero (con placeholders), después bold, después em. */
+function isExternalHref(url) {
+  return /^https?:\/\//i.test(url) &&
+    !/^https?:\/\/(www\.)?thecruda\.com(\/|$)/i.test(url)
+}
+function inlineLinksBoldEm(text) {
+  const linkStore = []
+  let s = text.replace(/\[([^\]\n]+)\]\((\S+?)\)/g, (_m, txt, url) => {
+    const idx = linkStore.length
+    const inner = inlineLinksBoldEm(txt)
+    const rel = isExternalHref(url) ? ' rel="noopener"' : ''
+    linkStore.push(`<a href="${url}"${rel}>${inner}</a>`)
+    return `${idx}`
+  })
+  s = s.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+  s = s.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+  s = s.replace(/(\d+)/g, (_m, idx) => linkStore[Number(idx)])
+  return s
 }
 
 /* F53 §3 punto 9 · falla si el markup renderizado difiere del .md.
@@ -251,10 +283,12 @@ function checkMarkupParity(sec, parserBlocks) {
   const rawBlocks = raw.split(/\n\s*\n/).map(b => b.trim()).filter(Boolean)
   let inlineItalics = 0
   let inlineBold = 0
+  let inlineLinks = 0
   let srcH2 = 0
   let srcPull = 0
   let srcQuote = 0
   let srcChecklists = 0
+  let srcOl = 0
   for (let i = 0; i < rawBlocks.length; i++) {
     const b = rawBlocks[i]
     if (i === 0 && b.startsWith('*') && b.endsWith('*') && !b.slice(1, -1).includes('\n') && !b.startsWith('**')) continue // dek
@@ -289,15 +323,34 @@ function checkMarkupParity(sec, parserBlocks) {
     const cl = b.split('\n').map(l => l.trim()).filter(Boolean)
     if (bqLines.every(l => l.startsWith('>'))) {
       // ya asignamos contentForInline arriba
+    } else if (cl.length > 0 && cl.every(l => /^\d+\.\s+/.test(l))) {
+      /* Fran 30-sep · <ol> del molde. Contamos bold/em/links DENTRO
+         del contenido del item (sin el prefijo `N.`). */
+      srcOl++
+      contentForInline = cl.map(l => l.replace(/^\d+\.\s+/, '')).join(' ')
     } else if (cl.length > 0 && cl.every(l => /^-\s+/.test(l))) {
+      /* Checklist · contamos bold/em/links dentro de cada item, sin
+         el prefijo `- `. El parser los produce dentro de `items[]`. */
       srcChecklists++
-      contentForInline = ''
+      contentForInline = cl.map(l => l.replace(/^-\s+/, '')).join(' ')
     }
     const boldMatches = contentForInline.match(/\*\*([^*\n]+)\*\*/g) || []
     inlineBold += boldMatches.length
+    /* Fran 30-sep · legacy .md que ya trae `<strong>...</strong>`
+       literal en items (narradores migrado desde .ts): también
+       cuenta como bold. Mismo para <em>. */
+    const rawStrongMatches = contentForInline.match(/<strong>/g) || []
+    inlineBold += rawStrongMatches.length
     const strippedInline = contentForInline.replace(/\*\*([^*\n]+)\*\*/g, '')
     const italicMatches = strippedInline.match(/\*[^*\n]+\*/g) || []
     inlineItalics += italicMatches.length
+    const rawEmMatches = contentForInline.match(/<em>/g) || []
+    inlineItalics += rawEmMatches.length
+    /* Links inline `[text](url)` · Fran 30-sep §7. */
+    const linkMatches = contentForInline.match(/\[[^\]\n]+\]\(\S+?\)/g) || []
+    inlineLinks += linkMatches.length
+    const rawLinkMatches = contentForInline.match(/<a\s[^>]*href="[^"]+"/g) || []
+    inlineLinks += rawLinkMatches.length
   }
   const srcNewsletters = rawBlocks.filter(isNewsletterLine).length
   /* Excluye el dek (primer bloque en *itálica* de una línea) del
@@ -315,24 +368,36 @@ function checkMarkupParity(sec, parserBlocks) {
   const outPull = outBlocks.filter(b => b.type === 'pull').length
   const outQuote = outBlocks.filter(b => b.type === 'quote').length
   const outChecklists = outBlocks.filter(b => b.type === 'checklist').length
-  let outEm = 0, outStrong = 0, outNewsletters = 0, outLinks = 0
+  const outOl = outBlocks.filter(b => b.type === 'ol').length
+  let outEm = 0, outStrong = 0, outNewsletters = 0, outNewsletterLinks = 0
+  let outInlineLinks = 0
   let outQuoteOpen = 0, outQuoteClose = 0
   for (const b of outBlocks) {
-    const src = b.html ?? b.text ?? ''
-    outQuoteOpen += (src.match(/“/g) || []).length
-    outQuoteClose += (src.match(/”/g) || []).length
-    if (!b.html) continue
-    const emCount = (b.html.match(/<em>/g) || []).length
-    const strongCount = (b.html.match(/<strong>/g) || []).length
-    const isNewsletterBlock = b.html.includes('href="/newsletter"')
-    if (isNewsletterBlock) {
-      outNewsletters += 1
-      outLinks += (b.html.match(/<a\s[^>]*href="\/newsletter"/g) || []).length
-      outEm += Math.max(0, emCount - 1)
-      outStrong += strongCount
-    } else {
-      outEm += emCount
-      outStrong += strongCount
+    /* Elegimos UNA sola representación del contenido del bloque para
+       no double-contar (Fran 30-sep): html si existe, sino items[]
+       (checklist/ol) concatenados, sino text. Comillas curvas se
+       cuentan sobre esa misma representación. */
+    const parts = b.html
+      ? [b.html]
+      : Array.isArray(b.items) ? b.items
+      : b.text ? [b.text]
+      : []
+    for (const src of parts) {
+      outQuoteOpen += (src.match(/“/g) || []).length
+      outQuoteClose += (src.match(/”/g) || []).length
+      const emCount = (src.match(/<em>/g) || []).length
+      const strongCount = (src.match(/<strong>/g) || []).length
+      const isNewsletterBlock = src.includes('href="/newsletter"')
+      if (isNewsletterBlock) {
+        outNewsletters += 1
+        outNewsletterLinks += (src.match(/<a\s[^>]*href="\/newsletter"/g) || []).length
+        outEm += Math.max(0, emCount - 1)
+        outStrong += strongCount
+      } else {
+        outEm += emCount
+        outStrong += strongCount
+        outInlineLinks += (src.match(/<a\s[^>]*href="[^"]+"/g) || []).length
+      }
     }
   }
 
@@ -351,17 +416,23 @@ function checkMarkupParity(sec, parserBlocks) {
   if (srcChecklists !== outChecklists) {
     err(`sección ${sec.lang}: checklists (- ...) en .md=${srcChecklists} · en render=${outChecklists}`)
   }
+  if (srcOl !== outOl) {
+    err(`sección ${sec.lang}: listas numeradas (1. ...) en .md=${srcOl} · en render=${outOl}`)
+  }
   if (inlineItalics !== outEm) {
     err(`sección ${sec.lang}: itálicas inline (*text*) en .md=${inlineItalics} · en render=${outEm} <em>`)
   }
   if (inlineBold !== outStrong) {
     err(`sección ${sec.lang}: bolds inline (**text**) en .md=${inlineBold} · en render=${outStrong} <strong>`)
   }
+  if (inlineLinks !== outInlineLinks) {
+    err(`sección ${sec.lang}: links inline [text](url) en .md=${inlineLinks} · en render=${outInlineLinks} <a>`)
+  }
   if (srcNewsletters !== outNewsletters) {
     err(`sección ${sec.lang}: newsletter lines en .md=${srcNewsletters} · en render=${outNewsletters}`)
   }
-  if (srcNewsletters > 0 && outLinks !== srcNewsletters) {
-    err(`sección ${sec.lang}: link a /newsletter en render=${outLinks} · esperado ${srcNewsletters}`)
+  if (srcNewsletters > 0 && outNewsletterLinks !== srcNewsletters) {
+    err(`sección ${sec.lang}: link a /newsletter en render=${outNewsletterLinks} · esperado ${srcNewsletters}`)
   }
   if (srcDoubleQuotesOpen !== outQuoteOpen || srcDoubleQuotesClose !== outQuoteClose) {
     err(`sección ${sec.lang}: pares de comillas curvas .md=(${srcDoubleQuotesOpen}/${srcDoubleQuotesClose}) · render=(${outQuoteOpen}/${outQuoteClose})`)

@@ -9,7 +9,8 @@
     "build:dev": "next build",
     "start": "next start",
     "lint": "next lint",
-    "essay:check": "node scripts/essay-check.mjs"
+    "essay:check": "node scripts/essay-check.mjs",
+    "essay:parity": "node scripts/essay-parity.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

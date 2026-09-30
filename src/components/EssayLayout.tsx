@@ -29,7 +29,11 @@ import './essay.css'
 
 export type EssayBlock =
   | { type: 'p'; text?: string; html?: string; lead?: boolean }
-  | { type: 'quote'; text: string; attribution?: string }
+  /* F53 §4 (Fran 30-sep) · quote acepta `html` para preservar
+     bold/em dentro del texto (mismo tratamiento que pull). El
+     migrator emite `>> texto con *em*` y el parser lo devuelve
+     con html para no perder markup inline. */
+  | { type: 'quote'; text: string; attribution?: string; html?: string }
   | { type: 'pull'; text?: string; html?: string }
   /* B5 — h2 puede abrir con una imagen. Si no viene, la sección
      renderea sin imagen y sin hueco. */
@@ -387,10 +391,14 @@ export default function EssayLayout({ es }: { es: Essay }) {
                 />
               )
             }
-            // quote — attributed
+            // quote — attributed (or `>>` sin atribución)
             return (
               <div key={i} className="e-quote">
-                <p>{block.text}</p>
+                {block.html ? (
+                  <p dangerouslySetInnerHTML={{ __html: block.html }} />
+                ) : (
+                  <p>{block.text}</p>
+                )}
                 {block.attribution && <cite>{block.attribution}</cite>}
               </div>
             )

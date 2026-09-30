@@ -1,41 +1,28 @@
 import { NextResponse } from 'next/server'
 
-/* Brief v4 UX §4.8 — proxy hacia Substack.
-   Substack bloquea CORS para POST directo desde el cliente, así que
-   el input propio postea acá y este handler pasa la subscription a
-   Substack en el servidor.
+/* F53 §7 (Fran 30-sep) · Substack fuera del formulario.
+   La app migró la captura de email al embed hosted de beehiiv
+   (SubscribeForm en /newsletter y en cada ensayo), así que este
+   endpoint dejó de tener uso desde el cliente. La lógica de
+   Substack se elimina completa.
 
-   Endpoint activo se configura via env var SUBSTACK_PUBLICATION (el
-   subdomain de la publicación, e.g. "thecruda"). Sin env, respondemos
-   error controlado para que el estado del formulario sea legible en
-   dev y no rompa el sitio en prod si la variable no está definida.
+   El endpoint queda vivo como stub para no romper cualquier
+   link legacy que le pegue: responde 500 con reason="error" y lo
+   registra en logs, sin redirigir a otro proveedor. Se puede
+   borrar del árbol cuando confirmemos que nada externo lo llama.
 
-   B4 hardening (sin Redis, sin captcha):
-   - Origin check: fuera de la lista de hosts propios y localhost,
-     devuelve 403. Bloquea que otro sitio use este endpoint como bot
-     proxy contra Substack.
-   - Rate limit in-memory: 5 requests / 10 minutos por IP. La memoria
-     es por instancia (edge/serverless spawnea múltiples) — no es una
-     defensa robusta contra un atacante distribuido, pero corta abuso
-     casual de un solo IP. Para algo más serio, ir a Upstash/Redis.
-   - Honeypot: el body puede traer un campo `website` que en el DOM
-     está escondido (sr-only, tabIndex=-1). Si vino con valor, es un
-     bot — devolvemos 200 con éxito falso y no llamamos a Substack.
-   - utm_campaign se manda a Substack en el `source` field junto con
-     utm_source (antes se recibía y se perdía). */
+   Origin check + rate limit + honeypot se mantienen para que el
+   stub siga siendo defensa razonable contra abuso, aunque hoy no
+   procese nada. */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-/* Allowlist de hosts propios. Se puede sobreescribir via env
-   NEXT_PUBLIC_SITE_ORIGIN si el deploy usa otra URL. */
 const ALLOWED_HOSTS = new Set<string>([
   'thecruda.com',
   'www.thecruda.com',
   'localhost',
 ])
 
-/* In-memory rate limit. Se reinicia cuando la instancia se recicla —
-   OK para un forma de contact, no para producción crítica. */
 const RATE_WINDOW_MS = 10 * 60 * 1000
 const RATE_MAX = 5
 const rateStore = new Map<string, number[]>()
@@ -56,11 +43,7 @@ function checkRateLimit(ip: string): boolean {
 
 function isAllowedOrigin(req: Request): boolean {
   const origin = req.headers.get('origin')
-  if (!origin) {
-    /* Sin Origin header, probablemente same-origin form post o curl.
-       Aceptamos — el rate limit filtra abuso. */
-    return true
-  }
+  if (!origin) return true
   try {
     const host = new URL(origin).hostname
     if (ALLOWED_HOSTS.has(host)) return true
@@ -80,11 +63,6 @@ export const runtime = 'nodejs'
 
 type Body = {
   email?: string
-  source_path?: string
-  utm_source?: string
-  utm_campaign?: string
-  /* Honeypot — nombre neutro que un bot probablemente completa. En el
-     DOM va oculto con sr-only + tabIndex=-1 + autocomplete="off". */
   website?: string
 }
 
@@ -108,9 +86,8 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, reason: 'invalid' }, { status: 400 })
   }
 
-  /* Honeypot — si vino con valor, es un bot. Devolvemos 200 ok:true
-     para que ni siquiera sepa que fue detectado, y no llamamos a
-     Substack. El humano no puede llenar el campo (sr-only + tabIndex). */
+  /* Honeypot · si vino con valor, es un bot. 200 ok:true para no
+     revelar la detección, sin registrar. */
   if (body.website && body.website.trim() !== '') {
     return NextResponse.json({ ok: true })
   }
@@ -120,47 +97,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, reason: 'invalid' }, { status: 400 })
   }
 
-  const publication = process.env.SUBSTACK_PUBLICATION
-  if (!publication) {
-    console.warn('[subscribe] SUBSTACK_PUBLICATION no configurado')
-    return NextResponse.json({ ok: false, reason: 'error' }, { status: 500 })
-  }
-
-  const endpoint = `https://${publication}.substack.com/api/v1/free`
-
-  /* Substack acepta un solo string `source` — combinamos utm_source y
-     utm_campaign para no perder atribución. Formato: "utm_source · utm_campaign"
-     si ambos vienen, si no cae al valor default "thecruda-site". */
-  const utmSource = (body.utm_source ?? '').trim()
-  const utmCampaign = (body.utm_campaign ?? '').trim()
-  const sourceParts = [utmSource, utmCampaign].filter(Boolean)
-  const source = sourceParts.length > 0 ? sourceParts.join(' · ') : 'thecruda-site'
-
-  try {
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        first_url: body.source_path ?? '',
-        first_referrer: '',
-        source,
-        referral_code: '',
-      }),
-    })
-    if (res.ok) {
-      return NextResponse.json({ ok: true })
-    }
-    /* Substack devuelve 409 cuando ya está suscripto. */
-    if (res.status === 409) {
-      return NextResponse.json({ ok: false, reason: 'already' })
-    }
-    return NextResponse.json({ ok: false, reason: 'error' }, { status: 502 })
-  } catch (err) {
-    console.warn('[subscribe] fetch failed', err)
-    return NextResponse.json({ ok: false, reason: 'error' }, { status: 502 })
-  }
+  /* Substack fuera · sin proveedor de fallback. Registramos y
+     devolvemos 500. No redirigimos a otro lado. */
+  console.warn(
+    '[subscribe] endpoint sin proveedor · captura se hace via ' +
+    'embed beehiiv en el cliente. Este POST no debería estar ' +
+    'llegando desde /newsletter ni desde /thinking/*.',
+  )
+  return NextResponse.json({ ok: false, reason: 'error' }, { status: 500 })
 }

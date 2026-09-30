@@ -110,7 +110,9 @@ function blocksToMd(blocks, lang) {
       if (b.attribution) {
         out.push('> ' + text + '\n> — ' + b.attribution)
       } else {
-        out.push('> ' + text)
+        /* Fran 30-sep · quote sin atribución = `>>` (no `>`), para
+           no reencuadrar como pull. Distinción explícita del §4. */
+        out.push('>> ' + text)
       }
     } else if (b.type === 'checklist') {
       const items = b.items || []

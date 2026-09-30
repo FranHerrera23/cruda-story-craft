@@ -21,7 +21,7 @@ I swear, the way he smiled and spoke about the route, the stops, the time they�
 
 So I asked, naturally:
 
-> You seem so excited. It’s clear you love this. Why don’t you do it more often?
+>> You seem so excited. It’s clear you love this. Why don’t you do it more often?
 
 He looked at me and said:
 
@@ -33,7 +33,7 @@ He looked at me and said:
 
 And I told him:
 
-> You know most people, including myself, would love to be in your shoes. Have a big company. Be ‘successful’. Build something big. Be you.
+>> You know most people, including myself, would love to be in your shoes. Have a big company. Be ‘successful’. Build something big. Be you.
 
 He smiled and replied:
 

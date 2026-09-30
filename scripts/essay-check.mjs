@@ -182,6 +182,18 @@ function parseMdSection(rawSection, lang) {
     if (h3) { blocks.push({ type: 'h2', text: h3[1].trim() }); continue }
     const bqLines = b.split('\n').map(l => l.trim())
     if (bqLines.every(l => l.startsWith('>'))) {
+      // `>>` en todas las líneas → quote sin atribución (Fran 30-sep).
+      if (bqLines.every(l => l.startsWith('>>'))) {
+        const stripped = bqLines.map(l => l.replace(/^>>\s?/, '').trim()).join(' ').trim()
+        if (/\*[^*\n]+\*/.test(stripped)) {
+          let html = stripped.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+          html = html.replace(/\*([^*\n]+)\*/g, '<em>$1</em>')
+          blocks.push({ type: 'quote', text: stripped.replace(/\*\*([^*\n]+)\*\*/g, '$1').replace(/\*([^*\n]+)\*/g, '$1'), html })
+        } else {
+          blocks.push({ type: 'quote', text: stripped })
+        }
+        continue
+      }
       const stripped = bqLines.map(l => l.replace(/^>\s?/, '').trim())
       const last = stripped[stripped.length - 1]
       const attrMatch = last.match(/^(?:—|--|-\s)\s*(.+)$/)
@@ -251,18 +263,24 @@ function checkMarkupParity(sec, parserBlocks) {
     const bqLines = b.split('\n').map(l => l.trim())
     let contentForInline = b
     if (bqLines.every(l => l.startsWith('>'))) {
-      const strippedBq = bqLines.map(l => l.replace(/^>\s?/, '').trim())
-      const lastBq = strippedBq[strippedBq.length - 1]
-      const isQuoteWithAttr = strippedBq.length > 1 && /^(?:—|--|-\s)/.test(lastBq)
-      if (isQuoteWithAttr) {
+      // `>>` en todas las líneas → quote sin atribución (Fran 30-sep).
+      if (bqLines.every(l => l.startsWith('>>'))) {
         srcQuote++
-        /* La atribución no se incluye en el conteo inline · el
-           parser la guarda en `attribution` (no en `text` ni
-           `html`) y no genera <em>/<strong> desde ella. */
-        contentForInline = strippedBq.slice(0, -1).join(' ')
+        contentForInline = bqLines.map(l => l.replace(/^>>\s?/, '').trim()).join(' ')
       } else {
-        srcPull++
-        contentForInline = strippedBq.join(' ')
+        const strippedBq = bqLines.map(l => l.replace(/^>\s?/, '').trim())
+        const lastBq = strippedBq[strippedBq.length - 1]
+        const isQuoteWithAttr = strippedBq.length > 1 && /^(?:—|--|-\s)/.test(lastBq)
+        if (isQuoteWithAttr) {
+          srcQuote++
+          /* La atribución no se incluye en el conteo inline · el
+             parser la guarda en `attribution` (no en `text` ni
+             `html`) y no genera <em>/<strong> desde ella. */
+          contentForInline = strippedBq.slice(0, -1).join(' ')
+        } else {
+          srcPull++
+          contentForInline = strippedBq.join(' ')
+        }
       }
       /* Sigue al conteo inline · el pull/quote body puede tener
          **bold**, *em* y comillas curvas que el parser refleja

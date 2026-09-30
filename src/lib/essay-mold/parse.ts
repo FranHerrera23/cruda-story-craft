@@ -213,10 +213,16 @@ function paragraphToBlock(text: string, lang: 'en' | 'es'): EssayBlock | null {
 
 /* F53 §3 (Fran 29-sep) · sintaxis extendida para migrar los ensayos
    legacy sin perder copy:
-     ### X       → { type: 'h2', text: X }  (subtítulo interno)
-     > X         → { type: 'pull', text: X }
-     > X\n> — Y  → { type: 'quote', text: X, attribution: Y }
-     - X\n- Y    → { type: 'checklist', items: [X, Y, ...] }
+     ### X        → { type: 'h2', text: X }  (subtítulo interno)
+     > X          → { type: 'pull', text: X }
+     > X\n> — Y   → { type: 'quote', text: X, attribution: Y }
+     >> X         → { type: 'quote', text: X }  (sin atribución)
+     - X\n- Y     → { type: 'checklist', items: [X, Y, ...] }
+
+   Distinción `>` vs `>>` (Fran 30-sep): el original tiene 2 quotes
+   sin atribución en founder-worth-70M · con `>` se reencuadraban
+   como pull; con `>>` se preservan como quote (border-left vs
+   pull). No hay reencuadre editorial: source of truth manda.
 
    La firma legacy (colofón tipo "EVERYTHING IS A NARRATIVE." o
    "thecruda.com") no tiene sintaxis en el .md · se elimina en la
@@ -232,6 +238,14 @@ function parseHeadingBlock(raw: string): EssayBlock | null {
 function parseBlockquoteBlock(raw: string): EssayBlock | null {
   const lines = raw.split('\n').map(l => l.trim())
   if (!lines.every(l => l.startsWith('>'))) return null
+  // `>>` en TODAS las líneas → quote sin atribución.
+  if (lines.every(l => l.startsWith('>>'))) {
+    const stripped = lines.map(l => l.replace(/^>>\s?/, '').trim()).join(' ').trim()
+    if (/\*[^*\n]+\*/.test(stripped)) {
+      return { type: 'quote', text: stripRawInline(stripped), html: inlineMarkupHtml(stripped) }
+    }
+    return { type: 'quote', text: stripped }
+  }
   const stripped = lines.map(l => l.replace(/^>\s?/, '').trim())
   const last = stripped[stripped.length - 1]
   const attrMatch = last.match(/^(?:—|--|-\s)\s*(.+)$/)

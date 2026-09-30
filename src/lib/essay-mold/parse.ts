@@ -209,13 +209,19 @@ function isNewsletterLine(line: string): boolean {
 }
 
 function buildNewsletterBlock(line: string, lang: 'en' | 'es'): EssayBlock {
-  // Inner (sin *)
   const inner = line.slice(1, -1).trim()
-  // Reemplaza la ORACIÓN que activa el link (última oración con
-  // Subscribe/Suscribite) por un <a> a /newsletter.
-  const cta = lang === 'es' ? /(Suscribite[^.!?]*\.)/ : /(Subscribe[^.!?]*\.)/
-  const withLink = inner.replace(cta, '<a href="/newsletter">$1</a>')
-  return { type: 'p', html: `<em>${withLink}</em>` }
+  /* Fran 30-sep · en EN la caja beehiiv (SubscribeForm) va abajo,
+     y esta línea funciona como TÍTULO de la caja · sin link. En ES
+     no hay caja, así que preservamos el link a /newsletter como
+     ubicación de continuidad.
+     Marker `data-newsletter="1"` para que essay:check pueda contar
+     el bloque sin depender del href (que hoy sólo aparece en ES). */
+  if (lang === 'es') {
+    const cta = /(Suscribite[^.!?]*\.)/
+    const withLink = inner.replace(cta, '<a href="/newsletter">$1</a>')
+    return { type: 'p', html: `<em data-newsletter="1">${withLink}</em>` }
+  }
+  return { type: 'p', html: `<em data-newsletter="1">${inner}</em>` }
 }
 
 function paragraphToBlock(text: string, lang: 'en' | 'es'): EssayBlock | null {

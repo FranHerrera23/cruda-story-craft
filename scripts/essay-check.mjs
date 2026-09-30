@@ -232,9 +232,17 @@ function parseMdSection(rawSection, lang) {
     }
     if (isNewsletterLine(b)) {
       const inner = b.slice(1, -1).trim()
-      const cta = lang === 'es' ? /(Suscribite[^.!?]*\.)/ : /(Subscribe[^.!?]*\.)/
-      const withLink = inner.replace(cta, '<a href="/newsletter">$1</a>')
-      blocks.push({ type: 'p', html: `<em>${withLink}</em>` })
+      /* Fran 30-sep · EN sin link (título de caja beehiiv);
+         ES con link a /newsletter. Marker `data-newsletter="1"` en el
+         <em> para que checkMarkupParity pueda distinguirlo del em
+         inline sin depender del href. */
+      if (lang === 'es') {
+        const cta = /(Suscribite[^.!?]*\.)/
+        const withLink = inner.replace(cta, '<a href="/newsletter">$1</a>')
+        blocks.push({ type: 'p', html: `<em data-newsletter="1">${withLink}</em>` })
+      } else {
+        blocks.push({ type: 'p', html: `<em data-newsletter="1">${inner}</em>` })
+      }
       continue
     }
     /* Detección inline: bold / em / link (Fran 30-sep). */
@@ -385,16 +393,19 @@ function checkMarkupParity(sec, parserBlocks) {
     for (const src of parts) {
       outQuoteOpen += (src.match(/“/g) || []).length
       outQuoteClose += (src.match(/”/g) || []).length
-      const emCount = (src.match(/<em>/g) || []).length
+      /* Todos los <em> en source · newsletter wrapper viene con
+         `data-newsletter`. Bare `<em>` = em inline del párrafo. */
+      const emAll = (src.match(/<em(?:\s|>)/g) || []).length
       const strongCount = (src.match(/<strong>/g) || []).length
-      const isNewsletterBlock = src.includes('href="/newsletter"')
+      const isNewsletterBlock = src.includes('data-newsletter="1"')
       if (isNewsletterBlock) {
         outNewsletters += 1
         outNewsletterLinks += (src.match(/<a\s[^>]*href="\/newsletter"/g) || []).length
-        outEm += Math.max(0, emCount - 1)
+        /* Excluye el <em> wrapper del newsletter del conteo inline. */
+        outEm += Math.max(0, emAll - 1)
         outStrong += strongCount
       } else {
-        outEm += emCount
+        outEm += emAll
         outStrong += strongCount
         outInlineLinks += (src.match(/<a\s[^>]*href="[^"]+"/g) || []).length
       }
@@ -431,8 +442,11 @@ function checkMarkupParity(sec, parserBlocks) {
   if (srcNewsletters !== outNewsletters) {
     err(`sección ${sec.lang}: newsletter lines en .md=${srcNewsletters} · en render=${outNewsletters}`)
   }
-  if (srcNewsletters > 0 && outNewsletterLinks !== srcNewsletters) {
-    err(`sección ${sec.lang}: link a /newsletter en render=${outNewsletterLinks} · esperado ${srcNewsletters}`)
+  /* Fran 30-sep · el link a /newsletter existe SOLO en ES · en EN
+     la línea es el título de la caja beehiiv sin link. */
+  const expectedNewsletterLinks = sec.lang === 'es' ? srcNewsletters : 0
+  if (outNewsletterLinks !== expectedNewsletterLinks) {
+    err(`sección ${sec.lang}: link a /newsletter en render=${outNewsletterLinks} · esperado ${expectedNewsletterLinks}`)
   }
   if (srcDoubleQuotesOpen !== outQuoteOpen || srcDoubleQuotesClose !== outQuoteClose) {
     err(`sección ${sec.lang}: pares de comillas curvas .md=(${srcDoubleQuotesOpen}/${srcDoubleQuotesClose}) · render=(${outQuoteOpen}/${outQuoteClose})`)

@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 .next
 tsconfig.tsbuildinfo
+
+# Env — nunca versionar secrets locales. Solo .env.example (versionable).
+.env
+.env.*
+!.env.example

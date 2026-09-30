@@ -54,7 +54,7 @@ export default function NewsletterPage() {
             sends. When there’s something worth reading, it lands.
             Otherwise nothing does.
           </p>
-          <SubscribeForm lang="en" />
+          <SubscribeForm />
         </div>
       </section>
     </div>

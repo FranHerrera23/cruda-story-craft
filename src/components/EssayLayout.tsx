@@ -448,12 +448,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </Link>
         </p>
 
-        {/* F53 §7 (Fran 30-sep) · SubscribeForm · embed hosted de
-            beehiiv al final de cada ensayo. También activo en
-            /newsletter. El loader.js se inyecta vía IntersectionObserver
-            cuando la caja se acerca a 300px de la pantalla, una sola
-            vez por page-view. Ver src/components/SubscribeForm.tsx. */}
-        <SubscribeForm lang={lang} />
+        {/* F53 §7 (Fran 30-sep · ajuste posterior) · SubscribeForm
+            solo en ensayos EN. En ES no se renderiza: la línea de
+            newsletter del .md se mantiene como itálica con link a
+            /newsletter (buildNewsletterBlock del parser). */}
+        {lang === 'en' && <SubscribeForm />}
       </article>
     </div>
   )

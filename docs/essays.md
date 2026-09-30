@@ -155,11 +155,19 @@ El migrator:
 Después de correr el migrator, siempre pasar `essay-parity.mjs`
 antes de commitear.
 
-## 6 · Newsletter (beehiiv, embed hosted)
+## 6 · Newsletter (beehiiv, embed hosted · EN only)
 
 F53 §7 (Fran 30-sep) · captura de email vía embed hosted de
 beehiiv, no API. El componente `SubscribeForm` (client) vive en
-`/newsletter` y al final de cada `/thinking/<slug>`.
+`/newsletter` y al final de cada ensayo EN (`/thinking/<slug-en>`).
+
+Foco 100% inglés (Fran 30-sep · ajuste posterior):
+- En ensayos ES no se renderiza el SubscribeForm. La línea de
+  newsletter del `.md` se mantiene como antes: párrafo en
+  itálica con link a `/newsletter`, generado por el parser
+  (`buildNewsletterBlock`).
+- No hay formulario ES ni prop `lang`. Si se necesita en el
+  futuro, se agrega un componente propio.
 
 Contrato:
 - Carga on-demand · IntersectionObserver con `rootMargin: 300px 0px`.
@@ -173,8 +181,6 @@ Contrato:
   beehiiv v3 mide ~340 px en 390 y ~280 px en 1440.
 
 Form ID (público, no secret): `c7cb08c8-b381-4b1e-a20f-76c86ce39552`.
-Cuando exista una versión ES separada, el prop `lang="es"`
-selecciona el ID correspondiente (por ahora comparten el mismo).
 
 El endpoint `/api/subscribe` ya no se usa desde el cliente. Vive
 como stub que responde 500 (rama `f53-substack-out`, mergeable

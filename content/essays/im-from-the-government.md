@@ -2,6 +2,9 @@
 slug_en: im-from-the-government-and-im-here-to-help
 date: 2026-09-30
 meta_en: America.gov launched with a countdown, a live demo and one user named Emily. What that launch can teach any founder about telling a product's story.
+hero: hero.webp
+hero_credit:
+alt_en: Wide shot inside an ornate auditorium with gilded columns and a chandelier-lit ceiling. A large screen dominates the stage showing the America.gov home page — the words "Hello, America" over a search field asking "How can I invest in my child's future?" A speaker in a dark suit and red tie stands in front of the screen, addressing a seated audience whose silhouettes fill the foreground.
 ---
 
 ## English: I'm From the Government, and I'm Here to Help

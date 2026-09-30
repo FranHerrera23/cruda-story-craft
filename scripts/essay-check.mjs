@@ -467,16 +467,14 @@ async function checkHero(fmHero, basename) {
 
 /* ═════════ Chequeo principal ═════════ */
 
-async function main() {
-  const target = process.argv[2]
-  if (!target) {
-    console.error('usage: node scripts/essay-check.mjs <content/essays/file.md>')
-    process.exit(1)
-  }
+async function checkOne(target) {
+  errors.length = 0
+  warnings.length = 0
+  for (const k of Object.keys(report)) delete report[k]
   const filePath = path.resolve(process.cwd(), target)
   if (!fs.existsSync(filePath)) {
     console.error(`no encuentro el archivo: ${filePath}`)
-    process.exit(1)
+    return false
   }
 
   const basename = path.basename(filePath, '.md')
@@ -488,7 +486,7 @@ async function main() {
   } catch (e) {
     err(e.message)
     printReport(filePath)
-    process.exit(1)
+    return false
   }
   const { data: fm, body } = fmParsed
   report.file = target
@@ -534,7 +532,7 @@ async function main() {
   if (sections.length === 0) {
     err(`no encuentro secciones '## English:' ni '## Español:'`)
     printReport(filePath)
-    process.exit(1)
+    return false
   }
   report.sections = []
   const seenLangs = new Set()
@@ -596,7 +594,28 @@ async function main() {
   }
 
   printReport(filePath)
-  if (errors.length > 0) process.exit(1)
+  return errors.length === 0
+}
+
+async function main() {
+  const target = process.argv[2]
+  /* Fran 30-sep · sin arg → itera todos los .md de content/essays/.
+     Exit 1 si CUALQUIER archivo falla, 0 si todos pasan. Cada
+     archivo imprime su propio bloque separado por una regla. */
+  if (!target) {
+    const files = fs.readdirSync(CONTENT_DIR)
+      .filter(f => f.endsWith('.md') && !f.startsWith('_'))
+      .map(f => path.join(CONTENT_DIR, f))
+    let allOk = true
+    for (const f of files) {
+      const ok = await checkOne(f)
+      if (!ok) allOk = false
+      console.log('\n' + '─'.repeat(60) + '\n')
+    }
+    process.exit(allOk ? 0 : 1)
+  }
+  const ok = await checkOne(target)
+  process.exit(ok ? 0 : 1)
 }
 
 /* ═════════ Print ═════════ */

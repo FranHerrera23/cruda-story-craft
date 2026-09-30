@@ -9,9 +9,11 @@
     "build:dev": "next build",
     "start": "next start",
     "lint": "next lint",
-    "essay:check": "node scripts/essay-check.mjs",
+    "typecheck": "tsc --noEmit",
+    "essay:check": "tsc --noEmit && node scripts/essay-check.mjs",
     "essay:parity": "node scripts/essay-parity.mjs",
-    "essay:og": "node scripts/essay-og.mjs"
+    "essay:og": "node scripts/essay-og.mjs",
+    "prepush": "npm run typecheck && npm run essay:parity && node scripts/essay-check.mjs && npm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

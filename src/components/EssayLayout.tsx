@@ -449,10 +449,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
         </p>
 
         {/* F53 §7 (Fran 30-sep) · SubscribeForm · embed hosted de
-            beehiiv al final de cada ensayo. Reemplaza al CaptureForm
-            in-house (que sigue vivo en /newsletter para F0). El
-            script beehiiv se carga on-mount dentro del div. */}
-        <SubscribeForm />
+            beehiiv al final de cada ensayo. También activo en
+            /newsletter. El loader.js se inyecta vía IntersectionObserver
+            cuando la caja se acerca a 300px de la pantalla, una sola
+            vez por page-view. Ver src/components/SubscribeForm.tsx. */}
+        <SubscribeForm lang={lang} />
       </article>
     </div>
   )

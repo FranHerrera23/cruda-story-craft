@@ -39,8 +39,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 30 | `f53-essay-mold` | `6f19f33` | ✅ |
 | 31 | `f54a-newsletter-form` | `a607ffe` | ✅ |
 | 32 | `f54-thinking-newsletter` | `bd756fa` | ✅ |
+| 33 | `f54-1-featured-avif` | `90b45ed` | ✅ |
 
-`origin/main` HEAD final: `209dd99`.
+`origin/main` HEAD final: `90b45ed`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -355,6 +356,13 @@ git revert -m 1 a607ffe
 #   componentes EssayCard + EssayCover se vuelven dead code pero
 #   no se borran (safe).
 git revert -m 1 bd756fa
+
+# Rollback f54-1-featured-avif (AVIF global + featured de /thinking a next/image)
+#   Impacto: next/image vuelve a servir WebP (sin AVIF) para todo
+#   el sitio; la featured de /thinking vuelve a <img> crudo. Sin
+#   cambios visuales. El pixel-diff tool queda en scripts/ · es
+#   dev-only, no afecta build. Revert sin dependencias.
+git revert -m 1 90b45ed
 ```
 
 Después de cualquier revert:

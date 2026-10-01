@@ -33,3 +33,4 @@ tsconfig.tsbuildinfo
 # Scripts · outputs de verificación (no versionar).
 scripts/.shots
 scripts/.lh
+scripts/.evidence

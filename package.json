@@ -13,6 +13,7 @@
     "essay:check": "tsc --noEmit && node scripts/essay-check.mjs",
     "essay:parity": "node scripts/essay-parity.mjs",
     "essay:og": "node scripts/essay-og.mjs",
+    "essay:evidence": "node scripts/essay-evidence.mjs",
     "prepush": "npm run typecheck && npm run essay:parity && node scripts/essay-check.mjs && npm run build"
   },
   "dependencies": {

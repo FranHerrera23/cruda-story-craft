@@ -38,6 +38,7 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 29 | `f51-larry-holmes` | `209dd99` | ✅ |
 | 30 | `f53-essay-mold` | `6f19f33` | ✅ |
 | 31 | `f54a-newsletter-form` | `a607ffe` | ✅ |
+| 32 | `f54-thinking-newsletter` | `bd756fa` | ✅ |
 
 `origin/main` HEAD final: `209dd99`.
 
@@ -346,6 +347,14 @@ git revert -m 1 6f19f33
 #   contenedor en /newsletter y al final de los ensayos. Sin otros
 #   efectos.
 git revert -m 1 a607ffe
+
+# Rollback f54-thinking-newsletter (/thinking + /newsletter rediseño)
+#   Impacto: /thinking vuelve a la lista única columna de F50
+#   (sin imágenes + sin aside de suscripción); /newsletter vuelve
+#   al layout minimalista (eyebrow + h1 + body + form). Los
+#   componentes EssayCard + EssayCover se vuelven dead code pero
+#   no se borran (safe).
+git revert -m 1 bd756fa
 ```
 
 Después de cualquier revert:

@@ -38,7 +38,10 @@ const PUBLIC_DIR = path.join(ROOT, 'public/essays')
 const TS_ESSAYS_DIR = path.join(ROOT, 'src/content/essays')
 
 const META_MAX_CHARS = 160
-const HERO_MIN_WIDTH = 2400
+/* Fran 1-oct · bajado de 2400 a 1200. A 1440 viewport el hero
+   mide 1360 px de display (col 1/-1); 1200 cubre la mayoría de
+   pantallas sin bloquear ensayos con fuentes bajo 2400. */
+const HERO_MIN_WIDTH = 1200
 const ASPECT_TARGET = 16 / 9
 const ASPECT_TOLERANCE = 0.02 // ±2 %
 

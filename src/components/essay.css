@@ -280,11 +280,13 @@
   }
 }
 
-/* F51 §2 · hero de la pieza · 16:9, ancho de la columna del h1
-   (cols 1 / span 8), no full-bleed. 48 px arriba/abajo en desktop,
-   32 px en mobile. next/image con `priority` + `sizes` real. */
+/* F53 §4 (Fran 1-oct) · hero al ancho de la línea de la firma ·
+   grid-column 1 / -1 = borde a borde de la columna. Antes estaba
+   en cols 1/span 8 (ancho del h1); el brief pide el ancho de la
+   firma, no el del h1. 48 px arriba/abajo en desktop, 32 px en
+   mobile. next/image con `priority` + `sizes` real. */
 .essay .e-hero {
-  grid-column: 1 / span 8;
+  grid-column: 1 / -1;
   margin-top: 48px;
   margin-bottom: 48px;
   aspect-ratio: 16 / 9;

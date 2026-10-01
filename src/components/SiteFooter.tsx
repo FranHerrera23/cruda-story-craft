@@ -1,27 +1,15 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import CaptureForm from './CaptureForm'
-import { CAPTURE_ENABLED } from '@/lib/flags'
 
 /* Site-wide footer — brief v4 UX §4.10.
-   Grid-container aligned. Wordmark, capture form (backend Substack,
-   §4.8), three nav columns, legal.
+   Grid-container aligned. Wordmark, three nav columns, legal.
 
-   Client component: necesita usePathname para ocultar la capture en
-   /newsletter cuando el flag está prendido (esa ruta trae una capture
-   full arriba y una segunda en el footer duplicaría).
-
-   F0 — CAPTURE_ENABLED apagado: el slot entero (wrapper + form) no
-   renderea en ninguna ruta. Sin hueco, sin gap huérfano. */
-
-const ROUTES_WITHOUT_CAPTURE = new Set(['/newsletter'])
+   F53 §7 · Fran 30-sep · la captura de email se centraliza en
+   /newsletter y en el final de cada ensayo EN con el embed de
+   beehiiv (SubscribeForm). El footer ya no incluye un capture
+   slot propio · simplifica y evita duplicados cuando el visitante
+   está en /newsletter. */
 
 export default function SiteFooter() {
-  const pathname = usePathname()
-  const showCapture =
-    CAPTURE_ENABLED && !ROUTES_WITHOUT_CAPTURE.has(pathname)
   const year = 2026
   return (
     <footer className="site-footer">
@@ -47,12 +35,6 @@ export default function SiteFooter() {
             decoding="async"
           />
         </div>
-
-        {showCapture && (
-          <div className="site-footer__capture-slot">
-            <CaptureForm lang="en" variant="compact" />
-          </div>
-        )}
 
         {/* F23.1 v2 · tres columnas en 1440 (§2.5).
               Col 1 · Work · Services · About

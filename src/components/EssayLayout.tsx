@@ -280,11 +280,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
               alt={es.heroAlt}
               width={1600}
               height={900}
-              /* F53 §4 · el container es col 1/span 8 (66.67% de la
-                 grilla). A 1440 son ~900 px, a 1600 son ~1013 px, a
-                 1024 son ~636 px. `sizes` alineado con eso · antes
-                 pedía 800 px a 1200+ y up-scalaba a 900 en render. */
-              sizes="(max-width: 767px) 100vw, 67vw"
+              /* F53 §4 (Fran 1-oct) · hero ahora al ancho de la
+                 firma (col 1/-1 = 100% del container). A 1440 el
+                 article interior mide 1360 px (padding 40). sizes
+                 refleja eso: 100vw mobile y desktop. */
+              sizes="100vw"
               quality={90}
               priority
             />

@@ -80,7 +80,10 @@ falla si cualquier otro carácter cambia.
 ## 4 · Hero
 
 - Formato: WebP.
-- Ancho mínimo: 2400 px (`HERO_MIN_WIDTH` en `essay-check.mjs`).
+- Ancho mínimo: 1200 px (`HERO_MIN_WIDTH` en `essay-check.mjs`,
+  Fran 1-oct · bajado de 2400). A 1440 viewport el hero mide 1360
+  px de display (col 1/-1), así que 1200 cubre bien la mayoría de
+  pantallas sin bloquear ensayos con fuentes bajo el ideal retina.
 - Aspect ratio: 16:9 ±2%.
 - Vive en `public/essays/<slug>/<filename>`.
 - El `<slug>` acá es el basename del `.md`, no un slug por idioma.
@@ -182,9 +185,12 @@ Contrato:
 
 Form ID (público, no secret): `c7cb08c8-b381-4b1e-a20f-76c86ce39552`.
 
-El endpoint `/api/subscribe` ya no se usa desde el cliente. Vive
-como stub que responde 500 (rama `f53-substack-out`, mergeable
-sola antes que F53 · Substack fuera del formulario).
+El endpoint `/api/subscribe` fue eliminado (F53 §7 · Fran 1-oct ·
+Substack fuera del sitio por completo). Como el único cliente
+que le pegaba era el CaptureForm legacy, también se borraron
+`src/components/CaptureForm.tsx` y `src/lib/flags.ts`
+(CAPTURE_ENABLED). Si en el futuro aparece una captura server-side,
+se crea un endpoint nuevo con su proveedor.
 
 ## 7 · Guard-rails de push (Fran 30-sep)
 

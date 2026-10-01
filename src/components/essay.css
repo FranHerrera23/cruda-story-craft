@@ -72,6 +72,28 @@
   .essay article { max-width: 1600px; padding-inline: 40px; }
 }
 
+/* F54a (Fran 1-oct) · SubscribeForm al final de los ensayos EN ·
+   alineado al borde izquierdo del body (col 4/span 6), max-width
+   560 justo-start · bajo la línea newsletter con 24 px arriba. En
+   mobile es full-width (grid-column 1/-1) como el resto del
+   contenido. */
+.essay .e-subscribe {
+  grid-column: 4 / span 6;
+  max-width: 560px;
+  width: 100%;
+  justify-self: start;
+  margin-top: 24px;
+  margin-bottom: 48px;
+}
+@media (max-width: 767px) {
+  .essay .e-subscribe {
+    grid-column: 1 / -1;
+    margin-top: 20px;
+    margin-bottom: 32px;
+    max-width: none;
+  }
+}
+
 /* Hero — §4.2 */
 .essay .e-head {
   grid-column: 1 / -1;

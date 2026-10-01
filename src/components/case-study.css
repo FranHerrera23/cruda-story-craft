@@ -286,6 +286,18 @@
   border: none;
 }
 
+/* F54a (Fran 1-oct) · SubscribeForm en /newsletter · alineado al
+   borde izquierdo del texto (mismo edge que la intro), max-width
+   560, 32 px debajo del párrafo de intro. El flex-gap del
+   .newsletter-inner es 24 px (var(--space-3)); con margin-top: 8
+   el total arriba del form queda 24 + 8 = 32 px. */
+.newsletter-inner .e-subscribe {
+  max-width: 560px;
+  width: 100%;
+  margin-top: 8px;
+  align-self: flex-start;
+}
+
 /* ==================================================================
    Capture form — brief v4 UX §4.8
    ================================================================== */

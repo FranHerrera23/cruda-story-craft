@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import EssayProgressBar from './EssayProgressBar'
-import CaptureForm from './CaptureForm'
-import { CAPTURE_ENABLED } from '@/lib/flags'
+import SubscribeForm from './SubscribeForm'
 import './essay.css'
 
 /* ------------------------------------------------------------------
@@ -29,13 +28,20 @@ import './essay.css'
 
 export type EssayBlock =
   | { type: 'p'; text?: string; html?: string; lead?: boolean }
-  | { type: 'quote'; text: string; attribution?: string }
+  /* F53 §4 (Fran 30-sep) · quote acepta `html` para preservar
+     bold/em dentro del texto (mismo tratamiento que pull). El
+     migrator emite `>> texto con *em*` y el parser lo devuelve
+     con html para no perder markup inline. */
+  | { type: 'quote'; text: string; attribution?: string; html?: string }
   | { type: 'pull'; text?: string; html?: string }
   /* B5 — h2 puede abrir con una imagen. Si no viene, la sección
      renderea sin imagen y sin hueco. */
   | { type: 'h2'; text: string; image?: { src: string; alt: string } }
   | { type: 'h3'; text: string }
   | { type: 'checklist'; items: string[] }
+  /* F53 · Fran 30-sep · lista numerada del .md (`1. …`).
+     Items pueden traer html inline (bold/em/links). */
+  | { type: 'ol'; items: string[] }
   /* Brief v15 T4 — firma final del ensayo (reemplaza la línea del
      newsletter que prometía algo que no existe). Mono, mayúsculas,
      --fs-meta, --ink-2. No es un CTA, es firma. */
@@ -64,7 +70,16 @@ export type Essay = {
   deck?: string
   publishedAt: string
   updatedAt: string
+  /* F53 · dos campos separados (Fran 29-sep):
+     · answerCapsule (capsule_en/es en el .md) · bloque AEO largo
+       que se renderiza on-page bajo --cream. Sin límite de chars.
+     · metaDescription (meta_en/es en el .md) · ≤ 160 chars, va al
+       <meta description> y a og:description. Obligatoria en los
+       ensayos migrados a .md. Los ensayos .ts legacy todavía no
+       la tienen y caen por fallback a `answerCapsule.slice(0, 160)`
+       hasta que se migren. */
   answerCapsule: string
+  metaDescription?: string
   category: string
   tags?: string[]
   contentType?: 'Essay' | 'Conversation'
@@ -76,6 +91,12 @@ export type Essay = {
   heroImage?: string
   heroAlt?: string
   heroCredit?: string
+  /* F53 §8 · og.jpg 1200×630 pre-generada por
+     `scripts/essay-og.mjs`. Si existe en disco al momento de
+     cargar el ensayo, el loader la expone acá y el metadata la
+     usa como og:image/twitter:image. Si no, fallback a
+     `heroImage` (WebP) o `logo.png`. */
+  ogImage?: string
   body: EssayBlock[]
   faqs?: Faq[]
   language?: EssayLanguage
@@ -259,7 +280,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
               alt={es.heroAlt}
               width={1600}
               height={900}
-              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 65vw, 800px"
+              /* F53 §4 (Fran 1-oct) · hero ahora al ancho de la
+                 firma (col 1/-1 = 100% del container). A 1440 el
+                 article interior mide 1360 px (padding 40). sizes
+                 refleja eso: 100vw mobile y desktop. */
+              sizes="100vw"
               quality={90}
               priority
             />
@@ -349,6 +374,17 @@ export default function EssayLayout({ es }: { es: Essay }) {
                 </ul>
               )
             }
+            if (block.type === 'ol') {
+              /* F53 · Fran 30-sep · <ol> nativo. Contadores del
+                 navegador; items con bold/em/links inline. */
+              return (
+                <ol key={i} className="e-ol">
+                  {block.items.map((item, j) => (
+                    <li key={j} dangerouslySetInnerHTML={{ __html: item }} />
+                  ))}
+                </ol>
+              )
+            }
             if (block.type === 'signature') {
               return (
                 <p key={i} className="e-signature">
@@ -368,10 +404,14 @@ export default function EssayLayout({ es }: { es: Essay }) {
                 />
               )
             }
-            // quote — attributed
+            // quote — attributed (or `>>` sin atribución)
             return (
               <div key={i} className="e-quote">
-                <p>{block.text}</p>
+                {block.html ? (
+                  <p dangerouslySetInnerHTML={{ __html: block.html }} />
+                ) : (
+                  <p>{block.text}</p>
+                )}
                 {block.attribution && <cite>{block.attribution}</cite>}
               </div>
             )
@@ -422,12 +462,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </Link>
         </p>
 
-        {/* B5.6 — captura al final del cierre. Mecanismo de continuidad
-            del sitio; reemplaza al grid de related (que se eliminó).
-            F0 — gateado por CAPTURE_ENABLED. Si el flag está apagado el
-            wrapper tampoco renderea: el cierre queda body → sources →
-            faq → línea CTA → SiteFooter, sin hueco. */}
-        {CAPTURE_ENABLED && <CaptureForm lang={lang} variant="full" />}
+        {/* F53 §7 (Fran 30-sep · ajuste posterior) · SubscribeForm
+            solo en ensayos EN. En ES no se renderiza: la línea de
+            newsletter del .md se mantiene como itálica con link a
+            /newsletter (buildNewsletterBlock del parser). */}
+        {lang === 'en' && <SubscribeForm />}
       </article>
     </div>
   )

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# F53 · pre-push · Fran 30-sep · "build limpio" = preview Vercel verde.
+# Corre antes de cada push:
+#   1. tsc --noEmit         · atrapa errores TS que next dev no ve
+#   2. essay:parity          · paridad AST del corpus migrado
+#   3. essay:check           · frontmatter + hero + markup por ensayo
+#   4. next build            · el arbitro final antes de Vercel
+# Salida no cero → cancela el push.
+#
+# Activación (una vez, por dev): `git config core.hooksPath .githooks`
+# Bypass emergencia:             `git push --no-verify` (evitar).
+
+set -e
+cd "$(git rev-parse --show-toplevel)"
+echo "→ pre-push · npm run prepush"
+npm run prepush

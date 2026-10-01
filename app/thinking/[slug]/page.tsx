@@ -37,25 +37,33 @@ export async function generateMetadata(
   if (Object.keys(languages).length > 0) {
     alternates.languages = languages
   }
+  /* F53 §8 · og:image · preferimos og.jpg 1200×630 pre-generada
+     (compatible con todos los crawlers) sobre el WebP raw. Fallback
+     al logo si el ensayo no tiene hero. */
+  const ogImage = es.ogImage
+    ? `${BASE}${es.ogImage}`
+    : es.heroImage
+      ? `${BASE}${es.heroImage}`
+      : `${BASE}/logo.png`
   return {
     title: `${headTitle} | CRUDA`,
-    description: es.answerCapsule.slice(0, 200),
+    description: es.metaDescription || es.answerCapsule.slice(0, 160),
     alternates,
     openGraph: {
       title: headTitle,
-      description: es.answerCapsule,
+      description: es.metaDescription || es.answerCapsule.slice(0, 160),
       url: `${BASE}/thinking/${es.slug}`,
       type: 'article',
       publishedTime: es.publishedAt,
       modifiedTime: modified,
       locale,
-      images: [es.heroImage ? `${BASE}${es.heroImage}` : `${BASE}/logo.png`],
+      images: [ogImage],
     },
     twitter: {
       card: 'summary_large_image',
       title: headTitle,
-      description: es.answerCapsule.slice(0, 200),
-      images: [es.heroImage ? `${BASE}${es.heroImage}` : `${BASE}/logo.png`],
+      description: es.metaDescription || es.answerCapsule.slice(0, 160),
+      images: [ogImage],
     },
   }
 }

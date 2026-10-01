@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
 import { allClientsV2 } from '@/content/clients-v2';
 import { allEssays } from '@/content/essays';
-import { CAPTURE_ENABLED } from '@/lib/flags';
 import { MOMENTS } from '@/content/moments';
 
 const BASE = 'https://www.thecruda.com';
@@ -10,7 +9,9 @@ const BASE = 'https://www.thecruda.com';
 /* Brief v2 Task 9 — sitemap contiene SOLO URLs canónicas.
    Sin redirects, sin /sports (410), sin /systems (410),
    sin /architecture-design (301 → /work), sin /resources/* (301).
-   /newsletter queda fuera mientras CAPTURE_ENABLED=false (F0).
+   /newsletter entra al sitemap · F53 §7 (Fran 1-oct) · ya rendea
+   contenido real con el embed de beehiiv (SubscribeForm), antes
+   degradaba a solo-H1 con CAPTURE_ENABLED=false y recibía noindex.
 
    Task 8 — cada moment se emite como su propio índice /work/{moment}.
 
@@ -101,15 +102,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
        fuera del sitemap desde A.2.1 y noindex a nivel meta · con
        el retiro del componente entero la nota queda como registro
        histórico. */
-    // Newsletter — F0 flag: sale del sitemap mientras esté apagado.
-    ...(CAPTURE_ENABLED
-      ? [{
-          url: `${BASE}/newsletter`,
-          lastModified: new Date(),
-          changeFrequency: 'monthly' as const,
-          priority: 0.5,
-        }]
-      : []),
+    // Newsletter — F53 §7 (Fran 1-oct) · entra al sitemap · ya
+    // rendea el embed de beehiiv como contenido real.
+    {
+      url: `${BASE}/newsletter`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.5,
+    },
     /* Fuera del sitemap deliberadamente:
        - /sports, /systems (410, retiradas)
        - /architecture-design/* (301 → /work | /about)

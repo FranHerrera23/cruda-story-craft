@@ -1,25 +1,20 @@
 import type { Essay } from '@/components/EssayLayout'
-import { buscaATuLarryHolmes } from './busca-a-tu-larry-holmes'
-import { elOcho } from './el-ocho'
-import { findYourLarryHolmes } from './find-your-larry-holmes'
-import { founderWorth70Million } from './founder-worth-70-million'
-import { narradoresPeligrosos } from './narradores-peligrosos'
-import { siglasParaNoDecirGente } from './siglas-para-no-decir-gente'
-import { tercerLugar } from './tercer-lugar'
-import { thirdPlace } from './third-place'
-import { whyYouCantWriteYourOwnWebsite } from './why-you-cant-write-your-own-website'
+import { loadAllEssays } from '@/lib/essay-mold/parse'
+
+/* F53 · molde de ensayo · combinación de ensayos migrados a `.md`
+   + los `.ts` legacy que todavía no se migraron.
+   Larry Holmes es el primero migrado · vive en
+   `content/essays/larry-holmes.md`. Los demás se migran a `.md`
+   en fases siguientes de F53 sin cambiar copy. */
+
+const MD_ESSAYS: Essay[] = loadAllEssays().map(l => l.data)
+
+const LEGACY_TS_ESSAYS: Essay[] = [
+]
 
 // Newest first. Bilingual pairs (ES + EN) are listed as separate
 // entries — they are distinct URLs. The alternates field on each
 // links them via hreflang.
-export const allEssays: Essay[] = [
-  findYourLarryHolmes,
-  buscaATuLarryHolmes,
-  whyYouCantWriteYourOwnWebsite,
-  tercerLugar,
-  thirdPlace,
-  siglasParaNoDecirGente,
-  narradoresPeligrosos,
-  elOcho,
-  founderWorth70Million,
-]
+export const allEssays: Essay[] = [...MD_ESSAYS, ...LEGACY_TS_ESSAYS].sort(
+  (a, b) => (b.publishedAt || '').localeCompare(a.publishedAt || ''),
+)

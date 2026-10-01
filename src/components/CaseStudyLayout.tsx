@@ -1,8 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import './case-study.css'
-import CaptureForm from './CaptureForm'
-import { CAPTURE_ENABLED } from '@/lib/flags'
+import SubscribeForm from './SubscribeForm'
 import { MOMENT_LABEL, type Moment } from '@/content/moments'
 
 /* ------------------------------------------------------------------
@@ -312,12 +311,10 @@ export default function CaseStudyLayout({ cs }: { cs: CaseStudy }) {
         </Link>
       </p>
 
-      {/* B5.6 — captura al cierre. Reemplaza al grid de RelatedResources
-          que se eliminó. Continuidad = newsletter.
-          F0 — gateado por CAPTURE_ENABLED. Si el flag está apagado
-          el cierre queda sections → testimonial → faq → línea CTA →
-          SiteFooter, sin hueco. */}
-      {CAPTURE_ENABLED && <CaptureForm lang="en" variant="full" />}
+      {/* F53 §7 (Fran 30-sep) · SubscribeForm (embed hosted de
+          beehiiv, EN only) al cierre. Reemplaza al CaptureForm
+          in-house de F0. Mismo mecanismo que los ensayos EN. */}
+      <SubscribeForm />
     </article>
   )
 }

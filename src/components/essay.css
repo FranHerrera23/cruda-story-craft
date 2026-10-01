@@ -77,14 +77,15 @@
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: subgrid;
-  padding-top: 120px;   /* mobile */
+  padding-top: 96px;    /* mobile · gap Nav → ← Thinking */
   padding-bottom: 96px;
 }
 @media (min-width: 768px) {
-  /* Brief 14-sep · el 244px de --space-8 sale. Se reemplaza por
-     --s5 (clamp 100–180) del sistema; subir el token con regresión
-     full-site queda como fase propia. */
-  .essay .e-head { padding-top: var(--s5); }
+  /* F53 §4 (Fran 30-sep) · gap Nav → ← Thinking pasa a un clamp
+     ajustado (80-112 px). Antes usaba --s5 (100-180) heredado del
+     hero de home, que dejaba 149 px entre nav y back link · demasiado
+     aire para un artículo. */
+  .essay .e-head { padding-top: clamp(80px, 8vw, 112px); }
 }
 
 /* F50 §5 · back link · 15 px sans sentence case, gris. Mismo
@@ -137,6 +138,11 @@
   line-height: 1.08;
   letter-spacing: -0.02em;
   margin-bottom: 0;
+  /* F53 §4 · text-wrap: balance para que un h1 de 2 líneas quede
+     equilibrado (líneas de largo parecido) en vez de dejar la
+     segunda línea colgando con una o dos palabras. Fallback: los
+     navegadores viejos ignoran la prop y se comportan como antes. */
+  text-wrap: balance;
 }
 @media (max-width: 767px) {
   .essay h1 { grid-column: 1 / -1; }
@@ -178,11 +184,25 @@
 .essay .e-by > *:first-child { /* foto */
   grid-column: 1 / span 1;
 }
+/* F53 §4 (Fran 30-sep) · byline en una línea (desktop) · foto |
+   nombre · rol | reading time. Antes name+role apilaban en 2 líneas
+   dentro del div (flex-direction: column). Ahora el div va en fila
+   con un middot separator; reading time se queda en su columna
+   derecha. Mobile mantiene el stack. */
 .essay .e-by > div:nth-of-type(1) { /* name/role */
   grid-column: 2 / span 5;
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 12px;
+}
+@media (max-width: 767px) {
+  .essay .e-by > div:nth-of-type(1) {
+    grid-column: 2 / -1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
 }
 .essay .e-av {
   width: 48px;
@@ -192,22 +212,31 @@
   filter: grayscale(1);
 }
 .essay .e-name {
-  display: block;
+  display: inline-block;
   font-weight: 600;
   font-size: var(--text-body);
   color: var(--ink);
 }
 /* F50.1 · rol de la firma · 15 px sans sentence case gris, mismo
    tratamiento que la meta del ensayo (F50 §5). Antes venía en
-   IBM Plex Mono uppercase con letter-spacing 0.12em. */
+   IBM Plex Mono uppercase con letter-spacing 0.12em.
+   F53 §4 · middot separador antes del rol (sólo desktop, en línea). */
 .essay .e-role {
-  display: block;
+  display: inline-block;
   font-family: var(--grot);
   font-size: 15px;
   font-weight: 400;
   letter-spacing: 0;
   text-transform: none;
   color: var(--grey, #6E6B65);
+  position: relative;
+}
+@media (min-width: 768px) {
+  .essay .e-role::before {
+    content: "·";
+    margin-right: 12px;
+    color: var(--grey, #6E6B65);
+  }
 }
 /* B5.3 — reading time en la byline.
    F50 §5 · 15 px sans sentence case, gris. Mismo tratamiento que
@@ -225,7 +254,6 @@
   align-self: center;
 }
 @media (max-width: 767px) {
-  .essay .e-by > div:nth-of-type(1) { grid-column: 2 / -1; }
   .essay .e-reading { grid-column: 1 / -1; text-align: left; margin-top: 12px; }
 }
 
@@ -252,11 +280,13 @@
   }
 }
 
-/* F51 §2 · hero de la pieza · 16:9, ancho de la columna del h1
-   (cols 1 / span 8), no full-bleed. 48 px arriba/abajo en desktop,
-   32 px en mobile. next/image con `priority` + `sizes` real. */
+/* F53 §4 (Fran 1-oct) · hero al ancho de la línea de la firma ·
+   grid-column 1 / -1 = borde a borde de la columna. Antes estaba
+   en cols 1/span 8 (ancho del h1); el brief pide el ancho de la
+   firma, no el del h1. 48 px arriba/abajo en desktop, 32 px en
+   mobile. next/image con `priority` + `sizes` real. */
 .essay .e-hero {
-  grid-column: 1 / span 8;
+  grid-column: 1 / -1;
   margin-top: 48px;
   margin-bottom: 48px;
   aspect-ratio: 16 / 9;
@@ -478,6 +508,31 @@
   font-weight: 700;
   color: var(--ink);
 }
+
+/* F53 · Fran 30-sep · <ol> nativo del molde para listas numeradas
+   `1. ...` del .md. Contadores del navegador (decimal), sangría
+   liviana, mismo tamaño de texto que el body. */
+.essay .e-body .e-ol {
+  list-style: decimal outside;
+  margin: 0 0 28px;
+  padding-left: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--ink);
+}
+.essay .e-body .e-ol li {
+  padding-left: 8px;
+}
+.essay .e-body .e-ol li::marker {
+  color: var(--ink-2, #6E6B65);
+  font-variant-numeric: tabular-nums;
+}
+.essay .e-body .e-ol strong { font-weight: 700; color: var(--ink); }
+/* Los links dentro del <ol> heredan el sweep underline
+   de `.essay .e-body a` sin declararlo acá. */
 
 /* Pull quote — brief v4 UX §4.3 breakout.
    Antes usaba border-left en --accent naranja; ahora --color-rule

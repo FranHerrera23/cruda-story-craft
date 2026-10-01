@@ -1,245 +1,293 @@
-/* /thinking · F50 · 28-sep · rediseño de la lista.
+/* /thinking · F54 · 1-oct · Fran · rediseño con imágenes + sidebar.
 
-   Referencia: tetragrammaton.com/articles. Una sola columna,
-   filetes 1 px negro, título, meta line, dek opcional.
+   Estructura:
+     - .t-hero     · grid 12 cols, h1/intro/toggle (izq) + aside (der)
+     - .t-featured · destacada, imagen cols 1-7 + texto cols 8-12
+     - .t-grid     · 3 columnas de tarjetas
+     - .t-close    · "Case studies live in Work"
 
-   Los tokens de sistema (paper, ink, orange, grot) no cambian. */
+   Reglas del brief F54 §0:
+   - Tipografía del sitio (var(--font-archivo), var(--grot))
+   - Colores: #000 / #6B6B6B / #5C5C5C / #E6E6E6 / naranja / crema
+   - Grid 12 cols, column-gap 24, mismos márgenes que /services
+   - Nada sticky · ningún motion salvo subrayado hover de títulos
+   ================================================================== */
 
 .thinking {
-  background: var(--paper, #F1EFEB);
-  color: var(--ink, #0D0D0D);
+  background: #fff;
+  color: #000;
 }
 
-/* ============ 01 · OPENER ============
-   Cols 1–9 del grid, alineado a la izquierda. Sin kicker (repetía h1).
-   La regla naranja es la del sistema (--hero). */
-.thinking-open {
-  padding: clamp(110px, 16vh, 170px) var(--gap, clamp(20px, 4.5vw, 72px)) 0;
-  max-width: 1200px;
-}
-.thinking-open__h {
-  font-family: var(--grot);
-  font-size: clamp(26px, 3.6vw, 48px);
-  font-weight: 600;
-  letter-spacing: -.045em;
-  line-height: .95;
-  margin: 0;
-  color: var(--ink, #0D0D0D);
-}
-.thinking-open__lede {
-  font-family: var(--grot);
-  font-size: clamp(16px, 1.6vw, 22px);
-  line-height: 1.42;
-  letter-spacing: -.015em;
-  max-width: 60ch;
-  margin: clamp(20px, 3vh, 40px) 0 0;
-  color: var(--ink, #0D0D0D);
-}
-
-.thinking-rule {
-  height: 2px;
+/* ──────── Contenedor base de los bloques ────────
+   Grid 12 cols en 1024+, 1 col en mobile. Padding horizontal igual
+   al del .grid-container del sitio (brief §0). */
+.thinking > section,
+.thinking > .t-close {
   width: 100%;
-  max-width: 560px;
+  padding-inline: 24px;
+  margin-inline: auto;
+  max-width: 1600px;
+}
+@media (min-width: 768px) {
+  .thinking > section,
+  .thinking > .t-close { padding-inline: 20px; }
+}
+@media (min-width: 1024px) {
+  .thinking > section,
+  .thinking > .t-close { padding-inline: 40px; }
+}
+
+/* ============ Hero (brief §1.1) ============ */
+.t-hero {
+  padding-top: 72px;
+  padding-bottom: 56px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+}
+@media (min-width: 1024px) {
+  .t-hero {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 0;
+    align-items: end;
+  }
+  .t-hero__left { grid-column: 1 / span 7; }
+  .t-hero__sub  { grid-column: 9 / span 4; }
+}
+
+.t-hero__h {
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 56px;
+  line-height: 1.0;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #000;
+  margin: 0;
+}
+.t-hero__rule {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  width: 100%;
+  height: 2px;
   background: var(--orange, #FF5A00);
 }
-.thinking-rule--hero {
-  margin-top: 24px;
+.t-hero__intro {
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 20px;
+  line-height: 1.45;
+  color: #000;
+  margin: 0;
+  max-width: 32em;
 }
 
-/* 01b · Toggle idioma · 32 px debajo del lede.
-   Activo en ink · inactivo en gris. Subrayado sólo en hover. */
-.thinking-lang {
+/* Toggle idioma · 28 px debajo del intro. Activo #000/500, inactivo
+   #6B6B6B. Sin subrayado ni naranja (brief §1.1). */
+.t-hero__lang {
   display: flex;
   gap: 24px;
-  margin-top: 32px;
-  font-family: var(--grot);
+  margin-top: 28px;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
   font-size: 15px;
-  font-weight: 500;
-  line-height: 1;
 }
-.thinking-lang__opt {
-  color: var(--grey, #6E6B65);
+.t-hero__lang-opt {
+  color: #6B6B6B;
   text-decoration: none;
-  padding: 8px 0;
+  font-weight: 400;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
+  padding: 0 12px;
 }
-.thinking-lang__opt.is-active {
-  color: var(--ink, #0D0D0D);
+.t-hero__lang-opt.is-active { color: #000; font-weight: 500; }
+@media (min-width: 1024px) {
+  .t-hero__lang-opt { min-height: 24px; padding: 0; }
 }
 @media (hover: hover) {
-  .thinking-lang__opt:hover {
+  .t-hero__lang-opt:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-thickness: 1px;
   }
 }
 
-/* ============ 02 · LISTA ============
-   Una columna. Filete 1 px #000 arriba de la primera fila y debajo
-   de cada fila. Fila 48 px de padding vertical en desktop, 32 px en
-   mobile. Toda la fila clickeable via un ::after sobre el link
-   principal (`.thinking-row__link`). Los links secundarios (Also
-   in …) suben por z-index para no quedar tapados por el ::after. */
-
-/* F50.1 · gap toggle → primer filete = 48 px desktop.
-   Antes venía de clamp(56, 9vh, 96) que en 1440 alto 900 daba
-   ~81 px, con el toggle 32 px arriba sumaba ~113 px de aire. */
-.thinking-list {
-  padding: 48px var(--gap, clamp(20px, 4.5vw, 72px)) clamp(80px, 12vh, 140px);
-  max-width: 1200px;
+/* Aside de suscripción (solo EN · brief §1.1). */
+.t-hero__sub {
+  border-top: 2px solid #000;
+  padding-top: 20px;
 }
-
-.thinking-row {
-  position: relative;
-  padding: 48px 0;
-  border-top: 1px solid var(--ink, #0D0D0D);
-}
-.thinking-row + .thinking-row { border-top-color: var(--ink, #0D0D0D); }
-.thinking-row:last-of-type { border-bottom: 1px solid var(--ink, #0D0D0D); }
-
-/* Título · el peso más liviano que ya carga la familia (500). No
-   se agrega peso nuevo. text-wrap balance evita viudas.
-   F50.1 · sale el max-width 22em · en la columna de 1070 px del
-   grid nuevo, 22em (~700 px) cortaba muchos títulos a mitad de
-   línea. Ahora ocupa el ancho de la columna y balance decide
-   dónde partir. */
-.thinking-row__t {
-  font-family: var(--grot);
-  font-size: 32px;
-  font-weight: 500;
-  letter-spacing: -.02em;
-  line-height: 1.15;
+.t-hero__sub-h {
   margin: 0;
-  max-width: 100%;
-  text-wrap: balance;
-  color: var(--ink, #0D0D0D);
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: #000;
 }
-.thinking-row__t a {
-  color: inherit;
-  text-decoration: none;
-}
-/* El ::after cubre la fila entera para que sea clickeable. */
-.thinking-row__link {
-  position: static;
-}
-.thinking-row__link::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-@media (hover: hover) {
-  .thinking-row__t a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-thickness: 1px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .thinking-row__t a { transition: none; }
-}
-
-/* Meta · 15px sentence case gris. Puede incluir "Also in …" al
-   final, separado por · . */
-.thinking-row__meta {
-  font-family: var(--grot);
+.t-hero__sub-line {
+  margin: 6px 0 16px;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
   font-size: 15px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: 0;
-  color: var(--grey, #6E6B65);
-  margin: 8px 0 0;
+  line-height: 1.45;
+  color: #5C5C5C;
 }
-/* F50.1 · nowrap · en mobile la flecha "→" caía sola en la
-   línea siguiente. */
-.thinking-row__also {
-  position: relative;
-  z-index: 2;
-  color: inherit;
-  text-decoration: none;
-  white-space: nowrap;
-}
-@media (hover: hover) {
-  .thinking-row__also:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-}
-
-/* Dek · 18 px gris.
-   F50.1 · sale el line-clamp · algunos deks (siglas, narradores)
-   quedaban cortados a mitad de palabra ("un problema d…"). Ahora
-   se muestra completo. */
-.thinking-row__dek {
-  font-family: var(--grot);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -.005em;
-  color: var(--grey, #6E6B65);
-  margin: 12px 0 0;
-  max-width: 60ch;
-}
-
-/* Upcoming (podcast) · el título va en gris para diferenciarlo. */
-.thinking-row--upcoming .thinking-row__t {
-  color: var(--grey, #6E6B65);
-}
-
-/* Case studies · link inferior. */
-.thinking-list__cases {
-  display: inline-block;
-  font-family: var(--grot);
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--ink, #0D0D0D);
-  text-decoration: none;
-  margin-top: clamp(48px, 8vh, 96px);
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 2px;
-}
-@media (hover: hover) {
-  .thinking-list__cases:hover {
-    color: var(--orange, #FF5A00);
-    border-bottom-color: var(--orange, #FF5A00);
-  }
-}
-
-/* ============ MOBILE (≤ 767 px) ============ */
 
 @media (max-width: 767px) {
-  .thinking-open {
-    padding: clamp(80px, 12vh, 120px) var(--gap, 20px) 0;
+  .t-hero {
+    padding-top: 40px;
+    padding-bottom: 32px;
+    padding-inline: 24px;
+    gap: 32px;
   }
-  /* F50.1 · 32 px mobile (era clamp 40-64). */
-  .thinking-list {
-    padding: 32px var(--gap, 20px) clamp(56px, 9vh, 96px);
+  .t-hero__h { font-size: 40px; }
+  .t-hero__rule { margin-top: 18px; margin-bottom: 18px; }
+  .t-hero__intro { font-size: 17px; line-height: 1.55; }
+  .t-hero__sub { border-top-width: 2px; padding-top: 16px; margin-top: 20px; }
+  .t-hero__sub-h { font-size: 18px; }
+  .t-hero__sub-line { font-size: 15px; line-height: 1.5; margin: 8px 0 16px; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .t-hero__sub { max-width: 480px; }
+}
+
+/* ============ Destacada (brief §1.2) ============
+   Un solo link al ensayo · imagen cols 1-7, texto cols 8-12. */
+.t-featured {
+  border-top: 1px solid #000;
+  padding-top: 40px;
+  padding-bottom: 56px;
+}
+.t-featured__link {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  text-decoration: none;
+  color: inherit;
+}
+@media (min-width: 1024px) {
+  .t-featured__link {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    align-items: center;
   }
-  .thinking-row {
-    padding: 32px 0;
+  .t-featured__media { grid-column: 1 / span 7; }
+  .t-featured__text  {
+    grid-column: 8 / span 5;
+    padding-left: 16px;
   }
-  .thinking-row__t {
-    font-size: 26px;
+}
+.t-featured__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000;
+}
+.t-featured__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.t-featured__cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  padding: 22px;
+  display: flex;
+  align-items: flex-end;
+}
+.t-featured__meta {
+  margin: 0;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6B6B6B;
+}
+.t-featured__h {
+  margin: 10px 0 0;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 30px;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: #000;
+  text-wrap: balance;
+}
+.t-featured__dek {
+  margin: 14px 0 0;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #5C5C5C;
+}
+@media (hover: hover) {
+  .t-featured__link:hover .t-featured__h {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
   }
-  .thinking-row__meta {
-    font-size: 14px;
+}
+@media (max-width: 767px) {
+  .t-featured__media { width: 90%; }
+  .t-featured__meta { margin-top: 18px; font-size: 14px; }
+  .t-featured__h { font-size: 22px; line-height: 1.25; margin-top: 10px; }
+  .t-featured__dek { font-size: 15px; line-height: 1.55; margin-top: 12px; }
+}
+
+/* ============ Grilla · tarjetas (brief §1.3) ============ */
+.t-grid {
+  border-top: 1px solid #E6E6E6;
+  padding-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: 32px;
+  row-gap: 56px;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .t-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+  .t-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .t-grid {
+    border-top: 1px solid #000;
+    padding-top: 28px;
+    row-gap: 56px;
   }
-  .thinking-row__dek {
-    font-size: 16px;
-    -webkit-line-clamp: 3;
+  .t-grid .e-card__media { width: 90%; }
+}
+
+/* ============ Cierre (brief §1.4) ============ */
+.t-close {
+  margin-top: 72px;
+  margin-bottom: 96px;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+}
+.t-close a {
+  color: #000;
+  text-decoration: none;
+}
+@media (hover: hover) {
+  .t-close a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+}
+@media (max-width: 767px) {
+  .t-close {
+    margin-top: 48px;
+    margin-bottom: 64px;
   }
 }
 
-/* ============ Reduced motion ============ */
+/* prefers-reduced-motion · sin transición en subrayado. */
 @media (prefers-reduced-motion: reduce) {
-  .thinking-list__cases {
-    transition: none;
-  }
-}
-
-/* ============ End cap para el footer ============ */
-.thinking-end {
-  height: 0;
+  .t-hero__lang-opt,
+  .t-featured__link,
+  .t-close a { transition: none !important; }
 }

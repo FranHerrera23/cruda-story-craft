@@ -1,6 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    /* F54.1 (Fran 1-oct) · AVIF global (con fallback WebP) para
+       todas las imágenes servidas por next/image en el sitio.
+       Reduce ~30-50% el peso respecto a WebP · próximo navegador
+       sin AVIF cae a WebP automáticamente. Nota: F52 §2.1 traía
+       esta configuración pero F52 nunca mergeó, así que entra
+       acá con F54.1. */
+    formats: ['image/avif', 'image/webp'],
     remotePatterns: [
       {
         protocol: 'https',

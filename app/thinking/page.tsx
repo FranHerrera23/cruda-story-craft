@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { allEssays } from '@/content/essays'
 import { collectionPageSchema } from '@/lib/collection-schema'
@@ -304,12 +305,16 @@ export default async function ThinkingPage({
           <Link href={featured.href} className="t-featured__link">
             <div className="t-featured__media">
               {featured.heroImage && featured.heroAlt ? (
-                <img
+                /* F54.1 (Fran 1-oct) · next/image con priority para
+                   LCP · formatos AVIF/WebP vía next.config.mjs
+                   formats · sizes del brief §3. */
+                <Image
                   src={featured.heroImage}
                   alt={featured.heroAlt}
+                  width={1600}
+                  height={900}
                   sizes={SIZES_FEATURED}
-                  loading="eager"
-                  fetchPriority="high"
+                  priority
                   className="t-featured__img"
                 />
               ) : (

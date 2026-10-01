@@ -37,6 +37,7 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 28 | `f50-1-fixes` | `293b2c7` | ✅ |
 | 29 | `f51-larry-holmes` | `209dd99` | ✅ |
 | 30 | `f53-essay-mold` | `6f19f33` | ✅ |
+| 31 | `f54a-newsletter-form` | `a607ffe` | ✅ |
 
 `origin/main` HEAD final: `209dd99`.
 
@@ -339,6 +340,12 @@ git revert -m 1 af57897
 #   El revert NO borra los .md ni los heroes · habrá que limpiarlos
 #   a mano si querés quitar el corpus también.
 git revert -m 1 6f19f33
+
+# Rollback f54a-newsletter-form (SubscribeForm max-width 560 izq)
+#   Impacto: la caja de beehiiv vuelve a estirarse al ancho del
+#   contenedor en /newsletter y al final de los ensayos. Sin otros
+#   efectos.
+git revert -m 1 a607ffe
 ```
 
 Después de cualquier revert:

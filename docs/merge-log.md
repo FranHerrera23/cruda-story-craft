@@ -36,6 +36,7 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 27 | `f50-thinking` | `29550a5` | ✅ |
 | 28 | `f50-1-fixes` | `293b2c7` | ✅ |
 | 29 | `f51-larry-holmes` | `209dd99` | ✅ |
+| 30 | `f53-essay-mold` | `6f19f33` | ✅ |
 
 `origin/main` HEAD final: `209dd99`.
 
@@ -330,6 +331,14 @@ git revert -m 1 955ef90
 
 # Rollback f48-mobile (política motion mobile + tap targets 44×44)
 git revert -m 1 af57897
+
+# Rollback f53-essay-mold (molde .md + SubscribeForm + Substack out)
+#   Impacto: vuelve a los ensayos .ts legacy, vuelve CaptureForm +
+#   /api/subscribe, apaga el embed beehiiv. CAPTURE_ENABLED queda
+#   false, así que la captura vuelve a estar efectivamente apagada.
+#   El revert NO borra los .md ni los heroes · habrá que limpiarlos
+#   a mano si querés quitar el corpus también.
+git revert -m 1 6f19f33
 ```
 
 Después de cualquier revert:

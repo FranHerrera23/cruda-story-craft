@@ -1,0 +1,131 @@
+/* F54 §1.3 + §3 · Tarjeta de ensayo + Portada tipográfica.
+   Compartido entre /thinking (grilla) y /newsletter (recent pieces).
+
+   Reglas (brief §0):
+   - tipografía del sitio (sans por default + grot para títulos)
+   - tokens de color del sistema donde apliquen
+   - sin motion salvo subrayado hover del título (1px, offset 4px, 150ms)
+   - prefers-reduced-motion desactiva el subrayado
+   ================================================================== */
+
+/* ============ Portada tipográfica ============
+   Fondo #000, raya naranja arriba-izquierda (40 × 2), título crema
+   abajo-izquierda. Aspect 16:9 para encajar donde iría una imagen. */
+.essay-cover {
+  position: relative;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  padding: 22px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+@media (max-width: 767px) {
+  .essay-cover { padding: 18px; }
+}
+.essay-cover__mark {
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  width: 40px;
+  height: 2px;
+  background: var(--orange, #FF5A00);
+}
+@media (max-width: 767px) {
+  .essay-cover__mark { top: 18px; left: 18px; }
+}
+.essay-cover__title {
+  margin: 0;
+  color: var(--cream, #EFEBDF);
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 22px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  max-width: 18em;
+  text-wrap: balance;
+}
+@media (max-width: 767px) {
+  .essay-cover__title { font-size: 20px; }
+}
+
+/* ============ Tarjeta de ensayo ============
+   Contenedor vertical: media (16:9) · meta · título · dek opcional.
+   El `.e-card__link` cubre el conjunto para que el click sea entero.
+   La variante `--dim` (podcast upcoming de Steve Walls) no tiene link
+   y pinta el título en gris secundario. */
+.e-card {
+  display: flex;
+  flex-direction: column;
+}
+.e-card__link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+}
+.e-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #000; /* fondo neutro mientras carga la imagen */
+}
+.e-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.e-card__meta {
+  margin: 16px 0 0;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6B6B6B;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+.e-card__title {
+  margin: 6px 0 0;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: -0.005em;
+  font-weight: 500;
+  color: #000;
+  text-wrap: balance;
+}
+.e-card__dek {
+  margin: 8px 0 0;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #5C5C5C;
+  font-weight: 400;
+}
+/* Dim (Steve Walls upcoming). Título en secundario, sin link wrapper. */
+.e-card--dim .e-card__title { color: #6B6B6B; }
+
+/* Hover · subrayado del título (brief §0 · 1 px, offset 4 px, 150 ms).
+   Sólo cuando hay puntero fino. Nada si prefers-reduced-motion. */
+@media (hover: hover) {
+  .e-card__link:hover .e-card__title {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 150ms linear;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .e-card__link:hover .e-card__title { transition: none; }
+}
+
+/* ============ Mobile (≤ 767) ============
+   La tarjeta mantiene su estructura · la grilla de arriba la coloca
+   en una columna y el media al 90 % del contenedor (brief §2 y §4
+   mobile · "imágenes y portadas al 90 %"). */
+@media (max-width: 767px) {
+  .e-card__meta { font-size: 14px; margin-top: 18px; }
+  .e-card__title { font-size: 19px; line-height: 1.3; margin-top: 10px; }
+  .e-card__dek { font-size: 15px; line-height: 1.55; margin-top: 12px; }
+}

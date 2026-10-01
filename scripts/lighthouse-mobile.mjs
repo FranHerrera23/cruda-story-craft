@@ -21,7 +21,7 @@ const OUT = path.join(ROOT, 'scripts/.lh')
 fs.mkdirSync(OUT, { recursive: true })
 
 const URLS = [
-  ['larry-en', 'http://localhost:3000/thinking/find-your-larry-holmes'],
+  ['thinking-en', 'http://localhost:3000/thinking'],
   ['newsletter', 'http://localhost:3000/newsletter'],
 ]
 const RUNS = 3

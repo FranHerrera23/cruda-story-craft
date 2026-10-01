@@ -51,17 +51,14 @@ async function shoot(mode) {
     for (const w of VIEWPORTS) {
       const ctx = await browser.newContext({ viewport: { width: w, height: 900 } })
       const p = await ctx.newPage()
-      await p.goto(BASE + u.slug, { waitUntil: 'networkidle', timeout: 30000 })
-      /* Loader del sitio · F22 setea data-loader='show' en <html>
-         al cargar y lo saca cuando termina la animación de entrada.
-         Sin esperar a que se saque, la página queda negra (fondo
-         del loader) y los pixel-diff dan 100%. */
-      try {
-        await p.waitForFunction(
-          () => document.documentElement.getAttribute('data-loader') !== 'show',
-          { timeout: 10000 },
-        )
-      } catch { /* loader timeout · seguimos igual */ }
+      /* F48 · el loader NO corre cuando la URL trae ?utm_source=...
+         Fran 1-oct · usamos utm_source=qa para skipearlo acá. Si la
+         URL ya tiene query, agregamos con & en vez de ?. */
+      const sep = u.slug.includes('?') ? '&' : '?'
+      await p.goto(BASE + u.slug + sep + 'utm_source=qa', {
+        waitUntil: 'networkidle',
+        timeout: 30000,
+      })
       await p.waitForTimeout(500)
       /* Enmascara imágenes y fondos con images (incluye background-image
          en portadas tipográficas, selected work covers, etc.) */
@@ -121,8 +118,19 @@ async function diffAll() {
       const aMeta = await sharp(afterPath).metadata()
       const H = Math.min(bMeta.height, aMeta.height)
       const W = Math.min(bMeta.width, aMeta.width)
-      const bBuf = await sharp(beforePath).extract({ left: 0, top: 0, width: W, height: H }).raw().toBuffer()
-      const aBuf = await sharp(afterPath).extract({ left: 0, top: 0, width: W, height: H }).raw().toBuffer()
+      /* Forzar RGB sin alpha · algunos PNG salen RGBA (4 canales) y
+         otros RGB (3) · si el loop asume 3 pero una imagen tiene 4,
+         se desincroniza y da falsos positivos (bug Fran 1-oct). */
+      const bBuf = await sharp(beforePath)
+        .extract({ left: 0, top: 0, width: W, height: H })
+        .removeAlpha()
+        .raw()
+        .toBuffer()
+      const aBuf = await sharp(afterPath)
+        .extract({ left: 0, top: 0, width: W, height: H })
+        .removeAlpha()
+        .raw()
+        .toBuffer()
       let diff = 0
       const channels = 3
       for (let i = 0; i < bBuf.length; i += channels) {

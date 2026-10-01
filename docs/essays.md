@@ -185,12 +185,10 @@ Contrato:
 
 Form ID (público, no secret): `c7cb08c8-b381-4b1e-a20f-76c86ce39552`.
 
-El endpoint `/api/subscribe` fue eliminado (F53 §7 · Fran 1-oct ·
-Substack fuera del sitio por completo). Como el único cliente
-que le pegaba era el CaptureForm legacy, también se borraron
-`src/components/CaptureForm.tsx` y `src/lib/flags.ts`
-(CAPTURE_ENABLED). Si en el futuro aparece una captura server-side,
-se crea un endpoint nuevo con su proveedor.
+No hay endpoint server-side de captura. Si en el futuro se
+necesita uno (procesamiento previo, atribución custom, antifraud),
+se crea un `app/api/<name>/route.ts` nuevo con su proveedor del
+momento. Hoy toda la alta pasa por el embed hosted de beehiiv.
 
 ## 7 · Guard-rails de push (Fran 30-sep)
 

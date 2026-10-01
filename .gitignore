@@ -34,3 +34,5 @@ tsconfig.tsbuildinfo
 scripts/.shots
 scripts/.lh
 scripts/.evidence
+scripts/.f54
+scripts/.diff

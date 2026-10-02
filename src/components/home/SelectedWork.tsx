@@ -70,7 +70,7 @@ const CARDS: Card[] = [
   },
   {
     name: 'José Mannheim',
-    meta: 'MTC · Panamá City',
+    meta: 'MTC · Panama City',
     description:
       'Co-founder of AGP, maker of armored glass for the Pentagon, Tesla and Audi.',
     service: ['TRANSLATED'],
@@ -92,7 +92,7 @@ const CARDS: Card[] = [
     name: 'JP Romero',
     meta: 'JURA · CTD · Miami',
     description:
-      'Takes European architecture and design brands into the US market.',
+      'Takes Latin American architecture and design brands into the US market.',
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/juan-pablo-romero',
     imageSrc: '/juan-pablo-romero.webp',

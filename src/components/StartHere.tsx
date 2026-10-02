@@ -77,7 +77,7 @@ export const CASE_START_HERE: Record<string, StartHereProps> = {
     proof: 'At eighty, José publishes under his own name.',
   },
   'juan-pablo-romero': {
-    h2: 'Bringing a European brand into the US market?',
+    h2: 'Bringing a Latin American brand into the US market?',
   },
   inout: {
     h2: 'Launching a new line under a name the market already knows?',

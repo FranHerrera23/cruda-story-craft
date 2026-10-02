@@ -14,7 +14,7 @@ export default function HomeClose() {
       <div className="plane__in">
         <StartHere
           h2="Where is your company standing today?"
-          proof="We work with founders and companies in Miami, Minneapolis, Abu Dhabi, Panamá City, Dubai, Los Angeles and Argentina."
+          proof="We work with founders and companies in Miami, Minneapolis, Abu Dhabi, Panama City, Dubai, Los Angeles and Argentina."
         />
       </div>
     </section>

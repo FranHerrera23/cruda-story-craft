@@ -55,6 +55,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    /* F56 · /second-look agregada al sitemap. Entrada única
+       agendable del sitio (ex "The Read"). */
+    {
+      url: `${BASE}/second-look`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     {
       url: `${BASE}/thinking`,
       lastModified: new Date(),

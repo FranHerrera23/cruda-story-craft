@@ -24,7 +24,7 @@ import './selected-work.css'
    link, sin scale · Jack sí revela servicio en hover, BAUHOME no
    tiene servicio. */
 
-type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'THE READ'
+type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'SECOND LOOK'
 
 type Card = {
   name: string

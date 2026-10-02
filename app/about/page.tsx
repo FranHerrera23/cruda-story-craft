@@ -66,7 +66,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'How much does CRUDA cost?',
-    a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,500 a month. Interpreted runs twelve weeks from $55,000, and The Read is priced on request.',
+    a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,500 a month. Interpreted runs twelve weeks from $55,000, and Second Look is $950.',
   },
   {
     q: 'Who pays for ads, production and other outside costs?',
@@ -90,7 +90,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'How fast does CRUDA reply?',
-    a: 'Within 24 to 48 hours. The first step is a 45-minute call with Fran, booked on the contact page.',
+    a: 'Within 24 to 48 hours. The first step is a Second Look: two conversations and a written diagnosis for $950.',
   },
 ]
 
@@ -447,14 +447,14 @@ export default function AboutPage() {
           </div>
           <div>
             <dt>Services</dt>
-            <dd>Translated · Transmission · Interpreted · The Read</dd>
+            <dd>Translated · Transmission · Interpreted · Second Look</dd>
           </div>
           <div>
             <dt>Pricing</dt>
             <dd>
               Translated $19,500 flat, 12 weeks · Transmission from $2,500
-              per month · Interpreted from $55,000, 12 weeks · The Read on
-              request
+              per month · Interpreted from $55,000, 12 weeks · Second Look
+              $950
             </dd>
           </div>
           <div>
@@ -534,9 +534,9 @@ export default function AboutPage() {
               <p>
                 {f.q === 'How fast does CRUDA reply?' ? (
                   <>
-                    Within 24 to 48 hours. The first step is a 45-minute
-                    call with Fran, booked on the{' '}
-                    <Link href="/contact">contact page</Link>.
+                    Within 24 to 48 hours. The first step is a{' '}
+                    <Link href="/second-look">Second Look</Link>: two
+                    conversations and a written diagnosis for $950.
                   </>
                 ) : (
                   f.a

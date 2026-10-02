@@ -7,14 +7,17 @@ import { MIKE_PROOF_CELLS } from '@/data/proof-mike'
 import '@/components/motion/planes.css'
 import './services.css'
 
-/* /services · F23-2 · 22-sep · Fran §3.3 v2.
+/* /services · F23-2 · 22-sep · Fran §3.3 v2 · F56 (Fran 2-oct)
+   renombra 04 The Read → Second Look con precio fijo $950 y
+   todas las CTAs apuntan a /second-look.
 
    Siete planos. Copy actualizado a §3.3:
      · Ledes de home + services alineados (Work with us for one…).
-     · Descriptors nuevos en Transmission, Interpreted, The Read.
-     · 03 y 04 renombrados: "Across two cultures" · "A single session".
+     · Descriptors nuevos en Transmission, Interpreted, Second Look.
+     · 03 y 04 renombrados: "Across two cultures" · "Two conversations".
      · Translated cuerpo nuevo (5 entregables listados).
-     · CTAs "Write to us →" → "Book the call →" (→ /contact).
+     · F56: CTAs "Start a Second Look →" → /second-look en todas
+       las fichas. (Antes "Book the call →" → /contact).
      · Translated conserva "See how it works →" → /services/translated.
      · Línea de costos F23 (constante §0.1) debajo del índice y como
        segunda línea de Fee en Translated/Transmission/Interpreted.
@@ -26,7 +29,7 @@ const BASE = 'https://www.thecruda.com'
 
 const SERVICES_TITLE = 'Services · CRUDA'
 const SERVICES_DESCRIPTION =
-  'Translated, Transmission, Interpreted and The Read: what each includes, how long it runs and what it costs.'
+  'Translated, Transmission, Interpreted and Second Look: what each includes, how long it runs and what it costs.'
 
 /* Constantes F23 §0.1 · una sola definición. */
 const COST_LINE =
@@ -87,8 +90,8 @@ export default function ServicesPage() {
               </div>
               <div className="irow">
                 <span className="irow__o">04</span>
-                <span className="irow__n">The Read</span>
-                <span className="irow__p">per session · <em>On request</em></span>
+                <span className="irow__n">Second Look</span>
+                <span className="irow__p">two conversations · <em>$950</em></span>
               </div>
             </div>
             <p className="services-cost-line">{COST_LINE}</p>
@@ -129,8 +132,8 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="services-ctas">
-              <Link className="go" href="/contact">
-                Book the call →
+              <Link className="go" href="/second-look">
+                Start a Second Look →
               </Link>
               <Link className="go" href="/services/translated">
                 See how it works →
@@ -192,14 +195,16 @@ export default function ServicesPage() {
             </div>
             {/* F44 · línea de alcance de Transmission · texto chico,
                 gris, mismo estilo que la línea de terceros. Va entre
-                el bloque Fee y `Book the call →`. */}
+                el bloque Fee y la CTA.
+                F56: la CTA pasa de "Book the call" → /contact a
+                "Start a Second Look" → /second-look. */}
             <p className="services-scope-line">
               Narrative, writing, short-form pieces and video scripts.
               Video editing is not included.
             </p>
             <div className="services-ctas">
-              <Link className="go" href="/contact">
-                Book the call →
+              <Link className="go" href="/second-look">
+                Start a Second Look →
               </Link>
             </div>
             <p className="services-see-in">
@@ -248,8 +253,8 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="services-ctas">
-              <Link className="go" href="/contact">
-                Book the call →
+              <Link className="go" href="/second-look">
+                Start a Second Look →
               </Link>
             </div>
             <p className="services-see-in">
@@ -259,30 +264,49 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        {/* 05 · THE READ · negro */}
-        <section className="plane plane--black" data-plane id="read">
+        {/* 05 · SECOND LOOK · negro · F56 (Fran 2-oct) renombra 04
+            de The Read a Second Look · precio fijo $950 · tres
+            celdas en lugar de dos · CTA a /second-look. */}
+        <section className="plane plane--black" data-plane id="second-look">
           <div className="plane__in">
-            <p className="eyebrow">04 · A single session</p>
-            <h2 className="name">The Read</h2>
+            <p className="eyebrow">04 · Two conversations</p>
+            <h2 className="name">Second Look</h2>
             <div className="rule" />
             <p className="lede">
-              One session in which an outsider tells you, plainly, what
-              they see.
+              Two conversations and a written diagnosis.
             </p>
-            <div className="data data--2">
+            <div className="data">
               <div className="cell">
-                <p className="cell__l">Runs</p>
-                <p className="cell__v">One session</p>
-                <p className="cell__n">No system, no retainer</p>
+                <p className="cell__l">First conversation · 90 min</p>
+                <p className="cell__v">
+                  We go through the essentials, the way a fractional
+                  CMO would: your product, your price, where and how
+                  you sell, who your clients really are, and the
+                  story underneath it all.
+                </p>
               </div>
               <div className="cell">
-                <p className="cell__l">Fee</p>
-                <p className="cell__v">On request</p>
+                <p className="cell__l">Second conversation · 90 min</p>
+                <p className="cell__v">
+                  I share what I see: what&rsquo;s working, what
+                  isn&rsquo;t, and what&rsquo;s hard to notice when
+                  you&rsquo;re this close.
+                </p>
+              </div>
+              <div className="cell">
+                <p className="cell__l">Yours to keep</p>
+                <p className="cell__v">
+                  A written diagnosis of your business, and what
+                  I&rsquo;d do next.
+                </p>
               </div>
             </div>
+            <p className="services-price-line">
+              two conversations · <em>$950</em>
+            </p>
             <div className="services-ctas">
-              <Link className="go" href="/contact">
-                Book the call →
+              <Link className="go" href="/second-look">
+                Start a Second Look →
               </Link>
             </div>
           </div>
@@ -297,7 +321,8 @@ export default function ServicesPage() {
             (proof-mike.ts). */}
         <MikeProofBlock />
 
-        {/* 08 · START HERE · F23-5 · con "Book the call →". */}
+        {/* 08 · START HERE · F23-5 · F56 el CTA del bloque pasa a
+            "Start a Second Look →" → /second-look. */}
         <section className="plane plane--paper services-close" data-plane>
           <div className="plane__in">
             <StartHere h2="Not sure which of the four fits?" />

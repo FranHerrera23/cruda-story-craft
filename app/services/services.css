@@ -89,6 +89,22 @@
 }
 .plane--black .services-cost-line,
 .plane--black .services-scope-line { color: var(--grey-dark, #8A867E); }
+
+/* F56 · línea de precio de Second Look. Mismo tamaño/color que
+   el precio del índice (irow__p / em en naranja), debajo de la
+   grilla de tres celdas, antes de la CTA. */
+.services-price-line {
+  margin-top: clamp(26px, 4.4vh, 54px);
+  font-size: clamp(17px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1;
+  color: inherit;
+}
+.services-price-line em {
+  font-style: normal;
+  color: var(--orange, #FF5A00);
+}
 .plane .cell__n {
   /* .cell__n ya existe; el 3rd .cell__n en Fee lleva la línea de
      costos con el mismo tamaño (12px system) — sin override. */

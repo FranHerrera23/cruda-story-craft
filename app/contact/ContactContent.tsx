@@ -1,42 +1,30 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 
-/* /contact · F31 §3 · 23-sep · Fran.
+/* /contact · F31 §3 · 23-sep · Fran · F56 (Fran 2-oct).
 
-   Reemplaza el filtro de 5 preguntas (§3.4 sale) por:
-   1 · h1 "One conversation." + regla naranja (única de la página).
-   2 · lede "Forty-five minutes. No pitch."
-   3 · dos columnas: BOOK THE CALL (Calendly inline) + WRITE TO US
-       (form Name/Email/What are you trying to do?)
-   4 · línea de pie con fees + mailto.
+   F56 reemplaza el bloque Calendly por el link grande a
+   /second-look. La columna izquierda ya no embebe Calendly ni
+   lee NEXT_PUBLIC_CALENDLY_URL (la variable queda huérfana,
+   Fran la elimina en Vercel). La única entrada agendable del
+   sitio es /second-look.
 
-   Sin secciones oscuras (todo papel).
+   Estructura:
+   1 · h1 "Start with a Second Look." + regla naranja única.
+   2 · lede "Two conversations and a written diagnosis. $950."
+   3 · dos columnas:
+       - izquierda: link "Start a Second Look →" a /second-look
+       - derecha: WRITE TO US (form Name/Email/What are you trying to do?)
+   4 · pie: fees → /services + mailto directo.
 
-   NEXT_PUBLIC_CALENDLY_URL define la URL del embed. Si no está,
-   la columna izquierda cae a un link "Book the call →" a la URL
-   (o al mailto si tampoco hay). Nunca hay embed vacío.
-
-   Form:
-   - Name (required), Email (required), What are you trying to do?
-     (opcional, textarea).
-   - Envío por mailto con los tres campos escritos en el cuerpo.
-   - Send it → siempre en --ink. Si falta un obligatorio, subrayado
-     naranja 2px + "Required" bajo el campo. */
+   Form (sin cambios desde F31):
+   - Name (required), Email (required), What are you trying to do? (opcional).
+   - Envío por mailto con los tres campos en el cuerpo.
+   - Send it → en --ink. Si falta uno obligatorio, naranja 2px + "Required". */
 
 const EMAIL_RE = /.+@.+\..+/
-const CALENDLY = process.env.NEXT_PUBLIC_CALENDLY_URL ?? ''
-
-function calendlyIframeUrl(base: string): string {
-  const url = new URL(base)
-  url.searchParams.set('hide_gdpr_banner', '1')
-  // Paper: F1EFEB · Ink: 0D0D0D · sin naranja en primary color.
-  url.searchParams.set('background_color', 'F1EFEB')
-  url.searchParams.set('text_color', '0D0D0D')
-  url.searchParams.set('primary_color', '0D0D0D')
-  return url.toString()
-}
 
 export default function ContactContent() {
   const [name, setName] = useState('')
@@ -46,10 +34,6 @@ export default function ContactContent() {
 
   const nameOk = name.trim().length > 0
   const mailOk = EMAIL_RE.test(mail.trim())
-  const iframeUrl = useMemo(
-    () => (CALENDLY ? calendlyIframeUrl(CALENDLY) : ''),
-    [],
-  )
 
   const submit = () => {
     setTouched(true)
@@ -64,7 +48,7 @@ export default function ContactContent() {
     const url =
       'mailto:fran@thecruda.com' +
       '?subject=' +
-      encodeURIComponent('One conversation — ' + name.trim()) +
+      encodeURIComponent('Write to us — ' + name.trim()) +
       '&body=' +
       encodeURIComponent(body)
     window.location.href = url
@@ -75,34 +59,20 @@ export default function ContactContent() {
       {/* 01 · APERTURA · papel · única regla naranja */}
       <section className="contact-sec">
         <p className="contact-eyebrow">Contact</p>
-        <h1 className="contact-name">One conversation.</h1>
+        <h1 className="contact-name">Start with a Second Look.</h1>
         <div className="contact-rule" />
-        <p className="contact-lede">Forty-five minutes. No pitch.</p>
+        <p className="contact-lede">
+          Two conversations and a written diagnosis. $950.
+        </p>
       </section>
 
-      {/* 02 · DOS COLUMNAS · Calendly + form */}
+      {/* 02 · DOS COLUMNAS · link a Second Look + form */}
       <section className="contact-sec contact-act">
         <div className="contact-act__col contact-act__col--book">
-          <p className="contact-eyebrow">Book the call</p>
-          {iframeUrl ? (
-            <iframe
-              className="contact-cal"
-              src={iframeUrl}
-              title="Book a 45-minute call with Fran Herrera on Calendly"
-              loading="lazy"
-            />
-          ) : CALENDLY ? (
-            <a className="contact-cal-link" href={CALENDLY} target="_blank" rel="noopener">
-              Book the call →
-            </a>
-          ) : (
-            <a
-              className="contact-cal-link"
-              href="mailto:fran@thecruda.com?subject=One%20conversation"
-            >
-              Book the call →
-            </a>
-          )}
+          <p className="contact-eyebrow">Second Look</p>
+          <Link className="contact-cal-link" href="/second-look">
+            Start a Second Look →
+          </Link>
         </div>
 
         <div className="contact-act__col contact-act__col--write">

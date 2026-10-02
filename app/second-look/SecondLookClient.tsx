@@ -10,8 +10,13 @@ import { useCallback, useEffect, useRef, useState } from 'react'
    - Barra superior con marca "SECOND LOOK" + "N / 4".
    - Botón Back en los pasos 2 a 4.
    - Las respuestas se conservan al volver atrás.
-   - history.pushState · hashes #step-1 … #step-4, #done.
-     El Back del browser vuelve y conserva state.
+   - History · navegación por hash (#step-1 … #step-4, #done)
+     via location.hash + hashchange. Evita el popstate interno
+     del router de Next.js, que remontaría el client component
+     y resetearía el state (verificado F56 QA 2-oct).
+   - Backup del form (company/revenue/budget) en sessionStorage
+     con la clave F56_SL_FORM — redundante por si el componente
+     se remonta por otra razón (bfcache, hard reload, etc.).
    - Paso 1 sin animación (CSS @keyframes solo aplica steps 2-5).
    - Validación nativa: paso 3 no avanza sin empresa.
    - Calendly se inyecta AL ENTRAR al paso 4, no antes.
@@ -20,6 +25,38 @@ import { useCallback, useEffect, useRef, useState } from 'react'
    - Listener de postMessage valida e.origin === 'https://calendly.com'
      (EXACTO, no indexOf).
    - Al recibir calendly.event_scheduled → paso 5 (cierre). */
+
+const SESSION_KEY = 'F56_SL_FORM'
+
+type PersistedForm = { company: string; revenue: string; budget: string }
+
+function readPersisted(): PersistedForm | null {
+  if (typeof window === 'undefined') return null
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY)
+    if (!raw) return null
+    const data = JSON.parse(raw)
+    if (
+      typeof data?.company === 'string' &&
+      typeof data?.revenue === 'string' &&
+      typeof data?.budget === 'string'
+    ) {
+      return data as PersistedForm
+    }
+  } catch (_) {
+    /* no-op */
+  }
+  return null
+}
+
+function writePersisted(form: PersistedForm) {
+  if (typeof window === 'undefined') return
+  try {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(form))
+  } catch (_) {
+    /* no-op */
+  }
+}
 
 type Answers = { revenue: string; budget: string }
 
@@ -90,20 +127,46 @@ const TRUST_CARDS = [
 
 export default function SecondLookClient() {
   const [step, setStep] = useState<number>(1)
-  const [company, setCompany] = useState<string>('')
-  const [answers, setAnswers] = useState<Answers>({ revenue: '', budget: '' })
+  const [company, setCompanyState] = useState<string>('')
+  const [answers, setAnswersState] = useState<Answers>({ revenue: '', budget: '' })
   const calendlyLoadedForRef = useRef<string | null>(null)
   const calendlyRef = useRef<HTMLDivElement | null>(null)
 
   const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL_SECOND_LOOK ?? ''
 
+  /* Setters que escriben también en sessionStorage. Preservan state
+     cuando el componente se remonta por bfcache / hard reload /
+     popstate interno de Next.js. */
+  const setCompany = useCallback(
+    (v: string) => {
+      setCompanyState(v)
+      writePersisted({ company: v, revenue: answers.revenue, budget: answers.budget })
+    },
+    [answers.revenue, answers.budget],
+  )
+  const setAnswers = useCallback(
+    (updater: (prev: Answers) => Answers) => {
+      setAnswersState(prev => {
+        const next = updater(prev)
+        writePersisted({ company, revenue: next.revenue, budget: next.budget })
+        return next
+      })
+    },
+    [company],
+  )
+
   const show = useCallback(
-    (n: number, pushHistory: boolean = true) => {
+    (n: number, writeHash: boolean = true) => {
       const next = Math.max(1, Math.min(5, n))
       setStep(next)
-      if (pushHistory) {
+      if (writeHash) {
+        /* Cambiar location.hash dispara hashchange (que escuchamos
+           más abajo). NO usamos history.pushState porque pisa el
+           state interno del router de Next.js y provoca remount. */
         try {
-          window.history.pushState({ step: next }, '', STEP_HASHES[next])
+          if (window.location.hash !== STEP_HASHES[next]) {
+            window.location.hash = STEP_HASHES[next]
+          }
         } catch (_) {
           /* no-op */
         }
@@ -118,17 +181,24 @@ export default function SecondLookClient() {
     [],
   )
 
-  /* Sync inicial del hash de la URL al step (permite deep-link
-     a #step-3 por ejemplo). Solo corre una vez al montar. */
+  /* Hidratación al montar · lee hash + sessionStorage. */
   useEffect(() => {
+    /* Form state desde sessionStorage. */
+    const persisted = readPersisted()
+    if (persisted) {
+      setCompanyState(persisted.company)
+      setAnswersState({ revenue: persisted.revenue, budget: persisted.budget })
+    }
+    /* Step desde hash (permite deep-link a #step-3). */
     const initial = hashToStep(window.location.hash)
     if (initial !== 1) {
       setStep(initial)
-    } else {
-      /* En step 1, replaceState para dejar el hash explícito;
-         así el popstate siempre encuentra algo que leer. */
+    } else if (!window.location.hash) {
+      /* Set hash explícito en step 1 solo si no hay hash.
+         Usamos replaceState para no agregar entrada al history. */
       try {
-        window.history.replaceState({ step: 1 }, '', STEP_HASHES[1])
+        const url = window.location.pathname + window.location.search + STEP_HASHES[1]
+        window.history.replaceState(window.history.state, '', url)
       } catch (_) {
         /* no-op */
       }
@@ -136,17 +206,22 @@ export default function SecondLookClient() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  /* popstate · botón atrás del browser. Lee el step del state o
-     del hash y actualiza sin volver a pushear. */
+  /* hashchange · browser back/forward navegando entre #step-N.
+     Fallback popstate por si algún browser dispara solo popstate. */
   useEffect(() => {
-    const onPop = (e: PopStateEvent) => {
-      const fromState = (e.state as { step?: number } | null)?.step
-      const next = fromState ?? hashToStep(window.location.hash)
-      show(next, false)
+    const onHash = () => {
+      const next = hashToStep(window.location.hash)
+      /* writeHash=false para no re-escribir el mismo hash en un loop. */
+      setStep(prev => (prev !== next ? next : prev))
+      try {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } catch (_) {
+        /* no-op */
+      }
     }
-    window.addEventListener('popstate', onPop)
-    return () => window.removeEventListener('popstate', onPop)
-  }, [show])
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
 
   /* Listener de Calendly · validación EXACTA del origen (brief).
      Al recibir event_scheduled, va al paso 5 (cierre). */

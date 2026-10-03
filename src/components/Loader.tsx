@@ -18,10 +18,6 @@ import { useEffect, useState } from 'react'
      t=2050ms   nodo desmontado
 
    F22 fixes:
-     · Sin sessionStorage. El loader aparece en toda carga completa
-       (primer paint, F5, entrada por URL). En navegación interna
-       de Next el layout persiste y este componente no se re-monta,
-       así que el loader no reaparece.
      · history.scrollRestoration = 'manual' (via inline script en
        layout.tsx) evita que el browser restaure el scroll previo
        antes de terminar la salida del loader.
@@ -34,6 +30,13 @@ import { useEffect, useState } from 'react'
        'reload'. En 'back_forward' (BFCache o back button del
        browser) no aparece: la posición de scroll la restaura
        PageShell desde sessionStorage.
+
+   F56 (Fran 3-oct) · policy unificada desktop + mobile:
+     · Solo en `/` (nunca /second-look, /services, /about, etc.).
+     · Una vez por sesión (sessionStorage LOADER_SEEN_KEY).
+     · Nunca con parámetros utm_*.
+     Antes de F56 este gate estaba sólo bajo mobile; en desktop
+     el loader corría en toda carga completa de toda página.
 
    Flash-free en reload: layout.tsx setea data-loader='show'
    (o 'skip' bajo reduced-motion) antes del primer paint. */
@@ -120,30 +123,34 @@ export default function Loader() {
       return
     }
 
-    /* F48 · policy nueva sólo bajo mobile/touch/reduced-motion
-       (regla dura Fran: desktop code path unchanged). En desktop
-       cae al camino original (loader en toda carga completa,
-       duración 2s). En mobile: solo `/`, una vez por sesión,
-       nunca con UTM, duración max 1.2s. */
+    /* F56 (Fran 3-oct) · policy UNIFICADA desktop + mobile.
+       Antes el gate home / UTM / session-once estaba sólo bajo
+       mobileCtx, y en desktop el loader corría en toda carga
+       completa de toda página. Ahora en ambos contextos:
+         · solo en /
+         · una vez por sesión (sessionStorage LOADER_SEEN_KEY)
+         · nunca con parámetros utm_*
+       La diferencia de duración se mantiene (mobile 1.2s,
+       desktop 2s) via la rama mobileCtx abajo.
+       Consecuencia: /second-look nunca muestra el loader en
+       ningún ancho — cumple el criterio del brief F56. */
     const mobileCtx = isMobileLoaderContext()
-    if (mobileCtx) {
-      if (!isHomePathname()) {
+    if (!isHomePathname()) {
+      setVisible(false)
+      return
+    }
+    if (hasUtmParams()) {
+      setVisible(false)
+      return
+    }
+    try {
+      if (sessionStorage.getItem(LOADER_SEEN_KEY) === '1') {
         setVisible(false)
         return
       }
-      if (hasUtmParams()) {
-        setVisible(false)
-        return
-      }
-      try {
-        if (sessionStorage.getItem(LOADER_SEEN_KEY) === '1') {
-          setVisible(false)
-          return
-        }
-        sessionStorage.setItem(LOADER_SEEN_KEY, '1')
-      } catch {
-        /* Private mode / storage blocked · no impedir la home. */
-      }
+      sessionStorage.setItem(LOADER_SEEN_KEY, '1')
+    } catch {
+      /* Private mode / storage blocked · no impedir la home. */
     }
 
     /* F22 · en toda carga completa, mandamos el scroll a 0 (o al

@@ -79,6 +79,11 @@ export const CASE_START_HERE: Record<string, StartHereProps> = {
   'juan-pablo-romero': {
     h2: 'Bringing a Latin American brand into the US market?',
   },
+  /* F56 (Fran 3-oct) · Jack sin h2 específico de caso. Usa el h2
+     genérico del plano START HERE de /services. Sin proof/source. */
+  'jack-yeager': {
+    h2: 'Not sure which of the four fits?',
+  },
   inout: {
     h2: 'Launching a new line under a name the market already knows?',
     proof:

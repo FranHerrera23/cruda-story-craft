@@ -154,6 +154,15 @@ body:has(.sl-page) .page-root { padding: 0 !important; }
 }
 .sl-portrait--sm { width: min(100%, 240px); }
 
+/* F56 (Fran 3-oct) · en mobile 390 el retrato va a 160px para que
+   el h1 entre en el primer pantallazo (medido en 390×844). El 4:5
+   mantiene el retrato en 160×200. El h1 (clamp 36px) y el lede
+   quedan dentro de ~700px de alto total con top-bar + padding. */
+@media (max-width: 767px) {
+  .sl-portrait { width: 160px; }
+  .sl-portrait--sm { width: 120px; }
+}
+
 /* PASO 2 · tres columnas + grilla + línea */
 .sl-three {
   display: grid;

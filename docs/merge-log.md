@@ -40,8 +40,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 31 | `f54a-newsletter-form` | `a607ffe` | ✅ |
 | 32 | `f54-thinking-newsletter` | `bd756fa` | ✅ |
 | 33 | `f54-1-featured-avif` | `90b45ed` | ✅ |
+| 34 | `f56-second-look` | `8d35137` | ✅ |
 
-`origin/main` HEAD final: `90b45ed`.
+`origin/main` HEAD final: `8d35137`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -363,6 +364,20 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f56-second-look (/second-look wizard + The Read -> Second Look)
+#   Impacto: la ruta /second-look vuelve 404. La home + /services +
+#   /about + /contact + /deck + case studies + /thinking/steve-walls
+#   recuperan el copy viejo (The Read, 45-minute call, No cost, no
+#   pitch, Panama City con tilde, JP Romero European). /contact
+#   vuelve a mostrar el link mailto a Calendly (sin iframe, porque
+#   la var NEXT_PUBLIC_CALENDLY_URL ya se borro del codigo pero su
+#   ausencia cae al fallback mailto en el revert). El Loader vuelve
+#   a correr en toda carga completa en desktop (todas las paginas).
+#   og:image /public/second-look-og.jpg queda huerfana (safe, nadie
+#   la referencia tras revert). JSON-LD Service de /second-look
+#   desaparece con la ruta.
+git revert -m 1 8d35137
 ```
 
 Después de cualquier revert:

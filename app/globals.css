@@ -494,25 +494,28 @@ html[data-loader="skip"] .loader { display: none; }
 /* Motion §3.1 · carga de página.
 
    F49 §3.2 · 27-sep · gate acotado a DESKTOP fine-pointer.
+   F52 §3.1 · 4-oct · gate acotado SOLO a / (home) · se saca de
+   /services, /about, casos, ensayos y /second-look. El h1 del
+   SSR es visible desde el primer paint en todas esas páginas.
 
-   El gate original `.page-root:not(.ready) { opacity: 0 }` global
-   apagaba todo el `<main>` hasta que React hidrataba. En mobile eso
-   convertía el logo del nav (fuera del wrapper) en LCP fabricado y
-   empujaba el LCP de home/services/about a ~2.6-3.0 s. Diagnóstico
-   completo en `docs/f49-diagnostico.md`.
+   El home sigue necesitando el gate porque Act1Hero.fitAllPhrases
+   mide el ancho del contenedor y baja el font-size en un rAF
+   post-mount; sin el gate se vería un flash de dos line-boxes
+   antes del auto-fit. (F52 §3.2 reemplaza este flujo con un
+   inline fit script sin React para también sacar el gate del
+   home — queda pendiente.)
 
-   Se mantiene en desktop porque Act1Hero.fitAllPhrases mide el ancho
-   del contenedor y baja el font-size en un rAF post-mount; sin el
-   gate se vería un flash de dos line-boxes antes del auto-fit
-   (ese motor no monta en mobile via F48 gate, así que allá no hay
-   FOJT que ocultar). El pixel-diff a 1200 ms se preserva porque
-   post-fit la renderización es idéntica en ambos caminos.
+   El selector `.page-root:has(main#stack)` targetea solo al home
+   (único layout con `<main class="stack" id="stack">`). :has()
+   es soportado por todos los browsers modernos (Chrome 105+,
+   Firefox 121+, Safari 15.4+). Fallback sin :has() aún así no
+   gatea (la página se ve, no se oculta — es seguro).
 
    reduce (globals §6) fija `.page-root { opacity: 1 }` — ver bloque
    más abajo. */
 @media (scripting: enabled) and (min-width: 768px) and (pointer: fine) {
-  .page-root:not(.ready) { opacity: 0; }
-  .page-root.ready {
+  .page-root:has(main#stack):not(.ready) { opacity: 0; }
+  .page-root:has(main#stack).ready {
     opacity: 1;
     transition: opacity var(--dur-3) var(--ease);
   }

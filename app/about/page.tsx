@@ -1,33 +1,41 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
+import Image from 'next/image'
 import StartHere from '@/components/StartHere'
 import './about.css'
 
-/* /about · F32 §2 · 24-sep · Fran.
+/* /about · F55 · Fran 4-oct-2026 · rebuild desde cero.
+   Design verbatim de docs/F55-brief.md.
 
-   Cambios vs. F25 §6:
-   §2.1 · lede nueva del hero + link "See how we work →" a /services.
-   §2.2 · WHO RUNS IT · debajo del born in Salta, agrega bloque de
-          lenguajes + link LinkedIn.
-   §2.3 · HOW IT STARTED · 4 filas (Early 2021, July 2023, February
-          2024, 2021—2026) · sale "registered" y "restructured".
-   §2.4 · KEY FACTS (sección nueva antes de START HERE) · <dl>.
-   §2.5 · FAQ (sección nueva) · 8 preguntas, acordeón.
-   §2.6 · JSON-LD @graph: Organization + Person + FAQPage.
-   §2.7 · Meta description actualizada. */
+   Scroll motor: RevealScroll global (en app/layout.tsx), que cascadea
+   `.on` a los [data-reveal] dentro de secciones `data-reveal-seq`.
+   Es la misma animación de entrada visible que /services recibe de
+   PlanesStack (translate + opacity al entrar al viewport). Se descarta
+   el apilado sticky de /services porque brief §0: "nada se superpone
+   ni se apila sobre otro; sin sticky, sin planos que se pliegan".
+   Cada panel es un <section> independiente, a todo el ancho, con su
+   propio fondo. Reveal reglas F49/F52: nada visible en el primer
+   pantallazo arranca en opacity:0 (ver about.css · .f55-hero reveals
+   usan sólo transform).
+
+   StartHere (bloque final): usa el componente @/components/StartHere
+   que F56 (más reciente) actualizó a lede "Two conversations and a
+   written diagnosis. $950." + CTA "Start a Second Look →" → /second-look.
+   Reemplaza la copy vieja del brief §4 ("The first step is a
+   45-minute call...") que F56 removió site-wide. Regla autonomy §2
+   (contradicción entre briefs: gana el más reciente).
+
+   Avatar F55 §6: `public/fran-avatar-source.*` NO está en el repo
+   (verificado 4-oct). Fallback regla autonomy: se usa
+   `fran-herrera.webp` existente, Fran lo reemplaza en una iteración
+   posterior cuando suba el avatar generado por IA. */
 
 const BASE = 'https://www.thecruda.com'
+const FRAN_PHOTO_URL = `${BASE}/fran-herrera.webp`
 
-/* F37 §4 · title de /about pasa a "About CRUDA · Founded by Fran
-   Herrera" (entity separation + SEO). */
 const ABOUT_TITLE = 'About CRUDA · Founded by Fran Herrera'
 const ABOUT_DESCRIPTION =
-  'CRUDA is a communications company founded by Fran Herrera in 2024. First client in 2021.'
-
-/* F37 §3 · foto de Fran en /about · URL absoluta para el nodo
-   Person.image del JSON-LD. */
-const FRAN_PHOTO_URL = `${BASE}/fran-herrera.webp`
+  'CRUDA is a communications company founded by Fran Herrera. We build narrative and demand systems for founders, companies and cross-border joint ventures.'
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -50,15 +58,12 @@ export const metadata: Metadata = {
   },
 }
 
-/* F32 §2.6 · JSON-LD @graph · Organization + Person + FAQPage.
-   Un solo <script> con los tres nodos linkeados por @id. F37 va
-   a completar Person con birthPlace, knowsLanguage, knowsAbout,
-   image y description. */
 const ORG_ID = `${BASE}/#organization`
 const PERSON_ID = `${BASE}/about#fran-herrera`
 
-/* Las 8 FAQ · mismo texto que se renderea abajo · el `answerText`
-   se mantiene idéntico al visible (regla F32 §2.8). */
+/* Las 8 FAQ · brief F55 §4 dice "las 8 preguntas y respuestas actuales
+   de /about, tal cual, en el mismo orden". Copiadas verbatim del
+   código previo a F55 (ya con el merge F56 que actualizó pricing). */
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: 'What is CRUDA?',
@@ -94,6 +99,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
 ]
 
+/* JSON-LD mantiene @id, image, FAQPage para no romper F37. */
 const ABOUT_SCHEMA = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -105,8 +111,6 @@ const ABOUT_SCHEMA = {
       logo: `${BASE}/cruda-logo-black-2x.png`,
       description:
         'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.',
-      /* F37 §2 · disambiguatingDescription para separar CRUDA como
-         entidad de otras marcas homónimas del rubro moda. */
       disambiguatingDescription:
         'Communications company founded by Fran Herrera in 2024, based in Dubai and Moscow.',
       foundingDate: '2024-02',
@@ -123,9 +127,6 @@ const ABOUT_SCHEMA = {
       image: FRAN_PHOTO_URL,
       jobTitle: 'Founder',
       worksFor: { '@id': ORG_ID },
-      /* F37 §1 · description + birthPlace + knowsLanguage + knowsAbout
-         para consolidar la entidad Fran Herrera como founder of CRUDA,
-         distinguible de otras entidades homónimas. */
       description:
         'Founder of CRUDA, a communications company that builds narrative and demand systems for founders, companies and cross-border joint ventures.',
       birthPlace: { '@type': 'Place', name: 'Salta, Argentina' },
@@ -157,399 +158,183 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ABOUT_SCHEMA) }}
       />
 
-      {/* 01 · HERO · única regla naranja de la página. F40 §1:
-          h1 ahora usa `.about-h1` (token propio, mayor que h2 de
-          sección) con `text-wrap: balance` y `max-width` en ~22ch
-          para caer en 3 líneas sin viudas ("to move." sola). El
-          copy sigue igual · sale WHAT WE TRANSLATE de esta página
-          porque su definición ya está en el lede. */}
-      <section className="about-sec" data-sec data-reveal-seq>
-        <p className="about-eyebrow" data-reveal>
-          About
-        </p>
-        <h1 className="about-h1" data-reveal>
-          You work with the founder — and with a team small enough to
-          move.
-        </h1>
-        <div className="about-rule" data-reveal />
-        <p
-          className="about-lede"
-          style={{ maxWidth: '48ch' }}
-          data-reveal
-        >
-          CRUDA is a communications company. We build narrative and
-          demand systems for founders, companies and cross-border joint
-          ventures. Fran Herrera founded it in February 2024; the first
-          client came in 2021.
-        </p>
-        <Link
-          className="about-go"
-          href="/services"
-          style={{ marginTop: 'clamp(20px, 3.2vh, 36px)' }}
-          data-reveal
-        >
-          See how we work →
-        </Link>
-      </section>
-
-      {/* F40 §2 · WHAT WE TRANSLATE fuera de /about. La sección
-          entera (rótulo, h2 "We translate cultures into business."
-          y las tres columnas OUTWARD/INWARD/ACROSS) vive idéntica
-          en la home y ya está reflejada en el lede del hero. Se
-          removió para no duplicar. */}
-
-      {/* 03 · HOW IT STARTED · F32 §2.3 · ahora 4 filas · sale
-          "registered" y "restructured".
-          F40 §3 · el h2 pasa a usar `--sm` (token de sección) para
-          quedar más chico que el h1 del hero. */}
-      <section className="about-sec" data-sec data-reveal-seq>
-        <p className="about-eyebrow" data-reveal>
-          How it started
-        </p>
-        <h2 className="about-name about-name--sm" data-reveal>
-          The first client came three years before the company did.
-        </h2>
-        <div className="about-chron marks">
-          <div className="about-crow mark" data-reveal>
-            <p className="about-crow__d">Early 2021</p>
-            <p className="about-crow__t">
-              Karen Mannheim hired Fran Herrera through an agency where
-              TRAZZO was one of the accounts.
-            </p>
-          </div>
-          <div className="about-crow mark" data-reveal>
-            <p className="about-crow__d">July 2023</p>
-            <p className="about-crow__t">
-              Fran went in-house at Norhart, Mike Kaeding&apos;s construction
-              company in Minneapolis.
-            </p>
-          </div>
-          <div className="about-crow mark" data-reveal>
-            <p className="about-crow__d">February 2024</p>
-            <p className="about-crow__t">
-              Fran was part of a round of layoffs at Norhart, and CRUDA
-              started that month. Mike stayed on as a client into 2025.
-            </p>
-          </div>
-          <div className="about-crow mark" data-reveal>
-            <p className="about-crow__d">2021 — 2026</p>
-            <p className="about-crow__t">
-              The work outlasted the agency and ran for five years.
-            </p>
-          </div>
+      {/* HERO · blanco · reveal del h1 solo transform (F49/F52). */}
+      <section className="f55-panel f55-hero" data-reveal-seq>
+        <div className="f55-wrap f55-hero__in">
+          <h1 className="f55-hero__h" data-reveal>
+            Find the essence.
+            <br />
+            Strip the bullshit.
+          </h1>
+          <div className="f55-hero__rule" data-reveal aria-hidden="true" />
         </div>
       </section>
 
-      {/* 04 · OPERATING PRINCIPLES · "How the work is done."
-          F40 §3 · h2 con `--sm`. */}
-      <section className="about-sec" data-sec data-reveal-seq>
-        <p className="about-eyebrow" data-reveal>
-          Operating principles
-        </p>
-        <h2 className="about-name about-name--sm" data-reveal>
-          How the work is done.
-        </h2>
-        <div className="about-chron marks">
-          {[
-            {
-              n: '01',
-              t: "We don't invent a story. We remove the layers that aren't yours until what's left is the part you'd have said anyway.",
-            },
-            {
-              n: '02',
-              t: "We observe. We don't prescribe. Nobody is told what to believe about their own company. We return what we see and let the founder decide.",
-            },
-            {
-              n: '03',
-              t: 'Specific beats general. Names, numbers, places and dates. The more specific a story is, the more people recognize themselves in it.',
-            },
-            {
-              n: '04',
-              t: 'We never sell with fear: no deadlines, no scarcity, no last chance. If it is not a fit, we say so.',
-            },
-            {
-              n: '05',
-              t: 'Data is directional at best. Some of what matters cannot be counted, and some of what gets counted does not matter. We bring the figures we have and we do not dress up the rest.',
-            },
-          ].map(row => (
-            <div key={row.n} className="about-crow mark" data-reveal>
-              <p className="about-crow__d">{row.n}</p>
-              <p className="about-crow__t">{row.t}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 05 · HOW THE WORK IS STRUCTURED · paper · h2 sin regla. */}
-      <section className="about-sec" data-sec data-reveal-seq>
-        <p className="about-eyebrow" data-reveal>
-          How the work is structured
-        </p>
-        <h2 className="about-name about-name--sm" data-reveal>
-          Software handles the volume. A person decides what gets said.
-        </h2>
-        <div className="about-layers marks">
-          <div className="about-layer mark" data-reveal>
-            <p className="about-layer__l">The execution layer</p>
-            <p className="about-layer__v">
-              <em>Software.</em>
-            </p>
-            <p className="about-layer__n">
-              Volume, cadence, format. What can be systemized, is.
-            </p>
+      {/* PANEL I · blanco · Our story */}
+      <section className="f55-panel f55-panel--light" data-reveal-seq>
+        <div className="f55-wrap">
+          <div className="f55-bar" data-reveal>
+            <span className="f55-bar__n">I</span>
+            <span className="f55-bar__t">Our story</span>
+            <span className="f55-bar__c">I / IV</span>
           </div>
-          <div className="about-layer mark" data-reveal>
-            <p className="about-layer__l">The judgment layer</p>
-            <p className="about-layer__v">A person.</p>
-            <p className="about-layer__n">
-              What is worth saying, what is true, what gets cut. That stays
-              with a person.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 06 · WHO RUNS IT · F32 §2.2 · agrega lenguajes + LinkedIn. */}
-      <section className="about-sec" data-sec data-reveal-seq>
-        <div className="about-who">
-          {/* F49 §3.3 · retrato de Fran migrado a `next/image`.
-              El `.about-who__port` es 38 % del viewport en desktop
-              (~380×620 css) y 100 vw en mobile (~380×340 css).
-              Sizes reflejan ese split; lazy porque el retrato vive
-              en la sección 06 (fuera del primer fold). Object-fit
-              y object-position siguen viniendo del CSS de
-              `.about-who__port img`. */}
-          <div className="about-who__port" aria-hidden="true">
-            <Image
-              src="/fran-herrera.webp"
-              alt="Fran Herrera, founder of CRUDA"
-              fill
-              sizes="(max-width: 767px) 100vw, 38vw"
-              quality={90}
-              loading="lazy"
-            />
-          </div>
-          <div className="about-who__b">
-            <p className="about-eyebrow" data-reveal>
-              Who runs it
-            </p>
-            <h2
-              className="about-name about-name--sm"
-              data-reveal
-              id="fran-herrera"
-            >
-              Fran Herrera, founder.
+          <div className="f55-body">
+            <h2 className="f55-h2" data-reveal>
+              The first client came three years before the company did.
             </h2>
-            {/* F40 §4 · pasa de 2 columnas a 3 con la nueva celda
-                WHAT HE READS. Default de .about-data ya es
-                repeat(3, 1fr), así que sale el modifier `--2`. */}
-            <div className="about-data">
-              <div className="about-cell" data-reveal>
-                <p className="about-cell__l">Experience</p>
-                <p className="about-cell__v">
-                  Ten years building brands across three continents,
-                  in-house and agency side.
-                </p>
-                <p className="about-cell__n">
-                  Born in Salta, in the north of Argentina.
-                </p>
-                <p className="about-cell__n">
-                  Fran leads every engagement. Russian is covered in-house;
-                  Chinese and Arabic through collaborators brought in for
-                  each project.
-                </p>
+            <p className="f55-p" data-reveal>
+              Karen Mannheim&rsquo;s work was known only in Lima. In early
+              2021 she hired Fran Herrera through an agency where TRAZZO
+              was one of the accounts.
+            </p>
+            <p className="f55-p" data-reveal>
+              In July 2023, Fran went in-house at Norhart, Mike
+              Kaeding&rsquo;s construction company in Minneapolis. In
+              February 2024 he was part of a round of layoffs there, and
+              CRUDA started that same month.
+            </p>
+            <p className="f55-p" data-reveal>
+              Mike stayed on as a client into 2025. Karen&rsquo;s work
+              outlasted the agency and ran for five years. Now it wins
+              pitches in Miami.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PANEL II · NEGRO · The work */}
+      <section className="f55-panel f55-panel--dark" data-reveal-seq>
+        <div className="f55-wrap">
+          <div className="f55-bar" data-reveal>
+            <span className="f55-bar__n">II</span>
+            <span className="f55-bar__t">The work</span>
+            <span className="f55-bar__c">II / IV</span>
+          </div>
+          <div className="f55-body">
+            <h2 className="f55-h2" data-reveal>
+              We don&rsquo;t add. We reveal what&rsquo;s already there.
+            </h2>
+            <p className="f55-p" data-reveal>
+              Every founder we work with already has a true story. Most of
+              it is buried under specs, prices and projects. The work is
+              to find it, strip away what isn&rsquo;t theirs, and make it
+              sayable.
+            </p>
+            <p className="f55-p" data-reveal>
+              CRUDA is a communications company. We build narrative and
+              demand systems for founders, companies and cross-border
+              joint ventures.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* PANEL III · blanco · Who you work with · incluye id=fran-herrera */}
+      <section
+        className="f55-panel f55-panel--light"
+        data-reveal-seq
+        id="fran-herrera"
+      >
+        <div className="f55-wrap">
+          <div className="f55-bar" data-reveal>
+            <span className="f55-bar__n">III</span>
+            <span className="f55-bar__t">Who you work with</span>
+            <span className="f55-bar__c">III / IV</span>
+          </div>
+          <div className="f55-body">
+            <h2 className="f55-h2" data-reveal>
+              You talk to Fran from the first call.
+            </h2>
+            <div className="f55-fran" data-reveal>
+              <Image
+                className="f55-fran__p"
+                src="/fran-herrera.webp"
+                alt="Fran Herrera"
+                width={240}
+                height={300}
+                sizes="(max-width: 767px) 96px, 120px"
+              />
+              <p className="f55-p f55-fran__t">
+                Fran Herrera founded CRUDA in February 2024. Before that,
+                ten years across Fortune 500s, SMEs and B2B companies, on
+                three continents, in-house and agency side. He was born
+                in Salta, in the north of Argentina, and works from Dubai
+                and Moscow.
+              </p>
+            </div>
+            <dl className="f55-ficha" data-reveal>
+              <div className="f55-ficha__row">
+                <dt>Languages</dt>
+                <dd>
+                  English and Spanish. Russian in-house. Chinese and
+                  Arabic with collaborators.
+                </dd>
               </div>
-              {/* F40 §4 · rótulo pasa a "Before CRUDA" (antes "Track
-                  record"). Sale la mención al organismo internacional
-                  del valor (era una campaña puntual, no una relación
-                  agencial actual). El pie pasa a describir la mezcla
-                  real de clientes: Fortune 500s, SMEs y B2B en tres
-                  continentes. */}
-              <div className="about-cell" data-reveal>
-                <p className="about-cell__l">Before CRUDA</p>
-                <p className="about-cell__v">
-                  Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok
-                </p>
-                <p className="about-cell__n">
-                  Fortune 500s, SMEs and B2B companies across industries
-                  and nationalities, on three continents.
-                </p>
+              <div className="f55-ficha__row">
+                <dt>Replies</dt>
+                <dd>Within 24&ndash;48 hours.</dd>
               </div>
-              {/* F40 §4 · nueva celda WHAT HE READS · mismo estilo que
-                  las otras dos, cierra la fila con la formación no
-                  laboral que informa el trabajo. */}
-              <div className="about-cell" data-reveal>
-                <p className="about-cell__l">What he reads</p>
-                <p className="about-cell__v">
+              <div className="f55-ficha__row">
+                <dt>Before CRUDA</dt>
+                <dd>Mondelez · AB InBev · Delivery Hero · Nestl&eacute; · TikTok</dd>
+              </div>
+              <div className="f55-ficha__row">
+                <dt>What he reads</dt>
+                <dd>
                   Cultures and markets, and what a story needs to travel
                   between them.
-                </p>
+                </dd>
               </div>
-            </div>
+            </dl>
             <a
-              className="about-go"
+              className="f55-linkedin"
               href="https://www.linkedin.com/in/franherrera2/"
               target="_blank"
               rel="me noopener"
-              style={{ marginTop: 'clamp(20px, 3.2vh, 36px)' }}
               data-reveal
             >
-              LinkedIn →
+              Fran on LinkedIn &rarr;
             </a>
           </div>
         </div>
       </section>
 
-      {/* 07 · KEY FACTS · F32 §2.4 · <dl> render server-side. */}
+      {/* PANEL IV · blanco · Questions · 8 Q&A acordeón */}
       <section
-        className="about-sec about-keyfacts"
-        data-sec
-        data-reveal-seq
-        aria-label="Key facts"
-      >
-        <p className="about-eyebrow" data-reveal>
-          At a glance
-        </p>
-        <h2 className="about-name about-name--sm" data-reveal>
-          Key facts.
-        </h2>
-        <dl className="about-kf" data-reveal>
-          <div>
-            <dt>Company</dt>
-            <dd>CRUDA</dd>
-          </div>
-          <div>
-            <dt>Type</dt>
-            <dd>Communications company</dd>
-          </div>
-          <div>
-            <dt>Founded</dt>
-            <dd>February 2024 · first client in 2021</dd>
-          </div>
-          <div>
-            <dt>Founder</dt>
-            <dd>Fran Herrera</dd>
-          </div>
-          <div>
-            <dt>Based in</dt>
-            <dd>Dubai and Moscow · works remotely for clients worldwide</dd>
-          </div>
-          <div>
-            <dt>Website</dt>
-            <dd>thecruda.com</dd>
-          </div>
-          <div>
-            <dt>Core offering</dt>
-            <dd>
-              Narrative and demand systems for founders, companies and
-              cross-border joint ventures
-            </dd>
-          </div>
-          <div>
-            <dt>Services</dt>
-            <dd>Translated · Transmission · Interpreted · Second Look</dd>
-          </div>
-          <div>
-            <dt>Pricing</dt>
-            <dd>
-              Translated $19,500 flat, 12 weeks · Transmission from $2,500
-              per month · Interpreted from $55,000, 12 weeks · Second Look
-              $950
-            </dd>
-          </div>
-          <div>
-            <dt>Terms</dt>
-            <dd>
-              Translated: 50% to begin, 50% at month three · Transmission:
-              four months, then monthly, 45 days&apos; notice · Third-party
-              costs paid by the client directly
-            </dd>
-          </div>
-          <div>
-            <dt>Languages</dt>
-            <dd>
-              English and Spanish · Russian in-house · Chinese and Arabic
-              through project collaborators
-            </dd>
-          </div>
-          <div>
-            <dt>Response time</dt>
-            <dd>Within 24–48 hours</dd>
-          </div>
-          <div>
-            <dt>Notable clients</dt>
-            <dd>
-              <Link href="/work/karen-mannheim">Karen Mannheim</Link> (TRAZZO
-              Lighting) ·{' '}
-              <Link href="/work/mike-kaeding">Mike Kaeding</Link> (Norhart) ·{' '}
-              <Link href="/work/girish-sehgal">Girish Sehgal</Link> (Sheikh
-              Shakhbout Medical City) ·{' '}
-              <Link href="/work/mannheim-trading">José Mannheim</Link> (MTC) ·{' '}
-              <Link href="/work/juan-pablo-romero">JP Romero</Link> (JURA ·
-              CTD)
-            </dd>
-          </div>
-          <div>
-            <dt>Social</dt>
-            <dd>
-              <a
-                href="https://www.linkedin.com/company/thecrudaspace/"
-                target="_blank"
-                rel="noopener"
-              >
-                LinkedIn (CRUDA)
-              </a>{' '}
-              ·{' '}
-              <a
-                href="https://www.linkedin.com/in/franherrera2/"
-                target="_blank"
-                rel="noopener"
-              >
-                LinkedIn (Fran Herrera)
-              </a>
-            </dd>
-          </div>
-        </dl>
-      </section>
-
-      {/* 08 · FAQ · F32 §2.5 · acordeón. */}
-      <section
-        className="about-sec about-faq"
-        data-sec
+        className="f55-panel f55-panel--light"
         data-reveal-seq
         aria-label="Frequently asked questions"
       >
-        <p className="about-eyebrow" data-reveal>
-          Questions
-        </p>
-        <h2 className="about-name about-name--sm" data-reveal>
-          Frequently asked questions.
-        </h2>
-        <div className="about-faq__list" data-reveal>
-          {FAQ_ITEMS.map((f, i) => (
-            <details key={i}>
-              <summary>
-                <h3>{f.q}</h3>
-              </summary>
-              <p>
-                {f.q === 'How fast does CRUDA reply?' ? (
-                  <>
-                    Within 24 to 48 hours. The first step is a{' '}
-                    <Link href="/second-look">Second Look</Link>: two
-                    conversations and a written diagnosis for $950.
-                  </>
-                ) : (
-                  f.a
-                )}
-              </p>
-            </details>
-          ))}
+        <div className="f55-wrap">
+          <div className="f55-bar" data-reveal>
+            <span className="f55-bar__n">IV</span>
+            <span className="f55-bar__t">Questions</span>
+            <span className="f55-bar__c">IV / IV</span>
+          </div>
+          <div className="f55-body">
+            <div className="f55-faq" data-reveal>
+              {FAQ_ITEMS.map((f, i) => (
+                <details key={i} className="f55-faq__item">
+                  <summary className="f55-faq__q">
+                    <span>{f.q}</span>
+                    <span className="f55-faq__plus" aria-hidden="true">
+                      +
+                    </span>
+                  </summary>
+                  <p className="f55-faq__a">{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* 09 · START HERE · F23-5 */}
-      <section className="about-sec" data-sec>
-        <StartHere h2="You talk to Fran from the first call." />
+      {/* START HERE · negro · componente StartHere F56
+          (lede + CTA actualizados a Second Look). */}
+      <section className="f55-panel f55-panel--dark f55-starthere" data-reveal-seq>
+        <div className="f55-wrap">
+          <StartHere h2="Not sure which of the four fits?" />
+        </div>
       </section>
     </>
   )

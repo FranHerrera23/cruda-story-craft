@@ -42,8 +42,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 33 | `f54-1-featured-avif` | `90b45ed` | ✅ |
 | 34 | `f56-second-look` | `8d35137` | ✅ |
 | 35 | `f55-about` | `91d17cc` | ✅ |
+| 36 | `f52-performance` | `3ca5fbf` | ✅ |
 
-`origin/main` HEAD final: `91d17cc`.
+`origin/main` HEAD final: `3ca5fbf`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -365,6 +366,17 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f52-performance (LCP optimizations site-wide)
+#   Impacto: vuelven el Toaster/Sonner/TooltipProvider/Providers
+#   (ReactQuery) al root layout · bundle JS +~30KB. Vuelve el gate
+#   .page-root:not(.ready) desktop en todas las paginas (fade 300ms
+#   entre invisible y visible). Vuelve sizes='(max-width: 767px)
+#   100vw, (max-width: 1199px) 90vw, 1200px' en el hero de casos
+#   (variants ligeramente oversized en 1440 y undersized en 1920).
+#   LCP sube ~400-1000 ms por pagina (sitio al estado previo F56).
+#   Sin cambios visuales en estado final.
+git revert -m 1 3ca5fbf
 
 # Rollback f55-about (/about rebuild 5 paneles)
 #   Impacto: /about vuelve a la version F40/F41/F42 (hero

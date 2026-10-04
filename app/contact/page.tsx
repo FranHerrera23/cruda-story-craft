@@ -2,18 +2,16 @@ import type { Metadata } from 'next'
 import ContactContent from './ContactContent'
 import './contact.css'
 
-/* /contact · F14a · 21-sep · autónomo · prototipo contact-v1.
-
-   Tres secciones + filtro ICP (5 preguntas).
-   La línea vieja "We do not ask about revenue, industry or geography"
-   está retirada (contradecía la Q04 del filtro sobre budget). El
-   prototipo firmado no la incluye. */
+/* /contact · F14a · 21-sep · autónomo · prototipo contact-v1 ·
+   F56 (Fran 2-oct) saca el embed de Calendly: la única entrada
+   agendable del sitio es /second-look. /contact queda como link
+   a /second-look + form "Write to us" + mail directo. */
 
 const BASE = 'https://www.thecruda.com'
 
 const CONTACT_TITLE = 'Contact · CRUDA'
 const META_DESCRIPTION =
-  'Book a 45-minute call with Fran Herrera, founder of CRUDA, or write to fran@thecruda.com.'
+  'Start with a Second Look: two conversations and a written diagnosis for $950. Or write to fran@thecruda.com.'
 
 export const metadata: Metadata = {
   title: CONTACT_TITLE,

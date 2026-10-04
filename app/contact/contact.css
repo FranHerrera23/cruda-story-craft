@@ -245,13 +245,8 @@
 .contact-act__col {
   min-width: 0;
 }
-.contact-cal {
-  width: 100%;
-  min-height: 720px;
-  border: 0;
-  background: var(--paper, #F1EFEB);
-  margin-top: clamp(16px, 2vh, 24px);
-}
+/* F56 · .contact-cal (iframe de Calendly) eliminado: /contact ya
+   no embebe el booking. La única entrada agendable es /second-look. */
 .contact-cal-link {
   display: inline-block;
   margin-top: clamp(16px, 2vh, 24px);
@@ -348,5 +343,4 @@
 
 @media (max-width: 900px) {
   .contact-act { grid-template-columns: 1fr; gap: clamp(28px, 4vh, 44px); }
-  .contact-cal { min-height: 900px; }
 }

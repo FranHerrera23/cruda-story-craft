@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import './start-here.css'
 
-/* StartHere · F23-5 · 22-sep · Fran §6.
+/* StartHere · F23-5 · 22-sep · Fran §6 · F56 (Fran 2-oct) actualiza
+   lede + CTA a Second Look.
 
    Reemplaza el bloque "One conversation." en todas las páginas,
    salvo /contact.
@@ -12,11 +13,10 @@ import './start-here.css'
      reconoce como suya                      h2-sec, sin regla
      [Prueba · 17px ink]                     opcional
      [Fuente · 13px --grey]                  opcional
-     The first step is a 45-minute call      lede FIJO (constante F23 §0.1)
-     with Fran. No cost, and no pitch at
-     the end of it.
-     Book the call →                          CTA principal → /contact
-     fran@thecruda.com                        secundario
+     Two conversations and a                 lede FIJO (F56)
+     written diagnosis. $950.
+     Start a Second Look →                   CTA principal → /second-look
+     fran@thecruda.com                       secundario
 
    El fondo lo pone la sección padre; StartHere no fuerza fondo. */
 
@@ -27,8 +27,7 @@ export type StartHereProps = {
   source?: string
 }
 
-const LEDE =
-  'The first step is a 45-minute call with Fran. No cost, and no pitch at the end of it.'
+const LEDE = 'Two conversations and a written diagnosis. $950.'
 
 export default function StartHere({ h2, proof, source }: StartHereProps) {
   return (
@@ -43,8 +42,8 @@ export default function StartHere({ h2, proof, source }: StartHereProps) {
           </>
         )}
         <p className="start-here__lede">{LEDE}</p>
-        <Link className="start-here__cta" href="/contact">
-          Book the call →
+        <Link className="start-here__cta" href="/second-look">
+          Start a Second Look →
         </Link>
         <br />
         <a className="start-here__mail" href="mailto:fran@thecruda.com">
@@ -78,7 +77,12 @@ export const CASE_START_HERE: Record<string, StartHereProps> = {
     proof: 'At eighty, José publishes under his own name.',
   },
   'juan-pablo-romero': {
-    h2: 'Bringing a European brand into the US market?',
+    h2: 'Bringing a Latin American brand into the US market?',
+  },
+  /* F56 (Fran 3-oct) · Jack sin h2 específico de caso. Usa el h2
+     genérico del plano START HERE de /services. Sin proof/source. */
+  'jack-yeager': {
+    h2: 'Not sure which of the four fits?',
   },
   inout: {
     h2: 'Launching a new line under a name the market already knows?',

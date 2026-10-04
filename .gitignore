@@ -35,4 +35,7 @@ scripts/.shots
 scripts/.lh
 scripts/.evidence
 scripts/.f54
+scripts/.f56-qa
+scripts/.f56-diff
+scripts/.f56-lh
 scripts/.diff

@@ -1,0 +1,351 @@
+/* /second-look · F56 · wizard de 4 pasos + cierre.
+   Copy y layout: docs/F56-brief.md (prioritario) +
+                  docs/F56-second-look.html (referencia).
+
+   Tokens: usamos los del sitio donde difieren del HTML del prototipo:
+     --paper → #F1EFEB (HTML: #F2F2F0)
+     --ink   → #0D0D0D (HTML: #000)
+     --line  → #D9D5CD (HTML: rgba(0,0,0,.14))
+   El resto coincide:
+     --cream #EFEBDF · --grey #6E6B65 · --orange #FF5A00
+     --ink-deep #0E1113 (botón primario)
+
+   La página toma la pantalla completa: oculta el <Nav /> y el
+   <SiteFooter /> globales con :has(). El wizard trae su propio
+   top-bar (SECOND LOOK · N/4) y su propio footer. */
+
+.sl-page {
+  --sl-paper: #F1EFEB;
+  --sl-ink: #0D0D0D;
+  --sl-ink-deep: #0E1113;
+  --sl-cream: #EFEBDF;
+  --sl-grey: #6E6B65;
+  --sl-orange: #FF5A00;
+  --sl-line: #D9D5CD;
+  --sl-pad: clamp(24px, 5vw, 64px);
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--sl-paper);
+  color: var(--sl-ink);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Oculta la nav/footer globales SOLO cuando esta página está
+   montada. Usa :has() en vez de body-class para no requerir efecto
+   JS; soportado por todos los browsers modernos. */
+body:has(.sl-page) .cruda-global-nav,
+body:has(.sl-page) .site-footer,
+body:has(.sl-page) .skip-link {
+  display: none !important;
+}
+body:has(.sl-page) .page-root { padding: 0 !important; }
+
+/* TOP BAR del wizard */
+.sl-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 28px var(--sl-pad);
+}
+.sl-brand {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .14em;
+  color: var(--sl-ink);
+}
+.sl-label {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  color: var(--sl-grey);
+  text-transform: uppercase;
+}
+
+/* MAIN · un paso visible a la vez */
+.sl-main {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  padding: 24px var(--sl-pad) 64px;
+}
+.sl-wrap {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.sl-step { display: none; }
+.sl-step.sl-on { display: block; }
+
+/* Animación · brief §1:
+   - paso 1 sin animación (no se agrega keyframe cuando .sl-step[data-step="1"])
+   - pasos 2+ con transform 350ms al activarse
+   - prefers-reduced-motion ninguna */
+.sl-step[data-step="2"].sl-on,
+.sl-step[data-step="3"].sl-on,
+.sl-step[data-step="4"].sl-on,
+.sl-step[data-step="5"].sl-on {
+  animation: sl-in 350ms ease;
+}
+@keyframes sl-in {
+  from { transform: translateY(6px); opacity: 0.001; }
+  to   { transform: none;             opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sl-step.sl-on { animation: none !important; }
+}
+
+/* Tipografía interna · hereda Archivo del body */
+.sl-page h1,
+.sl-page h2 {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: -.03em;
+  line-height: 1.04;
+}
+.sl-page h1 { font-size: clamp(36px, 4.6vw, 64px); }
+.sl-page h2 { font-size: clamp(32px, 4vw, 52px); }
+.sl-page p  { margin: 0; }
+
+.sl-lead {
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.sl-body {
+  font-size: 18px;
+  line-height: 1.6;
+}
+.sl-rule {
+  width: 64px;
+  height: 2px;
+  background: var(--sl-orange);
+}
+
+/* LAYOUT utilities */
+.sl-row {
+  display: flex;
+  gap: clamp(32px, 6vw, 88px);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sl-col {
+  flex: 1 1 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+.sl-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.sl-portrait {
+  width: min(100%, 380px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 22%;
+  flex-shrink: 0;
+  background: #ddd;
+}
+.sl-portrait--sm { width: min(100%, 240px); }
+
+/* F56 (Fran 3-oct) · en mobile 390 el retrato va a 160px para que
+   el h1 entre en el primer pantallazo (medido en 390×844). El 4:5
+   mantiene el retrato en 160×200. El h1 (clamp 36px) y el lede
+   quedan dentro de ~700px de alto total con top-bar + padding. */
+@media (max-width: 767px) {
+  .sl-portrait { width: 160px; }
+  .sl-portrait--sm { width: 120px; }
+}
+
+/* PASO 2 · tres columnas + grilla + línea */
+.sl-three {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+}
+.sl-three__col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sl-trust {
+  border-top: 1px solid var(--sl-line);
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.sl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  border-top: 1px solid var(--sl-line);
+  border-left: 1px solid var(--sl-line);
+}
+.sl-card {
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 150px;
+  border-right: 1px solid var(--sl-line);
+  border-bottom: 1px solid var(--sl-line);
+}
+.sl-card__n {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+.sl-card__r {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--sl-grey);
+}
+.sl-card__l {
+  font-size: 14px;
+  line-height: 1.45;
+}
+.sl-range {
+  font-size: 19px;
+  line-height: 1.5;
+  letter-spacing: -.01em;
+  max-width: 52ch;
+}
+
+/* ACCIONES · botones primario + ghost */
+.sl-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.sl-btn {
+  min-height: 52px;
+  padding: 0 28px;
+  background: var(--sl-ink-deep);
+  color: var(--sl-cream);
+  border: 0;
+  border-radius: 0;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.sl-btn:hover { background: #000; }
+.sl-btn--ghost {
+  background: transparent;
+  color: var(--sl-ink);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 0 20px;
+}
+.sl-btn:focus-visible,
+.sl-opt:focus-visible,
+.sl-page input:focus-visible {
+  outline: 2px solid var(--sl-orange);
+  outline-offset: 3px;
+}
+
+/* PASO 3 · form */
+.sl-form { max-width: 720px; }
+.sl-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sl-field input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  color: var(--sl-ink);
+  font: inherit;
+  font-size: 20px;
+  padding: 10px 0;
+  min-height: 44px;
+  border-radius: 0;
+}
+.sl-page fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.sl-page legend { padding: 0 0 14px; }
+.sl-opts {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.sl-opt {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 0;
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  background: transparent;
+  color: var(--sl-ink);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.sl-opt[aria-pressed="true"] {
+  background: var(--sl-ink-deep);
+  color: var(--sl-cream);
+  border-color: var(--sl-ink-deep);
+}
+
+/* PASO 4 · booking */
+.sl-bookhead {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.sl-price {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 40ch;
+}
+.sl-price__amt {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -.02em;
+}
+.sl-price__note {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--sl-grey);
+}
+.sl-calendly {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  min-height: 700px;
+  background: #fff;
+}
+.sl-small {
+  font-size: 16px;
+  line-height: 1.55;
+  max-width: 64ch;
+}
+.sl-fallback {
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 24px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  background: #fff;
+}
+
+/* FOOTER del wizard · brief §1 */
+.sl-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 24px var(--sl-pad) 32px;
+  font-size: 14px;
+  color: var(--sl-grey);
+}
+.sl-foot a { color: var(--sl-grey); }
+.sl-foot a:hover { color: var(--sl-ink); }

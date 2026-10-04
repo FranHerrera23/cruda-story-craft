@@ -1,0 +1,260 @@
+<!doctype html>
+<!-- F56 · referencia de copy y estructura. Copy verbatim. Este HTML ya incluye las correcciones aprobadas (Panama City, línea bajo la grilla). Lo técnico (tokens, animación, carga de Calendly, history, validación, origen) se rige por docs/F56-brief.md, que tiene prioridad sobre este archivo. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Second Look · Fran Herrera · CRUDA</title>
+<meta name="description" content="Two conversations and a written diagnosis of your business, from the outside. $950, credited toward any engagement.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F2F2F0;--ink:#000;--ink-deep:#0E1113;--cream:#EFEBDF;--grey:#6E6B65;--orange:#FF5A00;--line:rgba(0,0,0,.14);--pad:clamp(24px,5vw,64px)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font-family:"Archivo","Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;display:flex;flex-direction:column}
+a{color:var(--ink)}a:hover{color:var(--grey)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:28px var(--pad)}
+.label{margin:0;font-size:13px;font-weight:500;letter-spacing:.14em;color:var(--grey);text-transform:uppercase}
+.brand{font-weight:600;font-size:14px;letter-spacing:.14em;color:var(--ink)}
+main{flex-grow:1;display:flex;align-items:center;padding:24px var(--pad) 64px}
+.wrap{width:100%;max-width:1120px;margin:0 auto}
+.step{display:none}.step.on{display:block;animation:in .35s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.step.on{animation:none}}
+h1,h2{margin:0;font-weight:600;letter-spacing:-.03em;line-height:1.04}
+h1{font-size:clamp(36px,4.6vw,64px)}
+h2{font-size:clamp(32px,4vw,52px)}
+p{margin:0}
+.lead{font-size:clamp(20px,2vw,26px);line-height:1.3;letter-spacing:-.01em}
+.body{font-size:18px;line-height:1.6}
+.rule{width:64px;height:2px;background:var(--orange)}
+.row{display:flex;gap:clamp(32px,6vw,88px);align-items:center;flex-wrap:wrap}
+.col{flex:1 1 360px;display:flex;flex-direction:column;gap:22px}
+.portrait{width:min(100%,380px);aspect-ratio:4/5;object-fit:cover;object-position:50% 22%;flex-shrink:0;background:#ddd}
+.portrait.sm{width:min(100%,240px)}
+.stack{display:flex;flex-direction:column;gap:40px}
+.three{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px}
+.three div{display:flex;flex-direction:column;gap:12px}
+.trust{border-top:1px solid var(--line);padding-top:40px;display:flex;flex-direction:column;gap:28px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.card{padding:22px 20px;display:flex;flex-direction:column;gap:6px;min-height:150px;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.card .n{font-size:19px;font-weight:600;letter-spacing:-.01em}
+.card .r{font-size:14px;line-height:1.4;color:var(--grey)}
+.card .l{font-size:14px;line-height:1.45}
+.range{font-size:19px;line-height:1.5;letter-spacing:-.01em;max-width:52ch}
+.actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn{min-height:52px;padding:0 28px;background:var(--ink-deep);color:var(--cream);border:0;border-radius:0;font:inherit;font-size:16px;font-weight:500;cursor:pointer}
+.btn:hover{background:#000}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid rgba(0,0,0,.3);padding:0 20px}
+.btn:focus-visible,.opt:focus-visible,input:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.form{max-width:720px}
+.field{display:flex;flex-direction:column;gap:10px}
+.field input{background:transparent;border:0;border-bottom:1px solid rgba(0,0,0,.3);color:var(--ink);font:inherit;font-size:20px;padding:10px 0;min-height:44px;border-radius:0}
+fieldset{border:0;margin:0;padding:0}
+legend{padding:0 0 14px}
+.opts{display:flex;gap:10px;flex-wrap:wrap}
+.opt{min-height:44px;padding:0 18px;border-radius:0;font:inherit;font-size:15px;cursor:pointer;background:transparent;color:var(--ink);border:1px solid rgba(0,0,0,.3)}
+.opt[aria-pressed="true"]{background:var(--ink-deep);color:var(--cream);border-color:var(--ink-deep)}
+.bookhead{display:flex;gap:48px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}
+.price{display:flex;flex-direction:column;gap:6px;max-width:40ch}
+.price .amt{font-size:28px;font-weight:600;letter-spacing:-.02em}
+.price .note{font-size:15px;line-height:1.5;color:var(--grey)}
+.calendly{border:1px solid rgba(0,0,0,.2);min-height:700px;background:#fff}
+.small{font-size:16px;line-height:1.55;max-width:64ch}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:24px var(--pad) 32px;font-size:14px;color:var(--grey)}
+footer a{color:var(--grey)}
+</style>
+</head>
+<body>
+
+<header class="top">
+<span class="brand">SECOND LOOK</span>
+<span class="label" id="progress" aria-live="polite">1 / 4</span>
+</header>
+
+<main>
+<div class="wrap">
+
+<!-- STEP 1 -->
+<section class="step on" data-step="1" aria-labelledby="s1">
+<div class="row">
+<img class="portrait" src="/fran-herrera.webp" alt="Fran Herrera, founder of CRUDA">
+<div class="col">
+<h1 id="s1">You've looked at your company from the inside for years.</h1>
+<p class="lead">This is the look from the outside.</p>
+<div class="rule" aria-hidden="true"></div>
+<p class="body" style="max-width:46ch">Hi, I'm Fran. A Second Look is just you and me: two long conversations about your business, and then I write down what I see. Your company, read from the outside, by someone who has nothing to sell you that day.</p>
+<div><button class="btn" type="button" data-next>See how it works</button></div>
+</div>
+</div>
+</section>
+
+<!-- STEP 2 -->
+<section class="step" data-step="2" aria-label="How it works">
+<div class="stack">
+<div class="three">
+<div><p class="label">First conversation · 90 min</p><p class="body">We go through the essentials, the way a fractional CMO would: your product, your price, where and how you sell, who your clients really are, and the story underneath it all.</p></div>
+<div><p class="label">Second conversation · 90 min</p><p class="body">I share what I see: what's working, what isn't, and what's hard to notice when you're this close.</p></div>
+<div><p class="label">Yours to keep</p><p class="body">A written diagnosis of your business, and what I'd do next.</p></div>
+</div>
+<div class="trust">
+<p class="label">Founders and companies who trusted us</p>
+<div class="grid">
+<!-- Same data source as the home's Selected work. No links. -->
+<div class="card"><p class="n">Karen Mannheim</p><p class="r">TRAZZO Lighting · Miami</p><p class="l">Lights homes worth $10 million to $200 million; one of Forbes Perú's 50 most powerful women, 2026.</p></div>
+<div class="card"><p class="n">Mike Kaeding</p><p class="r">Norhart · Minneapolis</p><p class="l">CEO of Norhart, $230M in assets created, on a mission to halve the cost of housing.</p></div>
+<div class="card"><p class="n">Girish Sehgal</p><p class="r">Sheikh Shakhbout Medical City · Abu Dhabi</p><p class="l">Former Four Seasons GM, bringing hospitality into the UAE's biggest medical city.</p></div>
+<div class="card"><p class="n">José Mannheim</p><p class="r">MTC · Panama City</p><p class="l">Co-founder of AGP, maker of armored glass for the Pentagon, Tesla and Audi.</p></div>
+<div class="card"><p class="n">Confidential</p><p class="r">Dubai</p><p class="l">Built a $300M on-demand fashion group, lost it, and built it again.</p></div>
+<div class="card"><p class="n">JP Romero</p><p class="r">JURA · CTD · Miami</p><p class="l">Takes Latin American architecture and design brands into the US market.</p></div>
+<div class="card"><p class="n">INOUT</p><p class="r">Frameless Sliding Doors · Argentina</p><p class="l">A frameless sliding door line, branded from zero, with a trade program the client still runs on its own.</p></div>
+<div class="card"><p class="n">Jack Yeager</p><p class="r">Mistiva · Midtown Miami</p><p class="l">Sold his first company for seven figures, sailed the world, and came back to build a lighting business in Miami.</p></div>
+</div>
+<p class="range">From homes worth $200 million to a hospital in Abu Dhabi. The industry changes. What a company needs to say about itself doesn't.</p>
+</div>
+<div class="actions">
+<button class="btn" type="button" data-next>Tell me about your company</button>
+<button class="btn ghost" type="button" data-back>Back</button>
+</div>
+</div>
+</section>
+
+<!-- STEP 3 -->
+<section class="step" data-step="3" aria-labelledby="s3">
+<div class="stack form">
+<h2 id="s3">Tell me about your company.</h2>
+<div class="field">
+<label class="label" for="company">Company and website</label>
+<input id="company" type="text" autocomplete="organization">
+</div>
+<fieldset>
+<legend class="label">Annual revenue</legend>
+<div class="opts" data-group="revenue">
+<button class="opt" type="button" aria-pressed="false">Under $1M</button>
+<button class="opt" type="button" aria-pressed="false">$1–5M</button>
+<button class="opt" type="button" aria-pressed="false">$5–20M</button>
+<button class="opt" type="button" aria-pressed="false">$20M+</button>
+</div>
+</fieldset>
+<fieldset>
+<legend class="label">Budget available to invest in this</legend>
+<div class="opts" data-group="budget">
+<button class="opt" type="button" aria-pressed="false">Under $5K</button>
+<button class="opt" type="button" aria-pressed="false">$5–20K</button>
+<button class="opt" type="button" aria-pressed="false">$20–50K</button>
+<button class="opt" type="button" aria-pressed="false">$50K+</button>
+</div>
+</fieldset>
+<div class="actions">
+<button class="btn" type="button" data-next>Continue</button>
+<button class="btn ghost" type="button" data-back>Back</button>
+</div>
+</div>
+</section>
+
+<!-- STEP 4 -->
+<section class="step" data-step="4" aria-labelledby="s4">
+<div class="stack" style="gap:28px">
+<div class="bookhead">
+<h2 id="s4" style="max-width:14ch">Pick a time that works for you.</h2>
+<div class="price">
+<p class="amt">$950</p>
+<p class="note">Two conversations and a written diagnosis. Credited toward any engagement if we work together.</p>
+</div>
+</div>
+<div class="calendly" id="calendly"></div>
+<p class="small">Once you book, I'll send you an invoice for $950 within 24 hours. Your time is confirmed when it's paid. We set the second conversation together, at the end of the first.</p>
+<div class="actions"><button class="btn ghost" type="button" data-back>Back</button></div>
+</div>
+</section>
+
+<!-- CLOSING -->
+<section class="step" data-step="5" aria-labelledby="s5">
+<div class="row">
+<img class="portrait sm" src="/fran-herrera.webp" alt="Fran Herrera">
+<div class="col" style="gap:18px">
+<h2 id="s5">See you soon.</h2>
+<p class="body" style="max-width:48ch">Your time is held. The invoice will be in your inbox within 24 hours, and once it's paid, your Second Look is confirmed. Between now and then, you don't need to prepare anything. Just come as you are.</p>
+<p class="body" style="color:var(--grey)">Fran</p>
+</div>
+</div>
+</section>
+
+</div>
+</main>
+
+<footer>
+<span>Referred by a client? Write to me directly at <a href="mailto:fran@thecruda.com">fran@thecruda.com</a>.</span>
+<span>CRUDA · Your expertise, translated.</span>
+</footer>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+(function () {
+  var CALENDLY_URL = 'https://calendly.com/cruda-intro/narrative-sparring-live-1';
+  var TOTAL = 4;
+  var step = 1;
+  var answers = { revenue: '', budget: '' };
+  var calendlyLoadedFor = null;
+
+  var steps = document.querySelectorAll('.step');
+  var progress = document.getElementById('progress');
+
+  function show(n) {
+    step = Math.max(1, Math.min(5, n));
+    steps.forEach(function (s) { s.classList.toggle('on', Number(s.dataset.step) === step); });
+    progress.textContent = step <= TOTAL ? step + ' / ' + TOTAL : '';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (step === 4) loadCalendly();
+    var h = document.querySelector('.step.on h1, .step.on h2');
+    if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
+  }
+
+  document.querySelectorAll('[data-next]').forEach(function (b) { b.addEventListener('click', function () { show(step + 1); }); });
+  document.querySelectorAll('[data-back]').forEach(function (b) { b.addEventListener('click', function () { show(step - 1); }); });
+
+  document.querySelectorAll('.opts').forEach(function (group) {
+    var key = group.dataset.group;
+    group.querySelectorAll('.opt').forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        group.querySelectorAll('.opt').forEach(function (o) { o.setAttribute('aria-pressed', 'false'); });
+        opt.setAttribute('aria-pressed', 'true');
+        answers[key] = opt.textContent.trim();
+      });
+    });
+  });
+
+  function loadCalendly() {
+    var company = (document.getElementById('company').value || '').trim();
+    var signature = [company, answers.revenue, answers.budget].join('|');
+    if (calendlyLoadedFor === signature) return;
+    var el = document.getElementById('calendly');
+    el.innerHTML = '';
+    var params = new URLSearchParams({
+      hide_gdpr_banner: '1',
+      a1: company,
+      a2: answers.revenue,
+      a3: answers.budget
+    });
+    var url = CALENDLY_URL + '?' + params.toString();
+    function init() {
+      if (window.Calendly && window.Calendly.initInlineWidget) {
+        window.Calendly.initInlineWidget({ url: url, parentElement: el });
+        calendlyLoadedFor = signature;
+      } else {
+        setTimeout(init, 150);
+      }
+    }
+    init();
+  }
+
+  window.addEventListener('message', function (e) {
+    if (e.origin.indexOf('calendly.com') === -1) return;
+    if (e.data && e.data.event === 'calendly.event_scheduled') show(5);
+  });
+})();
+</script>
+</body>
+</html>

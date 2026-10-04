@@ -56,8 +56,9 @@ const HUBS_SECTION = `## Pages
 - [About CRUDA](${BASE}/about): CRUDA is a communications company. We translate cultures into business.
 - [Work](${BASE}/work): Nine founders. Six cities. Four countries.
 - [Services](${BASE}/services): CRUDA is a communications company. We translate cultures into business.
+- [Second Look](${BASE}/second-look): Two conversations and a written diagnosis of your business, from the outside. $950, credited toward any engagement.
 - [Process](${BASE}/process): The first 90 days. What CRUDA does, month by month.
-- [Contact](${BASE}/contact): Book a 45-minute conversation or write fran@thecruda.com.`
+- [Contact](${BASE}/contact): Start with a Second Look (two conversations and a written diagnosis for $950) or write fran@thecruda.com.`
 
 function oneLine(text: string, max = 200): string {
   const flat = text.replace(/\s+/g, ' ').trim()

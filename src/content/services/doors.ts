@@ -45,11 +45,11 @@ export const DOORS: readonly DoorSpec[] = [
   {
     key: 'read',
     n: '04',
-    label: 'The Read',
+    label: 'Second Look',
     descriptor:
-      'One session in which an outsider tells you, plainly, what they see.',
-    price: 'per session · On request',
-    href: '/services#read',
+      'Two conversations and a written diagnosis.',
+    price: 'two conversations · $950',
+    href: '/services#second-look',
   },
 ] as const
 

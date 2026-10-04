@@ -1193,7 +1193,7 @@ export default function DeckContent() {
               <Link href="/contact" className="cta-button">
                 Start a Conversation <span className="arrow">→</span>
               </Link>
-              <div className="cta-stamp">45 min · No pitch · No commitment</div>
+              <div className="cta-stamp">Two conversations · $950</div>
               <div className="cta-domain">
                 <a href="https://thecruda.com" target="_blank" rel="noopener noreferrer">
                   thecruda.com

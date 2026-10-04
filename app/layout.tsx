@@ -1,19 +1,23 @@
 import type { Metadata } from 'next';
 import { Archivo, Instrument_Serif } from 'next/font/google';
 import './globals.css';
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import Nav from "@/components/Nav";
 import SiteFooter from "@/components/SiteFooter";
 import "@/components/case-study.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import Providers from './providers';
 import PageShell from "@/components/PageShell";
 import RevealScroll from "@/components/RevealScroll";
 import SmoothScroll from "@/components/SmoothScroll";
 import LineReveals from "@/components/LineReveals";
 import Loader from "@/components/Loader";
+
+/* F52 (Fran 4-oct) · se removieron imports y componentes del layout
+   que nunca eran usados por ninguna página:
+     - Providers (QueryClientProvider de @tanstack/react-query)
+     - TooltipProvider + Tooltip (@radix-ui)
+     - Toaster + Sonner (shadcn toasts)
+   Eran boilerplate del init del proyecto · 0 uso en app/ ni en
+   src/components/ fuera de ui/. Reduce bundle JS + hydration time. */
 
 /* Inline script en el <head> que corre antes del primer paint.
 
@@ -216,43 +220,37 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
         />
-        <Providers>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <ScrollToTop />
-            {/* Motion v3 §9 — Loader de primera visita de sesión.
-                Va como primer nodo del árbol client para que renderee
-                en el primer paint. Ver Loader.tsx. */}
-            <Loader />
-            {/* Brief v4 UX §1.8 — skip link como primer elemento del body. */}
-            <a href="#main" className="skip-link">Skip to content</a>
-            <Nav />
-            {/* F3.1 — PageShell intercepta clicks internos y dispara
-                document.startViewTransition en browsers que la soportan
-                (Chrome/Edge/Safari). El fade out+in vive en CSS bajo
-                ::view-transition-old(root) y ::view-transition-new(root).
+        <ScrollToTop />
+        {/* Motion v3 §9 — Loader de primera visita de sesión.
+            Va como primer nodo del árbol client para que renderee
+            en el primer paint. Ver Loader.tsx. */}
+        <Loader />
+        {/* Brief v4 UX §1.8 — skip link como primer elemento del body. */}
+        <a href="#main" className="skip-link">Skip to content</a>
+        <Nav />
+        {/* F3.1 — PageShell intercepta clicks internos y dispara
+            document.startViewTransition en browsers que la soportan
+            (Chrome/Edge/Safari). El fade out+in vive en CSS bajo
+            ::view-transition-old(root) y ::view-transition-new(root).
 
-                Motion §3.1 — PageShell aplica .page-root al wrapper y
-                toggle .ready al montarse: la carga de página fade a
-                opacity 1 usando --t-3 / --ease. Sin JS, .page-root
-                queda a opacity 1 por default (scripting:none). */}
-            <PageShell>
-              <main id="main">
-                {children}
-              </main>
-            </PageShell>
-            {/* Motion v3 §2 (14-sep) · LineReveals monta antes que
-                RevealScroll. Splitear los títulos es una precondición
-                del orquestador — RevealScroll espera el evento
-                `cruda:lines-ready` que dispara LineReveals cuando
-                terminó de partir todos los `[data-reveal="lines"]`. */}
-            <LineReveals />
-            <RevealScroll />
-            <SmoothScroll />
-            <SiteFooter />
-          </TooltipProvider>
-        </Providers>
+            Motion §3.1 — PageShell aplica .page-root al wrapper y
+            toggle .ready al montarse: la carga de página fade a
+            opacity 1 usando --t-3 / --ease. Sin JS, .page-root
+            queda a opacity 1 por default (scripting:none). */}
+        <PageShell>
+          <main id="main">
+            {children}
+          </main>
+        </PageShell>
+        {/* Motion v3 §2 (14-sep) · LineReveals monta antes que
+            RevealScroll. Splitear los títulos es una precondición
+            del orquestador — RevealScroll espera el evento
+            `cruda:lines-ready` que dispara LineReveals cuando
+            terminó de partir todos los `[data-reveal="lines"]`. */}
+        <LineReveals />
+        <RevealScroll />
+        <SmoothScroll />
+        <SiteFooter />
       </body>
     </html>
   );

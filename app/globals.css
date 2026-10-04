@@ -494,29 +494,22 @@ html[data-loader="skip"] .loader { display: none; }
 /* Motion §3.1 · carga de página.
 
    F49 §3.2 · 27-sep · gate acotado a DESKTOP fine-pointer.
+   F52 §3.1 · 4-oct · gate acotado SOLO a / (home) · se saca de
+   /services, /about, casos, ensayos y /second-look.
+   F52 §3.2 · 4-oct · gate removido también del home.
 
-   El gate original `.page-root:not(.ready) { opacity: 0 }` global
-   apagaba todo el `<main>` hasta que React hidrataba. En mobile eso
-   convertía el logo del nav (fuera del wrapper) en LCP fabricado y
-   empujaba el LCP de home/services/about a ~2.6-3.0 s. Diagnóstico
-   completo en `docs/f49-diagnostico.md`.
-
-   Se mantiene en desktop porque Act1Hero.fitAllPhrases mide el ancho
-   del contenedor y baja el font-size en un rAF post-mount; sin el
-   gate se vería un flash de dos line-boxes antes del auto-fit
-   (ese motor no monta en mobile via F48 gate, así que allá no hay
-   FOJT que ocultar). El pixel-diff a 1200 ms se preserva porque
-   post-fit la renderización es idéntica en ambos caminos.
+   Razón: F56 unificó el Loader a correr solo en / (desktop 2 s).
+   Durante esos 2 s el panel del Loader cubre el <main>, dando
+   tiempo a React a hidratarse y a Act1Hero.fitAllPhrases a
+   escribir font-size inline antes de que el Loader salga. El
+   gate .page-root:not(.ready) era redundante · el Loader hace
+   el mismo trabajo visualmente. Sin el gate, el h1 del SSR es
+   visible al primer paint en todas las páginas donde el Loader
+   no corre, y el fade de 300 ms desktop desaparece.
 
    reduce (globals §6) fija `.page-root { opacity: 1 }` — ver bloque
    más abajo. */
-@media (scripting: enabled) and (min-width: 768px) and (pointer: fine) {
-  .page-root:not(.ready) { opacity: 0; }
-  .page-root.ready {
-    opacity: 1;
-    transition: opacity var(--dur-3) var(--ease);
-  }
-}
+/* F52 §3.2 · bloque .page-root:not(.ready) removido. */
 
 /* F49 §3.2 · reserva SSR de la barra nav.
    Nav.tsx pone `position: fixed` sobre `.cruda-global-nav.bar` desde

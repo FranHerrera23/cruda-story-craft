@@ -341,7 +341,11 @@ export default function WorkLayout({ w }: { w: Work }) {
               alt=""
               fill
               priority
-              sizes="(max-width: 767px) 100vw, (max-width: 1199px) 90vw, 1200px"
+              /* F52 §2.2 · sizes al ancho real medido del hero.
+                 Mobile 390 CSS = 334 px (padding 28 each side).
+                 ≥768 el hero ocupa ~90vw hasta 1919px.
+                 ≥1920 el hero capsula a 1440px fijo. */
+              sizes="(max-width: 767px) calc(100vw - 56px), (max-width: 1919px) 90vw, 1440px"
               quality={90}
               style={
                 w.heroObjectPosition

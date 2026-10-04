@@ -34,6 +34,7 @@ tsconfig.tsbuildinfo
 scripts/.shots
 scripts/.lh
 scripts/.evidence
+scripts/.f52-lh
 scripts/.f54
 scripts/.f55-shots
 scripts/.f56-qa

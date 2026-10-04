@@ -41,8 +41,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 32 | `f54-thinking-newsletter` | `bd756fa` | ✅ |
 | 33 | `f54-1-featured-avif` | `90b45ed` | ✅ |
 | 34 | `f56-second-look` | `8d35137` | ✅ |
+| 35 | `f55-about` | `91d17cc` | ✅ |
 
-`origin/main` HEAD final: `8d35137`.
+`origin/main` HEAD final: `91d17cc`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -364,6 +365,17 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f55-about (/about rebuild 5 paneles)
+#   Impacto: /about vuelve a la version F40/F41/F42 (hero
+#   "You work with the founder - and with a team small enough to
+#   move" + How it started chronology + Operating principles +
+#   Our founder + Key facts + FAQ). JSON-LD @id #fran-herrera no
+#   cambia, el id del nodo persiste. CSS .f55-* queda dead code
+#   si no se limpia pero no afecta otras paginas. StartHere block
+#   del Panel V se pierde (vuelve el bloque StartHere del codigo
+#   viejo que ya era el componente F56).
+git revert -m 1 91d17cc
 
 # Rollback f56-second-look (/second-look wizard + The Read -> Second Look)
 #   Impacto: la ruta /second-look vuelve 404. La home + /services +

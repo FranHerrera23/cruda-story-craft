@@ -44,8 +44,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 35 | `f55-about` | `91d17cc` | ✅ |
 | 36 | `f52-performance` | `3ca5fbf` | ✅ |
 | 37 | `f52-hotfix-inline-fit` | `c303118` | ✅ |
+| 38 | `f30-inout-v2` | `9355d89` | ✅ |
 
-`origin/main` HEAD final: `c303118`.
+`origin/main` HEAD final: `9355d89`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -367,6 +368,14 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f30-inout-v2 (/work/inout rebuild al molde F33)
+#   Impacto: /work/inout vuelve a su estado previo (title INOUT -
+#   Frameless Sliding Doors, pull-quote en ingles, sin bloques
+#   SYSTEM/PHOTO BAND/INSIDERS placa). WorkSection.bg + fg quedan
+#   dead-props no usados por ningun otro caso. docs/placeholders.md
+#   pierde las entradas de INOUT.
+git revert -m 1 9355d89
 
 # Rollback f52-hotfix-inline-fit (inline fit del hero home)
 #   Impacto: vuelve el salto 76px to 49.6px del h1 del hero al

@@ -96,6 +96,16 @@ export type WorkSection = {
   body: string[]
   pull?: string
   blocks?: WorkBlock[]
+  /* F30 (Fran 5-oct) · fondo propio de la sección · pintado en
+     WorkLayout con el color literal como `background-color` del
+     wrapper `.cs-sec`. Usado por INOUT para la banda INSIDERS
+     sobre `#1600FF`. Si queda vacío, la sección renderea con el
+     fondo default del molde. */
+  bg?: string
+  /* F30 (Fran 5-oct) · color explícito del texto cuando la
+     sección va sobre un fondo oscuro/color. Si queda vacío,
+     hereda del molde (ink #0D0D0D en paper). */
+  fg?: string
 }
 
 export type WorkImageBlock = {

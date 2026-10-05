@@ -444,8 +444,21 @@ export default function WorkLayout({ w }: { w: Work }) {
       {w.sections.map((sec, i) => {
         const isBuiltHost =
           isBuiltRows(w.built) && sec.body.length === 0
+        /* F30 (Fran 5-oct) · bg / fg opcional sobre .cs-sec para
+           pintar la sección sobre una placa de color (INSIDERS
+           sobre #1600FF). Se emite como style inline. Padding
+           vertical se preserva del CSS; el ancho full-bleed se
+           logra con el style sobre .cs-sec (el .cs-wrap de dentro
+           sigue acotado a las cols del molde). */
+        const slabStyle = sec.bg
+          ? { background: sec.bg, color: sec.fg ?? '#FFFFFF' }
+          : undefined
         return (
-          <section key={i} className="cs-sec cs-wrap pen-sec">
+          <section
+            key={i}
+            className={`cs-sec cs-wrap pen-sec${sec.bg ? ' cs-sec--slab' : ''}`}
+            style={slabStyle}
+          >
             <h2 className="pen-h2">{sec.h2}</h2>
             <div className="pen-body">
               {sec.body.map((p, j) => (

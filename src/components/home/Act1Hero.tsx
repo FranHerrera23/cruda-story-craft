@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { ACT1_BEATS } from './acts-config'
 import { runAct, enterAct, leaveAct } from './acts-motor'
+import { fitAllPhrases, FIT_INLINE_SCRIPT } from './fit-phrases'
 import './acts.css'
 
 /* Home · Act 1 · Hero
@@ -19,51 +20,22 @@ import './acts.css'
 
    Auto-fit del tamaño de fuente (§4.2 · white-space:nowrap +
    medición) · cada frase se reduce hasta entrar en UNA sola
-   line-box, aplicado en 1440/1024/768/390. Se recalcula en
-   resize y en document.fonts.ready. */
+   line-box, aplicado en 1440/1024/768/390.
 
-const FIT_MIN_PX = 12
+   F52 §3.2 (Fran 5-oct): la lógica de fit se mueve a
+   `./fit-phrases` y se corre ADEMÁS como inline script en el
+   SSR de app/page.tsx, ANTES del primer paint. Eso elimina el
+   flash 76px → 49.6px que ocurría al hidratar (CLS 0.0034
+   medido en 1440). Acá dentro, el fit sigue corriendo en:
+   - mount (por si el inline script no corrió o se saltó algún
+     fallback — es idempotente, re-aplica el mismo valor).
+   - resize.
+   - document.fonts.ready (para ajustar con la métrica real de
+     Archivo si entre tanto cambia).
 
-/* F11.1 · auto-fit mínimo común (21-sep · autónomo).
-   Bug del brief: `fitPhrase` bajaba cada frase por su cuenta y
-   la frase corta se sostenía más grande que la larga. El check
-   §4 pide "las dos frases del hero al MISMO font-size, medido".
-
-   Nuevo modelo: medí cada frase por separado hasta que quepa,
-   guardá cada tamaño, tomá el mínimo, aplicá el mínimo a todas.
-   El techo del CSS (`font-size: clamp`) sigue mandando; el fit
-   sólo puede BAJAR. */
-function fitAllPhrases(phrases: HTMLElement[]) {
-  if (phrases.length === 0) return
-  const perSize: number[] = []
-  phrases.forEach(phrase => {
-    const container = phrase.parentElement
-    if (!container) return
-    const containerWidth = container.getBoundingClientRect().width
-    if (containerWidth <= 0) return
-    phrase.style.fontSize = ''
-    phrase.style.width = 'max-content'
-    const cssSize = parseFloat(getComputedStyle(phrase).fontSize) || 76
-    let size = cssSize
-    phrase.style.fontSize = size + 'px'
-    let iter = 0
-    while (
-      phrase.getBoundingClientRect().width > containerWidth &&
-      size > FIT_MIN_PX &&
-      iter < 120
-    ) {
-      size *= 0.97
-      phrase.style.fontSize = size + 'px'
-      iter++
-    }
-    phrase.style.width = ''
-    perSize.push(size)
-  })
-  const common = Math.min(...perSize)
-  phrases.forEach(phrase => {
-    phrase.style.fontSize = common + 'px'
-  })
-}
+   Los .beat__phrase llevan suppressHydrationWarning en el style
+   porque el inline script escribió el font-size antes de que
+   React hidrate · evita el warning de mismatch. */
 
 export default function Act1Hero() {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -129,6 +101,7 @@ export default function Act1Hero() {
   }, [])
 
   return (
+    <>
     <div
       id="act1"
       className={`act act1${reduced ? ' act--reduced' : ''}`}
@@ -149,6 +122,7 @@ export default function Act1Hero() {
                   <Tag
                     key={j}
                     className="beat__phrase"
+                    suppressHydrationWarning
                     dangerouslySetInnerHTML={{ __html: html }}
                   />
                 ))}
@@ -161,5 +135,15 @@ export default function Act1Hero() {
             en el fold competía con el h1. */}
       </div>
     </div>
+    {/* F52 §3.2 · inline fit script sin React. Se emite JUSTO
+        después del markup del hero · el script corre durante el
+        HTML parsing y escribe el font-size de los .beat__phrase
+        antes del primer paint. Mobile + reduced-motion saltean
+        (ver fit-phrases.ts). */}
+    <script
+      id="f52-hero-fit"
+      dangerouslySetInnerHTML={{ __html: FIT_INLINE_SCRIPT }}
+    />
+    </>
   )
 }

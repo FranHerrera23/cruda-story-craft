@@ -72,6 +72,8 @@ export default function HomePage() {
     <>
       <HomeChrome />
       <PlanesStack />
+      {/* Act1Hero emite internamente el inline fit script right
+          after el markup del hero · F52 §3.2. */}
       <Act1Hero />
       <main className="stack" id="stack">
         <HomeWhatCrudaIs />

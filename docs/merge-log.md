@@ -47,8 +47,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 38 | `f30-inout-v2` | `9355d89` | ✅ |
 | 39 | `f57-fixes` §1 | `b005de7` | ✅ |
 | 40 | `f57-rest` §2-§4 | `e530ae9` | ✅ |
+| 41 | `f57-thinking-hotfix` | `3682a19` | ✅ |
 
-`origin/main` HEAD final: `e530ae9`.
+`origin/main` HEAD final: `3682a19`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -370,6 +371,13 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f57-thinking-hotfix (overflow hidden del embed)
+#   Impacto: vuelve el max-height: 360px + overflow: hidden en
+#   .t-hero__sub-embed · recorta input + boton del form de beehiiv
+#   en el aside del hero de /thinking. El h1 'Thinking' sigue
+#   arriba porque el align-items: start se mantiene.
+git revert -m 1 3682a19
 
 # Rollback f57-rest §2-§4 (Calls line + photo fallback + services reorder + thinking)
 #   Impacto: Second Look paso 1/4 pierden la linea 'Calls in

@@ -115,16 +115,24 @@
 }
 
 /* Aside de suscripción (solo EN · brief §1.1).
-   F57 §4 · align-items start del hero + wrapper del embed con
-   max-height = altura reservada + overflow hidden, para que la
-   caja del form no empuje el h1 hacia abajo. */
+   F57 §4 · align-items start del hero + reserva de altura en el
+   embed para que no genere CLS cuando aparece el iframe.
+
+   F57 hotfix (Fran 6-oct): se saca el max-height + overflow:hidden
+   que estaba acá. Recortaba desde abajo (input + botón) en vez
+   de ocultar el título/descripción del embed de beehiiv — leído
+   al revés. El h1 "Thinking" ya queda arriba por align-items: start
+   del grid del hero · no hace falta recortar el embed. Cuando Fran
+   limpie título + descripción en beehiiv, ajustamos el min-height
+   a la altura real del form limpio. */
 .t-hero__sub {
   border-top: 2px solid #000;
   padding-top: 20px;
 }
 .t-hero__sub-embed {
-  max-height: 360px;
-  overflow: hidden;
+  /* Reserva igual que la del SubscribeForm interno (360px) para
+     que el aside no colapse antes de que el embed cargue. */
+  min-height: 360px;
 }
 .t-hero__sub-h {
   margin: 0;

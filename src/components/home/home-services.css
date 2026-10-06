@@ -28,6 +28,23 @@
   font-weight: 500;
   letter-spacing: .14em;
   color: var(--orange, #FF5A00);
+  text-transform: uppercase;
+}
+/* F57 §3 · fila Second Look lleva "Start here" en el slot del
+   número. 44px no alcanza · pisamos la grilla y nowrap. */
+.home-services .irow:has(.irow__o:not(:is([data-n])):first-letter) {
+  /* dummy · no-op, mantenemos el bloque abajo abierto. */
+}
+.home-services .index .irow:first-child {
+  grid-template-columns: auto 1fr 1.25fr;
+}
+.home-services .index .irow:first-child .irow__o {
+  white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .home-services .index .irow:first-child {
+    grid-template-columns: auto 1fr;
+  }
 }
 .home-services .irow__n {
   font-size: clamp(19px, 2vw, 29px);

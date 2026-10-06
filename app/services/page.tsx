@@ -68,11 +68,20 @@ export default function ServicesPage() {
             <p className="eyebrow">What CRUDA is</p>
             <h1 className="name">We translate cultures into business.</h1>
             <div className="rule" />
+            {/* F57 §3 · lede nuevo · Second Look entra como entrada
+                del flujo. */}
             <p className="lede">
-              Work with us for one session, for twelve weeks, or every
+              Start with two conversations. Then twelve weeks, or every
               week after that.
             </p>
             <div className="services-index">
+              {/* F57 §3 · Second Look primera fila con "Start here"
+                  en el slot del número (mismo estilo naranja). */}
+              <div className="irow">
+                <span className="irow__o irow__o--start">Start here</span>
+                <span className="irow__n">Second Look</span>
+                <span className="irow__p">two conversations · <em>$950</em></span>
+              </div>
               <div className="irow">
                 <span className="irow__o">01</span>
                 <span className="irow__n">Translated</span>
@@ -88,13 +97,56 @@ export default function ServicesPage() {
                 <span className="irow__n">Interpreted</span>
                 <span className="irow__p">12 weeks · from <em>$55,000</em></span>
               </div>
-              <div className="irow">
-                <span className="irow__o">04</span>
-                <span className="irow__n">Second Look</span>
-                <span className="irow__p">two conversations · <em>$950</em></span>
-              </div>
             </div>
             <p className="services-cost-line">{COST_LINE}</p>
+          </div>
+        </section>
+
+        {/* F57 §3 · SECOND LOOK pasa a ser la primera ficha ·
+            eyebrow "Start here · Two conversations". El resto de
+            la ficha no cambia respecto a F56. */}
+        <section className="plane plane--black" data-plane id="second-look">
+          <div className="plane__in">
+            <p className="eyebrow">Start here · Two conversations</p>
+            <h2 className="name">Second Look</h2>
+            <div className="rule" />
+            <p className="lede">
+              Two conversations and a written diagnosis.
+            </p>
+            <div className="data">
+              <div className="cell">
+                <p className="cell__l">First conversation · 90 min</p>
+                <p className="cell__v">
+                  We go through the essentials, the way a fractional
+                  CMO would: your product, your price, where and how
+                  you sell, who your clients really are, and the
+                  story underneath it all.
+                </p>
+              </div>
+              <div className="cell">
+                <p className="cell__l">Second conversation · 90 min</p>
+                <p className="cell__v">
+                  I share what I see: what&rsquo;s working, what
+                  isn&rsquo;t, and what&rsquo;s hard to notice when
+                  you&rsquo;re this close.
+                </p>
+              </div>
+              <div className="cell">
+                <p className="cell__l">Yours to keep</p>
+                <p className="cell__v">
+                  A written diagnosis of your business, and what
+                  I&rsquo;d do next.
+                </p>
+              </div>
+            </div>
+            <p className="services-price-line">
+              two conversations · <em>$950</em>
+            </p>
+            <div className="services-ctas">
+              <Link className="go" href="/second-look">
+                Start a Second Look →
+              </Link>
+            </div>
           </div>
         </section>
 
@@ -261,54 +313,6 @@ export default function ServicesPage() {
               See it in:{' '}
               <Link href="/work/confidential-fashion-founder">Confidential</Link>
             </p>
-          </div>
-        </section>
-
-        {/* 05 · SECOND LOOK · negro · F56 (Fran 2-oct) renombra 04
-            de The Read a Second Look · precio fijo $950 · tres
-            celdas en lugar de dos · CTA a /second-look. */}
-        <section className="plane plane--black" data-plane id="second-look">
-          <div className="plane__in">
-            <p className="eyebrow">04 · Two conversations</p>
-            <h2 className="name">Second Look</h2>
-            <div className="rule" />
-            <p className="lede">
-              Two conversations and a written diagnosis.
-            </p>
-            <div className="data">
-              <div className="cell">
-                <p className="cell__l">First conversation · 90 min</p>
-                <p className="cell__v">
-                  We go through the essentials, the way a fractional
-                  CMO would: your product, your price, where and how
-                  you sell, who your clients really are, and the
-                  story underneath it all.
-                </p>
-              </div>
-              <div className="cell">
-                <p className="cell__l">Second conversation · 90 min</p>
-                <p className="cell__v">
-                  I share what I see: what&rsquo;s working, what
-                  isn&rsquo;t, and what&rsquo;s hard to notice when
-                  you&rsquo;re this close.
-                </p>
-              </div>
-              <div className="cell">
-                <p className="cell__l">Yours to keep</p>
-                <p className="cell__v">
-                  A written diagnosis of your business, and what
-                  I&rsquo;d do next.
-                </p>
-              </div>
-            </div>
-            <p className="services-price-line">
-              two conversations · <em>$950</em>
-            </p>
-            <div className="services-ctas">
-              <Link className="go" href="/second-look">
-                Start a Second Look →
-              </Link>
-            </div>
           </div>
         </section>
 

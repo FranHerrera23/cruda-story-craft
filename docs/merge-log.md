@@ -45,8 +45,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 36 | `f52-performance` | `3ca5fbf` | ✅ |
 | 37 | `f52-hotfix-inline-fit` | `c303118` | ✅ |
 | 38 | `f30-inout-v2` | `9355d89` | ✅ |
+| 39 | `f57-fixes` §1 | `b005de7` | ✅ |
 
-`origin/main` HEAD final: `9355d89`.
+`origin/main` HEAD final: `b005de7` (parcial · §2-§4 vienen en commits siguientes).
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -368,6 +369,12 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f57-fixes §1 (Calendly default)
+#   Impacto: /second-look paso 4 vuelve a caer al fallback mailto
+#   si NEXT_PUBLIC_CALENDLY_URL_SECOND_LOOK no esta seteada en
+#   Vercel. Si Fran ya seteo la env, no afecta.
+git revert -m 1 b005de7
 
 # Rollback f30-inout-v2 (/work/inout rebuild al molde F33)
 #   Impacto: /work/inout vuelve a su estado previo (title INOUT -

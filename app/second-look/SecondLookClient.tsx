@@ -132,7 +132,13 @@ export default function SecondLookClient() {
   const calendlyLoadedForRef = useRef<string | null>(null)
   const calendlyRef = useRef<HTMLDivElement | null>(null)
 
-  const CALENDLY_URL = process.env.NEXT_PUBLIC_CALENDLY_URL_SECOND_LOOK ?? ''
+  /* F57 §1 (Fran 6-oct) · default hardcoded de la URL de Calendly.
+     Si la env var no está, usamos el link del evento vigente. El
+     fallback mailto ya no se dispara por falta de env — solo si
+     explícitamente seteás la var a '' (string vacío). */
+  const CALENDLY_URL =
+    process.env.NEXT_PUBLIC_CALENDLY_URL_SECOND_LOOK ??
+    'https://calendly.com/cruda-intro/narrative-sparring-live-1'
 
   /* Setters que escriben también en sessionStorage. Preservan state
      cuando el componente se remonta por bfcache / hard reload /

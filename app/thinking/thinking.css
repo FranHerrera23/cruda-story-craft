@@ -37,9 +37,15 @@
   .thinking > .t-close { padding-inline: 40px; }
 }
 
-/* ============ Hero (brief §1.1) ============ */
+/* ============ Hero (brief §1.1 · F54) ============
+   Padding 72px arriba + 56px abajo según el brief F54.
+   F57 hotfix 2 (Fran 6-oct): el padding-top debe INCLUIR el alto
+   de la nav fija (var(--nav-h) = 76px) · si no, el h1 "Thinking"
+   queda tapado detrás de la nav. Antes del hotfix la regla era
+   `padding-top: 72px` literal, lo cual deja el h1 arrancando en
+   y=72 mientras la nav ocupa y=0..76 → overlap de 4px. */
 .t-hero {
-  padding-top: 72px;
+  padding-top: calc(var(--nav-h, 76px) + 72px);
   padding-bottom: 56px;
   display: grid;
   grid-template-columns: 1fr;
@@ -50,9 +56,7 @@
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 24px;
     row-gap: 0;
-    /* F57 §4 · align-items: start · "Thinking" queda arriba
-       como en el diseño de F54. El form del aside no puede empujar
-       el h1 hacia abajo. */
+    /* align-items: start · "Thinking" queda arriba como en F54. */
     align-items: start;
   }
   .t-hero__left { grid-column: 1 / span 7; }
@@ -114,25 +118,29 @@
   }
 }
 
-/* Aside de suscripción (solo EN · brief §1.1).
-   F57 §4 · align-items start del hero + reserva de altura en el
-   embed para que no genere CLS cuando aparece el iframe.
-
-   F57 hotfix (Fran 6-oct): se saca el max-height + overflow:hidden
-   que estaba acá. Recortaba desde abajo (input + botón) en vez
-   de ocultar el título/descripción del embed de beehiiv — leído
-   al revés. El h1 "Thinking" ya queda arriba por align-items: start
-   del grid del hero · no hace falta recortar el embed. Cuando Fran
-   limpie título + descripción en beehiiv, ajustamos el min-height
-   a la altura real del form limpio. */
+/* Aside de suscripción.
+   F57 hotfix 2 (Fran 6-oct): el SubscribeForm (embed de beehiiv)
+   se saca del aside del hero · lo reemplaza un link "Subscribe →"
+   a /newsletter. Sin min-height reservado · el aside tiene la
+   altura natural de h2 + line + link. */
 .t-hero__sub {
   border-top: 2px solid #000;
   padding-top: 20px;
 }
-.t-hero__sub-embed {
-  /* Reserva igual que la del SubscribeForm interno (360px) para
-     que el aside no colapse antes de que el embed cargue. */
-  min-height: 360px;
+.t-hero__sub-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-family: var(--font-archivo), var(--grot), -apple-system, sans-serif;
+  font-size: 15px;
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  min-height: 44px;
+}
+.t-hero__sub-link:hover { color: var(--orange, #FF5A00); }
+@media (min-width: 1024px) {
+  .t-hero__sub-link { min-height: 24px; }
 }
 .t-hero__sub-h {
   margin: 0;
@@ -152,7 +160,9 @@
 
 @media (max-width: 767px) {
   .t-hero {
-    padding-top: 40px;
+    /* F57 hotfix 2 · mobile · nav es ~81px · dejamos 40px limpios
+       debajo. Mismo criterio que desktop pero con margen chico. */
+    padding-top: calc(var(--nav-h, 76px) + 40px);
     padding-bottom: 32px;
     padding-inline: 24px;
     gap: 32px;

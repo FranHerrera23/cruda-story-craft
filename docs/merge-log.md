@@ -48,8 +48,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 39 | `f57-fixes` §1 | `b005de7` | ✅ |
 | 40 | `f57-rest` §2-§4 | `e530ae9` | ✅ |
 | 41 | `f57-thinking-hotfix` | `3682a19` | ✅ |
+| 42 | `f57-thinking-hotfix-2` | `362f4be` | ✅ |
 
-`origin/main` HEAD final: `3682a19`.
+`origin/main` HEAD final: `362f4be`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -371,6 +372,13 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback f57-thinking-hotfix-2 (SubscribeForm fuera + h1 debajo de nav)
+#   Impacto: vuelve el SubscribeForm al aside del hero de /thinking
+#   (solo EN). padding-top: 72px literal · h1 Thinking vuelve a
+#   quedar tapado parcialmente por la nav fija. ES pierde el aside
+#   de nuevo.
+git revert -m 1 362f4be
 
 # Rollback f57-thinking-hotfix (overflow hidden del embed)
 #   Impacto: vuelve el max-height: 360px + overflow: hidden en

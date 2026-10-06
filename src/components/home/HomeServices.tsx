@@ -17,8 +17,9 @@ export default function HomeServices() {
       <div className="plane__in">
         <div className="plane__top">
           <p className="eyebrow">What we do</p>
+          {/* F57 §3 · lede nuevo, Second Look como entrada. */}
           <p className="lede home-services__lede">
-            Work with us for one session, for twelve weeks, or every
+            Start with two conversations. Then twelve weeks, or every
             week after that.
           </p>
           <div className="rule" />

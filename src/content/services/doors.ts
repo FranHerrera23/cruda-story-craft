@@ -14,7 +14,20 @@ export type DoorSpec = {
   href: string
 }
 
+/* F57 §3 (Fran 6-oct) · Second Look pasa a ser la primera entrada
+   (la del flujo recomendado). En el slot del número va "Start here"
+   con el mismo estilo naranja. Translated/Transmission/Interpreted
+   quedan como 01/02/03. */
 export const DOORS: readonly DoorSpec[] = [
+  {
+    key: 'read',
+    n: 'Start here',
+    label: 'Second Look',
+    descriptor:
+      'Two conversations and a written diagnosis.',
+    price: 'two conversations · $950',
+    href: '/services#second-look',
+  },
   {
     key: 'translated',
     n: '01',
@@ -41,15 +54,6 @@ export const DOORS: readonly DoorSpec[] = [
       'For companies whose owners, teams and buyers come from different cultures.',
     price: '12 weeks · from $55,000',
     href: '/services#interpreted',
-  },
-  {
-    key: 'read',
-    n: '04',
-    label: 'Second Look',
-    descriptor:
-      'Two conversations and a written diagnosis.',
-    price: 'two conversations · $950',
-    href: '/services#second-look',
   },
 ] as const
 

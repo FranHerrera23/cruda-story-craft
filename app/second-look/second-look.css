@@ -126,6 +126,17 @@ body:has(.sl-page) .page-root { padding: 0 !important; }
   background: var(--sl-orange);
 }
 
+/* F57 §2 · "Calls in English or Spanish." · gris del sitio,
+   15px, 16px arriba del elemento siguiente. Mismo estilo en el
+   paso 1 (abajo del body, antes del botón) y en el paso 4
+   (abajo del price note). */
+.sl-languages {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--sl-grey);
+}
+
 /* LAYOUT utilities */
 .sl-row {
   display: flex;

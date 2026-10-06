@@ -292,7 +292,16 @@ export default async function ThinkingPage({
           <aside className="t-hero__sub" aria-labelledby="t-hero-sub-h">
             <h2 id="t-hero-sub-h" className="t-hero__sub-h">Narrative Sparring</h2>
             <p className="t-hero__sub-line">Every week, the full story.</p>
-            <SubscribeForm />
+            {/* F57 §4 · contenedor del embed con max-height igual a
+                la altura reservada por SubscribeForm (360px),
+                overflow: hidden y aligned-top · el embed no puede
+                empujar el h1 hacia abajo. Si el embed de beehiiv
+                todavía trae título o descripción propios, quedan
+                cortados por el overflow y el h2/line de arriba
+                siguen siendo el único título visible. */}
+            <div className="t-hero__sub-embed">
+              <SubscribeForm />
+            </div>
           </aside>
         )}
       </section>

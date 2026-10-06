@@ -462,11 +462,11 @@ export default function EssayLayout({ es }: { es: Essay }) {
           </Link>
         </p>
 
-        {/* F53 §7 (Fran 30-sep · ajuste posterior) · SubscribeForm
-            solo en ensayos EN. En ES no se renderiza: la línea de
-            newsletter del .md se mantiene como itálica con link a
-            /newsletter (buildNewsletterBlock del parser). */}
-        {lang === 'en' && <SubscribeForm />}
+        {/* F57 §4 (Fran 6-oct) · SubscribeForm en TODOS los ensayos
+            (EN + ES). Antes solo EN; en ES la línea de newsletter
+            quedaba como link. Ahora el embed se renderiza igual
+            abajo del contenido en los dos idiomas. */}
+        <SubscribeForm />
       </article>
     </div>
   )

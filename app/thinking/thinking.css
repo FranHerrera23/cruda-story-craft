@@ -50,7 +50,10 @@
     grid-template-columns: repeat(12, minmax(0, 1fr));
     column-gap: 24px;
     row-gap: 0;
-    align-items: end;
+    /* F57 §4 · align-items: start · "Thinking" queda arriba
+       como en el diseño de F54. El form del aside no puede empujar
+       el h1 hacia abajo. */
+    align-items: start;
   }
   .t-hero__left { grid-column: 1 / span 7; }
   .t-hero__sub  { grid-column: 9 / span 4; }
@@ -111,10 +114,17 @@
   }
 }
 
-/* Aside de suscripción (solo EN · brief §1.1). */
+/* Aside de suscripción (solo EN · brief §1.1).
+   F57 §4 · align-items start del hero + wrapper del embed con
+   max-height = altura reservada + overflow hidden, para que la
+   caja del form no empuje el h1 hacia abajo. */
 .t-hero__sub {
   border-top: 2px solid #000;
   padding-top: 20px;
+}
+.t-hero__sub-embed {
+  max-height: 360px;
+  overflow: hidden;
 }
 .t-hero__sub-h {
   margin: 0;

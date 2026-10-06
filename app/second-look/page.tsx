@@ -1,6 +1,32 @@
 import type { Metadata } from 'next'
+import { existsSync } from 'node:fs'
+import path from 'node:path'
 import SecondLookClient from './SecondLookClient'
 import './second-look.css'
+
+/* F57 §2 (Fran 6-oct) · fallback chain para el retrato de Fran.
+   Se evalúa en build-time (SSG) sobre public/ del CWD. El valor
+   final se pasa como prop a SecondLookClient para que paso 1 y
+   cierre usen el mismo archivo sin tener que correr lógica en el
+   cliente. */
+function resolvePortrait(): string {
+  const candidates = [
+    'public/fran-second-look.jpg',
+    'public/fran-second-look.webp',
+    'public/fran-second-look.png',
+    'public/fran-avatar-source.jpg',
+    'public/fran-avatar-source.webp',
+    'public/fran-avatar-source.png',
+    'public/fran-herrera.webp',
+  ]
+  for (const rel of candidates) {
+    if (existsSync(path.join(process.cwd(), rel))) {
+      return '/' + rel.slice('public/'.length)
+    }
+  }
+  return '/fran-herrera.webp'
+}
+const PORTRAIT_SRC = resolvePortrait()
 
 /* /second-look · F56 · Fran 2-oct.
 
@@ -71,7 +97,7 @@ export default function SecondLookPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SL_SCHEMA) }}
       />
-      <SecondLookClient />
+      <SecondLookClient portraitSrc={PORTRAIT_SRC} />
     </>
   )
 }

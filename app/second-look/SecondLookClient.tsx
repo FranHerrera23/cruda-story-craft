@@ -125,7 +125,14 @@ const TRUST_CARDS = [
   },
 ] as const
 
-export default function SecondLookClient() {
+type Props = {
+  /* F57 §2 · ruta final del retrato, resuelta en build-time por
+     page.tsx con el fallback chain fran-second-look →
+     fran-avatar-source → fran-herrera. */
+  portraitSrc: string
+}
+
+export default function SecondLookClient({ portraitSrc }: Props) {
   const [step, setStep] = useState<number>(1)
   const [company, setCompanyState] = useState<string>('')
   const [answers, setAnswersState] = useState<Answers>({ revenue: '', budget: '' })
@@ -330,7 +337,7 @@ export default function SecondLookClient() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="sl-portrait"
-                src="/fran-herrera.webp"
+                src={portraitSrc}
                 alt="Fran Herrera, founder of CRUDA"
                 width={760}
                 height={950}
@@ -347,6 +354,9 @@ export default function SecondLookClient() {
                   down what I see. Your company, read from the outside, by
                   someone who has nothing to sell you that day.
                 </p>
+                {/* F57 §2 · "Calls in English or Spanish." · 15px gris,
+                    16px arriba del body, 16px abajo (antes del botón). */}
+                <p className="sl-languages">Calls in English or Spanish.</p>
                 <div>
                   <button className="sl-btn" type="button" onClick={next}>
                     See how it works
@@ -518,6 +528,9 @@ export default function SecondLookClient() {
                     Two conversations and a written diagnosis. Credited toward
                     any engagement if we work together.
                   </p>
+                  {/* F57 §2 · misma línea de idiomas que el paso 1,
+                      debajo del price note. */}
+                  <p className="sl-languages">Calls in English or Spanish.</p>
                 </div>
               </div>
 
@@ -559,7 +572,7 @@ export default function SecondLookClient() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 className="sl-portrait sl-portrait--sm"
-                src="/fran-herrera.webp"
+                src={portraitSrc}
                 alt="Fran Herrera"
                 width={480}
                 height={600}

@@ -3,9 +3,9 @@ slug_es: emigrar-te-devuelve-el-lapiz
 date: 2026-10-09
 capsule_es: Para los que se quieren ir, los que lo están pensando, los que ya se fueron y los que se quedan con ganas de algo más.
 meta_es: Para los que se quieren ir, los que lo están pensando, los que ya se fueron y los que se quedan con ganas de algo más.
-hero:
+hero: hero.webp
 hero_credit:
-alt_es:
+alt_es: Mano escribiendo con lápiz sobre un cuaderno de hojas cuadriculadas, en blanco y negro.
 ---
 
 ## Español: Emigrar te devuelve el lápiz

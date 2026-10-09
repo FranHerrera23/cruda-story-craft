@@ -49,8 +49,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 40 | `f57-rest` §2-§4 | `e530ae9` | ✅ |
 | 41 | `f57-thinking-hotfix` | `3682a19` | ✅ |
 | 42 | `f57-thinking-hotfix-2` | `362f4be` | ✅ |
+| 43 | `emigrar-ensayo` | `a527a50` | ✅ |
 
-`origin/main` HEAD final: `362f4be`.
+`origin/main` HEAD final: `a527a50`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -372,6 +373,13 @@ git revert -m 1 bd756fa
 #   cambios visuales. El pixel-diff tool queda en scripts/ · es
 #   dev-only, no afecta build. Revert sin dependencias.
 git revert -m 1 90b45ed
+
+# Rollback emigrar-ensayo (nuevo ensayo ES Emigrar te devuelve el lápiz)
+#   Impacto: /thinking/emigrar-te-devuelve-el-lapiz vuelve a 404 ·
+#   el ensayo desaparece del índice de /thinking?lang=es.
+#   El archivo .md se va con el revert · placeholders de hero
+#   dejan de aplicar.
+git revert -m 1 a527a50
 
 # Rollback f57-thinking-hotfix-2 (SubscribeForm fuera + h1 debajo de nav)
 #   Impacto: vuelve el SubscribeForm al aside del hero de /thinking

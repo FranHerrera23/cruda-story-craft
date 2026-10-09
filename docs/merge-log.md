@@ -51,8 +51,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 42 | `f57-thinking-hotfix-2` | `362f4be` | ✅ |
 | 43 | `emigrar-ensayo` | `a527a50` | ✅ |
 | 44 | `emigrar-hero` | `4c04071` | ✅ |
+| 45 | `emigrar-credit` | `a518977` | ✅ |
 
-`origin/main` HEAD final: `4c04071`.
+`origin/main` HEAD final: `a518977`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -388,6 +389,12 @@ git revert -m 1 a527a50
 #   imagen y vuelve al fallback. El .md vuelve a quedar con hero
 #   vacío · alt_es vuelve a placeholder.
 git revert -m 1 4c04071
+
+# Rollback emigrar-credit (crédito de hero · nedimshoots)
+#   Impacto: desaparece la línea de crédito debajo del hero del
+#   ensayo Emigrar. hero_credit vuelve a quedar vacío · reaparece
+#   el placeholder en docs/placeholders.md.
+git revert -m 1 a518977
 
 # Rollback f57-thinking-hotfix-2 (SubscribeForm fuera + h1 debajo de nav)
 #   Impacto: vuelve el SubscribeForm al aside del hero de /thinking

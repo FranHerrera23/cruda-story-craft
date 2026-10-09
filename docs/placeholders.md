@@ -20,3 +20,6 @@ Ver `docs/autonomy.md` para la regla.
 | F30 INOUT | `src/content/work/inout.ts` | rooms[1].image | `/inout/insiders-02-sergio-cabrera.jpg` · still episodio #02 (A7 F25) |
 | F30 INOUT | `src/content/work/inout.ts` | rooms[2].image | `/inout/insiders-03-horizontal-arquitectos.jpg` · still episodio #03 (A8 F25) |
 | F30 INOUT | `src/content/work/inout.ts` | — | `publishedAt` sin setear · brief original 2020, fecha exacta de anuncio sin confirmar (F38 no fake dates) |
+| Ensayo Emigrar | `content/essays/emigrar-te-devuelve-el-lapiz.md` | frontmatter `hero` | nombre de archivo del hero · foto de Unsplash que Fran va a subir a `public/essays/emigrar-te-devuelve-el-lapiz/` |
+| Ensayo Emigrar | `content/essays/emigrar-te-devuelve-el-lapiz.md` | frontmatter `hero_credit` | "Foto: [nombre del fotógrafo] en Unsplash" · falta nombre del fotógrafo |
+| Ensayo Emigrar | `content/essays/emigrar-te-devuelve-el-lapiz.md` | frontmatter `alt_es` | descripción de la imagen hero · pendiente hasta que se defina el archivo |

@@ -3,8 +3,9 @@ slug_en: michael-bay-would-be-kubrick
 date: 2026-10-10
 capsule_en: Everyone can make the container now. Michael Bay mastered format; Kubrick bent every tool to a concept. In a feed full of AI-made formats, the scarce thing is the reason behind the work, and it still has to come from you.
 meta_en: AI made formats cheap. Kubrick and Michael Bay show what's still scarce: the reason behind the work, which no tool can make for you.
-hero:
-hero_credit:
+hero: hero.webp
+hero_credit: Foto · Stanley Kubrick en el rodaje de Barry Lyndon, foto publicitaria de 1975 (Wikimedia Commons, dominio público)
+alt_en: Stanley Kubrick in profile, bearded, on the set of Barry Lyndon, in black and white.
 ---
 
 ## English: Michael Bay Would Be Kubrick

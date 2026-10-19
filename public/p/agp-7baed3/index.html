@@ -133,6 +133,19 @@ em{font-style:normal;color:var(--orange)}
 .ref p{font-size:14.5px;line-height:1.55;color:var(--grey)}
 .ref p.t{color:var(--ink);font-weight:500}
 
+.ph.wide,.shot.wide{aspect-ratio:16/10;max-height:24vh}
+.shot{width:100%;object-fit:cover;object-position:center top;display:block;border:1px solid var(--rule)}
+.ceos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,40px)}
+.ceo{display:flex;flex-direction:column;gap:12px;min-width:0;border-top:1px solid var(--rule);padding-top:16px}
+.ceo-h{display:flex;gap:12px;align-items:center}
+.ceo-h img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none}
+.ceo-h b{display:block;font-size:17px;font-weight:600;letter-spacing:-.015em}
+.ceo-h span{display:block;font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-top:3px}
+.ceo-n{display:flex;align-items:baseline;gap:8px}
+.ceo-n b{font-size:clamp(26px,2.6vw,36px);font-weight:600;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.ceo-n span{font-size:13px;color:var(--grey)}
+.post-shot{width:100%;height:clamp(150px,28vh,300px);object-fit:cover;object-position:center top;border:1px solid var(--rule);border-radius:8px;display:block}
+.ceo p{font-size:14.5px;line-height:1.5}
 /* defs */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,72px)}
 .col{display:flex;flex-direction:column;gap:14px;min-width:0;border-top:1px solid var(--rule);padding-top:18px}
@@ -265,6 +278,7 @@ em{font-style:normal;color:var(--orange)}
 
 @media (max-width:900px){
   .refs,.pmap,.data,.data.d4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ceos{grid-template-columns:1fr}.post-shot{height:22vh}
   .pillar,.tl-body,.case{grid-template-columns:1fr;gap:24px}
   .post{justify-self:start}
   .tl-step{min-height:0}
@@ -276,7 +290,7 @@ em{font-style:normal;color:var(--orange)}
   .black .cell{border-top-color:var(--line-dark)}
   .cell:first-child{border-top:0}
   .ph{max-height:22vh;aspect-ratio:16/10}
-  .refs .ref:nth-child(n+2) .ph{display:none}
+  .refs .shot.wide,.refs .ph.wide{max-height:18vh}
   .suggest{grid-template-columns:1fr}.suggest .amt{text-align:left}
   .pf-feed{display:none}
   .person .pic{max-width:180px}
@@ -402,20 +416,35 @@ em{font-style:normal;color:var(--orange)}
   <span class="eyebrow" data-r>La vara</span>
   <h2 class="name sm" data-r>Industrias de alto riesgo, <em>contadas por personas</em>.</h2>
   <div class="refs">
-    <div class="ref" data-r><div class="ph" data-photo="/p/agp-7baed3/assets/musk.jpg"><span>Foto · kit de prensa</span></div><div class="who"><b>Elon Musk</b><span>Tesla · SpaceX</span></div><p>Demuestra en público en lugar de anunciar. Presentó el Roadster en vivo el 15 de octubre; SpaceX transmite sus lanzamientos, también los que fallan.</p><p class="t">Mostrar, no adjetivar.</p></div>
-    <div class="ref" data-r><div class="ph" data-photo="/p/agp-7baed3/assets/luckey.jpg"><span>Foto · kit de prensa</span></div><div class="who"><b>Palmer Luckey</b><span>Anduril</span></div><p>Una empresa de defensa que cuenta su misión. En 2022 publicó su manifiesto en una página completa del Washington Post.</p><p class="t">Una causa clara y un fundador visible.</p></div>
-    <div class="ref" data-r><div class="ph" data-photo="/p/agp-7baed3/assets/ref-3.jpg"><span>Por confirmar</span></div><div class="who"><b>Tercera referencia</b><span>En revisión</span></div><p>Candidata: Palantir, por su trabajo con gobiernos y la presencia pública de su CEO.</p></div>
+    <div class="ref" data-r><div class="ph wide" data-photo="/p/agp-7baed3/assets/musk.jpg"><span>Foto · Elon Musk</span></div><div class="who"><b>Elon Musk</b><span>Tesla · SpaceX</span></div><p>Demuestra en público en lugar de anunciar. Presentó el Roadster en vivo el 15 de octubre; SpaceX transmite sus lanzamientos, también los que fallan.</p><p class="t">Mostrar, no adjetivar.</p></div>
+    <div class="ref" data-r><img class="shot wide" src="/p/agp-7baed3/assets/anduril-x.webp" alt="Perfil de Anduril Industries en X"><div class="who"><b>Palmer Luckey</b><span>Anduril</span></div><p>Una empresa de defensa que cuenta su misión: 285.800 seguidores en X. En 2022 publicó su manifiesto en una página completa del Washington Post.</p><p class="t">Una causa clara y un fundador visible.</p></div>
+    <div class="ref" data-r><img class="shot wide" src="/p/agp-7baed3/assets/dimon-wide.jpg" alt="Jamie Dimon"><div class="who"><b>Jamie Dimon</b><span>JPMorganChase</span></div><p>Chairman y CEO del banco más grande de Estados Unidos, con 1,9 millones de seguidores en LinkedIn. Su asesora de ciberseguridad abre esta propuesta.</p><p class="t">El líder también es la marca.</p></div>
   </div>
   <p class="src" data-r>De estas marcas tomamos su manera de contar, no sus relaciones comerciales.</p>
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Líderes que ya lo hacen</span>
-  <h2 class="name sm" data-r>Directores del calibre de AGP que hablan <em>en primera persona</em>.</h2>
-  <div class="refs">
-    <div class="ref" data-r><div class="ph" data-photo="/p/agp-7baed3/assets/ceo-1.jpg"><span>Referencia 1 · en preparación</span></div></div>
-    <div class="ref" data-r><div class="ph" data-photo="/p/agp-7baed3/assets/ceo-2.jpg"><span>Referencia 2 · en preparación</span></div></div>
-    <div class="ref" data-r><div class="ph" data-photo="/p/agp-7baed3/assets/ceo-3.jpg"><span>Referencia 3 · en preparación</span></div></div>
+  <h2 class="name sm" data-r>Los CEOs del auto ya hablan <em>en primera persona</em>.</h2>
+  <div class="ceos">
+    <div class="ceo" data-r>
+      <div class="ceo-h"><img src="/p/agp-7baed3/assets/winkelmann.jpg" alt=""><div><b>Stephan Winkelmann</b><span>Chairman y CEO · Lamborghini</span></div></div>
+      <div class="ceo-n"><b>540.229</b><span>seguidores en LinkedIn</span></div>
+      <img class="post-shot" src="/p/agp-7baed3/assets/post-winkelmann.webp" alt="Publicación de Stephan Winkelmann sobre un Temerario Ad Personam">
+      <p>Cuenta el detalle de un solo auto, como un artesano. <em>Pilar 01.</em></p>
+    </div>
+    <div class="ceo" data-r>
+      <div class="ceo-h"><img src="/p/agp-7baed3/assets/farley.jpg" alt=""><div><b>Jim Farley</b><span>CEO · Ford</span></div></div>
+      <div class="ceo-n"><b>447.993</b><span>seguidores en LinkedIn</span></div>
+      <img class="post-shot" src="/p/agp-7baed3/assets/post-farley.webp" alt="Publicación de Jim Farley sobre Ford y Team Rubicon">
+      <p>Cuenta lo que Ford aprendió de un cliente y qué cambió por eso. <em>Pilar 02.</em></p>
+    </div>
+    <div class="ceo" data-r>
+      <div class="ceo-h"><img src="/p/agp-7baed3/assets/barra.jpg" alt=""><div><b>Mary Barra</b><span>Chair y CEO · General Motors</span></div></div>
+      <div class="ceo-n"><b>5,9 M</b><span>seguidores en X</span></div>
+      <img class="post-shot" src="/p/agp-7baed3/assets/post-barra.webp" alt="Publicación de Mary Barra sobre Cadillac en F1 y golf">
+      <p>Lleva la marca a donde está su cliente: la F1, el golf, CNBC. <em>Pilar 04.</em></p>
+    </div>
   </div>
 </div></div></section>
 

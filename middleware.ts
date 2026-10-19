@@ -28,8 +28,29 @@ const GONE_ROUTES = ['/sports', '/systems']
    header, así que X-Robots-Tag va acá además del meta en la page. */
 const NOINDEX_HEADER_ROUTES = ['/preview']
 
+/* /p/* — propuestas privadas. Noindex siempre. Si existe
+   PROPUESTAS_PASSWORD en Vercel, pide Basic Auth (cualquier usuario). */
+function privateProposal(req: NextRequest) {
+  const pass = process.env.PROPUESTAS_PASSWORD
+  if (pass) {
+    const auth = req.headers.get('authorization') ?? ''
+    const given = auth.startsWith('Basic ') ? atob(auth.slice(6)).split(':').slice(1).join(':') : null
+    if (given !== pass) {
+      return new NextResponse('Acceso restringido.', {
+        status: 401,
+        headers: { 'WWW-Authenticate': 'Basic realm="CRUDA"', 'X-Robots-Tag': 'noindex, nofollow' },
+      })
+    }
+  }
+  const res = NextResponse.next()
+  res.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive')
+  return res
+}
+
 export function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl
+
+  if (pathname.startsWith('/p/')) return privateProposal(req)
 
   for (const gone of GONE_ROUTES) {
     if (pathname === gone || pathname.startsWith(`${gone}/`)) {
@@ -67,5 +88,6 @@ export const config = {
     '/systems/:path*',
     '/preview',
     '/preview/:path*',
+    '/p/:path*',
   ],
 }

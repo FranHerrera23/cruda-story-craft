@@ -159,6 +159,20 @@ em{font-style:normal;color:var(--orange)}
 .golinks:empty{display:none}
 .go{font-size:14px;font-weight:500;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;align-self:flex-start}
 .go:hover{color:var(--orange);border-color:var(--orange)}
+.big2{font-size:clamp(34px,5vw,72px);font-weight:600;letter-spacing:-.035em;line-height:1.02;max-width:20ch;text-wrap:balance}
+.nums .big{font-size:clamp(40px,4.6vw,72px)}
+.leaders{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(14px,1.8vw,24px)}
+.ld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.ld img,.ld .ph{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center top;max-height:none;margin-bottom:6px}
+.ld .ph.has{background-position:center 25%!important}
+.ld b{font-size:16px;font-weight:600;letter-spacing:-.015em}
+.ld>span{font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.itable{border-top:1px solid var(--ink)}
+.ir{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:clamp(15px,1.3vw,18px);align-items:baseline}
+.ir span:nth-child(n+2){font-variant-numeric:tabular-nums;font-weight:500}
+.ir.ih{font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.ir span:last-child{color:var(--orange)}
+.ir.ih span:last-child{color:var(--grey)}
 /* defs */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,72px)}
 .col{display:flex;flex-direction:column;gap:14px;min-width:0;border-top:1px solid var(--rule);padding-top:18px}
@@ -292,6 +306,7 @@ em{font-style:normal;color:var(--orange)}
 @media (max-width:900px){
   .refs,.pmap,.data,.data.d4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ceos{grid-template-columns:1fr}.post-shot{height:22vh}
+  .leaders{grid-template-columns:repeat(3,minmax(0,1fr))}
   .cols.cols3{grid-template-columns:1fr}
   .pillar,.tl-body,.case{grid-template-columns:1fr;gap:24px}
   .post{justify-self:start}
@@ -300,6 +315,8 @@ em{font-style:normal;color:var(--orange)}
 @media (max-width:640px){
   body{font-size:16px}
   .refs,.pmap,.data,.data.d2,.data.d4,.cols,.duo{grid-template-columns:1fr}
+  .data.nums{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ir{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr);font-size:13px;gap:8px}
   .cell{border-top:1px solid var(--rule);padding:12px 0}
   .black .cell{border-top-color:var(--line-dark)}
   .cell:first-child{border-top:0}
@@ -323,7 +340,7 @@ em{font-style:normal;color:var(--orange)}
 
 <div class="chrome top" aria-hidden="true">
   <div class="logo"><img class="lb" src="/p/agp-mexico/assets/cruda-black.png" alt=""><img class="lc" src="/p/agp-mexico/assets/cruda-cream.png" alt=""></div>
-  <div class="meta"><span class="ord ttl">AGP sGlass México · Propuesta</span><span class="ord" id="count">01 <span class="m">/ 00</span></span></div>
+  <div class="meta"><span class="ord ttl" id="chap">Propuesta</span><span class="ord" id="count">01 <span class="m">/ 00</span></span></div>
 </div>
 <div class="chrome bot">
   <div class="beats" id="beats" aria-hidden="true"></div>
@@ -333,7 +350,7 @@ em{font-style:normal;color:var(--orange)}
 
 <main id="deck">
 
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="Propuesta" class="plane black"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>CRUDA para AGP sGlass México · Octubre 2026 · Confidencial</span>
   <h1 class="giant"><span data-r style="display:block">Hola Darío.</span><span data-r style="display:block">Hola Gabriel.</span><span data-r style="display:block">Hola <em>AGP</em>.</span></h1>
   <div class="rule" data-r></div>
@@ -341,7 +358,7 @@ em{font-style:normal;color:var(--orange)}
   <div class="hint src" data-r><i></i>Scrolleá o usá las flechas</div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="01 · Situación actual y oportunidad" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>El punto de partida</span>
   <p class="quote" data-r>“Ultra-high net worth individuals, families, family offices have the wealth but also they usually have <em>much less defenses in place</em>.”</p>
   <div class="rule" data-r></div>
@@ -349,112 +366,44 @@ em{font-style:normal;color:var(--orange)}
   <p class="src" data-r><a href="https://www.cnbc.com/2024/07/26/personal-cybersecurity-concierge-new-perk-wealthy.html">CNBC · julio 2024</a></p>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>México, 2026 · Extorsión</span>
-  <h2 class="name sm" data-r>Lo que baja en las cifras no es <em>lo que viven las familias</em>.</h2>
-  <div class="duo">
-    <div data-r><div class="num">11.081</div><p class="lede">víctimas de extorsión denunciadas en 2025. <em>Un récord.</em></p><p class="src">SESNSP, vía Coparmex</p></div>
-    <div data-r><div class="num">6.562</div><p class="lede">en el primer semestre de 2026. <em>Otro récord</em>: unas 36 por día.</p><p class="src">Raúl Benítez Manaut, UNAM, con datos del SESNSP</p></div>
+<section data-ch="01 · Situación actual y oportunidad" class="plane black"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>México, 2026</span>
+  <h2 class="big2" data-r>Lo que baja en las cifras no es <em>lo que viven las familias.</em></h2>
+  <div class="data d4 nums" data-r>
+    <div class="cell"><div class="big">11.081</div><div class="n">extorsiones denunciadas en 2025, un récord</div></div>
+    <div class="cell"><div class="big">6.562</div><div class="n">en el primer semestre de 2026, otro récord</div></div>
+    <div class="cell"><div class="big"><em>93,4%</em></div><div class="n">de los delitos no se denuncian</div></div>
+    <div class="cell"><div class="big">5,2</div><div class="n">secuestros por día, enero de 2026</div></div>
   </div>
+  <p class="src" data-r>SESNSP vía Coparmex · UNAM · INEGI ENVIPE 2026 · prensa nacional con datos del SESNSP</p>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Lo que no se ve</span>
-  <div class="duo">
-    <div data-r><div class="num">93,4<small>%</small></div><p class="lede">de los delitos en México <em>no se denuncian</em> ni se investigan.</p><p class="src">INEGI · ENVIPE 2026</p></div>
-    <div data-r><div class="num">5,2</div><p class="lede">secuestros por día en enero de 2026.</p><p class="src">Prensa nacional con datos del SESNSP</p></div>
-  </div>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Percepción de inseguridad</span>
-  <div class="data" data-r>
-    <div class="cell"><div class="l">En su estado</div><div class="big" style="font-size:clamp(56px,7vw,110px)">74%</div></div>
-    <div class="cell"><div class="l">En su ciudad</div><div class="big" style="font-size:clamp(56px,7vw,110px)">59,8%</div></div>
-    <div class="cell"><div class="l">En Culiacán</div><div class="big" style="font-size:clamp(56px,7vw,110px)"><em>90,8%</em></div></div>
-  </div>
-  <p class="src" data-r>INEGI · ENVIPE 2026 y ENSU junio 2026</p>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="01 · Situación actual y oportunidad" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Estado de México · 2025</span>
   <h2 class="name" data-r>Secuestro virtual de niños: los contactan por <em>redes y videojuegos</em>, les roban el WhatsApp y los sacan de casa con una llamada falsa.</h2>
   <div class="rule" data-r></div>
   <p class="src" data-r><a href="https://www.adn40.mx/mexico/2025-08-26/nueva-modalidad-secuestro-virtual-ninos-en-edomex">adn40 · agosto 2025</a></p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="01 · Situación actual y oportunidad" class="plane paper"><div class="in"><div class="fit">
   <p class="quote serif" data-r style="font-size:clamp(46px,7vw,104px);max-width:none">No se trata de tener miedo.</p>
   <p class="quote serif" data-r style="font-size:clamp(46px,7vw,104px);max-width:none"><em>Se trata de tener control.</em></p>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>Calma, control y previsibilidad. Ese es el tono de todo lo que proponemos.</p>
+  <p class="lede" data-r>Ese es el tono de todo lo que sigue.</p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>La idea central</span>
-  <h2 class="name" data-r>Dejar de vender vidrio. <em>Empezar a vender AGP.</em></h2>
-  <div class="rule" data-r></div>
-  <p class="lede" data-r>Tesla no vende baterías. Lamborghini no vende motores. Venden lo que su nombre significa. AGP fabrica para algunas de las marcas más exigentes del mundo, pero en México se la compra como un componente: por especificación y por precio.</p>
-  <p class="lede" data-r>La meta de largo plazo: que el dueño llegue a cualquier blindadora y diga <em>quiero AGP</em>. Un mercado no cambia en seis meses. Lo que sí se puede hacer en seis meses es sembrar los cimientos: una voz creíble, una historia propia contada al nivel de las marcas para las que AGP trabaja, y las primeras conversaciones con quienes deciden.</p>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="01 · Situación actual y oportunidad" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Diagnóstico · presencia digital y competencia</span>
-  <h2 class="name sm" data-r style="max-width:34ch">En la categoría todos dicen lo mismo, <em>y nadie tiene una voz</em>.</h2>
-  <div class="rule" data-r></div>
+  <h2 class="big2" data-r>Todos dicen lo mismo. <em>Nadie tiene una voz.</em></h2>
   <div class="data" data-r>
-    <div class="cell"><div class="l">AGP hoy</div><div class="v">Sin voz en México</div><div class="n">La página global de AGP sGlass tiene 11 mil seguidores y habla desde Brasil, primero en portugués. Darío figura como “Director en AGP”, con 78 contactos y sin publicaciones.</div></div>
-    <div class="cell"><div class="l">Los fabricantes de vidrio</div><div class="v">Las mismas palabras desde hace años</div><div class="n">“Líder mundial”, “más liviano”, “calidad y servicio”. Ningún fundador ni ingeniero visible, sin historias ni pruebas públicas.</div></div>
-    <div class="cell"><div class="l">Las blindadoras</div><div class="v">Hablan de niveles y acero</div><div class="n">Casi ninguna nombra el vidrio que usa. El cliente final no sabe quién lo fabrica.</div></div>
+    <div class="cell"><div class="l">AGP en México</div><div class="v">Sin voz local</div><div class="n">La página global habla desde Brasil. Darío: 78 contactos, cero publicaciones.</div></div>
+    <div class="cell"><div class="l">Fabricantes de vidrio</div><div class="v">“Líder mundial”</div><div class="n">Las mismas palabras, sin personas ni historias.</div></div>
+    <div class="cell"><div class="l">Blindadoras</div><div class="v">Niveles y acero</div><div class="n">Casi ninguna nombra el vidrio que usa.</div></div>
   </div>
-  <p class="lede" data-r>Qué fortalecer y cómo diferenciarnos: el primero que se nombre ante el cliente final, con una persona y con historias reales, se queda con la categoría. Como Intel dentro de la computadora: un componente que la gente aprendió a pedir por su nombre.</p>
+  <p class="lede" data-r>El primero que se nombre ante el cliente final <em>se queda con la categoría.</em></p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Por qué una persona y no una página</span>
-  <h2 class="name" data-r>La gente confía <em>en personas</em>.</h2>
-  <div class="rule" data-r></div>
-  <p class="lede" data-r>Los empleados de una empresa tienen, en promedio, 10 veces más conexiones que seguidores tiene su página. Lo que comparten recibe el doble de clics.</p>
-  <p class="src" data-r><a href="https://business.linkedin.com/content/dam/me/business/en-us/elevate/Resources/pdf/elevate-infographic.pdf">LinkedIn Elevate</a></p>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>La vara</span>
-  <h2 class="name sm" data-r>Industrias de alto riesgo, <em>contadas por personas</em>.</h2>
-  <div class="refs">
-    <div class="ref" data-r><div class="ph wide" data-photo="/p/agp-mexico/assets/musk.jpg"><span>Foto · Elon Musk</span></div><div class="who"><b>Elon Musk</b><span>Tesla · SpaceX</span></div><p>Demuestra en público en lugar de anunciar. Presentó el Roadster en vivo el 15 de octubre; SpaceX transmite sus lanzamientos, también los que fallan.</p><p class="t">Mostrar, no adjetivar.</p></div>
-    <div class="ref" data-r><img class="shot wide" src="/p/agp-mexico/assets/anduril-x.webp" alt="Perfil de Anduril Industries en X"><div class="who"><b>Palmer Luckey</b><span>Anduril</span></div><p>Una empresa de defensa que cuenta su misión: 285.800 seguidores en X. En 2022 publicó su manifiesto en una página completa del Washington Post.</p><p class="t">Una causa clara y un fundador visible.</p></div>
-    <div class="ref" data-r><img class="shot wide" src="/p/agp-mexico/assets/dimon-wide.jpg" alt="Jamie Dimon"><div class="who"><b>Jamie Dimon</b><span>JPMorganChase</span></div><p>Chairman y CEO del banco más grande de Estados Unidos, con 1,9 millones de seguidores en LinkedIn. Es su banco el que advierte, al inicio de esta propuesta, que las familias más ricas tienen menos defensas.</p><p class="t">El líder también es la marca.</p></div>
-  </div>
-  <p class="src" data-r>De estas marcas tomamos su manera de contar, no sus relaciones comerciales.</p>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Líderes que ya lo hacen</span>
-  <h2 class="name sm" data-r>Los CEOs del auto ya hablan <em>en primera persona</em>.</h2>
-  <div class="ceos">
-    <div class="ceo" data-r>
-      <div class="ceo-h"><img src="/p/agp-mexico/assets/winkelmann.jpg" alt=""><div><b>Stephan Winkelmann</b><span>Chairman y CEO · Lamborghini</span></div></div>
-      <div class="ceo-n"><b>540.229</b><span>seguidores en LinkedIn</span></div>
-      <img class="post-shot" src="/p/agp-mexico/assets/post-winkelmann.webp" alt="Publicación de Stephan Winkelmann sobre un Temerario Ad Personam">
-      <p>Cuenta el detalle de un solo auto, como un artesano. <em>Lo que muestra:</em> el producto, contado por quien lo dirige.</p>
-    </div>
-    <div class="ceo" data-r>
-      <div class="ceo-h"><img src="/p/agp-mexico/assets/farley.jpg" alt=""><div><b>Jim Farley</b><span>CEO · Ford</span></div></div>
-      <div class="ceo-n"><b>447.993</b><span>seguidores en LinkedIn</span></div>
-      <img class="post-shot" src="/p/agp-mexico/assets/post-farley.webp" alt="Publicación de Jim Farley sobre Ford y Team Rubicon">
-      <p>Cuenta lo que Ford aprendió de un cliente y qué cambió por eso. <em>Lo que muestra:</em> historias reales, no catálogo.</p>
-    </div>
-    <div class="ceo" data-r>
-      <div class="ceo-h"><img src="/p/agp-mexico/assets/barra.jpg" alt=""><div><b>Mary Barra</b><span>Chair y CEO · General Motors</span></div></div>
-      <div class="ceo-n"><b>5,9 M</b><span>seguidores en X</span></div>
-      <img class="post-shot" src="/p/agp-mexico/assets/post-barra.webp" alt="Publicación de Mary Barra sobre Cadillac en F1 y golf">
-      <p>Lleva la marca a donde está su cliente: la F1, el golf, CNBC. <em>Lo que muestra:</em> la marca en la conversación de su audiencia.</p>
-    </div>
-  </div>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="01 · Situación actual y oportunidad" class="plane black"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Nuestra lectura</span>
   <div class="lines">
     <p class="dim" data-r>Las blindadoras hablan de niveles y acero.</p>
@@ -462,53 +411,79 @@ em{font-style:normal;color:var(--orange)}
     <p data-r>Nadie está en <em>la conversación privada</em> que una familia tiene consigo misma.</p>
   </div>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>Quien ya pagó por protegerse cree que está cubierto. Su punto ciego es todo lo que pasa antes de subirse al auto. Ese lugar lo puede ocupar Darío Rojas, director general de AGP sGlass México: traduce lo que pasa en el mundo, sin vender con miedo.</p>
+  <p class="lede" data-r>Ese lugar lo puede ocupar Darío Rojas.</p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="02 · Objetivo y posicionamiento" class="plane black"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>La idea central</span>
+  <h2 class="giant" data-r>Dejar de vender vidrio.<br><em>Empezar a vender AGP.</em></h2>
+  <div class="rule" data-r></div>
+  <p class="lede" data-r>Tesla no vende baterías. Lamborghini no vende motores. En seis meses sembramos los cimientos para que AGP se pida por su nombre.</p>
+</div></div></section>
+
+<section data-ch="02 · Objetivo y posicionamiento" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Por qué una persona y no una página</span>
+  <h2 class="giant" data-r>La gente confía<br><em>en personas.</em></h2>
+  <div class="rule" data-r></div>
+  <p class="lede" data-r>Un empleado tiene 10 veces más alcance que la página de su empresa. <span class="src"><a href="https://business.linkedin.com/content/dam/me/business/en-us/elevate/Resources/pdf/elevate-infographic.pdf">LinkedIn</a></span></p>
+</div></div></section>
+
+<section data-ch="02 · Objetivo y posicionamiento" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Referentes</span>
+  <h2 class="big2" data-r>Los líderes de industrias exigentes <em>ya hablan en primera persona.</em></h2>
+  <div class="leaders" data-r>
+    <div class="ld"><div class="ph sq" data-photo="/p/agp-mexico/assets/musk.jpg"><span>Elon Musk</span></div><b>Elon Musk</b><span>Tesla · SpaceX</span></div>
+    <div class="ld"><img src="/p/agp-mexico/assets/anduril-x.webp" alt=""><b>Palmer Luckey</b><span>Anduril</span></div>
+    <div class="ld"><img src="/p/agp-mexico/assets/dimon.jpg" alt=""><b>Jamie Dimon</b><span>JPMorganChase</span></div>
+    <div class="ld"><img src="/p/agp-mexico/assets/winkelmann.jpg" alt=""><b>Stephan Winkelmann</b><span>Lamborghini</span></div>
+    <div class="ld"><img src="/p/agp-mexico/assets/farley.jpg" alt=""><b>Jim Farley</b><span>Ford</span></div>
+    <div class="ld"><img src="/p/agp-mexico/assets/barra.jpg" alt=""><b>Mary Barra</b><span>General Motors</span></div>
+  </div>
+  <p class="src" data-r>De estas marcas tomamos su manera de contar, no sus relaciones comerciales</p>
+</div></div></section>
+
+<section data-ch="02 · Objetivo y posicionamiento" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Qué gana AGP · lo que empieza en seis meses</span>
+  <div class="rows">
+    <div class="row" data-r><span class="k">01</span><div><h3>Una marca que empieza a <em>pedirse por su nombre</em></h3></div></div>
+    <div class="row" data-r><span class="k">02</span><div><h3>Darío, la voz de la protección en México</h3></div></div>
+    <div class="row" data-r><span class="k">03</span><div><h3>Conversaciones directas con quienes deciden</h3></div></div>
+    <div class="row" data-r><span class="k">04</span><div><h3>Más peso frente a las blindadoras</h3></div></div>
+  </div>
+</div></div></section>
+
+<section data-ch="03 · Audiencias, mensajes y ejemplos" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>A quién le hablamos</span>
-  <h2 class="name sm" data-r style="max-width:34ch">El que decide no es el que lee. <em>Darío llega al dueño a través de quienes lo cuidan.</em></h2>
+  <h2 class="big2" data-r>El que decide <em>no es el que lee.</em></h2>
   <div class="rule" data-r></div>
   <div class="data d4 aud" data-r>
-    <div class="cell"><div class="l">El dueño</div><div class="v">“La protección empieza antes de subirse al auto.”</div><div class="n">Empresarios, familias de alto patrimonio y políticos. Su familia y su negocio no pueden aparecer en la prensa.</div></div>
-    <div class="cell"><div class="l">Quien lo protege</div><div class="v">“El riesgo cambia más rápido que el protocolo.”</div><div class="n">Jefes de seguridad y de protección ejecutiva. Buscan información nueva: amenazas, casos y estándares.</div></div>
-    <div class="cell"><div class="l">Quien administra</div><div class="v">“La seguridad también es patrimonio.”</div><div class="n">Family offices, banca privada y asesores patrimoniales. Necesitan una forma simple de hablarlo con la familia.</div></div>
-    <div class="cell"><div class="l">La blindadora</div><div class="v">“Con AGP, tu blindaje vale más.”</div><div class="n">El canal de AGP. Necesita argumentos y una marca que la ayude a diferenciarse y vender mejor.</div></div>
+    <div class="cell"><div class="l">El dueño</div><div class="v">“La protección empieza antes de subirse al auto.”</div><div class="n">Empresarios, familias, políticos.</div></div>
+    <div class="cell"><div class="l">Quien lo protege</div><div class="v">“El riesgo cambia más rápido que el protocolo.”</div><div class="n">Jefes de seguridad y escoltas.</div></div>
+    <div class="cell"><div class="l">Quien administra</div><div class="v">“La seguridad también es patrimonio.”</div><div class="n">Family offices y banca privada.</div></div>
+    <div class="cell"><div class="l">La blindadora</div><div class="v">“Con AGP, tu blindaje vale más.”</div><div class="n">El canal de AGP.</div></div>
   </div>
-  <p class="src" data-r>Cada publicación de Darío le habla a una de estas cuatro personas</p>
+  
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Qué proponemos · tres frentes, una sola voz</span>
-  <h2 class="name sm" data-r style="max-width:34ch">El contenido construye la voz. El PR la amplifica. <em>Las conversaciones la convierten en negocio.</em></h2>
-  <div class="rule" data-r></div>
-  <div class="cols cols3">
-    <div class="col" data-r><span class="eyebrow">01 · Contenido</span><h3 class="s">Thought leadership</h3><p class="body">Darío publica con criterio y constancia hasta volverse la referencia de su tema.</p><span class="src">3 piezas por semana · LinkedIn y X</span></div>
-    <div class="col" data-r><span class="eyebrow">02 · Amplificación</span><h3 class="s">Estrategia y manejo de PR</h3><p class="body">Darío, la cara de AGP en México, en los medios y podcasts donde se informan quienes deciden.</p><span class="src">Entrevistas · la historia de AGP</span></div>
-    <div class="col" data-r><span class="eyebrow">03 · Negocio</span><h3 class="s">Account-based marketing</h3><p class="body">Elegimos las cuentas que importan y las trabajamos una por una, con comentarios y mensajes directos.</p><span class="src">Blindadoras · family offices · flotas · sin pauta</span></div>
-  </div>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="03 · Audiencias, mensajes y ejemplos" class="plane black"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Los cuatro pilares de Darío</span>
   <h2 class="name sm" data-r>De qué va a hablar Darío, <em>y por qué lo van a leer</em>.</h2>
   <div class="pmap">
-    <div class="pm" data-r><span class="k">01</span><span class="eyebrow">La marca</span><h3>La última capa</h3><p>Qué es AGP, qué hace un vidrio blindado y por qué 4 de cada 10 autos blindados del mundo lo eligen.</p></div>
-    <div class="pm" data-r><span class="k">02</span><span class="eyebrow">Historias</span><h3>Lo que hicimos</h3><p>Proyectos reales de AGP que se pueden contar, siempre con aprobación de la compañía.</p></div>
-    <div class="pm" data-r><span class="k">03</span><span class="eyebrow">El contexto</span><h3>Lo que te ve antes de que lo veas</h3><p>Darío lee lo que publican el FBI y otras fuentes de EE. UU. y lo lleva a su terreno. No opina de lo que no domina.</p></div>
-    <div class="pm" data-r><span class="k">04</span><span class="eyebrow">La mirada global</span><h3>México, el laboratorio del mundo</h3><p>Lo que el mercado más exigente le enseña a cualquier líder. El puente hacia una audiencia internacional.</p></div>
+    <div class="pm" data-r><span class="k">01</span><span class="eyebrow">La marca</span><h3>La última capa</h3><p>Por qué 4 de cada 10 blindados del mundo eligen AGP.</p></div>
+    <div class="pm" data-r><span class="k">02</span><span class="eyebrow">Historias</span><h3>Lo que hicimos</h3><p>Proyectos reales, con aprobación de AGP.</p></div>
+    <div class="pm" data-r><span class="k">03</span><span class="eyebrow">El contexto</span><h3>Lo que te ve antes de que lo veas</h3><p>Darío traduce lo que advierten el FBI y otras fuentes.</p></div>
+    <div class="pm" data-r><span class="k">04</span><span class="eyebrow">La mirada global</span><h3>México, el laboratorio del mundo</h3><p>Lo que aguanta aquí, aguanta en cualquier lugar.</p></div>
   </div>
-  <p class="body" data-r>A continuación, una publicación de muestra por pilar, escrita como saldría. Todo dato tiene fuente y todo se aprueba con Darío y con corporativo antes de publicarse.</p>
+  <p class="src" data-r>A continuación, un post de muestra por pilar</p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="03 · Audiencias, mensajes y ejemplos" class="plane paper"><div class="in"><div class="fit">
   <div class="pillar">
     <div class="pl">
       <span class="eyebrow" data-r>Pilar 01 · La marca</span>
       <h2 class="name" data-r>La última capa</h2>
       <div class="rule" data-r></div>
-      <p class="lede" data-r>Presenta a AGP con un dato que nadie más en la categoría puede decir.</p>
-      <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Una cifra global, dicha por una persona y no por una página de empresa, genera confianza en lugar de sonar a publicidad.</p></div>
+      <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Un dato global, dicho por una persona, genera confianza.</p></div>
     </div>
     <article class="post" data-r>
       <div class="ph-head"><div class="av">DR</div><div><b>Darío Rojas</b><span>Director General · AGP sGlass México · 1 h</span></div></div>
@@ -523,13 +498,12 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="03 · Audiencias, mensajes y ejemplos" class="plane paper"><div class="in"><div class="fit">
   <div class="pillar">
     <div class="pl">
       <span class="eyebrow" data-r>Pilar 02 · Historias</span>
       <h2 class="name" data-r>Lo que hicimos</h2>
       <div class="rule" data-r></div>
-      <p class="lede" data-r>Proyectos reales de AGP, contados con aprobación de la compañía. Lo que los más exigentes del mundo ya validaron.</p>
       <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Las historias se recuerdan y se comparten. Los catálogos no.</p></div>
     </div>
     <article class="post" data-r>
@@ -546,14 +520,13 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="03 · Audiencias, mensajes y ejemplos" class="plane paper"><div class="in"><div class="fit">
   <div class="pillar">
     <div class="pl">
       <span class="eyebrow" data-r>Pilar 03 · El contexto</span>
       <h2 class="name" data-r>Lo que te ve antes de que lo veas</h2>
       <div class="rule" data-r></div>
-      <p class="lede" data-r>Darío cita la fuente, en este caso el FBI, y opina solo desde lo que conoce: 26 años en blindaje.</p>
-      <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Las fuentes de EE. UU. dan autoridad sin carga política local, y Darío aporta la mirada que solo él tiene.</p></div>
+      <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Fuentes de EE. UU., sin carga política, y la mirada de Darío.</p></div>
     </div>
     <article class="post" data-r>
       <div class="ph-head"><div class="av">DR</div><div><b>Darío Rojas</b><span>Director General · AGP sGlass México · 1 h</span></div></div>
@@ -568,14 +541,13 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="03 · Audiencias, mensajes y ejemplos" class="plane paper"><div class="in"><div class="fit">
   <div class="pillar">
     <div class="pl">
       <span class="eyebrow" data-r>Pilar 04 · La mirada global</span>
       <h2 class="name" data-r>México, el laboratorio del mundo</h2>
       <div class="rule" data-r></div>
-      <p class="lede" data-r>Convierte la dificultad del mercado mexicano en autoridad internacional.</p>
-      <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Le da a Darío una tesis propia que interesa en Miami, Madrid o Dubái.</p></div>
+      <div class="works" data-r><span class="eyebrow">Por qué funciona</span><p>Una tesis propia que interesa fuera de México.</p></div>
     </div>
     <article class="post" data-r>
       <div class="ph-head"><div class="av">DR</div><div><b>Darío Rojas</b><span>Director General · AGP sGlass México · 1 h</span></div></div>
@@ -595,7 +567,18 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="04 · Plan de acciones y responsables" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Qué proponemos · tres frentes, una sola voz</span>
+  <h2 class="big2" data-r style="max-width:24ch">El contenido construye la voz. El PR la amplifica. <em>Las conversaciones la convierten en negocio.</em></h2>
+  <div class="rule" data-r></div>
+  <div class="cols cols3">
+    <div class="col" data-r><span class="eyebrow">01 · Contenido</span><h3 class="s">Thought leadership</h3><p class="body">Darío, la referencia de su tema.</p><span class="src">3 piezas por semana · LinkedIn y X</span></div>
+    <div class="col" data-r><span class="eyebrow">02 · Amplificación</span><h3 class="s">Estrategia y manejo de PR</h3><p class="body">Darío en medios y podcasts.</p><span class="src">Entrevistas · la historia de AGP</span></div>
+    <div class="col" data-r><span class="eyebrow">03 · Negocio</span><h3 class="s">Account-based marketing</h3><p class="body">Las cuentas que importan, una por una.</p><span class="src">Blindadoras · family offices · flotas · sin pauta</span></div>
+  </div>
+</div></div></section>
+
+<section data-ch="04 · Plan de acciones y responsables" class="plane black"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Estrategia y manejo de PR</span>
   <h2 class="name" data-r>La historia de AGP, <em>contada por quien la vivió</em>.</h2>
   <div class="rule" data-r></div>
@@ -604,11 +587,10 @@ em{font-style:normal;color:var(--orange)}
     <div class="cell"><div class="l">Podcasts de formato largo</div><div class="v">Cracks, de Oso Trava, y podcasts de negocios y liderazgo</div></div>
     <div class="cell"><div class="l">Seguridad y blindaje</div><div class="v">Medios del sector y el Congreso Nacional del Blindaje</div></div>
   </div>
-  <p class="body" data-r>Armamos el kit de prensa, definimos los ángulos, contactamos a cada medio y preparamos a Darío para cada entrevista. Cada aparición vuelve a LinkedIn y X como contenido.</p>
-  <p class="src" data-r>Lista tentativa, se valida en el mes 1 · Las entrevistas se ganan con la historia: no se compran</p>
+  <p class="src" data-r>Lista tentativa · se valida en el mes 1</p>
 </div></div></section>
 
-<section class="plane paper" id="tl" data-steps="7"><div class="in"><div class="fit">
+<section data-ch="04 · Plan de acciones y responsables" class="plane paper" id="tl" data-steps="7"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>El recorrido · cada scroll avanza una etapa</span>
   <h2 class="name sm" data-r>Seis meses para construir <em>los cimientos de una voz de referencia</em>.</h2>
   <div class="track" data-r aria-hidden="true"><div class="railx"></div><div class="fill" id="tl-fill"></div><div class="nodes" id="tl-nodes"></div></div>
@@ -637,68 +619,44 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Qué gana AGP · lo que empieza en estos seis meses</span>
-  <div class="rows">
-    <div class="row" data-r><span class="k">01</span><div><h3>El camino para que el comprador final <em>pida AGP</em></h3><p>Una marca con historia propia, que el dueño empieza a reconocer antes de llegar a la blindadora.</p></div></div>
-    <div class="row" data-r><span class="k">02</span><div><h3>Darío en camino a ser la voz de referencia en protección en México</h3><p>Presente en LinkedIn, en X y en los primeros medios y podcasts.</p></div></div>
-    <div class="row" data-r><span class="k">03</span><div><h3>Conversaciones directas que hoy no existen</h3><p>Family offices, empresas y gobierno, una por una.</p></div></div>
-    <div class="row" data-r><span class="k">04</span><div><h3>Más peso frente a las blindadoras</h3><p>Si sus clientes piden AGP, la conversación con el canal cambia.</p></div></div>
-    <div class="row" data-r><span class="k">05</span><div><h3>Todo visible, mes a mes</h3><p>Quién interactúa, con quién se habla y qué se convierte en negocio.</p></div></div>
-  </div>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Cómo medimos</span>
-  <h2 class="name sm" data-r>Prometemos lo que depende de nosotros. <em>Medimos todo lo demás.</em></h2>
-  <div class="rule" data-r></div>
+<section data-ch="04 · Plan de acciones y responsables" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Responsables</span>
+  <h2 class="big2" data-r>Quién hace <em>qué.</em></h2>
   <div class="data" data-r>
-    <div class="cell"><div class="l">Compromiso · lo que entregamos</div><div class="v">Unas 66 piezas de Darío y gestión de PR todos los meses</div><div class="n">Lista de cuentas clave en el mes 1. Contacto uno a uno todos los meses. Un reporte simple cada mes.</div></div>
-    <div class="cell"><div class="l">Cada mes · lo que medimos</div><div class="v">Cuentas clave que interactúan y entrevistas logradas</div><div class="n">Conversaciones abiertas, contactos calificados, apariciones en medios y consultas generadas. Sin promesas de seguidores.</div></div>
-    <div class="cell"><div class="l">El negocio · lo que buscamos mover</div><div class="v">Participación de AGP en cada blindadora</div><div class="n">Y nuevos clientes. En el mes 1, AGP nos comparte cuánto le compra hoy cada blindadora: ese es el punto de partida.</div></div>
-  </div>
-  <div class="data d2" data-r>
-    <div class="cell"><div class="l">Mes 3 · primera lectura</div><div class="n">30 piezas publicadas, perfil renovado, cuentas clave activas, primeros medios contactados y primer reporte.</div></div>
-    <div class="cell"><div class="l">Mes 6 · decisión</div><div class="n">Unas 66 piezas, conversaciones y apariciones acumuladas, lectura de negocio contra el punto de partida y siguiente etapa.</div></div>
+    <div class="cell"><div class="l">CRUDA</div><div class="v">Estrategia, redacción, diseño, publicación, PR, contacto uno a uno y reporte mensual</div></div>
+    <div class="cell"><div class="l">Darío</div><div class="v">Una reunión por semana, aprobación en 48 horas y entrevistas</div></div>
+    <div class="cell"><div class="l">AGP</div><div class="v">Material existente, datos técnicos validados y la aprobación de Gabriel</div></div>
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <div class="cols" style="align-items:center">
-    <div style="display:flex;flex-direction:column;gap:18px">
-      <span class="eyebrow" data-r>Seguimiento</span>
-      <h2 class="name sm" data-r>Cada conversación, <em>registrada en privado</em>.</h2>
-      <div class="rule" data-r></div>
-      <p class="body" data-r style="color:inherit;font-size:16px">Usamos Attio, un CRM: una base de datos privada donde anotamos cada cuenta, cada contacto y cada conversación que genera Darío. Vive separada de los sistemas de AGP. No pedimos acceso a sus datos ni a sus sistemas.</p>
-    </div>
-    <div class="vault" data-r>
-      <div class="vr"><span>Cuentas clave</span><span>Registradas</span></div>
-      <div class="vr"><span>Conversaciones</span><span>Registradas</span></div>
-      <div class="vr"><span>Contactos calificados</span><span>Registrados</span></div>
-      <div class="vr"><span>Acceso a sistemas de AGP</span><span>No requerido</span></div>
-      <div class="vr"><span>Datos internos de clientes</span><span>No requeridos</span></div>
-    </div>
-  </div>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
+<section data-ch="04 · Plan de acciones y responsables" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Las reglas del juego</span>
-  <h2 class="name sm" data-r style="max-width:34ch">Una voz pública, <em>con reglas claras desde el día uno</em>.</h2>
-  <div class="rule" data-r></div>
-  <div class="data" data-r>
-    <div class="cell"><div class="l">Aprobación</div><div class="n">CRUDA propone y Darío aprueba en 48 horas. Los temas sensibles pasan por corporativo. Nada se publica sin su visto bueno.</div></div>
-    <div class="cell"><div class="l">Las blindadoras, aliadas</div><div class="n">AGP abre la conversación y la blindadora cierra la venta. Cada familia que pide AGP llega a una blindadora socia.</div></div>
-    <div class="cell"><div class="l">Discreción</div><div class="n">Ningún cliente se nombra sin permiso y ningún dato técnico le sirve a un atacante. Darío no publica rutinas, ubicación ni familia.</div></div>
-  </div>
-  <div class="data d2" data-r>
-    <div class="cell"><div class="l">La marca global</div><div class="n">Complementa la marca de AGP y respeta sus guías. Nos coordinamos con el equipo de marketing corporativo.</div></div>
-    <div class="cell"><div class="l">Idioma</div><div class="n">Todo en español. Darío es la voz de AGP en México.</div></div>
+  <div class="rows">
+    <div class="row" data-r><span class="k">01</span><div><h3>Darío aprueba todo en 48 horas</h3></div></div>
+    <div class="row" data-r><span class="k">02</span><div><h3>AGP abre la conversación, <em>la blindadora cierra la venta</em></h3></div></div>
+    <div class="row" data-r><span class="k">03</span><div><h3>Ningún cliente, rutina ni ubicación sin permiso</h3></div></div>
+    <div class="row" data-r><span class="k">04</span><div><h3>Alineados con la marca global de AGP</h3></div></div>
+    <div class="row" data-r><span class="k">05</span><div><h3>Todo en español</h3></div></div>
   </div>
 </div></div></section>
 
+<section data-ch="05 · Indicadores y avances" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Avances esperados</span>
+  <h2 class="big2" data-r>Lo que vamos a revisar <em>en el mes 3 y en el mes 6.</em></h2>
+  <div class="itable" data-r>
+    <div class="ir ih"><span>Indicador</span><span>Mes 3</span><span>Mes 6</span></div>
+    <div class="ir"><span>Impresiones acumuladas</span><span>40.000 – 80.000</span><span>150.000 – 300.000</span></div>
+    <div class="ir"><span>Alcance · personas únicas</span><span>10.000 – 20.000</span><span>40.000 – 70.000</span></div>
+    <div class="ir"><span>Seguidores de Darío</span><span>1.000 – 1.500</span><span>3.000 – 5.000</span></div>
+    <div class="ir"><span>Conversaciones con cuentas clave</span><span>15 – 25</span><span>40 – 60</span></div>
+    <div class="ir"><span>Entrevistas en medios y podcasts</span><span>1 – 2</span><span>4 – 6</span></div>
+    <div class="ir"><span>Participación de AGP por blindadora</span><span>Punto de partida</span><span>Primera lectura</span></div>
+  </div>
+  <p class="src" data-r>Rangos estimados, se ajustan con los datos del mes 1 · reporte mensual · todo registrado en un CRM privado, fuera de los sistemas de AGP</p>
+</div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Trabajo previo · No justificamos valor, mostramos impacto</span>
+<section data-ch="05 · Indicadores y avances" class="plane black"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Resultados con otros clientes · mostramos impacto, no adjetivos</span>
   <div class="case">
     <div class="person" data-r>
       <img class="pic" src="/p/agp-mexico/assets/karen.webp" alt="Karen Mannheim">
@@ -722,7 +680,7 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="05 · Indicadores y avances" class="plane black"><div class="in"><div class="fit">
   <div class="case">
     <div class="person" data-r>
       <img class="pic land" src="/p/agp-mexico/assets/mike.webp" alt="Mike Kaeding">
@@ -740,7 +698,7 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="05 · Indicadores y avances" class="plane black"><div class="in"><div class="fit">
   <div class="case">
     <div class="person" data-r>
       <img class="pic" src="/p/agp-mexico/assets/girish.webp" alt="Girish Sehgal">
@@ -760,7 +718,7 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="05 · Indicadores y avances" class="plane black"><div class="in"><div class="fit">
   <div class="case">
     <div class="person" data-r>
       <img class="pic" src="/p/agp-mexico/assets/jose.webp" alt="José Mannheim">
@@ -771,47 +729,46 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Inversión · meses 1 a 6</span>
+<section data-ch="06 · Presupuesto y recursos" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Honorarios · meses 1 a 6</span>
   <div class="ledger" data-r>
-    <div class="lrow"><div><b>Darío Rojas</b><small>Contenido en LinkedIn y X, estrategia y manejo de PR, y account-based marketing</small></div><div class="amt">US$2.250 / mes</div></div>
+    <div class="lrow"><div><b>Darío Rojas</b><small>Contenido en LinkedIn y X, estrategia y manejo de PR, y conversaciones uno a uno</small></div><div class="amt">US$2.250 / mes</div></div>
     <div class="lrow"><div><b>Duración</b><small>Seis meses</small></div><div class="amt">× 6</div></div>
     <div class="lrow total"><div><b>Total</b></div><div class="amt">US$13.500</div></div>
   </div>
-  <p class="lede" data-r>Todo incluido. <em>Sin pauta:</em> cada resultado es orgánico.</p>
-  <p class="body" data-r>Pago mes a mes, por adelantado. El contrato se puede cancelar con 30 días de aviso. Si lo prefieren, facturamos desde nuestra empresa en Estados Unidos.</p>
+  <p class="src" data-r>Sin pauta · pago mes a mes por adelantado · cancelación con 30 días de aviso · factura desde EE. UU. si la prefieren · sujeto a la aprobación de Gabriel</p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Desde el mes 6 · la siguiente etapa</span>
-  <h2 class="name sm" data-r>Si se cumplen los objetivos, <em>AGP suma más voces</em>.</h2>
-  <div class="rule" data-r></div>
-  <div class="data" data-r>
-    <div class="cell"><div class="l">Gabriel · CEO global de AGP sGlass</div><div class="big">+ US$1.500</div><div class="n">al mes, además del plan de Darío. Sujeto a la aprobación de Gabriel</div></div>
-    <div class="cell"><div class="l">Segunda voz de AGP México</div><div class="big">+ US$1.500</div><div class="n">al mes, además del plan de Darío. Un líder elegido por AGP: quien trata con las blindadoras todos los días</div></div>
-    <div class="cell"><div class="l">Instagram</div><div class="big" style="font-size:clamp(24px,2.4vw,34px)">Se cotiza aparte</div><div class="n">Lo recomendamos desde el mes 6, cuando la voz de Darío ya esté instalada</div></div>
-  </div>
-  <p class="body" data-r>Darío sigue con su plan de US$2.250 al mes. Cada voz nueva se suma por separado y es opcional.</p>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
-  <div class="cols">
-    <div class="col" data-r><span class="eyebrow">Incluye</span><h3 class="s">Todo el trabajo, de punta a punta</h3><ul><li>Research inicial y estrategia</li><li>Pilares, redacción y diseño de cada pieza</li><li>Publicación en LinkedIn y X</li><li>Estrategia y manejo de PR: kit de prensa, ángulos, contacto con medios y preparación de Darío</li><li>Account-based marketing: comentarios y mensajes uno a uno</li><li>Registro en Attio y reporte mensual</li></ul></div>
-    <div class="col" data-r><span class="eyebrow">Lo que necesitamos de AGP</span><h3 class="s">El tiempo de Darío</h3><ul><li>Mes 1: una reunión semanal de 1 h 30 min</li><li>Desde el mes 2: una reunión semanal de 1 h, más 1 h para revisar y aprobar contenidos</li><li>El material que AGP ya tiene: pruebas, planta y proyectos. Nosotros le sumamos la capa de historias, contadas por Darío</li><li>Datos técnicos validados por la compañía</li><li>Validación de mensajes con corporativo</li><li>Disponibilidad de Darío para entrevistas</li><li>Historias y casos reales, con aprobación, y una foto profesional de Darío</li></ul></div>
+<section data-ch="06 · Presupuesto y recursos" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Recursos y costos adicionales</span>
+  <h2 class="big2" data-r>Sin costos <em>adicionales.</em></h2>
+  <div class="rows">
+    <div class="row" data-r><span class="k">01</span><div><h3>Pauta: no hace falta</h3></div></div>
+    <div class="row" data-r><span class="k">02</span><div><h3>CRM y herramientas: incluidos</h3></div></div>
+    <div class="row" data-r><span class="k">03</span><div><h3>Producción: usamos el material que AGP ya tiene</h3></div></div>
+    <div class="row" data-r><span class="k">04</span><div><h3>El tiempo de Darío: 1 h 30 por semana el mes 1, 2 h después</h3></div></div>
   </div>
 </div></div></section>
 
-<section class="plane black"><div class="in"><div class="fit">
+<section data-ch="06 · Presupuesto y recursos" class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Nuestra sugerencia · opcional</span>
+  <h2 class="big2" data-r>Desde el mes 3, <em>una segunda voz de AGP México.</em></h2>
+  <div class="price" data-r><div class="num" style="color:var(--ink);font-size:clamp(64px,9vw,130px)">+ US$1.500</div><span>al mes, además del plan de Darío</span></div>
+  <p class="lede" data-r>Un líder elegido por AGP: quien trata con las blindadoras todos los días.</p>
+  <p class="src" data-r>Instagram: se cotiza aparte · lo recomendamos desde el mes 6</p>
+</div></div></section>
+
+<section data-ch="Propuesta" class="plane black"><div class="in"><div class="fit">
   <h2 class="giant" data-r>Empezamos con <em>una conversación</em>.</h2>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>El primer mes, una reunión semanal con Darío para escuchar 26 años de historia. Con resultados en el mes 6, el siguiente paso natural es llevar esta conversación a un encuentro presencial.</p>
+  <p class="lede" data-r>La primera: escuchar 26 años de historia.</p>
   <div class="data d2" data-r>
     <div class="cell"><div class="l">CRUDA</div><div class="v">Fran Herrera</div></div>
     <div class="cell"><div class="l">Fecha</div><div class="v">Octubre 2026</div></div>
   </div>
 </div></div></section>
 
-<section class="plane paper sources"><div class="in"><div class="fit">
+<section data-ch="Fuentes" class="plane paper sources"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Fuentes</span>
   <ol data-r>
     <li><a href="https://www.cnbc.com/2024/07/26/personal-cybersecurity-concierge-new-perk-wealthy.html">CNBC, julio 2024: Ileana Van Der Linde, JPMorgan</a></li>
@@ -906,6 +863,7 @@ em{font-style:normal;color:var(--orange)}
   function chrome(){
     var p = planes[cur];
     document.documentElement.setAttribute('data-theme', p.classList.contains('black') ? 'black' : 'paper');
+    var chap = p.getAttribute('data-ch'); if (chap) $('chap').textContent = chap;
     $('count').innerHTML = pad(cur + 1) + ' <span class="m">/ ' + pad(N) + '</span>';
     var total = 0, done = 0;
     planes.forEach(function(q, i){ total += q._steps; if (i < cur) done += q._steps; });
@@ -1041,8 +999,8 @@ em{font-style:normal;color:var(--orange)}
     {node:'Sem. 2', when:'Mes 1 · semana 2', title:'Aprobar', text:'Darío revisa su perfil renovado y las primeras seis publicaciones. Nada sale sin su visto bueno.', see:'Lo que ve AGP: el perfil nuevo, listo para publicar.', head:H, conn:'78 contactos', posts:'0', sig:'0', lit:true, feed:['','',''], chips:['Lista de cuentas clave','']},
     {node:'Sem. 3–4', when:'Mes 1 · semanas 3 y 4', title:'Publicar', text:'Salen las primeras seis piezas en LinkedIn y X. Empieza el contacto uno a uno con las cuentas clave.', see:'Lo que ve AGP: Darío presente, por primera vez, en la conversación.', head:H, conn:'Red en construcción', posts:'6', sig:'Primeras', lit:true, feed:['La última capa','Lo que te ve antes de que lo veas',''], chips:['Lista de cuentas clave','Contacto uno a uno']},
     {node:'Mes 2', when:'Mes 2', title:'Sostener el ritmo', text:'Tres publicaciones por semana con los cuatro pilares. Armamos el kit de prensa y empezamos a contactar medios y podcasts.', see:'Lo que ve AGP: el primer reporte mensual y la lista de medios.', head:H, conn:'Red en crecimiento', posts:'18', sig:'En aumento', lit:true, feed:['Lo que hicimos','México, el laboratorio del mundo','La última capa'], chips:['Lista de cuentas clave','Contacto uno a uno']},
-    {node:'Mes 3', when:'Mes 3', title:'Primera lectura', text:'Revisamos juntos lo que funcionó y ajustamos. Buscamos las primeras entrevistas en medios y podcasts.', see:'Lo que ve AGP: 30 publicaciones y quiénes respondieron.', head:H, conn:'Red en crecimiento', posts:'30', sig:'En aumento', lit:true, feed:['Lo que te ve antes de que lo veas','Lo que hicimos','México, el laboratorio del mundo'], chips:['Contacto uno a uno','PR en marcha']},
-    {node:'Mes 6', when:'Meses 4 a 6', title:'Decidir', text:'Darío llega a unas 66 publicaciones y suma apariciones en medios. En el mes 6 comparamos el negocio con el punto de partida y decidimos la siguiente etapa: Gabriel, una segunda voz e Instagram.', see:'Lo que ve AGP: el reporte completo de seis meses.', head:H, conn:'Red consolidada', posts:'66', sig:'Reporte', lit:true, feed:['México, el laboratorio del mundo','La última capa','Lo que hicimos'], chips:['PR en marcha','+ Gabriel y segunda voz (siguiente etapa)']}
+    {node:'Mes 3', when:'Mes 3', title:'Primera lectura', text:'Revisamos juntos lo que funcionó y buscamos las primeras entrevistas. Opcional: se suma una segunda voz de AGP México.', see:'Lo que ve AGP: 30 publicaciones y quiénes respondieron.', head:H, conn:'Red en crecimiento', posts:'30', sig:'En aumento', lit:true, feed:['Lo que te ve antes de que lo veas','Lo que hicimos','México, el laboratorio del mundo'], chips:['PR en marcha','+ Segunda voz (opcional)']},
+    {node:'Mes 6', when:'Meses 4 a 6', title:'Decidir', text:'Darío llega a unas 66 publicaciones y suma apariciones en medios. En el mes 6 comparamos el negocio con el punto de partida y decidimos la siguiente etapa.', see:'Lo que ve AGP: el reporte completo de seis meses.', head:H, conn:'Red consolidada', posts:'66', sig:'Reporte', lit:true, feed:['México, el laboratorio del mundo','La última capa','Lo que hicimos'], chips:['PR en marcha','+ Instagram (siguiente etapa)']}
   ];
   var nodesEl = $('tl-nodes'), n = steps.length;
   steps.forEach(function(s, j){
@@ -1065,7 +1023,7 @@ em{font-style:normal;color:var(--orange)}
     ['head','conn','posts','sig'].forEach(function(key){ var el = $('pf-' + key); if (first) { el.textContent = s[key]; el._v = s[key]; } else swap(el, s[key]); });
     [0,1,2].forEach(function(i){ var el = $('pf-f' + i); if (first) { el.textContent = s.feed[i]; el._v = s.feed[i]; } else swap(el, s.feed[i]); });
     [0,1].forEach(function(i){ var el = $('pf-c' + i); if (first) { el.textContent = s.chips[i]; el._v = s.chips[i]; } else swap(el, s.chips[i]); });
-    $('pf-c1').classList.toggle('dash', /Gabriel/.test(s.chips[1]));
+    $('pf-c1').classList.toggle('dash', /\+/.test(s.chips[1]));
     $('pf-banner').classList.toggle('lit', s.lit);
     $('tl-fill').style.width = (k / (n - 1) * 100) + '%';
     nodeEls.forEach(function(el, j){ el.classList.toggle('done', j < k); el.classList.toggle('now', j === k); });

@@ -34,6 +34,12 @@ const nextConfig = {
      Las viejas rutas /ai-concierge (que apuntaban a /systems) se eliminan
      también: quien tenga ese link ahora ve 404 (aceptable, la audiencia
      de esos 20 emails ya vio Systems durante 3 meses). */
+  /* Propuestas privadas · /p/{slug} sirve el HTML estático de
+     public/p/{slug}/index.html. Fuera de nav y sitemap; noindex y
+     contraseña opcional en middleware.ts. */
+  async rewrites() {
+    return [{ source: '/p/:slug', destination: '/p/:slug/index.html' }]
+  },
   async redirects() {
     return [
       // ============ Case studies → /work/{slug} (Task 2 + Task 3) ============

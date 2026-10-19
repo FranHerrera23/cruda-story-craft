@@ -155,6 +155,10 @@ em{font-style:normal;color:var(--orange)}
 .aud .v{font-size:clamp(16px,1.45vw,20px);line-height:1.3}
 .forbes.noimg{grid-template-columns:1fr}
 .media.stat b.sm{font-size:34px}
+.golinks{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.golinks:empty{display:none}
+.go{font-size:14px;font-weight:500;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px;align-self:flex-start}
+.go:hover{color:var(--orange);border-color:var(--orange)}
 /* defs */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,72px)}
 .col{display:flex;flex-direction:column;gap:14px;min-width:0;border-top:1px solid var(--rule);padding-top:18px}
@@ -701,6 +705,7 @@ em{font-style:normal;color:var(--orange)}
       <h3>Karen Mannheim</h3>
       <p class="role">Fundadora, TRAZZO Lighting</p>
       <p class="cred">Diseño de iluminación de alta gama, entre Lima y Miami.</p>
+      <div class="golinks" data-links="karen"></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:22px">
       <div class="data d2" data-r>
@@ -724,6 +729,7 @@ em{font-style:normal;color:var(--orange)}
       <h3>Mike Kaeding</h3>
       <p class="role">CEO, Norhart</p>
       <p class="cred">Desarrolladora y constructora de vivienda en Estados Unidos.</p>
+      <div class="golinks" data-links="mike"></div>
     </div>
     <div class="data d2" data-r>
       <div class="cell"><div class="l">Valor de medios · por año</div><div class="big"><em>US$110.000</em></div><div class="n">en LinkedIn</div></div>
@@ -741,6 +747,7 @@ em{font-style:normal;color:var(--orange)}
       <h3>Girish Sehgal</h3>
       <p class="role">Chief Patient Experience Officer, Sheikh Shakhbout Medical City</p>
       <p class="cred">25 años en Four Seasons. Ex gerente general en Chicago y Toronto.</p>
+      <div class="golinks" data-links="girish"></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:22px" data-r>
       <p class="name sm">Construimos la narrativa de su paso <em>del lujo de Four Seasons a la salud</em>.</p>
@@ -834,6 +841,20 @@ em{font-style:normal;color:var(--orange)}
     p._steps = parseInt(p.getAttribute('data-steps') || '1', 10);
     p._items = [].slice.call(p.querySelectorAll('[data-r],.rule'));
     p._in = p.querySelector('.in');
+  });
+
+  /* Ejemplos del trabajo: pegar aquí las URLs de los posteos de LinkedIn (texto que se muestra, URL).
+     Si una lista queda vacía, no se muestra nada. */
+  var LINKS = {
+    karen:  [['Ver un posteo de Karen en LinkedIn', 'https://lnkd.in/p/dkrukjGp']],
+    mike:   [['Ver la presentación de Mike en LinkedIn', 'https://lnkd.in/p/dehvpSeq']],
+    girish: [['Ver “La regla de oro de Four Seasons” en LinkedIn', 'https://lnkd.in/p/dV6Ha_BP']]
+  };
+  [].forEach.call(document.querySelectorAll('[data-links]'), function(box){
+    (LINKS[box.getAttribute('data-links')] || []).forEach(function(l){
+      var a = document.createElement('a'); a.className = 'go'; a.href = l[1]; a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = l[0] + ' →'; box.appendChild(a);
+    });
   });
 
   /* Photos: fill the slot only if the file exists. */

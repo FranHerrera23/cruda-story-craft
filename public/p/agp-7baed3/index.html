@@ -23,7 +23,7 @@
   --grid-bg-dark:linear-gradient(to right,rgba(239,235,223,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(239,235,223,.05) 1px,transparent 1px);
   --ease:cubic-bezier(.16,1,.3,1);
   --move:cubic-bezier(.65,0,.35,1);
-  --dur:1050ms;
+  --dur:850ms;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -797,7 +797,7 @@ em{font-style:normal;color:var(--orange)}
 <script>
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var DUR = reduce ? 10 : 1050;
+  var DUR = reduce ? 10 : 850;
   var planes = [].slice.call(document.querySelectorAll('.plane'));
   var N = planes.length, cur = 0, step = 0, busy = false;
   var $ = function(id){ return document.getElementById(id); };
@@ -909,8 +909,9 @@ em{font-style:normal;color:var(--orange)}
   /* Gesture lock: one gesture = one move. After a move we wait for the
      animation AND for the wheel to go quiet (trackpad momentum), so a
      hard flick never skips planes. */
-  var armed = true, lastWheel = 0, acc = 0, innerAt = 0;
-  function lockFor(ms){ busy = true; armed = false; setTimeout(function(){ busy = false; }, ms); }
+  var armed = true, lastWheel = 0, acc = 0, innerAt = 0, lastSign = 0, peak = 0, trough = 1e9, decayed = false;
+  var queued = 0;
+  function lockFor(ms){ busy = true; armed = false; queued = 0; peak = 0; trough = 1e9; decayed = false; setTimeout(function(){ busy = false; if (queued) { var d = queued; queued = 0; go(d); } }, ms); }
   function canInner(dir){
     var s = planes[cur]._in; if (s.scrollHeight <= s.clientHeight + 2) return false;
     return dir > 0 ? s.scrollTop + s.clientHeight < s.scrollHeight - 2 : s.scrollTop > 1;
@@ -922,11 +923,24 @@ em{font-style:normal;color:var(--orange)}
     var dir = dy > 0 ? 1 : -1;
     if (canInner(dir)) { innerAt = now; return; }
     e.preventDefault();
-    if (now - innerAt < 400) return;
-    if (!armed) { if (!busy && gap > 250) { armed = true; acc = 0; } else return; }
-    if (gap > 250) acc = 0;
+    if (now - innerAt < 250) return;
+    /* Balance: after a move, wait for the animation (busy). Then accept the
+       next gesture as soon as it looks new: a pause in the wheel, a change of
+       direction, or a delta that rises again (momentum only decays). */
+    var abs = Math.abs(dy), flip = lastSign && dir !== lastSign;
+    lastSign = dir;
+    if (gap > 120 || flip) { peak = 0; trough = 1e9; decayed = false; }
+    if (abs > peak && !decayed) peak = abs;
+    if (abs < peak * 0.6) decayed = true;
+    var rising = decayed && abs > 10 && abs > trough * 1.8;
+    if (decayed) trough = rising ? 1e9 : Math.min(trough, abs);
+    if (rising) { peak = abs; decayed = false; }
+    var fresh = gap > 120 || rising || flip;
+    if (busy) { if (fresh && abs > 4) queued = dir; return; }
+    if (!armed) { if (fresh) { armed = true; acc = 0; } else return; }
+    if (gap > 120) acc = 0;
     acc += dy;
-    if (Math.abs(acc) < 24) return;
+    if (Math.abs(acc) < 20) return;
     acc = 0; go(dir);
   }, {passive:false});
 

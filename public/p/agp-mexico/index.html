@@ -92,7 +92,7 @@ html[data-theme="black"] .logo .lc{opacity:1}
 .black .body{color:var(--grey-dark)}
 em{font-style:normal;color:var(--orange)}
 .serif{font-family:var(--serif);font-weight:400;letter-spacing:-.01em}
-.src{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
+.src{font-size:12.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
 .black .src{color:var(--grey-dark)}
 .src a{text-decoration:none;border-bottom:1px solid currentColor}
 .num{font-size:clamp(96px,16vw,230px);font-weight:600;letter-spacing:-.04em;line-height:.85;font-variant-numeric:tabular-nums}
@@ -173,6 +173,10 @@ em{font-style:normal;color:var(--orange)}
 .ir.ih{font-size:10.5px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--grey)}
 .ir span:last-child{color:var(--orange)}
 .ir.ih span:last-child{color:var(--grey)}
+.chan{font-size:16px;line-height:1.4;margin-top:4px}
+.chan b{font-weight:600;color:var(--orange)}
+.lrow small b{color:var(--ink);font-weight:600}
+.lede b{font-weight:600}
 /* defs */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,72px)}
 .col{display:flex;flex-direction:column;gap:14px;min-width:0;border-top:1px solid var(--rule);padding-top:18px}
@@ -292,7 +296,7 @@ em{font-style:normal;color:var(--orange)}
 .ledger{border-top:1px solid var(--ink)}
 .lrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}
 .lrow b{font-size:20px;font-weight:600;letter-spacing:-.015em}
-.lrow small{display:block;color:var(--grey);font-size:14px;margin-top:4px}
+.lrow small{display:block;color:var(--grey);font-size:17px;margin-top:6px}
 .lrow .amt{font-size:20px;font-weight:500;text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 .lrow.total b,.lrow.total .amt{font-size:clamp(24px,2.6vw,34px);font-weight:600;letter-spacing:-.025em}
 .suggest{border:1px solid var(--rule);background:var(--paper);padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}
@@ -572,9 +576,9 @@ em{font-style:normal;color:var(--orange)}
   <h2 class="big2" data-r style="max-width:24ch">El contenido construye la voz. El PR la amplifica. <em>Las conversaciones la convierten en negocio.</em></h2>
   <div class="rule" data-r></div>
   <div class="cols cols3">
-    <div class="col" data-r><span class="eyebrow">01 · Contenido</span><h3 class="s">Thought leadership</h3><p class="body">Darío, la referencia de su tema.</p><span class="src">3 piezas por semana · LinkedIn y X</span></div>
-    <div class="col" data-r><span class="eyebrow">02 · Amplificación</span><h3 class="s">Estrategia y manejo de PR</h3><p class="body">Darío en medios y podcasts.</p><span class="src">Entrevistas · la historia de AGP</span></div>
-    <div class="col" data-r><span class="eyebrow">03 · Negocio</span><h3 class="s">Account-based marketing</h3><p class="body">Las cuentas que importan, una por una.</p><span class="src">Blindadoras · family offices · flotas · sin pauta</span></div>
+    <div class="col" data-r><span class="eyebrow">01 · Contenido</span><h3 class="s">Thought leadership</h3><p class="body">Darío, la referencia de su tema.</p><p class="chan">3 posts por semana en <b>LinkedIn y X</b></p></div>
+    <div class="col" data-r><span class="eyebrow">02 · Amplificación</span><h3 class="s">Estrategia y manejo de PR</h3><p class="body">Darío en medios y podcasts.</p><p class="chan">Entrevistas: <b>la historia de AGP</b></p></div>
+    <div class="col" data-r><span class="eyebrow">03 · Negocio</span><h3 class="s">Account-based marketing</h3><p class="body">Las cuentas que importan, una por una.</p><p class="chan">Mensajes directos en <b>LinkedIn</b>, sin pauta</p></div>
   </div>
 </div></div></section>
 
@@ -732,7 +736,7 @@ em{font-style:normal;color:var(--orange)}
 <section data-ch="06 · Presupuesto y recursos" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Honorarios · meses 1 a 6</span>
   <div class="ledger" data-r>
-    <div class="lrow"><div><b>Darío Rojas</b><small>Contenido en LinkedIn y X, estrategia y manejo de PR, y conversaciones uno a uno</small></div><div class="amt">US$2.250 / mes</div></div>
+    <div class="lrow"><div><b>Darío Rojas</b><small>Contenido en <b>LinkedIn y X</b> · estrategia y manejo de PR · conversaciones uno a uno</small></div><div class="amt">US$2.250 / mes</div></div>
     <div class="lrow"><div><b>Duración</b><small>Seis meses</small></div><div class="amt">× 6</div></div>
     <div class="lrow total"><div><b>Total</b></div><div class="amt">US$13.500</div></div>
   </div>
@@ -753,9 +757,28 @@ em{font-style:normal;color:var(--orange)}
 <section data-ch="06 · Presupuesto y recursos" class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Nuestra sugerencia · opcional</span>
   <h2 class="big2" data-r>Desde el mes 3, <em>una segunda voz de AGP México.</em></h2>
-  <div class="price" data-r><div class="num" style="color:var(--ink);font-size:clamp(64px,9vw,130px)">+ US$1.500</div><span>al mes, además del plan de Darío</span></div>
-  <p class="lede" data-r>Un líder elegido por AGP: quien trata con las blindadoras todos los días.</p>
+  <div class="rule" data-r></div>
+  <p class="lede" data-r>Un líder elegido por AGP: quien trata con las blindadoras todos los días. <b>+ US$1.500 al mes</b>, además del plan de Darío.</p>
   <p class="src" data-r>Instagram: se cotiza aparte · lo recomendamos desde el mes 6</p>
+</div></div></section>
+
+<section data-ch="Quién soy" class="plane black"><div class="in"><div class="fit">
+  <div class="case">
+    <div class="person" data-r>
+      <img class="pic" src="/p/agp-mexico/assets/fran.webp" alt="Fran Herrera">
+      <h3>Fran Herrera</h3>
+      <p class="role">Founder, CRUDA</p>
+      <p class="cred">Nacido en Salta, Argentina.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span class="eyebrow" data-r>Quién soy</span>
+      <h2 class="name sm" data-r>Trabajan con el fundador, <em>y con un equipo chico que se mueve rápido.</em></h2>
+      <div class="data d2" data-r>
+        <div class="cell"><div class="l">CRUDA</div><div class="v">Una compañía de comunicación. Traducimos la historia de una empresa al idioma de quienes deciden.</div></div>
+        <div class="cell"><div class="l">Experiencia</div><div class="v">Diez años con Fortune 500, pymes y B2B, en tres continentes.</div><div class="n">Antes de CRUDA: Mondelez · AB InBev · Delivery Hero · Nestlé · TikTok</div></div>
+      </div>
+    </div>
+  </div>
 </div></div></section>
 
 <section data-ch="Propuesta" class="plane black"><div class="in"><div class="fit">

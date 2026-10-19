@@ -153,6 +153,8 @@ em{font-style:normal;color:var(--orange)}
 .cols.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}
 .black .lines p.dim{opacity:.35}
 .aud .v{font-size:clamp(16px,1.45vw,20px);line-height:1.3}
+.forbes.noimg{grid-template-columns:1fr}
+.media.stat b.sm{font-size:34px}
 /* defs */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,72px)}
 .col{display:flex;flex-direction:column;gap:14px;min-width:0;border-top:1px solid var(--rule);padding-top:18px}
@@ -305,6 +307,7 @@ em{font-style:normal;color:var(--orange)}
   .node span{font-size:8.5px;letter-spacing:.06em}
   .meta .ttl{display:none}
   .forbes{grid-template-columns:90px minmax(0,1fr)}
+  .forbes.noimg{grid-template-columns:1fr}
 }
 @media (prefers-reduced-motion: reduce){
   .plane,.in,[data-r],.rule,.bar{transition-duration:.01ms!important}
@@ -392,14 +395,22 @@ em{font-style:normal;color:var(--orange)}
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Diagnóstico · presencia digital y competencia</span>
+  <h2 class="name sm" data-r style="max-width:34ch">En la categoría todos dicen lo mismo, <em>y nadie tiene una voz</em>.</h2>
+  <div class="rule" data-r></div>
+  <div class="data" data-r>
+    <div class="cell"><div class="l">AGP hoy</div><div class="v">Sin voz en México</div><div class="n">La página global de AGP sGlass tiene 11 mil seguidores y habla desde Brasil, primero en portugués. Darío figura como “Director en AGP”, con 78 contactos y sin publicaciones.</div></div>
+    <div class="cell"><div class="l">Los fabricantes de vidrio</div><div class="v">Las mismas palabras desde hace años</div><div class="n">“Líder mundial”, “más liviano”, “calidad y servicio”. Ningún fundador ni ingeniero visible, sin historias ni pruebas públicas.</div></div>
+    <div class="cell"><div class="l">Las blindadoras</div><div class="v">Hablan de niveles y acero</div><div class="n">Casi ninguna nombra el vidrio que usa. El cliente final no sabe quién lo fabrica.</div></div>
+  </div>
+  <p class="lede" data-r>Qué fortalecer y cómo diferenciarnos: el primero que se nombre ante el cliente final, con una persona y con historias reales, se queda con la categoría. Como Intel dentro de la computadora: un componente que la gente aprendió a pedir por su nombre.</p>
+</div></div></section>
+
+<section class="plane paper"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Por qué una persona y no una página</span>
   <h2 class="name" data-r>La gente confía <em>en personas</em>.</h2>
   <div class="rule" data-r></div>
   <p class="lede" data-r>Los empleados de una empresa tienen, en promedio, 10 veces más conexiones que seguidores tiene su página. Lo que comparten recibe el doble de clics.</p>
-  <div class="data d2" data-r>
-    <div class="cell"><div class="l">Hoy · la página global</div><div class="v">AGP sGlass</div><div class="n">11 mil seguidores, sede en São José dos Pinhais, mensaje primero en portugués. Nadie habla desde México.</div></div>
-    <div class="cell"><div class="l">Hoy · la voz de México</div><div class="v">Darío Rojas</div><div class="n">“Director en AGP”, 78 contactos, sin publicaciones. 26 años de experiencia que casi nadie fuera de su círculo conoce.</div></div>
-  </div>
   <p class="src" data-r><a href="https://business.linkedin.com/content/dam/me/business/en-us/elevate/Resources/pdf/elevate-infographic.pdf">LinkedIn Elevate</a></p>
 </div></div></section>
 
@@ -520,12 +531,12 @@ em{font-style:normal;color:var(--orange)}
     <article class="post" data-r>
       <div class="ph-head"><div class="av">DR</div><div><b>Darío Rojas</b><span>Director General · AGP sGlass México · 1 h</span></div></div>
       <div class="pb">
-        <p>Hay proyectos de los que no podemos hablar. Este sí.</p>
-        <p>AGP desarrolló vidrio blindado curvo para vehículos de defensa de Estados Unidos.<span class="tbc">por confirmar con AGP</span></p>
-        <p>El reto no era solo detener una bala. Era hacerlo sin que quien maneja pierda visibilidad en la curva del parabrisas.</p>
-        <p>Lo que se aprende a ese nivel de exigencia no se queda ahí. Es el estándar con el que trabajamos hoy en México.</p>
+        <p>Hay clientes de los que casi nunca hablamos.</p>
+        <p>El vidrio de AGP ha protegido vehículos del Departamento de Estado de Estados Unidos y gran parte de los autos presidenciales del mundo.</p>
+        <p>A ese nivel no hay margen: el vidrio tiene que detener lo que tiene que detener, sin que quien maneja pierda visibilidad ni un segundo.</p>
+        <p>Lo que se aprende ahí no se queda ahí. Es el estándar con el que trabajamos hoy en México.</p>
       </div>
-      <div class="media photo" data-photo="/p/agp-mexico/assets/agp-historia.jpg"><span>Foto de archivo AGP · con aprobación</span></div>
+      <div class="media stat"><b class="sm">Departamento de Estado <em style="white-space:nowrap">de EE.&nbsp;UU.</em></b><span>y gran parte de los vehículos presidenciales del mundo han llevado vidrio AGP</span><small>Fuente: Gestión, Perú · 2013</small></div>
       <div class="acts"><span>Recomendar</span><span>Comentar</span><span>Compartir</span></div>
     </article>
   </div>
@@ -681,6 +692,7 @@ em{font-style:normal;color:var(--orange)}
   </div>
 </div></div></section>
 
+
 <section class="plane black"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Trabajo previo · No justificamos valor, mostramos impacto</span>
   <div class="case">
@@ -698,8 +710,7 @@ em{font-style:normal;color:var(--orange)}
         <div class="cell"><div class="l">Alcance · 90 días</div><div class="big">605.050</div><div class="n">impresiones en LinkedIn y 560.715 vistas en Instagram</div></div>
       </div>
       <p class="src">* Lo que hubiera costado comprar ese mismo alcance en publicidad</p>
-      <div class="forbes" data-r>
-        <div class="ph" data-photo="/p/agp-mexico/assets/forbes.jpg"><span>Portada Forbes Perú 2026</span></div>
+      <div class="forbes noimg" data-r>
         <p>Forbes Perú la incluyó en su lista 2026 sin que nadie la postulara. <em>Ser elegido, no pedirlo:</em> es la métrica que buscamos con Darío.</p>
       </div>
     </div>
@@ -802,6 +813,7 @@ em{font-style:normal;color:var(--orange)}
     <li><a href="https://www.fbi.gov/contact-us/field-offices/albuquerque/news/press-releases/fbi-media-alert-fbi-warns-of-recent-virtual-kidnapping-scams">FBI: alerta sobre secuestros virtuales</a> · <a href="https://san.com/cc/fbi-warns-scammers-are-using-ai-voices-to-impersonate-us-officials/">FBI, mayo 2025: voces generadas con IA</a></li>
     <li><a href="https://business.linkedin.com/content/dam/me/business/en-us/elevate/Resources/pdf/elevate-infographic.pdf">LinkedIn Elevate: conexiones de empleados y clics</a></li>
     <li>AGP: 4 de cada 10 autos blindados del mundo · ABRABLIN, Asociación Brasileña de Blindaje (2025) · CNB, Consejo Nacional de la Industria del Blindaje, vía Expansión (2025)</li>
+    <li><a href="https://gestion.pe/economia/empresas/grupo-agp-aumenta-35-participacion-global-mercado-vidrios-blindados-44400-noticia/">Gestión, 2013: clientes de AGP</a></li>
     <li><a href="https://newsnetwork.mayoclinic.org/discussion/seha-mayo-clinic-enter-joint-venture-to-operate-sheikh-shakhbout-medical-city">Mayo Clinic News Network: Sheikh Shakhbout Medical City</a></li>
   </ol>
 </div></div></section>

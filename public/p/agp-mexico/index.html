@@ -330,7 +330,14 @@ em{font-style:normal;color:var(--orange)}
   .refs .shot.wide,.refs .ph.wide{max-height:18vh}
   .suggest{grid-template-columns:1fr}.suggest .amt{text-align:left}
   .pf-feed{display:none}
-  .person .pic{max-width:180px}
+  .person .pic{max-width:150px}
+  /* Phones: keep the last lines clear of the nav buttons. */
+  .in{padding-bottom:calc(clamp(56px,8vh,72px) + 48px)}
+  /* Timeline: only the stage text, so each swipe shows its change. */
+  #tl .profile{display:none}
+  /* Header gets a solid band so scrolled text doesn't run under the logo. */
+  .chrome.top{background:var(--paper);transition:color .6s var(--ease),background-color .6s var(--ease)}
+  html[data-theme="black"] .chrome.top{background:var(--ink)}
   .node span{font-size:8.5px;letter-spacing:.06em}
   .meta .ttl{display:none}
   .forbes{grid-template-columns:90px minmax(0,1fr)}
@@ -879,7 +886,7 @@ em{font-style:normal;color:var(--orange)}
     var availH = inn.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
     var availW = inn.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     var h = f.scrollHeight;
-    if (h <= availH) return;
+    if (h <= availH || innerWidth < 768) return;
     var minZ = innerWidth < 768 ? 0.88 : 0.74;
     var z = Math.max(minZ, availH / h);
     var visW = Math.min(availW, 1200), ml = (availW - visW) / 2;

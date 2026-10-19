@@ -147,6 +147,13 @@ const nextConfig = {
         permanent: true,
       },
 
+      // Propuesta AGP · el slug provisorio pasa al nombre definitivo.
+      {
+        source: '/p/agp-7baed3',
+        destination: '/p/agp-mexico',
+        permanent: true,
+      },
+
       // ============ Legacy misc ============
       {
         // /book-call era un shell pre-v3 con copy vieja. /contact ya

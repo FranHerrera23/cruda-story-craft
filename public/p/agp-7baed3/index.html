@@ -146,6 +146,11 @@ em{font-style:normal;color:var(--orange)}
 .ceo-n span{font-size:13px;color:var(--grey)}
 .post-shot{width:100%;height:clamp(150px,28vh,300px);object-fit:cover;object-position:center top;border:1px solid var(--rule);border-radius:8px;display:block}
 .ceo p{font-size:14.5px;line-height:1.5}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,5vw,80px)}
+.duo>div{display:flex;flex-direction:column;gap:14px;min-width:0}
+.duo .num{font-size:clamp(76px,10.5vw,160px)}
+.cols.cols3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.black .lines p.dim{opacity:.35}
 /* defs */
 .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,5vw,72px)}
 .col{display:flex;flex-direction:column;gap:14px;min-width:0;border-top:1px solid var(--rule);padding-top:18px}
@@ -279,13 +284,14 @@ em{font-style:normal;color:var(--orange)}
 @media (max-width:900px){
   .refs,.pmap,.data,.data.d4{grid-template-columns:repeat(2,minmax(0,1fr))}
   .ceos{grid-template-columns:1fr}.post-shot{height:22vh}
+  .cols.cols3{grid-template-columns:1fr}
   .pillar,.tl-body,.case{grid-template-columns:1fr;gap:24px}
   .post{justify-self:start}
   .tl-step{min-height:0}
 }
 @media (max-width:640px){
   body{font-size:16px}
-  .refs,.pmap,.data,.data.d2,.data.d4,.cols{grid-template-columns:1fr}
+  .refs,.pmap,.data,.data.d2,.data.d4,.cols,.duo{grid-template-columns:1fr}
   .cell{border-top:1px solid var(--rule);padding:12px 0}
   .black .cell{border-top-color:var(--line-dark)}
   .cell:first-child{border-top:0}
@@ -322,7 +328,7 @@ em{font-style:normal;color:var(--orange)}
   <span class="eyebrow" data-r>CRUDA para AGP sGlass México · Octubre 2026 · Confidencial</span>
   <h1 class="giant"><span data-r style="display:block">Hola Darío.</span><span data-r style="display:block">Hola Gabriel.</span><span data-r style="display:block">Hola <em>AGP</em>.</span></h1>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>Una propuesta de seis meses para que AGP sea la marca que el mexicano pide por su nombre.</p>
+  <p class="lede" data-r>Seis meses para sembrar los cimientos de AGP como marca en México: dejar de vender vidrio y empezar a vender AGP.</p>
   <div class="hint src" data-r><i></i>Scrolleá o usá las flechas</div>
 </div></div></section>
 
@@ -334,38 +340,21 @@ em{font-style:normal;color:var(--orange)}
   <p class="src" data-r><a href="https://www.cnbc.com/2024/07/26/personal-cybersecurity-concierge-new-perk-wealthy.html">CNBC · julio 2024</a></p>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>México, 2026</span>
-  <h2 class="name" data-r>Lo que baja en las cifras no es <em>lo que viven las familias</em>.</h2>
-  <div class="rule" data-r></div>
+<section class="plane black"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>México, 2026 · Extorsión</span>
+  <h2 class="name sm" data-r>Lo que baja en las cifras no es <em>lo que viven las familias</em>.</h2>
+  <div class="duo">
+    <div data-r><div class="num">11.081</div><p class="lede">víctimas de extorsión denunciadas en 2025. <em>Un récord.</em></p><p class="src">SESNSP, vía Coparmex</p></div>
+    <div data-r><div class="num">6.562</div><p class="lede">en el primer semestre de 2026. <em>Otro récord</em>: unas 36 por día.</p><p class="src">Raúl Benítez Manaut, UNAM, con datos del SESNSP</p></div>
+  </div>
 </div></div></section>
 
 <section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Extorsión · 2025</span>
-  <div class="num" data-r>11.081</div>
-  <p class="lede" data-r>víctimas de extorsión denunciadas en 2025. <em>Un récord.</em></p>
-  <p class="src" data-r>SESNSP, vía Coparmex</p>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Extorsión · enero a junio 2026</span>
-  <div class="num" data-r>6.562</div>
-  <p class="lede" data-r>en el primer semestre de 2026. <em>Otro récord</em>: unas 36 por día.</p>
-  <p class="src" data-r>Raúl Benítez Manaut, UNAM, con datos del SESNSP</p>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Cifra negra</span>
-  <div class="num" data-r>93,4<small>%</small></div>
-  <p class="lede" data-r>de los delitos en México <em>no se denuncian</em> ni se investigan.</p>
-  <p class="src" data-r>INEGI · ENVIPE 2026</p>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Secuestro · enero 2026</span>
-  <div class="num" data-r>5,2</div>
-  <p class="lede" data-r>secuestros por día.</p>
-  <p class="src" data-r>Prensa nacional con datos del SESNSP</p>
+  <span class="eyebrow" data-r>Lo que no se ve</span>
+  <div class="duo">
+    <div data-r><div class="num">93,4<small>%</small></div><p class="lede">de los delitos en México <em>no se denuncian</em> ni se investigan.</p><p class="src">INEGI · ENVIPE 2026</p></div>
+    <div data-r><div class="num">5,2</div><p class="lede">secuestros por día en enero de 2026.</p><p class="src">Prensa nacional con datos del SESNSP</p></div>
+  </div>
 </div></div></section>
 
 <section class="plane black"><div class="in"><div class="fit">
@@ -393,11 +382,11 @@ em{font-style:normal;color:var(--orange)}
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>El objetivo</span>
-  <h2 class="name" data-r>Que el dueño llegue a cualquier blindadora y diga: <em>quiero AGP</em>.</h2>
+  <span class="eyebrow" data-r>La idea central</span>
+  <h2 class="name" data-r>Dejar de vender vidrio. <em>Empezar a vender AGP.</em></h2>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>El vidrio es el último eslabón de la protección. Para que lo pidan por su nombre, la conversación tiene que empezar mucho antes del auto.</p>
-  <p class="body" data-r>AGP necesita ser culturalmente relevante para el mexicano, no solo visible.</p>
+  <p class="lede" data-r>Tesla no vende baterías. Lamborghini no vende motores. Venden lo que su nombre significa. AGP fabrica para algunas de las marcas más exigentes del mundo, pero en México se la compra como un componente: por especificación y por precio.</p>
+  <p class="lede" data-r>La meta de largo plazo: que el dueño llegue a cualquier blindadora y diga <em>quiero AGP</em>. Un mercado no cambia en seis meses. Lo que sí se puede hacer en seis meses es sembrar los cimientos: una voz creíble, una historia propia contada al nivel de las marcas para las que AGP trabaja, y las primeras conversaciones con quienes deciden.</p>
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
@@ -418,7 +407,7 @@ em{font-style:normal;color:var(--orange)}
   <div class="refs">
     <div class="ref" data-r><div class="ph wide" data-photo="/p/agp-7baed3/assets/musk.jpg"><span>Foto · Elon Musk</span></div><div class="who"><b>Elon Musk</b><span>Tesla · SpaceX</span></div><p>Demuestra en público en lugar de anunciar. Presentó el Roadster en vivo el 15 de octubre; SpaceX transmite sus lanzamientos, también los que fallan.</p><p class="t">Mostrar, no adjetivar.</p></div>
     <div class="ref" data-r><img class="shot wide" src="/p/agp-7baed3/assets/anduril-x.webp" alt="Perfil de Anduril Industries en X"><div class="who"><b>Palmer Luckey</b><span>Anduril</span></div><p>Una empresa de defensa que cuenta su misión: 285.800 seguidores en X. En 2022 publicó su manifiesto en una página completa del Washington Post.</p><p class="t">Una causa clara y un fundador visible.</p></div>
-    <div class="ref" data-r><img class="shot wide" src="/p/agp-7baed3/assets/dimon-wide.jpg" alt="Jamie Dimon"><div class="who"><b>Jamie Dimon</b><span>JPMorganChase</span></div><p>Chairman y CEO del banco más grande de Estados Unidos, con 1,9 millones de seguidores en LinkedIn. Su asesora de ciberseguridad abre esta propuesta.</p><p class="t">El líder también es la marca.</p></div>
+    <div class="ref" data-r><img class="shot wide" src="/p/agp-7baed3/assets/dimon-wide.jpg" alt="Jamie Dimon"><div class="who"><b>Jamie Dimon</b><span>JPMorganChase</span></div><p>Chairman y CEO del banco más grande de Estados Unidos, con 1,9 millones de seguidores en LinkedIn. Es su banco el que advierte, al inicio de esta propuesta, que las familias más ricas tienen menos defensas.</p><p class="t">El líder también es la marca.</p></div>
   </div>
   <p class="src" data-r>De estas marcas tomamos su manera de contar, no sus relaciones comerciales.</p>
 </div></div></section>
@@ -431,24 +420,24 @@ em{font-style:normal;color:var(--orange)}
       <div class="ceo-h"><img src="/p/agp-7baed3/assets/winkelmann.jpg" alt=""><div><b>Stephan Winkelmann</b><span>Chairman y CEO · Lamborghini</span></div></div>
       <div class="ceo-n"><b>540.229</b><span>seguidores en LinkedIn</span></div>
       <img class="post-shot" src="/p/agp-7baed3/assets/post-winkelmann.webp" alt="Publicación de Stephan Winkelmann sobre un Temerario Ad Personam">
-      <p>Cuenta el detalle de un solo auto, como un artesano. <em>Pilar 01.</em></p>
+      <p>Cuenta el detalle de un solo auto, como un artesano. <em>Lo que muestra:</em> el producto, contado por quien lo dirige.</p>
     </div>
     <div class="ceo" data-r>
       <div class="ceo-h"><img src="/p/agp-7baed3/assets/farley.jpg" alt=""><div><b>Jim Farley</b><span>CEO · Ford</span></div></div>
       <div class="ceo-n"><b>447.993</b><span>seguidores en LinkedIn</span></div>
       <img class="post-shot" src="/p/agp-7baed3/assets/post-farley.webp" alt="Publicación de Jim Farley sobre Ford y Team Rubicon">
-      <p>Cuenta lo que Ford aprendió de un cliente y qué cambió por eso. <em>Pilar 02.</em></p>
+      <p>Cuenta lo que Ford aprendió de un cliente y qué cambió por eso. <em>Lo que muestra:</em> historias reales, no catálogo.</p>
     </div>
     <div class="ceo" data-r>
       <div class="ceo-h"><img src="/p/agp-7baed3/assets/barra.jpg" alt=""><div><b>Mary Barra</b><span>Chair y CEO · General Motors</span></div></div>
       <div class="ceo-n"><b>5,9 M</b><span>seguidores en X</span></div>
       <img class="post-shot" src="/p/agp-7baed3/assets/post-barra.webp" alt="Publicación de Mary Barra sobre Cadillac en F1 y golf">
-      <p>Lleva la marca a donde está su cliente: la F1, el golf, CNBC. <em>Pilar 04.</em></p>
+      <p>Lleva la marca a donde está su cliente: la F1, el golf, CNBC. <em>Lo que muestra:</em> la marca en la conversación de su audiencia.</p>
     </div>
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
+<section class="plane black"><div class="in"><div class="fit">
   <span class="eyebrow" data-r>Nuestra lectura</span>
   <div class="lines">
     <p class="dim" data-r>Las blindadoras hablan de niveles y acero.</p>
@@ -456,24 +445,18 @@ em{font-style:normal;color:var(--orange)}
     <p data-r>Nadie está en <em>la conversación privada</em> que una familia tiene consigo misma.</p>
   </div>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>Y no hay un líder visible, respetado y creíble que la ocupe. Ese lugar lo puede tomar Darío Rojas, director general de AGP sGlass México.</p>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>El insight</span>
-  <h2 class="name" data-r>Quien ya pagó por protegerse cree que está cubierto. Su punto ciego es <em>todo lo que pasa antes de subirse al auto</em>.</h2>
-  <div class="rule" data-r></div>
-  <p class="lede" data-r>Darío traduce lo que pasa en el mundo. Cada publicación responde una sola pregunta: ¿qué cambia esta semana para una familia que quiere estar protegida?</p>
-  <p class="body" data-r>Sin vender con miedo.</p>
+  <p class="lede" data-r>Quien ya pagó por protegerse cree que está cubierto. Su punto ciego es todo lo que pasa antes de subirse al auto. Ese lugar lo puede ocupar Darío Rojas, director general de AGP sGlass México: traduce lo que pasa en el mundo, sin vender con miedo.</p>
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Qué proponemos</span>
-  <div class="cols">
-    <div class="col" data-r><h3>Thought leadership</h3><p class="lede">Que una persona con experiencia real se vuelva <em>la referencia de su tema</em>, publicando con criterio y constancia.</p><p class="body">No es publicidad: es la voz a la que la gente vuelve cuando necesita entender algo.</p><span class="src">3 piezas por semana · 4 pilares · la voz de Darío</span></div>
-    <div class="col" data-r><h3>Account-based marketing</h3><p class="lede">Elegir las cuentas que importan y trabajarlas <em>una por una</em>.</p><p class="body">Blindadoras, family offices, flotas corporativas y jefes de seguridad. Comentarios, mensajes directos y conversaciones. Sin pauta.</p><span class="src">Lista de cuentas clave · contacto uno a uno · 100% orgánico</span></div>
+  <span class="eyebrow" data-r>Qué proponemos · tres frentes, una sola voz</span>
+  <h2 class="name sm" data-r style="max-width:34ch">El contenido construye la voz. El PR la amplifica. <em>Las conversaciones la convierten en negocio.</em></h2>
+  <div class="rule" data-r></div>
+  <div class="cols cols3">
+    <div class="col" data-r><span class="eyebrow">01 · Contenido</span><h3 class="s">Thought leadership</h3><p class="body">Darío publica con criterio y constancia hasta volverse la referencia de su tema.</p><span class="src">3 piezas por semana · LinkedIn y X</span></div>
+    <div class="col" data-r><span class="eyebrow">02 · Amplificación</span><h3 class="s">Estrategia y manejo de PR</h3><p class="body">Darío, la cara de AGP en México, en los medios y podcasts donde se informan quienes deciden.</p><span class="src">Entrevistas · la historia de AGP</span></div>
+    <div class="col" data-r><span class="eyebrow">03 · Negocio</span><h3 class="s">Account-based marketing</h3><p class="body">Elegimos las cuentas que importan y las trabajamos una por una, con comentarios y mensajes directos.</p><span class="src">Blindadoras · family offices · flotas · sin pauta</span></div>
   </div>
-  <p class="src" data-r>Canales: LinkedIn y X</p>
 </div></div></section>
 
 <section class="plane black"><div class="in"><div class="fit">
@@ -504,7 +487,7 @@ em{font-style:normal;color:var(--orange)}
         <p>No lo cuento por orgullo de empresa. Detrás de ese número hay 61 años de pruebas balísticas y de clientes que no pueden permitirse que algo falle.</p>
         <p>Cuando alguien me pregunta cómo elegir un vidrio blindado, le respondo con otra pregunta: ¿quién lo eligió antes que usted?</p>
       </div>
-      <div class="media stat"><b><em>4</em> de cada 10</b><span>autos blindados en el mundo llevan vidrio AGP</span><small>Fuente: AGP · CNB 2025</small></div>
+      <div class="media stat"><b><em>4</em> de cada 10</b><span>autos blindados en el mundo llevan vidrio AGP</span><small>Fuente: AGP</small></div>
       <div class="acts"><span>Recomendar</span><span>Comentar</span><span>Compartir</span></div>
     </article>
   </div>
@@ -575,21 +558,29 @@ em{font-style:normal;color:var(--orange)}
           <div class="brow"><span>Brasil</span><span class="t"><i style="width:100%"></i></span><span class="v">42.800</span></div>
           <div class="brow mx"><span>México</span><span class="t"><i style="width:9.08%"></i></span><span class="v">3.888</span></div>
         </div>
-        <p class="src" style="margin-top:12px">Vehículos blindados 2025 · ABRABLIN y CNB</p>
+        <p class="src" style="margin-top:12px">Vehículos blindados en 2025 · asociaciones de blindaje de Brasil (ABRABLIN) y México (CNB)</p>
       </div>
       <div class="acts"><span>Recomendar</span><span>Comentar</span><span>Compartir</span></div>
     </article>
   </div>
 </div></div></section>
 
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>El recorrido</span>
-  <h2 class="name" data-r>Seis meses, del perfil de hoy <em>a la voz de referencia</em>.</h2>
+<section class="plane black"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Estrategia y manejo de PR</span>
+  <h2 class="name" data-r>Publicar no alcanza. Darío tiene que <em>sentarse a contar la historia de AGP</em>.</h2>
   <div class="rule" data-r></div>
-  <p class="lede" data-r>A la izquierda, lo que hacemos en cada etapa. A la derecha, cómo se ve el perfil de Darío en ese momento. En la línea de tiempo, cada scroll avanza una etapa.</p>
+  <div class="data" data-r>
+    <div class="cell"><div class="l">Negocios y liderazgo</div><div class="v">Forbes México, Expansión, El Financiero, Líderes Mexicanos</div></div>
+    <div class="cell"><div class="l">Podcasts de formato largo</div><div class="v">Cracks, de Oso Trava, y podcasts de negocios y liderazgo</div></div>
+    <div class="cell"><div class="l">Seguridad y blindaje</div><div class="v">Medios del sector y el Congreso Nacional del Blindaje</div></div>
+  </div>
+  <p class="body" data-r>Armamos el kit de prensa, definimos los ángulos, contactamos a cada medio y preparamos a Darío para cada entrevista. Cada aparición vuelve a LinkedIn y X como contenido.</p>
+  <p class="src" data-r>Lista tentativa, se valida en el mes 1 · Las entrevistas se ganan con la historia: no se compran</p>
 </div></div></section>
 
 <section class="plane paper" id="tl" data-steps="7"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>El recorrido · cada scroll avanza una etapa</span>
+  <h2 class="name sm" data-r>Seis meses para construir <em>los cimientos de una voz de referencia</em>.</h2>
   <div class="track" data-r aria-hidden="true"><div class="railx"></div><div class="fill" id="tl-fill"></div><div class="nodes" id="tl-nodes"></div></div>
   <div class="tl-body">
     <div class="tl-step fade" id="tl-step" data-r aria-live="polite">
@@ -617,10 +608,10 @@ em{font-style:normal;color:var(--orange)}
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Qué gana AGP</span>
+  <span class="eyebrow" data-r>Qué gana AGP · lo que empieza en estos seis meses</span>
   <div class="rows">
-    <div class="row" data-r><span class="k">01</span><div><h3>Que el comprador final <em>pida AGP</em></h3><p>El dueño llega a la blindadora y ya trae el nombre.</p></div></div>
-    <div class="row" data-r><span class="k">02</span><div><h3>Darío como la voz de referencia en protección en México</h3><p>Los medios, los eventos y los clientes lo buscan a él.</p></div></div>
+    <div class="row" data-r><span class="k">01</span><div><h3>El camino para que el comprador final <em>pida AGP</em></h3><p>Una marca con historia propia, que el dueño empieza a reconocer antes de llegar a la blindadora.</p></div></div>
+    <div class="row" data-r><span class="k">02</span><div><h3>Darío en camino a ser la voz de referencia en protección en México</h3><p>Presente en LinkedIn, en X y en los primeros medios y podcasts.</p></div></div>
     <div class="row" data-r><span class="k">03</span><div><h3>Conversaciones directas que hoy no existen</h3><p>Family offices, empresas y gobierno, una por una.</p></div></div>
     <div class="row" data-r><span class="k">04</span><div><h3>Más peso frente a las blindadoras</h3><p>Si sus clientes piden AGP, la conversación con el canal cambia.</p></div></div>
     <div class="row" data-r><span class="k">05</span><div><h3>Todo visible, mes a mes</h3><p>Quién interactúa, con quién se habla y qué se convierte en negocio.</p></div></div>
@@ -632,17 +623,13 @@ em{font-style:normal;color:var(--orange)}
   <h2 class="name sm" data-r>Prometemos lo que depende de nosotros. <em>Medimos todo lo demás.</em></h2>
   <div class="rule" data-r></div>
   <div class="data" data-r>
-    <div class="cell"><div class="l">Compromiso · lo que entregamos</div><div class="v">Unas 66 piezas de Darío en LinkedIn y X</div><div class="n">Lista de cuentas clave en el mes 1. Contacto uno a uno todos los meses. Un reporte simple cada mes.</div></div>
-    <div class="cell"><div class="l">Cada mes · lo que medimos</div><div class="v">Cuentas clave que interactúan</div><div class="n">Conversaciones abiertas, contactos calificados y consultas generadas. Sin promesas de seguidores.</div></div>
-    <div class="cell"><div class="l">El negocio · lo que buscamos mover</div><div class="v">Participación de AGP en cada blindadora</div><div class="n">Y nuevos clientes compradores. AGP fija el punto de partida en el mes 0.</div></div>
+    <div class="cell"><div class="l">Compromiso · lo que entregamos</div><div class="v">Unas 66 piezas de Darío y gestión de PR todos los meses</div><div class="n">Lista de cuentas clave en el mes 1. Contacto uno a uno todos los meses. Un reporte simple cada mes.</div></div>
+    <div class="cell"><div class="l">Cada mes · lo que medimos</div><div class="v">Cuentas clave que interactúan y entrevistas logradas</div><div class="n">Conversaciones abiertas, contactos calificados, apariciones en medios y consultas generadas. Sin promesas de seguidores.</div></div>
+    <div class="cell"><div class="l">El negocio · lo que buscamos mover</div><div class="v">Participación de AGP en cada blindadora</div><div class="n">Y nuevos clientes. En el mes 1, AGP nos comparte cuánto le compra hoy cada blindadora: ese es el punto de partida.</div></div>
   </div>
-</div></div></section>
-
-<section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Lo que revisamos juntos</span>
-  <div class="cols">
-    <div class="col" data-r><span class="eyebrow">Mes 3</span><h3>Primera lectura</h3><p class="body">30 piezas de Darío publicadas, perfil renovado, lista de cuentas clave activa y primer reporte mensual.</p></div>
-    <div class="col" data-r><span class="eyebrow">Mes 6</span><h3>Decisión</h3><p class="body">Unas 66 piezas de Darío, conversaciones acumuladas, lectura de negocio contra el punto de partida y decisión sobre la siguiente etapa.</p></div>
+  <div class="data d2" data-r>
+    <div class="cell"><div class="l">Mes 3 · primera lectura</div><div class="n">30 piezas publicadas, perfil renovado, cuentas clave activas, primeros medios contactados y primer reporte.</div></div>
+    <div class="cell"><div class="l">Mes 6 · decisión</div><div class="n">Unas 66 piezas, conversaciones y apariciones acumuladas, lectura de negocio contra el punto de partida y siguiente etapa.</div></div>
   </div>
 </div></div></section>
 
@@ -665,13 +652,7 @@ em{font-style:normal;color:var(--orange)}
 </div></div></section>
 
 <section class="plane black"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Trabajo previo</span>
-  <h2 class="name" data-r>No justificamos valor. <em>Mostramos impacto.</em></h2>
-  <div class="rule" data-r></div>
-  <p class="lede" data-r>El valor de medios es lo que hubiera costado comprar ese mismo alcance en publicidad.</p>
-</div></div></section>
-
-<section class="plane black"><div class="in"><div class="fit">
+  <span class="eyebrow" data-r>Trabajo previo · No justificamos valor, mostramos impacto</span>
   <div class="case">
     <div class="person" data-r>
       <img class="pic" src="/p/agp-7baed3/assets/karen.webp" alt="Karen Mannheim">
@@ -682,10 +663,11 @@ em{font-style:normal;color:var(--orange)}
     <div style="display:flex;flex-direction:column;gap:22px">
       <div class="data d2" data-r>
         <div class="cell"><div class="l">Facturación 2025</div><div class="big"><em>+46%</em></div></div>
-        <div class="cell"><div class="l">Valor de medios · 90 días</div><div class="big">US$60.192</div><div class="n">LinkedIn US$33.278 · Instagram US$26.914</div></div>
+        <div class="cell"><div class="l">Valor de medios* · 90 días</div><div class="big">US$60.192</div><div class="n">LinkedIn US$33.278 · Instagram US$26.914</div></div>
         <div class="cell"><div class="l">Su cierre más grande</div><div class="big">US$380.000</div><div class="n">Con +27% de cotizaciones aprobadas</div></div>
         <div class="cell"><div class="l">Alcance · 90 días</div><div class="big">605.050</div><div class="n">impresiones en LinkedIn y 560.715 vistas en Instagram</div></div>
       </div>
+      <p class="src">* Lo que hubiera costado comprar ese mismo alcance en publicidad</p>
       <div class="forbes" data-r>
         <div class="ph" data-photo="/p/agp-7baed3/assets/forbes.jpg"><span>Portada Forbes Perú 2026</span></div>
         <p>Forbes Perú la incluyó en su lista 2026 sin que nadie la postulara. <em>Ser elegido, no pedirlo:</em> es la métrica que buscamos con Darío.</p>
@@ -742,30 +724,31 @@ em{font-style:normal;color:var(--orange)}
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>Inversión</span>
-  <div class="num" data-r style="color:var(--ink)">US$2.250</div>
-  <div class="rule" data-r></div>
-  <p class="lede" data-r>al mes. Darío Rojas, seis meses, LinkedIn y X. <em>Sin pauta.</em> Todo incluido.</p>
+  <span class="eyebrow" data-r>Inversión · meses 1 a 6</span>
+  <div class="ledger" data-r>
+    <div class="lrow"><div><b>Darío Rojas</b><small>Contenido en LinkedIn y X, estrategia y manejo de PR, y account-based marketing</small></div><div class="amt">US$2.250 / mes</div></div>
+    <div class="lrow"><div><b>Duración</b><small>Seis meses</small></div><div class="amt">× 6</div></div>
+    <div class="lrow total"><div><b>Total</b></div><div class="amt">US$13.500</div></div>
+  </div>
+  <p class="lede" data-r>Todo incluido. <em>Sin pauta:</em> cada resultado es orgánico.</p>
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
-  <span class="eyebrow" data-r>El detalle</span>
-  <div class="ledger" data-r>
-    <div class="lrow"><div><b>Darío Rojas</b><small>Thought leadership y account-based marketing en LinkedIn y X</small></div><div class="amt">US$2.250 / mes</div></div>
-    <div class="lrow"><div><b>Duración</b><small>Meses 1 a 6</small></div><div class="amt">× 6</div></div>
-    <div class="lrow total"><div><b>Total por seis meses</b></div><div class="amt">US$13.500</div></div>
+  <span class="eyebrow" data-r>Desde el mes 6 · la siguiente etapa</span>
+  <h2 class="name sm" data-r>Si se cumplen los objetivos, <em>AGP suma más voces</em>.</h2>
+  <div class="rule" data-r></div>
+  <div class="data" data-r>
+    <div class="cell"><div class="l">Gabriel · CEO global de AGP sGlass</div><div class="big">+ US$1.500</div><div class="n">al mes, además del plan de Darío. Sujeto a la aprobación de Gabriel</div></div>
+    <div class="cell"><div class="l">Segunda voz de AGP México</div><div class="big">+ US$1.500</div><div class="n">al mes, además del plan de Darío. Un líder elegido por AGP: quien trata con las blindadoras todos los días</div></div>
+    <div class="cell"><div class="l">Instagram</div><div class="big" style="font-size:clamp(24px,2.4vw,34px)">Se cotiza aparte</div><div class="n">Lo recomendamos desde el mes 6, cuando la voz de Darío ya esté instalada</div></div>
   </div>
-  <div class="suggest" data-r>
-    <div><span class="eyebrow" style="color:var(--orange)">Nuestra sugerencia · aparte</span><h3>Sumar una segunda voz en el mes 3</h3><p>Un líder de México elegido por AGP: la persona que trata con las blindadoras todos los días.</p></div>
-    <div class="amt">US$1.200 / mes<small>meses 3 a 6 · US$4.800</small></div>
-  </div>
-  <p class="body" data-r>Siguiente etapa, si se cumplen los objetivos del mes 6: sumar a Gabriel, CEO global de AGP sGlass. La ejecución queda sujeta a su aprobación.</p>
+  <p class="body" data-r>Darío sigue con su plan de US$2.250 al mes. Cada voz nueva se suma por separado y es opcional.</p>
 </div></div></section>
 
 <section class="plane paper"><div class="in"><div class="fit">
   <div class="cols">
-    <div class="col" data-r><span class="eyebrow">Incluye</span><h3 class="s">Todo el trabajo, de punta a punta</h3><ul><li>Research inicial y estrategia</li><li>Pilares, redacción y diseño de cada pieza</li><li>Publicación en LinkedIn y X</li><li>Account-based marketing: comentarios y mensajes uno a uno</li><li>Registro en Attio y reporte mensual</li></ul></div>
-    <div class="col" data-r><span class="eyebrow">Lo que necesitamos de AGP</span><h3 class="s">El tiempo de Darío</h3><ul><li>Mes 1: una reunión semanal de 1 h 30 min</li><li>Desde el mes 2: una reunión semanal de 1 h, más 1 h para revisar y aprobar contenidos</li><li>Fichas técnicas y datos firmados por la compañía</li><li>Validación de mensajes con corporativo</li><li>Historias y casos reales, con aprobación, y una foto profesional de Darío</li></ul></div>
+    <div class="col" data-r><span class="eyebrow">Incluye</span><h3 class="s">Todo el trabajo, de punta a punta</h3><ul><li>Research inicial y estrategia</li><li>Pilares, redacción y diseño de cada pieza</li><li>Publicación en LinkedIn y X</li><li>Estrategia y manejo de PR: kit de prensa, ángulos, contacto con medios y preparación de Darío</li><li>Account-based marketing: comentarios y mensajes uno a uno</li><li>Registro en Attio y reporte mensual</li></ul></div>
+    <div class="col" data-r><span class="eyebrow">Lo que necesitamos de AGP</span><h3 class="s">El tiempo de Darío</h3><ul><li>Mes 1: una reunión semanal de 1 h 30 min</li><li>Desde el mes 2: una reunión semanal de 1 h, más 1 h para revisar y aprobar contenidos</li><li>Fichas técnicas y datos firmados por la compañía</li><li>Validación de mensajes con corporativo</li><li>Disponibilidad de Darío para entrevistas</li><li>Historias y casos reales, con aprobación, y una foto profesional de Darío</li></ul></div>
   </div>
 </div></div></section>
 
@@ -787,7 +770,7 @@ em{font-style:normal;color:var(--orange)}
     <li><a href="https://www.adn40.mx/mexico/2025-08-26/nueva-modalidad-secuestro-virtual-ninos-en-edomex">adn40, agosto 2025: secuestro virtual de niños</a></li>
     <li><a href="https://www.fbi.gov/contact-us/field-offices/albuquerque/news/press-releases/fbi-media-alert-fbi-warns-of-recent-virtual-kidnapping-scams">FBI: alerta sobre secuestros virtuales</a> · <a href="https://san.com/cc/fbi-warns-scammers-are-using-ai-voices-to-impersonate-us-officials/">FBI, mayo 2025: voces generadas con IA</a></li>
     <li><a href="https://business.linkedin.com/content/dam/me/business/en-us/elevate/Resources/pdf/elevate-infographic.pdf">LinkedIn Elevate: conexiones de empleados y clics</a></li>
-    <li>AGP: 4 de cada 10 autos blindados del mundo · ABRABLIN 2025 · CNB 2025</li>
+    <li>AGP: 4 de cada 10 autos blindados del mundo · ABRABLIN, Asociación Brasileña de Blindaje (2025) · CNB, Consejo Nacional de la Industria del Blindaje, vía Expansión (2025)</li>
     <li><a href="https://newsnetwork.mayoclinic.org/discussion/seha-mayo-clinic-enter-joint-venture-to-operate-sheikh-shakhbout-medical-city">Mayo Clinic News Network: Sheikh Shakhbout Medical City</a></li>
   </ol>
 </div></div></section>
@@ -859,10 +842,10 @@ em{font-style:normal;color:var(--orange)}
     $('prev').style.visibility = (cur === 0 && step === 0) ? 'hidden' : 'visible';
     $('next').style.visibility = (cur === N - 1) ? 'hidden' : 'visible';
     planes.forEach(function(q, i){ if (i === cur) { q.removeAttribute('aria-hidden'); q.inert = false; } else { q.setAttribute('aria-hidden', 'true'); q.inert = true; } });
-    try { history.replaceState(null, '', '#' + (cur + 1)); } catch(e) {}
+    try { history.replaceState(null, '', '#' + (cur + 1)); lastHash = location.hash; } catch(e) {}
   }
 
-  var trimT;
+  var trimT, lastHash = '';
   function windowAt(c, keep){
     clearTimeout(trimT);
     planes.forEach(function(q, i){ if (Math.abs(i - c) <= 1 || (keep != null && i === keep)) q.classList.add('vis'); });
@@ -909,7 +892,7 @@ em{font-style:normal;color:var(--orange)}
   /* Gesture lock: one gesture = one move. After a move we wait for the
      animation AND for the wheel to go quiet (trackpad momentum), so a
      hard flick never skips planes. */
-  var armed = true, lastWheel = 0, acc = 0, innerAt = 0, lastSign = 0, peak = 0, trough = 1e9, decayed = false;
+  var armed = true, lastWheel = 0, acc = 0, innerAt = 0, lastSign = 0, peak = 0, trough = 1e9, decayed = false, prevAbs = 0;
   var queued = 0;
   function lockFor(ms){ busy = true; armed = false; queued = 0; peak = 0; trough = 1e9; decayed = false; setTimeout(function(){ busy = false; if (queued) { var d = queued; queued = 0; go(d); } }, ms); }
   function canInner(dir){
@@ -929,16 +912,19 @@ em{font-style:normal;color:var(--orange)}
        direction, or a delta that rises again (momentum only decays). */
     var abs = Math.abs(dy), flip = lastSign && dir !== lastSign;
     lastSign = dir;
-    if (gap > 120 || flip) { peak = 0; trough = 1e9; decayed = false; }
+    /* A pause only means a new gesture if the wheel is not still decaying (momentum after a dropped frame). */
+    var paused = gap > 450 || (gap > 200 && abs >= prevAbs * 0.9);
+    prevAbs = abs;
+    if (paused || flip) { peak = 0; trough = 1e9; decayed = false; }
     if (abs > peak && !decayed) peak = abs;
     if (abs < peak * 0.6) decayed = true;
     var rising = decayed && abs > 10 && abs > trough * 1.8;
     if (decayed) trough = rising ? 1e9 : Math.min(trough, abs);
     if (rising) { peak = abs; decayed = false; }
-    var fresh = gap > 120 || rising || flip;
-    if (busy) { if (fresh && abs > 4) queued = dir; return; }
+    var fresh = paused || rising || flip;
+    if (busy) { if ((rising || flip || paused) && abs > 4) queued = dir; return; }
     if (!armed) { if (fresh) { armed = true; acc = 0; } else return; }
-    if (gap > 120) acc = 0;
+    if (paused) acc = 0;
     acc += dy;
     if (Math.abs(acc) < 20) return;
     acc = 0; go(dir);
@@ -961,15 +947,14 @@ em{font-style:normal;color:var(--orange)}
 
   addEventListener('keydown', function(e){
     var k = e.key;
-    var fwd = ['ArrowDown','PageDown',' ','ArrowRight','Enter'].indexOf(k) > -1;
-    var back = ['ArrowUp','PageUp','ArrowLeft'].indexOf(k) > -1;
-    if (fwd || back) {
+    var kdir = ['ArrowDown','PageDown',' ','ArrowRight','Enter'].indexOf(k) > -1 ? 1 : (['ArrowUp','PageUp','ArrowLeft'].indexOf(k) > -1 ? -1 : 0);
+    if (kdir) {
       e.preventDefault();
-      var d = fwd ? 1 : -1;
-      if (canInner(d)) { var s = planes[cur]._in; s.scrollBy({top: d * s.clientHeight * 0.8, behavior: reduce ? 'auto' : 'smooth'}); }
-      else if (!busy) go(d);
+      var sc = planes[cur]._in;
+      if (canInner(kdir)) { sc.scrollBy({ top: kdir * sc.clientHeight * 0.8, behavior: reduce ? 'auto' : 'smooth' }); return; }
+      if (!busy) go(kdir);
     }
-    if (k === 'Home') { e.preventDefault(); jump(0); }
+    else if (k === 'Home') { e.preventDefault(); jump(0); }
     else if (k === 'End') { e.preventDefault(); jump(N - 1); }
   });
   $('next').addEventListener('click', function(){ if (!busy) go(1); });
@@ -982,9 +967,9 @@ em{font-style:normal;color:var(--orange)}
     {node:'Sem. 1', when:'Mes 1 · semana 1', title:'Escuchar', text:'Primera reunión larga con Darío: su historia, sus casos, cómo habla. Definimos juntos las cuentas clave a las que queremos llegar.', see:'Lo que ve AGP: la estrategia y la lista de cuentas clave.', head:'Director en AGP', conn:'78 contactos', posts:'0', sig:'0', lit:false, feed:['','',''], chips:['Lista de cuentas clave','']},
     {node:'Sem. 2', when:'Mes 1 · semana 2', title:'Aprobar', text:'Darío revisa su perfil renovado y las primeras seis publicaciones. Nada sale sin su visto bueno.', see:'Lo que ve AGP: el perfil nuevo, listo para publicar.', head:H, conn:'78 contactos', posts:'0', sig:'0', lit:true, feed:['','',''], chips:['Lista de cuentas clave','']},
     {node:'Sem. 3–4', when:'Mes 1 · semanas 3 y 4', title:'Publicar', text:'Salen las primeras seis piezas en LinkedIn y X. Empieza el contacto uno a uno con las cuentas clave.', see:'Lo que ve AGP: Darío presente, por primera vez, en la conversación.', head:H, conn:'Red en construcción', posts:'6', sig:'Primeras', lit:true, feed:['La última capa','Lo que te ve antes de que lo veas',''], chips:['Lista de cuentas clave','Contacto uno a uno']},
-    {node:'Mes 2', when:'Mes 2', title:'Sostener el ritmo', text:'Tres publicaciones por semana con los cuatro pilares. Cada conversación queda registrada.', see:'Lo que ve AGP: el primer reporte mensual.', head:H, conn:'Red en crecimiento', posts:'18', sig:'En aumento', lit:true, feed:['Lo que hicimos','México, el laboratorio del mundo','La última capa'], chips:['Lista de cuentas clave','Contacto uno a uno']},
-    {node:'Mes 3', when:'Mes 3', title:'Primera lectura', text:'Revisamos juntos lo que funcionó. Sugerimos sumar una segunda voz de México, elegida por AGP.', see:'Lo que ve AGP: 30 publicaciones y quiénes respondieron.', head:H, conn:'Red en crecimiento', posts:'30', sig:'En aumento', lit:true, feed:['Lo que te ve antes de que lo veas','Lo que hicimos','México, el laboratorio del mundo'], chips:['Contacto uno a uno','+ Segunda voz (sugerida)']},
-    {node:'Mes 6', when:'Meses 4 a 6', title:'Decidir', text:'Darío llega a unas 66 publicaciones. En el mes 6 comparamos el negocio con el punto de partida y decidimos la siguiente etapa.', see:'Lo que ve AGP: el reporte completo de seis meses.', head:H, conn:'Red consolidada', posts:'66', sig:'Reporte', lit:true, feed:['México, el laboratorio del mundo','La última capa','Lo que hicimos'], chips:['+ Segunda voz','+ Gabriel · siguiente etapa']}
+    {node:'Mes 2', when:'Mes 2', title:'Sostener el ritmo', text:'Tres publicaciones por semana con los cuatro pilares. Armamos el kit de prensa y empezamos a contactar medios y podcasts.', see:'Lo que ve AGP: el primer reporte mensual y la lista de medios.', head:H, conn:'Red en crecimiento', posts:'18', sig:'En aumento', lit:true, feed:['Lo que hicimos','México, el laboratorio del mundo','La última capa'], chips:['Lista de cuentas clave','Contacto uno a uno']},
+    {node:'Mes 3', when:'Mes 3', title:'Primera lectura', text:'Revisamos juntos lo que funcionó y ajustamos. Buscamos las primeras entrevistas en medios y podcasts.', see:'Lo que ve AGP: 30 publicaciones y quiénes respondieron.', head:H, conn:'Red en crecimiento', posts:'30', sig:'En aumento', lit:true, feed:['Lo que te ve antes de que lo veas','Lo que hicimos','México, el laboratorio del mundo'], chips:['Contacto uno a uno','PR en marcha']},
+    {node:'Mes 6', when:'Meses 4 a 6', title:'Decidir', text:'Darío llega a unas 66 publicaciones y suma apariciones en medios. En el mes 6 comparamos el negocio con el punto de partida y decidimos la siguiente etapa: Gabriel, una segunda voz e Instagram.', see:'Lo que ve AGP: el reporte completo de seis meses.', head:H, conn:'Red consolidada', posts:'66', sig:'Reporte', lit:true, feed:['México, el laboratorio del mundo','La última capa','Lo que hicimos'], chips:['PR en marcha','+ Gabriel y segunda voz (siguiente etapa)']}
   ];
   var nodesEl = $('tl-nodes'), n = steps.length;
   steps.forEach(function(s, j){
@@ -1007,7 +992,7 @@ em{font-style:normal;color:var(--orange)}
     ['head','conn','posts','sig'].forEach(function(key){ var el = $('pf-' + key); if (first) { el.textContent = s[key]; el._v = s[key]; } else swap(el, s[key]); });
     [0,1,2].forEach(function(i){ var el = $('pf-f' + i); if (first) { el.textContent = s.feed[i]; el._v = s.feed[i]; } else swap(el, s.feed[i]); });
     [0,1].forEach(function(i){ var el = $('pf-c' + i); if (first) { el.textContent = s.chips[i]; el._v = s.chips[i]; } else swap(el, s.chips[i]); });
-    $('pf-c1').classList.toggle('dash', /Gabriel|sugerida/.test(s.chips[1]));
+    $('pf-c1').classList.toggle('dash', /Gabriel/.test(s.chips[1]));
     $('pf-banner').classList.toggle('lit', s.lit);
     $('tl-fill').style.width = (k / (n - 1) * 100) + '%';
     nodeEls.forEach(function(el, j){ el.classList.toggle('done', j < k); el.classList.toggle('now', j === k); });
@@ -1019,13 +1004,14 @@ em{font-style:normal;color:var(--orange)}
   start = isNaN(start) ? 0 : Math.max(0, Math.min(N - 1, start - 1));
   fitAll();
   jump(start);
+  addEventListener('hashchange', function(){
+    if (location.hash === lastHash) return;
+    var n = parseInt(location.hash.slice(1), 10);
+    if (!isNaN(n) && n - 1 !== cur) jump(n - 1);
+  });
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
   addEventListener('load', fitAll);
   [].forEach.call(document.querySelectorAll('img'), function(im){ if (!im.complete) im.addEventListener('load', function(){ var pl = im.closest('.plane'); if (pl) fit(pl); }); });
-  addEventListener('hashchange', function(){
-    var h = parseInt((location.hash || '').slice(1), 10);
-    if (!isNaN(h) && h - 1 !== cur) jump(h - 1);
-  });
   var rt; addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(fitAll, 150); });
 })();
 </script>

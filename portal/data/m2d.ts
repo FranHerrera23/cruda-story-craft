@@ -4,6 +4,8 @@
 // Instagram: 2 project carousels are scheduled. Season 1 of The Sanctuary Series (6 reels) is produced
 // and ON HOLD at Ryan’s request (23 Oct email, AI content label): owner off him, no dates, out of the queue.
 // Cadence capped at two posts per week per platform, per the same email. Captions are Ryan’s.
+// LinkedIn and X are deliberately empty for now: we settle that programme internally before it
+// goes in front of Ryan. A channel with no items renders no tab, which is the intended effect.
 const STRATEGY_PDF = "https://drive.google.com/file/d/1tJDbxw2zzMUZQbjRkDLvYfeQRzCQNG_V/view";
 const IG_FOLDER = "https://drive.google.com/drive/folders/1kBa9RjNErZB7mWZ-UmRA_fuR9HOWWXtJ";
 const CAPTIONS = "https://drive.google.com/file/d/1hXUErB_aQeGCZV9tP0EDf8k_0-MUGVYs/view";
@@ -28,7 +30,7 @@ export const m2d = {
     lines: [
       { name: "Website", done: 1, total: 1, note: "Live at m2develop.com. Two photographs still to come.", onClient: true },
       { name: "Articles", done: 4, total: 12, note: "Next: the boat show guide, waiting on your seven answers.", onClient: true },
-      { name: "LinkedIn posts", done: 5, total: 12, note: "Two a week through the show. X runs on the same cadence." },
+      { name: "LinkedIn posts", done: 5, total: 12, note: "Five live. The plan for the rest comes with the calendar." },
       { name: "Instagram", done: 0, total: 8, note: "Eight pieces produced. Two carousels waiting on your approval, six reels on hold.", onClient: true },
       { name: "Case studies", done: 0, total: 5, note: "One 45 minute call per project. You talk, we write.", onClient: true },
       { name: "Marty Lowe: site, blog, LinkedIn", done: 0, total: 3, note: "In her own space, at her pace." },
@@ -101,23 +103,6 @@ export const m2d = {
       assets: [{ label: "Reel files", href: IG_FOLDER }, { label: "Caption", href: CAPTIONS }], eden: "Not in Eden yet" },
 
     // ── LinkedIn
-    { id: "li-hull", channel: "LinkedIn", kind: "LinkedIn post", title: "Hull one, hull two", date: "2026-10-26", at: "7:30 am", owner: "Ryan", status: "Needs approval", version: 1, story: "two-oceans",
-      why: "Plants the idea you own, the American edition, two days before the show opens.",
-      assets: [{ label: "Draft doc", href: HULL_DOC }], eden: "Draft in Eden, not scheduled yet",
-      post: "Two boats of the same model can sit in two different shows on two different continents and look identical from the dock. Same hull, same profile, same glass. You’d have to walk inside to know they aren’t the same boat.\n\nHull one is the European version. Hull two is the one that comes here, and it usually makes its debut at Fort Lauderdale. The gap between those two boats is more or less my entire job.\n\nMost of that gap isn’t taste. It’s air conditioning, which has to be stronger here and reach places nobody in the Med asks it to reach. It’s ice, and the refrigeration to make enough of it. It’s that everything you touch has to survive salt, sun and bare feet through a season that doesn’t really end.\n\nIn two weeks a lot of hull twos will be sitting in Fort Lauderdale looking exactly like their European twins. Walk into a few and you’ll see what I mean." },
-    { id: "show-floor", channel: "LinkedIn", kind: "Input", title: "From the show floor: what you’re seeing", date: "2026-10-28", at: "Wed to Sun", owner: "Ryan", status: "Needs input", version: 1,
-      why: "Show week is the one week nothing can be written ahead. Short posts from the floor, written while it’s happening, for LinkedIn and X, twice each across the show.",
-      askHow: "Each evening of the show, send Fran a two-minute voice note or three lines: what you saw, what changed this year, what buyers asked. We write it the same night and send it back here for your approval." },
-    { id: "li-marty-flibs", channel: "LinkedIn", kind: "LinkedIn post", title: "Marty, Bertram and the Americas edition", date: "2026-10-21", owner: null, status: "Live", version: 1, assets: [{ label: "On LinkedIn", href: RYAN_LI }], result: "Read at month end" },
-    { id: "li-collab", channel: "LinkedIn", kind: "LinkedIn post", title: "Two studios, working together", date: "2026-10-20", owner: null, status: "Live", version: 1, assets: [{ label: "On LinkedIn", href: RYAN_LI }], result: "Read at month end" },
-    { id: "li-riva", channel: "LinkedIn", kind: "LinkedIn post", title: "Riva", owner: null, status: "Live", version: 1, assets: [{ label: "On LinkedIn", href: RYAN_LI }] },
-    { id: "li-craft", channel: "LinkedIn", kind: "LinkedIn post", title: "The craft", owner: null, status: "Live", version: 1, assets: [{ label: "On LinkedIn", href: RYAN_LI }] },
-    { id: "li-intro", channel: "LinkedIn", kind: "LinkedIn post", title: "Introduction", date: "2026-10-01", owner: null, status: "Live", version: 1, assets: [{ label: "On LinkedIn", href: RYAN_LI }], result: "Read at month end" },
-
-    // ── X
-    { id: "x-hull", channel: "X", kind: "X thread", title: "Hull one, hull two, thread of 4", date: "2026-10-26", at: "12:00 pm", owner: "Ryan", status: "Needs approval", version: 1, story: "two-oceans",
-      why: "The same idea for X, with the article link in the last reply.", assets: [{ label: "Draft doc", href: HULL_DOC }], eden: "Not in Eden yet. The X account connected in Eden is Fran’s, not Ryan’s.",
-      post: "Two boats of the same model can look identical from the dock.\n\nHull one is the European version. Hull two is the one that comes here.\n\nThe gap between them is more or less my entire job." },
 
     // ── Hull Notes
     { id: "hn-2", channel: "Hull Notes", kind: "Newsletter", title: "Hull Notes, issue 2: the show issue", date: "2026-10-30", at: "7:30 am", owner: "Fran", status: "Drafting", version: 1,

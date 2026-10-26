@@ -16,6 +16,9 @@ export const m2d = {
   slug: "m2d",
   name: "M2Develop",
   clients: ["Ryan"],
+  // Bump these in the same commit as any content change below.
+  updatedAt: "2026-10-26T11:45:00-04:00",
+  updatedBy: "Fran",
   objective: "Be known on the docks before the Fort Lauderdale boat show, 28 October to 1 November.",
   phase: "Running the machine since 15 October.",
   channels: {

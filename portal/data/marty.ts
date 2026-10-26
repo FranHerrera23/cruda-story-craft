@@ -5,6 +5,9 @@ export const marty = {
   slug: "marty",
   name: "Marty Lowe",
   clients: ["Marty"],
+  // Bump these in the same commit as any content change below.
+  updatedAt: "2026-10-26T11:45:00-04:00",
+  updatedBy: "Fran",
   objective: "Your story, written down for the first time. Then your site, your blog and your LinkedIn, at your pace.",
   noDates: true,
   channels: {

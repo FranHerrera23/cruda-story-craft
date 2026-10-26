@@ -70,6 +70,7 @@
   }
   function stateText(it) {
     if (it.status === "Live") return `Live`;
+    if (it.status === "On hold") return `On hold`;
     if (it.decided && it.decided.kind === "approve") return `Approved`;
     if (it.decided && it.decided.kind === "changes") return `Changes requested`;
     if (it.decided && it.decided.kind === "sent") return `Sent`;

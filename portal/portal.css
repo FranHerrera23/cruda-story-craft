@@ -312,3 +312,17 @@ html[data-dir="prev"]::view-transition-new(root) { animation-name: vt-in-l; }
 @keyframes vt-out-r { to { opacity: 0; transform: translateX(24px); } }
 @keyframes vt-in-l { from { opacity: 0; transform: translateX(-40px); } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; } }
+
+/* names + links, no visuals */
+.r-l { display: flex; gap: 16px; font-size: 14px; white-space: nowrap; }
+.r-go { display: grid; place-items: center; padding: 16px 0 16px 8px; }
+.r:hover .chev { stroke: var(--ink); }
+.tb { border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.tb .lbl { margin-bottom: 8px; }
+.tb-b { white-space: pre-line; font-size: 16px; line-height: 26px; }
+.sl { list-style: none; padding: 0; display: grid; }
+.sl li { display: grid; grid-template-columns: 32px minmax(0,1fr); gap: 8px; padding: 12px 0; border-top: 1px solid var(--line); font-size: 16px; line-height: 24px; }
+.sl li:first-child { border-top: 0; padding-top: 0; }
+.sn { color: var(--grey); font-variant-numeric: tabular-nums; font-size: 14px; }
+.files { font-size: 16px; gap: 12px 24px; }
+@container (max-width: 640px) { .r { flex-wrap: wrap; } .r-l { order: 5; width: 100%; padding: 0 0 16px 40px; margin-top: -8px; } }

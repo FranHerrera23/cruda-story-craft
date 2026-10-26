@@ -89,7 +89,7 @@
     const right = opt.state ? `<span class="r-s ${it.owner === viewer && !it.decided ? "you" : ""}">${esc(stateText(it))}</span>` : "";
     return `<div class="r ${it.decided ? "is-done" : ""}">
       ${tick(it)}
-      <a href="#" class="r-m" data-go="item:${it.id}">${icon(it)}<span class="r-t"><b>${esc(it.title)}</b>${meta ? `<small>${meta}</small>` : ""}</span>${right}${CHEV}</a>
+      <a href="#" class="r-m" data-go="item:${it.id}"><span class="r-t"><b>${esc(it.title)}</b>${meta ? `<small>${meta}</small>` : ""}</span></a>${opt.links && it.assets && it.assets.length ? `<span class="r-l">${it.assets.map(aLink).join("")}</span>` : ""}${right}<a href="#" class="r-go" data-go="item:${it.id}" aria-label="Open ${esc(it.title)}" tabindex="-1">${CHEV}</a>
     </div>`;
   }
 
@@ -156,8 +156,8 @@
     const visual = planned.filter((i) => i.kind === "Reel" || i.kind === "Carousel");
     const mon = (iso) => { const d = D(iso); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return isoDay(d); };
     const gr = {}; planned.forEach((i) => (gr[!A().noDates && i.date ? mon(i.date) : "none"] ||= []).push(i));
-    const plan = Object.keys(gr).map((k) => `${k !== "none" && Object.keys(gr).length > 1 ? `<p class="wkh">${mon(TODAY) === k ? "This week" : `Week of ${fmt(k, { month: "long", day: "numeric" })}`}</p>` : ""}${gr[k].map((i) => row(i, { meta: [when(i), sub(i)].filter(Boolean).join(" · "), state: !(i.owner === viewer && i.status === "Needs approval") })).join("")}`).join("");
-    const grid = visual.length >= 3 ? `<div class="phone" aria-label="Preview of the grid"><div class="ph-top"><b>m2develop</b><span>Newest first</span></div><div class="ph-grid">
+    const plan = Object.keys(gr).map((k) => `${k !== "none" && Object.keys(gr).length > 1 ? `<p class="wkh">${mon(TODAY) === k ? "This week" : `Week of ${fmt(k, { month: "long", day: "numeric" })}`}</p>` : ""}${gr[k].map((i) => row(i, { meta: [when(i), sub(i)].filter(Boolean).join(" · "), state: !(i.owner === viewer && i.status === "Needs approval"), links: true })).join("")}`).join("");
+    const grid = false && visual.length >= 3 ? `<div class="phone" aria-label="Preview of the grid"><div class="ph-top"><b>m2develop</b><span>Newest first</span></div><div class="ph-grid">
       ${[...visual].reverse().map((i) => `<a href="#" class="gt ${i.kind === "Reel" ? "reel" : "car"} ${i.decided && i.decided.kind === "approve" ? "ok" : ""}" data-go="item:${i.id}" title="${esc(i.title)}"><span class="gt-k">${i.kind === "Reel" ? `<svg viewBox="0 0 16 16"><path d="M5.5 4v8l6.5-4z"/></svg>` : `<svg viewBox="0 0 16 16" class="ln"><rect x="2.5" y="4" width="8" height="9.5" rx="1.5"/><path d="M6 2.5h6a1.5 1.5 0 0 1 1.5 1.5v7"/></svg>`}</span><b>${esc(i.title)}</b><span class="gt-d">${day(i.date)}</span></a>`).join("")}
       </div></div>` : "";
     return shell(`ch:${c}`, `
@@ -183,6 +183,11 @@
   }
   const sheet = (name, subt, body) => `<div class="sheet"><div class="by"><i>${esc(name[0])}</i><span><b>${esc(name)}</b><span>${esc(subt)}</span></span></div><div class="sheet-b">${esc(body)}</div></div>`;
   function preview(it) {
+    const block = (label, body) => `<div class="tb"><p class="lbl">${label}</p><div class="tb-b">${esc(body)}</div></div>`;
+    const sLine = (x, n) => `<li><span class="sn">${n}</span><span>${x.type === "photo" ? `<span class="dim">Photo · ${esc(x.photo)}</span>${x.caption ? `<br>${esc(x.caption)}` : ""}` : `${esc(x.headline || "")}${x.body ? `<br><span class="dim">${esc(x.body)}</span>` : ""}${x.photo ? `<br><span class="dim">Photo · ${esc(x.photo)}</span>` : ""}`}</span></li>`;
+    if (it.kind === "Reel") return `<div class="stack">${it.scene ? block("The scene", it.scene) : ""}${it.caption ? block("Caption", it.caption) : ""}</div>`;
+    if (it.slides) return `<div class="stack"><div class="tb"><p class="lbl">${it.slides.length} slides</p><ol class="sl">${it.slides.map((x, n) => sLine(x, n + 1)).join("")}</ol></div>${it.caption ? block("Caption", it.caption) : ""}</div>`;
+    if (it.post) return block(it.channel === "X" ? "Thread on X" : "Post on LinkedIn", it.post);
     const file = it.assets && it.assets.find((a) => a.href && a.href !== "#");
     if (it.kind === "Reel") return `<div class="stack"><div class="rv"><span class="rv-s">${esc(it.scene || "")}</span>${file ? `<a class="rv-p" href="${esc(file.href)}" target="_blank" rel="noreferrer"><span class="play"><svg viewBox="0 0 16 16"><path d="M5.5 4v8l6.5-4z"/></svg></span>Watch the reel</a>` : ""}</div>${it.caption ? sheet("m2develop", "Caption", it.caption) : ""}</div>`;
     if (it.slides) return `<div class="stack"><div><div class="track" tabindex="0" aria-label="Slides, use arrow keys" data-track>${it.slides.map(slide).join("")}</div>

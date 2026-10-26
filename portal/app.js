@@ -151,12 +151,13 @@
     const g = {}; list.forEach((i) => (g[i.channel] ||= []).push(i));
     const groups = ORDER().filter((c) => g[c]).map((c) => `<div class="grp"><div class="grp-h"><span>${esc(chLabel(c))}</span><a href="#" data-go="ch:${c}">See plan</a></div>${g[c].map((i) => row(i)).join("")}</div>`).join("");
     const lines = A().scope.lines;
+    const M = Math.max(1, Math.round(ap.length * 0.5));
     return shell("overview", `
       <section class="hero">
         <p class="eyebrow">${new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</p>
         <h1>${esc(h1)}</h1>
         ${lead ? `<p class="lead">${esc(lead)}</p>` : ""}
-        ${ap.length ? `<div class="cta"><button type="button" class="btn pri" data-act="review:all">Start review</button><span class="hint">One at a time. About ${Math.max(1, Math.round(ap.length * 0.5))} minutes.</span></div>` : ""}
+        ${ap.length ? `<div class="cta"><button type="button" class="btn pri" data-act="review:all">Start review</button><span class="hint">One at a time. About ${M} ${plural(M, "minute", "minutes")}.</span></div>` : ""}
       </section>
       ${list.length ? `<section class="sec"><h2 class="sec-h">To approve</h2>${groups}</section>` : ""}
       ${inp.length ? `<section class="sec"><h2 class="sec-h">We need from you</h2>${inp.map((i) => row(i, { meta: [chLabel(i.channel), i.askHow].filter(Boolean).join(" · ") })).join("")}</section>` : ""}

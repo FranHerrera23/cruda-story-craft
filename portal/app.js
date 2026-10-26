@@ -70,6 +70,7 @@
   }
   function stateText(it) {
     if (it.status === "Live") return `Live`;
+    if (it.status === "On hold") return `On hold`;
     if (it.decided && it.decided.kind === "approve") return `Approved`;
     if (it.decided && it.decided.kind === "changes") return `Changes requested`;
     if (it.decided && it.decided.kind === "sent") return `Sent`;
@@ -100,6 +101,34 @@
     const t = [["overview", "Overview", false]].concat(ORDER().filter((c) => its.some((i) => i.channel === c)).map((c) => [`ch:${c}`, chLabel(c), its.some((i) => i.channel === c && canAct(i) && (i.status === "Needs approval" || i.status === "Needs input"))]));
     return t.map(([r, l, dot]) => `<a href="#" data-go="${r}" ${active === r ? 'aria-current="page"' : ""}>${esc(l)}${dot ? `<i class="dot" aria-label="needs you"></i>` : ""}</a>`).join("");
   }
+  /* last update: the most recent touch, ours or theirs, always in Fort Lauderdale time */
+  const VERB = { approve: "approved", changes: "asked for changes on", note: "left a note on", sent: "sent", undo: "took back a decision on" };
+  const etStamp = (ms) => {
+    const d = new Date(ms);
+    const o = { timeZone: "America/New_York" };
+    const t = d.toLocaleTimeString("en-US", { ...o, hour: "numeric", minute: "2-digit" }).toLowerCase();
+    if (d.toLocaleDateString("en-CA", o) === etNow().day) return `today at ${t}`;
+    return `${d.toLocaleDateString("en-US", { ...o, weekday: "short", month: "short", day: "numeric" })} at ${t}`;
+  };
+  function lastTouch() {
+    const out = [];
+    const a = A();
+    if (a.updatedAt && Date.parse(a.updatedAt)) out.push({ ms: Date.parse(a.updatedAt), who: a.updatedBy || "CRUDA", kind: null });
+    for (const e of events || []) {
+      if (!e || !e.at || !Date.parse(e.at)) continue;
+      out.push({ ms: Date.parse(e.at), who: e.who, kind: e.kind });
+    }
+    if (!out.length) return null;
+    return out.sort((x, y) => y.ms - x.ms)[0];
+  }
+  function stamp() {
+    const t = lastTouch();
+    if (!t) return "";
+    const who = t.who === viewer ? "You" : t.who;
+    const what = t.kind ? `${VERB[t.kind] || "updated"} a piece` : "updated this";
+    return `<p class="stamp">Last update &middot; ${esc(who)} ${esc(what)}, ${esc(etStamp(t.ms))} Fort Lauderdale time</p>`;
+  }
+
   const shell = (active, body) => `${demobar()}
     <div class="app">
       <header class="top"><div class="topin">
@@ -107,7 +136,7 @@
         <nav class="tabs" aria-label="Sections">${tabs(active)}</nav>
         <span class="me"><span class="av" title="${esc(viewer)}">${esc(viewer[0])}</span></span>
       </div></header>
-      <main class="in">${body}</main>
+      <main class="in">${stamp()}${body}</main>
       <footer class="foot"><span>CRUDA</span><span>Nothing goes out without your yes.</span></footer>
     </div>`;
 

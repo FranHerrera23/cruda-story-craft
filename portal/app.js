@@ -189,7 +189,7 @@
     if (it.slides) return `<div class="stack"><div class="tb"><p class="lbl">${it.slides.length} slides</p><ol class="sl">${it.slides.map((x, n) => sLine(x, n + 1)).join("")}</ol></div>${it.caption ? block("Caption", it.caption) : ""}</div>`;
     if (it.post) return block(it.channel === "X" ? "Thread on X" : "Post on LinkedIn", it.post);
     const file = it.assets && it.assets.find((a) => a.href && a.href !== "#");
-    if (it.kind === "Reel") return `<div class="stack"><div class="rv"><span class="rv-s">${esc(it.scene || "")}</span>${file ? `<a class="rv-p" href="${esc(file.href)}" target="_blank" rel="noreferrer"><span class="play"><svg viewBox="0 0 16 16"><path d="M5.5 4v8l6.5-4z"/></svg></span>Watch the reel</a>` : ""}</div>${it.caption ? sheet("m2develop", "Caption", it.caption) : ""}</div>`;
+    if (it.kind === "Reel") return `<div class="stack"><div class="rv"><span class="rv-s">${esc(it.scene || "")}</span>${file ? `<a class="rv-p" href="${esc(file.href)}" target="_blank" rel="noreferrer">Watch the reel</a>` : ""}</div>${it.caption ? sheet("m2develop", "Caption", it.caption) : ""}</div>`;
     if (it.slides) return `<div class="stack"><div><div class="track" tabindex="0" aria-label="Slides, use arrow keys" data-track>${it.slides.map(slide).join("")}</div>
       <div class="carnav"><span aria-live="polite" data-count>1 / ${it.slides.length}</span><span class="b"><button type="button" data-prev aria-label="Previous slide">‹</button><button type="button" data-next aria-label="Next slide">›</button></span></div></div>
       ${it.caption ? sheet("m2develop", "Caption", it.caption) : ""}</div>`;

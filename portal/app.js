@@ -126,7 +126,7 @@
     if (!t) return "";
     const who = t.who === viewer ? "You" : t.who;
     const what = t.kind ? `${VERB[t.kind] || "updated"} a piece` : "updated this";
-    return `<p class="stamp">Last update &middot; ${esc(who)} ${esc(what)}, ${esc(etStamp(t.ms))} Fort Lauderdale time</p>`;
+    return `<p class="stamp"><i></i><b>Last update</b> ${esc(who)} ${esc(what)}, ${esc(etStamp(t.ms))} Fort Lauderdale time</p>`;
   }
 
   const shell = (active, body) => `${demobar()}

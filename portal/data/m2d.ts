@@ -17,7 +17,7 @@ export const m2d = {
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-10-26T11:45:00-04:00",
+  updatedAt: "2026-10-26T13:25:00-04:00",
   updatedBy: "Fran",
   objective: "Be known on the docks before the Fort Lauderdale boat show, 28 October to 1 November.",
   phase: "Running the machine since 15 October.",
@@ -31,7 +31,7 @@ export const m2d = {
   scope: {
     title: "Build, agreed 31 August",
     lines: [
-      { name: "Website", done: 1, total: 1, note: "Live at m2develop.com. Two photographs still to come.", onClient: true },
+      { name: "Website", done: 1, total: 1, note: "Live at m2develop.com. Contact and Studio are done. Nothing outstanding." },
       { name: "Articles", done: 4, total: 12, note: "Next: the boat show guide, waiting on your seven answers.", onClient: true },
       { name: "LinkedIn posts", done: 5, total: 12, note: "Five live. The plan for the rest comes with the calendar." },
       { name: "Instagram", done: 0, total: 8, note: "Eight pieces produced. Two carousels waiting on your approval, six reels on hold.", onClient: true },
@@ -116,8 +116,6 @@ export const m2d = {
       why: "The one article only you can write: what should you look for in a yacht interior at the Fort Lauderdale boat show? Open since 13 October.",
       ask: ["When you staged a boat for a show, what did you bring aboard that doesn’t come with the boat?", "What’s the first thing you look at when you step onto a boat at a show?", "What should a buyer ask about the interior that almost nobody asks?", "What’s the difference between the boat dressed for the show and the one that gets delivered?", "Which details tell you a boat was designed for this market?", "What do people fall in love with at a show that they’d struggle to live with?", "What can be changed after you buy, and what can’t?"],
       askHow: "A reply by email or a ten-minute voice note is enough. Send it to fran@thecruda.com." },
-    { id: "photos", channel: "Website", kind: "Input", title: "Two photographs: Contact page and Studio hero", owner: "Ryan", status: "Needs input", version: 1,
-      why: "The last two images the website is waiting on. Open since 13 October.", askHow: "Upload them to the shared Drive folder, or send them to fran@thecruda.com.", assets: [{ label: "Drive folder", href: "#" }] },
     { id: "cases", channel: "Website", kind: "Input", title: "Five case studies: one 45 minute call per project", owner: "Ryan", status: "Needs input", version: 1,
       why: "The case studies and the next articles come from these conversations. You talk, we write. Open since 13 October.", askHow: "Reply to Fran with five times that work for you, one per project." },
     { id: "brokers", channel: "Website", kind: "Article", title: "How can a yacht interior designer help brokers close more deals?", date: "2026-11-02", owner: "Fran", status: "Drafting", version: 1, why: "For the brokers who walk the show." },

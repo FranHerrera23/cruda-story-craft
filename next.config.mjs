@@ -179,6 +179,23 @@ const nextConfig = {
         destination: '/#selected-work',
         permanent: true,
       },
+      /* F58 §B.1 · /second-look → /sparring-session (301) ·
+         conserva querystrings (incluidas UTM) por defecto en
+         Next.js. El producto es el mismo (Narrative Sparring
+         Session), misma Calendly, mismo wizard. */
+      {
+        source: '/second-look',
+        destination: '/sparring-session',
+        permanent: true,
+      },
+      /* F58 §C.4 · /newsletter se funde en /thinking · con el
+         formulario arriba de /thinking, tener dos páginas para
+         lo mismo divide el tráfico. */
+      {
+        source: '/newsletter',
+        destination: '/thinking',
+        permanent: true,
+      },
     ]
   },
 };

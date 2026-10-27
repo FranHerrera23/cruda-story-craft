@@ -14,7 +14,7 @@ export type DoorSpec = {
   href: string
 }
 
-/* F57 §3 (Fran 6-oct) · Second Look pasa a ser la primera entrada
+/* F57 §3 (Fran 6-oct) · Narrative Sparring Session pasa a ser la primera entrada
    (la del flujo recomendado). En el slot del número va "Start here"
    con el mismo estilo naranja. Translated/Transmission/Interpreted
    quedan como 01/02/03. */
@@ -22,7 +22,7 @@ export const DOORS: readonly DoorSpec[] = [
   {
     key: 'read',
     n: 'Start here',
-    label: 'Second Look',
+    label: 'Narrative Sparring Session',
     descriptor:
       'Two conversations and a written diagnosis.',
     price: 'two conversations · $950',

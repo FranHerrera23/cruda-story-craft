@@ -1,35 +1,27 @@
 import Link from 'next/link'
 import './selected-work.css'
 
-/* Home · SELECTED WORK · F21 FINAL v2 · 21-sep · fotos 22-sep.
+/* Home · SELECTED WORK · F58 · 27-oct.
 
-   Toca SOLO la sección #selected-work de la home.
-   9 cards en la grilla, sin lista debajo. Todas con foto real
-   (aspect-ratio 1/1). Las que no son retrato de founder se
-   presentan como proyecto (título = nombre del proyecto).
+   F58 §A.4: campo nuevo opcional `few?: string`. Si existe, se
+   renderiza bajo la descripción con rótulo `THEIR FEW` (naranja
+   #FF5A00, 13 px, .14em) + texto 17 px.
 
-   Grilla · 3 columnas · 3 filas · col-gap 12 · row-gap 72.
-   Orden:
-     Karen · Mike · Girish
-     José · Confidential · JP Romero
-     INOUT · Jack Yeager · BAUHOME
+   F58 §A.4: nuevo orden (Karen · José · Ryan · Marty · Mike ·
+   Girish · Jack · INOUT · BAUHOME · Confidential · JP Romero), con
+   dos tarjetas nuevas sin link ni servicio (Ryan Altman, Marty Lowe)
+   presentadas con portada tipográfica.
 
-   Text bloque: Nombre · Empresa·ciudad (o línea del proyecto) ·
-   Descripción · Servicio.
-   Servicio en desktop aparece SOLO en hover (slot con altura
-   reservada, translateY 100% → 0 · 400ms). En mobile/touch se
-   ve siempre.
+   F58 §A.4: cierre de la grilla con celda cuadrada "All work →" que
+   lleva a /work (link de texto 22 px, borde 1 px ink, padding 32 px). */
 
-   Link: toda la card es un solo <a>. Jack y BAUHOME: <div>, sin
-   link, sin scale · Jack sí revela servicio en hover, BAUHOME no
-   tiene servicio. */
-
-type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'SECOND LOOK'
+type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'SECOND LOOK' | 'SPARRING SESSION'
 
 type Card = {
   name: string
   meta: string
   description: string
+  few?: string
   service?: Door[]
   href?: string
   imageSrc?: string
@@ -43,10 +35,42 @@ const CARDS: Card[] = [
     meta: 'TRAZZO Lighting · Miami',
     description:
       "Lights homes worth $10 million to $200 million; one of Forbes Perú's 50 most powerful women, 2026.",
+    few: 'Architects, interior designers and developers of homes worth up to $200 million.',
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',
     objectPosition: 'center 20%',
+  },
+  {
+    name: 'José Mannheim',
+    meta: 'MTC · Panama City',
+    description:
+      'Co-founder of AGP, supplier to the Pentagon, Tesla, Audi, the Saudi Navy and the popemobile.',
+    few: 'About 800 buyers of certified safety glass. In the whole world.',
+    service: ['TRANSLATED'],
+    href: '/work/mannheim-trading',
+    imageSrc: '/jose-mannheim.webp',
+    objectPosition: 'center 20%',
+  },
+  {
+    /* F58 · tarjeta nueva · sin href, sin service · portada
+       tipográfica M2Develop · permiso pendiente de Fran. */
+    name: 'Ryan Altman',
+    meta: 'M2Develop · Yacht interiors',
+    description:
+      "Eight years as Ferretti's designer in the US, now founder of M2Develop.",
+    few: 'Yacht owners, brokers and the shipyards that build for them.',
+    coverText: 'M2Develop',
+  },
+  {
+    /* F58 · tarjeta nueva · sin href, sin service · portada
+       tipográfica Marty Lowe · permiso pendiente de Fran. */
+    name: 'Marty Lowe',
+    meta: 'Yacht interiors · United States',
+    description:
+      'One of the most recognized yacht interior designers in the US, turning forty years of work into a legacy of stories.',
+    few: 'Her industry, and the women who see themselves in her story.',
+    coverText: 'Marty Lowe',
   },
   {
     name: 'Mike Kaeding',
@@ -69,14 +93,33 @@ const CARDS: Card[] = [
     objectPosition: 'center 15%',
   },
   {
-    name: 'José Mannheim',
-    meta: 'MTC · Panama City',
+    name: 'Jack Yeager',
+    meta: 'Mistiva · Midtown Miami',
     description:
-      'Co-founder of AGP, maker of armored glass for the Pentagon, Tesla and Audi.',
-    service: ['TRANSLATED'],
-    href: '/work/mannheim-trading',
-    imageSrc: '/jose-mannheim.webp',
+      'Sold his first company for seven figures, sailed the world, and came back to build a lighting business in Miami.',
+    service: ['TRANSLATED', 'TRANSMISSION'],
+    href: '/work/jack-yeager',
+    imageSrc: '/jack-yeager.jpeg',
     objectPosition: 'center 20%',
+  },
+  {
+    name: 'INOUT',
+    meta: 'Frameless Sliding Doors · Argentina',
+    description:
+      'A frameless sliding door line, branded from zero, with a trade program the client still runs on its own.',
+    service: ['TRANSLATED'],
+    href: '/work/inout',
+    imageSrc: '/inout-sliding-wall.jpg',
+    objectPosition: 'center 50%',
+  },
+  {
+    name: 'BAUHOME',
+    meta: 'Luxury kitchen cabinets · Los Angeles',
+    description:
+      "Luxury kitchen cabinets, founded by the former Director of Operations at Santa Monica's biggest hospital.",
+    service: ['TRANSLATED'],
+    imageSrc: '/bauhome-kitchen.webp',
+    objectPosition: 'center 50%',
   },
   {
     name: 'Confidential',
@@ -96,50 +139,7 @@ const CARDS: Card[] = [
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/juan-pablo-romero',
     imageSrc: '/juan-pablo-romero.webp',
-    /* F21 · foto aprobada por Fran (22-sep). Cara en tercio superior. */
     objectPosition: 'center 20%',
-  },
-  {
-    /* F21 · Fran (22-sep) · card presentada como proyecto, no como
-       persona. "Germán Noel" no aparece en la card; "Salta"
-       tampoco. Sigue linkeando a /work/inout. */
-    name: 'INOUT',
-    meta: 'Frameless Sliding Doors · Argentina',
-    description:
-      'A frameless sliding door line, branded from zero, with a trade program the client still runs on its own.',
-    service: ['TRANSLATED'],
-    href: '/work/inout',
-    imageSrc: '/inout-sliding-wall.jpg',
-    objectPosition: 'center 50%',
-  },
-  {
-    name: 'Jack Yeager',
-    meta: 'Mistiva · Midtown Miami',
-    description:
-      'Sold his first company for seven figures, sailed the world, and came back to build a lighting business in Miami.',
-    service: ['TRANSLATED', 'TRANSMISSION'],
-    /* F38 · card de Jack linkea a /work/jack-yeager (F29 · el
-       href se había perdido en el conflict de merge de f29-jack). */
-    href: '/work/jack-yeager',
-    /* F21 · retrato aprobado por Fran (22-sep). Fuente 800×800 ya
-       cuadrada; object-position center 20% mantiene el criterio
-       del spec (cara en tercio superior si Fran cambia la fuente). */
-    imageSrc: '/jack-yeager.jpeg',
-    objectPosition: 'center 20%',
-  },
-  {
-    /* F21 · Fran (22-sep) · card presentada como proyecto, no como
-       persona. "Arman" y "Jacksonville" no aparecen en la card.
-       Sin link (queda como <div>) porque BAUHOME todavía no tiene
-       caso. F35 · agrega la etiqueta de servicio (mismo componente
-       que el resto). */
-    name: 'BAUHOME',
-    meta: 'Luxury kitchen cabinets · Los Angeles',
-    description:
-      "Luxury kitchen cabinets, founded by the former Director of Operations at Santa Monica's biggest hospital.",
-    service: ['TRANSLATED'],
-    imageSrc: '/bauhome-kitchen.webp',
-    objectPosition: 'center 50%',
   },
 ]
 
@@ -152,6 +152,17 @@ function ServiceLine({ service }: { service?: Door[] }) {
     <span className="sw-service-slot">
       <span className="sw-service">{service.join(' · ')}</span>
     </span>
+  )
+}
+
+function FewBlock({ few }: { few?: string }) {
+  if (!few) return null
+  return (
+    <div className="sw-card__few">
+      <div className="sw-card__few-rule" aria-hidden="true" />
+      <p className="sw-card__few-label">Their few</p>
+      <p className="sw-card__few-text">{few}</p>
+    </div>
   )
 }
 
@@ -187,6 +198,7 @@ function CardBody({ card }: { card: Card }) {
       <h3 className="sw-card__n">{card.name}</h3>
       <p className="sw-card__meta">{card.meta}</p>
       <p className="sw-card__desc">{card.description}</p>
+      <FewBlock few={card.few} />
       <ServiceLine service={card.service} />
     </>
   )
@@ -211,6 +223,16 @@ function CardEl({ card }: { card: Card }) {
   )
 }
 
+/* F58 · celda de cierre "All work →" · cuadrada, borde 1 px --ink,
+   padding 32 px, texto 22 px/500 abajo-izquierda, link a /work. */
+function AllWorkCell() {
+  return (
+    <Link className="sw-card sw-card--all" href="/work" aria-label="All work">
+      <span className="sw-card__all-t">All work →</span>
+    </Link>
+  )
+}
+
 export default function SelectedWork() {
   return (
     <section id="selected-work" className="sw">
@@ -222,6 +244,7 @@ export default function SelectedWork() {
           {CARDS.map(c => (
             <CardEl key={c.name} card={c} />
           ))}
+          <AllWorkCell />
         </div>
       </div>
     </section>

@@ -1,14 +1,10 @@
 import type { Metadata } from 'next'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
-import SecondLookClient from './SecondLookClient'
-import './second-look.css'
+import SparringSessionClient from './SparringSessionClient'
+import './sparring-session.css'
 
-/* F57 §2 (Fran 6-oct) · fallback chain para el retrato de Fran.
-   Se evalúa en build-time (SSG) sobre public/ del CWD. El valor
-   final se pasa como prop a SecondLookClient para que paso 1 y
-   cierre usen el mismo archivo sin tener que correr lógica en el
-   cliente. */
+/* F57 §2 (Fran 6-oct) · fallback chain para el retrato de Fran. */
 function resolvePortrait(): string {
   const candidates = [
     'public/fran-second-look.jpg',
@@ -28,21 +24,17 @@ function resolvePortrait(): string {
 }
 const PORTRAIT_SRC = resolvePortrait()
 
-/* /second-look · F56 · Fran 2-oct.
+/* /sparring-session · F58 · 27-oct.
 
-   Wizard de 4 pasos + cierre. Entrada única agendable del sitio.
-   Server component · emite metadata + JSON-LD Service con Offer.
-   El wizard entero vive en SecondLookClient (hashes, Calendly,
-   state entre pasos).
-
-   Fuentes:
-   - docs/F56-brief.md (prioritario)
-   - docs/F56-second-look.html (copy + layout de referencia) */
+   Antes vivía en /second-look. F58 renombra el producto a "Narrative
+   Sparring Session" (mismo wizard, mismo precio, misma lógica); la
+   ruta vieja /second-look responde 301 → /sparring-session en
+   next.config.mjs. */
 
 const BASE = 'https://www.thecruda.com'
 const ORG_ID = `${BASE}/#organization`
 
-const SL_TITLE = 'Second Look · Fran Herrera · CRUDA'
+const SL_TITLE = 'Narrative Sparring Session · Fran Herrera · CRUDA'
 const SL_DESCRIPTION =
   'Two conversations and a written diagnosis of your business, from the outside. $950, credited toward any engagement.'
 const SL_OG_IMAGE = `${BASE}/second-look-og.jpg`
@@ -50,14 +42,14 @@ const SL_OG_IMAGE = `${BASE}/second-look-og.jpg`
 export const metadata: Metadata = {
   title: SL_TITLE,
   description: SL_DESCRIPTION,
-  alternates: { canonical: `${BASE}/second-look` },
+  alternates: { canonical: `${BASE}/sparring-session` },
   openGraph: {
     title: SL_TITLE,
     description: SL_DESCRIPTION,
-    url: `${BASE}/second-look`,
+    url: `${BASE}/sparring-session`,
     type: 'website',
     images: [
-      { url: SL_OG_IMAGE, width: 1200, height: 630, alt: 'Second Look · CRUDA' },
+      { url: SL_OG_IMAGE, width: 1200, height: 630, alt: 'Narrative Sparring Session · CRUDA' },
     ],
   },
   twitter: {
@@ -69,35 +61,33 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-/* Service + Offer · brief §3.
-   provider = Organization CRUDA por @id (declarada en app/layout.tsx). */
 const SL_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  '@id': `${BASE}/second-look#service`,
-  name: 'Second Look',
+  '@id': `${BASE}/sparring-session#service`,
+  name: 'Narrative Sparring Session',
   serviceType: 'Business diagnosis',
   description:
     "Two conversations and a written diagnosis of your business, from the outside. $950, credited toward any engagement.",
   provider: { '@id': ORG_ID },
-  url: `${BASE}/second-look`,
+  url: `${BASE}/sparring-session`,
   offers: {
     '@type': 'Offer',
     price: 950,
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock',
-    url: `${BASE}/second-look`,
+    url: `${BASE}/sparring-session`,
   },
 } as const
 
-export default function SecondLookPage() {
+export default function SparringSessionPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(SL_SCHEMA) }}
       />
-      <SecondLookClient portraitSrc={PORTRAIT_SRC} />
+      <SparringSessionClient portraitSrc={PORTRAIT_SRC} />
     </>
   )
 }

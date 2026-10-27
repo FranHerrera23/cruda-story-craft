@@ -1,0 +1,197 @@
+/* NewsletterCTA · F58 · 27-oct · versión 2.
+   Form propio contra /api/subscribe. Dos variantes de color
+   (dark/light) · dos formas (bar/thin). Sin esquinas redondeadas.
+   Honeypot sr-only. */
+
+.ncta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 0;
+  max-width: 560px;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  color: inherit;
+}
+.ncta--thin { max-width: 640px; align-items: end; }
+
+/* Label visualmente oculto (accesible). */
+.ncta__label {
+  position: absolute;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+/* Honeypot sr-only (hide completely). */
+.ncta__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* ───── Form 'bar' · input + botón mismo alto, borde cerrado. */
+.ncta--bar .ncta__input,
+.ncta--bar .ncta__btn {
+  height: 56px;
+  padding: 0 20px;
+  font-size: 15px;
+  font-family: inherit;
+  border-radius: 0;
+  box-sizing: border-box;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+}
+.ncta--bar .ncta__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ncta--bar .ncta__input::placeholder {
+  color: color-mix(in srgb, currentColor 55%, transparent);
+}
+.ncta--bar .ncta__btn {
+  flex: 0 0 auto;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-left: 0;
+}
+
+/* ───── Form 'thin' · input sólo con borde inferior, botón negro grande. */
+.ncta--thin .ncta__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 0;
+  height: 48px;
+  font-size: 20px;
+  font-family: inherit;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+.ncta--thin .ncta__input::placeholder {
+  color: color-mix(in srgb, currentColor 50%, transparent);
+}
+.ncta--thin .ncta__btn {
+  flex: 0 0 auto;
+  height: 60px;
+  padding: 0 28px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  background: var(--ink, #0D0D0D);
+  color: var(--cream, #FAF9F7);
+  border: 1px solid var(--ink, #0D0D0D);
+  border-radius: 0;
+  box-sizing: border-box;
+  margin-left: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Colores ──── dark */
+.ncta--dark { color: var(--cream, #FAF9F7); }
+.ncta--bar.ncta--dark .ncta__input {
+  border-color: color-mix(in srgb, var(--cream, #FAF9F7) 60%, transparent);
+}
+.ncta--bar.ncta--dark .ncta__btn {
+  background: var(--cream, #FAF9F7);
+  color: var(--ink, #0D0D0D);
+  border-color: var(--cream, #FAF9F7);
+}
+.ncta--bar.ncta--dark .ncta__btn:hover { background: #fff; }
+
+/* Colores ──── light */
+.ncta--light { color: var(--ink, #0D0D0D); }
+.ncta--bar.ncta--light .ncta__input { border-color: var(--ink, #0D0D0D); }
+.ncta--bar.ncta--light .ncta__btn {
+  background: var(--ink, #0D0D0D);
+  color: var(--cream, #FAF9F7);
+  border-color: var(--ink, #0D0D0D);
+}
+.ncta--bar.ncta--light .ncta__btn:hover { background: #000; }
+
+/* Mensaje de estado y helper van en una fila nueva. */
+.ncta__msg,
+.ncta__helper {
+  flex-basis: 100%;
+  width: 100%;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.ncta__msg--err { color: var(--orange, #FF5A00); }
+.ncta__helper { color: color-mix(in srgb, currentColor 60%, transparent); }
+
+.ncta__input:disabled,
+.ncta__btn:disabled {
+  opacity: .6;
+  cursor: default;
+}
+
+/* Fallback link-only · botón solo, sin input. */
+.ncta--link-only { max-width: 560px; }
+.ncta--link-only .ncta__btn {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 24px;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 0;
+}
+.ncta--link-only.ncta--dark .ncta__btn {
+  background: var(--cream, #FAF9F7);
+  color: var(--ink, #0D0D0D);
+  border-color: var(--cream, #FAF9F7);
+}
+.ncta--link-only.ncta--light .ncta__btn {
+  background: var(--ink, #0D0D0D);
+  color: var(--cream, #FAF9F7);
+  border-color: var(--ink, #0D0D0D);
+}
+
+/* Mobile · input arriba, botón abajo, 44 px mínimo cada uno. */
+@media (max-width: 767px) {
+  .ncta--bar { flex-direction: column; width: 100%; }
+  .ncta--bar .ncta__input,
+  .ncta--bar .ncta__btn {
+    width: 100%;
+    min-height: 44px;
+  }
+  .ncta--bar .ncta__btn { border-top: 0; }
+  .ncta--link-only .ncta__btn { border-top: 1px solid currentColor; width: 100%; max-width: 560px; }
+
+  .ncta--thin { flex-direction: column; align-items: stretch; }
+  .ncta--thin .ncta__btn { margin-left: 0; margin-top: 20px; width: 100%; }
+}

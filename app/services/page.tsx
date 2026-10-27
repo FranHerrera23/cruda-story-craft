@@ -8,15 +8,15 @@ import '@/components/motion/planes.css'
 import './services.css'
 
 /* /services · F23-2 · 22-sep · Fran §3.3 v2 · F56 (Fran 2-oct)
-   renombra 04 The Read → Second Look con precio fijo $950 y
-   todas las CTAs apuntan a /second-look.
+   renombra 04 The Read → Narrative Sparring Session con precio fijo $950 y
+   todas las CTAs apuntan a /sparring-session.
 
    Siete planos. Copy actualizado a §3.3:
      · Ledes de home + services alineados (Work with us for one…).
-     · Descriptors nuevos en Transmission, Interpreted, Second Look.
+     · Descriptors nuevos en Transmission, Interpreted, Narrative Sparring Session.
      · 03 y 04 renombrados: "Across two cultures" · "Two conversations".
      · Translated cuerpo nuevo (5 entregables listados).
-     · F56: CTAs "Start a Second Look →" → /second-look en todas
+     · F56: CTAs "Book a sparring session →" → /sparring-session en todas
        las fichas. (Antes "Book the call →" → /contact).
      · Translated conserva "See how it works →" → /services/translated.
      · Línea de costos F23 (constante §0.1) debajo del índice y como
@@ -29,7 +29,7 @@ const BASE = 'https://www.thecruda.com'
 
 const SERVICES_TITLE = 'Services · CRUDA'
 const SERVICES_DESCRIPTION =
-  'Translated, Transmission, Interpreted and Second Look: what each includes, how long it runs and what it costs.'
+  'Translated, Transmission, Interpreted and Narrative Sparring Session: what each includes, how long it runs and what it costs.'
 
 /* Constantes F23 §0.1 · una sola definición. */
 const COST_LINE =
@@ -68,18 +68,18 @@ export default function ServicesPage() {
             <p className="eyebrow">What CRUDA is</p>
             <h1 className="name">We translate cultures into business.</h1>
             <div className="rule" />
-            {/* F57 §3 · lede nuevo · Second Look entra como entrada
+            {/* F57 §3 · lede nuevo · Narrative Sparring Session entra como entrada
                 del flujo. */}
             <p className="lede">
               Start with two conversations. Then twelve weeks, or every
               week after that.
             </p>
             <div className="services-index">
-              {/* F57 §3 · Second Look primera fila con "Start here"
+              {/* F57 §3 · Narrative Sparring Session primera fila con "Start here"
                   en el slot del número (mismo estilo naranja). */}
               <div className="irow">
                 <span className="irow__o irow__o--start">Start here</span>
-                <span className="irow__n">Second Look</span>
+                <span className="irow__n">Narrative Sparring Session</span>
                 <span className="irow__p">two conversations · <em>$950</em></span>
               </div>
               <div className="irow">
@@ -108,7 +108,7 @@ export default function ServicesPage() {
         <section className="plane plane--black" data-plane id="second-look">
           <div className="plane__in">
             <p className="eyebrow">Start here · Two conversations</p>
-            <h2 className="name">Second Look</h2>
+            <h2 className="name">Narrative Sparring Session</h2>
             <div className="rule" />
             <p className="lede">
               Two conversations and a written diagnosis.
@@ -143,8 +143,8 @@ export default function ServicesPage() {
               two conversations · <em>$950</em>
             </p>
             <div className="services-ctas">
-              <Link className="go" href="/second-look">
-                Start a Second Look →
+              <Link className="go" href="/sparring-session">
+                Book a sparring session →
               </Link>
             </div>
           </div>
@@ -184,8 +184,8 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="services-ctas">
-              <Link className="go" href="/second-look">
-                Start a Second Look →
+              <Link className="go" href="/sparring-session">
+                Book a sparring session →
               </Link>
               <Link className="go" href="/services/translated">
                 See how it works →
@@ -249,14 +249,14 @@ export default function ServicesPage() {
                 gris, mismo estilo que la línea de terceros. Va entre
                 el bloque Fee y la CTA.
                 F56: la CTA pasa de "Book the call" → /contact a
-                "Start a Second Look" → /second-look. */}
+                "Book a sparring session" → /sparring-session. */}
             <p className="services-scope-line">
               Narrative, writing, short-form pieces and video scripts.
               Video editing is not included.
             </p>
             <div className="services-ctas">
-              <Link className="go" href="/second-look">
-                Start a Second Look →
+              <Link className="go" href="/sparring-session">
+                Book a sparring session →
               </Link>
             </div>
             <p className="services-see-in">
@@ -305,8 +305,8 @@ export default function ServicesPage() {
               </div>
             </div>
             <div className="services-ctas">
-              <Link className="go" href="/second-look">
-                Start a Second Look →
+              <Link className="go" href="/sparring-session">
+                Book a sparring session →
               </Link>
             </div>
             <p className="services-see-in">
@@ -326,7 +326,7 @@ export default function ServicesPage() {
         <MikeProofBlock />
 
         {/* 08 · START HERE · F23-5 · F56 el CTA del bloque pasa a
-            "Start a Second Look →" → /second-look. */}
+            "Book a sparring session →" → /sparring-session. */}
         <section className="plane plane--paper services-close" data-plane>
           <div className="plane__in">
             <StartHere h2="Not sure which of the four fits?" />

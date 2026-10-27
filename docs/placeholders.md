@@ -20,3 +20,5 @@ Ver `docs/autonomy.md` para la regla.
 | F30 INOUT | `src/content/work/inout.ts` | rooms[1].image | `/inout/insiders-02-sergio-cabrera.jpg` · still episodio #02 (A7 F25) |
 | F30 INOUT | `src/content/work/inout.ts` | rooms[2].image | `/inout/insiders-03-horizontal-arquitectos.jpg` · still episodio #03 (A8 F25) |
 | F30 INOUT | `src/content/work/inout.ts` | — | `publishedAt` sin setear · brief original 2020, fecha exacta de anuncio sin confirmar (F38 no fake dates) |
+| F58 Narrative Sparring | `src/components/home/HomeNarrativeSparring.tsx` | columna izquierda | `/home/gloves.png` · grabado de dos guantes colgados, mismo trazo que el libro de Marco Aurelio (A.3 F58) |
+| F58 Narrative Sparring | `src/components/home/HomeNarrativeSparring.tsx` | párrafo body del plano | slug del ensayo de Neumann · "Why Adam Neumann says he handed over the keys to his own story." · hasta que se publique, el texto va sin link |

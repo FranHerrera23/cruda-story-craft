@@ -2,7 +2,7 @@ import Link from 'next/link'
 import './start-here.css'
 
 /* StartHere · F23-5 · 22-sep · Fran §6 · F56 (Fran 2-oct) actualiza
-   lede + CTA a Second Look.
+   lede + CTA a Narrative Sparring Session.
 
    Reemplaza el bloque "One conversation." en todas las páginas,
    salvo /contact.
@@ -15,7 +15,7 @@ import './start-here.css'
      [Fuente · 13px --grey]                  opcional
      Two conversations and a                 lede FIJO (F56)
      written diagnosis. $950.
-     Start a Second Look →                   CTA principal → /second-look
+     Book a sparring session →                   CTA principal → /sparring-session
      fran@thecruda.com                       secundario
 
    El fondo lo pone la sección padre; StartHere no fuerza fondo. */
@@ -42,8 +42,8 @@ export default function StartHere({ h2, proof, source }: StartHereProps) {
           </>
         )}
         <p className="start-here__lede">{LEDE}</p>
-        <Link className="start-here__cta" href="/second-look">
-          Start a Second Look →
+        <Link className="start-here__cta" href="/sparring-session">
+          Book a sparring session →
         </Link>
         <br />
         <a className="start-here__mail" href="mailto:fran@thecruda.com">

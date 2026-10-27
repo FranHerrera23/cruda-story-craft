@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 /* Nav global · F11.2 · 21-sep · autónomo.
 
    Cinco items en el orden firmado del brief §2:
-     Work · Services · About · Thinking · Contact
+     Work · Services · About · Narrative Sparring · Contact
    15px · 400 · sentence case · SIN tracking.
 
    FONDO + COLOR SIGUEN A LA SUPERFICIE
@@ -29,7 +29,7 @@ const NAV_ITEMS = [
   { href: '/#selected-work', label: 'Work',    match: /^\/(work|architecture-design|resources\/case-studies|clients)/ },
   { href: '/services',       label: 'Services', match: /^\/(services|process|approach)/ },
   { href: '/about',          label: 'About',    match: /^\/(about|our-founder)/ },
-  { href: '/thinking',       label: 'Thinking', match: /^\/(thinking|essays|resources\/essays)/ },
+  { href: '/thinking',       label: 'Narrative Sparring', match: /^\/(thinking|essays|resources\/essays|newsletter)/ },
   { href: '/contact',        label: 'Contact',  match: /^\/contact/ },
 ] as const
 

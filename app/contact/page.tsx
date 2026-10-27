@@ -4,14 +4,14 @@ import './contact.css'
 
 /* /contact · F14a · 21-sep · autónomo · prototipo contact-v1 ·
    F56 (Fran 2-oct) saca el embed de Calendly: la única entrada
-   agendable del sitio es /second-look. /contact queda como link
-   a /second-look + form "Write to us" + mail directo. */
+   agendable del sitio es /sparring-session. /contact queda como link
+   a /sparring-session + form "Write to us" + mail directo. */
 
 const BASE = 'https://www.thecruda.com'
 
 const CONTACT_TITLE = 'Contact · CRUDA'
 const META_DESCRIPTION =
-  'Start with a Second Look: two conversations and a written diagnosis for $950. Or write to fran@thecruda.com.'
+  'Book a sparring session: two conversations and a written diagnosis for $950. Or write to fran@thecruda.com.'
 
 export const metadata: Metadata = {
   title: CONTACT_TITLE,

@@ -2,12 +2,12 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-/* /second-look · wizard de 4 pasos + cierre · F56.
+/* /sparring-session · wizard de 4 pasos + cierre · F56.
 
    Copy VERBATIM del brief + del HTML referencia (docs/F56-*).
    Técnica según brief:
    - Un paso visible por vez.
-   - Barra superior con marca "SECOND LOOK" + "N / 4".
+   - Barra superior con marca "NARRATIVE SPARRING SESSION" + "N / 4".
    - Botón Back en los pasos 2 a 4.
    - Las respuestas se conservan al volver atrás.
    - History · navegación por hash (#step-1 … #step-4, #done)
@@ -20,7 +20,9 @@ import { useCallback, useEffect, useRef, useState } from 'react'
    - Paso 1 sin animación (CSS @keyframes solo aplica steps 2-5).
    - Validación nativa: paso 3 no avanza sin empresa.
    - Calendly se inyecta AL ENTRAR al paso 4, no antes.
-   - URL de Calendly: process.env.NEXT_PUBLIC_CALENDLY_URL_SECOND_LOOK.
+   - URL de Calendly: process.env.NEXT_PUBLIC_CALENDLY_URL_SECOND_LOOK
+     (F58 · var deja el nombre viejo para no romper Vercel; pertenece
+     a la Narrative Sparring Session).
      Si no existe, se muestra fallback con mailto + se registra error.
    - Listener de postMessage valida e.origin === 'https://calendly.com'
      (EXACTO, no indexOf).
@@ -132,7 +134,7 @@ type Props = {
   portraitSrc: string
 }
 
-export default function SecondLookClient({ portraitSrc }: Props) {
+export default function SparringSessionClient({ portraitSrc }: Props) {
   const [step, setStep] = useState<number>(1)
   const [company, setCompanyState] = useState<string>('')
   const [answers, setAnswersState] = useState<Answers>({ revenue: '', budget: '' })
@@ -318,7 +320,7 @@ export default function SecondLookClient({ portraitSrc }: Props) {
   return (
     <div className="sl-page">
       <header className="sl-top">
-        <span className="sl-brand">SECOND LOOK</span>
+        <span className="sl-brand">NARRATIVE SPARRING SESSION</span>
         <span className="sl-label" aria-live="polite">
           {step <= TOTAL ? `${step} / ${TOTAL}` : ''}
         </span>
@@ -349,7 +351,7 @@ export default function SecondLookClient({ portraitSrc }: Props) {
                 <p className="sl-lead">This is the look from the outside.</p>
                 <div className="sl-rule" aria-hidden="true" />
                 <p className="sl-body" style={{ maxWidth: '46ch' }}>
-                  Hi, I&rsquo;m Fran. A Second Look is just you and me: two
+                  Hi, I&rsquo;m Fran. A Narrative Sparring Session is just you and me: two
                   long conversations about your business, and then I write
                   down what I see. Your company, read from the outside, by
                   someone who has nothing to sell you that day.
@@ -581,7 +583,7 @@ export default function SecondLookClient({ portraitSrc }: Props) {
                 <h2 id="sl-s5">See you soon.</h2>
                 <p className="sl-body" style={{ maxWidth: '48ch' }}>
                   Your time is held. The invoice will be in your inbox within
-                  24 hours, and once it&rsquo;s paid, your Second Look is
+                  24 hours, and once it&rsquo;s paid, your Narrative Sparring Session is
                   confirmed. Between now and then, you don&rsquo;t need to
                   prepare anything. Just come as you are.
                 </p>

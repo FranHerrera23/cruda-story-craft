@@ -52,8 +52,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 43 | `emigrar-ensayo` | `a527a50` | ✅ |
 | 44 | `emigrar-hero` | `4c04071` | ✅ |
 | 45 | `emigrar-credit` | `a518977` | ✅ |
+| 46 | `f58-home-v2` | `TBD` | ✅ |
 
-`origin/main` HEAD final: `a518977`.
+`origin/main` HEAD final: TBD (post F58).
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -477,6 +478,24 @@ git revert -m 1 91d17cc
 #   la referencia tras revert). JSON-LD Service de /second-look
 #   desaparece con la ruta.
 git revert -m 1 8d35137
+
+# Rollback f58-home-v2 (Home v2 + Narrative Sparring Session + /thinking)
+#   Impacto: la home vuelve al orden F11.4 (Act1Hero + 9 planos
+#   intermedios + Legacy + Close vía StartHere). Act1Hero re-emite
+#   el inline FIT_INLINE_SCRIPT y vuelven los beats con scrub.
+#   /sparring-session queda 404 (los archivos del wizard quedan en el
+#   repo pero fuera del routing porque la carpeta se renombró en el
+#   revert · el 301 de /second-look también se va con el revert).
+#   /newsletter deja de 301 y vuelve a servir su página con embed de
+#   beehiiv. /thinking vuelve al layout F54 (hero + featured + grid
+#   + aside de suscripción con link a /newsletter) · "Narrative
+#   Sparring" vuelve a leerse "Thinking" en nav, footer, back links
+#   de ensayos y back link de steve-walls. SelectedWork vuelve a 9
+#   tarjetas, sin Ryan ni Marty, sin few, sin celda All work.
+#   El endpoint /api/subscribe desaparece · NewsletterCTA deja de
+#   compilar como componente usado · queda en el repo si no se
+#   borra manualmente (safe).
+git revert -m 1 TBD
 ```
 
 Después de cualquier revert:

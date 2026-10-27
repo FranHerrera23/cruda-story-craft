@@ -20,7 +20,7 @@ import './about.css'
 
    StartHere (bloque final): usa el componente @/components/StartHere
    que F56 (más reciente) actualizó a lede "Two conversations and a
-   written diagnosis. $950." + CTA "Start a Second Look →" → /second-look.
+   written diagnosis. $950." + CTA "Book a sparring session →" → /sparring-session.
    Reemplaza la copy vieja del brief §4 ("The first step is a
    45-minute call...") que F56 removió site-wide. Regla autonomy §2
    (contradicción entre briefs: gana el más reciente).
@@ -71,7 +71,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'How much does CRUDA cost?',
-    a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,500 a month. Interpreted runs twelve weeks from $55,000, and Second Look is $950.',
+    a: 'Translated is $19,500 flat for twelve weeks. Transmission starts at $2,500 a month. Interpreted runs twelve weeks from $55,000, and Narrative Sparring Session is $950.',
   },
   {
     q: 'Who pays for ads, production and other outside costs?',
@@ -95,7 +95,7 @@ const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   },
   {
     q: 'How fast does CRUDA reply?',
-    a: 'Within 24 to 48 hours. The first step is a Second Look: two conversations and a written diagnosis for $950.',
+    a: 'Within 24 to 48 hours. The first step is a Narrative Sparring Session: two conversations and a written diagnosis for $950.',
   },
 ]
 
@@ -330,7 +330,7 @@ export default function AboutPage() {
       </section>
 
       {/* START HERE · negro · componente StartHere F56
-          (lede + CTA actualizados a Second Look). */}
+          (lede + CTA actualizados a Narrative Sparring Session). */}
       <section className="f55-panel f55-panel--dark f55-starthere" data-reveal-seq>
         <div className="f55-wrap">
           <StartHere h2="Not sure which of the four fits?" />

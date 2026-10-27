@@ -11,22 +11,25 @@ import HomeChrome from '@/components/home/HomeChrome';
 import HomeWhatCrudaIs from '@/components/home/HomeWhatCrudaIs';
 import HomeServices from '@/components/home/HomeServices';
 import HomeHero from '@/components/home/HomeHero';
+import HomeHowWeHelp from '@/components/home/HomeHowWeHelp';
 import HomeNarrativeSparring from '@/components/home/HomeNarrativeSparring';
 import PlanesStack from '@/components/motion/PlanesStack';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). F59 · 27-oct · Work antes del newsletter.
+   CRUDA — Home (`/`). F59 · 27-oct · How we help después del hero.
 
-   Orden nuevo:
+   Orden nuevo (revisado 27-oct · reemplaza la propuesta previa de
+   F59 "work antes del newsletter"):
 
      HomeHero                                      NEGRO · estático · LCP
      <main id="stack">
-       01  SelectedWork                            PAPER · propio
-       02  HomeNarrativeSparring                   PAPER · plano (rótulo "Newsletter")
-       03  HomeLegacy (Our founder)                NEGRO · plano · copy actual
-       04  Act2WhyNow (Marco Aurelio · congelada)  PAPER · propio
-       05  HomeClose (NEWSLETTER · cierre)         NEGRO · plano
+       01  HomeHowWeHelp                           CREAM · nuevo (NUEVO)
+       02  SelectedWork                            PAPER · 3 cols, sin "Their few"
+       03  HomeNarrativeSparring                   PAPER · plano (rótulo "Newsletter")
+       04  HomeLegacy (Our founder)                NEGRO · plano · copy actual
+       05  Act2WhyNow (Marco Aurelio · congelada)  PAPER · propio
+       06  HomeClose (NEWSLETTER · cierre)         NEGRO · plano
      </main>
 
    F58 · fuera del render (dead code, se conservan en el repo):
@@ -48,7 +51,7 @@ import '@/components/home/home-layout.css';
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
-  'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.'
+  'CRUDA makes founders and companies famous to the few who matter. We find what makes them exceptional and put it in front of the people who should know.'
 
 const HOME_TITLE = 'CRUDA · Famous to the few who matter'
 
@@ -83,6 +86,7 @@ export default function HomePage() {
       <PlanesStack />
       <HomeHero />
       <main className="stack" id="stack">
+        <HomeHowWeHelp />
         <SelectedWork />
         <HomeNarrativeSparring />
         <HomeLegacy />

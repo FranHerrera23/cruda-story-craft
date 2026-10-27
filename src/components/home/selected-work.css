@@ -28,23 +28,17 @@
   margin: 20px 0 0;
 }
 
-/* F59 §C · grilla de 4 columnas en desktop (≥1200), 2 columnas
-   intermedias, 1 en mobile. Fila 1 (las 4 tarjetas con `few`) se
-   alinea por `nth-child(-n+4) .sw-card__desc { min-height }` para
-   que el filete de "Their few" quede a la misma altura. */
+/* F59 revisado · grilla vuelve a 3 columnas (la propuesta de 4-col
+   de F58/F59 inicial queda descartada: "Their few" se movió al
+   nuevo componente HomeHowWeHelp y la grilla de Selected work ya
+   no necesita alinear filetes). */
 .sw-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: 12px;
   row-gap: 72px;
   margin-top: clamp(48px, 8vh, 96px);
   align-items: start;
-}
-
-/* Las 4 primeras tarjetas (fila 1) comparten min-height en la
-   descripción para que su filete "Their few" se alinee. */
-.sw-grid > .sw-card:nth-child(-n+4) .sw-card__desc {
-  min-height: calc(1.4em * 3);
 }
 
 .sw-card {
@@ -174,18 +168,12 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     column-gap: 12px;
   }
-  /* En 2 columnas · Karen+José (fila 1) y Ryan+Marty (fila 2)
-     comparten min-height en desc · mismo selector sirve. */
 }
 @media (max-width: 699px) {
   .sw-grid {
     grid-template-columns: 1fr;
     column-gap: 0;
     row-gap: 48px;
-  }
-  /* En 1 columna el filete no "se alinea" con nadie · drop min. */
-  .sw-grid > .sw-card:nth-child(-n+4) .sw-card__desc {
-    min-height: 0;
   }
   .sw-service { transform: translateY(0); }
 }

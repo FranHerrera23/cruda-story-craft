@@ -1,19 +1,25 @@
 import Link from 'next/link'
 import './selected-work.css'
 
-/* Home · SELECTED WORK · F58 · 27-oct.
+/* Home · SELECTED WORK · F58 · 27-oct · F59 revisado 27-oct.
 
-   F58 §A.4: campo nuevo opcional `few?: string`. Si existe, se
-   renderiza bajo la descripción con rótulo `THEIR FEW` (naranja
-   #FF5A00, 13 px, .14em) + texto 17 px.
+   F58 §A.4 (vigente): nuevo orden (Karen · José · Ryan · Marty ·
+   Mike · Girish · Jack · INOUT · BAUHOME · Confidential · JP Romero),
+   con dos tarjetas nuevas sin link ni servicio (Ryan Altman,
+   Marty Lowe) presentadas con portada tipográfica.
 
-   F58 §A.4: nuevo orden (Karen · José · Ryan · Marty · Mike ·
-   Girish · Jack · INOUT · BAUHOME · Confidential · JP Romero), con
-   dos tarjetas nuevas sin link ni servicio (Ryan Altman, Marty Lowe)
-   presentadas con portada tipográfica.
+   F59 §D (correcciones de copy):
+     · Ryan Altman description → "50+ boats for leading European
+       yacht brands, now founder of M2Develop." (sin nombrar marcas).
+     · Marty Lowe description → "...forty-six years..." (antes 40).
 
-   F58 §A.4: cierre de la grilla con celda cuadrada "All work →" que
-   lleva a /work (link de texto 22 px, borde 1 px ink, padding 32 px). */
+   F58 §A.4 obsoleto (campo `few` + celda All work):
+     · El campo `few?: string` queda en el tipo (dead field) pero
+       NINGUNA tarjeta lo setea en producción. Los textos de "Their
+       few" ahora viven en `HomeHowWeHelp.tsx` (F59 §B).
+     · `FewBlock` queda como dead component (igual que `AllWorkCell`
+       en F58 fixes).
+     · Grilla vuelve a 3 columnas (F59 §D.1 descarta la grilla de 4). */
 
 type Door = 'TRANSLATED' | 'TRANSMISSION' | 'INTERPRETED' | 'SECOND LOOK' | 'SPARRING SESSION'
 
@@ -35,7 +41,6 @@ const CARDS: Card[] = [
     meta: 'TRAZZO Lighting · Miami',
     description:
       "Lights homes worth $10 million to $200 million; one of Forbes Perú's 50 most powerful women, 2026.",
-    few: 'Architects, interior designers and developers of homes worth up to $200 million.',
     service: ['TRANSLATED', 'TRANSMISSION'],
     href: '/work/karen-mannheim',
     imageSrc: '/karen-mannheim.webp',
@@ -46,7 +51,6 @@ const CARDS: Card[] = [
     meta: 'MTC · Panama City',
     description:
       'Co-founder of AGP, supplier to the Pentagon, Tesla, Audi, the Saudi Navy and the popemobile.',
-    few: 'About 800 buyers of certified safety glass. In the whole world.',
     service: ['TRANSLATED'],
     href: '/work/mannheim-trading',
     imageSrc: '/jose-mannheim.webp',
@@ -54,22 +58,23 @@ const CARDS: Card[] = [
   },
   {
     /* F58 · tarjeta nueva · sin href, sin service · portada
-       tipográfica M2Develop · permiso pendiente de Fran. */
+       tipográfica M2Develop · permiso pendiente de Fran.
+       F59 · description corregida por acuerdo con el cliente
+       (no nombrar marcas ni astilleros). */
     name: 'Ryan Altman',
     meta: 'M2Develop · Yacht interiors',
     description:
-      "Eight years as Ferretti's designer in the US, now founder of M2Develop.",
-    few: 'Yacht owners, brokers and the shipyards that build for them.',
+      '50+ boats for leading European yacht brands, now founder of M2Develop.',
     coverText: 'M2Develop',
   },
   {
     /* F58 · tarjeta nueva · sin href, sin service · portada
-       tipográfica Marty Lowe · permiso pendiente de Fran. */
+       tipográfica Marty Lowe · permiso pendiente de Fran.
+       F59 · description corregida · "forty-six years". */
     name: 'Marty Lowe',
     meta: 'Yacht interiors · United States',
     description:
-      'One of the most recognized yacht interior designers in the US, turning forty years of work into a legacy of stories.',
-    few: 'Her industry, and the women who see themselves in her story.',
+      'One of the most recognized yacht interior designers in the US, turning forty-six years of work into a legacy of stories.',
     coverText: 'Marty Lowe',
   },
   {

@@ -46,12 +46,23 @@ for (const vp of VIEWPORTS) {
     clip: { x: 0, y: 0, width: vp.width, height: vp.height },
   })
 
-  // Selected work · scrollear al top del título "Selected work." + 0px
-  // (de modo que la fila 1 completa quede abajo del título).
+  // How we help · completa
+  const hwhLoc = page.locator('#how-we-help').first()
+  if (await hwhLoc.count()) {
+    await hwhLoc.evaluate((el) => el.scrollIntoView({ block: 'start', behavior: 'instant' }))
+    await page.waitForTimeout(500)
+    await page.screenshot({
+      path: path.join(OUT, `how-we-help-${vp.label}.png`),
+      type: 'png',
+      fullPage: false,
+      clip: { x: 0, y: 0, width: vp.width, height: vp.height },
+    })
+  }
+
+  // Selected work · fila 1
   const swLoc = page.locator('#selected-work').first()
   if (await swLoc.count()) {
     await swLoc.evaluate((el) => el.scrollIntoView({ block: 'start', behavior: 'instant' }))
-    /* Correr un poco más abajo para enfocar las tarjetas y no el título. */
     await page.evaluate(() => window.scrollBy({ top: 140, behavior: 'instant' }))
     await page.waitForTimeout(500)
     await page.screenshot({

@@ -53,7 +53,7 @@ export default function HomeNarrativeSparring() {
           </div>
 
           <div className="home-ns__body">
-            <p className="eyebrow">01 · Newsletter</p>
+            <p className="eyebrow">Newsletter</p>
             <h2 className="name home-ns__name">Narrative Sparring</h2>
             <div className="rule" />
             <p className="lede home-ns__lede">

@@ -9,8 +9,11 @@ import './home-hero.css'
    el render de la home; Act1Hero queda como dead code. */
 
 export default function HomeHero() {
+  /* F59 §B · `on-black` lo detecta Nav.tsx para pintar la barra en
+     modo oscuro mientras el hero está debajo de ella; al salir el
+     hero, Nav vuelve al modo paper. */
   return (
-    <section className="home-hero" id="home-hero">
+    <section className="home-hero on-black" id="home-hero">
       <div className="home-hero__in">
         <h1 className="home-hero__h">Famous to the few who matter.</h1>
         <p className="home-hero__lede">

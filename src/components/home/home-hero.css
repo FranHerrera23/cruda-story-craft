@@ -1,16 +1,25 @@
-/* Home · Hero v2 · F58 · 27-oct.
-   Una sola pantalla, estática, oscura. LCP de la home. Sin acto, sin
-   scroll fijado, sin JS. Alineado abajo-izquierda. */
+/* Home · Hero v2 · F58 · 27-oct · F59 §B · ancla abajo + nav dark.
+   Una sola pantalla, estática, oscura. LCP de la home. Sin acto,
+   sin scroll fijado, sin JS.
+
+   F59 §B: en viewports altos (>1000 px) F58 dejaba el bloque
+   subiendo al tope por `display: flex; align-items: flex-end`
+   ambiguo (default `flex-direction: row` → child con width 100%
+   podía estirarse en vez de alinearse al cross axis). Lo
+   reescribimos como flex column con `justify-content: flex-end` +
+   `margin-top: auto` defensivo. Padding bottom 120 px (72 px en
+   mobile) controla el aire. */
 
 .home-hero {
   background: var(--ink-deep, #0E1113);
   color: var(--cream, #FAF9F7);
   min-height: 100svh;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 .home-hero__in {
-  width: 100%;
+  margin-top: auto;
   padding: 0 var(--gap, clamp(20px, 4.5vw, 72px)) 120px;
   display: flex;
   flex-direction: column;

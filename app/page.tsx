@@ -16,14 +16,14 @@ import PlanesStack from '@/components/motion/PlanesStack';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). F58 · 27-oct · Home v2.
+   CRUDA — Home (`/`). F59 · 27-oct · Work antes del newsletter.
 
    Orden nuevo:
 
      HomeHero                                      NEGRO · estático · LCP
      <main id="stack">
-       01  HomeNarrativeSparring                   PAPER · plano
-       02  SelectedWork                            PAPER · propio
+       01  SelectedWork                            PAPER · propio
+       02  HomeNarrativeSparring                   PAPER · plano (rótulo "Newsletter")
        03  HomeLegacy (Our founder)                NEGRO · plano · copy actual
        04  Act2WhyNow (Marco Aurelio · congelada)  PAPER · propio
        05  HomeClose (NEWSLETTER · cierre)         NEGRO · plano
@@ -83,8 +83,8 @@ export default function HomePage() {
       <PlanesStack />
       <HomeHero />
       <main className="stack" id="stack">
-        <HomeNarrativeSparring />
         <SelectedWork />
+        <HomeNarrativeSparring />
         <HomeLegacy />
         <Act2WhyNow />
         <HomeClose />

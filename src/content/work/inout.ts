@@ -8,7 +8,7 @@ import type { Work } from './types'
    de Fran:
      - h1 = nombre (INOUT) · descriptor en el dek
      - Hero 16:9 · una columna · CREDITS · NEXT CASE solo texto
-     - StartHere a /second-look (viene del componente ya migrado)
+     - StartHere a /sparring-session (viene del componente ya migrado)
      - 3 bloques propios: SYSTEM, PHOTO BAND, INSIDERS sobre #1600FF
      - Todo en inglés · "Vos elegís de qué lado estar." queda literal
      - Imágenes: ninguna del design system existe en el repo

@@ -2,10 +2,6 @@ import type { Metadata } from 'next';
 import Act1Hero from '@/components/home/Act1Hero';
 import Act2WhyNow from '@/components/home/Act2WhyNow';
 import SelectedWork from '@/components/home/SelectedWork';
-/* F11.3 · SelectedWork es Server Component sin datos externos.
-   Los 9 casos viven inline en el componente. La ex-fuente
-   `@/content/home/selected-work.ts` queda como dead code hasta
-   cleanup posterior. */
 import HomeLegacy from '@/components/home/HomeLegacy';
 import HomeWhatOthers from '@/components/home/HomeWhatOthers';
 import HomeKarenQuote from '@/components/home/HomeKarenQuote';
@@ -14,36 +10,47 @@ import HomeClose from '@/components/home/HomeClose';
 import HomeChrome from '@/components/home/HomeChrome';
 import HomeWhatCrudaIs from '@/components/home/HomeWhatCrudaIs';
 import HomeServices from '@/components/home/HomeServices';
+import HomeHero from '@/components/home/HomeHero';
+import HomeNarrativeSparring from '@/components/home/HomeNarrativeSparring';
 import PlanesStack from '@/components/motion/PlanesStack';
 import '@/components/home/home-layout.css';
 
 /* ------------------------------------------------------------------
-   CRUDA — Home (`/`). F11.4 · 21-sep · autónomo.
+   CRUDA — Home (`/`). F58 · 27-oct · Home v2.
 
-   WHAT WE DO sube a posición 03. Orden vigente:
+   Orden nuevo:
 
-     hero                                          NEGRO · propio
+     HomeHero                                      NEGRO · estático · LCP
      <main id="stack">
-       01  WHAT CRUDA IS                           PAPER · plano
-       02  #act2 · WHY NOW                         PAPER · propio
-       03  WHAT WE DO                              PAPER · plano
-       04  SELECTED WORK                           PAPER · propio
-       05  KAREN · CITA                            NEGRO · plano
-       06  LA PRUEBA                               NEGRO · plano
-       07  WHAT OTHERS                             PAPER · plano
-       08  OUR FOUNDER                             NEGRO · plano
-       09  CONTACT                                 PAPER · plano
+       01  HomeNarrativeSparring                   PAPER · plano
+       02  SelectedWork                            PAPER · propio
+       03  HomeLegacy (Our founder)                NEGRO · plano · copy actual
+       04  Act2WhyNow (Marco Aurelio · congelada)  PAPER · propio
+       05  HomeClose (NEWSLETTER · cierre)         NEGRO · plano
      </main>
 
-   Componentes fuera del render, se conservan como dead code hasta
-   F12/F13: HomeTestimonial (split), HomeWhoItHoldsFor (H0),
-   HomeFit (Commit 5), HomeTranslated (F8 §9.1), HomeEssays.
+   F58 · fuera del render (dead code, se conservan en el repo):
+     · Act1Hero                (reemplazado por HomeHero)
+     · HomeWhatCrudaIs
+     · HomeServices
+     · HomeKarenQuote
+     · HomeKarenProof
+     · HomeWhatOthers
+
+   Act1Hero emitía el inline fit script (FIT_INLINE_SCRIPT) para el
+   hero animado · al salir Act1Hero del render, deja de emitirse
+   automáticamente. No se toca ningún otro componente.
+
+   Componentes fuera del render (de tandas anteriores, se conservan
+   como dead code hasta F12/F13): HomeTestimonial (split),
+   HomeWhoItHoldsFor (H0), HomeFit (Commit 5), HomeTranslated
+   (F8 §9.1), HomeEssays.
 ------------------------------------------------------------------- */
 
 const HOME_DESCRIPTION =
   'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.'
 
-const HOME_TITLE = 'CRUDA · We translate cultures into business'
+const HOME_TITLE = 'CRUDA · Famous to the few who matter'
 
 export const metadata: Metadata = {
   title: HOME_TITLE,
@@ -56,9 +63,6 @@ export const metadata: Metadata = {
     type: 'website',
     images: ['https://www.thecruda.com/logo.png'],
   },
-  /* F31 §2.4 · twitter title/description matchean og · imagen
-     matchea og (logo.png). El layout.tsx tiene un twitter site-wide
-     con "CRUDA" · en la home overrideamos con el título largo. */
   twitter: {
     card: 'summary_large_image',
     title: HOME_TITLE,
@@ -68,22 +72,21 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
+  // F58 · fuera del render: Act1Hero, HomeWhatCrudaIs, HomeServices,
+  // HomeKarenQuote, HomeKarenProof, HomeWhatOthers.
+  void Act1Hero; void HomeWhatCrudaIs; void HomeServices;
+  void HomeKarenQuote; void HomeKarenProof; void HomeWhatOthers;
+
   return (
     <>
       <HomeChrome />
       <PlanesStack />
-      {/* Act1Hero emite internamente el inline fit script right
-          after el markup del hero · F52 §3.2. */}
-      <Act1Hero />
+      <HomeHero />
       <main className="stack" id="stack">
-        <HomeWhatCrudaIs />
-        <Act2WhyNow />
-        <HomeServices />
+        <HomeNarrativeSparring />
         <SelectedWork />
-        <HomeKarenQuote />
-        <HomeKarenProof />
-        <HomeWhatOthers />
         <HomeLegacy />
+        <Act2WhyNow />
         <HomeClose />
       </main>
     </>

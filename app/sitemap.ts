@@ -55,10 +55,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
-    /* F56 · /second-look agregada al sitemap. Entrada única
+    /* F56 · /sparring-session agregada al sitemap. Entrada única
        agendable del sitio (ex "The Read"). */
     {
-      url: `${BASE}/second-look`,
+      url: `${BASE}/sparring-session`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.9,
@@ -110,14 +110,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
        fuera del sitemap desde A.2.1 y noindex a nivel meta · con
        el retiro del componente entero la nota queda como registro
        histórico. */
-    // Newsletter — F53 §7 (Fran 1-oct) · entra al sitemap · ya
-    // rendea el embed de beehiiv como contenido real.
-    {
-      url: `${BASE}/newsletter`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    },
+    // F58 §C.4 · /newsletter sale del sitemap · redirige 301 a
+    // /thinking (next.config.mjs). El form de suscripción vive
+    // ahora en /thinking (hero + cierre).
     /* Fuera del sitemap deliberadamente:
        - /sports, /systems (410, retiradas)
        - /architecture-design/* (301 → /work | /about)

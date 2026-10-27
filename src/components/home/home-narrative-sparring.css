@@ -1,0 +1,112 @@
+/* Home · 01 Narrative Sparring · plano papel · F58 · 27-oct.
+
+   Grilla de dos columnas: izquierda grabado, derecha texto. Mismo
+   patrón que los otros planos --paper (fondo paper, cuadrícula de
+   fondo heredada por .plane--paper, reveals por PlanesStack via
+   .eyebrow, .name, .rule, .lede, .body). */
+
+.home-ns.plane {
+  height: auto;
+  min-height: 100svh;
+}
+.home-ns .plane__in {
+  padding-top: 120px;
+  padding-bottom: 120px;
+  justify-content: center;
+}
+
+.home-ns__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+}
+
+.home-ns__slot {
+  width: 420px;
+  height: 560px;
+  max-width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home-ns__slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.home-ns__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFF59D;
+  color: #0D0D0D;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 15px;
+  padding: 24px;
+  text-align: center;
+}
+
+.home-ns__body { max-width: 640px; }
+
+.home-ns__name {
+  font-size: 72px;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  margin-top: 16px;
+}
+
+.home-ns__lede {
+  font-size: 28px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.012em;
+  margin-top: 32px;
+  max-width: none;
+}
+
+.home-ns__body-text {
+  font-size: 19px;
+  line-height: 1.65;
+  margin-top: 24px;
+  color: var(--ink, #0D0D0D);
+  max-width: 60ch;
+}
+
+.home-ns__body-text a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.home-ns__body-text a:hover { color: var(--orange, #FF5A00); }
+
+.home-ns__cta { margin-top: 40px; }
+
+/* Mobile */
+@media (max-width: 767px) {
+  .home-ns__grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .home-ns__slot {
+    width: 60%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+  }
+  .home-ns__name { font-size: 44px; }
+  .home-ns__lede { font-size: 22px; margin-top: 24px; }
+  .home-ns__body-text { font-size: 17px; }
+}
+
+/* En producción, los placeholders con [PLACEHOLDER: ...] se
+   ocultan a nivel visual · misma regla que docs/autonomy.md. */
+@media (max-width: 99999px) {
+  .home-ns--prod .home-ns__placeholder { display: none; }
+}

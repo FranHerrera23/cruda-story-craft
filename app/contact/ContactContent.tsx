@@ -6,16 +6,16 @@ import Link from 'next/link'
 /* /contact · F31 §3 · 23-sep · Fran · F56 (Fran 2-oct).
 
    F56 reemplaza el bloque Calendly por el link grande a
-   /second-look. La columna izquierda ya no embebe Calendly ni
+   /sparring-session. La columna izquierda ya no embebe Calendly ni
    lee NEXT_PUBLIC_CALENDLY_URL (la variable queda huérfana,
    Fran la elimina en Vercel). La única entrada agendable del
-   sitio es /second-look.
+   sitio es /sparring-session.
 
    Estructura:
-   1 · h1 "Start with a Second Look." + regla naranja única.
+   1 · h1 "Book a sparring session." + regla naranja única.
    2 · lede "Two conversations and a written diagnosis. $950."
    3 · dos columnas:
-       - izquierda: link "Start a Second Look →" a /second-look
+       - izquierda: link "Book a sparring session →" a /sparring-session
        - derecha: WRITE TO US (form Name/Email/What are you trying to do?)
    4 · pie: fees → /services + mailto directo.
 
@@ -59,19 +59,19 @@ export default function ContactContent() {
       {/* 01 · APERTURA · papel · única regla naranja */}
       <section className="contact-sec">
         <p className="contact-eyebrow">Contact</p>
-        <h1 className="contact-name">Start with a Second Look.</h1>
+        <h1 className="contact-name">Book a sparring session.</h1>
         <div className="contact-rule" />
         <p className="contact-lede">
           Two conversations and a written diagnosis. $950.
         </p>
       </section>
 
-      {/* 02 · DOS COLUMNAS · link a Second Look + form */}
+      {/* 02 · DOS COLUMNAS · link a Narrative Sparring Session + form */}
       <section className="contact-sec contact-act">
         <div className="contact-act__col contact-act__col--book">
-          <p className="contact-eyebrow">Second Look</p>
-          <Link className="contact-cal-link" href="/second-look">
-            Start a Second Look →
+          <p className="contact-eyebrow">Narrative Sparring Session</p>
+          <Link className="contact-cal-link" href="/sparring-session">
+            Book a sparring session →
           </Link>
         </div>
 

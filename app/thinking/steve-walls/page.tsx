@@ -26,7 +26,7 @@ import './steve-walls.css'
 const BASE = 'https://www.thecruda.com'
 
 export const metadata: Metadata = {
-  title: 'Steve Walls · Episode 01 — CRUDA Thinking',
+  title: 'Steve Walls · Episode 01 — Narrative Sparring',
   description:
     'Former Chief Strategy Officer, Publicis Singapore and Saatchi & Saatchi. In conversation with Fran Herrera. Coming soon.',
   robots: { index: false, follow: true },
@@ -40,7 +40,7 @@ export default function SteveWallsPage() {
     <article className="episode">
       <header className="episode-top">
         <Link className="episode-back" href="/thinking">
-          ← Thinking
+          ← Narrative Sparring
         </Link>
         <p className="episode-eyebrow">Podcast · Episode 01</p>
         <h1 className="episode-h1">Steve Walls</h1>

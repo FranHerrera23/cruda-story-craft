@@ -194,7 +194,7 @@ export default function EssayLayout({ es }: { es: Essay }) {
      (los ES a `/thinking?lang=es`, los EN a `/thinking`). Texto en
      sentence case, sin uppercase. */
   const backHref = lang === 'es' ? '/thinking?lang=es' : '/thinking'
-  const backLabel = '← Thinking'
+  const backLabel = '← Narrative Sparring'
   const updatedLabel = lang === 'es' ? 'Actualizado' : 'Updated'
   const readingLabel = lang === 'es' ? 'min de lectura' : 'min read'
   const questionsLabel = lang === 'es' ? 'Preguntas' : 'Questions'

@@ -1,3 +1,7 @@
+/* F58 · /newsletter redirigida a /thinking (next.config.mjs §F58).
+   Esta página queda en el repo como dead code: con el 301 permanente,
+   /newsletter nunca llega acá. Se conserva por si Fran quiere
+   reactivar un landing propio de newsletter. */
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { allEssays } from '@/content/essays'

@@ -32,7 +32,7 @@ import { useEffect, useState } from 'react'
        PageShell desde sessionStorage.
 
    F56 (Fran 3-oct) · policy unificada desktop + mobile:
-     · Solo en `/` (nunca /second-look, /services, /about, etc.).
+     · Solo en `/` (nunca /sparring-session, /services, /about, etc.).
      · Una vez por sesión (sessionStorage LOADER_SEEN_KEY).
      · Nunca con parámetros utm_*.
      Antes de F56 este gate estaba sólo bajo mobile; en desktop
@@ -132,7 +132,7 @@ export default function Loader() {
          · nunca con parámetros utm_*
        La diferencia de duración se mantiene (mobile 1.2s,
        desktop 2s) via la rama mobileCtx abajo.
-       Consecuencia: /second-look nunca muestra el loader en
+       Consecuencia: /sparring-session nunca muestra el loader en
        ningún ancho — cumple el criterio del brief F56. */
     const mobileCtx = isMobileLoaderContext()
     if (!isHomePathname()) {

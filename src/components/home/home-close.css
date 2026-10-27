@@ -1,5 +1,6 @@
-/* Home · CONTACT · plano paper · F11.0.
-   Anatomía general en planes.css. Mail treatment. */
+/* Home · CIERRE · plano negro · F58 · 27-oct.
+   Mail treatment heredado del cierre anterior (dead code preservado
+   fuera de la home). */
 
 .home-close .mail {
   display: inline-block;
@@ -15,4 +16,33 @@
 .home-close .mail:hover {
   color: var(--orange, #FF5A00);
   border-bottom-color: var(--orange, #FF5A00);
+}
+
+/* F58 · cierre v2 (Narrative Sparring). */
+.home-close--v2 .home-close__h {
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  max-width: 1050px;
+  text-wrap: balance;
+  margin-top: 16px;
+}
+.home-close--v2 .home-close__cta { margin-top: 48px; }
+.home-close--v2 .home-close__work {
+  display: block;
+  text-align: right;
+  margin-top: 48px;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 15px;
+  color: color-mix(in srgb, var(--cream, #FAF9F7) 60%, transparent);
+  text-decoration: none;
+}
+.home-close--v2 .home-close__work:hover {
+  color: var(--cream, #FAF9F7);
+}
+
+@media (max-width: 767px) {
+  .home-close--v2 .home-close__h { font-size: 40px; }
+  .home-close--v2 .home-close__work { text-align: left; margin-top: 32px; }
 }

@@ -55,8 +55,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 46 | `f58-home-v2` | `fe3f394` | ✅ |
 | 47 | `f58-fixes` | `477283a` | ✅ |
 | 48 | `f59-work-first` | `6be940c` | ✅ |
+| 49 | `f59-how-we-help` | `ef76d40` | ✅ |
 
-`origin/main` HEAD final: `6be940c`.
+`origin/main` HEAD final: `ef76d40`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -517,6 +518,16 @@ git revert -m 1 477283a
 #   detectado). SelectedWork vuelve a grilla de 3 columnas con las
 #   tarjetas sin alineación horizontal del filete "Their few".
 git revert -m 1 6be940c
+
+# Rollback f59-how-we-help (How we help después del hero + About alineado)
+#   Impacto: sale la sección HomeHowWeHelp del render. SelectedWork
+#   NO vuelve a mostrar "Their few" (fue dropped en F59 revisado;
+#   el revert deja la grilla sin few + con las descriptions
+#   corregidas de Ryan/Marty). About + JSON-LD + HOME_DESCRIPTION
+#   vuelven al copy "communications company...". El commit 85be8e4
+#   (essay "would you burn down your own house") entró como
+#   fast-forward antes del merge · su revert es independiente.
+git revert -m 1 ef76d40
 ```
 
 Después de cualquier revert:

@@ -105,9 +105,11 @@ export default function NewsletterCTA({
     .join(' ')
 
   if (status === 'fallback') {
+    /* F58 fix · /newsletter ahora 301 a /thinking · el fallback
+       apunta directo a /thinking para no cadenar redirects. */
     return (
       <div className={`ncta ncta--${variant} ncta--${shape} ncta--link-only`}>
-        <a href="/newsletter" className="ncta__btn">
+        <a href="/thinking" className="ncta__btn">
           {ctaLabel}
         </a>
       </div>

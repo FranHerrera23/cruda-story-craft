@@ -10,6 +10,7 @@ const STRATEGY_PDF = "https://drive.google.com/file/d/1tJDbxw2zzMUZQbjRkDLvYfeQR
 const IG_FOLDER = "https://drive.google.com/drive/folders/1kBa9RjNErZB7mWZ-UmRA_fuR9HOWWXtJ";
 const CAPTIONS = "https://drive.google.com/file/d/1hXUErB_aQeGCZV9tP0EDf8k_0-MUGVYs/view";
 const HULL_DOC = "https://docs.google.com/document/d/1xCqW1jSI1VBKX9ShYGUJIXKf0kfjCc6E2x-WvC6KOS8/edit";
+const CAROUSELS = "https://drive.google.com/drive/u/0/folders/11DVJ8tmZWNaZ_LM97w65k0hUi-7xFtJU";
 const RYAN_LI = "https://www.linkedin.com/in/ryanaltman/recent-activity/all/";
 
 export const m2d = {
@@ -17,12 +18,12 @@ export const m2d = {
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-10-26T13:25:00-04:00",
+  updatedAt: "2026-10-27T09:25:00-04:00",
   updatedBy: "Fran",
   objective: "Be known on the docks before the Fort Lauderdale boat show, 28 October to 1 November.",
   phase: "Running the machine since 15 October.",
   channels: {
-    Instagram: { blurb: "Two project carousels, scheduled and waiting on you. Plus Season 1 of The Sanctuary Series: six reels, produced and on hold until you decide about the AI content label.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
+    Instagram: { blurb: "Fourteen carousels, produced and waiting on your review, all of them real photography. Season 1 of The Sanctuary Series, six reels, stays on hold until you decide about the AI content label.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
     LinkedIn: { blurb: "Two posts a week through the show, in your voice. Each one is cut from the week’s article." },
     X: { blurb: "Same cadence as LinkedIn. Threads link back to the article on the site." },
     "Hull Notes": { blurb: "Your newsletter, sent from Beehiiv to your list. The show issue goes out the Friday of show week." },
@@ -34,7 +35,7 @@ export const m2d = {
       { name: "Website", done: 1, total: 1, note: "Live at m2develop.com. Contact and Studio are done. Nothing outstanding." },
       { name: "Articles", done: 4, total: 12, note: "Next: the boat show guide, waiting on your seven answers.", onClient: true },
       { name: "LinkedIn posts", done: 5, total: 12, note: "Five live. The plan for the rest comes with the calendar." },
-      { name: "Instagram", done: 0, total: 8, note: "Eight pieces produced. Two carousels waiting on your approval, six reels on hold.", onClient: true },
+      { name: "Instagram", done: 0, total: 14, note: "Fourteen carousels produced and in one folder for you. The six reels stay on hold.", onClient: true },
       { name: "Case studies", done: 0, total: 5, note: "One 45 minute call per project. You talk, we write.", onClient: true },
       { name: "Marty Lowe: site, blog, LinkedIn", done: 0, total: 3, note: "In her own space, at her pace." },
       { name: "CRM in Attio", done: 1, total: 1, note: "Live. Your contact list is the next step.", onClient: true },
@@ -45,6 +46,9 @@ export const m2d = {
     { value: "Hull Notes", label: "Subscribers and opens, read from the first issue onward." },
   ],
   items: [
+    { id: "car-all", channel: "Instagram", kind: "Carousels", forWho: "For owners and brokers", title: "Fourteen carousels, ready for your review", owner: "Ryan", status: "Needs approval", version: 1,
+      why: "Fourteen pieces, nine slides each, built from M2D’s own photography. Real photographs, no animation, and no AI content label on any of them. Open the folder, go through them, and tell me which ones go out and in what order.",
+      assets: [{ label: "Open the folder", href: CAROUSELS }], eden: "Not scheduled yet" },
     // ── Instagram · week of 26 October (show week)
     { id: "s1-01", channel: "Instagram", kind: "Reel", series: "The Sanctuary · 01", forWho: "For the early couple", time: "7:00", title: "The first coffee", owner: "Fran", status: "On hold", version: 1,
       scene: "The owner’s cabin in the morning. Steam rises from two cups while the light moves across the bed.",
@@ -56,19 +60,6 @@ export const m2d = {
       caption: "The formal dining table on most boats I design ends up as a desk, with a laptop on it for half the day.\n\nThe interior should be ready for that before anyone asks.",
       why: "Goes out the day the show opens. The fastest-growing buyer in the American market, in one scene.",
       assets: [{ label: "Reel files", href: IG_FOLDER }, { label: "Caption", href: CAPTIONS }], eden: "Not in Eden yet" },
-    { id: "car-01", channel: "Instagram", kind: "Carousel", series: "Projects · 01", forWho: "For brokers and owners", title: "How it’s lived", date: "2026-10-29", at: "12:00 pm", owner: "Ryan", status: "Needs approval", version: 2,
-      caption: "The formal dining table on most boats I design ends up as a desk.\n\nIf you had a yacht, what’s the first thing you’d bring aboard?",
-      why: "Your words from the 12 October article, slide by slide. Brokers save it to forward to a client.",
-      assets: [{ label: "See the 7 slides", go: "item:car-01" }, { label: "Strategy", href: STRATEGY_PDF }], eden: "Not in Eden yet",
-      slides: [
-        { type: "cover", label: "How it’s lived", headline: "The formal dining table on most boats I design ends up as a desk.", photo: "Dining area" },
-        { type: "text", headline: "The way people use their boats has changed." },
-        { type: "photo", photo: "Upper deck bar", caption: "Dinners move up to the flybridge, where the breeze and the view are." },
-        { type: "photo", photo: "Salon and bar", caption: "People are barefoot. There are kids and dogs aboard." },
-        { type: "text", headline: "A yacht should be both admired and enjoyed.", body: "Beautiful enough to take real pride in, and comfortable enough to live on." },
-        { type: "photo", photo: "Owner stateroom" },
-        { type: "close", headline: "Every yacht should feel like both a sanctuary and a stage." },
-      ] },
     { id: "s1-03", channel: "Instagram", kind: "Reel", series: "The Sanctuary · 03", forWho: "For the family", time: "12:30", title: "The long lunch", owner: "Fran", status: "On hold", version: 1,
       scene: "The aft deck set for eight, a game of dominoes in progress, a child’s straw hat on the sofa. A boat passes on the waterway.",
       caption: "In these waters the aft deck isn’t a transition. It’s where the day is spent.\n\nSome families want the table set for twelve and the crew close by. That’s not a style. It’s how they live.",
@@ -85,20 +76,6 @@ export const m2d = {
       caption: "Dinners move up to the flybridge, where the breeze and the view are.",
       why: "The scene the social owner pictured when he decided to buy.",
       assets: [{ label: "Reel files", href: IG_FOLDER }, { label: "Caption", href: CAPTIONS }], eden: "Not in Eden yet" },
-    { id: "car-02", channel: "Instagram", kind: "Carousel", series: "Projects · 02", forWho: "For brokers", title: "One yacht, two oceans", date: "2026-11-05", at: "12:00 pm", owner: "Ryan", status: "Needs approval", version: 1, story: "two-oceans",
-      caption: "The same yacht, redrawn for the world it is actually going to live in.",
-      why: "The story for brokers, slide by slide, in its own words. The gap between hull one and hull two.",
-      assets: [{ label: "See the 8 slides", go: "item:car-02" }, { label: "Strategy", href: STRATEGY_PDF }], eden: "Not in Eden yet",
-      slides: [
-        { type: "cover", label: "Hull two", headline: "The same yacht, redrawn for the world it is actually going to live in.", photo: "Main salon" },
-        { type: "text", headline: "The palette." },
-        { type: "photo", photo: "Stateroom, stone panel" },
-        { type: "text", headline: "The depth." },
-        { type: "photo", photo: "Upper deck bar" },
-        { type: "text", headline: "The outdoor spaces." },
-        { type: "photo", photo: "Dining" },
-        { type: "close", headline: "Character kept, future redrawn." },
-      ] },
     { id: "s1-06", channel: "Instagram", kind: "Reel", series: "The Sanctuary · 06", forWho: "For the strategist", time: "23:00", title: "The last light", owner: "Fran", status: "On hold", version: 1,
       scene: "The upper deck bar at night: a chess game mid-play, two whiskies on the counter. The ice turns in the glass.",
       caption: "Admired from the dock. Lived in at sea.\n\nEvery yacht should feel like both a sanctuary and a stage.",

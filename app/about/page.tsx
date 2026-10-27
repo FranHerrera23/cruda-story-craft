@@ -34,8 +34,9 @@ const BASE = 'https://www.thecruda.com'
 const FRAN_PHOTO_URL = `${BASE}/fran-herrera.webp`
 
 const ABOUT_TITLE = 'About CRUDA · Founded by Fran Herrera'
+/* F59 §E · copy alineado con el posicionamiento. */
 const ABOUT_DESCRIPTION =
-  'CRUDA is a communications company founded by Fran Herrera. We build narrative and demand systems for founders, companies and cross-border joint ventures.'
+  'CRUDA makes founders and companies famous to the few who matter. Founded by Fran Herrera.'
 
 export const metadata: Metadata = {
   title: ABOUT_TITLE,
@@ -67,7 +68,7 @@ const PERSON_ID = `${BASE}/about#fran-herrera`
 const FAQ_ITEMS: Array<{ q: string; a: string }> = [
   {
     q: 'What is CRUDA?',
-    a: 'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures. Fran Herrera founded it in February 2024.',
+    a: 'CRUDA makes founders and companies famous to the few who matter. We find what makes them exceptional and put it in front of the people who should know. Fran Herrera founded it in February 2024.',
   },
   {
     q: 'How much does CRUDA cost?',
@@ -110,7 +111,7 @@ const ABOUT_SCHEMA = {
       url: BASE,
       logo: `${BASE}/cruda-logo-black-2x.png`,
       description:
-        'CRUDA is a communications company. We build narrative and demand systems for founders, companies and cross-border joint ventures.',
+        'CRUDA makes founders and companies famous to the few who matter. We find what makes them exceptional and put it in front of the people who should know.',
       disambiguatingDescription:
         'Communications company founded by Fran Herrera in 2024, based in Dubai and Moscow.',
       foundingDate: '2024-02',
@@ -128,7 +129,7 @@ const ABOUT_SCHEMA = {
       jobTitle: 'Founder',
       worksFor: { '@id': ORG_ID },
       description:
-        'Founder of CRUDA, a communications company that builds narrative and demand systems for founders, companies and cross-border joint ventures.',
+        'Founder of CRUDA, which makes founders and companies famous to the few who matter.',
       birthPlace: { '@type': 'Place', name: 'Salta, Argentina' },
       knowsLanguage: ['en', 'es', 'ru'],
       knowsAbout: [
@@ -221,9 +222,7 @@ export default function AboutPage() {
               sayable.
             </p>
             <p className="f55-p" data-reveal>
-              CRUDA is a communications company. We build narrative and
-              demand systems for founders, companies and cross-border
-              joint ventures.
+              CRUDA makes founders and companies famous to the few who matter. We find what makes them exceptional and put it in front of the people who should know.
             </p>
           </div>
         </div>

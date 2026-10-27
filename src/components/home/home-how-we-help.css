@@ -1,0 +1,135 @@
+/* Home · HOW WE HELP · F59 · 27-oct.
+   Prefijo hwh-. Fondo cream, texto ink. Después del hero. */
+
+.hwh {
+  background: var(--cream, #EFEBDF);
+  color: var(--ink, #0D0D0D);
+  padding: clamp(120px, 16vh, 180px) var(--gap, clamp(20px, 4.5vw, 72px));
+}
+.hwh__in {
+  max-width: 1600px;
+  margin: 0;
+}
+
+.hwh__eyebrow { margin: 0; }
+
+.hwh__h {
+  margin: 24px 0 0;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-weight: 500;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.hwh__lede {
+  margin: 32px 0 0;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: clamp(20px, 1.6vw, 24px);
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--ink, #0D0D0D) 75%, transparent);
+  max-width: 640px;
+}
+
+.hwh__rule {
+  height: 2px;
+  width: 120px;
+  background: var(--orange, #FF5A00);
+  margin: 48px 0 96px;
+}
+
+/* ─────────── Tabla ─────────── */
+.hwh__table {
+  display: grid;
+  grid-template-columns: 30% 33% 1fr;
+  row-gap: 0;
+}
+.hwh__thead {
+  display: contents;
+}
+.hwh__th {
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--grey, #6E6B65);
+  padding-bottom: 20px;
+}
+.hwh__row {
+  display: contents;
+}
+.hwh__row .hwh__cell {
+  border-top: 1px solid rgba(0, 0, 0, 0.14);
+  padding: 32px 24px 32px 0;
+}
+/* Primera fila (bajo encabezados) con filete 1 px ink sólido. */
+.hwh__thead + .hwh__row .hwh__cell {
+  border-top: 1px solid var(--ink, #0D0D0D);
+}
+
+.hwh__name {
+  margin: 0;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--ink, #0D0D0D);
+}
+.hwh__sub {
+  margin: 6px 0 0;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--grey, #6E6B65);
+}
+.hwh__text {
+  margin: 0;
+  font-family: var(--grot, 'Archivo', sans-serif);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--ink, #0D0D0D);
+}
+.hwh__m-label {
+  display: none;
+}
+
+/* Mobile · <768 · cada fila se apila. Encabezados ocultos. */
+@media (max-width: 767px) {
+  .hwh { padding: 96px var(--gap, 20px); }
+  .hwh__h { font-size: 32px; max-width: none; }
+  .hwh__lede { font-size: 18px; }
+  .hwh__rule { margin: 32px 0 48px; }
+
+  .hwh__table {
+    display: block;
+  }
+  .hwh__thead { display: none; }
+  .hwh__row {
+    display: block;
+    padding: 32px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+  }
+  .hwh__thead + .hwh__row {
+    border-top: 1px solid var(--ink, #0D0D0D);
+  }
+  .hwh__cell {
+    border-top: 0 !important;
+    padding: 0 !important;
+  }
+  .hwh__cell + .hwh__cell { margin-top: 24px; }
+  .hwh__m-label {
+    display: block;
+    margin: 0 0 8px;
+    font-family: var(--grot, 'Archivo', sans-serif);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--grey, #6E6B65);
+  }
+  .hwh__text { font-size: 17px; }
+}

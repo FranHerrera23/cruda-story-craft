@@ -31,6 +31,7 @@ const sections = await page.evaluate(() => {
 
 const EXPECTED = [
   'home-hero',
+  'how-we-help',
   'selected-work',
   'narrative-sparring',
   'our-founder',

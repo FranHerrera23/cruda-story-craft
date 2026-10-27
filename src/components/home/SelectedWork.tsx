@@ -223,15 +223,10 @@ function CardEl({ card }: { card: Card }) {
   )
 }
 
-/* F58 · celda de cierre "All work →" · cuadrada, borde 1 px --ink,
-   padding 32 px, texto 22 px/500 abajo-izquierda, link a /work. */
-function AllWorkCell() {
-  return (
-    <Link className="sw-card sw-card--all" href="/work" aria-label="All work">
-      <span className="sw-card__all-t">All work →</span>
-    </Link>
-  )
-}
+/* F58 fix (Fran 27-oct) · celda "All work →" retirada · hoy
+   lleva a /#selected-work (misma sección) por la redirección
+   /work → /#selected-work que no se toca. Si en el futuro existe
+   un listado real, revive la celda. */
 
 export default function SelectedWork() {
   return (
@@ -244,7 +239,6 @@ export default function SelectedWork() {
           {CARDS.map(c => (
             <CardEl key={c.name} card={c} />
           ))}
-          <AllWorkCell />
         </div>
       </div>
     </section>

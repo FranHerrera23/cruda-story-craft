@@ -130,11 +130,6 @@ const CASES = [
   },
   {
     url: '/',
-    label: 'home · all work',
-    needle: 'All work →',
-  },
-  {
-    url: '/',
     label: 'home · cierre rótulo',
     needle: 'Narrative Sparring',
   },

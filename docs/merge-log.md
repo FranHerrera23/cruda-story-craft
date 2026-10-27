@@ -52,9 +52,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 43 | `emigrar-ensayo` | `a527a50` | ✅ |
 | 44 | `emigrar-hero` | `4c04071` | ✅ |
 | 45 | `emigrar-credit` | `a518977` | ✅ |
-| 46 | `f58-home-v2` | `TBD` | ✅ |
+| 46 | `f58-home-v2` | `fe3f394` | ✅ |
 
-`origin/main` HEAD final: TBD (post F58).
+`origin/main` HEAD final: `fe3f394`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -495,7 +495,7 @@ git revert -m 1 8d35137
 #   El endpoint /api/subscribe desaparece · NewsletterCTA deja de
 #   compilar como componente usado · queda en el repo si no se
 #   borra manualmente (safe).
-git revert -m 1 TBD
+git revert -m 1 fe3f394
 ```
 
 Después de cualquier revert:

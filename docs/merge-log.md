@@ -54,8 +54,9 @@ Todo mergeado con `--no-ff` (merge commit propio) para poder revertir cada rama 
 | 45 | `emigrar-credit` | `a518977` | ✅ |
 | 46 | `f58-home-v2` | `fe3f394` | ✅ |
 | 47 | `f58-fixes` | `477283a` | ✅ |
+| 48 | `f59-work-first` | `6be940c` | ✅ |
 
-`origin/main` HEAD final: `477283a`.
+`origin/main` HEAD final: `6be940c`.
 
 **Novena tanda (28-sep · F51):** ensayo bilingüe nuevo Larry Holmes
 + slot de hero para todos los ensayos + cierre de gap byline-cuerpo.
@@ -506,6 +507,16 @@ git revert -m 1 fe3f394
 #   vuelve a apuntar a /newsletter (que a su vez 301 a /thinking ·
 #   cadena de dos redirects).
 git revert -m 1 477283a
+
+# Rollback f59-work-first (Work antes del newsletter + hero + sw fila 1)
+#   Impacto: la home vuelve al orden F58 (Hero → Narrative Sparring →
+#   SelectedWork → Legacy → Act2 → Close). El plano Narrative Sparring
+#   vuelve a rotular "01 · Newsletter". El bloque del hero vuelve a
+#   subir al tope en viewports altos (>1000 px) por el flex row
+#   ambiguo. La nav sobre el hero vuelve a modo paper (sin on-black
+#   detectado). SelectedWork vuelve a grilla de 3 columnas con las
+#   tarjetas sin alineación horizontal del filete "Their few".
+git revert -m 1 6be940c
 ```
 
 Después de cualquier revert:

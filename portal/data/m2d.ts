@@ -18,7 +18,7 @@ export const m2d = {
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-10-27T10:20:00-04:00",
+  updatedAt: "2026-10-28T11:45:00-04:00",
   updatedBy: "Fran",
   objective: "Be known on the docks before the Fort Lauderdale boat show, 28 October to 1 November.",
   phase: "Running the machine since 15 October.",
@@ -84,10 +84,10 @@ export const m2d = {
 
     // ── LinkedIn
 
-    { id: "li-hull", channel: "LinkedIn", kind: "LinkedIn post", title: "Hull one, hull two", date: "2026-10-28", at: "7:30 am", owner: "Ryan", status: "Needs approval", version: 1, story: "two-oceans",
-      why: "Plants the idea you own, the American edition, two days before the show opens.",
-      assets: [{ label: "Draft doc", href: HULL_DOC }], eden: "Draft in Eden, not scheduled yet",
-      post: "Two boats of the same model can sit in two different shows on two different continents and look identical from the dock. Same hull, same profile, same glass. You’d have to walk inside to know they aren’t the same boat.\n\nHull one is the European version. Hull two is the one that comes here, and it usually makes its debut at Fort Lauderdale. The gap between those two boats is more or less my entire job.\n\nMost of that gap isn’t taste. It’s air conditioning, which has to be stronger here and reach places nobody in the Med asks it to reach. It’s ice, and the refrigeration to make enough of it. It’s that everything you touch has to survive salt, sun and bare feet through a season that doesn’t really end.\n\nIn two weeks a lot of hull twos will be sitting in Fort Lauderdale looking exactly like their European twins. Walk into a few and you’ll see what I mean." },
+    { id: "li-hull", channel: "LinkedIn", kind: "LinkedIn post", title: "Walk a dock today and you can tell", date: "2026-10-28", at: "7:30 am", owner: "Ryan", status: "Needs approval", version: 2, story: "two-oceans",
+      why: "Day one of the show, in your own words. Every line but the opening and the close is text you already approved and that is live on the site, so it needs nothing from you except a yes.",
+      assets: [{ label: "The article", href: "https://www.m2develop.com/stories/one-yacht-two-oceans/" }], eden: "Draft in Eden, not scheduled yet",
+      post: "Walk a dock at Fort Lauderdale today and you can tell.\n\nTwo hulls of the same model, six months apart, and the second one feels like a different boat. That is not an accident, and it is not a compromise. It is a design decision, made on purpose.\n\nA yacht is designed for a place and a way of living before it is designed for a floor plan. The first hull of a model is usually conceived in the Mediterranean. The next one crosses to the Caribbean and the coasts of the Americas, where the days are longer, the sun sits differently, and life unfolds in its own rhythm on the water.\n\nOwners rarely name it. They say the second one feels bigger, or calmer, or simply more like theirs.\n\nThe show runs through Sunday. Walk a few and you will see it.\n\nm2develop.com/stories/one-yacht-two-oceans" },
     { id: "show-floor", channel: "LinkedIn", kind: "Input", title: "From the show floor: what you’re seeing", date: "2026-10-28", at: "Wed to Sun", owner: "Ryan", status: "Needs input", version: 1,
       why: "Show week is the one week nothing can be written ahead. Short posts from the floor, written while it is happening, for LinkedIn and X, twice each across the show.",
       askHow: "While you are on the floor, take photos and the odd selfie. Whatever you catch, send it over and we write it the same night and bring it back here for your approval." },
@@ -98,10 +98,9 @@ export const m2d = {
     { id: "li-intro", channel: "LinkedIn", kind: "LinkedIn post", title: "Introduction", date: "2026-10-01", owner: null, status: "Live", version: 1, assets: [{ label: "On LinkedIn", href: RYAN_LI }], result: "Read at month end" },
 
     // ── X
-    { id: "x-hull", channel: "X", kind: "X thread", title: "Hull one, hull two, thread of 4", date: "2026-10-28", at: "12:00 pm", owner: "Ryan", status: "Needs approval", version: 1, story: "two-oceans",
-      why: "The same idea for X, with the article link in the last reply.", assets: [{ label: "Draft doc", href: HULL_DOC }], eden: "Not in Eden yet. The X account connected in Eden is Fran’s, not Ryan’s.",
-      post: "Two boats of the same model can look identical from the dock.\n\nHull one is the European version. Hull two is the one that comes here.\n\nThe gap between them is more or less my entire job." },
-    // ── Hull Notes
+    { id: "x-hull", channel: "X", kind: "X thread", title: "Walk a dock today and you can tell", date: "2026-10-28", at: "12:00 pm", owner: "Ryan", status: "Needs approval", version: 2, story: "two-oceans",
+      why: "The same opening for X, with the article at the end.", assets: [{ label: "The article", href: "https://www.m2develop.com/stories/one-yacht-two-oceans/" }], eden: "Not in Eden yet. The X account connected in Eden is Fran’s, not Ryan’s.",
+      post: "Walk a dock at Fort Lauderdale today and you can tell.\n\nTwo hulls of the same model, six months apart, and the second one feels like a different boat. That is not an accident, and it is not a compromise. It is a design decision, made on purpose.\n\nm2develop.com/stories/one-yacht-two-oceans" },
     { id: "hn-2", channel: "Hull Notes", kind: "Newsletter", title: "Hull Notes, issue 2: the show issue", date: "2026-10-30", at: "7:30 am", owner: "Fran", status: "Drafting", version: 1,
       why: "What to look at inside a boat in eleven minutes, sent from you to your list the Friday of show week." },
 

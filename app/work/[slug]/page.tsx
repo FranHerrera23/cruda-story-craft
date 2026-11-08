@@ -5,6 +5,7 @@ import CaseStudyLayoutV2 from '@/components/CaseStudyLayoutV2'
 import CaseComposer from '@/components/case-blocks/CaseComposer'
 import MomentIndex from '@/components/MomentIndex'
 import WorkLayout from '@/components/WorkLayout'
+import MannheimCase from '@/components/MannheimCase'
 import { allClients } from '@/content/clients'
 import { allClientsV2, findClientV2 } from '@/content/clients-v2'
 import { allClientsV3, findClientV3 } from '@/content/clients-v3'
@@ -81,7 +82,7 @@ export async function generateMetadata(
        descriptor aprobado del caso (work.title) + " · CRUDA". Ganan
        en resultados de búsqueda porque describen el resultado del
        comprador. El h1 sigue siendo w.client.name. */
-    const seoTitle = `${work.title} · CRUDA`
+    const seoTitle = slug === 'mannheim-trading' ? work.metaTitle : `${work.title} · CRUDA`
     /* F39 §2.2 · dates reales del git log del archivo de datos del
        caso (via case-dates.json). article:published_time y
        article:modified_time también salen desde acá. */
@@ -97,6 +98,7 @@ export async function generateMetadata(
         description: work.dek,
         url: `${BASE}/work/${work.slug}`,
         type: 'article',
+        locale: slug === 'mannheim-trading' ? 'es_LA' : 'en_US',
         publishedTime: publishedIso,
         modifiedTime: modifiedIso,
         images: [
@@ -217,6 +219,7 @@ export default async function Page(
 ) {
   const { slug } = await params
   if (isMoment(slug)) return <MomentIndex moment={slug} />
+  if (slug === 'mannheim-trading') return <MannheimCase />
 
   // F18.1 · content/work fuente única · gana antes que v3/v2/legacy.
   // F26 · el molde nuevo usa `summary` en vez de `capsule[]`, así que

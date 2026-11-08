@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
 import { allClientsV2 } from '@/content/clients-v2';
 import { allEssays } from '@/content/essays';
+import caseDates from '@/content/work/case-dates.json';
 import { MOMENTS } from '@/content/moments';
 
 const BASE = 'https://www.thecruda.com';
@@ -92,7 +93,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Case studies v2 — modelo de bloques (paso 5 del spec).
     ...allClientsV2.map((c) => ({
       url: `${BASE}/work/${c.slug}`,
-      lastModified: new Date(),
+      lastModified: c.slug === 'mannheim-trading' ? new Date(caseDates['mannheim-trading'].updatedAt) : new Date(),
       changeFrequency: 'monthly' as const,
       priority: 0.8,
     })),

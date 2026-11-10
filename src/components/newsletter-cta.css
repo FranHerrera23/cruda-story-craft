@@ -195,3 +195,10 @@
   .ncta--thin { flex-direction: column; align-items: stretch; }
   .ncta--thin .ncta__btn { margin-left: 0; margin-top: 20px; width: 100%; }
 }
+
+/* Thin form: each control owns its row; avoid the button wrapping against the input. */
+.ncta--thin{display:flex;flex-direction:column;align-items:stretch;gap:18px;width:100%;min-width:0}
+.ncta--thin .ncta__input{flex:none;width:100%;min-height:48px}
+.ncta--thin .ncta__btn{width:100%;height:auto;min-height:60px;margin:0;padding:18px 24px;white-space:normal;text-align:center;line-height:1.45}
+.ncta--thin .ncta__helper,.ncta--thin .ncta__msg{flex-basis:auto;margin:0;width:100%;min-width:0;overflow-wrap:anywhere}
+.ncta--thin .ncta__input:focus-visible{outline:2px solid var(--focus,#ffd200);outline-offset:4px}

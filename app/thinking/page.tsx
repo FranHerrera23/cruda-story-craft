@@ -1,3 +1,4 @@
+import LibraryBrowser from '@/components/LibraryBrowser'
 import libraryArticles from '@/content/articles.json'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -222,94 +223,10 @@ export default async function ThinkingPage({
         </div>
       </section>
 
-      {/* ============ Lang toggle (fila propia) ============ */}
-      <nav className="t2-lang" aria-label="Language">
-        <Link
-          className={`t2-lang__opt${viewLang === 'en' ? ' is-active' : ''}`}
-          href="/thinking"
-          hrefLang="en"
-          aria-current={viewLang === 'en' ? 'page' : undefined}
-        >
-          English
-        </Link>
-        <Link
-          className={`t2-lang__opt${viewLang === 'es' ? ' is-active' : ''}`}
-          href="/thinking?lang=es"
-          hrefLang="es"
-          aria-current={viewLang === 'es' ? 'page' : undefined}
-        >
-          Español
-        </Link>
-      </nav>
-
-      <nav className="t2-lang" aria-label="Tipo de publicación">
-        <Link href="/thinking" aria-current={viewType === 'all' ? 'page' : undefined}>Todo</Link>
-        <Link href={`/thinking?type=essays&lang=${viewLang}`} aria-current={viewType === 'essays' ? 'page' : undefined}>Ensayos</Link>
-        <Link href="/thinking?type=articles&lang=es" aria-current={viewType === 'articles' ? 'page' : undefined}>Artículos</Link>
-      </nav>
-      {viewType !== 'essays' && <section className="t2-list" aria-labelledby="library-articles">
-        <h2 id="library-articles" className="t2-list__h">Artículos · Estrategia de marca y comunicación</h2>
-        <ul className="t2-list__ul">{libraryArticles.map(a => <li key={a.slug} className="t2-list__row"><Link className="t2-list__link" href={`/thinking/${a.slug}`}><span className="t2-list__date">10 de noviembre de 2026</span><span className="t2-list__body"><span className="t2-list__title">{a.title}</span><span className="t2-list__dek">{a.description}</span></span><span className="t2-list__meta">Español · {a.minutes} min</span></Link></li>)}</ul>
-      </section>}
-      {/* ============ Latest · imagen 16:9 + meta/título/dek ============ */}
-      {featured && (
-        <section className="t2-latest">
-          <Link href={featured.href} className="t2-latest__link">
-            <div className="t2-latest__media">
-              {featured.heroImage && featured.heroAlt ? (
-                /* next/image con priority (LCP) · formatos AVIF/WebP via next.config. */
-                <img
-                  src={featured.heroImage}
-                  alt={featured.heroAlt}
-                  className="t2-latest__img"
-                  loading="eager"
-                  decoding="async"
-                />
-              ) : (
-                <div className="t2-latest__cover">
-                  <span className="t2-latest__cover-t">{featured.title}</span>
-                </div>
-              )}
-            </div>
-            <div className="t2-latest__text">
-              <p className="t2-latest__eyebrow">Latest</p>
-              <p className="t2-latest__meta">{metaText(featured, viewLang)}</p>
-              <h2 className="t2-latest__h">{featured.title}</h2>
-              {featured.dek && (
-                <p className="t2-latest__dek">{featured.dek}</p>
-              )}
-            </div>
-          </Link>
-        </section>
-      )}
-
-      {/* ============ All essays · filas sin imagen ============ */}
-      {rest.length > 0 && (
-        <section className="t2-list" aria-labelledby="t2-list-h">
-          <h2 id="t2-list-h" className="t2-list__h">All essays</h2>
-          <ul className="t2-list__ul">
-            {rest.map(row => (
-              <li key={row.slug} className="t2-list__row">
-                <Link href={row.href} className="t2-list__link">
-                  <span className="t2-list__date">
-                    {fmtDate(row.publishedAt, viewLang)}
-                  </span>
-                  <span className="t2-list__body">
-                    <span className="t2-list__title">{row.title}</span>
-                    {row.dek && <span className="t2-list__dek">{row.dek}</span>}
-                  </span>
-                  <span className="t2-list__meta">
-                    {row.readingMinutes
-                      ? `${row.readingMinutes} ${READ_LABEL[viewLang]}`
-                      : ''}
-                    {row.altLang ? ` · ${ALSO_LABEL[viewLang]}` : ''}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
+      <LibraryBrowser initialType={params.type === 'articles' || params.type === 'essays' ? params.type : 'all'} initialLang={params.lang === 'es' || params.lang === 'en' ? params.lang : 'all'} rows={[
+        ...ARTICLE_ROWS.map(r => ({...r,kind:'essays' as const})),
+        ...libraryArticles.map(a=>({slug:a.slug,href:`/thinking/${a.slug}`,title:a.title,dek:a.description,language:'es',readingMinutes:a.minutes,publishedAt:a.publishedAt,kind:'articles' as const})),
+      ].sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt))} />
 
       {/* ============ Cierre negro ============ */}
       <section className="t2-close">

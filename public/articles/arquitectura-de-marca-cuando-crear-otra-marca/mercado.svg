@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="Mercado Libre: comprar y vender. Mercado Pago: pagar y gestionar dinero. Mercado Envíos: enviar compras." width="495" height="90" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 90" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="90"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-90)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="9" width="159" height="72" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="40.93" y="55" style="font-family: ArchivoB; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">Mercado Libre</text>
+			<text x="39.41" y="30" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,60) scale(1,-1)">Comprar y vender</text>
+			<rect x="168" y="9" width="159" height="72" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="208.162" y="55" style="font-family: ArchivoB; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">Mercado Pago</text>
+			<text x="214.135" y="30" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,60) scale(1,-1)">Pagos y dinero</text>
+			<rect x="336" y="9" width="159" height="72" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="371.884" y="55" style="font-family: ArchivoB; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,110) scale(1,-1)">Mercado Envíos</text>
+			<text x="395.085" y="30" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,60) scale(1,-1)">Logística</text>
+		</g>
+	</g>
+</svg>

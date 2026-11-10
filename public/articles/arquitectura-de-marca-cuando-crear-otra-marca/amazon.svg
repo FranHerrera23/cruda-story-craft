@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="Amazon se relaciona con Amazon Music, música; Amazon Web Services o AWS, tecnología informática; y Audible, contenido de audio. Los dos primeros llevan Amazon en el nombre, el tercero no." width="495" height="145" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 145" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="145"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-145)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="207.961" y="128" style="font-family: ArchivoB; font-size: 21px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,256) scale(1,-1)">Amazon</text>
+			<path d="M 247,115 L 79,98 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<rect x="0" y="19" width="159" height="76" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="45.391000000000005" y="76" style="font-family: ArchivoB; font-size: 10.2px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,152) scale(1,-1)">Amazon Music</text>
+			<text x="64.564" y="44" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Música</text>
+			<text x="43.504" y="5" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,10) scale(1,-1)">Nombre compartido</text>
+			<path d="M 247,115 L 247,98 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<rect x="168" y="19" width="159" height="76" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="195.8266" y="76" style="font-family: ArchivoB; font-size: 10.2px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,152) scale(1,-1)">Amazon Web Services</text>
+			<text x="237.4282" y="62" style="font-family: Archivo; font-size: 8.4px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,124) scale(1,-1)">AWS</text>
+			<text x="201.5635" y="44" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Tecnología informática</text>
+			<text x="211.504" y="5" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,10) scale(1,-1)">Nombre compartido</text>
+			<path d="M 247,115 L 415,98 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<rect x="336" y="19" width="159" height="76" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="397.7824" y="76" style="font-family: ArchivoB; font-size: 10.2px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,152) scale(1,-1)">Audible</text>
+			<text x="403.273" y="44" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Audio</text>
+			<text x="392.456" y="5" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,10) scale(1,-1)">Otro nombre</text>
+		</g>
+	</g>
+</svg>

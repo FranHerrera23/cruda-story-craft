@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="BIG, Bjarke Ingels Group, presenta Landscape, Engineering, Architecture, Planning y Products: paisaje, ingeniería, arquitectura, planeamiento y productos." width="495" height="105" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 105" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="105"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-105)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="145.777" y="87" style="font-family: ArchivoB; font-size: 18px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,174) scale(1,-1)">BIG / Bjarke Ingels Group</text>
+			<rect x="0" y="14" width="95" height="49" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="23.725" y="44" style="font-family: ArchivoB; font-size: 9.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Landscape</text>
+			<text x="32.3255" y="27" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">Paisaje</text>
+			<rect x="100" y="14" width="95" height="49" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="121.559" y="44" style="font-family: ArchivoB; font-size: 9.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Engineering</text>
+			<text x="127.326" y="27" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">Ingeniería</text>
+			<rect x="200" y="14" width="95" height="49" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="221.236" y="44" style="font-family: ArchivoB; font-size: 9.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Architecture</text>
+			<text x="222.394" y="27" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">Arquitectura</text>
+			<rect x="300" y="14" width="95" height="49" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="328.45125" y="44" style="font-family: ArchivoB; font-size: 9.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Planning</text>
+			<text x="319.307" y="27" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">Planeamiento</text>
+			<rect x="400" y="14" width="95" height="49" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="427.8955" y="44" style="font-family: ArchivoB; font-size: 9.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Products</text>
+			<text x="426.336" y="27" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">Productos</text>
+		</g>
+	</g>
+</svg>

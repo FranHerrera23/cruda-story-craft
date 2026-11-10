@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="Lissoni &amp; Partners reúne en su presentación Lissoni Casal Ribeiro, Lissoni Associati, Lissoni Design y Lissoni Graphx." width="495" height="116" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 116" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="116"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-116)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="170.6105" y="96" style="font-family: ArchivoB; font-size: 19px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,192) scale(1,-1)">Lissoni &amp; Partners</text>
+			<path d="M 247,84 L 60,64 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14;"/>
+			<rect x="0" y="13" width="120" height="47" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="42.7355" y="43" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,86) scale(1,-1)">Lissoni</text>
+			<text x="30.22" y="26" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,52) scale(1,-1)">Casal Ribeiro</text>
+			<path d="M 247,84 L 185,64 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14;"/>
+			<rect x="125" y="13" width="120" height="47" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="167.7355" y="43" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,86) scale(1,-1)">Lissoni</text>
+			<text x="164.585" y="26" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,52) scale(1,-1)">Associati</text>
+			<path d="M 247,84 L 310,64 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14;"/>
+			<rect x="250" y="13" width="120" height="47" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="292.7355" y="43" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,86) scale(1,-1)">Lissoni</text>
+			<text x="294.32" y="26" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,52) scale(1,-1)">Design</text>
+			<path d="M 247,84 L 435,64 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14;"/>
+			<rect x="375" y="13" width="120" height="47" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="417.7355" y="43" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,86) scale(1,-1)">Lissoni</text>
+			<text x="418.42" y="26" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,52) scale(1,-1)">Graphx</text>
+		</g>
+	</g>
+</svg>

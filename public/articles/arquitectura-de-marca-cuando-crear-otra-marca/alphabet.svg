@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="Alphabet es la empresa matriz; Google es parte de ella y conserva su nombre frente al usuario." width="495" height="96" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 96" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="96"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-96)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="16" width="215" height="68" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<rect x="280" y="16" width="215" height="68" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="69.057" y="57" style="font-family: ArchivoB; font-size: 19px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,114) scale(1,-1)">Alphabet</text>
+			<text x="71.975" y="34" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,68) scale(1,-1)">Empresa matriz</text>
+			<text x="355.9825" y="57" style="font-family: ArchivoB; font-size: 19px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,114) scale(1,-1)">Google</text>
+			<text x="326.755" y="34" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,68) scale(1,-1)">Empresa y marca conocida</text>
+			<path d="M 220,50 L 275,50 Z" style="stroke: rgb(31%,31%,31%); stroke-linecap: butt; stroke-width: 1;"/>
+			<text x="232.516" y="62" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,124) scale(1,-1)">controla</text>
+		</g>
+	</g>
+</svg>

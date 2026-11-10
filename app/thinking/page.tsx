@@ -1,3 +1,4 @@
+import libraryArticles from '@/content/articles.json'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { allEssays } from '@/content/essays'
@@ -129,12 +130,12 @@ function metaText(row: Row, viewLang: Lang): string {
 
 const BASE_TITLE = 'Narrative Sparring · CRUDA'
 const BASE_DESC =
-  'One essay a week on the stories that shape business and culture. The full essay lives here; the email is how you know it went up.'
+  'Ensayos y artículos de CRUDA sobre marca, estrategia y comunicación. Criterio y casos para decisiones de negocio.'
 
 export async function generateMetadata({
   searchParams,
 }: {
-  searchParams?: Promise<{ lang?: string }>
+  searchParams?: Promise<{ lang?: string; type?: string }>
 }): Promise<Metadata> {
   const params = (await searchParams) ?? {}
   const lang: Lang = params.lang === 'es' ? 'es' : 'en'
@@ -177,13 +178,14 @@ const SCHEMA = collectionPageSchema({
 export default async function ThinkingPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ lang?: string }>
+  searchParams?: Promise<{ lang?: string; type?: string }>
 }) {
   const params = (await searchParams) ?? {}
   const viewLang: Lang = params.lang === 'es' ? 'es' : 'en'
 
+  const viewType = params.type === 'articles' ? 'articles' : params.type === 'essays' ? 'essays' : 'all'
   const rows = ALL_ROWS.filter(r => r.language === viewLang)
-  const [featured, ...rest] = rows
+  const [featured, ...rest] = viewType === 'articles' ? [] : rows
 
   return (
     <div className="thinking thinking--v2" data-lang={viewLang}>
@@ -240,6 +242,15 @@ export default async function ThinkingPage({
         </Link>
       </nav>
 
+      <nav className="t2-lang" aria-label="Tipo de publicación">
+        <Link href="/thinking" aria-current={viewType === 'all' ? 'page' : undefined}>Todo</Link>
+        <Link href={`/thinking?type=essays&lang=${viewLang}`} aria-current={viewType === 'essays' ? 'page' : undefined}>Ensayos</Link>
+        <Link href="/thinking?type=articles&lang=es" aria-current={viewType === 'articles' ? 'page' : undefined}>Artículos</Link>
+      </nav>
+      {viewType !== 'essays' && <section className="t2-list" aria-labelledby="library-articles">
+        <h2 id="library-articles" className="t2-list__h">Artículos · Estrategia de marca y comunicación</h2>
+        <ul className="t2-list__ul">{libraryArticles.map(a => <li key={a.slug} className="t2-list__row"><Link className="t2-list__link" href={`/thinking/${a.slug}`}><span className="t2-list__date">10 de noviembre de 2026</span><span className="t2-list__body"><span className="t2-list__title">{a.title}</span><span className="t2-list__dek">{a.description}</span></span><span className="t2-list__meta">Español · {a.minutes} min</span></Link></li>)}</ul>
+      </section>}
       {/* ============ Latest · imagen 16:9 + meta/título/dek ============ */}
       {featured && (
         <section className="t2-latest">

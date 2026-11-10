@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="495" height="131" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 131" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="131"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-131)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="15" width="120" height="101" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="30.9159" y="94" style="font-family: ArchivoB; font-size: 8.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,188) scale(1,-1)">COMPRADOR</text>
+			<text x="39.425" y="64" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,128) scale(1,-1)">No frenar</text>
+			<text x="30.134999999999998" y="46" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">la producción</text>
+			<rect x="125" y="15" width="120" height="101" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="167.1998" y="94" style="font-family: ArchivoB; font-size: 8.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,188) scale(1,-1)">OFERTA</text>
+			<text x="160.93" y="64" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,128) scale(1,-1)">Respuesta</text>
+			<text x="159.215" y="46" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">y repuestos</text>
+			<rect x="250" y="15" width="120" height="101" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="283.6477" y="94" style="font-family: ArchivoB; font-size: 8.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,188) scale(1,-1)">OPERACIÓN</text>
+			<text x="294.16" y="64" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,128) scale(1,-1)">Equipo</text>
+			<text x="287.02" y="46" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">y recursos</text>
+			<rect x="375" y="15" width="120" height="101" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="400.0869" y="94" style="font-family: ArchivoB; font-size: 8.7px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,188) scale(1,-1)">COMUNICACIÓN</text>
+			<text x="416.355" y="64" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,128) scale(1,-1)">Pruebas</text>
+			<text x="410.09" y="46" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">del servicio</text>
+		</g>
+	</g>
+</svg>

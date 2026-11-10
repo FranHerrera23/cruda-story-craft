@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="495" height="150" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 150" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="150"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-150)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="16" y="8" width="105" height="132" rx="12" ry="12" style="stroke: rgb(31%,31%,31%); stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="41.416" y="109" style="font-family: ArchivoB; font-size: 16px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,218) scale(1,-1)">LIQUID</text>
+			<text x="40.519999999999996" y="89" style="font-family: ArchivoB; font-size: 16px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,178) scale(1,-1)">DEATH</text>
+			<text x="50.653999999999996" y="40" style="font-family: ArchivoB; font-size: 12px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,80) scale(1,-1)">AGUA</text>
+			<text x="155" y="120" style="font-family: ArchivoB; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,240) scale(1,-1)">NOMBRE</text>
+			<text x="155" y="103" style="font-family: Archivo; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,206) scale(1,-1)">Muerte líquida: una contradicción.</text>
+			<text x="155" y="76" style="font-family: ArchivoB; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,152) scale(1,-1)">PRESENTACIÓN</text>
+			<text x="155" y="59" style="font-family: Archivo; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,118) scale(1,-1)">Una actitud asociada a otras bebidas.</text>
+			<text x="155" y="32" style="font-family: ArchivoB; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,64) scale(1,-1)">CONTENIDO</text>
+			<text x="155" y="15" style="font-family: Archivo; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,30) scale(1,-1)">Agua: el producto inicial.</text>
+		</g>
+	</g>
+</svg>

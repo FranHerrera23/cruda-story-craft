@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import EssayLayout from '@/components/EssayLayout'
 import { allEssays } from '@/content/essays'
+import articles from '@/content/articles.json'
+import LibraryArticle from '@/components/LibraryArticle'
 
 const BASE = 'https://www.thecruda.com'
 
@@ -11,13 +13,20 @@ const BASE = 'https://www.thecruda.com'
    URLs sobre /thinking/. */
 
 export function generateStaticParams() {
-  return allEssays.map(e => ({ slug: e.slug }))
+  return [...allEssays, ...articles].map(e => ({ slug: e.slug }))
 }
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> },
 ): Promise<Metadata> {
   const { slug } = await params
+  const article = articles.find(a => a.slug === slug)
+  if (article) return {
+    title: article.seoTitle, description: article.description,
+    alternates: { canonical: `${BASE}/thinking/${slug}` },
+    openGraph: { title: article.title, description: article.description, type: 'article', locale: 'es_LA', url: `${BASE}/thinking/${slug}`, publishedTime: article.publishedAt, modifiedTime: article.publishedAt, images: [`${BASE}/logo.png`] },
+    twitter: { card: 'summary_large_image', title: article.title, description: article.description, images: [`${BASE}/logo.png`] },
+  }
   const es = allEssays.find(e => e.slug === slug)
   if (!es) return {}
   const modified = es.updatedAt || es.publishedAt
@@ -72,6 +81,8 @@ export default async function ThinkingSlugPage(
   { params }: { params: Promise<{ slug: string }> },
 ) {
   const { slug } = await params
+  const article = articles.find(a => a.slug === slug)
+  if (article) return <LibraryArticle article={article} />
   const es = allEssays.find(e => e.slug === slug)
   if (!es) notFound()
   return <EssayLayout es={es} />

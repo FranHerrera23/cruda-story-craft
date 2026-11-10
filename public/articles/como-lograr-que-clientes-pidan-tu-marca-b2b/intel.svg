@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="495" height="132" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 132" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="132"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-132)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="50" width="153" height="62" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.4; fill: rgb(95%,95%,94%); fill-rule: evenodd; stroke-opacity: 0.14;"/>
+			<text x="63.801" y="89" style="font-family: ArchivoB; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,178) scale(1,-1)">INTEL</text>
+			<text x="39.696" y="69" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,138) scale(1,-1)">Vende procesadores</text>
+			<rect x="171" y="50" width="153" height="62" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.4; fill: rgb(95%,95%,94%); fill-rule: evenodd; stroke-opacity: 0.14;"/>
+			<text x="204.8355" y="89" style="font-family: ArchivoB; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,178) scale(1,-1)">DELL / HP / LENOVO</text>
+			<text x="200.924" y="69" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,138) scale(1,-1)">Integran y venden equipos</text>
+			<rect x="342" y="50" width="153" height="62" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 0.4; fill: rgb(95%,95%,94%); fill-rule: evenodd; stroke-opacity: 0.14;"/>
+			<text x="368.541" y="89" style="font-family: ArchivoB; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,178) scale(1,-1)">PERSONA O EMPRESA</text>
+			<text x="375.604" y="69" style="font-family: Archivo; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,138) scale(1,-1)">Compra la computadora</text>
+			<path d="M 153,80 L 170,80 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="170 80, 165 83, 165 77" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="122.56625" y="122" style="font-family: Archivo; font-size: 7.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,244) scale(1,-1)">Venta de componentes</text>
+			<path d="M 324,80 L 341,80 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1;"/>
+			<polygon points="341 80, 336 83, 336 77" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(0%,0%,0%); fill-rule: evenodd;"/>
+			<text x="304.2575" y="122" style="font-family: Archivo; font-size: 7.5px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,244) scale(1,-1)">Venta del equipo</text>
+			<path d="M 0,32 L 495,32 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<text x="129.712" y="13" style="font-family: ArchivoB; font-size: 8px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,26) scale(1,-1)">QUIÉN COMPRA / QUIÉN USA / QUIÉN RECONOCE LA MARCA</text>
+		</g>
+	</g>
+</svg>

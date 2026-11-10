@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="Faena: hoteles para alojarse; Faena Residences para vivir; Faena Art para experiencias artísticas. El mapa representa una relación de nombre, no propiedad." width="495" height="120" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 120" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="120"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-120)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="208.0265" y="101" style="font-family: ArchivoB; font-size: 23px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,202) scale(1,-1)">FAENA</text>
+			<path d="M 247,88 L 79,68 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<rect x="0" y="16" width="159" height="48" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="43.492000000000004" y="46" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">Hoteles Faena</text>
+			<text x="60.825" y="29" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,58) scale(1,-1)">Alojarse</text>
+			<path d="M 247,88 L 247,68 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<rect x="168" y="16" width="159" height="48" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="201.4215" y="46" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">Faena Residences</text>
+			<text x="237.33" y="29" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,58) scale(1,-1)">Vivir</text>
+			<path d="M 247,88 L 415,68 Z" style="stroke: rgb(0%,0%,0%); stroke-linecap: butt; stroke-width: 1; stroke-opacity: 0.14; stroke-dasharray: 3, 3;"/>
+			<rect x="336" y="16" width="159" height="48" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="391.1685" y="46" style="font-family: ArchivoB; font-size: 11px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,92) scale(1,-1)">Faena Art</text>
+			<text x="385.885" y="29" style="font-family: Archivo; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,58) scale(1,-1)">Arte y cultura</text>
+		</g>
+	</g>
+</svg>

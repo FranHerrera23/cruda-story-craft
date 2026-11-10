@@ -1,3 +1,4 @@
+import articles from '@/content/articles.json'
 import { allClients } from '@/content/clients'
 import { allEssays } from '@/content/essays'
 import { selectedWork, allWork } from '@/content/work'
@@ -51,7 +52,11 @@ const HEADER = `# CRUDA
 
 > CRUDA is a communications company. We translate cultures into business.`
 
-const HUBS_SECTION = `## Pages
+const HUBS_SECTION = `## Artículos de estrategia de marca
+
+${articles.map(a => `- [${a.title}](${BASE}/thinking/${a.slug}): ${a.description}`).join('\n')}
+
+## Pages
 
 - [About CRUDA](${BASE}/about): CRUDA is a communications company. We translate cultures into business.
 - [Work](${BASE}/work): Nine founders. Six cities. Four countries.

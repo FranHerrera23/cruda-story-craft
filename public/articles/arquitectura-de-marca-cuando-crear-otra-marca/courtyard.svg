@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg role="img" aria-label="Courtyard aparece como identidad dominante, con by Marriott como respaldo visible." width="495" height="94" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 94" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="94"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-94)" style="clip-path: url(#clip)">
+		<g transform="">
+			<rect x="0" y="2" width="495" height="90" style="stroke: none; stroke-linecap: butt; stroke-width: 0.7; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="187.6005" y="51" style="font-family: ArchivoB; font-size: 27px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,102) scale(1,-1)">Courtyard</text>
+			<text x="216.7875" y="27" style="font-family: Archivo; font-size: 13px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,54) scale(1,-1)">by Marriott</text>
+		</g>
+	</g>
+</svg>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg
+  PUBLIC '-//W3C//DTD SVG 1.0//EN'
+  'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg width="495" height="112" preserveAspectRatio="xMinYMin meet" viewBox="0 0 495 112" xmlns="http://www.w3.org/2000/svg" version="1.0" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<title>...</title>
+	<desc>...</desc>
+	<clipPath id="clip">
+		<rect x="0" y="0" width="495" height="112"/>
+	</clipPath>
+	<g id="group" transform="scale(1,-1) translate(0,-112)" style="clip-path: url(#clip)">
+		<g transform="">
+			<text x="180.8135" y="94" style="font-family: ArchivoB; font-size: 19px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,188) scale(1,-1)">LIQUID DEATH</text>
+			<rect x="0" y="8" width="120" height="58" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="48.275" y="44" style="font-family: ArchivoB; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Agua</text>
+			<text x="46.446" y="25" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,50) scale(1,-1)">Origen</text>
+			<rect x="125" y="8" width="120" height="58" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="153.225" y="44" style="font-family: ArchivoB; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Gas y sabores</text>
+			<text x="159.4715" y="25" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,50) scale(1,-1)">Otra ocasión</text>
+			<rect x="250" y="8" width="120" height="58" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="296.15" y="44" style="font-family: ArchivoB; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Té frío</text>
+			<text x="286.645" y="25" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,50) scale(1,-1)">Otra bebida</text>
+			<rect x="375" y="8" width="120" height="58" style="stroke: none; stroke-linecap: butt; stroke-width: 1; fill: rgb(95%,95%,94%); fill-rule: evenodd;"/>
+			<text x="408.4" y="44" style="font-family: ArchivoB; font-size: 10px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,88) scale(1,-1)">Energéticas</text>
+			<text x="402.4155" y="25" style="font-family: Archivo; font-size: 9px;fill: rgb(0%,0%,0%); stroke:none;" transform="translate(0,50) scale(1,-1)">Nueva categoría</text>
+		</g>
+	</g>
+</svg>

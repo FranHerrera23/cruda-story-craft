@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
 import { allClientsV2 } from '@/content/clients-v2';
 import { allEssays } from '@/content/essays';
+import articles from '@/content/articles.json';
 import caseDates from '@/content/work/case-dates.json';
 import { MOMENTS } from '@/content/moments';
 
@@ -100,6 +101,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Karen sub-projects retirados del sitemap — cada page.tsx
     // declara robots.index:false y no corresponde re-invitarlos
     // al crawl desde acá (ver comentario superior).
+    ...articles.map(a => ({ url: `${BASE}/thinking/${a.slug}`, lastModified: new Date(a.publishedAt), changeFrequency: 'monthly' as const, priority: 0.8 })),
     // Thinking · F14b.1
     ...allEssays.map((e) => ({
       url: `${BASE}/thinking/${e.slug}`,

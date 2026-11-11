@@ -57,3 +57,24 @@
     gap: 14px;
   }
 }
+
+.library-article .kia-press-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.library-article .kia-press-pair img {
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+  background: #fbfbfb;
+  border: 1px solid #ddd;
+}
+.library-article .kia-press-pair p {
+  margin: 8px 0 0;
+  font-size: 15px;
+}
+@media (max-width: 600px) {
+  .library-article .kia-press-pair {
+    grid-template-columns: 1fr;
+  }
+}

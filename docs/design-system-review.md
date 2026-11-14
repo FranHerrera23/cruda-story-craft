@@ -20,6 +20,6 @@ Draft branch only; no production merge. This request's review stage takes preced
 
 ## Validation
 - Production build and TypeScript check.
-- Essay validation and parity through prepush.
+- Essay parity passed. The full prepush stops at an existing essay-check failure: emigrar-te-devuelve-el-lapiz uses a 2000×1333 hero (1.5 ratio), while its validator requires 16:9. Neither that source nor image is modified by this branch. Production build is run independently.
 - Browser: home, José, Karen, services, about, thinking and contact at 390, 768 and 1440 px; HTTP 200, no document horizontal overflow, no page errors.
 - Visual inspection of desktop/mobile hero, José opening and full client grid.

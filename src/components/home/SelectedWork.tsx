@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { findWork } from '@/content/work'
 import { industries } from '@/content/work/industries'
-import { ProjectFacts, workScope } from '@/components/ProjectFacts'
+import { workScope } from '@/components/ProjectFacts'
 import './selected-work.css'
 
 /* Home · SELECTED WORK · F58 · 27-oct · F59 revisado 27-oct.
@@ -180,15 +180,20 @@ function CardBody({ card }: { card: Card }) {
   const fallback = card.meta.split(' · ')
   const industry = industries[slug] || (card.name === 'BAUHOME' ? 'Luxury kitchen cabinets' : 'Yacht interiors')
   const company = work?.client.company || (card.name === 'Ryan Altman' ? 'M2Develop' : card.name === 'Marty Lowe' ? 'Marty Lowe' : card.name)
-  const location = work ? [work.place.city, work.place.country].filter(Boolean).join(', ') : card.name === 'Ryan Altman' ? undefined : fallback.at(-1)
+  const location = work ? work.place.city : card.name === 'Ryan Altman' ? undefined : fallback.at(-1)
+  const scope = work ? workScope(work) : []
   return (
     <>
       <div className="sw-card__m">
         <CardMedia card={card} />
       </div>
       <div className="sw-card__identity"><h3 className="sw-card__n">{card.name}{card.href && <span aria-hidden="true">↗</span>}</h3>
-      <p className="sw-card__meta">{company}</p></div>
-      <ProjectFacts industry={industry} location={location} scope={work ? workScope(work) : undefined} />
+      <p className="sw-card__meta">{[company !== card.name ? company : undefined, location].filter(Boolean).join(' · ')}</p></div>
+      <ul className="sw-card__tags" aria-label="Industry and scope">
+        <li className="sw-card__industry">{industry}</li>
+        {scope.slice(0, 2).map(item => <li key={item}>{item}</li>)}
+        {scope.length > 2 && <li className="sw-card__more" aria-label={`Also: ${scope.slice(2).join(', ')}`} title={scope.slice(2).join(' · ')}>+{scope.length - 2}</li>}
+      </ul>
     </>
   )
 }

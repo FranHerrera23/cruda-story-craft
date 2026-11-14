@@ -61,3 +61,15 @@ body .ncta__input {min-height:48px}
 }
 @media(max-width:767px){.hero-break{display:none}}
 body .mannheim-case .mtc-brief {padding:24px}
+
+/* Portfolio browsing: compact summary; the full facts live in each case. */
+.sw .sw-inner {max-width:1440px;margin-inline:auto}
+.sw .sw-card__m {aspect-ratio:3 / 2}
+.sw .sw-card__identity {padding:16px 0 12px;min-height:0}
+.sw .sw-card__n {font-size:clamp(21px,1.7vw,26px);font-weight:750;letter-spacing:-.035em;margin-bottom:5px}
+.sw .sw-card__meta {font-size:13px;line-height:1.5}
+.sw-card__tags {display:flex;flex-wrap:wrap;align-content:flex-start;gap:6px;list-style:none;padding:0;margin:0}
+.sw-card__tags li {font-size:11px;line-height:1.45;color:var(--brand-muted);padding:3px 7px;border:1px solid var(--brand-line);max-width:100%;overflow-wrap:anywhere}
+.sw-card__tags .sw-card__industry {color:var(--brand-ink);background:rgba(24,27,23,.045)}
+.sw-card__tags .sw-card__more {border-color:transparent;padding-inline:2px}
+@media(min-width:1200px){.sw .sw-grid{row-gap:56px}}

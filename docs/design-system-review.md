@@ -23,3 +23,6 @@ Draft branch only; no production merge. This request's review stage takes preced
 - Essay parity passed. The full prepush stops at an existing essay-check failure: emigrar-te-devuelve-el-lapiz uses a 2000×1333 hero (1.5 ratio), while its validator requires 16:9. Neither that source nor image is modified by this branch. Production build is run independently.
 - Browser: home, José, Karen, services, about, thinking and contact at 390, 768 and 1440 px; HTTP 200, no document horizontal overflow, no page errors.
 - Visual inspection of desktop/mobile hero, José opening and full client grid.
+
+## Portfolio refinement — Wolff Olins reference
+Home cards now use 3:2 images (one third less height than square at equal width), smaller names, one company/city line, and compact industry/scope labels. Show two scope disciplines plus a count of remaining disciplines; the case retains the complete facts. Labels are descriptive, not separate buttons. The portfolio width caps at 1440px.

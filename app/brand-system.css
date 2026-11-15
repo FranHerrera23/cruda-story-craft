@@ -131,3 +131,6 @@ body .f55-hero__in {padding-inline:clamp(28px,4vw,40px)}
 body .services-open .plane__in {padding-top:calc(var(--nav-h,80px) + 64px)}
 /* The expanded pricing index scrolls naturally on shorter laptop screens. */
 body .services-stack .services-open {position:relative}
+/* On paper, monetary figures use ink; orange remains a gesture, not low-contrast text. */
+body .services-stack .plane--paper .cell__fee,
+body .translated-data .cell__fee {color:var(--brand-ink)}

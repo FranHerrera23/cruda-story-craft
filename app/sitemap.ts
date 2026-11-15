@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { allClients } from '@/content/clients';
 import { allClientsV2 } from '@/content/clients-v2';
 import { allEssays } from '@/content/essays';
-import articles from '@/content/articles.json';
+import { libraryArticles as articles } from '@/content/library-articles';
 import caseDates from '@/content/work/case-dates.json';
 import { MOMENTS } from '@/content/moments';
 

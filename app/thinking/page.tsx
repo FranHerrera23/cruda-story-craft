@@ -1,5 +1,5 @@
 import LibraryBrowser from '@/components/LibraryBrowser'
-import libraryArticles from '@/content/articles.json'
+import { libraryArticles } from '@/content/library-articles'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { allEssays } from '@/content/essays'
@@ -225,7 +225,7 @@ export default async function ThinkingPage({
 
       <LibraryBrowser initialType={params.type === 'articles' || params.type === 'essays' ? params.type : 'all'} initialLang={params.lang === 'es' || params.lang === 'en' ? params.lang : 'all'} rows={[
         ...ARTICLE_ROWS.map(r => ({...r,kind:'essays' as const})),
-        ...libraryArticles.map(a=>({slug:a.slug,href:`/thinking/${a.slug}`,title:a.title,dek:a.description,language:'es',readingMinutes:a.minutes,publishedAt:a.publishedAt,kind:'articles' as const})),
+        ...libraryArticles.map(a=>({slug:a.slug,href:`/thinking/${a.slug}`,title:a.title,dek:a.description,language:a.language,translationOf:a.translationOf,readingMinutes:a.minutes,publishedAt:a.publishedAt,kind:'articles' as const})),
       ].sort((a,b)=>b.publishedAt.localeCompare(a.publishedAt))} />
 
       {/* ============ Cierre negro ============ */}

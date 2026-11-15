@@ -15,7 +15,7 @@ export default function HomeHero() {
   return (
     <section className="home-hero on-black" id="home-hero">
       <div className="home-hero__in">
-        <h1 className="home-hero__h">Famous to the few who matter.</h1>
+        <h1 className="home-hero__h">Famous to the<br className="hero-break" /> <span className="brand-circle">few<svg viewBox="0 0 240 130" preserveAspectRatio="none" aria-hidden="true"><path d="M228 30C183-4 69-3 23 31C-20 64 12 119 78 123C146 130 233 111 235 65C238 18 129-10 53 14C6 29-5 66 12 91" /></svg></span> who matter.</h1>
         <p className="home-hero__lede">
           We find what makes you exceptional and put it in front of the people who should know.
         </p>

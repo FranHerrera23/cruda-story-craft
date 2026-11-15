@@ -1,4 +1,6 @@
 import Image from 'next/image'
+import { ProjectFacts, workScope } from './ProjectFacts'
+import { industries } from '@/content/work/industries'
 import Link from 'next/link'
 import type React from 'react'
 import { existsSync } from 'node:fs'
@@ -320,7 +322,8 @@ export default function WorkLayout({ w }: { w: Work }) {
         </Link>
         <h1 className="pen-h1">{w.client.name}</h1>
         <p className="pen-descriptor">{w.title}</p>
-        <p className="pen-tags">{buildTags(w)}</p>
+        <p className="project-company">{w.client.company}</p>
+        <ProjectFacts industry={industries[w.slug] || w.sector} location={[w.place.city, w.place.country].filter(Boolean).join(', ')} scope={workScope(w)} />
       </header>
 
       {/* F33 · Hero 16:9 · siempre landscape · cols 1–12.

@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
-import { Archivo, Instrument_Serif } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 import Nav from "@/components/Nav";
 import SiteFooter from "@/components/SiteFooter";
 import "@/components/case-study.css";
+import "./brand-system.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import PageShell from "@/components/PageShell";
 import RevealScroll from "@/components/RevealScroll";
@@ -91,27 +92,18 @@ const ORG_SCHEMA = {
   sameAs: ORG_SAMEAS,
 } as const
 
-/* Instrument Serif — display face de las páginas-declaración (home,
-   índices de /resources, /contact, /architecture-design/about).
-   Solo weight 400. next/font la self-hostea: cero request externo,
-   cero layout shift. Se expone como CSS variable --font-instrument-serif
-   para que los tokens --serif la consuman via var(). */
-const instrumentSerif = Instrument_Serif({
-  subsets: ['latin'],
-  weight: '400',
+/* Legacy font variable points to the approved Archivo family. */
+const instrumentSerif = localFont({
+  src: '../public/fonts/Archivo.ttf',
+  weight: '100 900',
   display: 'swap',
   variable: '--font-instrument-serif',
 });
 
-/* Archivo — sans/UI face del sistema. Se usa en H1 de piezas
-   (essay, case study, sports, our-founder), H2/H3 de todo, body y
-   cards. Pesos declarados en CSS: 400, 500, 600, 700. No cargamos
-   800/900 porque nada los pide — si algún componente los declarara
-   sin cargarlos, el browser sintetizaría el bold y se vería mal.
-   Se expone como --font-archivo para que --sans lo consuma. */
-const archivo = Archivo({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+/* Locally hosted variable Archivo: real weights for UI and display. */
+const archivo = localFont({
+  src: '../public/fonts/Archivo.ttf',
+  weight: '100 900',
   display: 'swap',
   variable: '--font-archivo',
 });

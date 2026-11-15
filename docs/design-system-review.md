@@ -1,0 +1,51 @@
+# CRUDA — web system review / 14 November 2026
+
+Reference: approved CRUDA-Design-System-Proposal.html and the subsequent structured project facts revision.
+
+## Implementation
+- Archivo variable font hosted locally, including true heavy display weights. Legacy Instrument Serif variable resolves to Archivo.
+- Shared carbon, cream, orange, rules, readable metadata and focus treatments in app/brand-system.css.
+- Home hero keeps existing wording and subscription, with the intentional hand-drawn circle around “few”.
+- Selected work keeps current images, destinations and order. Name/company, industry/location and scope are separated. Scope is always visible.
+- ProjectFacts component shares metadata layout between home and existing case pages. Scope labels summarize actual deliverables, not editorial titles.
+- José's approved article retains its text and reading structure. Its facts row and typography adopt the new system.
+- Existing other case narratives and page composers are retained; their opening metadata adopts the shared system. Full editorial reconstruction to José's narrative format is still separate from this visual pass.
+- Existing service prices, forms, routing and articles retained. Presentation and Instagram work waits for approval of this web version.
+
+## Missing information
+Ryan Altman location and scope, Marty Lowe scope and BAUHOME scope are omitted where the source does not specify them. No invented engagements or locations.
+
+## Review
+Draft branch only; no production merge. This request's review stage takes precedence over the older automatic merge policy in docs/autonomy.md.
+
+## Validation
+- Production build and TypeScript check.
+- Essay parity passed. The full prepush stops at an existing essay-check failure: emigrar-te-devuelve-el-lapiz uses a 2000×1333 hero (1.5 ratio), while its validator requires 16:9. Neither that source nor image is modified by this branch. Production build is run independently.
+- Browser: home, José, Karen, services, about, thinking and contact at 390, 768 and 1440 px; HTTP 200, no document horizontal overflow, no page errors.
+- Visual inspection of desktop/mobile hero, José opening and full client grid.
+
+## Portfolio refinement — Wolff Olins reference
+Home cards now use 3:2 images (one third less height than square at equal width), smaller names, one company/city line, and compact industry/scope labels. Show two scope disciplines plus a count of remaining disciplines; the case retains the complete facts. Labels are descriptive, not separate buttons. The portfolio width caps at 1440px.
+
+## Full-site audit · 15 November 2026
+
+Reviewed the published primary navigation, service detail, booking flow, Thinking,
+all seven business articles and all eight linked client cases. Main has been
+merged through 3c94002, including the seventh article and English editions.
+
+- About: remove the 820px bottom-aligned hero; reserve fixed-nav space and retain
+  readable mobile gutters. Cream/carbon surfaces and weighted headings.
+- Services: 32–48px prices in the index (36px mobile), distinct secondary duration,
+  stronger service titles and detail fees. Opening scrolls naturally so a shorter
+  screen cannot trap the final price; sections accommodate their content.
+- Contact: prominent $950 investment, coherent heading and buttons, tighter
+  spacing. The existing mailto form says “Open email” accurately; no backend or
+  delivery claim added. Required-field validation verified without sending.
+- Thinking, Translated and the booking flow share the palette; Translated fee and
+  heading adopt the same scale. Existing prices and scope are preserved.
+
+Validation: production build, TypeScript and essay parity pass. Browser audit of
+23 routes at 390/768/1440px: all 69 checks return 200 without horizontal overflow
+or heading/nav overlap. Visual review of key mobile pages and all seven Services
+sections, including normal-motion scrolling. Existing unrelated essay image-ratio
+validation limitation remains as documented above. No production deployment.

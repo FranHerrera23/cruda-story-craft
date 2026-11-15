@@ -13,7 +13,7 @@ import Link from 'next/link'
 
    Estructura:
    1 · h1 "Book a sparring session." + regla naranja única.
-   2 · lede "Two conversations and a written diagnosis. $950."
+   2 · lede "Two conversations and a written diagnosis."
    3 · dos columnas:
        - izquierda: link "Book a sparring session →" a /sparring-session
        - derecha: WRITE TO US (form Name/Email/What are you trying to do?)
@@ -22,7 +22,7 @@ import Link from 'next/link'
    Form (sin cambios desde F31):
    - Name (required), Email (required), What are you trying to do? (opcional).
    - Envío por mailto con los tres campos en el cuerpo.
-   - Send it → en --ink. Si falta uno obligatorio, naranja 2px + "Required". */
+   - Open email → en --ink. Si falta uno obligatorio, naranja 2px + "Required". */
 
 const EMAIL_RE = /.+@.+\..+/
 
@@ -62,8 +62,9 @@ export default function ContactContent() {
         <h1 className="contact-name">Book a sparring session.</h1>
         <div className="contact-rule" />
         <p className="contact-lede">
-          Two conversations and a written diagnosis. $950.
+          Two conversations and a written diagnosis.
         </p>
+        <p className="contact-price"><span>$950</span><small>USD · Narrative Sparring Session</small></p>
       </section>
 
       {/* 02 · DOS COLUMNAS · link a Narrative Sparring Session + form */}
@@ -113,7 +114,7 @@ export default function ContactContent() {
             </label>
 
             <button type="button" className="contact-send" onClick={submit}>
-              Send it →
+              Open email →
             </button>
           </div>
         </div>

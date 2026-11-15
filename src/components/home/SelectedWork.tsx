@@ -1,4 +1,7 @@
 import Link from 'next/link'
+import { findWork } from '@/content/work'
+import { industries } from '@/content/work/industries'
+import { workScope } from '@/components/ProjectFacts'
 import './selected-work.css'
 
 /* Home · SELECTED WORK · F58 · 27-oct · F59 revisado 27-oct.
@@ -148,29 +151,6 @@ const CARDS: Card[] = [
   },
 ]
 
-/* ServiceLine · slot con altura reservada de 1 línea (10px · 1.35).
-   El texto entra desde abajo en hover; el slot NO cambia altura, por
-   lo que el layout de la card queda fijo. */
-function ServiceLine({ service }: { service?: Door[] }) {
-  if (!service || service.length === 0) return null
-  return (
-    <span className="sw-service-slot">
-      <span className="sw-service">{service.join(' · ')}</span>
-    </span>
-  )
-}
-
-function FewBlock({ few }: { few?: string }) {
-  if (!few) return null
-  return (
-    <div className="sw-card__few">
-      <div className="sw-card__few-rule" aria-hidden="true" />
-      <p className="sw-card__few-label">Their few</p>
-      <p className="sw-card__few-text">{few}</p>
-    </div>
-  )
-}
-
 function CardMedia({ card }: { card: Card }) {
   if (card.imageSrc) {
     return (
@@ -195,16 +175,25 @@ function CardMedia({ card }: { card: Card }) {
 }
 
 function CardBody({ card }: { card: Card }) {
+  const slug = card.href?.split('/').pop() || ''
+  const work = findWork(slug)
+  const fallback = card.meta.split(' · ')
+  const industry = industries[slug] || (card.name === 'BAUHOME' ? 'Luxury kitchen cabinets' : 'Yacht interiors')
+  const company = work?.client.company || (card.name === 'Ryan Altman' ? 'M2Develop' : card.name === 'Marty Lowe' ? 'Marty Lowe' : card.name)
+  const location = work ? work.place.city : card.name === 'Ryan Altman' ? undefined : fallback.at(-1)
+  const scope = work ? workScope(work) : []
   return (
     <>
       <div className="sw-card__m">
         <CardMedia card={card} />
       </div>
-      <h3 className="sw-card__n">{card.name}</h3>
-      <p className="sw-card__meta">{card.meta}</p>
-      <p className="sw-card__desc">{card.description}</p>
-      <FewBlock few={card.few} />
-      <ServiceLine service={card.service} />
+      <div className="sw-card__identity"><h3 className="sw-card__n">{card.name}{card.href && <span aria-hidden="true">↗</span>}</h3>
+      <p className="sw-card__meta">{[company !== card.name ? company : undefined, location].filter(Boolean).join(' · ')}</p></div>
+      <ul className="sw-card__tags" aria-label="Industry and scope">
+        <li className="sw-card__industry">{industry}</li>
+        {scope.slice(0, 2).map(item => <li key={item}>{item}</li>)}
+        {scope.length > 2 && <li className="sw-card__more" aria-label={`Also: ${scope.slice(2).join(', ')}`} title={scope.slice(2).join(' · ')}>+{scope.length - 2}</li>}
+      </ul>
     </>
   )
 }

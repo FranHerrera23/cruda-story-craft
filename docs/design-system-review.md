@@ -26,3 +26,26 @@ Draft branch only; no production merge. This request's review stage takes preced
 
 ## Portfolio refinement — Wolff Olins reference
 Home cards now use 3:2 images (one third less height than square at equal width), smaller names, one company/city line, and compact industry/scope labels. Show two scope disciplines plus a count of remaining disciplines; the case retains the complete facts. Labels are descriptive, not separate buttons. The portfolio width caps at 1440px.
+
+## Full-site audit · 15 November 2026
+
+Reviewed the published primary navigation, service detail, booking flow, Thinking,
+all seven business articles and all eight linked client cases. Main has been
+merged through 3c94002, including the seventh article and English editions.
+
+- About: remove the 820px bottom-aligned hero; reserve fixed-nav space and retain
+  readable mobile gutters. Cream/carbon surfaces and weighted headings.
+- Services: 32–48px prices in the index (36px mobile), distinct secondary duration,
+  stronger service titles and detail fees. Opening scrolls naturally so a shorter
+  screen cannot trap the final price; sections accommodate their content.
+- Contact: prominent $950 investment, coherent heading and buttons, tighter
+  spacing. The existing mailto form says “Open email” accurately; no backend or
+  delivery claim added. Required-field validation verified without sending.
+- Thinking, Translated and the booking flow share the palette; Translated fee and
+  heading adopt the same scale. Existing prices and scope are preserved.
+
+Validation: production build, TypeScript and essay parity pass. Browser audit of
+23 routes at 390/768/1440px: all 69 checks return 200 without horizontal overflow
+or heading/nav overlap. Visual review of key mobile pages and all seven Services
+sections, including normal-motion scrolling. Existing unrelated essay image-ratio
+validation limitation remains as documented above. No production deployment.

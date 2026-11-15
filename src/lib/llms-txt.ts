@@ -1,4 +1,4 @@
-import articles from '@/content/articles.json'
+import { libraryArticles as articles } from '@/content/library-articles'
 import { allClients } from '@/content/clients'
 import { allEssays } from '@/content/essays'
 import { selectedWork, allWork } from '@/content/work'

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import EssayLayout from '@/components/EssayLayout'
 import { allEssays } from '@/content/essays'
-import articles from '@/content/articles.json'
+import { libraryArticles as articles, articleTranslations } from '@/content/library-articles'
 import LibraryArticle from '@/components/LibraryArticle'
 
 const BASE = 'https://www.thecruda.com'
@@ -23,8 +23,13 @@ export async function generateMetadata(
   const article = articles.find(a => a.slug === slug)
   if (article) return {
     title: article.seoTitle, description: article.description,
-    alternates: { canonical: `${BASE}/thinking/${slug}` },
-    openGraph: { title: article.title, description: article.description, type: 'article', locale: 'es_LA', url: `${BASE}/thinking/${slug}`, publishedTime: article.publishedAt, modifiedTime: article.publishedAt, images: [`${BASE}/logo.png`] },
+    alternates: {
+      canonical: `${BASE}/thinking/${slug}`,
+      languages: Object.fromEntries(articleTranslations(article).map(entry =>
+        [entry.language, `${BASE}/thinking/${entry.slug}`],
+      )),
+    },
+    openGraph: { title: article.title, description: article.description, type: 'article', locale: article.language === 'en' ? 'en_US' : 'es_LA', url: `${BASE}/thinking/${slug}`, publishedTime: article.publishedAt, modifiedTime: article.publishedAt, images: [`${BASE}/logo.png`] },
     twitter: { card: 'summary_large_image', title: article.title, description: article.description, images: [`${BASE}/logo.png`] },
   }
   const es = allEssays.find(e => e.slug === slug)

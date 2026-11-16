@@ -13,12 +13,56 @@ const HULL_DOC = "https://docs.google.com/document/d/1xCqW1jSI1VBKX9ShYGUJIXKf0k
 const CAROUSELS = "https://drive.google.com/drive/u/0/folders/11DVJ8tmZWNaZ_LM97w65k0hUi-7xFtJU";
 const RYAN_LI = "https://www.linkedin.com/in/ryanaltman/recent-activity/all/";
 
+const ARTICLE_DRAFTS = [
+  ["B01", "Can you change the interior of a yacht before making it yours?"],
+  ["B02", "Choosing between yacht styling, an interior refresh, and a refit"],
+  ["B03", "When to involve an interior designer in a new yacht build"],
+  ["B04", "What belongs in a yacht interior design budget"],
+  ["B05", "How to choose a yacht interior designer for the work you need"],
+  ["B06", "How a yacht interior partner can support a broker beyond the sale"],
+  ["B07", "What yacht interior procurement involves after a selection is approved"],
+  ["B08", "Planning a yacht interior project with the captain"],
+  ["M01", "How to compare yacht interiors after a boat show"],
+  ["M02", "Preparing a yacht interior for a private viewing or event"],
+  ["M03", "How to brief a yacht interior designer around the way you live"],
+  ["M04", "What a yacht interior rendering can tell you before work begins"],
+] as const;
+
+function articleReviewItems() {
+  let driveIds: Record<string, unknown>;
+  try {
+    driveIds = JSON.parse(process.env.M2D_ARTICLE_REVIEW_DRIVE_IDS || "{}");
+  } catch {
+    return [];
+  }
+  return ARTICLE_DRAFTS.flatMap(([code, title]) => {
+    const driveId = driveIds?.[code];
+    if (typeof driveId !== "string" || !/^[\w-]{20,}$/.test(driveId)) return [];
+    const series = code.startsWith("B") ? "Build" : "Monthly · Oct 20 to Nov 20";
+    return [{
+      id: code === "B06" ? "brokers" : `article-${code.toLowerCase()}`,
+      channel: "Website",
+      kind: "Article",
+      series,
+      title,
+      owner: "Ryan",
+      status: "Needs approval",
+      version: 1,
+      excerpt: "Open the Word draft to read the full article. Approve the draft or request changes here.",
+      why: "First editorial draft for your review.",
+      assets: [{ label: "Read the Word draft", href: `https://drive.google.com/file/d/${driveId}/view` }],
+    }];
+  });
+}
+
+const articleReviews = articleReviewItems();
+
 export const m2d = {
   slug: "m2d",
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-10-28T11:45:00-04:00",
+  updatedAt: "2026-11-16T17:58:33Z",
   updatedBy: "Fran",
   objective: "Be known on the docks before the Fort Lauderdale boat show, 28 October to 1 November.",
   phase: "Running the machine since 15 October.",
@@ -27,13 +71,13 @@ export const m2d = {
     LinkedIn: { blurb: "Two posts a week through the show, in your voice. Five are live and one is waiting on you." },
     X: { blurb: "Same cadence as LinkedIn. Threads link back to the article on the site." },
     "Hull Notes": { blurb: "Your newsletter, sent from Beehiiv to your list. The show issue goes out the Friday of show week." },
-    Website: { label: "Site & articles", blurb: "Articles on m2develop.com/stories, the case studies, and what the site is still waiting on." },
+    Website: { label: "Site & articles", blurb: articleReviews.length ? "Read each Word draft, then approve it or request changes here." : "Articles on m2develop.com/stories and the case studies." },
   },
   scope: {
     title: "Build, agreed 31 August",
     lines: [
       { name: "Website", done: 1, total: 1, note: "Live at m2develop.com. Contact and Studio are done. Nothing outstanding." },
-      { name: "Articles", done: 4, total: 12, note: "Next: the boat show guide, waiting on your seven answers.", onClient: true },
+      { name: "Articles", done: 4, total: 12, note: "Four published. The remaining Build drafts are in Site & articles for review." },
       { name: "LinkedIn posts", done: 5, total: 12, note: "Five live. The plan for the rest comes with the calendar." },
       { name: "Instagram", done: 0, total: 14, note: "Fourteen carousels produced and in one folder for you. The six reels stay on hold.", onClient: true },
       { name: "Case studies", done: 0, total: 5, note: "One 45 minute call per project. You talk, we write.", onClient: true },
@@ -111,11 +155,11 @@ export const m2d = {
       askHow: "A reply by email or a ten-minute voice note is enough. Send it to fran@thecruda.com." },
     { id: "cases", channel: "Website", kind: "Input", title: "Five case studies: one 45 minute call per project", owner: "Ryan", status: "Needs input", version: 1,
       why: "The case studies and the next articles come from these conversations. You talk, we write. Open since 13 October.", askHow: "Reply to Fran with five times that work for you, one per project." },
-    { id: "brokers", channel: "Website", kind: "Article", title: "How can a yacht interior designer help brokers close more deals?", date: "2026-11-02", owner: "Fran", status: "Drafting", version: 1, why: "For the brokers who walk the show." },
-    { id: "a-two-oceans", channel: "Website", kind: "Article", title: "One yacht, two oceans", date: "2026-10-19", owner: null, status: "Live", version: 1, story: "two-oceans", assets: [{ label: "m2develop.com/stories", href: "https://www.m2develop.com/stories/" }], result: "Read at month end" },
-    { id: "a-own", channel: "Website", kind: "Article", title: "How do you make a luxury yacht feel like your own?", date: "2026-10-12", owner: null, status: "Live", version: 1, assets: [{ label: "m2develop.com/stories", href: "https://www.m2develop.com/stories/" }] },
-    { id: "a-studios", channel: "Website", kind: "Article", title: "Two Studios, One Vision", date: "2026-10-09", owner: null, status: "Live", version: 1, assets: [{ label: "m2develop.com/stories", href: "https://www.m2develop.com/stories/" }] },
-    { id: "a-letter", channel: "Website", kind: "Article", title: "Are you building this to be looked at, or to be lived in?", date: "2026-10-07", owner: null, status: "Live", version: 1, assets: [{ label: "m2develop.com/stories", href: "https://www.m2develop.com/stories/" }] },
+    ...articleReviews,
+    { id: "a-two-oceans", channel: "Website", kind: "Article", title: "One yacht, two oceans", date: "2026-10-19", owner: null, status: "Live", version: 1, story: "two-oceans", assets: [{ label: "Read the article", href: "https://www.m2develop.com/stories/one-yacht-two-oceans/" }], result: "Read at month end" },
+    { id: "a-own", channel: "Website", kind: "Article", title: "How do you make a luxury yacht feel like your own?", date: "2026-10-12", owner: null, status: "Live", version: 1, assets: [{ label: "Read the article", href: "https://www.m2develop.com/stories/make-a-yacht-feel-like-your-own/" }] },
+    { id: "a-studios", channel: "Website", kind: "Article", title: "Two Studios, One Vision", date: "2026-10-09", owner: null, status: "Live", version: 1, assets: [{ label: "Read the article", href: "https://www.m2develop.com/stories/two-studios-one-vision/" }] },
+    { id: "a-letter", channel: "Website", kind: "Article", title: "Are you building this to be looked at, or to be lived in?", date: "2026-10-07", owner: null, status: "Live", version: 1, assets: [{ label: "Read the article", href: "https://www.m2develop.com/stories/founder-letter/" }] },
 
   ],
 };

@@ -14,7 +14,7 @@
   const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const D = (iso) => new Date(iso.length === 10 ? iso + "T12:00:00" : iso);
   const fmt = (iso, o) => (iso ? D(iso).toLocaleDateString("en-US", o) : "");
-  const fmtT = (iso) => new Date(iso).toLocaleString("en-US", { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+  const fmtT = (iso) => new Date(iso).toLocaleString("en-US", { timeZone: "America/New_York", year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" });
   const isoDay = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
   const TODAY = isoDay(new Date());
   const TOMORROW = isoDay(new Date(Date.now() + 864e5));
@@ -252,7 +252,8 @@
     const its = items();
     const it = its.find((i) => i.id === id);
     if (!it) return overview();
-    const th = events.filter((e) => e.acct === acct && (e.itemId === id || (it.historyItemId && e.itemId === it.historyItemId)));
+    const historyIds = new Set([id, it.historyItemId, ...(it.historyItemIds || [])].filter(Boolean));
+    const th = events.filter(e => e.acct === acct && historyIds.has(e.itemId)).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at));
     const priorDecisions = th.filter(e => e.itemId === it.historyItemId && (e.kind === "approve" || e.kind === "changes"));
     const notes = th.filter((e) => e.kind === "note" || e.kind === "changes");
     const sibs = it.story ? its.filter((i) => i.story === it.story && i.id !== id) : [];
@@ -274,7 +275,10 @@
       </div>`;
     else panel = `<div class="done quiet"><p>${esc(stateText(it))}.</p></div>`;
     const files = (it.assets || []).filter((a) => a.go !== "item:" + id).map(aLink).filter(Boolean);
-    const verbN = { note: (e) => e.text, changes: (e) => `Requested changes: ${e.text}` };
+    const threadText = e => ({ note: e.text, changes: `Requested changes: ${e.text}`, approve: "Approved this version.", undo: "Withdrew an earlier decision. The original decision remains in this history.", sent: "Marked the requested input as sent." }[e.kind] || e.text || e.kind);
+    const thread = `<section class="comment-thread" aria-label="Comments and history"><h2>Comments and history</h2><p class="thread-help">Leave feedback on this piece. Comments and decisions stay here across revisions. Times are shown in Fort Lauderdale time.</p>
+      <div class="thread-entries">${th.length ? th.map(e => `<article class="msg"><header><b>${esc(e.who)}</b><time datetime="${esc(e.at)}">${esc(fmtT(e.at))}</time>${e.itemId !== id ? `<span>Earlier version</span>` : e.version ? `<span>Version ${esc(e.version)}</span>` : ""}</header><p>${esc(threadText(e))}</p></article>`).join("") : `<p class="empty">No comments yet. Start the conversation below.</p>`}</div>
+      <form data-note="${id}"><label for="n-${id}">Your comment</label><textarea id="n-${id}" rows="4" maxlength="4000" placeholder="What would you like us to keep, change or clarify?" required></textarea><button class="btn pri" type="submit">Post comment</button><p class="comment-status" role="status" aria-live="polite"></p></form></section>`;
     return shell(`ch:${it.channel}`, `
       <div class="itbar">
         <a href="#" class="back" data-go="${qi >= 0 ? "overview" : "ch:" + it.channel}"><svg viewBox="0 0 8 14" aria-hidden="true"><path d="M7 1L1 7l6 6"/></svg>${qi >= 0 ? "Overview" : esc(chLabel(it.channel))}</a>
@@ -286,6 +290,7 @@
             ${when(it, true) ? `<p class="goes">Goes out ${when(it, true).replace(/^(Today|Tomorrow)/, (m) => m.toLowerCase())}</p>` : ""}</header>
           ${it.kind === "Article" || it.kind === "Carousel" ? `<div class="review-file">${(it.assets || []).map(aLink).join("")}</div>` : ""}
           ${preview(it)}
+          ${thread}
         </div>
         <aside class="min0 side">
           ${panel}
@@ -293,10 +298,6 @@
           ${files.length ? `<div class="files">${files.join("")}</div>` : ""}
           ${sibs.length ? `<div class="sibs"><p class="lbl">Same story elsewhere</p>${sibs.map((s) => `<a href="#" class="sib" data-go="item:${s.id}"><span>${esc(s.title)}</span><small>${esc(chLabel(s.channel))}</small></a>`).join("")}</div>` : ""}
           ${priorDecisions.length ? `<p class="why">Earlier version history: ${priorDecisions.map(e => `${esc(e.who)} ${e.kind === "approve" ? "approved" : "requested changes"} on ${fmtT(e.at)}`).join("; ")}. This revised manuscript needs a new decision.</p>` : ""}
-          <details class="notes" ${notes.length ? "open" : ""}><summary>${notes.length ? `Notes · ${notes.length}` : "Add a note"}</summary>
-            ${notes.map((e) => `<div class="msg"><small><b>${esc(e.who === viewer ? "You" : e.who)}</b> · ${fmtT(e.at)}</small>${esc(verbN[e.kind](e))}</div>`).join("")}
-            <form data-note="${id}"><label class="sr" for="n-${id}">Note for Fran</label><textarea id="n-${id}" rows="2" placeholder="A note for Fran"></textarea><button class="btn ghost sm" type="submit">Add note</button></form>
-          </details>
           ${team() ? `<details class="notes"><summary>For CRUDA</summary><dl class="facts"><dt>Owner</dt><dd>${esc(it.owner || "None")}</dd><dt>Status</dt><dd>${esc(it.status)}</dd><dt>Version</dt><dd>${it.version}</dd>${it.eden ? `<dt>Eden</dt><dd>${esc(it.eden)}</dd>` : ""}<dt>History</dt><dd>${th.length ? th.map((e) => `${esc(e.who)} ${e.kind}, ${fmtT(e.at)}`).join("<br>") : "None"}</dd></dl></details>` : ""}
         </aside>
       </div>
@@ -436,10 +437,27 @@
     else if (e.key === "ArrowLeft" && qi > 0) qMove(qi - 1);
     else if (e.key === "Escape") toRoute(qi >= 0 ? "overview" : "ch:" + (items().find((i) => i.id === id) || {}).channel);
   });
-  document.addEventListener("submit", (e) => {
+  document.addEventListener("submit", async (e) => {
     e.preventDefault();
     const f = e.target;
-    if (f.dataset.note) { const v = f.querySelector("textarea").value.trim(); if (!v) { f.querySelector("textarea").focus(); return; } add(f.dataset.note, "note", v); render(false); toast("Note added."); return; }
+    if (f.dataset.note) {
+      const ta = f.querySelector("textarea"), button = f.querySelector("button"), status = f.querySelector(".comment-status");
+      const text = ta.value.trim(); if (!text) { ta.focus(); return; }
+      if (button.disabled) return;
+      button.disabled = true; ta.readOnly = true; status.textContent = "Saving your comment…";
+      const account = acct;
+      try {
+        const result = await api("POST", { id: uid(), acct: account, itemId: f.dataset.note, kind: "note", text });
+        if (!result.ok || !result.event) throw new Error("Not saved");
+        if (!events.some(x=>x.id===result.event.id)) events.push(result.event);
+        if (acct === account) render(false);
+        toast("Comment saved to this piece’s history.");
+      } catch {
+        button.disabled = false; ta.readOnly = false;
+        status.textContent = "Your comment could not be saved. Your text is still here. Please try again.";
+      }
+      return;
+    }
   });
   render();
   sync();

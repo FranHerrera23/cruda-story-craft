@@ -33,11 +33,12 @@ export async function POST(req: Request) {
   if (!accounts[acct]) return fail(403, 'Not your space.')
   if (!KINDS.has(b?.kind)) return fail(400, 'Unknown action.')
   if (!ID.test(String(b?.id ?? ''))) return fail(400, 'Bad id.')
-  if (!accounts[acct].items.some((i: any) => i.id === b.itemId)) return fail(404, 'This piece no longer exists.')
+  const item = accounts[acct].items.find((i: any) => i.id === b.itemId)
+  if (!item) return fail(404, 'This piece no longer exists.')
   const text = typeof b.text === 'string' ? b.text.trim().slice(0, 4000) : undefined
   if ((b.kind === 'note' || b.kind === 'changes') && !text) return fail(400, 'Write something first.')
   if (b.kind === 'undo' && !ID.test(String(b.ref ?? ''))) return fail(400, 'Nothing to take back.')
-  const e: PortalEvent = { id: b.id, acct, itemId: b.itemId, who: v.name, kind: b.kind, text, ref: b.kind === 'undo' ? b.ref : undefined, at: new Date().toISOString() }
+  const e: PortalEvent = { id: b.id, acct, itemId: b.itemId, who: v.name, kind: b.kind, text, ref: b.kind === 'undo' ? b.ref : undefined, at: new Date().toISOString(), version: item.version }
   await addEvent(e)
   return NextResponse.json({ ok: true, event: e }, { headers: NO_STORE })
 }

@@ -1,11 +1,6 @@
 /* eslint-disable */
 // @ts-nocheck
-// M2Develop — as of 26 October 2026.
-// Instagram: 2 project carousels are scheduled. Season 1 of The Sanctuary Series (6 reels) is produced
-// and ON HOLD at Ryan’s request (23 Oct email, AI content label): owner off him, no dates, out of the queue.
-// Cadence capped at two posts per week per platform, per the same email. Captions are Ryan’s.
-// LinkedIn and X are deliberately empty for now: we settle that programme internally before it
-// goes in front of Ryan. A channel with no items renders no tab, which is the intended effect.
+// M2Develop review library. Draft copy and Drive IDs stay in deployment configuration.
 const STRATEGY_PDF = "https://drive.google.com/file/d/1tJDbxw2zzMUZQbjRkDLvYfeQRzCQNG_V/view";
 const IG_FOLDER = "https://drive.google.com/drive/folders/1kBa9RjNErZB7mWZ-UmRA_fuR9HOWWXtJ";
 const CAPTIONS = "https://drive.google.com/file/d/1hXUErB_aQeGCZV9tP0EDf8k_0-MUGVYs/view";
@@ -55,31 +50,66 @@ function articleReviewItems() {
   });
 }
 
-const articleReviews = articleReviewItems();
+function reviewLibrary() {
+  try {
+    const library = JSON.parse(process.env.M2D_REVIEW_LIBRARY || "{}");
+    if (!Array.isArray(library.articles) || library.articles.length !== 12 || !Array.isArray(library.carousels) || library.carousels.length !== 14) return null;
+    if (!library.articles.every((a: any) => /^[BM]0[1-8]$/.test(a.code) && /^[\w-]{20,}$/.test(a.articleDriveId) && typeof a.linkedin === "string" && typeof a.x === "string")) return null;
+    if (!library.carousels.every((a: any) => /^[\w-]{20,}$/.test(a.driveId))) return null;
+    return library;
+  } catch { return null; }
+}
+const library = reviewLibrary();
+const articleReviews = library ? library.articles.map((a: any) => ({
+  id: `article-${a.code.toLowerCase()}-v2`,
+  historyItemId: a.code === "B06" ? "brokers" : `article-${a.code.toLowerCase()}`,
+  channel: "Website", kind: "Article", story: a.code, title: a.title,
+  series: a.code.startsWith("B") ? "Build · revised manuscript" : "Monthly · Oct 20 to Nov 20 · revised manuscript",
+  owner: "Ryan", status: "Needs approval", version: 2,
+  excerpt: "Read the revised manuscript below, then approve this article or request changes. Each article has its own decision.",
+  why: "This is the rewritten version. Earlier decisions remain in the history and do not approve this manuscript.",
+  assets: [{ label: "Read article", href: `https://drive.google.com/file/d/${a.articleDriveId}/view` }],
+})) : articleReviewItems();
+const socialReviews = library ? library.articles.map((a: any) => ({
+  id: `social-${a.code.toLowerCase()}-v1`, channel: "LinkedIn", kind: "LinkedIn + X", story: a.code,
+  title: a.title, owner: "Ryan", status: "Needs approval", version: 1,
+  post: a.linkedin, xPost: a.x,
+  why: "Review both versions here. Approval covers the LinkedIn post and its X version. We publish two per week, after the accompanying article is approved and live, with a cleared project photograph and the public article link.",
+  assets: [{ label: "Read accompanying article", href: `https://drive.google.com/file/d/${a.articleDriveId}/view` },
+    ...(a.socialDriveId ? [{ label: "Open LinkedIn + X document", href: `https://drive.google.com/file/d/${a.socialDriveId}/view` }] : [])],
+})) : [];
+const carouselReviews = library ? library.carousels.map((a: any) => ({
+  id: a.id, title: a.title, channel: "Instagram", kind: "Carousel", owner: "Ryan", status: "Needs approval", version: 1,
+  excerpt: "Open this carousel’s folder to review its slides. Approve this carousel or request changes here.",
+  why: "Your decision applies to this carousel only. Publication order is set after approval.",
+  assets: [{ label: "View carousel", href: `https://drive.google.com/drive/folders/${a.driveId}` }],
+})) : [];
+
 
 export const m2d = {
   slug: "m2d",
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-11-16T17:58:33Z",
+  updatedAt: "2026-11-16T20:10:00Z",
   updatedBy: "Fran",
-  objective: "Be known on the docks before the Fort Lauderdale boat show, 28 October to 1 November.",
-  phase: "Running the machine since 15 October.",
+  objective: "Build trust with owners, brokers and captains through useful stories and a consistent publishing rhythm.",
+  phase: "Articles and social content ready for individual review.",
+  reviewHub: true,
   channels: {
     Instagram: { blurb: "Fourteen carousels, produced and waiting on your review, all of them real photography. Season 1 of The Sanctuary Series, six reels, stays on hold until you decide about the AI content label.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
-    LinkedIn: { blurb: "Two posts a week through the show, in your voice. Five are live and one is waiting on you." },
-    X: { blurb: "Same cadence as LinkedIn. Threads link back to the article on the site." },
+    LinkedIn: { label: "LinkedIn / X", blurb: "Twelve article-led pairs. Read the LinkedIn post and its X version together, then approve each pair. Two per week after the article is live." },
+    X: { label: "Earlier X posts", blurb: "Earlier X posts and feedback. New X versions are paired with their LinkedIn posts in LinkedIn / X." },
     "Hull Notes": { blurb: "Your newsletter, sent from Beehiiv to your list. The show issue goes out the Friday of show week." },
-    Website: { label: "Site & articles", blurb: articleReviews.length ? "Read each Word draft, then approve it or request changes here." : "Articles on m2develop.com/stories and the case studies." },
+    Website: { label: "Articles", blurb: articleReviews.length ? "Read each Word draft, then approve it or request changes here." : "Articles on m2develop.com/stories and the case studies." },
   },
   scope: {
     title: "Build, agreed 31 August",
     lines: [
       { name: "Website", done: 1, total: 1, note: "Live at m2develop.com. Contact and Studio are done. Nothing outstanding." },
       { name: "Articles", done: 4, total: 12, note: "Four published. The remaining Build drafts are in Site & articles for review." },
-      { name: "LinkedIn posts", done: 5, total: 12, note: "Five live. The plan for the rest comes with the calendar." },
-      { name: "Instagram", done: 0, total: 14, note: "Fourteen carousels produced and in one folder for you. The six reels stay on hold.", onClient: true },
+      { name: "LinkedIn posts", done: 5, total: 12, note: "Five previously recorded as live. Twelve new LinkedIn and X pairs are ready for review." },
+      { name: "Instagram", done: 0, total: 14, note: "Fourteen carousels with individual links and approval buttons. The six reels stay on hold.", onClient: true },
       { name: "Case studies", done: 0, total: 5, note: "One 45 minute call per project. You talk, we write.", onClient: true },
       { name: "Marty Lowe: site, blog, LinkedIn", done: 0, total: 3, note: "In her own space, at her pace." },
       { name: "CRM in Attio", done: 1, total: 1, note: "Live. Your contact list is the next step.", onClient: true },
@@ -90,7 +120,9 @@ export const m2d = {
     { value: "Hull Notes", label: "Subscribers and opens, read from the first issue onward." },
   ],
   items: [
-    { id: "car-all", channel: "Instagram", kind: "Carousels", forWho: "For owners and brokers", title: "Fourteen carousels, ready for your review", owner: "Ryan", status: "Needs approval", version: 1,
+    ...socialReviews,
+    ...carouselReviews,
+    { id: "car-all", channel: "Instagram", kind: "Carousels", forWho: "For owners and brokers", title: "Earlier carousel folder and feedback", owner: "Fran", status: library ? "On hold" : "Needs approval", version: 1,
       why: "Fourteen pieces, nine slides each, built from M2D’s own photography. Real photographs, no animation, and no AI content label on any of them. Open the folder, go through them, and tell me which ones go out and in what order.",
       assets: [{ label: "Open the folder", href: CAROUSELS }], eden: "Not scheduled yet" },
     // ── Instagram · week of 26 October (show week)

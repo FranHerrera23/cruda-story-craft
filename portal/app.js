@@ -98,7 +98,7 @@
   const demobar = () => (team() && route !== "studio" ? `<div class="demobar" role="region" aria-label="Team view"><span>CRUDA team · viewing ${esc(A().name)} as the client sees it</span><span class="sw"><button type="button" data-go="studio">Back to Studio</button></span></div>` : "");
   function tabs(active) {
     const its = items();
-    const t = [["overview", "Overview", false]].concat(ORDER().filter((c) => its.some((i) => i.channel === c)).map((c) => [`ch:${c}`, chLabel(c), its.some((i) => i.channel === c && canAct(i) && (i.status === "Needs approval" || i.status === "Needs input"))]));
+    const t = [["overview", A().reviewHub ? "To approve" : "Overview", false]].concat(ORDER().filter((c) => its.some((i) => i.channel === c)).map((c) => [`ch:${c}`, chLabel(c), its.some((i) => i.channel === c && canAct(i) && (i.status === "Needs approval" || i.status === "Needs input"))]));
     return t.map(([r, l, dot]) => `<a href="#" data-go="${r}" ${active === r ? 'aria-current="page"' : ""}>${esc(l)}${dot ? `<i class="dot" aria-label="needs you"></i>` : ""}</a>`).join("");
   }
   /* last update: the most recent touch, ours or theirs, always in Fort Lauderdale time */
@@ -145,6 +145,23 @@
     const its = items();
     const ap = toApprove(its), inp = toInput(its);
     const done = decidedHere(its).filter((i) => i.decided.who === viewer || team());
+    if (A().reviewHub) {
+      const sections = [
+        ["Website", "Articles", "Read each revised manuscript.", "article-"],
+        ["LinkedIn", "LinkedIn / X", "One document. Both versions.", "social-"],
+        ["Instagram", "Instagram", "Fourteen carousels, reviewed individually.", "ig-carousel-"],
+      ];
+      const cards = sections.map(([ch, label, description, prefix]) => {
+        const all = its.filter(i => i.id.startsWith(prefix));
+        const pending = toApprove(all).length;
+        return `<a href="#" class="approval-card" data-go="ch:${ch}"><span class="approval-count">${pending}<small>to approve</small></span><h2>${label}</h2><p>${description}</p><span class="approval-open">Open ${all.length} ${ch === "Website" ? "articles" : ch === "Instagram" ? "carousels" : "post pairs"} ${CHEV}</span></a>`;
+      }).join("");
+      return shell("overview", `<section class="hero"><p class="eyebrow">YOUR REVIEW DESK</p><h1>Ready when you are, Ryan.</h1><p class="lead">Choose a section. Read a piece, then approve it or tell us what to change.</p></section>
+        <section class="approval-hub" aria-label="To approve">${cards}</section>
+        <p class="review-note">Each piece has its own approval. Nothing publishes automatically. LinkedIn and X follow the approved article, two posts a week.</p>
+        ${done.length ? `<section class="sec"><details class="more"><summary><span>Your decisions · ${done.length}</span>${CHEV}</summary><div class="more-b">${done.map(i=>row(i,{channel:true,state:true})).join("")}</div></details></section>` : ""}
+        ${inp.length ? `<section class="sec"><details class="more"><summary><span>Other things we need from you · ${inp.length}</span>${CHEV}</summary><div class="more-b">${inp.map(i=>row(i,{channel:true})).join("")}</div></details></section>` : ""}`);
+    }
     const list = ap.concat(done).sort(sortDate);
     const h1 = ap.length ? `${cap(w(ap.length))} ${plural(ap.length, "piece", "pieces")} to approve.` : inp.length ? `${cap(w(inp.length))} ${plural(inp.length, "thing", "things")} we need from you.` : "You’re all caught up.";
     const lead = ap.length && inp.length ? `And ${w(inp.length)} ${plural(inp.length, "thing", "things")} we need from you.` : !ap.length && !inp.length ? "Everything else is with CRUDA. We’ll bring the next round here." : "";
@@ -177,7 +194,8 @@
     const its = items();
     const info = A().channels[c] || {};
     const all = its.filter((i) => i.channel === c);
-    const planned = all.filter((i) => i.status !== "Live").sort(sortDate);
+    const archived = A().reviewHub ? all.filter(i => i.status !== "Live" && (i.status === "On hold" || i.decided)) : [];
+    const planned = all.filter((i) => i.status !== "Live" && !archived.includes(i)).sort(sortDate);
     const live = all.filter((i) => i.status === "Live").sort((a, b) => (b.date || "").localeCompare(a.date || ""));
     const open = planned.filter((i) => i.status === "Needs approval" && canAct(i));
     const dated = planned.filter((i) => i.date);
@@ -195,12 +213,13 @@
         <h1>${esc(chLabel(c))}</h1>
         <p class="lead">${esc(info.blurb || "")}</p>
         <p class="meta">${esc(facts)}${info.links ? info.links.map((l) => ` · ${aLink(l)}`).join("") : ""}</p>
-        ${open.length ? `<div class="cta"><button type="button" class="btn pri" data-act="review:${c}">Review ${open.length === 1 ? "it" : `all ${open.length}`}</button>${open.length > 1 ? `<button type="button" class="btn ghost" data-act="all:${c}">Approve all</button>` : ""}</div>` : ""}
+        ${open.length ? `<div class="cta"><button type="button" class="btn pri" data-act="review:${c}">Review ${open.length === 1 ? "it" : `all ${open.length}`}</button>${open.length > 1 && !A().reviewHub ? `<button type="button" class="btn ghost" data-act="all:${c}">Approve all</button>` : ""}</div>` : ""}
       </section>
       <section class="sec ${grid ? "split" : ""}">
         ${grid ? `<div class="split-a">${grid}</div>` : ""}
         <div class="split-b">${planned.length ? plan : `<p class="empty">Nothing planned yet.</p>`}</div>
       </section>
+      ${archived.length ? `<section class="sec"><details class="more"><summary><span>Earlier decisions and on hold · ${archived.length}</span>${CHEV}</summary><div class="more-b">${archived.map(i=>row(i,{state:true})).join("")}</div></details></section>` : ""}
       ${live.length ? `<section class="sec"><details class="more"><summary><span>Already live · ${live.length}</span>${CHEV}</summary><div class="more-b">${live.map((i) => row(i, { meta: [i.date ? fmt(i.date, { month: "short", day: "numeric" }) : "October", i.result].filter(Boolean).join(" · ") })).join("")}</div></details></section>` : ""}`);
   }
 
@@ -217,6 +236,7 @@
     const sLine = (x, n) => `<li><span class="sn">${n}</span><span>${x.type === "photo" ? `<span class="dim">Photo · ${esc(x.photo)}</span>${x.caption ? `<br>${esc(x.caption)}` : ""}` : `${esc(x.headline || "")}${x.body ? `<br><span class="dim">${esc(x.body)}</span>` : ""}${x.photo ? `<br><span class="dim">Photo · ${esc(x.photo)}</span>` : ""}`}</span></li>`;
     if (it.kind === "Reel") return `<div class="stack">${it.scene ? block("The scene", it.scene) : ""}${it.caption ? block("Caption", it.caption) : ""}</div>`;
     if (it.slides) return `<div class="stack"><div class="tb"><p class="lbl">${it.slides.length} slides</p><ol class="sl">${it.slides.map((x, n) => sLine(x, n + 1)).join("")}</ol></div>${it.caption ? block("Caption", it.caption) : ""}</div>`;
+    if (it.post && it.xPost) return `<div class="stack">${block("LinkedIn", it.post)}${block("X", it.xPost)}${block("Article link", "The public article link is added to both versions once the article is approved and live.")}</div>`;
     if (it.post) return block(it.channel === "X" ? "Thread on X" : "Post on LinkedIn", it.post);
     const file = it.assets && it.assets.find((a) => a.href && a.href !== "#");
     if (it.kind === "Reel") return `<div class="stack"><div class="rv"><span class="rv-s">${esc(it.scene || "")}</span>${file ? `<a class="rv-p" href="${esc(file.href)}" target="_blank" rel="noreferrer">Watch the reel</a>` : ""}</div>${it.caption ? sheet("m2develop", "Caption", it.caption) : ""}</div>`;
@@ -232,7 +252,8 @@
     const its = items();
     const it = its.find((i) => i.id === id);
     if (!it) return overview();
-    const th = events.filter((e) => e.acct === acct && e.itemId === id);
+    const th = events.filter((e) => e.acct === acct && (e.itemId === id || (it.historyItemId && e.itemId === it.historyItemId)));
+    const priorDecisions = th.filter(e => e.itemId === it.historyItemId && (e.kind === "approve" || e.kind === "changes"));
     const notes = th.filter((e) => e.kind === "note" || e.kind === "changes");
     const sibs = it.story ? its.filter((i) => i.story === it.story && i.id !== id) : [];
     const qi = queue.indexOf(id);
@@ -263,6 +284,7 @@
         <div class="min0">
           <header class="ithead"><p class="eyebrow">${esc([chLabel(it.channel), it.kind === "Input" ? null : it.kind, it.series].filter(Boolean).join(" · "))}</p><h1>${esc(it.title)}</h1>
             ${when(it, true) ? `<p class="goes">Goes out ${when(it, true).replace(/^(Today|Tomorrow)/, (m) => m.toLowerCase())}</p>` : ""}</header>
+          ${it.kind === "Article" || it.kind === "Carousel" ? `<div class="review-file">${(it.assets || []).map(aLink).join("")}</div>` : ""}
           ${preview(it)}
         </div>
         <aside class="min0 side">
@@ -270,6 +292,7 @@
           ${it.why ? `<p class="why">${esc(it.why)}</p>` : ""}
           ${files.length ? `<div class="files">${files.join("")}</div>` : ""}
           ${sibs.length ? `<div class="sibs"><p class="lbl">Same story elsewhere</p>${sibs.map((s) => `<a href="#" class="sib" data-go="item:${s.id}"><span>${esc(s.title)}</span><small>${esc(chLabel(s.channel))}</small></a>`).join("")}</div>` : ""}
+          ${priorDecisions.length ? `<p class="why">Earlier version history: ${priorDecisions.map(e => `${esc(e.who)} ${e.kind === "approve" ? "approved" : "requested changes"} on ${fmtT(e.at)}`).join("; ")}. This revised manuscript needs a new decision.</p>` : ""}
           <details class="notes" ${notes.length ? "open" : ""}><summary>${notes.length ? `Notes · ${notes.length}` : "Add a note"}</summary>
             ${notes.map((e) => `<div class="msg"><small><b>${esc(e.who === viewer ? "You" : e.who)}</b> · ${fmtT(e.at)}</small>${esc(verbN[e.kind](e))}</div>`).join("")}
             <form data-note="${id}"><label class="sr" for="n-${id}">Note for Fran</label><textarea id="n-${id}" rows="2" placeholder="A note for Fran"></textarea><button class="btn ghost sm" type="submit">Add note</button></form>

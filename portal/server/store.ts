@@ -10,7 +10,7 @@ const token = () => process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_R
 export const storeReady = () => Boolean(url() && token())
 const key = (acct: string) => `portal:events:${acct}`
 
-async function redis(cmd: (string | number)[]) {
+export async function redis(cmd: (string | number)[]) {
   const res = await fetch(url()!, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token()}`, 'Content-Type': 'application/json' },

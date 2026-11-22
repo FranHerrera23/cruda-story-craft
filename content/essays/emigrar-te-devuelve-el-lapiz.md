@@ -75,3 +75,7 @@ Lo lindo de emigrar es que, al final, estás más afuera que nunca y más adentr
 A mí me sirvió esa. A vos capaz te sirve otra: una renuncia, un "no" que venías postergando, una conversación en la cocina de siempre. Cada uno tiene su manera.
 
 Pero la hoja en blanco es la misma para todos, y la próxima línea es tuya.
+
+---
+
+*Si te resonó, escribime LÁPIZ por Instagram a @argentinoenrusia. No puedo responder cada mensaje, pero los leo todos.*

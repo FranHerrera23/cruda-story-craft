@@ -234,6 +234,7 @@
   function preview(it) {
     const block = (label, body) => `<div class="tb"><p class="lbl">${label}</p><div class="tb-b">${esc(body)}</div></div>`;
     const sLine = (x, n) => `<li><span class="sn">${n}</span><span>${x.type === "photo" ? `<span class="dim">Photo · ${esc(x.photo)}</span>${x.caption ? `<br>${esc(x.caption)}` : ""}` : `${esc(x.headline || "")}${x.body ? `<br><span class="dim">${esc(x.body)}</span>` : ""}${x.photo ? `<br><span class="dim">Photo · ${esc(x.photo)}</span>` : ""}`}</span></li>`;
+    if (it.kind === "Carousel" && it.caption && !it.slides) return block("Instagram caption", it.caption);
     if (it.kind === "Reel") return `<div class="stack">${it.scene ? block("The scene", it.scene) : ""}${it.caption ? block("Caption", it.caption) : ""}</div>`;
     if (it.slides) return `<div class="stack"><div class="tb"><p class="lbl">${it.slides.length} slides</p><ol class="sl">${it.slides.map((x, n) => sLine(x, n + 1)).join("")}</ol></div>${it.caption ? block("Caption", it.caption) : ""}</div>`;
     if (it.post && it.xPost) return `<div class="stack">${block("LinkedIn", it.post)}${block("X", it.xPost)}${block("Article link", "The public article link is added to both versions once the article is approved and live.")}</div>`;

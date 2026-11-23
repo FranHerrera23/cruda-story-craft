@@ -61,28 +61,34 @@ function reviewLibrary() {
 }
 const library = reviewLibrary();
 const articleReviews = library ? library.articles.map((a: any) => ({
-  id: `article-${a.code.toLowerCase()}-v2`,
+  id: `article-${a.code.toLowerCase()}-v${a.articleVersion || 2}`,
+  historyItemIds: a.articleVersion > 2 ? [`article-${a.code.toLowerCase()}-v2`] : [],
   historyItemId: a.code === "B06" ? "brokers" : `article-${a.code.toLowerCase()}`,
   channel: "Website", kind: "Article", story: a.code, title: a.title,
   series: a.code.startsWith("B") ? "Build · revised manuscript" : "Monthly · Oct 20 to Nov 20 · revised manuscript",
-  owner: "Ryan", status: "Needs approval", version: 2,
-  excerpt: "Read the revised manuscript below, then approve this article or request changes. Each article has its own decision.",
+  owner: "Ryan", status: "Needs approval", version: a.articleVersion || 2,
+  excerpt: a.subtitle || "Read the revised manuscript below, then approve this article or request changes. Each article has its own decision.",
   why: "This is the rewritten version. Earlier decisions remain in the history and do not approve this manuscript.",
   assets: [{ label: "Read article", href: `https://drive.google.com/file/d/${a.articleDriveId}/view` }],
 })) : articleReviewItems();
 const socialReviews = library ? library.articles.map((a: any) => ({
-  id: `social-${a.code.toLowerCase()}-v1`, channel: "LinkedIn", kind: "LinkedIn + X", story: a.code,
-  title: a.title, owner: "Ryan", status: "Needs approval", version: 1,
+  id: `social-${a.code.toLowerCase()}-v${a.socialVersion || 1}`, historyItemIds: a.socialVersion > 1 ? [`social-${a.code.toLowerCase()}-v1`] : [], channel: "LinkedIn", kind: "LinkedIn + X", story: a.code,
+  title: a.title, owner: "Ryan", status: "Needs approval", version: a.socialVersion || 1,
   post: a.linkedin, xPost: a.x,
   why: "Review both versions here. Approval covers the LinkedIn post and its X version. We publish two per week, after the accompanying article is approved and live, with a cleared project photograph and the public article link.",
   assets: [{ label: "Read accompanying article", href: `https://drive.google.com/file/d/${a.articleDriveId}/view` },
-    ...(a.socialDriveId ? [{ label: "Open LinkedIn + X document", href: `https://drive.google.com/file/d/${a.socialDriveId}/view` }] : [])],
+    ...(a.linkedinUrl ? [{ label: "Read revised LinkedIn", href: a.linkedinUrl }, { label: "Read revised X", href: a.xUrl }] : a.socialDriveId ? [{ label: "Open LinkedIn + X document", href: `https://drive.google.com/file/d/${a.socialDriveId}/view` }] : [])],
 })) : [];
 const carouselReviews = library ? library.carousels.map((a: any) => ({
-  id: a.id, title: a.title, channel: "Instagram", kind: "Carousel", owner: "Ryan", status: "Needs approval", version: 1,
-  excerpt: "Open this carousel’s folder to review its slides. Approve this carousel or request changes here.",
+  id: a.version > 1 ? `${a.id}-v${a.version}` : a.id, historyItemIds: a.version > 1 ? [a.id] : [], title: a.title, channel: "Instagram", kind: "Carousel", owner: "Ryan", status: "Needs approval", version: a.version || 1,
+  caption: a.caption,
+  excerpt: "Open this carousel to review its slides and caption. Approve this carousel or request changes here.",
   why: "Your decision applies to this carousel only. Publication order is set after approval.",
-  assets: [{ label: "View carousel", href: `https://drive.google.com/drive/folders/${a.driveId}` }],
+  assets: [
+    ...(a.pdfUrl ? [{ label: "Review carousel PDF", href: a.pdfUrl }] : []),
+    { label: "Open slides and caption", href: `https://drive.google.com/drive/folders/${a.driveId}` },
+    ...(a.previousDriveId ? [{ label: "Previous version", href: `https://drive.google.com/drive/folders/${a.previousDriveId}` }] : []),
+  ],
 })) : [];
 
 
@@ -91,17 +97,17 @@ export const m2d = {
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-11-16T20:10:00Z",
+  updatedAt: "2026-11-23T18:00:00Z",
   updatedBy: "Fran",
   objective: "Build trust with owners, brokers and captains through useful stories and a consistent publishing rhythm.",
   phase: "Articles and social content ready for individual review.",
   reviewHub: true,
   channels: {
-    Instagram: { blurb: "Fourteen carousels, produced and waiting on your review, all of them real photography. Season 1 of The Sanctuary Series, six reels, stays on hold until you decide about the AI content label.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
+    Instagram: { blurb: "Seven carousels rebuilt from your revisions, plus seven earlier drafts awaiting your feedback. All use real photography. Season 1 of The Sanctuary Series, six reels, stays on hold until you decide about the AI content label.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
     LinkedIn: { label: "LinkedIn / X", blurb: "Twelve article-led pairs. Read the LinkedIn post and its X version together, then approve each pair. Two per week after the article is live." },
     X: { label: "Earlier X posts", blurb: "Earlier X posts and feedback. New X versions are paired with their LinkedIn posts in LinkedIn / X." },
     "Hull Notes": { blurb: "Your newsletter, sent from Beehiiv to your list. The show issue goes out the Friday of show week." },
-    Website: { label: "Articles", blurb: articleReviews.length ? "Read each Word draft, then approve it or request changes here." : "Articles on m2develop.com/stories and the case studies." },
+    Website: { label: "Articles", blurb: articleReviews.length ? "Read each current article, then approve it or request changes here." : "Articles on m2develop.com/stories and the case studies." },
   },
   scope: {
     title: "Build, agreed 31 August",

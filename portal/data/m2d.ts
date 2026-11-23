@@ -82,6 +82,7 @@ const socialReviews = library ? library.articles.map((a: any) => ({
 const carouselReviews = library ? library.carousels.map((a: any) => ({
   id: a.version > 1 ? `${a.id}-v${a.version}` : a.id, historyItemIds: a.version > 1 ? [a.id] : [], title: a.title, channel: "Instagram", kind: "Carousel", owner: "Ryan", status: "Needs approval", version: a.version || 1,
   caption: a.caption,
+  reviewNote: a.reviewNote,
   excerpt: "Open this carousel to review its slides and caption. Approve this carousel or request changes here.",
   why: "Your decision applies to this carousel only. Publication order is set after approval.",
   assets: [
@@ -97,7 +98,7 @@ export const m2d = {
   name: "M2Develop",
   clients: ["Ryan"],
   // Bump these in the same commit as any content change below.
-  updatedAt: "2026-11-23T18:00:00Z",
+  updatedAt: "2026-11-23T19:00:00Z",
   updatedBy: "Fran",
   objective: "Build trust with owners, brokers and captains through useful stories and a consistent publishing rhythm.",
   phase: "Articles and social content ready for individual review.",

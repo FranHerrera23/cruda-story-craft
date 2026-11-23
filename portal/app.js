@@ -291,6 +291,7 @@
             ${when(it, true) ? `<p class="goes">Goes out ${when(it, true).replace(/^(Today|Tomorrow)/, (m) => m.toLowerCase())}</p>` : ""}</header>
           ${it.kind === "Article" || it.kind === "Carousel" ? `<div class="review-file">${(it.assets || []).map(aLink).join("")}</div>` : ""}
           ${preview(it)}
+          ${it.reviewNote ? `<section class="doc" aria-label="Production note for review"><h2>Before approving</h2><p>${esc(it.reviewNote)}</p></section>` : ""}
           ${thread}
         </div>
         <aside class="min0 side">

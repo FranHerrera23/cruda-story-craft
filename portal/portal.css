@@ -355,3 +355,17 @@ html[data-dir="prev"]::view-transition-new(root) { animation-name: vt-in-l; }
 .comment-thread textarea { width:100%; box-sizing:border-box; }
 .comment-thread button { justify-self:start; }
 .comment-status { font-size:14px; line-height:22px; }
+
+/* Review rounds remain separate from approval decisions. */
+.review-stage { display:inline-block; width:fit-content; max-width:100%; margin-top:8px; padding:5px 10px; border-radius:6px; font-size:13px; font-weight:600; line-height:20px; letter-spacing:0; white-space:normal; }
+.review-stage-final { color:#244b67; background:#edf4f8; border:1px solid #cadce9; }
+.review-stage-first { color:#785019; background:#fff6e8; border:1px solid #ecd7b7; }
+.r-t .review-detail { font-size:12px; margin-top:5px; }
+.review-stage-detail { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:0 0 24px; }
+.review-stage-detail .review-stage { margin:0; }
+.review-stage-detail .review-detail { color:var(--grey); font-size:13px; }
+.review-group + .review-group { margin-top:56px; }
+.review-group > h2 { font-size:22px; line-height:30px; margin:0 0 8px; }
+.review-group > h2 > span { color:var(--grey); font-weight:400; margin-left:8px; }
+.review-group > p { font-size:15px; line-height:24px; color:var(--grey); margin:0 0 24px; }
+@media(max-width:760px) { .review-group > h2 { font-size:20px; line-height:28px; } .review-stage { font-size:12px; } }

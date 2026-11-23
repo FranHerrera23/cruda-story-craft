@@ -83,6 +83,8 @@
   const when = (it, long) => overdue(it) ? (long ? "as soon as you approve" : "Ready now · goes out after your yes") : (A().noDates || !it.date ? "" : `${day(it.date, long)}${it.at ? `${long ? " at " : " · "}${esc(it.at)}` : ""}`);
   const aLink = (a) => (a.go ? `<a href="#" data-go="${esc(a.go)}" class="lnk">${esc(a.label)}</a>` : a.href && a.href !== "#" ? `<a href="${esc(a.href)}" target="_blank" rel="noreferrer" class="lnk">${esc(a.label)} <span aria-hidden="true">↗</span></a>` : "");
   const sub = (it) => [it.kind === "Input" ? null : it.kind, it.forWho].filter(Boolean).join(" · ");
+  const stageLabel = (stage) => stage === "final" ? "Revised by Fran · Pending final approval" : "1st feedback round · Pending Ryan";
+  const reviewBadge = (it) => it.reviewStage && it.status === "Needs approval" ? `<span class="review-stage ${it.reviewStage === "final" ? "review-stage-final" : "review-stage-first"}">${esc(stageLabel(it.reviewStage))}</span>${it.reviewDetail ? `<small class="review-detail">${esc(it.reviewDetail)}</small>` : ""}` : "";
 
   /* one row, used everywhere */
   function row(it, opt = {}) {
@@ -90,7 +92,7 @@
     const right = opt.state ? `<span class="r-s ${it.owner === viewer && !it.decided ? "you" : ""}">${esc(stateText(it))}</span>` : "";
     return `<div class="r ${it.decided ? "is-done" : ""}">
       ${tick(it)}
-      <a href="#" class="r-m" data-go="item:${it.id}"><span class="r-t"><b>${esc(it.title)}</b>${meta ? `<small>${meta}</small>` : ""}</span></a>${opt.links && it.assets && it.assets.length ? `<span class="r-l">${it.assets.map(aLink).join("")}</span>` : ""}${right}<a href="#" class="r-go" data-go="item:${it.id}" aria-label="Open ${esc(it.title)}" tabindex="-1">${CHEV}</a>
+      <a href="#" class="r-m" data-go="item:${it.id}"><span class="r-t"><b>${esc(it.title)}</b>${meta ? `<small>${meta}</small>` : ""}${reviewBadge(it)}</span></a>${opt.links && it.assets && it.assets.length ? `<span class="r-l">${it.assets.map(aLink).join("")}</span>` : ""}${right}<a href="#" class="r-go" data-go="item:${it.id}" aria-label="Open ${esc(it.title)}" tabindex="-1">${CHEV}</a>
     </div>`;
   }
 
@@ -154,7 +156,10 @@
       const cards = sections.map(([ch, label, description, prefix]) => {
         const all = its.filter(i => i.id.startsWith(prefix));
         const pending = toApprove(all).length;
-        return `<a href="#" class="approval-card" data-go="ch:${ch}"><span class="approval-count">${pending}<small>to approve</small></span><h2>${label}</h2><p>${description}</p><span class="approval-open">Open ${all.length} ${ch === "Website" ? "articles" : ch === "Instagram" ? "carousels" : "post pairs"} ${CHEV}</span></a>`;
+        const finalCount = toApprove(all).filter(i => i.reviewStage === "final").length;
+        const firstCount = toApprove(all).filter(i => i.reviewStage === "first").length;
+        const rounds = finalCount || firstCount ? `${finalCount} revised by Fran · Final approval<br>${firstCount} first feedback round · Pending Ryan` : description;
+        return `<a href="#" class="approval-card" data-go="ch:${ch}"><span class="approval-count">${pending}<small>to approve</small></span><h2>${label}</h2><p>${rounds}</p><span class="approval-open">Open ${all.length} ${ch === "Website" ? "articles" : ch === "Instagram" ? "carousels" : "post pairs"} ${CHEV}</span></a>`;
       }).join("");
       return shell("overview", `<section class="hero"><p class="eyebrow">YOUR REVIEW DESK</p><h1>Ready when you are, Ryan.</h1><p class="lead">Choose a section. Read a piece, then approve it or tell us what to change.</p></section>
         <section class="approval-hub" aria-label="To approve">${cards}</section>
@@ -204,7 +209,12 @@
     const visual = planned.filter((i) => i.kind === "Reel" || i.kind === "Carousel");
     const mon = (iso) => { const d = D(iso); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return isoDay(d); };
     const gr = {}; planned.forEach((i) => (gr[!A().noDates && i.date ? mon(i.date) : "none"] ||= []).push(i));
-    const plan = Object.keys(gr).map((k) => `${k !== "none" && Object.keys(gr).length > 1 ? `<p class="wkh">${mon(TODAY) === k ? "This week" : `Week of ${fmt(k, { month: "long", day: "numeric" })}`}</p>` : ""}${gr[k].map((i) => row(i, { meta: [when(i), sub(i)].filter(Boolean).join(" · "), state: !(i.owner === viewer && i.status === "Needs approval"), links: true })).join("")}`).join("");
+    const renderRows = (list) => list.map((i) => row(i, { meta: [when(i), sub(i)].filter(Boolean).join(" · "), state: !(i.owner === viewer && i.status === "Needs approval"), links: true })).join("");
+    const staged = A().reviewHub && open.some(i => i.reviewStage);
+    const plan = staged ? ["final", "first"].map(stage => {
+      const group = planned.filter(i => i.reviewStage === stage);
+      return group.length ? `<section class="review-group"><h2>${esc(stageLabel(stage))} <span>${group.length}</span></h2><p>${stage === "final" ? "Your feedback has been incorporated. Check the updated version and give your final approval." : "These pieces are ready for your first review. Leave feedback or approve each one."}</p>${renderRows(group)}</section>` : "";
+    }).join("") + renderRows(planned.filter(i => !i.reviewStage)) : Object.keys(gr).map((k) => `${k !== "none" && Object.keys(gr).length > 1 ? `<p class="wkh">${mon(TODAY) === k ? "This week" : `Week of ${fmt(k, { month: "long", day: "numeric" })}`}</p>` : ""}${renderRows(gr[k])}`).join("");
     const grid = false && visual.length >= 3 ? `<div class="phone" aria-label="Preview of the grid"><div class="ph-top"><b>m2develop</b><span>Newest first</span></div><div class="ph-grid">
       ${[...visual].reverse().map((i) => `<a href="#" class="gt ${i.kind === "Reel" ? "reel" : "car"} ${i.decided && i.decided.kind === "approve" ? "ok" : ""}" data-go="item:${i.id}" title="${esc(i.title)}"><span class="gt-k">${i.kind === "Reel" ? `<svg viewBox="0 0 16 16"><path d="M5.5 4v8l6.5-4z"/></svg>` : `<svg viewBox="0 0 16 16" class="ln"><rect x="2.5" y="4" width="8" height="9.5" rx="1.5"/><path d="M6 2.5h6a1.5 1.5 0 0 1 1.5 1.5v7"/></svg>`}</span><b>${esc(i.title)}</b><span class="gt-d">${day(i.date)}</span></a>`).join("")}
       </div></div>` : "";
@@ -289,6 +299,7 @@
         <div class="min0">
           <header class="ithead"><p class="eyebrow">${esc([chLabel(it.channel), it.kind === "Input" ? null : it.kind, it.series].filter(Boolean).join(" · "))}</p><h1>${esc(it.title)}</h1>
             ${when(it, true) ? `<p class="goes">Goes out ${when(it, true).replace(/^(Today|Tomorrow)/, (m) => m.toLowerCase())}</p>` : ""}</header>
+          ${it.reviewStage ? `<div class="review-stage-detail">${reviewBadge(it)}</div>` : ""}
           ${it.kind === "Article" || it.kind === "Carousel" ? `<div class="review-file">${(it.assets || []).map(aLink).join("")}</div>` : ""}
           ${preview(it)}
           ${it.reviewNote ? `<section class="doc" aria-label="Production note for review"><h2>Before approving</h2><p>${esc(it.reviewNote)}</p></section>` : ""}

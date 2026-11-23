@@ -67,6 +67,7 @@ const articleReviews = library ? library.articles.map((a: any) => ({
   channel: "Website", kind: "Article", story: a.code, title: a.title,
   series: a.code.startsWith("B") ? "Build · revised manuscript" : "Monthly · Oct 20 to Nov 20 · revised manuscript",
   owner: "Ryan", status: "Needs approval", version: a.articleVersion || 2,
+  reviewStage: a.reviewStage || "first",
   excerpt: a.subtitle || "Read the revised manuscript below, then approve this article or request changes. Each article has its own decision.",
   why: "This is the rewritten version. Earlier decisions remain in the history and do not approve this manuscript.",
   assets: [{ label: "Read article", href: `https://drive.google.com/file/d/${a.articleDriveId}/view` }],
@@ -74,6 +75,7 @@ const articleReviews = library ? library.articles.map((a: any) => ({
 const socialReviews = library ? library.articles.map((a: any) => ({
   id: `social-${a.code.toLowerCase()}-v${a.socialVersion || 1}`, historyItemIds: a.socialVersion > 1 ? [`social-${a.code.toLowerCase()}-v1`] : [], channel: "LinkedIn", kind: "LinkedIn + X", story: a.code,
   title: a.title, owner: "Ryan", status: "Needs approval", version: a.socialVersion || 1,
+  reviewStage: a.reviewStage || "first",
   post: a.linkedin, xPost: a.x,
   why: "Review both versions here. Approval covers the LinkedIn post and its X version. We publish two per week, after the accompanying article is approved and live, with a cleared project photograph and the public article link.",
   assets: [{ label: "Read accompanying article", href: `https://drive.google.com/file/d/${a.articleDriveId}/view` },
@@ -83,6 +85,8 @@ const carouselReviews = library ? library.carousels.map((a: any) => ({
   id: a.version > 1 ? `${a.id}-v${a.version}` : a.id, historyItemIds: a.version > 1 ? [a.id] : [], title: a.title, channel: "Instagram", kind: "Carousel", owner: "Ryan", status: "Needs approval", version: a.version || 1,
   caption: a.caption,
   reviewNote: a.reviewNote,
+  reviewStage: a.reviewStage || "first",
+  reviewDetail: a.brandAdapted ? "Brand guidelines applied" : "",
   excerpt: "Open this carousel to review its slides and caption. Approve this carousel or request changes here.",
   why: "Your decision applies to this carousel only. Publication order is set after approval.",
   assets: [
@@ -104,7 +108,7 @@ export const m2d = {
   phase: "Articles and social content ready for individual review.",
   reviewHub: true,
   channels: {
-    Instagram: { blurb: "Seven carousels rebuilt from your revisions, plus seven earlier drafts awaiting your feedback. All use real photography. Season 1 of The Sanctuary Series, six reels, stays on hold until you decide about the AI content label.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
+    Instagram: { blurb: "All fourteen carousels follow your brand guidelines. The first seven are revised after your feedback and need final approval. Carousels 8–14 await your first feedback round. Each has its own slides, caption and decision.", links: [{ label: "Instagram strategy", href: STRATEGY_PDF }] },
     LinkedIn: { label: "LinkedIn / X", blurb: "Twelve article-led pairs. Read the LinkedIn post and its X version together, then approve each pair. Two per week after the article is live." },
     X: { label: "Earlier X posts", blurb: "Earlier X posts and feedback. New X versions are paired with their LinkedIn posts in LinkedIn / X." },
     "Hull Notes": { blurb: "Your newsletter, sent from Beehiiv to your list. The show issue goes out the Friday of show week." },

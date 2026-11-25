@@ -80,7 +80,6 @@ function Credits({ entries }: { entries: typeof career.es }) {
             <strong>{item.headline}</strong>
             <p>{item.body}</p>
             {item.credits && <p className="sparring-credit-line">{item.credits}</p>}
-            {item.link && <Link href={item.link.href}>{item.link.label}</Link>}
           </dd>
         </div>
       ))}
@@ -101,9 +100,6 @@ export default async function NarrativeSparring({ searchParams }: PageProps) {
   const englishQuery = new URLSearchParams(attribution)
   englishQuery.set('lang', 'en')
   const switchUrl = english ? path + suffix : path + '?' + englishQuery.toString()
-  const libraryQuery = new URLSearchParams(attribution)
-  libraryQuery.set('lang', language)
-  const libraryUrl = '/thinking?' + libraryQuery.toString()
   const subscribe = english ? 'Get the letter' : 'Recibir la carta'
   return (
     <div className="sparring" lang={english ? 'en-US' : 'es-AR'}>
@@ -119,9 +115,9 @@ export default async function NarrativeSparring({ searchParams }: PageProps) {
           <p>{english ? 'I grew up in a working-class family in a small city in northern Argentina. At 23, I moved abroad on my own. My parents, my old friends, the neighborhood I grew up in, all of it was far away. I finally had to sit down and have the conversation with myself I’d been putting off for years.' : 'Nací y me crié en una familia laburante, en una ciudad chica del norte de Argentina. A los 23 emigré solo. Lejos de mis viejos, de mis amigos de siempre y de mi barrio, me tocó tener esa charla incómoda conmigo mismo que llevaba años evitando.'}</p>
           <p>{english ? 'For me, it took moving abroad. For you, it might be quitting a job, finally saying no, or having a conversation in the same old kitchen. None of us gets to choose how our story begins. You get to write the next line.' : 'A mí me sirvió emigrar. A vos capaz te sirve una renuncia, un «no» que venías postergando, una conversación en la cocina de siempre. Nadie elige cómo empieza su historia. Lo que sí se elige es la próxima línea. Y esa la escribís vos.'}</p>
           <p>{english ? 'Over the years, I worked in communications for small and midsize businesses and for Fortune 500 companies in several countries.' : 'Con los años trabajé en comunicación para pymes y para empresas de la lista Fortune 500 en distintos países.'}</p>
-          <p>{english ? 'Today at CRUDA, I work with founders who know their businesses inside out and still get stuck when someone asks, “So, what do you do?”' : 'Hoy, en CRUDA, trabajo con fundadores que conocen su empresa de memoria y se traban cuando alguien les pregunta «¿y vos qué hacés?».'}</p>
+          <p>{english ? 'I founded CRUDA to make founders and companies famous to the few who matter. We bring creative capital to the table so the right buyers, partners and investors know what makes their work worth choosing.' : 'En CRUDA aportamos capital creativo a fundadores y empresas. Queremos que el cliente que los puede contratar, el socio que necesitan o el inversor que buscan conozcan su trabajo y sepan por qué elegirlos.'}</p>
           <div className="sparring-signup" id="suscripcion">
-            <p>{english ? 'Every week I write to you about who you are, what you do and how to put it into words for someone you’ve just met.' : 'Cada semana te escribo sobre quién sos, qué hacés y cómo se lo contás a alguien que recién te conoce.'} <Link href={'/thinking/emigrar-te-devuelve-el-lapiz' + suffix} hrefLang="es">{english ? 'Read the first letter in Spanish.' : 'Leé la primera carta.'}</Link></p>
+            <p>{english ? 'Every week I write to you about who you are, what you do and how to put it into words for someone you’ve just met.' : 'Cada semana te escribo sobre quién sos, qué hacés y cómo se lo contás a alguien que recién te conoce.'}</p>
             <NewsletterCTA locale={language} campaign="narrative-sparring" variant="light" ctaLabel={subscribe} helper={english ? "Free. Your first letter is in Spanish. Reply anytime. I read every response." : "Es gratis. La primera carta es «Emigrar te devuelve el lápiz». Si me respondés, te leo yo."} />
           </div>
         </div>
@@ -142,11 +138,6 @@ export default async function NarrativeSparring({ searchParams }: PageProps) {
             ))}</ul>
           </div>
         ))}
-        <p className="sparring-podcast">{english ? 'Prefer to listen? Hear my conversations in Spanish with Tomás Piuzzi of Mercado Pago and Alexia Keglevich.' : '¿Preferís escuchar? En The Cruda Space hablé con Tomás Piuzzi, de Mercado Pago, sobre crecer sin empezar por los indicadores, y con Alexia Keglevich sobre volver a empezar.'} <a href="https://www.youtube.com/playlist?list=PLkZDmUoEd-4DN6yd2AOeKcvQCEvSh73Vz">{english ? 'Listen to The Cruda Space' : 'Escuchá las conversaciones'}</a>.</p>
-        <nav aria-label={english ? 'More reading and subscription' : 'Más lecturas y suscripción'}>
-          <Link href={libraryUrl}>{english ? 'Browse all essays and articles →' : 'Ver todos los ensayos y artículos →'}</Link>
-          <a href="#suscripcion">{subscribe} ↑</a>
-        </nav>
       </section>
 
       <section className="sparring-proof" aria-labelledby="campanas">
@@ -162,12 +153,9 @@ export default async function NarrativeSparring({ searchParams }: PageProps) {
       <section className="sparring-credentials" aria-labelledby="trayectoria">
         <h2 id="trayectoria">{english ? 'Why read me?' : '¿Por qué leerme?'}</h2>
         <p className="sparring-origin">{english ? 'I’ve worked since I was 15. My first “startup” was a Facebook group. It grew to 5,000 members. I sold ads there.' : 'Trabajo desde los 15. Mi primer «emprendimiento», ponele, fue un grupo de Facebook. Lo llevé a 5.000 miembros. Ahí vendía publicidad.'}</p>
-        <Credits entries={career[language].filter(item => item.featured)} />
-        <details className="sparring-more">
-          <summary>{english ? 'More work in production, PR and writing' : 'Más trabajos de producción, prensa y escritura'}</summary>
-          <Credits entries={career[language].filter(item => !item.featured)} />
-        </details>
+        <Credits entries={career[language]} />
         <p className="sparring-location">{english ? 'I’ve lived in three countries, traveled through thirteen and now write from Russia.' : 'Viví en tres países, viajé por trece y hoy escribo desde Rusia.'}</p>
+        <a className="sparring-subscribe-return" href="#suscripcion">{subscribe} ↑</a>
       </section>
     </div>
   )

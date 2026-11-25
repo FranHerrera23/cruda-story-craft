@@ -78,7 +78,9 @@ function Credits({ entries }: { entries: typeof career.es }) {
           <dt>{item.label}</dt>
           <dd>
             <strong>{item.headline}</strong>
-            <p>{item.body}</p>
+            {Array.isArray(item.body) ? item.body.map((paragraph, index) => (
+              <p key={paragraph} className={index > 0 ? 'sparring-credit-line' : undefined}>{paragraph}</p>
+            )) : <p>{item.body}</p>}
             {item.credits && <p className="sparring-credit-line">{item.credits}</p>}
           </dd>
         </div>

@@ -1,7 +1,7 @@
 type Credit = {
   label: string
   headline: string
-  body: string
+  body: string | string[]
   credits?: string
 }
 
@@ -46,9 +46,12 @@ export const career: Record<'es' | 'en', Credit[]> = {
     },
     {
       label: 'CRUDA · Arquitectura y diseño',
-      headline: 'Karen Mannheim abrió en Miami con un nombre que los arquitectos ya conocían en Lima.',
-      body: 'Con Karen armamos las presentaciones que usa su equipo para competir por proyectos. En video y en redes mostramos cómo decidía iluminar una casa o un edificio. Su estudio trabajó en proyectos con RAMSA, Wecselman Design, Oppenheim Architecture y Kobi Karp.',
-      credits: 'Su comunidad pasó de 1.000 a 26.000 seguidores. Un video sobre un edificio de RAMSA en Lima trajo la consulta que se convirtió en un proyecto de iluminación para un penthouse.',
+      headline: 'Desde 2021 trabajo con Karen Mannheim en la estrategia y la dirección creativa de su marca personal.',
+      body: [
+        'Cuando empezamos, su firma de iluminación ya llevaba 25 años en Perú. En Lima había trabajado en edificios de Robert A.M. Stern Architects, el estudio que diseñó dos residencias de Yale, la ampliación de la Harvard Kennedy School y la torre de Nueva York donde la venta de un penthouse marcó un récord nacional en 2019.',
+        'Una foto de un edificio terminado puede llevar la firma del arquitecto y dejar fuera de cuadro todas las decisiones de quien lo iluminó. Con Karen hicimos visibles esas decisiones. Ese criterio guía las historias que contamos sobre su carrera, los proyectos que llevamos a video y la forma en que su equipo presenta el estudio ante un posible cliente.',
+        'Florida fue un capítulo de ese trabajo. Para un arquitecto en Miami, conocer el nombre de Robert A.M. Stern era una cosa. Entender qué había aportado Karen a un proyecto suyo en Lima le daba una razón concreta para querer trabajar con ella. Después llegaron los proyectos con Wecselman Design, Kobi Karp y Oppenheim Architecture. Entre las residencias que iluminó su equipo están la de un futbolista que vistió la camiseta del Barça y la de un cantante ganador de un Grammy.',
+      ],
     },
   ],
   en: [
@@ -90,9 +93,12 @@ export const career: Record<'es' | 'en', Credit[]> = {
     },
     {
       label: 'CRUDA · Architecture and design',
-      headline: 'When Karen Mannheim opened in Miami, architects in Lima already knew her lighting studio.',
-      body: 'Karen and I built the presentations her team uses to pitch for work. In films and social posts, we showed how she decides to light a house or a building. Her studio worked on projects with RAMSA, Wecselman Design, Oppenheim Architecture and Kobi Karp.',
-      credits: 'Her audience grew from 1,000 to 26,000. A film about a RAMSA building in Lima brought in an inquiry that became a penthouse lighting commission.',
+      headline: 'Since 2021, I’ve worked with Karen Mannheim on the strategy and creative direction of her personal brand.',
+      body: [
+        'When we started, her lighting design firm had been working in Peru for 25 years. In Lima, her team had worked on buildings by Robert A.M. Stern Architects, the firm behind two residential colleges at Yale, the Harvard Kennedy School expansion and the New York tower where a penthouse sale set a national record in 2019.',
+        'A photograph of a finished building can credit the architect and leave every decision the lighting designer made outside the frame. Karen and I brought those decisions into view. They guide the stories we tell about her career, the projects we document on film and the way her team presents the studio to a prospective client.',
+        'Florida was one chapter of that work. An architect in Miami might already know Robert A.M. Stern’s name. Seeing what Karen had contributed to one of his firm’s projects in Lima gave that architect a reason to work with her. Projects with Wecselman Design, Kobi Karp and Oppenheim Architecture followed. Among the homes her team has lit are one for a footballer who wore the Barça shirt and another for a Grammy-winning singer.',
+      ],
     },
   ],
 }

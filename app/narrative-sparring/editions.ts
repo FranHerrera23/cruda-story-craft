@@ -37,7 +37,7 @@ export const career: Record<'es' | 'en', Credit[]> = {
     {
       label: 'CRUDA · Moda',
       headline: 'El CEO de un grupo de moda de USD 300 millones había construido la empresa dos veces.',
-      body: 'Cuando volvió a empezar, sus socios conocían versiones distintas de lo que había pasado. Trabajamos con él para contar qué había aprendido y cómo funcionaba la nueva empresa. Esa historia la usó primero con su equipo y sus inversores.',
+      body: 'Trabajamos con él para contar qué había aprendido y cómo funcionaba la nueva empresa. Esa historia la usó primero con su equipo y sus inversores.',
     },
     {
       label: 'CRUDA · Salud y hotelería',
@@ -81,7 +81,7 @@ export const career: Record<'es' | 'en', Credit[]> = {
     {
       label: 'CRUDA · Fashion',
       headline: 'The CEO of a $300 million fashion group had built the business twice.',
-      body: 'When he started again, his partners had heard different versions of what had happened. We worked with him on an account of what he had learned and how the new company worked. His own team and investors were its first audience.',
+      body: 'We worked with him on an account of what he had learned and how the new company worked. His own team and investors were its first audience.',
     },
     {
       label: 'CRUDA · Healthcare and hospitality',

@@ -103,3 +103,8 @@
 @media (max-width: 450px) {
   .sparring-author { gap: 10px; }
 }
+
+.sparring .sparring-origin { max-width: 59ch; margin-top: 18px; font-size: clamp(17px, 1.45vw, 21px); line-height: 1.48; }
+.sparring-more { border-top: 1px solid var(--rule); }
+.sparring-more summary { width: fit-content; padding-block: 14px; cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+.sparring-more dl { margin-top: 0; }

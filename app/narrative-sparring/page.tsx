@@ -70,6 +70,24 @@ const brands = [
   ['polo.webp', 'Asociación Argentina de Polo'], ['ucasal.webp', 'Universidad Católica de Salta'],
 ]
 
+function Credits({ entries }: { entries: typeof career.es }) {
+  return (
+    <dl>
+      {entries.map(item => (
+        <div key={item.label}>
+          <dt>{item.label}</dt>
+          <dd>
+            <strong>{item.headline}</strong>
+            <p>{item.body}</p>
+            {item.credits && <p className="sparring-credit-line">{item.credits}</p>}
+            {item.link && <Link href={item.link.href}>{item.link.label}</Link>}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  )
+}
+
 export default async function NarrativeSparring({ searchParams }: PageProps) {
   const params = await searchParams
   const english = params.lang === 'en'
@@ -97,42 +115,14 @@ export default async function NarrativeSparring({ searchParams }: PageProps) {
         </div>
         <div className="sparring-letter">
           <p className="sparring-byline">Narrative Sparring</p>
-          <h1 id="apertura">{english ? 'How do you get someone to believe in you?' : '¿Cómo hacés para que alguien crea en vos?'}</h1>
-          <p>{english ? 'I grew up in a small city in northern Argentina. At 16, I was putting on events for 600 people in Salta. The hard part was getting the first person to take an invitation from a teenager seriously.' : 'Nací y me crié en una ciudad chica del norte de Argentina. A los 16 años organizaba eventos en Salta para 600 personas. Hoy es fácil decir «600». Lo difícil, a esa edad, era que la primera persona se tomara en serio la invitación.'}</p>
-          <p>{english ? 'Maybe you know that feeling. You’ve built something worth sharing. So far, you’re the only one who knows it.' : 'Capaz estás ahí. Tenés algo que vale la pena y todavía sos la única persona que lo sabe.'}</p>
+          <h1 id="apertura">{english ? 'Read a letter. Then decide.' : 'Leé una carta. Después decidís.'}</h1>
+          <p>{english ? 'I grew up in a small city in northern Argentina. When a new iPhone came out, people came looking for me. They knew me from a Facebook group. What makes someone trust a kid on the internet with that much money?' : 'Nací y me crié en una ciudad chica del norte de Argentina. Cuando salía un iPhone, en Salta me buscaban a mí. Me conocían de un grupo de Facebook. ¿Qué hace que alguien le confíe esa plata a un pibe de internet?'}</p>
+          <p>{english ? 'That question came up again when I coordinated creators for TikTok’s launch in Argentina. Each week I write about how to tell the story of your work and earn the trust of someone who’s just met you.' : 'Esa pregunta volvió cuando coordiné a los creadores para el lanzamiento de TikTok en Argentina. Cada semana te escribo sobre cómo contar lo que hacés y ganarte la confianza de alguien que todavía no te conoce.'}</p>
           <div className="sparring-signup" id="suscripcion">
-            <p>{english ? 'Each week I write about how to tell the story of your work so other people can see what you see.' : 'Cada semana te mando una carta sobre cómo contar lo que hacés para que otros también lo vean.'}</p>
+            <p><a href="#lecturas">{english ? 'Read a full letter first' : 'Leé una carta completa'}</a>{english ? ' before you share your email.' : ' antes de darme tu correo.'}</p>
             <NewsletterCTA locale={language} campaign="narrative-sparring" variant="light" ctaLabel={subscribe} helper={english ? "Free. Your first letter is in Spanish. Reply anytime. I read every response." : "Es gratis. La primera carta es «Emigrar te devuelve el lápiz». Si me respondés, te leo yo."} />
           </div>
         </div>
-      </section>
-
-      <section className="sparring-credentials" aria-labelledby="trayectoria">
-        <h2 id="trayectoria">{english ? 'My background' : 'Mi recorrido'}</h2>
-        <dl>
-          {career[language].map(item => (
-            <div key={item.label}>
-              <dt>{item.label}</dt>
-              <dd>
-                <strong>{item.headline}</strong>
-                <p>{item.body}</p>
-                {item.credits && <p className="sparring-credit-line">{item.credits}</p>}
-                {item.link && <Link href={item.link.href}>{item.link.label}</Link>}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        <p className="sparring-location">{english ? 'I’ve lived in three countries, traveled through thirteen and now write from Russia.' : 'Viví en tres países, viajé por trece y hoy escribo desde Rusia.'}</p>
-      </section>
-
-      <section className="sparring-proof" aria-labelledby="campanas">
-        <h2 id="campanas">{english ? 'Brands I’ve worked on' : 'Clientes con los que trabajé'}</h2>
-        <p className="sparring-client-context">{english ? 'In-house and on agency teams.' : 'Desde sus equipos y desde agencias.'}</p>
-        <ul className="sparring-brands">{brands.map(([file, name]) => (
-          <li key={file}>
-            <img src={'/brands/' + file} alt={name} width="110" height="38" loading="lazy" />
-          </li>
-        ))}</ul>
       </section>
 
       <section className="sparring-reads" id="lecturas" aria-labelledby="seleccion">
@@ -155,6 +145,27 @@ export default async function NarrativeSparring({ searchParams }: PageProps) {
           <Link href={libraryUrl}>{english ? 'Browse all essays and articles →' : 'Ver todos los ensayos y artículos →'}</Link>
           <a href="#suscripcion">{subscribe} ↑</a>
         </nav>
+      </section>
+
+      <section className="sparring-proof" aria-labelledby="campanas">
+        <h2 id="campanas">{english ? 'Brands I’ve worked on' : 'Clientes con los que trabajé'}</h2>
+        <p className="sparring-client-context">{english ? 'In-house and on agency teams.' : 'Desde sus equipos y desde agencias.'}</p>
+        <ul className="sparring-brands">{brands.map(([file, name]) => (
+          <li key={file}>
+            <img src={'/brands/' + file} alt={name} width="110" height="38" loading="lazy" />
+          </li>
+        ))}</ul>
+      </section>
+
+      <section className="sparring-credentials" aria-labelledby="trayectoria">
+        <h2 id="trayectoria">{english ? 'Why read me?' : '¿Por qué leerme?'}</h2>
+        <p className="sparring-origin">{english ? 'I’ve worked since I was 15. My first “startup” was a Facebook group. It grew to 5,000 members. I sold ads there, then Apple products that were hard to get in Argentina. Five thousand people might see a post. Getting one of them to trust me with the price of an iPhone was a different skill.' : 'Trabajo desde los 15. Mi primer «emprendimiento», ponele, fue un grupo de Facebook. Lo llevé a 5.000 miembros. Ahí vendía publicidad y después empecé a vender productos de Apple, que en Argentina costaba conseguir. Una cosa era que alguien viera mi publicación. Otra era que me confiara la plata de un iPhone.'}</p>
+        <Credits entries={career[language].filter(item => item.featured)} />
+        <details className="sparring-more">
+          <summary>{english ? 'More work in production, PR and writing' : 'Más trabajos de producción, prensa y escritura'}</summary>
+          <Credits entries={career[language].filter(item => !item.featured)} />
+        </details>
+        <p className="sparring-location">{english ? 'I’ve lived in three countries, traveled through thirteen and now write from Russia.' : 'Viví en tres países, viajé por trece y hoy escribo desde Rusia.'}</p>
       </section>
     </div>
   )

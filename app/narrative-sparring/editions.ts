@@ -13,13 +13,13 @@ export const career: Record<'es' | 'en', Credit[]> = {
       featured: true,
       label: 'Convocar gente',
       headline: 'A los 17 organicé mi primer evento. Vinieron 300 personas.',
-      body: 'Fue Fuck Up Nights Salta, una noche para hablar en público de lo que salió mal. Después coproduje shows de Lucho Mellera y Lucas Lauriente, Lucas Lezin, Grego Rossello, Lucas Castel y Mariano Bondar.',
+      body: 'Fue Fuck Up Nights, una noche para hablar en público de lo que salió mal. Después coproduje shows de Lucho Mellera y Lucas Lauriente, Lucas Lezin, Grego Rossello, Lucas Castel y Mariano Bondar.',
       credits: 'Entre todos esos shows de comedia vinieron más de 3.000 personas.',
     },
     {
       label: 'Teatro y música',
       headline: 'Integré los equipos de producción de Axel, Les Luthiers y el musical Sugar.',
-      body: 'También trabajé en el concierto «De Broadway a Hollywood». Gerónimo Rauch cantó con la Orquesta Sinfónica de Salta, dirigida por Gerardo Gardelín.',
+      body: 'También trabajé en el concierto «De Broadway a Hollywood». Gerónimo Rauch cantó con una orquesta sinfónica dirigida por Gerardo Gardelín.',
     },
     {
       featured: true,
@@ -59,13 +59,13 @@ export const career: Record<'es' | 'en', Credit[]> = {
       featured: true,
       label: 'Bringing people together',
       headline: 'I was 17 when I organized my first event. Three hundred people came.',
-      body: 'It was Fuck Up Nights Salta, a night for people to talk openly about things that went wrong. Later I co-produced shows for Lucho Mellera and Lucas Lauriente, two Argentine comics with Netflix specials.',
+      body: 'It was Fuck Up Nights, a night for people to talk openly about things that went wrong. Later I co-produced shows for Lucho Mellera and Lucas Lauriente, two Argentine comics with Netflix specials.',
       credits: 'Across all the comedy shows I co-produced, more than 3,000 people attended.',
     },
     {
       label: 'Stage production',
-      headline: 'From Broadway to Hollywood, live in Salta.',
-      body: 'I worked on the production team for a concert with Gerónimo Rauch, who played the Phantom in London’s West End. Gerardo Gardelín, who wrote music for Tanguera at New York City Center, conducted the Salta Symphony Orchestra.',
+      headline: 'From Broadway to Hollywood, live in Argentina.',
+      body: 'I worked on the production team for a concert with Gerónimo Rauch, who played the Phantom in London’s West End. Gerardo Gardelín, who wrote music for Tanguera at New York City Center, conducted the orchestra.',
     },
     {
       featured: true,

@@ -11,10 +11,23 @@ export const metadata: Metadata = {
   openGraph: { title, description, url: '/narrative-sparring', locale: 'es_AR', images: ['/fran-herrera.webp'] },
 }
 
-const readings = [
-  { kind: 'Ensayo', title: 'Emigrar te devuelve el lápiz', slug: 'emigrar-te-devuelve-el-lapiz', image: '/essays/emigrar-te-devuelve-el-lapiz/hero.webp' },
-  { kind: 'Artículo', title: 'Arquitectura de marca: ¿cuándo crear otra marca?', slug: 'arquitectura-de-marca-cuando-crear-otra-marca', image: '/articles/arquitectura-de-marca-cuando-crear-otra-marca/bmw.svg' },
-  { kind: 'Ensayo', title: 'Buscá a tu Larry Holmes', slug: 'busca-a-tu-larry-holmes', image: '/essays/larry-holmes/larry-holmes.webp' },
+const readingGroups = [
+  {
+    title: 'Ensayos',
+    readings: [
+      { title: 'Emigrar te devuelve el lápiz', slug: 'emigrar-te-devuelve-el-lapiz', image: '/essays/emigrar-te-devuelve-el-lapiz/hero.webp' },
+      { title: 'Buscá a tu Larry Holmes', slug: 'busca-a-tu-larry-holmes', image: '/essays/larry-holmes/larry-holmes.webp' },
+      { title: '¿Quemarías tu propia casa?', slug: 'quemarias-tu-propia-casa', image: '/essays/would-you-burn-down-your-own-house/thiel-email.webp' },
+    ],
+  },
+  {
+    title: 'Artículos técnicos',
+    readings: [
+      { title: 'Arquitectura de marca: ¿cuándo crear otra marca?', slug: 'arquitectura-de-marca-cuando-crear-otra-marca', image: '/articles/arquitectura-de-marca-cuando-crear-otra-marca/bmw.svg' },
+      { title: 'Cómo lograr que los clientes pidan tu marca, además de tu producto', slug: 'como-lograr-que-clientes-pidan-tu-marca-b2b', image: '/articles/como-lograr-que-clientes-pidan-tu-marca-b2b/intel.svg' },
+      { title: '¿Necesitás un rebranding o explicar mejor lo que tu empresa ya hace?', slug: 'rebranding-o-explicar-mejor-tu-empresa', image: '/articles/rebranding-o-explicar-mejor-tu-empresa/kia-ev6-2021.webp' },
+    ],
+  },
 ]
 
 const brands = [
@@ -41,48 +54,52 @@ export default async function NarrativeSparring({ searchParams }: { searchParams
         </div>
         <div className="sparring-letter">
           <p className="sparring-byline">Narrative Sparring</p>
-          <h1 id="apertura">¿Quién sos cuando nadie te conoce?</h1>
-          <p>Tenía 23 años cuando me despedí de mi vieja en Ezeiza. En Salta, alguien siempre conocía a mi familia o sabía dónde había laburado. Al emigrar, me tocó elegir qué contar primero.</p>
-          <p>Con Karen Mannheim me tocó trabajar esa misma pregunta. Su estudio de iluminación llevaba más de 2.500 proyectos. En Lima la conocían. En Miami tenía que presentarse de cero. <Link href="/work/karen-mannheim">Así armamos esa presentación.</Link></p>
+          <h1 id="apertura">¿Cómo hacés para que alguien crea en vos?</h1>
+          <p>Nací y me crié en una ciudad chica del norte de Argentina. A los 16 años organizaba eventos en Salta para 600 personas. Hoy es fácil decir «600». Lo difícil, a esa edad, era que la primera persona se tomara en serio la invitación.</p>
+          <p>Capaz estás ahí. Tenés algo que vale la pena y todavía sos la única persona que lo sabe.</p>
           <div className="sparring-signup" id="suscripcion">
-            <p>Te escribo una vez por semana sobre marcas, identidad y las historias que otros cuentan de nosotros.</p>
+            <p>Cada semana te mando una carta sobre cómo contar lo que hacés para que otros también lo vean.</p>
             <NewsletterCTA locale="es" campaign="narrative-sparring" variant="light" ctaLabel="Recibir la carta" helper="Es gratis. La primera carta es «Emigrar te devuelve el lápiz». Si me respondés, te leo yo." />
           </div>
         </div>
-        <aside className="sparring-credentials" aria-labelledby="trayectoria">
-          <h2 id="trayectoria">Mi recorrido</h2>
-          <dl>
-            <div><dt>Argentina</dt><dd><strong>Mary Kay fue mi primer cliente.</strong> Tenía 18 años. Después coordiné creadores para el lanzamiento de TikTok en el país.</dd></div>
-            <div><dt>Emiratos Árabes Unidos</dt><dd><strong>En Dubái armé el área de estrategia de marca de Luna PR.</strong> Con CRUDA trabajé con Girish Sehgal, que llevó lo que aprendió en hotelería a un hospital de Abu Dabi. <Link href="/work/girish-sehgal">Ver el caso</Link></dd></div>
-            <div><dt>Estados Unidos</dt><dd><strong>En Norhart trabajé desde adentro.</strong> Con Mike Kaeding, su CEO, contamos cómo una constructora de Minnesota se propuso reducir a la mitad el costo de la vivienda. <Link href="/work/mike-kaeding">Ver el caso</Link></dd></div>
-          </dl>
-          <p className="sparring-location">Nací en Salta. Viví en tres países, viajé por trece y hoy escribo desde Rusia.</p>
-        </aside>
+      </section>
+
+      <section className="sparring-credentials" aria-labelledby="trayectoria">
+        <h2 id="trayectoria">Mi recorrido</h2>
+        <dl>
+          <div><dt>Argentina</dt><dd><strong>A los 18 años, mi primer cliente fue Mary Kay.</strong> Más tarde, cuando TikTok llegó a Argentina, coordiné a los creadores que participaron en el lanzamiento.</dd></div>
+          <div><dt>Emiratos Árabes Unidos</dt><dd><strong>En Dubái armé un área nueva en la agencia Luna PR.</strong> Mi trabajo era ayudar a cada empresa a explicar qué hacía y por qué elegirla. Después, con CRUDA, ayudé a Girish Sehgal a contar cómo usaba sus 25 años en hoteles para cuidar mejor a los pacientes de un hospital. <Link href="/work/girish-sehgal">Leer la historia de Girish</Link></dd></div>
+          <div><dt>Estados Unidos</dt><dd><strong>Conté cómo Norhart construye viviendas en Minnesota.</strong> Empecé dentro de la empresa. En 2024 fundé CRUDA y seguí escribiendo con Mike Kaeding, su director. En un año, sus publicaciones aparecieron dos millones de veces en LinkedIn. <Link href="/work/mike-kaeding">Ver el trabajo con Mike</Link></dd></div>
+          <div><dt>Perú</dt><dd><strong>Un video trajo un proyecto de iluminación.</strong> Con Karen Mannheim mostramos cómo su estudio, TRAZZO, había iluminado un edificio en Lima. Alguien vio el video, escribió al estudio y lo contrató para iluminar un departamento. El proyecto valió entre 20.000 y 30.000 dólares. <Link href="/work/karen-mannheim">Ver el caso de TRAZZO</Link></dd></div>
+        </dl>
+        <p className="sparring-location">Viví en tres países, viajé por trece y hoy escribo desde Rusia.</p>
       </section>
 
       <section className="sparring-proof" aria-labelledby="campanas">
-        <div className="sparring-section-head">
-          <h2 id="campanas">Campañas en las que trabajé</h2>
-          <p>Clientes de mi etapa en agencias</p>
-        </div>
+        <h2 id="campanas">Clientes con los que trabajé</h2>
+        <p className="sparring-client-context">Desde sus equipos y desde agencias.</p>
         <ul className="sparring-brands">{brands.map(([file, name]) => (
           <li key={file}>
-            <img src={'/brands/' + file} alt="" width="110" height="38" loading="lazy" />
-            <span>{name}</span>
+            <img src={'/brands/' + file} alt={name} width="110" height="38" loading="lazy" />
           </li>
         ))}</ul>
-        <p className="sparring-footnote">También participé en una campaña para Naciones Unidas.</p>
       </section>
 
       <section className="sparring-reads" id="lecturas" aria-labelledby="seleccion">
         <h2 id="seleccion">¿Por dónde querés empezar?</h2>
-        <div>{readings.map(r => (
-          <Link key={r.slug} href={'/thinking/' + r.slug + attribution}>
-            <img src={r.image} alt="" loading="lazy" className={r.image.endsWith('.svg') ? 'sparring-diagram' : undefined} />
-            <small>{r.kind}</small>
-            <h3>{r.title}</h3>
-          </Link>
-        ))}</div>
+        {readingGroups.map(group => (
+          <div className="sparring-reading-group" key={group.title}>
+            <h3>{group.title}</h3>
+            <ul className="sparring-reading-list">{group.readings.map(r => (
+              <li key={r.slug}>
+                <Link href={'/thinking/' + r.slug + attribution}>
+                  <img src={r.image} alt="" loading="lazy" className={r.image.endsWith('.svg') ? 'sparring-diagram' : undefined} />
+                  <h4>{r.title}</h4>
+                </Link>
+              </li>
+            ))}</ul>
+          </div>
+        ))}
         <p className="sparring-podcast">¿Preferís escuchar? En The Cruda Space hablé con Tomás Piuzzi, de Mercado Pago, sobre crecer sin empezar por los indicadores, y con Alexia Keglevich sobre volver a empezar. <a href="https://www.youtube.com/playlist?list=PLkZDmUoEd-4DN6yd2AOeKcvQCEvSh73Vz">Escuchá las conversaciones</a>.</p>
         <nav aria-label="Más lecturas y suscripción">
           <Link href={libraryUrl}>Ver todos los ensayos y artículos →</Link>

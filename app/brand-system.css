@@ -1,7 +1,7 @@
 /* CRUDA / approved visual proposal / 14 November 2026.
    Shared tokens and public-site components. Client artwork keeps its own identity. */
 html:root {
-  --brand-paper:#efeddf; --brand-ink:#181b17; --brand-accent:#fa6834;
+  --brand-paper:#F2F2F0; --brand-ink:#181b17; --brand-accent:#fa6834;
   --brand-muted:#65665e; --brand-line:rgba(24,27,23,.22);
   --paper:var(--brand-paper); --cream:var(--brand-paper); --white:var(--brand-paper);
   --ink:var(--brand-ink); --ink-deep:var(--brand-ink); --black:var(--brand-ink);

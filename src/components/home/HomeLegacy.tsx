@@ -32,10 +32,8 @@ const CREDIT = 'Fran Herrera · Founder · born in Salta, Argentina'
 const HEADLINE =
   'You work with the founder — and with a team small enough to move.'
 
-/* F41 · EXPERIENCE copy actualizada · describe la mezcla real
-   (Fortune 500s + SMEs + B2B) en vez de "brands" a secas. */
 const EXPERIENCE_COPY =
-  'Ten years across Fortune 500s, SMEs and B2B companies, on three continents, in-house and agency side.'
+  'Fran worked on the launch of TikTok in Argentina, built the brand strategy practice at Luna PR in Dubai and worked in-house at Norhart.'
 
 export default function HomeLegacy() {
   return (

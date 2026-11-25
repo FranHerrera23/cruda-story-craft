@@ -35,7 +35,7 @@
      Iteración descendente: 1680→700→620vh. En 620vh se atraviesa
      en 7 gestos exactos. Ver acts-config.ts ACT2_HEIGHT_VH. */
   height: 620vh;
-  background: #F2F2F0;
+  background: var(--brand-paper);
   color: #0E1113;
 }
 
@@ -59,7 +59,7 @@
   isolation: isolate;
 }
 .act2__stage {
-  background: #F2F2F0;
+  background: var(--brand-paper);
   isolation: isolate;
 }
 

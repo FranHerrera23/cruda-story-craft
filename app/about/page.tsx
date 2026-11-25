@@ -254,11 +254,10 @@ export default function AboutPage() {
                 sizes="(max-width: 767px) 96px, 120px"
               />
               <p className="f55-p f55-fran__t">
-                Fran Herrera founded CRUDA in February 2024. Before that,
-                ten years across Fortune 500s, SMEs and B2B companies, on
-                three continents, in-house and agency side. He was born
-                in Salta, in the north of Argentina, and works from Dubai
-                and Moscow.
+                Fran Herrera grew up in Salta, Argentina. At 18, his first client
+                was Mary Kay. He later helped launch TikTok in Argentina,
+                built the brand strategy practice at Luna PR in Dubai and
+                worked in-house at Norhart. In February 2024 he founded CRUDA.
               </p>
             </div>
             <dl className="f55-ficha" data-reveal>

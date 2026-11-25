@@ -18,9 +18,13 @@ const readings = [
 ]
 
 const brands = [
-  ['tiktok', 'TikTok'],
-  ['mastercard', 'Mastercard'],
-  ['mcdonalds', 'McDonald’s'],
+  ['mary-kay.webp', 'Mary Kay'], ['tiktok.svg', 'TikTok'],
+  ['purina.webp', 'Purina'], ['mastercard.svg', 'Mastercard'],
+  ['ab-inbev.webp', 'AB InBev'], ['directv.webp', 'DIRECTV'],
+  ['mondelez.webp', 'Mondelēz · Oreo'], ['pedidosya.webp', 'PedidosYa'],
+  ['mcdonalds.svg', 'McDonald’s'], ['cerveza-salta.webp', 'Cerveza Salta · CCU'],
+  ['georgalos.webp', 'Georgalos · Flynn Paff'], ['sheraton.webp', 'Sheraton Argentina'],
+  ['polo.webp', 'Asociación Argentina de Polo'], ['ucasal.webp', 'Universidad Católica de Salta'],
 ]
 
 export default async function NarrativeSparring({ searchParams }: { searchParams: Promise<{ utm_source?: string }> }) {
@@ -30,32 +34,44 @@ export default async function NarrativeSparring({ searchParams }: { searchParams
   const libraryUrl = profile ? '/thinking?lang=es&' + attribution.slice(1) : '/thinking?lang=es'
   return (
     <div className="sparring" lang="es-AR">
-      <section className="sparring-intro" aria-labelledby="autor">
-        <div className="sparring-heading">
-          <p className="sparring-byline">Narrative Sparring · Una carta de CRUDA</p>
-          <h1 id="autor">Soy Fran Herrera.</h1>
+      <section className="sparring-intro" aria-labelledby="apertura">
+        <div className="sparring-author">
+          <img className="sparring-portrait" src="/fran-herrera.webp" alt="" width="64" height="64" />
+          <p><strong>Fran Herrera</strong><span>Estratega de marca · Fundador de CRUDA</span></p>
         </div>
-        <img className="sparring-portrait" src="/fran-herrera.webp" alt="Fran Herrera" />
-        <div className="sparring-letter" id="suscripcion">
-          <p>Soy estratega de marca. Nací en Salta, viví en ocho países y hoy escribo desde Rusia. Fundé CRUDA para trabajar con gente que conoce su empresa de memoria y se traba cuando le preguntan «¿y vos qué hacés?».</p>
-          <p>Cada semana te mando un ensayo o un artículo. A veces la pregunta es qué nombre ponerle a lo que estás construyendo. Otras, cómo presentarte cuando te mudás a un lugar donde nadie te conoce.</p>
-          <NewsletterCTA locale="es" campaign="narrative-sparring" variant="light" ctaLabel="Recibir la carta" helper="Es gratis. Al confirmar, te llega «Emigrar te devuelve el lápiz». Si me respondés, te leo yo." />
+        <div className="sparring-letter">
+          <p className="sparring-byline">Narrative Sparring</p>
+          <h1 id="apertura">¿Quién sos cuando nadie te conoce?</h1>
+          <p>Tenía 23 años cuando me despedí de mi vieja en Ezeiza. En Salta, alguien siempre conocía a mi familia o sabía dónde había laburado. Al emigrar, me tocó elegir qué contar primero.</p>
+          <p>Con Karen Mannheim me tocó trabajar esa misma pregunta. Su estudio de iluminación llevaba más de 2.500 proyectos. En Lima la conocían. En Miami tenía que presentarse de cero. <Link href="/work/karen-mannheim">Así armamos esa presentación.</Link></p>
+          <div className="sparring-signup" id="suscripcion">
+            <p>Te escribo una vez por semana sobre marcas, identidad y las historias que otros cuentan de nosotros.</p>
+            <NewsletterCTA locale="es" campaign="narrative-sparring" variant="light" ctaLabel="Recibir la carta" helper="Es gratis. La primera carta es «Emigrar te devuelve el lápiz». Si me respondés, te leo yo." />
+          </div>
         </div>
+        <aside className="sparring-credentials" aria-labelledby="trayectoria">
+          <h2 id="trayectoria">Mi recorrido</h2>
+          <dl>
+            <div><dt>Argentina</dt><dd><strong>Mary Kay fue mi primer cliente.</strong> Tenía 18 años. Después coordiné creadores para el lanzamiento de TikTok en el país.</dd></div>
+            <div><dt>Emiratos Árabes Unidos</dt><dd><strong>En Dubái armé el área de estrategia de marca de Luna PR.</strong> Con CRUDA trabajé con Girish Sehgal, que llevó lo que aprendió en hotelería a un hospital de Abu Dabi. <Link href="/work/girish-sehgal">Ver el caso</Link></dd></div>
+            <div><dt>Estados Unidos</dt><dd><strong>En Norhart trabajé desde adentro.</strong> Con Mike Kaeding, su CEO, contamos cómo una constructora de Minnesota se propuso reducir a la mitad el costo de la vivienda. <Link href="/work/mike-kaeding">Ver el caso</Link></dd></div>
+          </dl>
+          <p className="sparring-location">Nací en Salta. Viví en tres países, viajé por trece y hoy escribo desde Rusia.</p>
+        </aside>
       </section>
 
-      <section className="sparring-proof" aria-labelledby="trayectoria">
-        <div>
-          <h2 id="trayectoria">Mi recorrido</h2>
-          <p>A los 18 tuve mi primer cliente, Mary Kay. Desde agencia participé en el lanzamiento de TikTok en Argentina. En Dubái armé el área de estrategia de marca de Luna PR y después trabajé del lado del cliente en Norhart.</p>
-          <p>En mi podcast hablé con Tomás Piuzzi, de Mercado Pago, sobre cómo pensar el crecimiento, y con Alexia Keglevich sobre volver a empezar. <a href="https://www.youtube.com/playlist?list=PLkZDmUoEd-4DN6yd2AOeKcvQCEvSh73Vz">Escuchá The Cruda Space</a>.</p>
+      <section className="sparring-proof" aria-labelledby="campanas">
+        <div className="sparring-section-head">
+          <h2 id="campanas">Campañas en las que trabajé</h2>
+          <p>Clientes de mi etapa en agencias</p>
         </div>
-        <div>
-          <h3>Marcas para las que trabajé desde agencia</h3>
-          <ul className="sparring-brands">{brands.map(([slug, name]) => (
-            <li key={slug}><img src={`/brands/${slug}.svg`} alt="" width="32" height="32" /><span>{name}</span></li>
-          ))}</ul>
-          <a href="https://franherrera.me/">Más sobre mí →</a>
-        </div>
+        <ul className="sparring-brands">{brands.map(([file, name]) => (
+          <li key={file}>
+            <img src={'/brands/' + file} alt="" width="110" height="38" loading="lazy" />
+            <span>{name}</span>
+          </li>
+        ))}</ul>
+        <p className="sparring-footnote">También participé en una campaña para Naciones Unidas.</p>
       </section>
 
       <section className="sparring-reads" id="lecturas" aria-labelledby="seleccion">
@@ -67,6 +83,7 @@ export default async function NarrativeSparring({ searchParams }: { searchParams
             <h3>{r.title}</h3>
           </Link>
         ))}</div>
+        <p className="sparring-podcast">¿Preferís escuchar? En The Cruda Space hablé con Tomás Piuzzi, de Mercado Pago, sobre crecer sin empezar por los indicadores, y con Alexia Keglevich sobre volver a empezar. <a href="https://www.youtube.com/playlist?list=PLkZDmUoEd-4DN6yd2AOeKcvQCEvSh73Vz">Escuchá las conversaciones</a>.</p>
         <nav aria-label="Más lecturas y suscripción">
           <Link href={libraryUrl}>Ver todos los ensayos y artículos →</Link>
           <a href="#suscripcion">Recibir la carta ↑</a>

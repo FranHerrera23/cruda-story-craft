@@ -24,6 +24,7 @@ const BASE = 'https://www.thecruda.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
+    { url: `${BASE}/narrative-sparring`, changeFrequency: 'weekly', priority: 0.8 },
     // Home
     {
       url: BASE,

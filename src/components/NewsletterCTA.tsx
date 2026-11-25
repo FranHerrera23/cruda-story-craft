@@ -31,6 +31,8 @@ type Props = {
   shape?: Shape
   ctaLabel?: string
   helper?: string
+  locale?: 'es' | 'en'
+  campaign?: string
   source?: string
 }
 
@@ -52,11 +54,15 @@ export default function NewsletterCTA({
   ctaLabel = 'Subscribe to Narrative Sparring',
   helper,
   source,
+  locale = 'en',
+  campaign,
 }: Props) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const [website, setWebsite] = useState('') // honeypot
 
+  const spanish = locale === 'es'
+  const emailLabel = spanish ? 'Tu correo' : 'Email address'
   const sending = status === 'sending'
   const done = status === 'ok' || status === 'already'
 
@@ -72,11 +78,11 @@ export default function NewsletterCTA({
           email,
           source_path: source ?? (typeof window !== 'undefined' ? window.location.pathname : ''),
           utm_source: readUtm('utm_source'),
-          utm_campaign: readUtm('utm_campaign'),
+          utm_campaign: readUtm('utm_campaign') || campaign,
           website,
         }),
       })
-      if (res.status === 500) {
+      if (res.status === 500 && !spanish) {
         setStatus('fallback')
         return
       }
@@ -117,9 +123,9 @@ export default function NewsletterCTA({
   }
 
   return (
-    <form className={rootClass} onSubmit={onSubmit} noValidate>
+    <form className={rootClass} onSubmit={onSubmit} noValidate={!spanish}>
       <label className="ncta__label" htmlFor={`ncta-email-${shape}-${variant}`}>
-        Email address
+        {emailLabel}
       </label>
       <input
         id={`ncta-email-${shape}-${variant}`}
@@ -127,7 +133,7 @@ export default function NewsletterCTA({
         type="email"
         inputMode="email"
         autoComplete="email"
-        placeholder="Email address"
+        placeholder={emailLabel}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
@@ -150,13 +156,13 @@ export default function NewsletterCTA({
         className="ncta__btn"
         disabled={sending || done}
       >
-        {sending ? 'Sending…' : ctaLabel}
+        {sending ? (spanish ? 'Enviando…' : 'Sending…') : ctaLabel}
       </button>
       {(status === 'ok' || status === 'already') && (
-        <p className="ncta__msg ncta__msg--ok" role="status">{MSG_OK}</p>
+        <p className="ncta__msg ncta__msg--ok" role="status">{spanish ? 'Revisá tu correo. En el mensaje de Narrative Sparring, confirmá tu dirección para abrir «Emigrar te devuelve el lápiz».' : MSG_OK}</p>
       )}
       {status === 'error' && (
-        <p className="ncta__msg ncta__msg--err" role="alert">{MSG_ERR}</p>
+        <p className="ncta__msg ncta__msg--err" role="alert">{spanish ? 'No pudimos registrar tu correo. Probá otra vez en unos minutos.' : MSG_ERR}</p>
       )}
       {helper && status === 'idle' && (
         <p className="ncta__helper">{helper}</p>

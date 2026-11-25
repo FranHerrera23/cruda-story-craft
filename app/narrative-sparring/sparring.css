@@ -1,0 +1,19 @@
+.sparring{max-width:1240px;margin:auto;padding:clamp(34px,6vw,88px) clamp(20px,5vw,72px);color:var(--ink,#1d1e1a);font-family:var(--font-archivo),sans-serif}
+.sparring h1,.sparring h2,.sparring h3{font-weight:620;letter-spacing:-.055em;line-height:1.02;text-wrap:balance}
+.sparring h1{font-size:clamp(44px,5.7vw,84px);margin:.3em 0}
+.sparring h2{font-size:clamp(32px,3.7vw,55px);margin:0}
+.sparring h3{font-size:clamp(24px,2.1vw,35px);margin:.3em 0}
+.sparring p{font-size:clamp(17px,1.5vw,22px);line-height:1.48;margin:0 0 .9em}
+.sparring a{text-decoration:underline;text-underline-offset:.2em}
+.sparring a:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.sparring-intro,.sparring-pair{display:grid;gap:clamp(24px,5vw,72px);align-items:start}
+.sparring-intro{grid-template-columns:1.4fr 1fr;align-items:center;padding-bottom:clamp(40px,6vw,80px)}
+.sparring .sparring-byline,.sparring figcaption,.sparring small{font-size:14px;font-weight:550}
+.sparring-intro figure{margin:0}.sparring-intro img{width:100%;max-height:460px;object-fit:cover;object-position:center 35%}.sparring figcaption{margin-top:8px}
+.sparring-pair,.sparring-reads{padding:clamp(30px,4vw,60px) 0;border-top:1px solid currentColor}
+.sparring-pair{grid-template-columns:1fr 1.65fr}.sparring-reads>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:28px 0}
+.sparring-reads>div a{text-decoration:none}.sparring-reads>div a:hover h3{text-decoration:underline}.sparring-reads img{width:100%;aspect-ratio:3/2;object-fit:cover;margin-bottom:9px;background:#f3f1e9}.sparring-reads .sparring-diagram{object-fit:contain}
+.sparring-reads p{font-size:17px}.sparring-mail .ncta__helper,.sparring-mail .ncta__msg{font-size:15px}
+@media(max-width:700px){.sparring-intro,.sparring-pair,.sparring-reads>div{grid-template-columns:1fr}.sparring-intro img{max-height:300px}.sparring-reads>div{gap:30px}.sparring-intro a{display:inline-block;padding:6px 0}.sparring-reads img{max-height:260px}}
+
+.sparring-links{display:flex;flex-wrap:wrap;gap:22px;align-items:center}

@@ -96,3 +96,10 @@
   .sparring-reading-list img { aspect-ratio: 1.3; }
   .sparring-reading-list h4 { margin: 0; }
 }
+
+.sparring-lang { margin-inline-start: auto; font-size: 14px; }
+.sparring-credentials .sparring-credit-line { margin-top: 8px; }
+.sparring-credentials dd > a { display: inline-block; margin-top: 7px; }
+@media (max-width: 450px) {
+  .sparring-author { gap: 10px; }
+}

@@ -9,9 +9,8 @@ export const career: Record<'es' | 'en', Credit[]> = {
   es: [
     {
       label: 'Convocar gente',
-      headline: 'A los 17 organicé mi primer evento. Vinieron 300 personas.',
-      body: 'Fue Fuck Up Nights, una noche para hablar en público de lo que salió mal. Después coproduje shows de Lucho Mellera y Lucas Lauriente, Lucas Lezin, Grego Rossello, Lucas Castel y Mariano Bondar.',
-      credits: 'Entre todos esos shows de comedia vinieron más de 3.000 personas.',
+      headline: 'En Argentina aprendí a convocar a un público.',
+      body: 'Coproduje shows de Lucho Mellera y Lucas Lauriente, Lucas Lezin, Grego Rossello, Lucas Castel y Mariano Bondar. Entre esos shows de comedia vinieron más de 3.000 personas.',
     },
     {
       label: 'Teatro y música',
@@ -27,17 +26,19 @@ export const career: Record<'es' | 'en', Credit[]> = {
     {
       label: 'Luna PR · Prensa',
       headline: 'Mi primer trabajo en Dubái fue en Luna PR.',
-      body: 'Llevé las relaciones con la prensa de clientes de la agencia.',
+      body: 'Llevé la prensa de clientes de una agencia internacional de comunicación que se hizo un nombre trabajando con empresas de blockchain y del mercado de capitales.',
+      credits: 'Entre las decisiones de mi carrera estuvo la de rechazar una oferta de trabajo de Aramco, la empresa que más petróleo crudo produce en el mundo.',
     },
     {
       label: 'Norhart · Construcción',
-      headline: 'Escribí con Mike Kaeding, director de la constructora Norhart.',
-      body: 'Contamos cómo su empresa fabrica sus propias piezas para bajar el costo de construir viviendas. Escribí sus charlas, publicaciones y presentaciones a inversores. Empecé dentro de Norhart y seguí con Mike cuando fundé CRUDA en 2024.',
+      headline: 'En Estados Unidos trabajé dentro de Norhart, una empresa de Minnesota que diseña, construye y alquila departamentos.',
+      body: 'Su CEO, Mike Kaeding, quería reducir a la mitad el costo de construir una vivienda. Para entonces ya había abierto una fábrica donde producían sus propios paneles de pared. Con Mike definí cómo presentar esa apuesta ante públicos con preguntas muy distintas. Un inversor quería entender los números. Su equipo necesitaba saber por qué estaban cambiando la forma de construir.',
+      credits: 'De ese trabajo salieron sus presentaciones a inversores, charlas, entrevistas y cartas internas. Cuando fundé CRUDA en 2024, Mike siguió trabajando conmigo.',
     },
     {
       label: 'CRUDA · Moda',
-      headline: 'El CEO de un grupo de moda de USD 300 millones había construido la empresa dos veces.',
-      body: 'Trabajamos con él para contar qué había aprendido y cómo funcionaba la nueva empresa. Esa historia la usó primero con su equipo y sus inversores.',
+      headline: 'Con el CEO de un grupo de moda de USD 300 millones trabajé sobre una parte de su historia que pocos conocían.',
+      body: 'Había construido la empresa, la había perdido y había vuelto a empezar. Lo ayudé a contar qué había aprendido la primera vez y qué decidió hacer distinto la segunda.',
     },
     {
       label: 'CRUDA · Salud y hotelería',
@@ -57,9 +58,8 @@ export const career: Record<'es' | 'en', Credit[]> = {
   en: [
     {
       label: 'Bringing people together',
-      headline: 'I was 17 when I organized my first event. Three hundred people came.',
-      body: 'It was Fuck Up Nights, a night for people to talk openly about things that went wrong. Later I co-produced shows for Lucho Mellera and Lucas Lauriente, two Argentine comics with Netflix specials.',
-      credits: 'Across all the comedy shows I co-produced, more than 3,000 people attended.',
+      headline: 'In Argentina I learned how to bring an audience together.',
+      body: 'I co-produced shows for Lucho Mellera and Lucas Lauriente, two Argentine comics with Netflix specials. More than 3,000 people attended across the comedy shows I co-produced.',
     },
     {
       label: 'Stage production',
@@ -74,17 +74,19 @@ export const career: Record<'es' | 'en', Credit[]> = {
     {
       label: 'Luna PR · Media relations',
       headline: 'My first job in Dubai was at Luna PR.',
-      body: 'I handled media relations for the agency’s clients.',
+      body: 'I handled press for clients at an international communications agency that made its name in blockchain and capital markets.',
+      credits: 'One career decision I made was to turn down a job offer from Aramco, the world’s largest crude oil producer.',
     },
     {
       label: 'Norhart · Construction',
-      headline: 'I wrote with Mike Kaeding, CEO of Minnesota homebuilder Norhart.',
-      body: 'We turned the work inside his factories into talks, investor presentations and stories about the cost of housing. I started on his team and kept working with him when I founded CRUDA in 2024.',
+      headline: 'In the US, I worked in-house at Norhart, a Minnesota company that designs, builds and rents apartments.',
+      body: 'Its CEO, Mike Kaeding, wanted to cut the cost of building a home in half. He had already opened a factory to produce wall panels. Mike and I worked out how to explain that bet to people with very different questions. An investor wanted to understand the numbers. His team needed to know why they were changing how they built.',
+      credits: 'That work shaped his investor presentations, talks, interviews and letters to the team. When I founded CRUDA in 2024, Mike kept working with me.',
     },
     {
       label: 'CRUDA · Fashion',
-      headline: 'The CEO of a $300 million fashion group had built the business twice.',
-      body: 'We worked with him on an account of what he had learned and how the new company worked. His own team and investors were its first audience.',
+      headline: 'I worked with the CEO of a $300 million fashion group on a part of his story few people knew.',
+      body: 'He had built the business, lost it and started again. I helped him tell the story of what he learned the first time and what he chose to do differently the second time.',
     },
     {
       label: 'CRUDA · Healthcare and hospitality',
